@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klaygo PH — How to Book</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{--mn:#0D1F3C;--pr:#2B4E8A;--se:#5A7BB5;--li:#A8BFE0;--pa:#EBF1FA;--bg:#F7F9FC;--gr:#6B6B68;--dk:#2C2C2A;--wh:#fff;--green:#1B8A4C;--gbg:#E8F7EE;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dk);font-size:13px;line-height:1.6;}
+nav{background:var(--mn);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;}
+nav .brand{color:#fff;font-size:16px;font-weight:700;letter-spacing:.02em;}
+nav .tag{color:var(--li);font-size:10px;font-style:italic;}
+.hero{background:linear-gradient(130deg,var(--pr),var(--mn));padding:36px 24px 30px;text-align:center;}
+.hero h1{font-size:clamp(20px,4vw,28px);font-weight:700;color:#fff;margin-bottom:8px;}
+.hero p{color:rgba(255,255,255,.6);font-size:12px;max-width:480px;margin:0 auto;}
+.wrap{max-width:760px;margin:0 auto;padding:28px 16px 60px;}
+
+
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:0;}
+.step-item{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--pa);}
+.step-item:last-child{border-bottom:none;}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--pr);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-body{flex:1;}
+.step-body h3{font-size:14px;font-weight:700;color:var(--mn);margin-bottom:4px;}
+.step-body p{font-size:12px;color:var(--gr);line-height:1.6;}
+.step-body .tip{margin-top:8px;padding:8px 10px;background:var(--pa);border-radius:5px;font-size:11px;color:var(--pr);line-height:1.5;}
+.step-body .tip strong{display:block;margin-bottom:2px;color:var(--mn);}
+.step-body .warn{margin-top:8px;padding:8px 10px;background:#FFF8E7;border:1px solid #F5C842;border-radius:5px;font-size:11px;color:#7A5C00;line-height:1.5;}
+
+/* FAQ */
+.faq-section{margin-top:28px;}
+.faq-title{font-size:16px;font-weight:700;color:var(--mn);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--pa);}
+.faq-item{margin-bottom:12px;background:var(--wh);border-radius:7px;overflow:hidden;box-shadow:0 1px 4px rgba(13,31,60,.06);}
+.faq-q{padding:12px 14px;font-size:12.5px;font-weight:600;color:var(--mn);cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-q:hover{background:var(--pa);}
+.faq-arrow{font-size:10px;color:var(--se);transition:transform .2s;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{display:none;padding:0 14px 12px;font-size:11.5px;color:var(--gr);line-height:1.6;}
+.faq-item.open .faq-a{display:block;}
+
+/* CONTACT BOX */
+.contact-box{background:var(--mn);border-radius:10px;padding:24px;text-align:center;margin-top:28px;}
+.contact-box h3{color:#fff;font-size:15px;font-weight:700;margin-bottom:6px;}
+.contact-box p{color:rgba(255,255,255,.55);font-size:11.5px;margin-bottom:16px;}
+.contact-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.c-link{padding:10px 20px;border-radius:7px;font-size:12px;font-weight:600;text-decoration:none;transition:all .14s;}
+.c-link.primary{background:var(--pr);color:#fff;}
+.c-link.primary:hover{background:var(--se);}
+.c-link.outline{border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);}
+.c-link.outline:hover{border-color:rgba(255,255,255,.5);color:#fff;}
+
+/* WORKFLOW DIAGRAM */
+.flow{display:flex;flex-direction:column;gap:0;margin:16px 0;}
+.flow-row{display:flex;align-items:center;gap:10px;}
+.flow-box{flex:1;background:var(--wh);border:1.5px solid var(--pa);border-radius:7px;padding:10px 12px;font-size:11.5px;color:var(--dk);line-height:1.4;}
+.flow-box.highlight{border-color:var(--pr);background:var(--pa);}
+.flow-box strong{display:block;font-size:12px;color:var(--mn);margin-bottom:1px;}
+.flow-arrow{color:var(--li);font-size:18px;flex-shrink:0;text-align:center;padding:4px 0;}
+.flow-label{font-size:9.5px;color:var(--gr);text-align:center;padding:2px 0 6px;}
+
+footer{background:var(--mn);text-align:center;padding:14px;color:rgba(255,255,255,.25);font-size:10px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Klaygo PH — How It Works</div>
+  <div class="tag">Cleaner Space, Clearer Mind.</div>
+</nav>
+
+<div class="hero">
+  <h1>Simple. Transparent. Hassle-free.</h1>
+  <p>Here's everything you need to know about booking a cleaning service with Klaygo PH.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- TOGGLE -->
+  <!-- CUSTOMER SECTION -->
+  <div id="sec-customer">
+    <div class="steps">
+
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Fill in your information</h3>
+          <p>Start by entering your name, contact number, email, complete address, and the nearest landmark. This helps us verify your location and send you a copy of your estimate.</p>
+          <div class="tip"><strong>Why do we need your email?</strong>Once you send your booking request, a copy of your estimate is automatically emailed to you AND to us — so both parties have a record.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Pick a date from the calendar</h3>
+          <p>The calendar shows our live availability. Dates in red are fully booked. Yellow means 1 slot remaining. We only accept up to 2 bookings per day.</p>
+          <div class="warn">Bookings must be made at least 8 hours before the desired start time. For House Sitting, at least 72 hours notice is required.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Select your preferred time</h3>
+          <p>Available time slots run from 10:00 AM to 3:00 PM. Grayed-out slots are either already booked or within the 8-hour advance notice window. Select an open slot to proceed.</p>
+          <div class="tip"><strong>Property access reminder:</strong>If your unit is inside a condo or building that requires a gate/visitor pass, please arrange this before our arrival. Some properties also restrict contractor access after 5 or 6 PM — confirm with your building management.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Choose your cleaning type</h3>
+          <p><strong>Regular Cleaning</strong> — sweeping, mopping, dusting, bathroom & kitchen cleaning, general tidying. Price stays as listed.<br><br>
+          <strong>Deep Cleaning</strong> — everything in regular cleaning plus areas often missed: behind appliances, inside cabinets, grout, baseboards, and more. Charged at base price + P20 per sqm. Adjust the sqm slider to your space size.</p>
+          <div class="warn"><strong>Post-Construction Cleaning</strong> is not currently accepted. We recommend waiting until major dust and debris have fully settled before booking. Thank you for understanding!</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Select your unit type</h3>
+          <p>Choose the option that best matches your property — Studio, 1 Bedroom, 2 Bedroom, or Commercial. Each includes an estimated duration so you know roughly how long the cleaning will take, and how much of your day you get back.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h3>Choose your schedule</h3>
+          <p>Select <strong>Initial / One-time</strong> if this is a single booking. Choose a recurring schedule (Monthly, Bi-Monthly, Weekly, Bi-Weekly) if you want regular cleaning for the same property.</p>
+          <div class="tip"><strong>For recurring bookings:</strong> Add your specific dates and times using the "+ Add another date" button. The total upfront downpayment (transport fee × number of sessions) will be shown automatically.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <h3>Add optional services</h3>
+          <p>Select any additional services you need — extra rooms, bathroom, fridge cleaning, fan cleaning, folding, ironing, and more. Quantities can be adjusted using the + / − buttons.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">8</div>
+        <div class="step-body">
+          <h3>Select your location</h3>
+          <p>Choose the area closest to your property. The transport fee is automatically calculated based on standard rates from our base in Taguig. For areas beyond Taguig, the fee shown is a two-way estimate (to and from your location).</p>
+          <div class="tip">Transport fee is an estimate. The exact amount will be confirmed based on your specific address and actual route before your booking is finalized.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">9</div>
+        <div class="step-body">
+          <h3>Add special instructions (optional)</h3>
+          <p>Tap the quick-select tags if any apply (Kids present, Pet at home, Other workers on-site, Under renovation). Add any detailed instructions in the text box — fragile items, areas to focus on, access codes, etc.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">10</div>
+        <div class="step-body">
+          <h3>Review your estimate & book</h3>
+          <p>Your full estimate is shown on the right panel — itemized charges, estimated total, payment breakdown, and estimated time savings. When ready:</p>
+          <div class="tip"><strong>Option A — Book on Messenger:</strong> Tapping this button copies your full estimate to clipboard and opens our Messenger chat. Simply paste your details and send.<br><br><strong>Option B — Copy Estimate Text:</strong> Copy the estimate text to paste anywhere — email, SMS, Viber, etc.<br><br><strong>Option C — Save / Print Estimate:</strong> Download a PDF copy of your estimate for your records.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">11</div>
+        <div class="step-body">
+          <h3>Wait for booking confirmation</h3>
+          <p>After we receive your request, we'll verify the schedule, confirm the exact transport fee based on your address, and send you the final total with payment details for the reservation fee (downpayment).</p>
+          <div class="tip"><strong>Your slot is NOT confirmed until the reservation fee (downpayment = transport fee) has been received and confirmed.</strong></div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">12</div>
+        <div class="step-body">
+          <h3>Pay the reservation fee</h3>
+          <p>Once you receive our confirmation message with payment details, send the reservation fee via GCash or Maya. Send us a screenshot of the payment and we'll confirm your booking slot officially.</p>
+          <div class="warn"><strong>Cancellation policy:</strong> Downpayment is non-refundable if cancelled less than 24 hours before the schedule, or if the cleaner is already on the way or onsite. Exception: if booked less than 24 hrs in advance and cancelled at least 4 hrs before start time with cleaner not yet departed — a refund or rebooking may be arranged.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">13</div>
+        <div class="step-body">
+          <h3>We arrive & clean</h3>
+          <p>Our cleaner arrives on time with supplies. We handle everything from top to bottom, following your instructions. When done, we do a walkthrough with you to make sure you're satisfied.</p>
+          <div class="tip"><strong>One dedicated cleaner per booking.</strong> All services are performed by one professional cleaner — ensuring consistent quality and personal attention to your space.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">14</div>
+        <div class="step-body">
+          <h3>Pay the balance & give feedback</h3>
+          <p>The remaining balance is paid on the day of service. We welcome all feedback — you can use the feedback box in the calculator, message us directly, or leave a review on our Facebook page.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <div class="faq-title">Frequently Asked Questions</div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="togFaq(this)">How many cleaners will come? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Klaygo PH currently sends one dedicated professional cleaner per booking. This ensures consistent quality, personal attention, and the same trusted cleaner for your recurring bookings.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="togFaq(this)">Is the price estimate final? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">The estimate from the calculator is for pricing transparency only and does not confirm a reservation. The final total will be confirmed after we verify your address (for exact transport fee) and send you the payment details.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="togFaq(this)">What's included in Regular vs Deep Cleaning? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Regular Cleaning covers sweeping, mopping, dusting, bathroom & kitchen cleaning, making the bed, and general tidying. Deep Cleaning covers all of that plus areas often missed — behind appliances, inside cabinets, grout lines, baseboards, and more. Deep cleaning is charged at the base price + P20 per sqm of your space.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="togFaq(this)">Do you accept post-construction cleaning? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">We currently do not accept post-construction cleaning bookings while renovation activity is ongoing, as heavy dust and debris require specialized equipment. We recommend waiting until major work is fully done and dust has settled before booking. Message us and we'll advise based on your situation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="togFaq(this)">Do you bring your own cleaning supplies? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes! Our cleaner comes with standard cleaning materials. If you have preferred products or specific requirements, please indicate them in the Special Instructions field when booking.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="togFaq(this)">Can I reschedule? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes — rescheduling is allowed as long as you notify us at least 24 hours before the scheduled date and time. Message us on Messenger or call 0992.816.4718.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="togFaq(this)">Is house sitting available on weekdays? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Overnight house sitting is currently available on weekends only. It must also be booked at least 72 hours in advance. For weekday inquiries, please message us directly and we'll see what we can arrange.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="togFaq(this)">I manage multiple properties. Is there a discount? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes! Airbnb hosts and real estate property managers handling multiple properties may qualify for up to 5% additional discount per confirmed booking. Downpayment for each session must be confirmed before we reserve each slot. Message us to discuss a custom arrangement.</div>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <h3>Ready to Book or Have Questions?</h3>
+      <p>Message us directly and we'll get back to you as soon as possible.</p>
+      <div class="contact-links">
+        <a class="c-link primary" href="http://m.me/klaygoph" target="_blank">Message on Messenger</a>
+        <a class="c-link outline" href="https://klaygoph.github.io/klaygoph/klaygo-final.html" target="_blank">Open Calculator</a>
+      </div>
+      <p style="margin-top:14px;font-size:10.5px;color:rgba(255,255,255,.4);">IG / FB: @KlayGoPH &nbsp;|&nbsp; 0992.816.4718 &nbsp;|&nbsp; info.klaygoph@gmail.com</p>
+    </div>
+  </div>
+
+  <!-- INTERNAL SECTION -->
+  <div class="section" id="sec-internal">
+
+    <div style="background:var(--wh);border-radius:8px;padding:14px;box-shadow:0 1px 6px rgba(13,31,60,.07);margin-bottom:16px;">
+      <h3 style="font-size:13px;font-weight:700;color:var(--mn);margin-bottom:10px;">Booking Flow Overview</h3>
+      <div class="flow">
+        <div class="flow-row"><div class="flow-box highlight"><strong>Customer opens calculator</strong>Fills info, picks date/time, selects services</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row"><div class="flow-box"><strong>Estimate generated</strong>KGPH-EST-YYYYMMDD-### series created automatically</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row"><div class="flow-box highlight"><strong>Customer taps "Book on Messenger"</strong>Details auto-copied, Messenger opens. Customer pastes and sends.</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row"><div class="flow-box"><strong>Email notifications sent</strong>Formspree sends alert to info.klaygoph@gmail.com + copy to customer's email (if provided)</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row"><div class="flow-box highlight"><strong>Klaygo PH receives & reviews</strong>Check calendar, verify address, confirm transport fee</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row"><div class="flow-box"><strong>Send confirmation + payment details</strong>Reply on Messenger with final total and GCash/Maya details</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row"><div class="flow-box highlight"><strong>Customer pays reservation fee</strong>= Transport fee. Customer sends screenshot of payment.</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row"><div class="flow-box"><strong>Booking confirmed</strong>Add to KLAYGO PH - Bookings Google Calendar with exact start/end time. Calendar updates live on the booking page.</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-row"><div class="flow-box highlight"><strong>Service day</strong>Cleaner arrives, completes service, walkthrough done. Customer pays balance.</div></div>
+      </div>
+    </div>
+
+    <div style="background:var(--wh);border-radius:8px;padding:14px;box-shadow:0 1px 6px rgba(13,31,60,.07);margin-bottom:16px;">
+      <h3 style="font-size:13px;font-weight:700;color:var(--mn);margin-bottom:10px;">Estimate ID System</h3>
+      <p style="font-size:11.5px;color:var(--gr);margin-bottom:8px;">Every time a customer selects a time slot, an Estimate ID is automatically generated:</p>
+      <div style="font-size:14px;font-weight:700;color:var(--pr);text-align:center;padding:10px;background:var(--pa);border-radius:6px;letter-spacing:.05em;">KGPH-EST-YYYYMMDD-###</div>
+      <p style="font-size:10.5px;color:var(--gr);margin-top:8px;line-height:1.6;">
+        <strong>KGPH</strong> = KlayGoPH identifier<br>
+        <strong>EST</strong> = Estimate<br>
+        <strong>YYYYMMDD</strong> = Date generated<br>
+        <strong>###</strong> = Sequential number (resets per device)<br><br>
+        When a booking is confirmed and invoice is needed, the series changes to: <strong style="color:var(--mn);">KGPH-INV-YYYYMMDD-###</strong>
+      </p>
+    </div>
+
+    <div style="background:var(--wh);border-radius:8px;padding:14px;box-shadow:0 1px 6px rgba(13,31,60,.07);margin-bottom:16px;">
+      <h3 style="font-size:13px;font-weight:700;color:var(--mn);margin-bottom:10px;">How to Block Dates on the Calendar</h3>
+      <div style="font-size:11.5px;color:var(--gr);line-height:1.7;">
+        <div style="display:flex;gap:8px;margin-bottom:6px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">1.</div><div>Go to <strong>calendar.google.com</strong> and sign in to klaygoph@gmail.com</div></div>
+        <div style="display:flex;gap:8px;margin-bottom:6px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">2.</div><div>Click the date and time you want to block (e.g. May 15, 10:00 AM)</div></div>
+        <div style="display:flex;gap:8px;margin-bottom:6px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">3.</div><div>Make sure to add it under <strong>KLAYGO PH - Bookings</strong> calendar (not your personal calendar)</div></div>
+        <div style="display:flex;gap:8px;margin-bottom:6px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">4.</div><div>Set <strong>exact start and end times</strong> — NOT "all day." The booking app reads specific times.</div></div>
+        <div style="display:flex;gap:8px;margin-bottom:6px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">5.</div><div>Set visibility to <strong>Public</strong> so the app can read it</div></div>
+        <div style="display:flex;gap:8px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">6.</div><div>Save. Click <strong>"Refresh Calendar"</strong> on the booking page to see the update immediately.</div></div>
+      </div>
+    </div>
+
+    <div style="background:var(--wh);border-radius:8px;padding:14px;box-shadow:0 1px 6px rgba(13,31,60,.07);margin-bottom:16px;">
+      <h3 style="font-size:13px;font-weight:700;color:var(--mn);margin-bottom:10px;">Formspree Email Setup</h3>
+      <div style="font-size:11.5px;color:var(--gr);line-height:1.7;">
+        <p style="margin-bottom:8px;">When a customer taps "Book on Messenger", two emails are sent automatically via Formspree (ID: <strong style="color:var(--pr);">mjglezpk</strong>):</p>
+        <div style="padding:8px 10px;background:var(--pa);border-radius:5px;margin-bottom:6px;"><strong style="color:var(--mn);">Email 1 → info.klaygoph@gmail.com</strong><br>Full booking details, estimate ID, customer contact info, services selected.</div>
+        <div style="padding:8px 10px;background:var(--gbg);border-radius:5px;"><strong style="color:var(--green);">Email 2 → Customer's email (if provided)</strong><br>A copy of their estimate with a friendly message from Klaygo PH, contact details, and next steps.</div>
+        <p style="margin-top:8px;font-size:10.5px;color:var(--gr);">Note: Formspree free plan allows 50 submissions/month. If volume increases, consider upgrading at formspree.io.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--wh);border-radius:8px;padding:14px;box-shadow:0 1px 6px rgba(13,31,60,.07);">
+      <h3 style="font-size:13px;font-weight:700;color:var(--mn);margin-bottom:10px;">Updating the Booking Page on GitHub</h3>
+      <div style="font-size:11.5px;color:var(--gr);line-height:1.7;">
+        <div style="display:flex;gap:8px;margin-bottom:6px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">1.</div><div>Go to <strong>github.com/klaygoph/klaygoph</strong></div></div>
+        <div style="display:flex;gap:8px;margin-bottom:6px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">2.</div><div>Click on <strong>klaygo-final.html</strong></div></div>
+        <div style="display:flex;gap:8px;margin-bottom:6px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">3.</div><div>Click the pencil (Edit) icon or use the upload button to replace the file</div></div>
+        <div style="display:flex;gap:8px;margin-bottom:6px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">4.</div><div>Click <strong>Commit changes</strong>. The site updates within 1–2 minutes.</div></div>
+        <div style="display:flex;gap:8px;"><div style="color:var(--pr);font-weight:700;flex-shrink:0;">5.</div><div>Visit <strong>klaygoph.github.io/klaygoph/klaygo-final.html</strong> to verify</div></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>Klaygo PH · Cleaning Services · Metro Manila · IG/FB: @KlayGoPH · 0992.816.4718</footer>
+
+<script>
+function togFaq(el){
+  var item=el.closest('.faq-item');
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
