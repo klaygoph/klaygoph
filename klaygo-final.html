@@ -1139,8 +1139,8 @@ function compute() {
     sub+=S.bp;
     // Deep clean surcharge
     if(S.cleanType==='deep'){
-      var dc=S.sqm*20;
-      lines.push({l:'Deep Cleaning surcharge ('+S.sqm+' sqm x P20)', v:dc});
+      var dc=S.sqm*25;
+      lines.push({l:'Deep Cleaning surcharge ('+S.sqm+' sqm x P25)', v:dc});
       sub+=dc;
     }
   }
@@ -1282,8 +1282,8 @@ function buildMsg(){
   if(S.bp>0){
     var tl2=S.cleanType==='deep'?' (Deep Clean)':S.cleanType==='moveinout'?' (Move In/Out)':'';
     rows.push(S.bn+tl2+': P'+S.bp.toLocaleString()); sub+=S.bp;
-    if(S.cleanType==='deep'){var dc=S.sqm*20;rows.push('Deep Cleaning ('+S.sqm+'sqm x P20): P'+dc.toLocaleString());sub+=dc;}
-    else if(S.cleanType==='moveinout'){var mio=S.sqm*30;rows.push('Move In/Out ('+S.sqm+'sqm x P30): P'+mio.toLocaleString());sub+=mio;}
+    if(S.cleanType==='deep'){var dc=S.sqm*20;rows.push('Deep Cleaning ('+S.sqm+'sqm x P25): P'+dc.toLocaleString());sub+=dc;}
+    else if(S.cleanType==='moveinout'){var mio=S.sqm*30;rows.push('Move In/Out ('+S.sqm+'sqm x P40): P'+mio.toLocaleString());sub+=mio;}
   }
   ADDONS.forEach(function(a){
     if(a.id==='hs') return;
@@ -1352,8 +1352,8 @@ function openPrint(){
   if(S.bp>0){
     var tl2=S.cleanType==='deep'?' (Deep Clean)':S.cleanType==='moveinout'?' (Move In/Out)':'';
     rows.push([S.bn+tl2,'P'+S.bp.toLocaleString()]); sub+=S.bp;
-    if(S.cleanType==='deep'){var dc=S.sqm*20;rows.push(['Deep Cleaning ('+S.sqm+' sqm x P20)','P'+dc.toLocaleString()]);sub+=dc;}
-  else if(S.cleanType==='moveinout'){var mio=S.sqm*30;rows.push(['Move In/Out ('+S.sqm+' sqm x P30)','P'+mio.toLocaleString()]);sub+=mio;}
+    if(S.cleanType==='deep'){var dc=S.sqm*20;rows.push(['Deep Cleaning ('+S.sqm+' sqm x P25)','P'+dc.toLocaleString()]);sub+=dc;}
+  else if(S.cleanType==='moveinout'){var mio=S.sqm*30;rows.push(['Move In/Out ('+S.sqm+' sqm x P40)','P'+mio.toLocaleString()]);sub+=mio;}
   }
   ADDONS.forEach(function(a){
     if(a.id==='hs') return;
