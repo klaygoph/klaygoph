@@ -32,7 +32,7 @@ nav img{height:26px;}
 .recur-row input:focus{outline:none;border-color:var(--pr);}
 .recur-remove{width:22px;height:22px;border:1.5px solid var(--rbdr);border-radius:4px;background:#fff;color:var(--red);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;}
 
-.hero{background:#0D1F3C;padding:20px 20px 16px;text-align:center;}
+.hero{background:linear-gradient(130deg,var(--pr),var(--mn));padding:20px 20px 16px;text-align:center;}
 .hero h1{font-size:clamp(16px,3.5vw,22px);font-weight:700;color:#fff;margin-bottom:4px;}
 .hero p{color:rgba(255,255,255,.55);font-size:11px;max-width:480px;margin:0 auto;line-height:1.6;}
 .est-id{display:inline-block;background:rgba(255,255,255,.1);color:var(--li);border-radius:10px;padding:3px 10px;font-size:10px;font-weight:600;margin-top:6px;letter-spacing:.04em;}
@@ -132,12 +132,18 @@ nav img{height:26px;}
 .clean-opt.sel{border-color:var(--pr);background:var(--pa);}
 .co-radio{width:14px;height:14px;border-radius:50%;border:2px solid var(--bd);margin-top:2px;flex-shrink:0;transition:all .13s;}
 .clean-opt.sel .co-radio{border-color:var(--pr);background:var(--pr);}
+.clean-opt.sel .co-radio{border-color:var(--pr);background:var(--pr);}
 .co-info{flex:1;}
 .co-name{font-size:12.5px;font-weight:600;color:var(--dk);}
 .co-desc{font-size:10px;color:var(--gr);margin-top:2px;line-height:1.45;}
 .co-badge{font-size:9.5px;font-weight:600;color:var(--green);background:var(--gbg);padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;}
 .co-extra{color:var(--se);background:var(--pa);}
 /* POST CON NOTE */
+
+/* EXCLUSIONS */
+.co-exclusions{margin-top:6px;padding:5px 8px;background:#FFF0F0;border-radius:4px;border-left:2.5px solid #F5B7B1;font-size:9.5px;color:#8B2020;line-height:1.5;}
+.co-desc-toggle{overflow:hidden;transition:max-height .3s ease;}
+
 .post-con-note{margin-top:10px;padding:9px 11px;background:#FFF0F0;border:1.5px solid #F5B7B1;border-radius:6px;font-size:10px;color:#8B2020;line-height:1.55;}
 .post-con-note strong{display:block;font-size:11px;margin-bottom:3px;}
 /* SITUATION TAGS */
@@ -255,7 +261,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
 .pd{color:var(--pr);font-weight:700;flex-shrink:0;}
 
 /* CTA BLOCK */
-.cta-block{background:#0D1F3C;border-radius:var(--r);padding:14px;margin-bottom:8px;text-align:center;}
+.cta-block{background:linear-gradient(135deg,var(--pr),var(--mn));border-radius:var(--r);padding:14px;margin-bottom:8px;text-align:center;}
 .cta-block h3{font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;}
 .cta-block p{font-size:10.5px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:10px;}
 
@@ -412,47 +418,78 @@ footer{background:var(--mn);text-align:center;padding:10px;color:rgba(255,255,25
 
   <!-- CLEANING TYPE -->
   <div class="card locked" id="card-clean">
-    <div class="card-head"><div class="sbadge">3b</div><div><h2>Cleaning Type</h2><p>Choose the type of cleaning you need</p></div></div>
+    <div class="card-head"><div class="sbadge">3b</div><div><h2>Cleaning Type</h2><p>Tap a type to see details, then select</p></div></div>
+
+    <!-- Trust badge -->
+    <div style="display:flex;align-items:center;gap:8px;padding:7px 10px;background:#E8F7EE;border:1px solid #A3D9B8;border-radius:6px;margin-bottom:10px;font-size:10px;color:#1B8A4C;line-height:1.5;">
+      <span style="font-size:16px;flex-shrink:0;">&#128274;</span>
+      <span><strong>No log-in required. No bank information collected.</strong> This calculator is for pricing transparency only. Your data stays with you.</span>
+    </div>
+
     <div class="clean-opts">
+
+      <!-- REGULAR -->
       <div class="clean-opt sel" id="ct-regular" onclick="selCleanType('regular')">
-        <div class="co-radio sel-r"></div>
+        <div class="co-radio sel-r" style="border-color:var(--pr);background:var(--pr);"></div>
         <div class="co-info">
           <div class="co-name">Regular Cleaning</div>
-          <div class="co-desc">Standard cleaning at the base service price. Sweeping, mopping, dusting, bathroom & kitchen cleaning, general tidying.</div>
+          <div class="co-desc-toggle" id="desc-regular" style="display:block;">
+            <div class="co-desc" style="display:block;">Sweeping, mopping, dusting surfaces, bathroom &amp; kitchen cleaning, making bed, general tidying.</div>
+            <div class="co-exclusions">
+              <strong>Not included:</strong> Inside cabinets, behind appliances, grout scrubbing, window glass, laundry, or any deep-level cleaning.
+            </div>
+          </div>
         </div>
-        <div class="co-badge">Included</div>
+        <div class="co-badge">Base price</div>
       </div>
+
+      <!-- DEEP CLEAN -->
       <div class="clean-opt" id="ct-deep" onclick="selCleanType('deep')">
         <div class="co-radio"></div>
         <div class="co-info">
           <div class="co-name">Deep Cleaning</div>
-          <div class="co-desc">Thorough top-to-bottom clean covering areas often missed — behind appliances, inside cabinets, grout, baseboards & more.</div>
+          <div class="co-desc-toggle" id="desc-deep" style="display:none;">
+            <div class="co-desc" style="display:block;">Everything in Regular Cleaning, plus: inside cabinets &amp; drawers, behind &amp; underneath appliances, grout scrubbing, baseboards, light fixtures, and hard-to-reach corners.</div>
+            <div class="co-exclusions">
+              <strong>Not included:</strong> Window glass exterior, laundry &amp; ironing (available as add-ons), post-construction debris, or hazardous material handling.
+            </div>
+          </div>
         </div>
         <div class="co-badge co-extra">Base + P25/sqm</div>
       </div>
+
+      <!-- MOVE IN / MOVE OUT -->
       <div class="clean-opt" id="ct-moveinout" onclick="selCleanType('moveinout')">
         <div class="co-radio"></div>
         <div class="co-info">
           <div class="co-name">Move In / Move Out</div>
-          <div class="co-desc">Comprehensive cleaning for properties being vacated or newly occupied. Covers all regular cleaning areas plus inside cabinets, drawers, appliance interiors, and hard-to-reach corners — leaving the space fresh and ready for the next occupant.</div>
+          <div class="co-desc-toggle" id="desc-moveinout" style="display:none;">
+            <div class="co-desc" style="display:block;">Comprehensive cleaning for properties being vacated or newly occupied. Covers all Regular Cleaning areas plus inside cabinets &amp; drawers, appliance interiors, hard-to-reach corners, and detail-level cleaning throughout — leaving the space fresh and ready for the next occupant.</div>
+            <div class="co-exclusions">
+              <strong>Not included:</strong> Removal of large furniture or junk, pest control, painting, repairs, window glass exterior, or post-construction debris.
+            </div>
+          </div>
         </div>
         <div class="co-badge co-extra">Base + P40/sqm</div>
       </div>
+
     </div>
+
     <div class="sqm-section" id="sqm-section" style="display:none;">
       <div class="slider-wrap" style="margin-top:8px;">
         <label>Total area in sqm: <span id="sqm-lbl">30 sqm</span></label>
         <input type="range" id="sqm-slider" min="10" max="200" value="30" oninput="onSqmSlide(this)">
       </div>
-      <div style="font-size:9.5px;color:var(--se);margin-top:4px;padding:4px 8px;background:var(--pa);border-radius:4px;" id="sqm-rate-note">Deep cleaning fee = base price + (P25 x sqm) &nbsp;|&nbsp; Move In/Out fee = base price + (P40 x sqm)</div>
+      <div style="font-size:9.5px;color:var(--se);margin-top:4px;padding:4px 8px;background:var(--pa);border-radius:4px;" id="sqm-rate-note">Select cleaning type above</div>
     </div>
-    <div class="post-con-note">
-      <strong>Post-Construction Cleaning</strong>
-      We currently do not accept post-construction cleaning bookings as we are prioritizing regular and deep cleaning services. If you recently renovated, we recommend waiting until major debris and dust have settled before booking. Thank you for understanding!
+
+    <div class="post-con-note" style="margin-top:8px;">
+      <strong>Post-Construction Cleaning not accepted</strong>
+      We currently do not accept post-construction cleaning bookings while renovation activity is ongoing. We recommend waiting until major dust and debris have fully settled. Thank you for your understanding!
     </div>
   </div>
 
-  <!-- SERVICE -->
+<!-- SERVICE -->
   <div class="card locked" id="card-svc">
     <div class="card-head"><div class="sbadge">4</div><div><h2>Unit Type</h2><p>Select the property type that matches your space</p></div></div>
     <div class="one-cleaner-note">All services are performed by one dedicated, professional cleaner. Pricing and time estimates reflect a thorough, personal approach — quality over quantity.</div>
@@ -512,7 +549,7 @@ footer{background:var(--mn);text-align:center;padding:10px;color:rgba(255,255,25
   <!-- LOCATION -->
   <div class="card locked" id="card-loc">
     <div class="card-head"><div class="sbadge">7</div><div><h2>Location</h2><p>Transport calculated from TAGUIG</p></div></div>
-    <div class="tn">Fixed transport rates apply within Taguig service areas. Locations outside Taguig may require distance-based transport computation and round-trip consideration.</div>
+    <div class="tn">P50 base (first 2 km) + P10/km up to 6 km + P15/km beyond. Fixed rates within Taguig. Round-trip applies beyond Taguig.</div>
     <div class="loc-grid" id="loc-grid"></div>
     <div class="other-inp" id="other-inp"><input type="text" id="other-txt" placeholder="Type your area / city..." oninput="compute()"></div>
     <div class="loc-note">This estimate includes a provisional transport fee based on distance and standard rates. Final transport cost will be verified using real-time booking rates to ensure fair and accurate pricing.</div>
@@ -703,12 +740,10 @@ async function fetchMonth(y, m) {
     if(st){ st.style.display='block'; st.textContent='Syncing calendar...'; }
     var r = await fetch(url);
     if(!r.ok) {
-      if(r.status === 400) {
-      if(st) st.textContent = 'Calendar error 400. In Google Cloud Console, go to Credentials, edit your API key, and set Application Restrictions to None (or add https://klaygoph.github.io/* to allowed sites). Then save and wait 5 minutes.';
-    } else if(r.status === 403) {
-      if(st) st.textContent = 'Calendar access denied (403). Go to Google Cloud Console > Credentials > your API key > remove the website restriction or add https://klaygoph.github.io/* with the https:// prefix.';
+      if(r.status === 400 || r.status === 403) {
+      if(st) st.textContent = 'Calendar access issue. In Google Cloud Console, go to Credentials > your API key > Application Restrictions. Make sure klaygoph.github.io/* is listed (with no https://, just the domain). Or temporarily set to None to test. Save and wait 5 min.';
     } else {
-      if(st) st.textContent = 'Calendar sync issue ('+r.status+'). Please refresh or try again.';
+      if(st) st.textContent = 'Calendar sync issue ('+r.status+'). Please tap Refresh Calendar.';
     }
       return;
     }
@@ -881,16 +916,24 @@ function setAvailBox(type,msg){
 // ── CLEANING TYPE ─────────────────────────────────────────────
 function selCleanType(type) {
   S.cleanType = type;
+  // Update selected state on cards
   document.getElementById('ct-regular').classList.toggle('sel', type==='regular');
   document.getElementById('ct-deep').classList.toggle('sel', type==='deep');
   var mio = document.getElementById('ct-moveinout');
   if(mio) mio.classList.toggle('sel', type==='moveinout');
+  // Show description only for selected type
+  var descs = ['regular','deep','moveinout'];
+  descs.forEach(function(d){
+    var el = document.getElementById('desc-'+d);
+    if(el) el.style.display = (d===type) ? 'block' : 'none';
+  });
+  // Show sqm slider for deep and moveinout
   var needsSqm = type==='deep' || type==='moveinout';
   document.getElementById('sqm-section').style.display = needsSqm ? 'block' : 'none';
   // Update rate note
   var note = document.getElementById('sqm-rate-note');
   if(note){
-    if(type==='deep') note.textContent='Deep cleaning fee = base price + (P25 x sqm)';
+    if(type==='deep') note.textContent='Deep Cleaning fee = base price + (P25 x sqm)';
     else if(type==='moveinout') note.textContent='Move In/Out fee = base price + (P40 x sqm)';
   }
   compute();
@@ -1282,8 +1325,8 @@ function buildMsg(){
   if(S.bp>0){
     var tl2=S.cleanType==='deep'?' (Deep Clean)':S.cleanType==='moveinout'?' (Move In/Out)':'';
     rows.push(S.bn+tl2+': P'+S.bp.toLocaleString()); sub+=S.bp;
-    if(S.cleanType==='deep'){var dc=S.sqm*20;rows.push('Deep Cleaning ('+S.sqm+'sqm x P25): P'+dc.toLocaleString());sub+=dc;}
-    else if(S.cleanType==='moveinout'){var mio=S.sqm*30;rows.push('Move In/Out ('+S.sqm+'sqm x P40): P'+mio.toLocaleString());sub+=mio;}
+    if(S.cleanType==='deep'){var dc=S.sqm*25;rows.push('Deep Cleaning ('+S.sqm+'sqm x P25): P'+dc.toLocaleString());sub+=dc;}
+    else if(S.cleanType==='moveinout'){var mio=S.sqm*40;rows.push('Move In/Out ('+S.sqm+'sqm x P40): P'+mio.toLocaleString());sub+=mio;}
   }
   ADDONS.forEach(function(a){
     if(a.id==='hs') return;
@@ -1352,8 +1395,8 @@ function openPrint(){
   if(S.bp>0){
     var tl2=S.cleanType==='deep'?' (Deep Clean)':S.cleanType==='moveinout'?' (Move In/Out)':'';
     rows.push([S.bn+tl2,'P'+S.bp.toLocaleString()]); sub+=S.bp;
-    if(S.cleanType==='deep'){var dc=S.sqm*20;rows.push(['Deep Cleaning ('+S.sqm+' sqm x P25)','P'+dc.toLocaleString()]);sub+=dc;}
-  else if(S.cleanType==='moveinout'){var mio=S.sqm*30;rows.push(['Move In/Out ('+S.sqm+' sqm x P40)','P'+mio.toLocaleString()]);sub+=mio;}
+    if(S.cleanType==='deep'){var dc=S.sqm*25;rows.push(['Deep Cleaning ('+S.sqm+' sqm x P25)','P'+dc.toLocaleString()]);sub+=dc;}
+  else if(S.cleanType==='moveinout'){var mio=S.sqm*40;rows.push(['Move In/Out ('+S.sqm+' sqm x P40)','P'+mio.toLocaleString()]);sub+=mio;}
   }
   ADDONS.forEach(function(a){
     if(a.id==='hs') return;
@@ -1532,16 +1575,24 @@ async function sendEstimateEmail(msg){
       _replyto:'info.klaygoph@gmail.com',
       name: name||'Customer',
       email: email,
-message:
-'Hi ' + (name || 'there') + '!\n\n' +
-'Thank you for using the Klaygo PH Service Calculator. Here is a copy of your estimate for your records.\n\n' +
-msg +
-'\n\n---\nWe will be in touch shortly to confirm your schedule and send payment details for the reservation fee.\n\n' +
-'📩 Messenger: m.me/klaygoph\n' +
-'📱 0992.816.4718\n' +
-'🌐 @KlayGoPH (IG/FB)\n\n' +
-'Cleaner Space, Clearer Mind.\n' +
-'Klaygo PH'
+      message: 'Hi '+( name||'there')+'!
+
+Thank you for using the Klaygo PH Service Calculator. Here is a copy of your estimate for your records.
+
+'
+        + msg
+        + '
+
+---
+We will be in touch shortly to confirm your schedule and send payment details for the reservation fee.'
+        + '
+
+📩 Messenger: m.me/klaygoph
+📱 0992.816.4718
+🌐 @KlayGoPH (IG/FB)
+
+Cleaner Space, Clearer Mind.
+Klaygo PH'
     };
     try{
       await fetch('https://formspree.io/f/'+FORMSPREE_ID,{
@@ -1565,6 +1616,10 @@ function resetAll(){
   document.getElementById('ct-regular').classList.add('sel');
   document.getElementById('ct-deep').classList.remove('sel');
   var mioEl=document.getElementById('ct-moveinout'); if(mioEl) mioEl.classList.remove('sel');
+  // Reset descriptions — show regular, hide others
+  var dregEl=document.getElementById('desc-regular'); if(dregEl) dregEl.style.display='block';
+  var ddeepEl=document.getElementById('desc-deep'); if(ddeepEl) ddeepEl.style.display='none';
+  var dmioEl=document.getElementById('desc-moveinout'); if(dmioEl) dmioEl.style.display='none';
   document.getElementById('sqm-section').style.display='none';
   document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('sel');});
   var oi=document.getElementById('other-inp'); if(oi) oi.classList.remove('show');
