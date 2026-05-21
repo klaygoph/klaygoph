@@ -33,7 +33,12 @@ nav img{height:26px;}
 
 /* MAIN */
 .main{max-width:900px;margin:0 auto;padding:14px 12px 60px;display:grid;grid-template-columns:1fr 280px;gap:12px;align-items:start;}
-@media(max-width:660px){.main{grid-template-columns:1fr;}.panel-right{order:-1;}}
+@media(max-width:660px){
+  .main{grid-template-columns:1fr;padding:10px 10px 30px;}
+  .panel-right{order:2;position:relative;top:auto;}
+  .pcard{border-radius:12px;}
+  .card{padding:12px;}
+}
 
 /* CARD */
 .card{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);padding:14px;margin-bottom:8px;}
@@ -387,9 +392,9 @@ footer{background:var(--mn);padding:11px 20px;}
       <strong>Large Space Detected (over 45 sqm)</strong>
       <p style="margin-bottom:6px;">Your space qualifies for custom per-sqm pricing. Here's how it's calculated:</p>
       <table>
-        <tr><td>Regular Cleaning</td><td>P28/sqm</td></tr>
-        <tr><td>Deep Cleaning</td><td>P33/sqm</td></tr>
-        <tr><td>Move In / Move Out</td><td>P40/sqm</td></tr>
+        <tr><td>Regular Cleaning</td><td>₱28/sqm</td></tr>
+        <tr><td>Deep Cleaning</td><td>₱33/sqm</td></tr>
+        <tr><td>Move In / Move Out</td><td>₱40/sqm</td></tr>
       </table>
       <p style="margin-top:5px;font-size:9px;color:var(--amber);">Final price = sqm x rate above. Select your cleaning type to see the computed amount.</p>
     </div>
@@ -412,14 +417,14 @@ footer{background:var(--mn);padding:11px 20px;}
       </div>
     </div>
     <div class="clean-opt" id="ct-deep" onclick="selCleanType('deep')">
-      <div class="co-header"><div class="co-radio"></div><div class="co-name">Deep Cleaning</div><div class="co-badge extra" id="deep-badge">+P25/sqm</div></div>
+      <div class="co-header"><div class="co-radio"></div><div class="co-name">Deep Cleaning</div><div class="co-badge extra" id="deep-badge">See estimate</div></div>
       <div class="co-details">
         <div class="co-desc">Everything in Regular Cleaning, plus: inside cabinets &amp; drawers, behind &amp; underneath appliances, grout scrubbing, baseboards, light fixtures, and hard-to-reach corners. Ideal for spaces that haven't been cleaned in a while.</div>
         <div class="co-excl"><strong>Not included:</strong><p>Window glass exterior, laundry &amp; ironing (available as add-ons), post-construction debris, or hazardous material handling.</p></div>
       </div>
     </div>
     <div class="clean-opt" id="ct-moveinout" onclick="selCleanType('moveinout')">
-      <div class="co-header"><div class="co-radio"></div><div class="co-name">Move In / Move Out</div><div class="co-badge extra" id="mio-badge">+P40/sqm</div></div>
+      <div class="co-header"><div class="co-radio"></div><div class="co-name">Move In / Move Out</div><div class="co-badge extra" id="mio-badge">See estimate</div></div>
       <div class="co-details">
         <div class="co-desc">Comprehensive cleaning for properties being vacated or newly occupied. Covers all Regular Cleaning areas plus inside cabinets &amp; drawers, appliance interiors, hard-to-reach corners — leaving the space fresh and ready for the next occupant.</div>
         <div class="co-excl"><strong>Not included:</strong><p>Removal of large furniture or junk, pest control, painting, repairs, window glass exterior, or post-construction debris.</p></div>
@@ -434,29 +439,34 @@ footer{background:var(--mn);padding:11px 20px;}
 
 <!-- STEP 5: UNIT TYPE -->
 <div class="card locked" id="card-svc">
-  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>Unit Type</h2><p>Select the property type that matches your space</p></div></div>
-  <div class="alert info" style="margin-bottom:8px;font-size:10px;">All prices shown are based on <strong>Regular Cleaning rates for spaces up to 45 sqm</strong>. Deep clean, move in/out, and larger spaces are calculated automatically based on your selections above.</div>
-  <div class="alert info" style="margin-bottom:8px;font-size:10px;"><strong>One dedicated cleaner per booking.</strong> All services are performed by one professional cleaner — ensuring consistent quality and personal attention.</div>
+  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>Property Type</h2><p>Select the type of space you need cleaned</p></div></div>
+  <div class="alert info" style="margin-bottom:8px;font-size:10px;"><strong>Price is determined by your area size and cleaning type above.</strong> Selecting a property type here helps us prepare appropriately — it does not change the computed price.</div>
   <div class="svc-list">
-    <div class="svc" data-price="600" data-name="Studio Type" data-tmin="120" data-tmax="180" onclick="selSvc(this)">
+    <div class="svc" data-name="Studio Type" onclick="selSvc(this)">
       <div class="svc-radio"></div>
-      <div class="svc-left"><div class="svc-name">Studio Type</div><div class="svc-sub">1 Bath · 18–30 sqm</div></div>
-      <div class="svc-right"><div class="svc-price" id="p-studio">P600</div><div class="svc-time">~2–3 hrs</div></div>
+      <div class="svc-left"><div class="svc-name">Studio Type</div><div class="svc-sub">Typically 18–30 sqm</div></div>
+      <div class="svc-right"><div class="svc-price" id="p-studio">—</div><div class="svc-time" id="t-studio"></div></div>
     </div>
     <div class="svc-div"></div>
-    <div class="svc" data-price="750" data-name="1 Bedroom" data-tmin="180" data-tmax="240" onclick="selSvc(this)">
+    <div class="svc" data-name="1 Bedroom" onclick="selSvc(this)">
       <div class="svc-radio"></div>
-      <div class="svc-left"><div class="svc-name">1 Bedroom</div><div class="svc-sub">1 Bath · up to 35 sqm</div></div>
-      <div class="svc-right"><div class="svc-price" id="p-1br">P750</div><div class="svc-time">~3–4 hrs</div></div>
+      <div class="svc-left"><div class="svc-name">1 Bedroom</div><div class="svc-sub">Typically 31–45 sqm</div></div>
+      <div class="svc-right"><div class="svc-price" id="p-1br">—</div><div class="svc-time" id="t-1br"></div></div>
     </div>
     <div class="svc-div"></div>
-    <div class="svc" data-price="900" data-name="2 Bedroom" data-tmin="240" data-tmax="300" onclick="selSvc(this)">
+    <div class="svc" data-name="2 Bedroom" onclick="selSvc(this)">
       <div class="svc-radio"></div>
-      <div class="svc-left"><div class="svc-name">2 Bedroom</div><div class="svc-sub">1 Bath · up to 45 sqm</div></div>
-      <div class="svc-right"><div class="svc-price" id="p-2br">P900</div><div class="svc-time">~4–5 hrs</div></div>
+      <div class="svc-left"><div class="svc-name">2 Bedroom</div><div class="svc-sub">Typically 46–60 sqm</div></div>
+      <div class="svc-right"><div class="svc-price" id="p-2br">—</div><div class="svc-time" id="t-2br"></div></div>
+    </div>
+    <div class="svc-div"></div>
+    <div class="svc" data-name="House / Townhouse" onclick="selSvc(this)">
+      <div class="svc-radio"></div>
+      <div class="svc-left"><div class="svc-name">House / Townhouse</div><div class="svc-sub">Typically 61–120 sqm</div></div>
+      <div class="svc-right"><div class="svc-price" id="p-house">—</div><div class="svc-time" id="t-house"></div></div>
     </div>
   </div>
-  <div class="unit-note" id="unit-note">Prices above are for Regular Cleaning. Your cleaning type and area size adjustments are shown in the estimate panel.</div>
+  <div class="unit-note" id="unit-note">Price shown reflects your current area &amp; cleaning type selection.</div>
   <div class="tbanner" id="tbanner">
     <strong id="tstr">—</strong>
     <div class="tbanner-val" id="tback"></div>
@@ -508,7 +518,7 @@ footer{background:var(--mn);padding:11px 20px;}
 <!-- STEP 9: LOCATION -->
 <div class="card locked" id="card-loc">
   <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Location</h2><p>Transport calculated from Taguig</p></div></div>
-  <div style="font-size:10px;color:var(--gr);padding:5px 8px;background:var(--pa);border-radius:4px;margin-bottom:7px;line-height:1.5;">P50 base (first 2 km) + P10/km up to 6 km + P15/km beyond.</div>
+  <div style="font-size:10px;color:var(--gr);padding:5px 8px;background:var(--pa);border-radius:4px;margin-bottom:7px;line-height:1.5;">₱50 base (first 2 km) + ₱10/km up to 6 km + ₱15/km beyond.</div>
   <div class="loc-grid" id="loc-grid"></div>
   <div class="other-inp" id="other-inp"><input type="text" id="other-txt" placeholder="Type your area / city..." oninput="compute()"></div>
   <div class="loc-note">Transport fee is an estimate. Final amount confirmed based on your exact address.</div>
@@ -528,12 +538,6 @@ footer{background:var(--mn);padding:11px 20px;}
     <div class="field full"><label>Complete Address</label><textarea id="f-addr" placeholder="Unit/House No., Street, Barangay, City"></textarea></div>
     <div class="field full"><label>Nearest Landmark</label><input type="text" id="f-land" placeholder="e.g. Near SM Aura, Beside Shell Station"></div>
   </div>
-</div>
-
-<!-- CTA -->
-<div class="cta-block">
-  <p>Tap below to send your estimate on Messenger. We'll verify your schedule, confirm the transport fee, and send your final total with payment details.</p>
-  <button class="btn-book" style="width:100%;margin:0;" onclick="bookNow()">Book on Messenger</button>
 </div>
 
 <!-- POLICIES -->
@@ -564,7 +568,7 @@ footer{background:var(--mn);padding:11px 20px;}
       <img id="est-logo-img" alt="Klaygo PH" style="height:22px;display:block;margin-bottom:6px;opacity:.9;">
       <div class="pest-id" id="p-est-id">—</div>
       <h3>Your Estimate</h3>
-      <div class="ptotal"><span>P</span><span id="ptotd">0</span></div>
+      <div class="ptotal"><span>₱</span><span id="ptotd">0</span></div>
       <div class="pdisc" id="pdisc"></div>
       <div class="ptime" id="ptime"></div>
       <div class="ptime-val" id="ptime-val"></div>
@@ -636,15 +640,20 @@ var LIGHT_LOGO = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/Klayg
 var BLUE_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
 var PRINT_BG   = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Print%20-%20White%20Background.png';
 
-// Pricing
-var BASE_PRICES  = {studio:600, br1:750, br2:900};
-var LARGE_RATES  = {regular:28, deep:33, moveinout:40};
-var DEEP_RATE    = 25;  // per sqm surcharge for deep (<=45sqm)
-var MIO_RATE     = 40;  // per sqm surcharge for move in/out (<=45sqm)
-var LARGE_CUTOFF = 45;  // sqm threshold
+// Pricing — bracket-based (UPDATE when final prices confirmed by KlayGo PH)
+// Format: max sqm | Regular price | Deep price | MIO price | mins (min–max) per type
+var PRICE_BRACKETS = [
+  {max: 30,  rP:600,  rMin:120,rMax:180, dP:1350, dMin:240,dMax:270,  mP:1800, mMin:270,mMax:360},
+  {max: 45,  rP:800,  rMin:150,rMax:210, dP:1750, dMin:270,dMax:300,  mP:2300, mMin:300,mMax:420},
+  {max: 60,  rP:1400, rMin:180,rMax:240, dP:2100, dMin:300,dMax:390,  mP:2800, mMin:360,mMax:480},
+  {max: 80,  rP:1960, rMin:210,rMax:270, dP:2800, dMin:360,dMax:450,  mP:3600, mMin:420,mMax:540},
+  {max: 100, rP:2520, rMin:240,rMax:300, dP:3300, dMin:420,dMax:540,  mP:4400, mMin:480,mMax:600},
+  {max: 120, rP:3080, rMin:300,rMax:360, dP:3960, dMin:480,dMax:600,  mP:5200, mMin:540,mMax:720},
+  {max: 150, rP:3780, rMin:330,rMax:420, dP:4800, dMin:540,dMax:660,  mP:6400, mMin:600,mMax:840},
+];
+function getBracket(sqm){for(var i=0;i<PRICE_BRACKETS.length;i++){if(sqm<=PRICE_BRACKETS[i].max)return PRICE_BRACKETS[i];}return PRICE_BRACKETS[PRICE_BRACKETS.length-1];}
 
 var ROOM_TYPES = ['Dining Room','Play Room','Laundry Room','Gym','Garage','Home Office','Basement','Attic'];
-var HS_BASE = 800, HS_HRS = 5, HS_EXTRA = 150;
 var STORED = JSON.parse(localStorage.getItem('kn')||'[]');
 
 var ADDONS = [
@@ -711,9 +720,9 @@ var selDate=null, selTime=null;
 var selSituations=new Set(), recurSlots=[];
 var S={
   cleanType:'regular', sqm:30, isLarge:false,
-  bp:0, bn:'', bKey:'', btmin:0, btmax:0,
+  bn:'',
   sched:'Initial / One-time',
-  addons:{}, rt:new Set(), hsH:5, hsM:null,
+  addons:{}, rt:new Set(),
   lid:null, ln:null, lf:null
 };
 
@@ -722,17 +731,11 @@ CY=nowJS.getFullYear(); CM=nowJS.getMonth();
 
 // ── COMPUTE BASE PRICE ────────────────────────────────────────
 function getBasePrice(){
-  if(S.isLarge){
-    // Large space: sqm * rate
-    var rate = LARGE_RATES[S.cleanType]||LARGE_RATES.regular;
-    return {price: Math.round(S.sqm*rate/5)*5, label: S.sqm+' sqm x P'+rate+'/sqm (large space)', surcharge:0};
-  }
-  // Standard: unit type base price + cleaning surcharge
-  var base = S.bp;
-  var surcharge = 0, sLabel='';
-  if(S.cleanType==='deep'){ surcharge=S.sqm*DEEP_RATE; sLabel='Deep Cleaning ('+S.sqm+'sqm x P'+DEEP_RATE+')'; }
-  else if(S.cleanType==='moveinout'){ surcharge=S.sqm*MIO_RATE; sLabel='Move In/Out ('+S.sqm+'sqm x P'+MIO_RATE+')'; }
-  return {price:base, label:S.bn+(S.cleanType==='deep'?' (Deep Clean)':S.cleanType==='moveinout'?' (Move In/Out)':''), surcharge:surcharge, sLabel:sLabel};
+  var b=getBracket(S.sqm);
+  var label=S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'');
+  if(S.cleanType==='regular')return{price:b.rP,label:label+' — Regular',surcharge:0};
+  if(S.cleanType==='deep')   return{price:b.dP,label:label+' — Deep Clean',surcharge:0};
+  return{price:b.mP,label:label+' — Move In/Out',surcharge:0};
 }
 
 // ── CALENDAR FETCH ────────────────────────────────────────────
@@ -794,9 +797,12 @@ function renderCal(){
     else{
       var evts=monthEvts[ds]||[], taken=evts.length;
       var dots=document.createElement('div'); dots.className='dots';
-      for(var s=0;s<MAX_SLOTS;s++){var dot=document.createElement('div');dot.className='dot '+(s<taken?'t':'o');dots.appendChild(dot);}
+      var amBooked=evts.some(function(ev){var h=new Date(ev.s).getHours();return h<12;});
+      var pmBooked=evts.some(function(ev){var h=new Date(ev.s).getHours();return h>=12;});
+      var dot0=document.createElement('div');dot0.className='dot '+(amBooked?'t':'o');dots.appendChild(dot0);
+      var dot1=document.createElement('div');dot1.className='dot '+(pmBooked?'t':'o');dots.appendChild(dot1);
       el.appendChild(dots);
-      if(taken>=MAX_SLOTS)el.classList.add('full-d');
+      if(amBooked&&pmBooked)el.classList.add('full-d');
       else if(taken>0)el.classList.add('partial-d');
       if(thisD.toDateString()===nowJS.toDateString())el.classList.add('today-d');
       if(ds===selDate)el.classList.add('sel-d');
@@ -896,14 +902,10 @@ function selCleanType(type){
   compute();
 }
 
-// ── SERVICE (UNIT TYPE) ───────────────────────────────────────
+// ── SERVICE (PROPERTY TYPE) ───────────────────────────────────
 function selSvc(el){
   document.querySelectorAll('.svc').forEach(function(s){s.classList.remove('sel');}); el.classList.add('sel');
-  S.bp=+el.dataset.price; S.bn=el.dataset.name; S.btmin=+el.dataset.tmin; S.btmax=+el.dataset.tmax;
-  // Store key for large space handling
-  if(el.dataset.name==='Studio Type')S.bKey='studio';
-  else if(el.dataset.name==='1 Bedroom')S.bKey='br1';
-  else S.bKey='br2';
+  S.bn=el.dataset.name;
   compute();
 }
 
@@ -943,16 +945,17 @@ function updateRecurDP(){
   var dp=document.getElementById('recur-dp'), panel=document.getElementById('recur-panel');
   if(!dp)return;
   if(!filled.length||!S.lf){dp.style.display='none';if(panel)panel.style.display='none';return;}
-  var total=S.lf*filled.length;
+  var totalSessions=filled.length+1; // +1 for the initial booking date
+  var total=S.lf*totalSessions;
   dp.style.display='block';
-  dp.innerHTML='<strong>'+filled.length+' session'+(filled.length>1?'s':'')+' added</strong><br>'
-    +'Total upfront downpayment: <strong>P'+total.toLocaleString()+'</strong><br>'
-    +'<span style="font-size:9.5px;color:var(--gr);">Transport fee (P'+S.lf.toLocaleString()+') x '+filled.length+' sessions. One downpayment per session confirms each slot.</span>';
+  dp.innerHTML='<strong>'+(filled.length)+' additional date'+(filled.length>1?'s':'')+' added ('+totalSessions+' sessions total)</strong><br>'
+    +'Total upfront downpayment: <strong>₱'+total.toLocaleString()+'</strong><br>'
+    +'<span style="font-size:9.5px;color:var(--gr);">Transport fee (₱'+S.lf.toLocaleString()+') × '+totalSessions+' sessions. One downpayment per session confirms each slot.</span>';
   if(panel){
     panel.style.display='block';
     panel.innerHTML='<div style="font-size:9px;color:var(--li);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:4px;">Recurring Downpayment</div>'
-      +'<div style="font-size:11px;color:rgba(255,255,255,.55);">'+filled.length+' sessions x P'+S.lf.toLocaleString()+'</div>'
-      +'<div style="font-size:16px;font-weight:700;color:#7fcf9a;margin-top:2px;">P'+total.toLocaleString()+' total upfront</div>'
+      +'<div style="font-size:11px;color:rgba(255,255,255,.55);">'+totalSessions+' sessions × ₱'+S.lf.toLocaleString()+'</div>'
+      +'<div style="font-size:16px;font-weight:700;color:#7fcf9a;margin-top:2px;">₱'+total.toLocaleString()+' total upfront</div>'
       +'<div style="font-size:9px;color:rgba(255,255,255,.3);margin-top:2px;">One downpayment confirms each slot.</div>';
   }
 }
@@ -961,59 +964,25 @@ function updateRecurDP(){
 function renderAddons(){
   var html='';
   ADDONS.forEach(function(a){
-    var q=S.addons[a.id]||0, on=q>0, isHS=a.id==='hs', isR=a.id==='room';
-    var warn='';
-    if(isHS&&on&&selDate){
-      var dow=new Date(selDate+'T12:00:00').getDay();
-      if(dow!==0&&dow!==6)warn+='<div class="alert danger" style="margin-top:5px;font-size:10px;"><strong>Not available on weekdays</strong>Overnight house sitting is available on weekends only.</div>';
-      var hrs=(new Date(selDate+'T12:00:00')-new Date())/3600000;
-      if(hrs<72&&hrs>0)warn+='<div class="alert warn" style="margin-top:5px;font-size:10px;"><strong>72-hour advance notice required</strong>House sitting must be booked at least 72 hours in advance.</div>';
-    }
+    var q=S.addons[a.id]||0, on=q>0, isR=a.id==='room';
     var rsub=isR?'<div class="rsub '+(on?'show':'')+'">'
       +ROOM_TYPES.map(function(rt){return '<div class="rtag '+(S.rt.has(rt)?'on':'')+'" onclick="event.stopPropagation();togR(\''+rt+'\')">'+rt+'</div>';}).join('')
       +'</div>':'';
-    var hsp=isHS?'<div class="hsp '+(on?'show':'')+'"><div class="hs-row"><label>Hours:</label>'
-      +'<div class="hs-step"><button onclick="event.stopPropagation();chgHS(-1)">-</button><div class="hs-hv" id="hshv">'+S.hsH+'</div><button onclick="event.stopPropagation();chgHS(1)">+</button></div></div>'
-      +'<div class="hs-opts">'
-      +'<div class="hs-opt '+(S.hsM==='during'?'sel':'')+'" onclick="event.stopPropagation();selHSM(\'during\')">'
-        +'<div class="hs-opt-top"><div class="hs-radio"><div class="hs-rdot"></div></div><div class="hs-opt-n">During cleaning</div></div>'
-        +'<div class="hs-opt-d">Cleaning hours count toward block. Remaining at P150/hr.</div></div>'
-      +'<div class="hs-opt '+(S.hsM==='after'?'sel':'')+'" onclick="event.stopPropagation();selHSM(\'after\')">'
-        +'<div class="hs-opt-top"><div class="hs-radio"><div class="hs-rdot"></div></div><div class="hs-opt-n">After cleaning</div></div>'
-        +'<div class="hs-opt-d">P800 first 5 hrs, P150/hr beyond. Subject to availability.</div></div>'
-      +'</div><div class="hs-note" id="hsnote">'+hsNote()+'</div>'+warn+'</div>':'';
     var qc=a.qty?'<div class="qc" onclick="event.stopPropagation()">'
       +'<button class="qb" onclick="chgQ(\''+a.id+'\',-1)">-</button>'
       +'<div class="qn">'+q+'</div>'
       +'<button class="qb" onclick="chgQ(\''+a.id+'\',1)">+</button></div>':'';
     html+='<div class="ar '+(on?'on':'')+'" onclick="togAddon(\''+a.id+'\')">'
-      +'<div class="ar-ck">'+(on?'v':'')+'</div>'
-      +'<div class="ar-info"><div class="ar-n">'+a.name+'</div><div class="ar-no">'+a.note+(!isHS&&a.tm?' · ~'+a.tm+'–'+a.tx+' min each':'')+'</div></div>'
-      +'<div class="ar-p">P'+a.price.toLocaleString()+'</div>'
-      +qc+'</div>'+rsub+hsp;
+      +'<div class="ar-ck">'+(on?'✓':'')+'</div>'
+      +'<div class="ar-info"><div class="ar-n">'+a.name+'</div><div class="ar-no">'+a.note+(a.tm?' · ~'+a.tm+'–'+a.tx+' min each':'')+'</div></div>'
+      +'<div class="ar-p">₱'+a.price.toLocaleString()+'</div>'
+      +qc+'</div>'+rsub;
   });
   document.getElementById('al').innerHTML=html;
 }
-function togAddon(id){S.addons[id]=(S.addons[id]||0)>0?0:1;if(id==='hs'&&!S.addons[id])S.hsM=null;if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();}
-function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[id]=Math.max(0,Math.min(a.max,(S.addons[id]||0)+d));if(id==='hs'&&!S.addons[id])S.hsM=null;if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();}
+function togAddon(id){S.addons[id]=(S.addons[id]||0)>0?0:1;if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();}
+function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[id]=Math.max(0,Math.min(a.max,(S.addons[id]||0)+d));if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();}
 function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons();compute();}
-function chgHS(d){S.hsH=Math.max(1,Math.min(12,S.hsH+d));var v=document.getElementById('hshv');if(v)v.textContent=S.hsH;var n=document.getElementById('hsnote');if(n)n.textContent=hsNote();compute();}
-function selHSM(m){S.hsM=m;renderAddons();compute();}
-function hsCharge(){
-  if(!(S.addons['hs']>0)||!S.hsM)return 0;
-  if(S.hsM==='after')return S.hsH<=HS_HRS?HS_BASE:HS_BASE+(S.hsH-HS_HRS)*HS_EXTRA;
-  var t=cT(),ch=t?(t.mn+t.mx)/2/60:0,rem=Math.max(0,S.hsH-ch);
-  if(rem<=0)return 0;
-  return Math.round(Math.min(rem/HS_HRS,1)*HS_BASE)+(rem>HS_HRS?(rem-HS_HRS)*HS_EXTRA:0);
-}
-function hsNote(){
-  if(!S.hsM||!(S.addons['hs']>0))return'';
-  if(S.hsM==='after')return S.hsH+' hrs after cleaning — P'+hsCharge().toLocaleString()+'. P150/hr beyond 5 hrs.';
-  var t=cT(),ch=t?(t.mn+t.mx)/2/60:0,rem=Math.max(0,S.hsH-ch);
-  if(rem<=0)return'Cleaning covers all '+S.hsH+' hrs — no extra charge.';
-  return S.hsH+' hrs concurrent. ~'+ch.toFixed(1)+' hrs cleaning, '+rem.toFixed(1)+' hrs charged — P'+hsCharge().toLocaleString()+'.';
-}
-
 // ── LOCATION ──────────────────────────────────────────────────
 function renderLocs(){
   var html='';
@@ -1035,26 +1004,12 @@ function selLoc(id){
 
 // ── TIME CALC ─────────────────────────────────────────────────
 function cT(){
-  // Need a unit type selected for small spaces, or large-space mode
-  if(!S.isLarge && !S.bp) return null;
-  var sqm=S.sqm, mn, mx;
-  if(S.cleanType==='regular'){
-    if(sqm<40){mn=120;mx=180;}
-    else if(sqm<=90){mn=180;mx=240;}
-    else if(sqm<=120){mn=240;mx=300;}
-    else{mn=300;mx=360;}
-  } else if(S.cleanType==='deep'){
-    if(sqm<40){mn=240;mx=270;}
-    else if(sqm<=90){mn=240;mx=360;}
-    else if(sqm<=120){mn=360;mx=480;}
-    else{mn=480;mx=600;}
-  } else { // moveinout
-    if(sqm<40){mn=270;mx=360;}
-    else if(sqm<=90){mn=360;mx=480;}
-    else if(sqm<=120){mn=480;mx=600;}
-    else{mn=600;mx=840;}
-  }
-  ADDONS.forEach(function(a){if(a.id==='hs')return;var q=S.addons[a.id]||0;if(q>0){mn+=a.tm*q;mx+=a.tx*q;}});
+  var b=getBracket(S.sqm);
+  var mn,mx;
+  if(S.cleanType==='regular'){mn=b.rMin;mx=b.rMax;}
+  else if(S.cleanType==='deep'){mn=b.dMin;mx=b.dMax;}
+  else{mn=b.mMin;mx=b.mMax;}
+  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){mn+=a.tm*q;mx+=a.tx*q;}});
   return{mn:mn,mx:mx};
 }
 function fmtT(mn,mx){
@@ -1066,59 +1021,71 @@ function fmtT(mn,mx){
 // ── COMPUTE ───────────────────────────────────────────────────
 function compute(){
   var lines=[], sub=0;
-  // Base
+
+  // Update property type card prices to reflect current sqm + cleaning type
+  var b=getBracket(S.sqm), t=cT();
+  var brackets=[
+    {pid:'p-studio',tid:'t-studio',b:getBracket(25)},
+    {pid:'p-1br',   tid:'t-1br',   b:getBracket(38)},
+    {pid:'p-2br',   tid:'t-2br',   b:getBracket(52)},
+    {pid:'p-house', tid:'t-house', b:getBracket(85)},
+  ];
+  brackets.forEach(function(br){
+    var el=document.getElementById(br.pid), tel=document.getElementById(br.tid);
+    if(!el)return;
+    var p,mn,mx;
+    if(S.cleanType==='regular'){p=br.b.rP;mn=br.b.rMin;mx=br.b.rMax;}
+    else if(S.cleanType==='deep'){p=br.b.dP;mn=br.b.dMin;mx=br.b.dMax;}
+    else{p=br.b.mP;mn=br.b.mMin;mx=br.b.mMax;}
+    el.textContent='₱'+p.toLocaleString();
+    if(tel)tel.textContent='~'+fmtT(mn,mx);
+  });
+
+  // Base price from bracket
   var bp=getBasePrice();
-  if(bp.price>0){
-    if(S.isLarge){
-      lines.push({l:bp.label,v:bp.price});sub+=bp.price;
-    } else {
-      if(S.bp>0){lines.push({l:bp.label,v:bp.price});sub+=bp.price;}
-      if(bp.surcharge>0){lines.push({l:bp.sLabel,v:bp.surcharge});sub+=bp.surcharge;}
-    }
-  }
+  if(bp.price>0){lines.push({l:bp.label,v:bp.price});sub+=bp.price;}
+
   // Add-ons
   ADDONS.forEach(function(a){
-    if(a.id==='hs')return;var q=S.addons[a.id]||0;
-    if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' x'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push({l:lbl,v:sv});sub+=sv;}
+    var q=S.addons[a.id]||0;
+    if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push({l:lbl,v:sv});sub+=sv;}
   });
-  // HS
-  if(S.addons['hs']>0){
-    if(!S.hsM)lines.push({l:'House Sitting ('+S.hsH+' hrs — select timing)',v:null,tbd:true});
-    else{var hc=hsCharge();lines.push({l:'House Sitting ('+S.hsH+'hrs, '+(S.hsM==='after'?'after':'during')+')',v:hc});sub+=hc;}
-  }
+
   // Transport
-  var tf=0, isOth=S.lid==='others', isReq=false;
+  var tf=0, isOth=S.lid==='others';
   if(S.lid){
-    if(S.lf===null||isOth){lines.push({l:'Transport - '+(isOth?(document.getElementById('other-txt')?document.getElementById('other-txt').value||'Other':'Other'):S.ln),v:null,tbd:true});}
-    else{lines.push({l:'Transport - '+S.ln,v:S.lf});sub+=S.lf;tf=S.lf;}
+    if(S.lf===null||isOth){lines.push({l:'Transport — '+(isOth?(document.getElementById('other-txt')?document.getElementById('other-txt').value||'Other area':'Other area'):S.ln),v:null,tbd:true});}
+    else{lines.push({l:'Transport — '+S.ln,v:S.lf});sub+=S.lf;tf=S.lf;}
   }
   var total=sub;
-  // Time
-  var t=cT(),tb=document.getElementById('tbanner');
-  if(t&&(S.bp>0||S.isLarge)){
+
+  // Time banner
+  var tb=document.getElementById('tbanner');
+  if(t&&bp.price>0){
     var ts=fmtT(t.mn,t.mx);
     document.getElementById('tstr').textContent='Estimated Duration:';
-    document.getElementById('tback').textContent='You get back '+ts+' of your day.'+(S.addons['hs']>0?' (excl. house sitting)':'');
+    document.getElementById('tback').textContent='You get back '+ts+' of your day.';
     tb.classList.add('show');
     document.getElementById('ptime').textContent='~'+ts+' est.';
     document.getElementById('ptime-val').textContent='You get back '+ts+' of your day.';
   } else {tb.classList.remove('show');document.getElementById('ptime').textContent='';document.getElementById('ptime-val').textContent='';}
+
   document.getElementById('ptotd').textContent=total.toLocaleString();
   var body=document.getElementById('pbody');
   if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';return;}
-  var html=lines.map(function(ln){return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv">'+(ln.tbd?'TBD':'P'+ln.v.toLocaleString())+'</span></div>';}).join('');
-  html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">P'+total.toLocaleString()+'</span></div>';
+  var html=lines.map(function(ln){return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
+  html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">₱'+total.toLocaleString()+'</span></div>';
   body.innerHTML=html;
+
   var pb=document.getElementById('pay-box');
   if(tf>0){
     pb.style.display='block';
-    document.getElementById('pay-dp').textContent='P'+tf.toLocaleString();
-    document.getElementById('pay-bal').textContent='P'+Math.max(0,total-tf).toLocaleString();
+    document.getElementById('pay-dp').textContent='₱'+tf.toLocaleString();
+    document.getElementById('pay-bal').textContent='₱'+Math.max(0,total-tf).toLocaleString();
     var multiDate=recurSlots.filter(function(s){return s.date;}).length>0||S.sched!=='Initial / One-time';
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
-  }
-  else pb.style.display='none';
+  } else pb.style.display='none';
   document.getElementById('transpo-note').style.display=S.lid?'block':'none';
   updateRecurDP();
 }
@@ -1145,14 +1112,10 @@ function buildMsg(){
   if(name&&!STORED.includes(name)){STORED.unshift(name);if(STORED.length>20)STORED.pop();localStorage.setItem('kn',JSON.stringify(STORED));}
   var lines=[],sub=0,bp=getBasePrice();
   var now=new Date(), ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
-  if(bp.price>0){
-    if(S.isLarge){lines.push(bp.label+': P'+bp.price.toLocaleString());sub+=bp.price;}
-    else{if(S.bp>0){lines.push(bp.label+': P'+bp.price.toLocaleString());sub+=bp.price;}if(bp.surcharge>0){lines.push(bp.sLabel+': P'+bp.surcharge.toLocaleString());sub+=bp.surcharge;}}
-  }
-  ADDONS.forEach(function(a){if(a.id==='hs')return;var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' x'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push(lbl+': P'+sv.toLocaleString());sub+=sv;}});
-  if(S.addons['hs']>0&&S.hsM){var hc=hsCharge();lines.push('House Sitting ('+S.hsH+'hrs,'+S.hsM+'): P'+hc.toLocaleString());sub+=hc;}
+  if(bp.price>0){lines.push(bp.label+': ₱'+bp.price.toLocaleString());sub+=bp.price;}
+  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push(lbl+': ₱'+sv.toLocaleString());sub+=sv;}});
   var tf=0;
-  if(S.lf!==null&&S.lid&&S.lid!=='others'){lines.push('Transport - '+S.ln+': P'+S.lf.toLocaleString());sub+=S.lf;tf=S.lf;}
+  if(S.lf!==null&&S.lid&&S.lid!=='others'){lines.push('Transport — '+S.ln+': ₱'+S.lf.toLocaleString());sub+=S.lf;tf=S.lf;}
   var total=sub,t=cT();
   var parts=selDate?selDate.split('-'):null;
   var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'Not selected';
@@ -1162,15 +1125,19 @@ function buildMsg(){
   if(name)msg+='Name: '+name+'\n';if(phone)msg+='Contact: '+phone+'\n';if(email)msg+='Email: '+email+'\n';if(addr)msg+='Address: '+addr+'\n';if(land)msg+='Landmark: '+land+'\n';
   msg+='\nDate: '+dl+'\nTime: '+tl+'\nSchedule: '+S.sched;
   msg+='\nCleaning Type: '+(S.cleanType==='deep'?'Deep Cleaning':S.cleanType==='moveinout'?'Move In / Move Out':'Regular Cleaning');
-  msg+='\nArea: '+S.sqm+' sqm'+(S.isLarge?' (large space pricing)':'')+'\n';
+  msg+='\nArea: '+S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'')+'\n';
   if(S.ln)msg+='Location: '+S.ln+'\n';
-  msg+='\nSERVICES:\n'+lines.join('\n')+'\nESTIMATED TOTAL: P'+total.toLocaleString();
+  msg+='\nSERVICES:\n'+lines.join('\n')+'\nESTIMATED TOTAL: ₱'+total.toLocaleString();
   if(t)msg+='\nEst. Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.';
-  var multiDateMsg=recurSlots.filter(function(s){return s.date;}).length>0||S.sched!=='Initial / One-time';
-  var balLabelMsg=multiDateMsg?'Balance on each service day':'Balance on service day';
-  if(tf>0)msg+='\n\nReservation fee (pay to confirm): P'+tf.toLocaleString()+'\n'+balLabelMsg+': P'+Math.max(0,total-tf).toLocaleString();
   var rFilled=recurSlots.filter(function(s){return s.date;});
-  if(rFilled.length>0){msg+='\n\nRecurring Dates:\n'+rFilled.map(function(s){return s.date+(s.time?' at '+s.time:'');}).join('\n');if(tf>0)msg+='\nTotal upfront: P'+(tf*rFilled.length).toLocaleString();}
+  var multiDateMsg=rFilled.length>0||S.sched!=='Initial / One-time';
+  var balLabelMsg=multiDateMsg?'Balance on each service day':'Balance on service day';
+  if(tf>0)msg+='\n\nReservation fee (pay to confirm): ₱'+tf.toLocaleString()+'\n'+balLabelMsg+': ₱'+Math.max(0,total-tf).toLocaleString();
+  if(rFilled.length>0){
+    var totalSessions=rFilled.length+1;
+    msg+='\n\nRecurring Dates:\n'+rFilled.map(function(s){return s.date+(s.time?' at '+s.time:'');}).join('\n');
+    if(tf>0)msg+='\nTotal upfront ('+totalSessions+' sessions): ₱'+(tf*totalSessions).toLocaleString();
+  }
   var sits=[...selSituations].join(', ');if(sits)msg+='\n\nSituation: '+sits;
   if(instr)msg+='\n\nSpecial Instructions: '+instr;
   return msg;
