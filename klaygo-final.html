@@ -1404,8 +1404,18 @@ document.getElementById('est-logo-img').src = LIGHT_LOGO;
 (async function(){
   await fetchMonth(CY,CM);
   renderCal();renderLocs();renderAddons();compute();
+
+  // Auto-refresh calendar every 5 minutes
+  setInterval(function(){
+    fetchMonth(CY,CM).then(function(){renderCal();});
+  }, AUTO_REFRESH_MS);
+})();
+
 // ══════════════════════════════════════════════════════
 // KLAYGO SMART ADDRESS MODULE
+// (must be outside the IIFE so travelData exists before
+//  compute() runs, and initGoogleMaps is globally accessible
+//  for the Maps JS callback)
 // ══════════════════════════════════════════════════════
 var travelData={address:null,placeId:null,durationMins:null,distanceKm:null,rushLevel:'none',surcharge:0};
 
@@ -1568,12 +1578,6 @@ function initGoogleMaps(){
 // ══════════════════════════════════════════════════════
 // END SMART ADDRESS MODULE
 // ══════════════════════════════════════════════════════
-
-  // Auto-refresh calendar every 5 minutes
-  setInterval(function(){
-    fetchMonth(CY,CM).then(function(){renderCal();});
-  }, AUTO_REFRESH_MS);
-})();
 </script>
 </body>
 </html>
