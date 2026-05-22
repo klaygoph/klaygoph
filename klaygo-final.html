@@ -218,14 +218,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .ia::placeholder{color:#c0c0c0;}
 
 /* LOCATION */
-.loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
-.lb{padding:8px 5px;border:1.5px solid var(--bd);border-radius:6px;text-align:center;cursor:pointer;transition:all .13s;background:var(--wh);}
-.lb:hover{border-color:var(--se);background:var(--pa);}
-.lb.sel{border-color:var(--pr);background:var(--pa);}
+.loc-grid{display:flex;flex-direction:column;gap:10px;}
+.loc-zone{}
+.loc-zone-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--se);margin-bottom:5px;padding-left:2px;}
+.loc-zone-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
+.lb{padding:9px 7px;border:1.5px solid var(--bd);border-radius:8px;text-align:center;cursor:pointer;transition:all .15s;background:var(--wh);position:relative;overflow:hidden;}
+.lb:hover{border-color:var(--se);background:var(--pa);transform:translateY(-1px);box-shadow:0 2px 8px rgba(43,78,138,.07);}
+.lb.sel{border-color:var(--pr);background:var(--pa);box-shadow:0 0 0 3px rgba(43,78,138,.1);}
 .lb.sel .lb-n{color:var(--pr);}
-.lb-n{font-size:10px;font-weight:600;color:var(--dk);line-height:1.3;}
-.lb-f{font-size:9px;color:var(--se);margin-top:1px;}
-.loc-note{font-size:9.5px;color:var(--gr);margin-top:7px;padding:6px 8px;background:var(--abg);border:1px solid var(--abdr);border-radius:4px;line-height:1.5;}
+.lb-n{font-size:10px;font-weight:600;color:var(--dk);line-height:1.3;display:flex;align-items:center;justify-content:center;gap:3px;flex-wrap:wrap;}
+.lb-f{font-size:9.5px;color:var(--se);margin-top:2px;font-weight:500;}
+.lb.sel .lb-f{color:var(--pr);}
+.lb-tag{font-size:7.5px;font-weight:700;background:var(--pr);color:#fff;padding:1px 4px;border-radius:3px;letter-spacing:.04em;}
+.loc-note{font-size:9.5px;color:var(--gr);margin-top:9px;padding:7px 10px;background:var(--abg);border:1px solid var(--abdr);border-radius:6px;line-height:1.6;}
 .other-inp{display:none;margin-top:5px;}
 .other-inp input{width:100%;padding:6px 9px;border:1.5px solid var(--bd);border-radius:5px;font-family:inherit;font-size:12px;color:var(--dk);}
 .other-inp input:focus{outline:none;border-color:var(--pr);}
@@ -517,8 +522,8 @@ footer{background:var(--mn);padding:11px 20px;}
 
 <!-- STEP 9: LOCATION -->
 <div class="card locked" id="card-loc">
-  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Location</h2><p>Transport calculated from Taguig</p></div></div>
-  <div style="font-size:10px;color:var(--gr);padding:5px 8px;background:var(--pa);border-radius:4px;margin-bottom:7px;line-height:1.5;">₱50 base (first 2 km) + ₱10/km up to 6 km + ₱15/km beyond.</div>
+  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p></div></div>
+  <div style="font-size:10px;color:var(--gr);padding:6px 10px;background:var(--pa);border-radius:6px;margin-bottom:10px;line-height:1.6;">₱50 base (first 2 km) + ₱10/km up to 6 km + ₱15/km beyond. Nearby areas have fixed rates.</div>
   <div class="loc-grid" id="loc-grid"></div>
   <div class="other-inp" id="other-inp"><input type="text" id="other-txt" placeholder="Type your area / city..." oninput="compute()"></div>
   <div class="loc-note">Transport fee is an estimate. Final amount confirmed based on your exact address.</div>
@@ -652,6 +657,7 @@ var PRICE_BRACKETS = [
   {max: 150, rP:3780, rMin:330,rMax:420, dP:4800, dMin:540,dMax:660,  mP:6400, mMin:600,mMax:840},
 ];
 function getBracket(sqm){for(var i=0;i<PRICE_BRACKETS.length;i++){if(sqm<=PRICE_BRACKETS[i].max)return PRICE_BRACKETS[i];}return PRICE_BRACKETS[PRICE_BRACKETS.length-1];}
+var LARGE_CUTOFF = 45; // threshold for showing the "large space" info note
 
 var ROOM_TYPES = ['Dining Room','Play Room','Laundry Room','Gym','Garage','Home Office','Basement','Attic'];
 var STORED = JSON.parse(localStorage.getItem('kn')||'[]');
@@ -669,22 +675,29 @@ var ADDONS = [
 ];
 
 var LOCS = [
-  {id:'bgc',    name:'BGC',             km:2.5, fixed:80,  noRT:true},
-  {id:'mck',    name:'McKinley Hill',   km:1.5, fixed:100, noRT:true},
-  {id:'taguig', name:'Within Taguig',  km:3,   fixed:150, noRT:true},
-  {id:'makati', name:'Makati',          km:6},
-  {id:'pasay',  name:'Pasay',           km:8},
-  {id:'para',   name:'Paranaque',       km:11},
-  {id:'munt',   name:'Muntinlupa',      km:14},
-  {id:'laspi',  name:'Las Pinas',       km:15},
-  {id:'pasig',  name:'Pasig',           km:10},
-  {id:'mand',   name:'Mandaluyong',     km:11},
-  {id:'qc',     name:'Quezon City',     km:16},
-  {id:'mari',   name:'Marikina',        km:17},
-  {id:'calo',   name:'Caloocan',        km:20},
-  {id:'tondo',  name:'Tondo',           km:14},
-  {id:'binondo',name:'Binondo',         km:14},
-  {id:'others', name:'Others',          km:0,  others:true},
+  // Nearby (fixed rates)
+  {id:'bgc',     name:'BGC',              km:2.5,  fixed:80,  noRT:true, zone:'nearby'},
+  {id:'mck',     name:'McKinley Hill',    km:1.5,  fixed:100, noRT:true, zone:'nearby'},
+  {id:'taguig',  name:'Within Taguig',   km:3,    fixed:150, noRT:true, zone:'nearby'},
+  // Central
+  {id:'makati',  name:'Makati',           km:6,    zone:'central'},
+  {id:'ortigas', name:'Ortigas',          km:9,    zone:'central'},
+  {id:'pasig',   name:'Pasig',            km:10,   zone:'central'},
+  {id:'mand',    name:'Mandaluyong',      km:11,   zone:'central'},
+  // South
+  {id:'pasay',   name:'Pasay',            km:8,    zone:'south'},
+  {id:'para',    name:'Paranaque',        km:11,   zone:'south'},
+  {id:'laspi',   name:'Las Pinas',        km:15,   zone:'south'},
+  {id:'munt',    name:'Muntinlupa',       km:14,   zone:'south'},
+  // Manila & North
+  {id:'tondo',   name:'Tondo',            km:14,   zone:'manila'},
+  {id:'binondo', name:'Binondo',          km:14,   zone:'manila'},
+  {id:'sampaloc',name:'Sampaloc',         km:15,   zone:'manila'},
+  {id:'qc',      name:'Quezon City',      km:16,   zone:'manila'},
+  {id:'mari',    name:'Marikina',         km:17,   zone:'manila'},
+  {id:'calo',    name:'Caloocan',         km:20,   zone:'manila'},
+  // Others
+  {id:'others',  name:'Others',           km:0,    others:true, zone:'others'},
 ];
 
 // ── ANALYTICS ─────────────────────────────────────────────────
@@ -985,11 +998,29 @@ function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[i
 function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons();compute();}
 // ── LOCATION ──────────────────────────────────────────────────
 function renderLocs(){
+  var zones=[
+    {key:'nearby',  label:'Nearby',         icon:'📍'},
+    {key:'central', label:'Central Metro',  icon:'🏙️'},
+    {key:'south',   label:'South Metro',    icon:'🌿'},
+    {key:'manila',  label:'Manila & North', icon:'🗺️'},
+    {key:'others',  label:'Other Areas',    icon:'📌'},
+  ];
   var html='';
-  LOCS.forEach(function(l){
-    var f=calcFee(l), ft=f===null?'Request quote':'P'+f;
-    html+='<div class="lb" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
-      +'<div class="lb-n">'+l.name+'</div><div class="lb-f">'+ft+'</div></div>';
+  zones.forEach(function(z){
+    var items=LOCS.filter(function(l){return l.zone===z.key;});
+    if(!items.length)return;
+    html+='<div class="loc-zone">';
+    html+='<div class="loc-zone-label">'+z.icon+' '+z.label+'</div>';
+    html+='<div class="loc-zone-row">';
+    items.forEach(function(l){
+      var f=calcFee(l), ft=f===null?'Request quote':'₱'+f;
+      var nearTag=l.fixed!==undefined&&l.zone==='nearby'?'<span class="lb-tag">Fixed</span>':'';
+      html+='<div class="lb" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
+        +'<div class="lb-n">'+l.name+nearTag+'</div>'
+        +'<div class="lb-f">'+ft+'</div>'
+        +'</div>';
+    });
+    html+='</div></div>';
   });
   document.getElementById('loc-grid').innerHTML=html;
 }
@@ -1181,32 +1212,44 @@ async function submitFeedback(){
 
 // ── PRINT ─────────────────────────────────────────────────────
 function openPrint(){
-  if(!(S.bp>0||S.isLarge)){alert('Please select a service before printing.');return;}
+  var bp=getBasePrice();
+  if(!bp.price){alert('Please select a cleaning type and area size first.');return;}
   analytics.prints++;localStorage.setItem('kg_an',JSON.stringify(analytics));
   var name=document.getElementById('f-name').value.trim(),phone=document.getElementById('f-phone').value.trim(),email=document.getElementById('f-email').value.trim(),addr=document.getElementById('f-addr').value.trim(),land=document.getElementById('f-land').value.trim(),instr=document.getElementById('instr').value.trim();
   var dateStr=new Date().toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'});
   var now=new Date(),ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
-  var rows=[],sub=0,bp=getBasePrice();
-  if(bp.price>0){if(S.isLarge){rows.push([bp.label,'P'+bp.price.toLocaleString()]);sub+=bp.price;}else{if(S.bp>0){rows.push([bp.label,'P'+bp.price.toLocaleString()]);sub+=bp.price;}if(bp.surcharge>0){rows.push([bp.sLabel,'P'+bp.surcharge.toLocaleString()]);sub+=bp.surcharge;}}}
-  ADDONS.forEach(function(a){if(a.id==='hs')return;var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' x'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';rows.push([lbl,'P'+sv.toLocaleString()]);sub+=sv;}});
-  if(S.addons['hs']>0&&S.hsM){var hc=hsCharge();rows.push(['House Sitting ('+S.hsH+'hrs, '+(S.hsM==='after'?'after':'during')+')','P'+hc.toLocaleString()]);sub+=hc;}
-  var tf=0;if(S.lf!==null&&S.lid&&S.lid!=='others'){rows.push(['Transport - '+S.ln,'P'+S.lf.toLocaleString()]);sub+=S.lf;tf=S.lf;}
+  var rows=[],sub=0;
+  rows.push([bp.label,'₱'+bp.price.toLocaleString()]);sub+=bp.price;
+  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';rows.push([lbl,'₱'+sv.toLocaleString()]);sub+=sv;}});
+  var tf=0;if(S.lf!==null&&S.lid&&S.lid!=='others'){rows.push(['Transport — '+S.ln,'₱'+S.lf.toLocaleString()]);sub+=S.lf;tf=S.lf;}
   var total=sub,t=cT();
   var parts=selDate?selDate.split('-'):null;
   var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
   var tl=selTime?selTime.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true}):'';
-  var tStr=t?'Estimated Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.'+(S.addons['hs']>0?' (excl. house sitting)':''):'';
+  var tStr=t?'Estimated Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.':'';
   var cR='';
-  if(name)cR+='<tr><td>Name</td><td>'+name+'</td></tr>';if(phone)cR+='<tr><td>Contact</td><td>'+phone+'</td></tr>';if(email)cR+='<tr><td>Email</td><td>'+email+'</td></tr>';if(addr)cR+='<tr><td>Address</td><td>'+addr+'</td></tr>';if(land)cR+='<tr><td>Landmark</td><td>'+land+'</td></tr>';if(dl)cR+='<tr><td>Date</td><td>'+dl+'</td></tr>';if(tl)cR+='<tr><td>Time</td><td>'+tl+'</td></tr>';
+  if(name)cR+='<tr><td>Name</td><td>'+name+'</td></tr>';
+  if(phone)cR+='<tr><td>Contact</td><td>'+phone+'</td></tr>';
+  if(email)cR+='<tr><td>Email</td><td>'+email+'</td></tr>';
+  if(addr)cR+='<tr><td>Address</td><td>'+addr+'</td></tr>';
+  if(land)cR+='<tr><td>Landmark</td><td>'+land+'</td></tr>';
+  if(dl)cR+='<tr><td>Date</td><td>'+dl+'</td></tr>';
+  if(tl)cR+='<tr><td>Time</td><td>'+tl+'</td></tr>';
   cR+='<tr><td>Submitted</td><td>'+ts+'</td></tr>';
   var rowsHtml=rows.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
-  rowsHtml+='<tr class="tr"><td>ESTIMATED TOTAL</td><td>P'+total.toLocaleString()+'</td></tr>';
+  rowsHtml+='<tr class="tr"><td>ESTIMATED TOTAL</td><td>₱'+total.toLocaleString()+'</td></tr>';
   var sits=[...selSituations].join(', ');var instrHtml='';
   if(sits)instrHtml+='<div class="ib"><h4>Situation</h4><p>'+sits+'</p></div>';
   if(instr)instrHtml+='<div class="ib"><h4>Special Instructions</h4><p>'+instr+'</p></div>';
-  var multiDatePrint=recurSlots.filter(function(s){return s.date;}).length>0||S.sched!=='Initial / One-time';
+  var rFilled=recurSlots.filter(function(s){return s.date;});
+  var multiDatePrint=rFilled.length>0||S.sched!=='Initial / One-time';
   var balLabelPrint=multiDatePrint?'Balance on each service day':'Balance on service day';
-  var payHtml=tf>0?'<div class="pay-s"><h4>Payment Schedule</h4><div class="pr"><span class="pk">Reservation fee (confirms your slot)</span><span class="pv">P'+tf.toLocaleString()+'</span></div><div class="pr pn"><span class="pk">'+balLabelPrint+'</span><span class="pv">P'+Math.max(0,total-tf).toLocaleString()+'</span></div></div>':'';
+  var totalSessionsPrint=rFilled.length>0?rFilled.length+1:1;
+  var payHtml=tf>0?'<div class="pay-s"><h4>Payment Schedule</h4>'
+    +'<div class="pr"><span class="pk">Reservation fee (confirms your slot)</span><span class="pv">₱'+tf.toLocaleString()+'</span></div>'
+    +'<div class="pr pn"><span class="pk">'+balLabelPrint+'</span><span class="pv">₱'+Math.max(0,total-tf).toLocaleString()+'</span></div>'
+    +(totalSessionsPrint>1?'<div class="pr" style="margin-top:3px;"><span class="pk">Total upfront ('+totalSessionsPrint+' sessions)</span><span class="pv" style="color:#2B4E8A;">₱'+(tf*totalSessionsPrint).toLocaleString()+'</span></div>':'')
+    +'</div>':'';
   var w=window.open('','_blank','width=560,height=794');
   w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8">'
     +'<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">'
@@ -1272,7 +1315,7 @@ function openPrint(){
     +'</div>'
     +'<div class="nor">This is not an official receipt</div>'
     +'</div>'
-    +'<div class="bar ft"><p>Message us on IG or Messenger: @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</p></div>'
+    +'<div class="bar ft"><p>@KlayGoPH &nbsp;|&nbsp; 0992.816.4718</p></div>'
     +'</div>'
     +'<scr'+'ipt>window.onload=function(){window.print();}<\/sc'+'ript>'
     +'</body></html>');
@@ -1282,7 +1325,7 @@ function openPrint(){
 // ── RESET ─────────────────────────────────────────────────────
 function resetAll(){
   selDate=null;selTime=null;selSituations=new Set();recurSlots=[];
-  S={cleanType:'regular',sqm:30,isLarge:false,bp:0,bn:'',bKey:'',btmin:0,btmax:0,sched:'Initial / One-time',addons:{},rt:new Set(),hsH:5,hsM:null,lid:null,ln:null,lf:null};
+  S={cleanType:'regular',sqm:30,isLarge:false,bn:'',sched:'Initial / One-time',addons:{},rt:new Set(),lid:null,ln:null,lf:null};
   document.querySelectorAll('.day.sel-d').forEach(function(d){d.classList.remove('sel-d');});
   document.querySelectorAll('.svc.sel').forEach(function(s){s.classList.remove('sel');});
   document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('sel');});
