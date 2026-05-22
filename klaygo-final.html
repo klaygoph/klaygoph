@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Klaygo PH — Book & Get a Quote</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuiza3RKflnhopjK1SPZHZo-q3yq_2S78&libraries=places&callback=initGoogleMaps" async defer></script>
 <style>
 :root{
   --mn:#0D1F3C;--pr:#2B4E8A;--mi:#3D6399;--se:#5A7BB5;
@@ -218,11 +219,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .ia::placeholder{color:#c0c0c0;}
 
 /* LOCATION */
-.loc-grid{display:flex;flex-direction:column;gap:10px;}
+.loc-grid{display:flex;flex-direction:column;gap:5px;}
 .loc-zone{}
-.loc-zone-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--se);margin-bottom:5px;padding-left:2px;}
+.loc-zone-gap{margin-top:5px;padding-top:5px;border-top:1px solid var(--bd);}
 .loc-zone-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
-.lb{padding:9px 7px;border:1.5px solid var(--bd);border-radius:8px;text-align:center;cursor:pointer;transition:all .15s;background:var(--wh);position:relative;overflow:hidden;}
+.lb{padding:9px 7px;border:1.5px solid var(--bd);border-radius:8px;text-align:center;cursor:pointer;transition:all .15s;background:var(--wh);position:relative;}
 .lb:hover{border-color:var(--se);background:var(--pa);transform:translateY(-1px);box-shadow:0 2px 8px rgba(43,78,138,.07);}
 .lb.sel{border-color:var(--pr);background:var(--pa);box-shadow:0 0 0 3px rgba(43,78,138,.1);}
 .lb.sel .lb-n{color:var(--pr);}
@@ -331,7 +332,20 @@ footer{background:var(--mn);padding:11px 20px;}
 .follow-links{display:flex;justify-content:center;gap:14px;}
 .follow-link{display:inline-flex;align-items:center;gap:6px;color:#fff;font-size:11.5px;font-weight:600;text-decoration:none;padding:6px 14px;border:1.5px solid rgba(255,255,255,.3);border-radius:20px;transition:all .14s;}
 .follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6);}
-@media print{body{display:none;}}
+/* SMART ADDRESS / TRAVEL CARD */
+.travel-card{margin-top:8px;padding:11px 13px;background:var(--pa);border:1.5px solid var(--bd);border-radius:10px;animation:tcFade .22s ease;}
+@keyframes tcFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.travel-row{display:flex;align-items:center;gap:10px;}
+.travel-icon{font-size:20px;flex-shrink:0;line-height:1;}
+.travel-time{font-size:13px;font-weight:700;color:var(--pr);}
+.travel-lbl{font-size:10px;color:var(--gr);margin-top:1px;line-height:1.4;}
+.traffic-notice{margin-top:8px;padding:7px 10px;border-radius:7px;font-size:10px;line-height:1.55;font-weight:500;display:flex;align-items:flex-start;gap:6px;}
+.traffic-notice .tn-icon{flex-shrink:0;margin-top:1px;}
+.traffic-heavy{background:#FFF3E0;border:1px solid #FFB74D;color:#7A4500;}
+.traffic-moderate{background:var(--gbg);border:1px solid var(--gbdr);color:#1B5E20;}
+.traffic-clear{background:var(--gbg);border:1px solid var(--gbdr);color:#1B5E20;}
+.travel-surcharge{margin-top:7px;padding:5px 9px;background:rgba(43,78,138,.07);border-radius:6px;font-size:10px;color:var(--pr);font-weight:600;}
+
 </style>
 </head>
 <body>
@@ -540,7 +554,24 @@ footer{background:var(--mn);padding:11px 20px;}
     </div>
     <div class="field"><label>Contact Number</label><input type="tel" id="f-phone" placeholder="09XX XXX XXXX"></div>
     <div class="field"><label>Email Address</label><input type="email" id="f-email" placeholder="email@example.com"></div>
-    <div class="field full"><label>Complete Address</label><textarea id="f-addr" placeholder="Unit/House No., Street, Barangay, City"></textarea></div>
+    <div class="field full">
+      <label>Complete Address</label>
+      <input type="text" id="f-addr" placeholder="Start typing your address..." autocomplete="off" style="width:100%;">
+      <div class="travel-card" id="travel-card" style="display:none;">
+        <div class="travel-row">
+          <div class="travel-icon">🚗</div>
+          <div>
+            <div class="travel-time" id="travel-time">—</div>
+            <div class="travel-lbl" id="travel-lbl">Estimating travel from Taguig…</div>
+          </div>
+        </div>
+        <div class="traffic-notice" id="traffic-notice" style="display:none;">
+          <span class="tn-icon" id="traffic-icon">⚠️</span>
+          <span id="traffic-msg"></span>
+        </div>
+        <div class="travel-surcharge" id="travel-surcharge" style="display:none;"></div>
+      </div>
+    </div>
     <div class="field full"><label>Nearest Landmark</label><input type="text" id="f-land" placeholder="e.g. Near SM Aura, Beside Shell Station"></div>
   </div>
 </div>
@@ -999,19 +1030,17 @@ function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons
 // ── LOCATION ──────────────────────────────────────────────────
 function renderLocs(){
   var zones=[
-    {key:'nearby',  label:'Nearby',         icon:'📍'},
-    {key:'central', label:'Central Metro',  icon:'🏙️'},
-    {key:'south',   label:'South Metro',    icon:'🌿'},
-    {key:'manila',  label:'Manila & North', icon:'🗺️'},
-    {key:'others',  label:'Other Areas',    icon:'📌'},
+    {key:'nearby'},
+    {key:'central'},
+    {key:'south'},
+    {key:'manila'},
+    {key:'others'},
   ];
   var html='';
-  zones.forEach(function(z){
+  zones.forEach(function(z,zi){
     var items=LOCS.filter(function(l){return l.zone===z.key;});
     if(!items.length)return;
-    html+='<div class="loc-zone">';
-    html+='<div class="loc-zone-label">'+z.icon+' '+z.label+'</div>';
-    html+='<div class="loc-zone-row">';
+    html+='<div class="loc-zone'+(zi>0?' loc-zone-gap':'')+'"><div class="loc-zone-row">';
     items.forEach(function(l){
       var f=calcFee(l), ft=f===null?'Request quote':'₱'+f;
       var nearTag=l.fixed!==undefined&&l.zone==='nearby'?'<span class="lb-tag">Fixed</span>':'';
@@ -1087,6 +1116,12 @@ function compute(){
   if(S.lid){
     if(S.lf===null||isOth){lines.push({l:'Transport — '+(isOth?(document.getElementById('other-txt')?document.getElementById('other-txt').value||'Other area':'Other area'):S.ln),v:null,tbd:true});}
     else{lines.push({l:'Transport — '+S.ln,v:S.lf});sub+=S.lf;tf=S.lf;}
+  }
+  // Smart travel surcharge (from address autocomplete)
+  if(travelData.surcharge>0){
+    var sLabel=travelData.rushLevel==='heavy'?'Rush Hour Buffer':'Long Distance Supplement';
+    lines.push({l:sLabel,v:travelData.surcharge});
+    sub+=travelData.surcharge;
   }
   var total=sub;
 
@@ -1346,7 +1381,7 @@ function resetAll(){
   currentEstId='';var pe=document.getElementById('p-est-id');if(pe)pe.textContent='—';
   var cb=document.getElementById('btn-copy');if(cb)cb.style.display='none';
   ['f-name','f-phone','f-email','f-addr','f-land'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-  syncArea(30);renderAddons();renderLocs();compute();
+  syncArea(30);renderAddons();renderLocs();resetTravelData();compute();
 }
 
 // ── CALENDAR NAV ──────────────────────────────────────────────
@@ -1369,6 +1404,171 @@ document.getElementById('est-logo-img').src = LIGHT_LOGO;
 (async function(){
   await fetchMonth(CY,CM);
   renderCal();renderLocs();renderAddons();compute();
+// ══════════════════════════════════════════════════════
+// KLAYGO SMART ADDRESS MODULE
+// ══════════════════════════════════════════════════════
+var travelData={address:null,placeId:null,durationMins:null,distanceKm:null,rushLevel:'none',surcharge:0};
+
+// ── TRAFFIC RULES ──────────────────────────────────────
+function getRushLevel(date){
+  if(!date)return'none';
+  var h=date.getHours(),day=date.getDay(),d=date.getDate();
+  var isFri=day===5,isSat=day===6;
+  var isPayday=d===15||d>=28;
+  var isMorning=h>=7&&h<10,isEvening=h>=17&&h<20;
+  var isRush=isMorning||isEvening;
+  if(isRush&&(isFri||isPayday||isSat))return'heavy';
+  if(isRush)return'moderate';
+  return'none';
+}
+
+function getTravelSurcharge(km,rush){
+  var s=0;
+  if(km>15)s+=50;
+  if(rush==='heavy')s+=50;
+  return s;
+}
+
+// ── DISTANCE MATRIX FETCH ──────────────────────────────
+function fetchTravel(destination){
+  showTravelLoading();
+  var depTime=selTime?new Date(selTime.getTime()):new Date();
+  var svc=new google.maps.DistanceMatrixService();
+  svc.getDistanceMatrix({
+    origins:['Taguig City, Metro Manila, Philippines'],
+    destinations:[destination],
+    travelMode:google.maps.TravelMode.DRIVING,
+    drivingOptions:{departureTime:depTime,trafficModel:google.maps.TrafficModel.BEST_GUESS},
+    unitSystem:google.maps.UnitSystem.METRIC,
+  },function(res,status){
+    if(status!=='OK'||!res.rows[0]||res.rows[0].elements[0].status!=='OK'){
+      showTravelError();return;
+    }
+    var el=res.rows[0].elements[0];
+    var mins=Math.round((el.duration_in_traffic?el.duration_in_traffic.value:el.duration.value)/60);
+    var km=+(el.distance.value/1000).toFixed(1);
+    var rush=getRushLevel(depTime);
+    var surcharge=getTravelSurcharge(km,rush);
+    travelData.durationMins=mins;
+    travelData.distanceKm=km;
+    travelData.rushLevel=rush;
+    travelData.surcharge=surcharge;
+    showTravelResult(mins,km,rush,surcharge);
+    compute();
+  });
+}
+
+// ── UI HELPERS ─────────────────────────────────────────
+function showTravelLoading(){
+  var card=document.getElementById('travel-card');
+  var tEl=document.getElementById('travel-time');
+  var lEl=document.getElementById('travel-lbl');
+  if(card)card.style.display='block';
+  if(tEl)tEl.textContent='Checking…';
+  if(lEl)lEl.textContent='Estimating travel from Taguig';
+  hideTravelExtras();
+}
+
+function showTravelResult(mins,km,rush,surcharge){
+  var card=document.getElementById('travel-card');
+  var tEl=document.getElementById('travel-time');
+  var lEl=document.getElementById('travel-lbl');
+  var notice=document.getElementById('traffic-notice');
+  var icon=document.getElementById('traffic-icon');
+  var msg=document.getElementById('traffic-msg');
+  var sur=document.getElementById('travel-surcharge');
+  if(card)card.style.display='block';
+  // Format time
+  var timeStr=mins<60?mins+' min away':Math.floor(mins/60)+'h '+(mins%60)+'m away';
+  if(tEl)tEl.textContent=timeStr;
+  if(lEl){
+    lEl.textContent=km+' km from Taguig';
+    if(mins>90)lEl.textContent+=' · Please confirm availability';
+  }
+  // Traffic notice
+  if(notice&&icon&&msg){
+    if(rush==='heavy'){
+      notice.className='traffic-notice traffic-heavy';
+      icon.textContent='⚠️';
+      msg.textContent='Heavy traffic expected at this time. We\'ll plan to leave earlier to make sure we arrive on schedule.';
+      notice.style.display='flex';
+    } else if(rush==='moderate'){
+      notice.className='traffic-notice traffic-moderate';
+      icon.textContent='🟡';
+      msg.textContent='Moderate traffic expected. We\'ll keep an eye on the road and update you if needed.';
+      notice.style.display='flex';
+    } else {
+      notice.className='traffic-notice traffic-clear';
+      icon.textContent='✅';
+      msg.textContent='Traffic looks clear at this time. Great schedule!';
+      notice.style.display='flex';
+    }
+  }
+  // Surcharge pill
+  if(sur){
+    if(surcharge>0){
+      var why=[];
+      if(km>15)why.push('long distance');
+      if(rush==='heavy')why.push('rush hour');
+      sur.textContent='+₱'+surcharge+' travel supplement ('+why.join(' + ')+')';
+      sur.style.display='block';
+    } else {
+      sur.style.display='none';
+    }
+  }
+}
+
+function showTravelError(){
+  var tEl=document.getElementById('travel-time');
+  var lEl=document.getElementById('travel-lbl');
+  if(tEl)tEl.textContent='Could not detect';
+  if(lEl)lEl.textContent='We\'ll confirm the transport fee with you directly.';
+  hideTravelExtras();
+}
+
+function hideTravelExtras(){
+  var notice=document.getElementById('traffic-notice');
+  var sur=document.getElementById('travel-surcharge');
+  if(notice)notice.style.display='none';
+  if(sur)sur.style.display='none';
+}
+
+function resetTravelData(){
+  travelData={address:null,placeId:null,durationMins:null,distanceKm:null,rushLevel:'none',surcharge:0};
+  var card=document.getElementById('travel-card');
+  if(card)card.style.display='none';
+}
+
+// ── GOOGLE MAPS INIT (called by script callback) ───────
+function initGoogleMaps(){
+  var input=document.getElementById('f-addr');
+  if(!input)return;
+  var bounds=new google.maps.LatLngBounds(
+    {lat:14.35,lng:120.90},
+    {lat:14.85,lng:121.25}
+  );
+  var ac=new google.maps.places.Autocomplete(input,{
+    componentRestrictions:{country:'PH'},
+    fields:['place_id','formatted_address','geometry','name'],
+    bounds:bounds,
+    strictBounds:false,
+  });
+  ac.addListener('place_changed',function(){
+    var place=ac.getPlace();
+    if(!place.geometry){showTravelError();return;}
+    travelData.address=place.formatted_address||place.name;
+    travelData.placeId=place.place_id;
+    fetchTravel(place.geometry.location);
+  });
+  // If they clear the field, reset travel data
+  input.addEventListener('input',function(){
+    if(!this.value.trim())resetTravelData();
+  });
+}
+// ══════════════════════════════════════════════════════
+// END SMART ADDRESS MODULE
+// ══════════════════════════════════════════════════════
+
   // Auto-refresh calendar every 5 minutes
   setInterval(function(){
     fetchMonth(CY,CM).then(function(){renderCal();});
