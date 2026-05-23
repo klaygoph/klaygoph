@@ -220,9 +220,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
 /* LOCATION */
 .loc-grid{display:flex;flex-direction:column;gap:5px;}
-.loc-zone{}
-.loc-zone-gap{margin-top:5px;padding-top:5px;border-top:1px solid var(--bd);}
-.loc-zone-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
+.loc-flat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
 .lb{padding:9px 7px;border:1.5px solid var(--bd);border-radius:8px;text-align:center;cursor:pointer;transition:all .15s;background:var(--wh);position:relative;}
 .lb:hover{border-color:var(--se);background:var(--pa);transform:translateY(-1px);box-shadow:0 2px 8px rgba(43,78,138,.07);}
 .lb.sel{border-color:var(--pr);background:var(--pa);box-shadow:0 0 0 3px rgba(43,78,138,.1);}
@@ -262,7 +260,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .pb h3{font-size:10.5px;font-weight:600;color:var(--mn);margin-bottom:5px;}
 .pi{display:flex;gap:5px;margin-bottom:3px;font-size:10px;color:var(--gr);line-height:1.45;}
 .pi:last-child{margin-bottom:0;}
-.pd{color:var(--pr);font-weight:700;flex-shrink:0;}
+.pd{color:var(--pr);font-weight:700;flex-shrink:0;display:none;}
 
 /* CTA */
 .cta-block{background:var(--pr);border-radius:var(--r);padding:14px;margin-bottom:8px;text-align:center;}
@@ -321,7 +319,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .btn-reset:hover{color:rgba(255,255,255,.45);}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--mn);color:#fff;padding:10px 18px;border-radius:20px;font-size:11.5px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.25);opacity:0;transition:all .3s;z-index:999;text-align:center;max-width:320px;pointer-events:none;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-@media(max-width:660px){.toast{bottom:90px;}}
 footer{background:var(--mn);padding:11px 20px;}
 .footer-inner{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;}
 .footer-inner span{color:rgba(255,255,255,.22);font-size:9.5px;}
@@ -333,6 +330,33 @@ footer{background:var(--mn);padding:11px 20px;}
 .follow-links{display:flex;justify-content:center;gap:14px;}
 .follow-link{display:inline-flex;align-items:center;gap:6px;color:#fff;font-size:11.5px;font-weight:600;text-decoration:none;padding:6px 14px;border:1.5px solid rgba(255,255,255,.3);border-radius:20px;transition:all .14s;}
 .follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6);}
+/* MODAL OVERLAY */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:800;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.show{display:flex;}
+.modal-box{background:#fff;border-radius:12px;padding:22px 20px;max-width:360px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.modal-icon{font-size:28px;margin-bottom:8px;display:block;}
+.modal-title{font-size:14px;font-weight:700;color:var(--mn);margin-bottom:6px;}
+.modal-body{font-size:11.5px;color:var(--gr);line-height:1.65;margin-bottom:14px;}
+.modal-body strong{color:var(--dk);}
+.modal-steps{display:flex;flex-direction:column;gap:7px;margin:10px 0 14px;}
+.modal-step{display:flex;align-items:flex-start;gap:9px;font-size:11px;color:var(--dk);}
+.modal-step-n{background:var(--pr);color:#fff;width:18px;height:18px;border-radius:50%;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.modal-step-t{line-height:1.5;}
+.modal-cta{display:block;width:100%;padding:11px;background:var(--pr);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;margin-bottom:8px;}
+.modal-cta:hover{background:var(--mi);}
+.modal-cancel{display:block;width:100%;padding:8px;background:transparent;color:var(--gr);border:none;font-size:11px;font-family:inherit;cursor:pointer;text-align:center;}
+.modal-cancel:hover{color:var(--dk);}
+/* RESTRICTION ALERT */
+.restriction-alert{display:none;margin-top:8px;padding:10px 12px;background:var(--rbg);border:1.5px solid var(--rbdr);border-radius:7px;font-size:10.5px;color:#8B2020;line-height:1.6;}
+.restriction-alert.show{display:block;}
+.restriction-alert strong{display:block;font-size:11px;margin-bottom:3px;color:var(--red);}
+/* POLICY ICONS */
+.pi{display:flex;gap:8px;margin-bottom:6px;font-size:10px;color:var(--gr);line-height:1.5;align-items:flex-start;}
+.pi:last-child{margin-bottom:0;}
+.pi-icon{font-size:13px;flex-shrink:0;margin-top:0px;line-height:1.4;}
+/* AGREEMENT LINE */
+.agree-note{margin-top:10px;padding:9px 11px;background:var(--pa);border:1.5px solid var(--li);border-radius:6px;font-size:10px;color:var(--pr);line-height:1.6;}
+.agree-note strong{color:var(--mn);}
 /* SMART ADDRESS / TRAVEL CARD */
 .travel-card{margin-top:8px;padding:11px 13px;background:var(--pa);border:1.5px solid var(--bd);border-radius:10px;animation:tcFade .22s ease;}
 @keyframes tcFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
@@ -349,96 +373,71 @@ footer{background:var(--mn);padding:11px 20px;}
 
 /* ── STICKY BOTTOM BAR ───────────────────────────── */
 #sticky-bar{
-  display:none;
-  position:fixed;bottom:0;left:0;right:0;z-index:500;
-  transition:transform .3s cubic-bezier(.4,0,.2,1);
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;
+  transition:transform .28s cubic-bezier(.4,0,.2,1);
 }
 #sticky-bar.sb-hidden{transform:translateY(100%);}
 .sticky-top{
-  background:#0D1F3C;
-  height:48px;
+  background:#0D1F3C;height:48px;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 16px;
-  box-shadow:0 -2px 12px rgba(0,0,0,.25);
+  padding:0 16px;box-shadow:0 -2px 12px rgba(0,0,0,.3);
 }
+.sticky-logo{height:18px;opacity:.85;margin-right:10px;flex-shrink:0;}
+.sticky-left{display:flex;align-items:center;}
 .sticky-summary{display:flex;flex-direction:column;gap:1px;}
 .sticky-total-amt{font-size:17px;font-weight:700;color:#fff;line-height:1;}
 .sticky-desc{font-size:9.5px;color:rgba(168,191,224,.75);line-height:1;}
 .sticky-cta{
   font-size:10.5px;color:#fff;font-weight:600;
   background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);
-  padding:5px 13px;border-radius:20px;text-decoration:none;
-  cursor:pointer;white-space:nowrap;flex-shrink:0;
-  transition:background .13s;
+  padding:5px 13px;border-radius:20px;cursor:pointer;white-space:nowrap;
+  flex-shrink:0;transition:background .13s;
 }
 .sticky-cta:hover{background:rgba(255,255,255,.25);}
 .sticky-brand{
-  background:#2C2C2A;
-  height:26px;
+  background:#2C2C2A;height:26px;
   display:flex;align-items:center;justify-content:center;
-  font-size:8.5px;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(255,255,255,.38);
+  font-size:8px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.32);
 }
-
-/* ── BOTTOM ESTIMATE SECTION ─────────────────────── */
-#bottom-estimate{
-  display:none;
-  background:var(--mn);
-  padding:14px 16px 20px;
-  margin-top:0;
-}
-#bottom-estimate .be-label{
-  font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.12em;
-  text-transform:uppercase;font-weight:600;margin-bottom:6px;
-}
-#bottom-estimate .be-total{
-  font-size:28px;font-weight:700;color:#fff;line-height:1;margin-bottom:2px;
-}
-#bottom-estimate .be-total span{font-size:13px;color:var(--li);font-weight:300;}
-#bottom-estimate .be-time{font-size:10px;color:#7fcf9a;margin-bottom:8px;}
-#bottom-estimate .be-lines{margin-bottom:10px;}
-#bottom-estimate .be-line{
-  display:flex;justify-content:space-between;align-items:flex-start;gap:5px;
-  padding:4px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:11px;
-}
-#bottom-estimate .be-line:last-child{border:none;}
-#bottom-estimate .be-ll{color:rgba(255,255,255,.5);line-height:1.3;}
-#bottom-estimate .be-lv{color:#fff;font-weight:600;white-space:nowrap;}
-#bottom-estimate .be-total-line{
-  display:flex;justify-content:space-between;align-items:center;
-  padding-top:8px;margin-top:4px;
-  border-top:1px solid rgba(255,255,255,.14);font-size:13px;
-}
-#bottom-estimate .be-total-line .be-ll{color:var(--li);font-weight:500;font-size:12px;}
-#bottom-estimate .be-total-line .be-lv{font-size:20px;}
-#bottom-estimate .be-pay{
-  background:rgba(255,255,255,.05);border-radius:6px;
-  padding:9px 12px;margin-bottom:10px;
-}
-#bottom-estimate .be-pay h4{font-size:9px;color:var(--li);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;font-weight:600;}
-#bottom-estimate .be-pr{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;}
-#bottom-estimate .be-pr .be-pk{color:rgba(255,255,255,.5);}
-#bottom-estimate .be-pr .be-pv{color:#fff;font-weight:600;}
-#bottom-estimate .be-pr.be-pnow .be-pk{color:var(--li);font-weight:500;}
-#bottom-estimate .be-pr.be-pnow .be-pv{color:#7fcf9a;font-size:13px;font-weight:700;}
-#bottom-estimate .be-avail{font-size:10.5px;padding:6px 0;margin-bottom:8px;}
-#bottom-estimate .be-avail.ok{color:#7fcf9a;}
-#bottom-estimate .be-avail.none{color:rgba(255,255,255,.25);}
-#bottom-estimate .be-discl{font-size:9px;color:rgba(255,255,255,.22);line-height:1.5;margin-bottom:10px;}
-#bottom-estimate .be-btn{
-  display:block;width:100%;padding:12px;
-  background:var(--pr);color:#fff;border:none;border-radius:6px;
-  font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;
-  text-align:center;transition:background .14s;margin-bottom:8px;
-}
-#bottom-estimate .be-btn:hover{background:var(--mi);}
-#bottom-estimate .be-empty{padding:16px;text-align:center;color:rgba(255,255,255,.2);font-size:10.5px;line-height:1.6;}
-
 @media(max-width:660px){
   #sticky-bar{display:block;}
-  #bottom-estimate{display:block;}
-  body{padding-bottom:74px;} /* account for sticky bar height */
+  body{padding-bottom:74px;}
+  .toast{bottom:90px!important;}
 }
+
+/* ── BOTTOM ESTIMATE (mobile) ────────────────────── */
+#bottom-estimate{
+  display:none;background:var(--mn);
+  padding:16px 14px 22px;
+}
+.be-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.be-logo{height:20px;opacity:.85;}
+.be-label{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;font-weight:600;}
+.be-total{font-size:30px;font-weight:700;color:#fff;line-height:1;margin-bottom:2px;}
+.be-total span{font-size:13px;color:var(--li);font-weight:300;}
+.be-time{font-size:10px;color:#7fcf9a;margin-bottom:8px;}
+.be-line{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:11px;}
+.be-line:last-child{border:none;}
+.be-ll{color:rgba(255,255,255,.5);line-height:1.35;}
+.be-lv{color:#fff;font-weight:600;white-space:nowrap;}
+.be-total-line{display:flex;justify-content:space-between;align-items:center;padding-top:8px;margin-top:4px;border-top:1px solid rgba(255,255,255,.15);font-size:13px;}
+.be-total-line .be-ll{color:var(--li);font-weight:500;font-size:12px;}
+.be-total-line .be-lv{font-size:20px;}
+.be-pay-box{background:rgba(255,255,255,.05);border-radius:7px;padding:9px 11px;margin:8px 0;}
+.be-pay-box h4{font-size:9px;color:var(--li);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;font-weight:600;}
+.be-pr{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;}
+.be-pk{color:rgba(255,255,255,.45);}
+.be-pv{color:#fff;font-weight:600;}
+.be-pnow .be-pv{color:#7fcf9a;font-size:13px;font-weight:700;}
+.be-avail{font-size:10.5px;padding:5px 0;margin-bottom:6px;}
+.be-avail.ok{color:#7fcf9a;}
+.be-avail.none{color:rgba(255,255,255,.25);}
+.be-discl{font-size:9px;color:rgba(255,255,255,.2);line-height:1.5;margin-bottom:10px;}
+.be-btn{display:block;width:100%;padding:12px;background:var(--pr);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:background .14s;}
+.be-btn:hover{background:var(--mi);}
+.be-empty{padding:14px;text-align:center;color:rgba(255,255,255,.2);font-size:10.5px;line-height:1.65;}
+@media(max-width:660px){#bottom-estimate{display:block;}}
 
 </style>
 </head>
@@ -618,8 +617,12 @@ footer{background:var(--mn);padding:11px 20px;}
   <div class="sit-tags">
     <div class="sit-tag" onclick="togSit(this)" data-val="Kids present">Kids present</div>
     <div class="sit-tag" onclick="togSit(this)" data-val="Pet(s) at home">Pet(s) at home</div>
-    <div class="sit-tag" onclick="togSit(this)" data-val="Other workers on-site">Other workers on-site</div>
-    <div class="sit-tag" onclick="togSit(this)" data-val="Under renovation">Under renovation</div>
+    <div class="sit-tag" onclick="togSit(this)" data-val="Other workers on-site" data-restrict="true">Other workers on-site</div>
+    <div class="sit-tag" onclick="togSit(this)" data-val="Under renovation" data-restrict="true">Under renovation</div>
+  </div>
+  <div class="restriction-alert" id="restriction-alert">
+    <strong>⚠️ We're Unable to Accept This Booking</strong>
+    For the safety of our crew and the integrity of your clean, we do not service properties where active third-party work, ongoing renovation, or construction is taking place at the same time. We'd love to help once the space is ready — please rebook when all other on-site work is complete.
   </div>
   <textarea class="ia" id="instr" placeholder="Fragile items, areas to prioritize, access instructions, preferred products..."></textarea>
   <div class="wb" style="margin-top:8px;">
@@ -673,12 +676,17 @@ footer{background:var(--mn);padding:11px 20px;}
 <!-- POLICIES -->
 <div class="pb">
   <h3>Booking Policies</h3>
-  <div class="pi"><div class="pd">-</div><div>This calculator is for <strong>pricing transparency only</strong>. It does not confirm a reservation. Booking is confirmed only after the reservation fee (downpayment = transport fee) has been <strong>received and confirmed</strong>.</div></div>
-  <div class="pi"><div class="pd">-</div><div><strong>Reschedule:</strong> Allowed with at least 24 hours notice.</div></div>
-  <div class="pi"><div class="pd">-</div><div><strong>Cancellation:</strong> Downpayment is non-refundable if cancelled less than 24 hrs before, or if the cleaner is already on the way or onsite.</div></div>
-  <div class="pi"><div class="pd">-</div><div><strong>Exception:</strong> If booked less than 24 hrs in advance and you cancel at least 4 hrs before with cleaner not yet departed — a refund or rebooking may be arranged.</div></div>
-  <div class="pi"><div class="pd">-</div><div><strong>Large Spaces (90+ sqm):</strong> An additional cleaner will be assigned to ensure quality and efficiency. This may affect scheduling — we'll confirm details upon booking.</div></div>
-  <div class="pi"><div class="pd">-</div><div><strong>Larger Spaces (90+ sqm) &amp; Weekend Slots:</strong> A <strong>50% downpayment</strong> is required to secure and confirm your booking reservation.</div></div>
+  <div class="pi"><div class="pi-icon">📋</div><div><strong>Pricing Transparency:</strong> This calculator is for pricing transparency only.<br>It does not confirm a reservation. Booking is confirmed only after the reservation fee (downpayment = transport fee) has been <strong>received and confirmed</strong>.</div></div>
+  <div class="pi"><div class="pi-icon">🔄</div><div><strong>Reschedule:</strong> Allowed with at least 24 hours notice.</div></div>
+  <div class="pi"><div class="pi-icon">🚫</div><div><strong>Cancellation:</strong> Downpayment is non-refundable if cancelled less than 24 hrs before, or if the cleaner is already on the way or onsite.</div></div>
+  <div class="pi"><div class="pi-icon">⚠️</div><div><strong>Exception:</strong> If booked less than 24 hrs in advance and you cancel at least 4 hrs before with cleaner not yet departed — a refund or rebooking may be arranged.</div></div>
+  <div class="pi"><div class="pi-icon">🏠</div><div><strong>Large Spaces (90+ sqm):</strong> An additional cleaner will be assigned to ensure quality and efficiency. This may affect scheduling — we'll confirm details upon booking.</div></div>
+  <div class="pi"><div class="pi-icon">💳</div><div><strong>Large Spaces (90+ sqm) &amp; Weekend Slots:</strong> A <strong>50% downpayment + transport fee</strong> is required to secure and confirm your booking reservation.</div></div>
+  <div class="pi"><div class="pi-icon">🧹</div><div><strong>Active On-Site Work:</strong> For the safety of our crew and the integrity of your clean, we do not service properties where active third-party workers, ongoing renovation, or construction work is taking place on-site. Please rebook once all other work is complete.</div></div>
+  <div class="agree-note">
+    <strong>📌 Booking Agreement</strong><br>
+    By sending us this estimate and completing your reservation fee, you confirm that you have read, understood, and agreed to all of the booking policies listed above.
+  </div>
 </div>
 
 <!-- FEEDBACK -->
@@ -723,37 +731,65 @@ footer{background:var(--mn);padding:11px 20px;}
 
 </div><!-- /main -->
 
-<!-- BOTTOM ESTIMATE (mobile only) -->
+<!-- MESSENGER MODAL -->
+<div class="modal-overlay" id="msn-modal">
+  <div class="modal-box">
+    <span class="modal-icon">💬</span>
+    <div class="modal-title">Your estimate has been copied!</div>
+    <div class="modal-body">
+      Messenger is about to open. Here's how to send your booking in <strong>3 quick steps:</strong>
+    </div>
+    <div class="modal-steps">
+      <div class="modal-step"><div class="modal-step-n">1</div><div class="modal-step-t">Tap the <strong>message field</strong> in Messenger</div></div>
+      <div class="modal-step"><div class="modal-step-n">2</div><div class="modal-step-t"><strong>Long-press</strong> and tap <strong>Paste</strong> — your full estimate will appear</div></div>
+      <div class="modal-step"><div class="modal-step-n">3</div><div class="modal-step-t">Hit <strong>Send</strong> and we'll reply to confirm your slot 🎉</div></div>
+    </div>
+    <button class="modal-cta" id="msn-go-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style="vertical-align:middle;margin-right:5px;"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
+      Open Messenger Now
+    </button>
+    <button class="modal-cancel" onclick="document.getElementById('msn-modal').classList.remove('show')">Cancel</button>
+  </div>
+</div>
+
+<!-- BOTTOM ESTIMATE — mobile only -->
 <div id="bottom-estimate">
-  <div class="be-label">Your Estimate</div>
+  <div class="be-head">
+    <img id="be-logo-img" class="be-logo" alt="Klaygo PH">
+    <div>
+      <div class="be-label">Your Estimate</div>
+    </div>
+  </div>
   <div class="be-total"><span>₱</span><span id="be-totd">0</span></div>
   <div class="be-time" id="be-time"></div>
   <div id="be-body"><div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div></div>
-  <div class="be-pay" id="be-pay" style="display:none;">
+  <div class="be-pay-box" id="be-pay" style="display:none;">
     <h4>Payment Schedule</h4>
     <div class="be-pr"><span class="be-pk">Reservation fee (pay to confirm)</span><span class="be-pv" id="be-dp">—</span></div>
     <div class="be-pr be-pnow"><span class="be-pk">Balance on service day</span><span class="be-pv" id="be-bal">—</span></div>
   </div>
   <div class="be-avail none" id="be-avail">No date selected yet.</div>
-  <div class="be-discl">This estimate does not confirm a reservation. Booking confirmed after downpayment is received and confirmed.</div>
+  <div class="be-discl">This estimate does not confirm a reservation. Booking is confirmed only after the reservation fee has been received and confirmed.</div>
   <button class="be-btn" onclick="bookNow()">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style="vertical-align:middle;margin-right:5px;"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
     Book on Messenger
   </button>
 </div>
 
-<!-- STICKY BOTTOM BAR (mobile only) -->
+<!-- STICKY BAR — mobile only -->
 <div id="sticky-bar" class="sb-hidden">
   <div class="sticky-top">
-    <div class="sticky-summary">
-      <div class="sticky-total-amt">₱<span id="sb-total">0</span></div>
-      <div class="sticky-desc" id="sb-desc">Select service to see estimate</div>
+    <div class="sticky-left">
+      <img id="sb-logo-img" class="sticky-logo" alt="Klaygo PH">
+      <div class="sticky-summary">
+        <div class="sticky-total-amt">₱<span id="sb-total">0</span></div>
+        <div class="sticky-desc" id="sb-desc">Select service to see estimate</div>
+      </div>
     </div>
-    <a class="sticky-cta" onclick="scrollToEstimate()">View estimate ↑</a>
+    <button class="sticky-cta" onclick="scrollToEstimate()">View estimate ↑</button>
   </div>
-  <div class="sticky-brand">KLAYGOPH &nbsp;|&nbsp; Cleaner Space, Clearer Mind.</div>
+  <div class="sticky-brand">KLAYGOPH Cleaning Services &nbsp;|&nbsp; Cleaner Space, Clearer Mind.</div>
 </div>
-
 
 <div class="follow-bar">
   <p class="follow-text">Follow us for tips, updates &amp; promos!</p>
@@ -902,10 +938,10 @@ CY=nowJS.getFullYear(); CM=nowJS.getMonth();
 // ── COMPUTE BASE PRICE ────────────────────────────────────────
 var PER_SQM_REG=28, PER_SQM_DEEP=33, PER_SQM_MIO=40;
 function getBasePrice(){
+  if(!selTime) return{price:0,label:'',surcharge:0}; // no price until date+time selected
   var b=getBracket(S.sqm);
   var label=S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'');
   if(S.sqm>LARGE_CUTOFF){
-    // Per-sqm pricing for large spaces
     if(S.cleanType==='regular')return{price:S.sqm*PER_SQM_REG,label:label+' — Regular (₱'+PER_SQM_REG+'/sqm)',surcharge:0};
     if(S.cleanType==='deep')   return{price:S.sqm*PER_SQM_DEEP,label:label+' — Deep Clean (₱'+PER_SQM_DEEP+'/sqm)',surcharge:0};
     return{price:S.sqm*PER_SQM_MIO,label:label+' — Move In/Out (₱'+PER_SQM_MIO+'/sqm)',surcharge:0};
@@ -1045,10 +1081,6 @@ function onTimeClick(el,start){
 }
 
 function unlock(id){var el=document.getElementById(id);if(el)el.classList.remove('locked');}
-function setAvail(type,msg){
-  var el=document.getElementById('avail-box');if(el){el.className='avail-box '+type;el.textContent=msg;}
-  var be=document.getElementById('be-avail');if(be){be.className='be-avail '+type;be.textContent=msg;}
-}
 
 // ── AREA SIZE ─────────────────────────────────────────────────
 function syncArea(val){
@@ -1103,6 +1135,10 @@ function togSit(el){
   var v=el.dataset.val;
   if(selSituations.has(v)){selSituations.delete(v);el.classList.remove('on');}
   else{selSituations.add(v);el.classList.add('on');}
+  // Show restriction alert if any restricted tag is active
+  var hasRestrict=Array.from(document.querySelectorAll('.sit-tag[data-restrict="true"].on')).length>0;
+  var ra=document.getElementById('restriction-alert');
+  if(ra)ra.classList.toggle('show',hasRestrict);
 }
 
 // ── RECURRING DATES ───────────────────────────────────────────
@@ -1165,28 +1201,19 @@ function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[i
 function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons();compute();}
 // ── LOCATION ──────────────────────────────────────────────────
 function renderLocs(){
-  var zones=[
-    {key:'nearby'},
-    {key:'central'},
-    {key:'south'},
-    {key:'manila'},
-    {key:'others'},
-  ];
-  var html='';
-  zones.forEach(function(z,zi){
-    var items=LOCS.filter(function(l){return l.zone===z.key;});
-    if(!items.length)return;
-    html+='<div class="loc-zone'+(zi>0?' loc-zone-gap':'')+'"><div class="loc-zone-row">';
-    items.forEach(function(l){
-      var f=calcFee(l), ft=f===null?'Request quote':'₱'+f;
-      var nearTag=l.fixed!==undefined&&l.zone==='nearby'?'<span class="lb-tag">Fixed</span>':'';
-      html+='<div class="lb" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
-        +'<div class="lb-n">'+l.name+nearTag+'</div>'
-        +'<div class="lb-f">'+ft+'</div>'
-        +'</div>';
-    });
-    html+='</div></div>';
+  var html='<div class="loc-flat-row">';
+  var count=0;
+  LOCS.forEach(function(l){
+    var f=calcFee(l), ft=f===null?'Request quote':'₱'+f;
+    var fixedTag=l.fixed!==undefined?'<span class="lb-tag">Fixed</span>':'';
+    html+='<div class="lb" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
+      +'<div class="lb-n">'+l.name+fixedTag+'</div>'
+      +'<div class="lb-f">'+ft+'</div>'
+      +'</div>';
+    count++;
+    if(count%3===0&&count<LOCS.length){html+='</div><div class="loc-flat-row" style="margin-top:5px;">';}
   });
+  html+='</div>';
   document.getElementById('loc-grid').innerHTML=html;
 }
 function selLoc(id){
@@ -1274,87 +1301,43 @@ function compute(){
 
   document.getElementById('ptotd').textContent=total.toLocaleString();
   var body=document.getElementById('pbody');
-  if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';updateBottomEstimate(0,[],false,0,0,null);return;}
+  if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';updateStickyBar(0,null);updateBottomEstimate(0,[],false,0,0,null);return;}
   var html=lines.map(function(ln){return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
   html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">₱'+total.toLocaleString()+'</span></div>';
   body.innerHTML=html;
 
   var pb=document.getElementById('pay-box');
-  if(tf>0){
+  var pNote=document.querySelector('#pay-box .pay-note');
+  // Determine if weekend + large space requires 50% DP
+  var isWeekend=selDate?(function(){var d=new Date(selDate+'T12:00:00');return d.getDay()===0||d.getDay()===6;}()):false;
+  var isLarge90=S.sqm>=90;
+  var needs50=isWeekend&&isLarge90&&!isOth&&S.lf!==null;
+  var serviceTotal=sub-(tf||0); // total minus transport
+  if(tf>0||needs50){
     pb.style.display='block';
-    document.getElementById('pay-dp').textContent='₱'+tf.toLocaleString();
-    document.getElementById('pay-bal').textContent='₱'+Math.max(0,total-tf).toLocaleString();
+    var dpAmt,balAmt,dpNote;
+    if(needs50){
+      dpAmt=Math.ceil(serviceTotal*0.5)+tf;
+      balAmt=Math.max(0,total-dpAmt);
+      dpNote='50% of service (₱'+Math.ceil(serviceTotal*0.5).toLocaleString()+') + transport fee. Required for large spaces on weekend slots.';
+    } else {
+      dpAmt=tf;balAmt=Math.max(0,total-tf);
+      dpNote='Reservation fee = transport fee. Confirms your slot. Balance paid on service day.';
+    }
+    document.getElementById('pay-dp').textContent='₱'+dpAmt.toLocaleString();
+    document.getElementById('pay-bal').textContent='₱'+balAmt.toLocaleString();
     var multiDate=recurSlots.filter(function(s){return s.date;}).length>0||S.sched!=='Initial / One-time';
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
+    if(pNote)pNote.textContent=dpNote;
   } else pb.style.display='none';
   document.getElementById('transpo-note').style.display=S.lid?'block':'none';
   updateRecurDP();
-  updateBottomEstimate(total,lines,tf>0,tf,Math.max(0,total-tf),t);
+  // Update sticky bar + bottom estimate
+  var t2=cT();
   updateStickyBar(total,bp);
+  updateBottomEstimate(total,lines,(tf>0||needs50),(tf>0||needs50)?(needs50?Math.ceil(serviceTotal*0.5)+tf:tf):0,Math.max(0,total-((tf>0||needs50)?(needs50?Math.ceil(serviceTotal*0.5)+tf:tf):0)),t2.mn>0?t2:null);
 }
-
-// ── BOTTOM ESTIMATE & STICKY BAR ──────────────────────────────
-function updateBottomEstimate(total,lines,hasPay,dp,bal,timeObj){
-  var be=document.getElementById('be-totd');if(be)be.textContent=total.toLocaleString();
-  var bt=document.getElementById('be-time');
-  if(bt)bt.textContent=(timeObj&&timeObj.mn)?'You get back ~'+fmtT(timeObj.mn,timeObj.mx)+' of your day.':'';
-  var bb=document.getElementById('be-body');
-  if(!bb)return;
-  if(!lines||!lines.length){
-    bb.innerHTML='<div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div>';
-    var bp2=document.getElementById('be-pay');if(bp2)bp2.style.display='none';
-    return;
-  }
-  var html=lines.map(function(ln){return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
-  html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">₱'+total.toLocaleString()+'</span></div>';
-  bb.innerHTML=html;
-  var bp2=document.getElementById('be-pay');
-  if(hasPay&&bp2){
-    bp2.style.display='block';
-    var bd=document.getElementById('be-dp');if(bd)bd.textContent='₱'+dp.toLocaleString();
-    var bbal=document.getElementById('be-bal');if(bbal)bbal.textContent='₱'+bal.toLocaleString();
-  } else if(bp2){bp2.style.display='none';}
-}
-
-function updateStickyBar(total,bp){
-  var sTotal=document.getElementById('sb-total');
-  var sDesc=document.getElementById('sb-desc');
-  var bar=document.getElementById('sticky-bar');
-  if(!bar)return;
-  if(total>0&&sTotal){
-    sTotal.textContent=total.toLocaleString();
-    var ctLabel=S.cleanType==='deep'?'Deep Clean':S.cleanType==='moveinout'?'Move In/Out':'Regular Clean';
-    if(sDesc)sDesc.textContent=ctLabel+' · '+S.sqm+' sqm';
-    bar.classList.remove('sb-hidden');
-  } else {
-    if(sTotal)sTotal.textContent='0';
-    if(sDesc)sDesc.textContent='Select service to see estimate';
-    bar.classList.add('sb-hidden');
-  }
-}
-
-function scrollToEstimate(){
-  var be=document.getElementById('bottom-estimate');
-  if(be)be.scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-// IntersectionObserver: hide sticky bar when bottom estimate is visible
-(function(){
-  var be=document.getElementById('bottom-estimate');
-  var bar=document.getElementById('sticky-bar');
-  if(!be||!bar)return;
-  var obs=new IntersectionObserver(function(entries){
-    var visible=entries[0].isIntersecting;
-    if(visible){bar.classList.add('sb-hidden');}
-    else{
-      // Only show if there's an actual total
-      var tot=document.getElementById('sb-total');
-      if(tot&&tot.textContent!=='0')bar.classList.remove('sb-hidden');
-    }
-  },{threshold:0.1});
-  obs.observe(be);
-})();
 
 // ── AUTOCOMPLETE ──────────────────────────────────────────────
 function acName(inp){
@@ -1398,7 +1381,16 @@ function buildMsg(){
   var rFilled=recurSlots.filter(function(s){return s.date;});
   var multiDateMsg=rFilled.length>0||S.sched!=='Initial / One-time';
   var balLabelMsg=multiDateMsg?'Balance on each service day':'Balance on service day';
-  if(tf>0)msg+='\n\nReservation fee (pay to confirm): ₱'+tf.toLocaleString()+'\n'+balLabelMsg+': ₱'+Math.max(0,total-tf).toLocaleString();
+  var isWeekendMsg=selDate?(function(){var d=new Date(selDate+'T12:00:00');return d.getDay()===0||d.getDay()===6;}()):false;
+  var needs50Msg=isWeekendMsg&&S.sqm>=90&&S.lf!==null&&S.lid&&S.lid!=='others';
+  var svcTotalMsg=sub-(tf||0);
+  if(tf>0||needs50Msg){
+    var dpMsg=needs50Msg?Math.ceil(svcTotalMsg*0.5)+tf:tf;
+    var balMsg=Math.max(0,total-dpMsg);
+    var dpNoteMsg=needs50Msg?'50% service deposit (₱'+Math.ceil(svcTotalMsg*0.5).toLocaleString()+') + Transport (₱'+tf.toLocaleString()+')':'Transport fee reservation';
+    msg+='\n\nReservation fee (pay to confirm): ₱'+dpMsg.toLocaleString()+' — '+dpNoteMsg;
+    msg+='\n'+balLabelMsg+': ₱'+balMsg.toLocaleString();
+  }
   if(rFilled.length>0){
     var totalSessions=rFilled.length+1;
     msg+='\n\nRecurring Dates:\n'+rFilled.map(function(s){return s.date+(s.time?' at '+s.time:'');}).join('\n');
@@ -1406,11 +1398,34 @@ function buildMsg(){
   }
   var sits=[...selSituations].join(', ');if(sits)msg+='\n\nSituation: '+sits;
   if(instr)msg+='\n\nSpecial Instructions: '+instr;
+  msg+='\n\n---\nBy sending this estimate and completing the reservation fee, I confirm I have read and agreed to all Klaygo PH Booking Policies.';
   return msg;
 }
 
 // ── BOOK & COPY ───────────────────────────────────────────────
-function bookNow(){var msg=buildMsg();if(navigator.clipboard)navigator.clipboard.writeText(msg).then(function(){toast('Details copied! Paste in Messenger.');}).catch(function(){});sendEstimateEmail(msg);window.open('http://m.me/klaygoph','_blank');}
+var _pendingMsg='';
+function bookNow(){
+  _pendingMsg=buildMsg();
+  // Copy to clipboard first
+  function proceed(){
+    sendEstimateEmail(_pendingMsg);
+    document.getElementById('msn-modal').classList.add('show');
+  }
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(_pendingMsg).then(proceed).catch(function(){fbCopy(_pendingMsg);proceed();});
+  } else {fbCopy(_pendingMsg);proceed();}
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var btn=document.getElementById('msn-go-btn');
+  if(btn)btn.addEventListener('click',function(){
+    document.getElementById('msn-modal').classList.remove('show');
+    window.open('https://m.me/klaygoph','_blank');
+  });
+  // Close modal on overlay click
+  document.getElementById('msn-modal').addEventListener('click',function(e){
+    if(e.target===this)this.classList.remove('show');
+  });
+});
 function copyEstimate(){var msg=buildMsg();if(navigator.clipboard){navigator.clipboard.writeText(msg).then(function(){toast('Estimate copied!');}).catch(function(){fbCopy(msg);});}else fbCopy(msg);}
 function fbCopy(text){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');toast('Estimate copied!');}catch(e){toast('Could not auto-copy. Please copy manually.');}document.body.removeChild(ta);}
 
@@ -1775,6 +1790,84 @@ function initGoogleMaps(){
     if(!this.value.trim())resetTravelData();
   });
 }
+// ── STICKY BAR + BOTTOM ESTIMATE ─────────────────────────────
+function updateStickyBar(total,bp){
+  var bar=document.getElementById('sticky-bar');
+  if(!bar)return;
+  if(total>0){
+    document.getElementById('sb-total').textContent=total.toLocaleString();
+    var ctLabel=S.cleanType==='deep'?'Deep Clean':S.cleanType==='moveinout'?'Move In/Out':'Regular Clean';
+    document.getElementById('sb-desc').textContent=ctLabel+' · '+S.sqm+' sqm';
+    bar.classList.remove('sb-hidden');
+  } else {
+    document.getElementById('sb-total').textContent='0';
+    document.getElementById('sb-desc').textContent='Select service to see estimate';
+    bar.classList.add('sb-hidden');
+  }
+}
+
+function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
+  var totEl=document.getElementById('be-totd');
+  if(totEl)totEl.textContent=total.toLocaleString();
+  var timeEl=document.getElementById('be-time');
+  if(timeEl)timeEl.textContent=(t&&t.mn)?'You get back ~'+fmtT(t.mn,t.mx)+' of your day.':'';
+  var body=document.getElementById('be-body');
+  if(!body)return;
+  if(!lines||!lines.length){
+    body.innerHTML='<div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div>';
+    var bp2=document.getElementById('be-pay');if(bp2)bp2.style.display='none';
+    return;
+  }
+  var html=lines.map(function(ln){return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
+  html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">₱'+total.toLocaleString()+'</span></div>';
+  body.innerHTML=html;
+  var bp2=document.getElementById('be-pay');
+  if(hasPay&&bp2){
+    bp2.style.display='block';
+    var dpEl=document.getElementById('be-dp');if(dpEl)dpEl.textContent='₱'+dp.toLocaleString();
+    var balEl=document.getElementById('be-bal');if(balEl)balEl.textContent='₱'+bal.toLocaleString();
+  } else if(bp2){bp2.style.display='none';}
+}
+
+function setAvail(type,msg){
+  var el=document.getElementById('avail-box');if(el){el.className='avail-box '+type;el.textContent=msg;}
+  var be=document.getElementById('be-avail');if(be){be.className='be-avail '+type;be.textContent=msg;}
+}
+
+function scrollToEstimate(){
+  var be=document.getElementById('bottom-estimate');
+  if(be)be.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// Inject light logo into sticky + bottom estimate
+(function injectLogos(){
+  function doSet(){
+    var sb=document.getElementById('sb-logo-img');
+    var be=document.getElementById('be-logo-img');
+    if(sb)sb.src=LIGHT_LOGO;
+    if(be)be.src=LIGHT_LOGO;
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',doSet);}
+  else{doSet();}
+})();
+
+// IntersectionObserver: hide sticky bar when bottom-estimate is visible
+(function(){
+  function init(){
+    var beEl=document.getElementById('bottom-estimate');
+    var barEl=document.getElementById('sticky-bar');
+    if(!beEl||!barEl)return;
+    var obs=new IntersectionObserver(function(entries){
+      var visible=entries[0].isIntersecting;
+      if(visible){barEl.classList.add('sb-hidden');}
+      else{var tot=document.getElementById('sb-total');if(tot&&tot.textContent!=='0')barEl.classList.remove('sb-hidden');}
+    },{threshold:0.1});
+    obs.observe(beEl);
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}
+  else{init();}
+})();
+
 // ══════════════════════════════════════════════════════
 // END SMART ADDRESS MODULE
 // ══════════════════════════════════════════════════════
