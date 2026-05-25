@@ -8,7 +8,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuiza3RKflnhopjK1SPZHZo-q3yq_2S78&libraries=places&callback=initGoogleMaps" async defer></script>
 <style>
 :root{
-  --mn:#0D1F3C;--pr:#2B4E8A;--mi:#3D6399;--se:#5A7BB5;
+  --mn:#2B4E8A;--pr:#2B4E8A;--mi:#4169b0;--se:#6B8FCA;
   --li:#A8BFE0;--pa:#EBF1FA;--bg:#F7F9FC;--gr:#6B6B68;
   --dk:#2C2C2A;--wh:#fff;--bd:#D8DCE8;--r:8px;
   --sh:0 1px 8px rgba(13,31,60,.08);
@@ -220,9 +220,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
 /* LOCATION */
 .loc-grid{display:flex;flex-direction:column;gap:5px;}
-.loc-zone{}
-.loc-zone-gap{margin-top:5px;padding-top:5px;border-top:1px solid var(--bd);}
-.loc-zone-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
 .lb{padding:9px 7px;border:1.5px solid var(--bd);border-radius:8px;text-align:center;cursor:pointer;transition:all .15s;background:var(--wh);position:relative;}
 .lb:hover{border-color:var(--se);background:var(--pa);transform:translateY(-1px);box-shadow:0 2px 8px rgba(43,78,138,.07);}
 .lb.sel{border-color:var(--pr);background:var(--pa);box-shadow:0 0 0 3px rgba(43,78,138,.1);}
@@ -270,12 +267,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .cta-block p{font-size:10.5px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:10px;}
 
 /* FEEDBACK */
-.fb-box{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);padding:12px;margin-bottom:8px;}
-.fb-box h3{font-size:11px;font-weight:600;color:var(--mn);margin-bottom:5px;}
-.fb-box textarea{width:100%;padding:7px 9px;border:1.5px solid var(--bd);border-radius:5px;font-family:inherit;font-size:11.5px;resize:none;min-height:50px;}
-.fb-box textarea:focus{outline:none;border-color:var(--pr);}
-.btn-fb{margin-top:6px;padding:6px 14px;background:transparent;border:1.5px solid var(--pr);border-radius:5px;color:var(--pr);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;}
-.btn-fb:hover{background:var(--pr);color:#fff;}
 
 /* SUMMARY PANEL */
 .panel-right{position:sticky;top:48px;}
@@ -346,46 +337,40 @@ footer{background:var(--mn);padding:11px 20px;}
 .traffic-clear{background:var(--gbg);border:1px solid var(--gbdr);color:#1B5E20;}
 .travel-surcharge{margin-top:7px;padding:5px 9px;background:rgba(43,78,138,.07);border-radius:6px;font-size:10px;color:var(--pr);font-weight:600;}
 
-/* ── CALCULATOR CLARIFIER BANNER ─────────────────── */
-.calc-clarifier{
-  background:linear-gradient(135deg,#0D1F3C 0%,#1a3260 100%);
-  border-bottom:3px solid var(--pr);
-  padding:14px 18px;
-  display:flex;align-items:flex-start;gap:12px;
-}
+/* ── CALCULATOR CLARIFIER ───── */
+.calc-clarifier{background:linear-gradient(135deg,#1a3260 0%,#2B4E8A 100%);border-bottom:3px solid #4a7fd4;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
 .cc-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
-.cc-text{}
 .cc-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;line-height:1.3;}
-.cc-title span{color:var(--li);}
-.cc-sub{font-size:10.5px;color:rgba(168,191,224,.8);line-height:1.6;}
+.cc-title span{color:#a8d4ff;}
+.cc-sub{font-size:10.5px;color:rgba(200,220,255,.85);line-height:1.6;}
 .cc-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
-.cc-chip{
-  font-size:9.5px;font-weight:600;padding:3px 8px;border-radius:12px;
-  background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);
-  border:1px solid rgba(255,255,255,.15);
-}
-.cc-chip.ok{background:rgba(127,207,154,.15);color:#7fcf9a;border-color:rgba(127,207,154,.3);}
+.cc-chip{font-size:9.5px;font-weight:600;padding:3px 9px;border-radius:12px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.18);}
+.cc-chip.ok{background:rgba(127,207,154,.18);color:#7fcf9a;border-color:rgba(127,207,154,.35);}
 
-/* ── WHAT HAPPENS NEXT ───────────────────────────── */
-.whn-section{
-  background:#fff;
-  border-top:3px solid var(--pr);
-  padding:22px 18px 26px;
-}
-.whn-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pr);margin-bottom:16px;display:flex;align-items:center;gap:6px;}
+/* ── IMPROVED POLICIES ──────── */
+.pi{display:flex;gap:9px;margin-bottom:7px;font-size:10.5px;color:var(--gr);line-height:1.6;align-items:flex-start;}
+.pi:last-child{margin-bottom:0;}
+.pi-icon{font-size:14px;flex-shrink:0;line-height:1.4;}
+.pi strong{color:var(--dk);}
+.agree-note{margin-top:10px;padding:9px 11px;background:var(--pa);border:1.5px solid var(--li);border-radius:6px;font-size:10px;color:var(--pr);line-height:1.6;}
+.agree-note strong{color:var(--mn);}
+
+/* ── RESTRICTION ALERT ──────── */
+.restriction-alert{display:none;margin-top:8px;padding:10px 12px;background:var(--rbg);border:1.5px solid var(--rbdr);border-radius:7px;font-size:10.5px;color:#8B2020;line-height:1.6;}
+.restriction-alert.show{display:block;}
+.restriction-alert strong{display:block;font-size:11px;margin-bottom:3px;}
+
+/* ── WHAT HAPPENS NEXT ──────── */
+.whn-section{background:#fff;border-top:3px solid var(--pr);padding:22px 18px 28px;}
+.whn-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pr);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .whn-title::after{content:'';flex:1;height:1px;background:var(--bd);}
-.whn-steps{display:flex;flex-direction:column;gap:0;}
+.whn-steps{display:flex;flex-direction:column;}
 .whn-step{display:flex;gap:14px;position:relative;}
 .whn-step:not(:last-child) .whn-line{position:absolute;left:17px;top:36px;bottom:0;width:2px;background:var(--bd);z-index:0;}
-.whn-num{
-  width:34px;height:34px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;flex-shrink:0;
-  position:relative;z-index:1;margin-top:2px;
-}
+.whn-num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;position:relative;z-index:1;margin-top:2px;}
 .whn-num.you{background:var(--pr);color:#fff;}
 .whn-num.us{background:var(--mn);color:#fff;}
-.whn-num.done{background:#7fcf9a;color:#fff;}
+.whn-num.done{background:#3a9e5f;color:#fff;font-size:16px;}
 .whn-body{padding-bottom:18px;flex:1;}
 .whn-who{font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;}
 .whn-who.you{color:var(--pr);}
@@ -394,100 +379,67 @@ footer{background:var(--mn);padding:11px 20px;}
 .whn-step-title{font-size:12px;font-weight:700;color:var(--dk);margin-bottom:3px;line-height:1.3;}
 .whn-step-desc{font-size:10.5px;color:var(--gr);line-height:1.6;}
 .whn-step-desc strong{color:var(--dk);}
-.whn-tag{
-  display:inline-block;margin-top:5px;
-  font-size:9.5px;font-weight:600;padding:3px 9px;border-radius:10px;
-  background:var(--pa);color:var(--pr);border:1px solid var(--li);
-}
+.whn-tag{display:inline-block;margin-top:5px;font-size:9.5px;font-weight:600;padding:3px 10px;border-radius:10px;background:var(--pa);color:var(--pr);border:1px solid var(--li);}
 
-/* ── PAYMENT METHODS ─────────────────────────────── */
-.pay-methods{
-  background:var(--bg);border:1.5px solid var(--bd);
-  border-radius:8px;padding:12px 13px;margin-top:10px;
-}
+/* ── PAYMENT METHODS ────────── */
+.pay-methods{background:var(--bg);border:1.5px solid var(--bd);border-radius:8px;padding:11px 12px;margin-top:10px;}
 .pay-methods h4{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gr);margin-bottom:8px;}
-.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
-.pm-item{
-  background:#fff;border:1.5px solid var(--bd);border-radius:7px;
-  padding:8px 10px;display:flex;align-items:center;gap:7px;
-}
+.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.pm-item{background:#fff;border:1.5px solid var(--bd);border-radius:7px;padding:8px 10px;display:flex;align-items:center;gap:7px;}
+.pm-item-wide{grid-column:1/-1;}
 .pm-icon{font-size:18px;flex-shrink:0;}
-.pm-info{}
 .pm-name{font-size:11px;font-weight:700;color:var(--dk);}
 .pm-num{font-size:9.5px;color:var(--gr);margin-top:1px;}
 .pm-note{font-size:9px;color:var(--gr);margin-top:7px;line-height:1.5;padding-top:6px;border-top:1px solid var(--bd);}
 
-/* ── IMPROVED POLICIES ───────────────────────────── */
-.pi{display:flex;gap:9px;margin-bottom:7px;font-size:10.5px;color:var(--gr);line-height:1.6;align-items:flex-start;}
-.pi:last-child{margin-bottom:0;}
-.pi-icon{font-size:14px;flex-shrink:0;line-height:1.4;}
-.pi strong{color:var(--dk);}
-.agree-note{margin-top:10px;padding:9px 11px;background:var(--pa);border:1.5px solid var(--li);border-radius:6px;font-size:10px;color:var(--pr);line-height:1.6;}
-.agree-note strong{color:var(--mn);}
+/* ── COPYRIGHT ──────────────── */
+.copyright-bar{text-align:center;padding:10px 16px;background:#1a1a18;font-size:9.5px;color:rgba(255,255,255,.3);letter-spacing:.04em;}
 
-/* ── RESTRICTION ALERT ───────────────────────────── */
-.restriction-alert{display:none;margin-top:8px;padding:10px 12px;background:var(--rbg);border:1.5px solid var(--rbdr);border-radius:7px;font-size:10.5px;color:#8B2020;line-height:1.6;}
-.restriction-alert.show{display:block;}
-.restriction-alert strong{display:block;font-size:11px;margin-bottom:3px;color:var(--red);}
-
-/* ── COPYRIGHT ───────────────────────────────────── */
-.copyright-bar{
-  text-align:center;padding:10px 16px;
-  background:#1a1a18;
-  font-size:9.5px;color:rgba(255,255,255,.3);
-  letter-spacing:.04em;
-}
-
-/* ── MODAL ───────────────────────────────────────── */
+/* ── MODAL ──────────────────── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:800;align-items:center;justify-content:center;padding:16px;}
 .modal-overlay.show{display:flex;}
 .modal-box{background:#fff;border-radius:12px;padding:22px 20px;max-width:360px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.2);}
 .modal-icon{font-size:28px;margin-bottom:8px;display:block;}
 .modal-title{font-size:14px;font-weight:700;color:var(--mn);margin-bottom:6px;}
-.modal-body{font-size:11.5px;color:var(--gr);line-height:1.65;margin-bottom:14px;}
-.modal-steps{display:flex;flex-direction:column;gap:7px;margin:10px 0 14px;}
+.modal-body{font-size:11.5px;color:var(--gr);line-height:1.65;margin-bottom:10px;}
+.modal-steps{display:flex;flex-direction:column;gap:7px;margin:0 0 14px;}
 .modal-step{display:flex;align-items:flex-start;gap:9px;font-size:11px;color:var(--dk);}
 .modal-step-n{background:var(--pr);color:#fff;width:18px;height:18px;border-radius:50%;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
 .modal-step-t{line-height:1.5;}
 .modal-cta{display:block;width:100%;padding:11px;background:var(--pr);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;margin-bottom:8px;}
-.modal-cta:hover{background:var(--mi);}
 .modal-cancel{display:block;width:100%;padding:8px;background:transparent;color:var(--gr);border:none;font-size:11px;font-family:inherit;cursor:pointer;text-align:center;}
 
-/* ── STICKY BAR ──────────────────────────────────── */
+/* ── STICKY BAR ─────────────── */
 #sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;transition:transform .28s cubic-bezier(.4,0,.2,1);}
 #sticky-bar.sb-hidden{transform:translateY(100%);}
-.sticky-top{background:#0D1F3C;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 -2px 12px rgba(0,0,0,.3);}
+.sticky-top{background:var(--mn);height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 -2px 14px rgba(0,0,0,.25);}
 .sticky-logo{height:18px;opacity:.85;margin-right:9px;flex-shrink:0;}
 .sticky-left{display:flex;align-items:center;}
 .sticky-summary{display:flex;flex-direction:column;gap:1px;}
 .sticky-total-amt{font-size:17px;font-weight:700;color:#fff;line-height:1;}
-.sticky-desc{font-size:9.5px;color:rgba(168,191,224,.75);line-height:1;}
+.sticky-desc{font-size:9.5px;color:rgba(200,220,255,.75);line-height:1;}
 .sticky-cta{font-size:10.5px;color:#fff;font-weight:600;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:5px 13px;border-radius:20px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .13s;}
-.sticky-cta:hover{background:rgba(255,255,255,.25);}
+.sticky-cta:hover{background:rgba(255,255,255,.24);}
 .sticky-brand{background:#2C2C2A;height:26px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.32);}
-@media(max-width:660px){
-  #sticky-bar{display:block;}
-  body{padding-bottom:74px;}
-  .toast{bottom:90px!important;}
-}
+@media(max-width:660px){#sticky-bar{display:block;}body{padding-bottom:74px;}.toast{bottom:90px!important;}}
 
-/* ── BOTTOM ESTIMATE ─────────────────────────────── */
+/* ── BOTTOM ESTIMATE ────────── */
 #bottom-estimate{display:none;background:var(--mn);padding:16px 14px 22px;}
 .be-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
 .be-logo{height:20px;opacity:.85;}
 .be-label{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;font-weight:600;}
 .be-total{font-size:30px;font-weight:700;color:#fff;line-height:1;margin-bottom:2px;}
-.be-total-prefix{font-size:13px;color:var(--li);font-weight:300;}
+.be-total-prefix{font-size:13px;color:rgba(200,220,255,.6);font-weight:300;}
 .be-time{font-size:10px;color:#7fcf9a;margin-bottom:8px;}
-.be-line{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:11px;}
+.be-line{display:flex;justify-content:space-between;gap:6px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:11px;}
 .be-line:last-child{border:none;}
 .be-ll{color:rgba(255,255,255,.5);line-height:1.35;}
 .be-lv{color:#fff;font-weight:600;white-space:nowrap;}
 .be-total-line{display:flex;justify-content:space-between;align-items:center;padding-top:8px;margin-top:4px;border-top:1px solid rgba(255,255,255,.15);}
-.be-total-line .be-ll{color:var(--li);font-weight:500;font-size:12px;}
+.be-total-line .be-ll{color:rgba(200,220,255,.7);font-weight:500;font-size:12px;}
 .be-total-line .be-lv{font-size:20px;font-weight:700;color:#fff;}
-.be-pay-box{background:rgba(255,255,255,.05);border-radius:7px;padding:9px 11px;margin:8px 0;}
-.be-pay-box h4{font-size:9px;color:var(--li);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;font-weight:600;}
+.be-pay-box{background:rgba(255,255,255,.06);border-radius:7px;padding:9px 11px;margin:8px 0;}
+.be-pay-box h4{font-size:9px;color:rgba(200,220,255,.6);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;font-weight:600;}
 .be-pr{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;}
 .be-pk{color:rgba(255,255,255,.45);}
 .be-pv{color:#fff;font-weight:600;}
@@ -496,10 +448,10 @@ footer{background:var(--mn);padding:11px 20px;}
 .be-avail.ok{color:#7fcf9a;}
 .be-avail.none{color:rgba(255,255,255,.25);}
 .be-discl{font-size:9px;color:rgba(255,255,255,.2);line-height:1.5;margin-bottom:10px;}
-.be-btn{display:block;width:100%;padding:12px;background:var(--pr);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:background .14s;margin-bottom:8px;}
-.be-btn:hover{background:var(--mi);}
-.be-btn-sec{display:block;width:100%;padding:10px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);border-radius:7px;font-size:12px;font-weight:500;font-family:inherit;cursor:pointer;text-align:center;transition:background .14s;}
-.be-btn-sec:hover{background:rgba(255,255,255,.14);}
+.be-btn{display:block;width:100%;padding:12px;background:#fff;color:var(--mn);border:none;border-radius:7px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;margin-bottom:8px;transition:opacity .14s;}
+.be-btn:hover{opacity:.9;}
+.be-btn-sec{display:block;width:100%;padding:10px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);border-radius:7px;font-size:12px;font-weight:500;font-family:inherit;cursor:pointer;text-align:center;transition:background .14s;}
+.be-btn-sec:hover{background:rgba(255,255,255,.18);}
 .be-empty{padding:14px;text-align:center;color:rgba(255,255,255,.2);font-size:10.5px;line-height:1.65;}
 @media(max-width:660px){#bottom-estimate{display:block;}}
 
@@ -520,7 +472,6 @@ footer{background:var(--mn);padding:11px 20px;}
   <div class="hero-trust">&#128274; No log-in required &nbsp;·&nbsp; No bank info collected &nbsp;·&nbsp; For pricing transparency only</div>
 </div>
 
-<!-- CALCULATOR CLARIFIER -->
 <div class="calc-clarifier">
   <div class="cc-icon">🧮</div>
   <div class="cc-text">
@@ -530,7 +481,7 @@ footer{background:var(--mn);padding:11px 20px;}
       <span class="cc-chip ok">✓ Instant pricing</span>
       <span class="cc-chip ok">✓ No hidden fees</span>
       <span class="cc-chip">📲 Booking via Messenger</span>
-      <span class="cc-chip">💳 Pay via GCash / Maya</span>
+      <span class="cc-chip">💳 GCash / Maya / Bank Transfer</span>
     </div>
   </div>
 </div>
@@ -772,7 +723,6 @@ footer{background:var(--mn);padding:11px 20px;}
 <div class="whn-section">
   <div class="whn-title">What Happens Next</div>
   <div class="whn-steps">
-
     <div class="whn-step">
       <div class="whn-line"></div>
       <div class="whn-num you">11</div>
@@ -783,7 +733,6 @@ footer{background:var(--mn);padding:11px 20px;}
         <span class="whn-tag">📋 Copy Estimate Text</span>
       </div>
     </div>
-
     <div class="whn-step">
       <div class="whn-line"></div>
       <div class="whn-num you">12</div>
@@ -794,47 +743,33 @@ footer{background:var(--mn);padding:11px 20px;}
         <span class="whn-tag">💬 Book on Messenger</span>
       </div>
     </div>
-
     <div class="whn-step">
       <div class="whn-line"></div>
       <div class="whn-num you">13</div>
       <div class="whn-body">
         <div class="whn-who you">YOU</div>
         <div class="whn-step-title">Send Us Your Estimate &amp; Wait</div>
-        <div class="whn-step-desc">Once sent, just sit tight! We'll review your details and get back to you as soon as possible, usually within a few hours.</div>
+        <div class="whn-step-desc">Once sent, just sit tight! We'll review your details and get back to you as soon as possible — usually within a few hours.</div>
       </div>
     </div>
-
     <div class="whn-step">
       <div class="whn-line"></div>
       <div class="whn-num us">14</div>
       <div class="whn-body">
         <div class="whn-who us">KLAYGO PH</div>
         <div class="whn-step-title">We Confirm Your Details &amp; Send Payment Info</div>
-        <div class="whn-step-desc">We'll confirm your date, time, and service — then send you our <strong>GCash or Maya details</strong> for the reservation fee.</div>
+        <div class="whn-step-desc">We'll confirm your date, time, and service — then send you our payment details for the reservation fee.</div>
         <div class="pay-methods">
           <h4>Accepted Payment Methods</h4>
           <div class="pm-grid">
-            <div class="pm-item">
-              <div class="pm-icon">💙</div>
-              <div class="pm-info">
-                <div class="pm-name">GCash</div>
-                <div class="pm-num">0992 816 4718</div>
-              </div>
-            </div>
-            <div class="pm-item">
-              <div class="pm-icon">💚</div>
-              <div class="pm-info">
-                <div class="pm-name">Maya</div>
-                <div class="pm-num">0992 816 4718</div>
-              </div>
-            </div>
+            <div class="pm-item"><div class="pm-icon">💙</div><div><div class="pm-name">GCash</div><div class="pm-num">0992 816 4718</div></div></div>
+            <div class="pm-item"><div class="pm-icon">💚</div><div><div class="pm-name">Maya</div><div class="pm-num">0992 816 4718</div></div></div>
+            <div class="pm-item pm-item-wide"><div class="pm-icon">🏦</div><div><div class="pm-name">Bank Transfer</div><div class="pm-num">Details sent upon confirmation</div></div></div>
           </div>
-          <div class="pm-note">💡 Account name will be confirmed when we send payment details. Reservation fee = transport fee (or 50% + transport for large weekend bookings).</div>
+          <div class="pm-note">💡 Account name confirmed when we send payment details. Reservation fee = transport fee (or 50% + transport for large weekend bookings).</div>
         </div>
       </div>
     </div>
-
     <div class="whn-step">
       <div class="whn-line"></div>
       <div class="whn-num us">15</div>
@@ -844,25 +779,15 @@ footer{background:var(--mn);padding:11px 20px;}
         <div class="whn-step-desc">Once we receive and confirm your downpayment, <strong>your slot is officially reserved</strong>. We'll send you a confirmation message with all the details.</div>
       </div>
     </div>
-
     <div class="whn-step">
       <div class="whn-num done">🧹</div>
       <div class="whn-body">
         <div class="whn-who done">CLEANING DAY</div>
         <div class="whn-step-title">See You on Cleaning Day!</div>
-        <div class="whn-step-desc">Our cleaner arrives at your confirmed time. The <strong>balance is paid on service day</strong> — cash or digital, up to you. Sit back and enjoy a spotless space. ✨</div>
+        <div class="whn-step-desc">Our cleaner arrives at your confirmed time. The <strong>balance is paid on service day</strong> — cash or digital, your choice. Sit back and enjoy a spotless space. ✨</div>
       </div>
     </div>
-
   </div>
-</div>
-
-<!-- FEEDBACK -->
-<div class="fb-box">
-  <h3>Feedback &amp; Suggestions</h3>
-  <p style="font-size:10px;color:var(--gr);margin-bottom:6px;">Help us improve! Share your thoughts about this booking experience.</p>
-  <textarea id="f-feedback" placeholder="What can we do better? Any features you'd like to see?"></textarea>
-  <button class="btn-fb" onclick="submitFeedback()">Send Feedback</button>
 </div>
 
 </div><!-- /col-left -->
@@ -910,23 +835,17 @@ footer{background:var(--mn);padding:11px 20px;}
       <div class="modal-step"><div class="modal-step-n">2</div><div class="modal-step-t"><strong>Long-press → Paste</strong> — your full estimate appears</div></div>
       <div class="modal-step"><div class="modal-step-n">3</div><div class="modal-step-t">Hit <strong>Send</strong> — we'll reply to confirm your slot 🎉</div></div>
     </div>
-    <button class="modal-cta" id="msn-go-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style="vertical-align:middle;margin-right:5px;"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
-      Open Messenger Now
-    </button>
+    <button class="modal-cta" id="msn-go-btn">💬 Open Messenger Now</button>
     <button class="modal-cancel" onclick="document.getElementById('msn-modal').classList.remove('show')">Cancel</button>
   </div>
 </div>
 
-<!-- BOTTOM ESTIMATE — mobile only -->
+<!-- BOTTOM ESTIMATE — mobile -->
 <div id="bottom-estimate">
-  <div class="be-head">
-    <img id="be-logo-img" class="be-logo" alt="Klaygo PH">
-    <div><div class="be-label">Your Estimate</div></div>
-  </div>
+  <div class="be-head"><img id="be-logo-img" class="be-logo" alt="Klaygo PH"><div><div class="be-label">Your Estimate</div></div></div>
   <div class="be-total"><span class="be-total-prefix">₱</span><span id="be-totd">0</span></div>
   <div class="be-time" id="be-time"></div>
-  <div id="be-body"><div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div></div>
+  <div id="be-body"><div class="be-empty">Select a date, time &amp; service to build your estimate.</div></div>
   <div class="be-pay-box" id="be-pay" style="display:none;">
     <h4>Payment Schedule</h4>
     <div class="be-pr"><span class="be-pk">Reservation fee (pay to confirm)</span><span class="be-pv" id="be-dp">—</span></div>
@@ -938,14 +857,14 @@ footer{background:var(--mn);padding:11px 20px;}
   <button class="be-btn-sec" onclick="copyEstimate()">📋 Copy Estimate Text</button>
 </div>
 
-<!-- STICKY BAR — mobile only -->
+<!-- STICKY BAR — mobile -->
 <div id="sticky-bar" class="sb-hidden">
   <div class="sticky-top">
     <div class="sticky-left">
       <img id="sb-logo-img" class="sticky-logo" alt="Klaygo PH">
       <div class="sticky-summary">
         <div class="sticky-total-amt">₱<span id="sb-total">—</span></div>
-        <div class="sticky-desc" id="sb-desc">Complete the steps to get your estimate</div>
+        <div class="sticky-desc" id="sb-desc">Complete the steps to see your estimate</div>
       </div>
     </div>
     <button class="sticky-cta" onclick="scrollToEstimate()">View estimate ↑</button>
@@ -981,7 +900,6 @@ footer{background:var(--mn);padding:11px 20px;}
     </span>
   </div>
 </footer>
-
 <div class="copyright-bar">© 2025 Klaygo PH. All rights reserved.</div>
 <div class="toast" id="toast"></div>
 
@@ -1032,29 +950,24 @@ var ADDONS = [
 ];
 
 var LOCS = [
-  // Nearby (fixed rates)
-  {id:'bgc',     name:'BGC',              km:2.5,  fixed:80,  noRT:true, zone:'nearby'},
-  {id:'mck',     name:'McKinley Hill',    km:1.5,  fixed:100, noRT:true, zone:'nearby'},
-  {id:'taguig',  name:'Within Taguig',   km:3,    fixed:150, noRT:true, zone:'nearby'},
-  // Central
-  {id:'makati',  name:'Makati',           km:6,    zone:'central'},
-  {id:'ortigas', name:'Ortigas',          km:9,    zone:'central'},
-  {id:'pasig',   name:'Pasig',            km:10,   zone:'central'},
-  {id:'mand',    name:'Mandaluyong',      km:11,   zone:'central'},
-  // South
-  {id:'pasay',   name:'Pasay',            km:8,    zone:'south'},
-  {id:'para',    name:'Paranaque',        km:11,   zone:'south'},
-  {id:'laspi',   name:'Las Pinas',        km:15,   zone:'south'},
-  {id:'munt',    name:'Muntinlupa',       km:14,   zone:'south'},
-  // Manila & North
-  {id:'tondo',   name:'Tondo',            km:14,   zone:'manila'},
-  {id:'binondo', name:'Binondo',          km:14,   zone:'manila'},
-  {id:'sampaloc',name:'Sampaloc',         km:15,   zone:'manila'},
-  {id:'qc',      name:'Quezon City',      km:16,   zone:'manila'},
-  {id:'mari',    name:'Marikina',         km:17,   zone:'manila'},
-  {id:'calo',    name:'Caloocan',         km:20,   zone:'manila'},
-  // Others
-  {id:'others',  name:'Others',           km:0,    others:true, zone:'others'},
+  {id:'bgc',     name:'BGC',           km:2.5,  fixed:80,  noRT:true},
+  {id:'mck',     name:'McKinley Hill', km:1.5,  fixed:100, noRT:true},
+  {id:'taguig',  name:'Within Taguig', km:3,    fixed:150, noRT:true},
+  {id:'makati',  name:'Makati',        km:6  },
+  {id:'pasay',   name:'Pasay',         km:8  },
+  {id:'ortigas', name:'Ortigas',       km:9  },
+  {id:'pasig',   name:'Pasig',         km:10 },
+  {id:'mand',    name:'Mandaluyong',   km:11 },
+  {id:'para',    name:'Paranaque',     km:11 },
+  {id:'munt',    name:'Muntinlupa',    km:14 },
+  {id:'tondo',   name:'Tondo',         km:14 },
+  {id:'binondo', name:'Binondo',       km:14 },
+  {id:'laspi',   name:'Las Pinas',     km:15 },
+  {id:'sampaloc',name:'Sampaloc',      km:15 },
+  {id:'qc',      name:'Quezon City',   km:16 },
+  {id:'mari',    name:'Marikina',      km:17 },
+  {id:'calo',    name:'Caloocan',      km:20 },
+  {id:'others',  name:'Others',        km:0,    others:true},
 ];
 
 // ── ANALYTICS ─────────────────────────────────────────────────
@@ -1100,9 +1013,16 @@ var nowJS=new Date();
 CY=nowJS.getFullYear(); CM=nowJS.getMonth();
 
 // ── COMPUTE BASE PRICE ────────────────────────────────────────
+var PER_SQM_REG=28, PER_SQM_DEEP=33, PER_SQM_MIO=40;
 function getBasePrice(){
+  if(!selTime) return{price:0,label:'',surcharge:0};
   var b=getBracket(S.sqm);
   var label=S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'');
+  if(S.sqm>LARGE_CUTOFF){
+    if(S.cleanType==='regular')return{price:S.sqm*PER_SQM_REG,label:label+' — Regular (₱'+PER_SQM_REG+'/sqm)',surcharge:0};
+    if(S.cleanType==='deep')   return{price:S.sqm*PER_SQM_DEEP,label:label+' — Deep Clean (₱'+PER_SQM_DEEP+'/sqm)',surcharge:0};
+    return{price:S.sqm*PER_SQM_MIO,label:label+' — Move In/Out (₱'+PER_SQM_MIO+'/sqm)',surcharge:0};
+  }
   if(S.cleanType==='regular')return{price:b.rP,label:label+' — Regular',surcharge:0};
   if(S.cleanType==='deep')   return{price:b.dP,label:label+' — Deep Clean',surcharge:0};
   return{price:b.mP,label:label+' — Move In/Out',surcharge:0};
@@ -1238,6 +1158,10 @@ function onTimeClick(el,start){
 }
 
 function unlock(id){var el=document.getElementById(id);if(el)el.classList.remove('locked');}
+function setAvail(type,msg){
+  var el=document.getElementById('avail-box');if(el){el.className='avail-box '+type;el.textContent=msg;}
+  var be=document.getElementById('be-avail');if(be){be.className='be-avail '+type;be.textContent=msg;}
+}
 
 // ── AREA SIZE ─────────────────────────────────────────────────
 function syncArea(val){
@@ -1357,28 +1281,16 @@ function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[i
 function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons();compute();}
 // ── LOCATION ──────────────────────────────────────────────────
 function renderLocs(){
-  var zones=[
-    {key:'nearby'},
-    {key:'central'},
-    {key:'south'},
-    {key:'manila'},
-    {key:'others'},
-  ];
-  var html='';
-  zones.forEach(function(z,zi){
-    var items=LOCS.filter(function(l){return l.zone===z.key;});
-    if(!items.length)return;
-    html+='<div class="loc-zone'+(zi>0?' loc-zone-gap':'')+'"><div class="loc-zone-row">';
-    items.forEach(function(l){
-      var f=calcFee(l), ft=f===null?'Request quote':'₱'+f;
-      var nearTag=l.fixed!==undefined&&l.zone==='nearby'?'<span class="lb-tag">Fixed</span>':'';
-      html+='<div class="lb" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
-        +'<div class="lb-n">'+l.name+nearTag+'</div>'
-        +'<div class="lb-f">'+ft+'</div>'
-        +'</div>';
-    });
-    html+='</div></div>';
+  var html='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
+  LOCS.forEach(function(l,i){
+    var f=calcFee(l), ft=f===null?'Request quote':'₱'+f;
+    var fixTag=l.fixed!==undefined?'<span class="lb-tag">Fixed</span>':'';
+    html+='<div class="lb" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
+      +'<div class="lb-n">'+l.name+fixTag+'</div>'
+      +'<div class="lb-f">'+ft+'</div>'
+      +'</div>';
   });
+  html+='</div>';
   document.getElementById('loc-grid').innerHTML=html;
 }
 function selLoc(id){
@@ -1482,7 +1394,7 @@ function compute(){
   } else pb.style.display='none';
   document.getElementById('transpo-note').style.display=S.lid?'block':'none';
   updateRecurDP();
-  // Sync sticky bar + bottom estimate
+  // Sync mobile sticky bar + bottom estimate
   var t2=cT();
   updateStickyBar(total);
   updateBottomEstimate(total,lines,tf>0,tf,Math.max(0,total-tf),t2&&t2.mn>0?t2:null);
@@ -1549,75 +1461,6 @@ function bookNow(){
   if(navigator.clipboard){navigator.clipboard.writeText(msg).then(proceed).catch(function(){fbCopy(msg);proceed();});}
   else{fbCopy(msg);proceed();}
 }
-
-// ── STICKY BAR + BOTTOM ESTIMATE ─────────────────────────────
-function updateStickyBar(total){
-  var bar=document.getElementById('sticky-bar');if(!bar)return;
-  if(total>0){
-    document.getElementById('sb-total').textContent=total.toLocaleString();
-    var ctLabel=S.cleanType==='deep'?'Deep Clean':S.cleanType==='moveinout'?'Move In/Out':'Regular Clean';
-    document.getElementById('sb-desc').textContent=ctLabel+' · '+S.sqm+' sqm';
-    bar.classList.remove('sb-hidden');
-  } else {
-    document.getElementById('sb-total').textContent='—';
-    document.getElementById('sb-desc').textContent='Complete the steps to get your estimate';
-    bar.classList.add('sb-hidden');
-  }
-}
-
-function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
-  var totEl=document.getElementById('be-totd');if(totEl)totEl.textContent=total>0?total.toLocaleString():'0';
-  var timeEl=document.getElementById('be-time');if(timeEl)timeEl.textContent=(t&&t.mn)?'~'+fmtT(t.mn,t.mx)+' of your day back':'';
-  var body=document.getElementById('be-body');if(!body)return;
-  if(!lines||!lines.length){
-    body.innerHTML='<div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div>';
-    var bp2=document.getElementById('be-pay');if(bp2)bp2.style.display='none';return;
-  }
-  var html=lines.map(function(ln){return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
-  html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">₱'+total.toLocaleString()+'</span></div>';
-  body.innerHTML=html;
-  var bp2=document.getElementById('be-pay');
-  if(hasPay&&bp2){
-    bp2.style.display='block';
-    var dpEl=document.getElementById('be-dp');if(dpEl)dpEl.textContent='₱'+dp.toLocaleString();
-    var balEl=document.getElementById('be-bal');if(balEl)balEl.textContent='₱'+bal.toLocaleString();
-  } else if(bp2){bp2.style.display='none';}
-}
-
-function setAvail(type,msg){
-  var el=document.getElementById('avail-box');if(el){el.className='avail-box '+type;el.textContent=msg;}
-  var be=document.getElementById('be-avail');if(be){be.className='be-avail '+type;be.textContent=msg;}
-}
-
-function scrollToEstimate(){
-  var be=document.getElementById('bottom-estimate');
-  if(be)be.scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-// Wire up modal + logo + IntersectionObserver after DOM ready
-document.addEventListener('DOMContentLoaded',function(){
-  // Modal wiring
-  var goBtn=document.getElementById('msn-go-btn');
-  if(goBtn)goBtn.addEventListener('click',function(){
-    document.getElementById('msn-modal').classList.remove('show');
-    window.open('https://m.me/klaygoph','_blank');
-  });
-  var overlay=document.getElementById('msn-modal');
-  if(overlay)overlay.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
-  // Logo injection
-  var sbLogo=document.getElementById('sb-logo-img');var beLogo=document.getElementById('be-logo-img');
-  if(sbLogo)sbLogo.src=LIGHT_LOGO;if(beLogo)beLogo.src=LIGHT_LOGO;
-  // IntersectionObserver — hide sticky when bottom estimate visible
-  var beEl=document.getElementById('bottom-estimate');var barEl=document.getElementById('sticky-bar');
-  if(beEl&&barEl){
-    var obs=new IntersectionObserver(function(entries){
-      var vis=entries[0].isIntersecting;
-      if(vis){barEl.classList.add('sb-hidden');}
-      else{var tot=document.getElementById('sb-total');if(tot&&tot.textContent!=='—')barEl.classList.remove('sb-hidden');}
-    },{threshold:0.1});
-    obs.observe(beEl);
-  }
-});
 function copyEstimate(){var msg=buildMsg();if(navigator.clipboard){navigator.clipboard.writeText(msg).then(function(){toast('Estimate copied!');}).catch(function(){fbCopy(msg);});}else fbCopy(msg);}
 function fbCopy(text){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');toast('Estimate copied!');}catch(e){toast('Could not auto-copy. Please copy manually.');}document.body.removeChild(ta);}
 
@@ -1640,18 +1483,6 @@ async function sendEstimateEmail(msg){
     }catch(e){console.log('Cust email err:',e);}
   }
 }
-async function submitFeedback(){
-  var fb=document.getElementById('f-feedback').value.trim();
-  if(!fb){toast('Please write your feedback first.');return;}
-  var name=document.getElementById('f-name').value.trim()||'Anonymous';
-  if(FORMSPREE){
-    try{var r=await fetch('https://formspree.io/f/'+FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_subject:'Klaygo PH App Feedback',name:name,feedback:fb,estimate_id:currentEstId||'N/A'})});if(r.ok){toast('Feedback sent! Thank you.');document.getElementById('f-feedback').value='';return;}}catch(e){}
-  }
-  var s=encodeURIComponent('Klaygo PH App Feedback'),b=encodeURIComponent('From: '+name+'\n\n'+fb);
-  window.open('mailto:info.klaygoph@gmail.com?subject='+s+'&body='+b,'_blank');
-  document.getElementById('f-feedback').value='';toast('Opening email to send feedback.');
-}
-
 // ── PRINT ─────────────────────────────────────────────────────
 function openPrint(){
   var bp=getBasePrice();
@@ -1710,29 +1541,29 @@ function openPrint(){
     +'.ctbl{width:100%;border-collapse:collapse;font-size:8.5px;}'
     +'.ctbl td{padding:2.5px 3px;line-height:1.4;vertical-align:top;border-bottom:1px solid #EBF1FA;}'
     +'.ctbl td:first-child{color:#6B6B68;width:52px;font-weight:600;}'
-    +'.stl{font-size:8.5px;font-weight:800;color:#0D1F3C;border-bottom:1.5px solid #2B4E8A;padding-bottom:3px;letter-spacing:.05em;text-transform:uppercase;}'
+    +'.stl{font-size:8.5px;font-weight:800;color:#2B4E8A;border-bottom:1.5px solid #2B4E8A;padding-bottom:3px;letter-spacing:.05em;text-transform:uppercase;}'
     +'table.c{width:100%;border-collapse:collapse;}'
     +'table.c tr td{padding:3.5px 3px;border-bottom:1px solid #EBF1FA;font-size:10px;line-height:1.3;}'
     +'table.c tr td:last-child{text-align:right;font-weight:600;}'
     +'.tr td{border-bottom:none!important;padding-top:6px!important;border-top:1.5px solid #2B4E8A!important;font-size:12px;font-weight:700;color:#2B4E8A;}'
-    +'.trow{background:rgba(235,241,250,.6);border-radius:4px;padding:5px 8px;font-size:9px;color:#0D1F3C;font-weight:700;}'
+    +'.trow{background:rgba(235,241,250,.6);border-radius:4px;padding:5px 8px;font-size:9px;color:#2B4E8A;font-weight:700;}'
     +'.tnote{font-size:7.5px;color:#6B6B68;font-style:italic;margin-top:2px;line-height:1.4;}'
     +'.pay-s{background:rgba(235,241,250,.6);border-radius:5px;padding:7px 10px;}'
-    +'.pay-s h4{font-size:8px;font-weight:800;color:#0D1F3C;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;}'
+    +'.pay-s h4{font-size:8px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;}'
     +'.pr{display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px;}'
     +'.pr .pk{color:#6B6B68;}.pr .pv{font-weight:600;color:#2C2C2A;}'
-    +'.pr.pn .pk{color:#0D1F3C;font-weight:700;}.pr.pn .pv{color:#1B8A4C;font-size:11px;font-weight:800;}'
+    +'.pr.pn .pk{color:#2B4E8A;font-weight:700;}.pr.pn .pv{color:#1B8A4C;font-size:11px;font-weight:800;}'
     +'.wb{background:#FFF8E7;border:1px solid #F5C842;border-radius:4px;padding:5px 8px;}'
     +'.wb strong{display:block;font-size:8.5px;color:#7A5C00;font-weight:800;margin-bottom:1px;}'
     +'.wb p{font-size:7.5px;color:#7A5C00;line-height:1.4;}'
     +'.ib{background:rgba(255,255,255,.7);border-radius:4px;padding:5px 8px;}'
-    +'.ib h4{font-size:8.5px;font-weight:700;color:#0D1F3C;margin-bottom:2px;}'
+    +'.ib h4{font-size:8.5px;font-weight:700;color:#2B4E8A;margin-bottom:2px;}'
     +'.ib p{font-size:8px;color:#2C2C2A;line-height:1.4;}'
     +'.pb{background:rgba(255,255,255,.7);border-radius:4px;padding:6px 8px;}'
-    +'.pb h4{font-size:9px;font-weight:800;color:#0D1F3C;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase;}'
+    +'.pb h4{font-size:9px;font-weight:800;color:#2B4E8A;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase;}'
     +'.pi2{display:flex;gap:4px;margin-bottom:3px;font-size:7.5px;color:#4A4A48;line-height:1.5;}'
-    +'.pi2 strong{color:#0D1F3C;font-weight:700;}.pi2 .pd2{color:#2B4E8A;font-weight:800;flex-shrink:0;}'
-    +'.nor{text-align:center;font-size:10px;font-weight:900;color:#0D1F3C;letter-spacing:.08em;text-transform:uppercase;padding:6px 0 3px;border-top:2px dashed #2B4E8A;margin-top:auto;}'
+    +'.pi2 strong{color:#2B4E8A;font-weight:700;}.pi2 .pd2{color:#2B4E8A;font-weight:800;flex-shrink:0;}'
+    +'.nor{text-align:center;font-size:10px;font-weight:900;color:#2B4E8A;letter-spacing:.08em;text-transform:uppercase;padding:6px 0 3px;border-top:2px dashed #2B4E8A;margin-top:auto;}'
     +'</style></head><body>'
     +'<div class="bg"></div>'
     +'<div class="cnt">'
@@ -1982,6 +1813,72 @@ function initGoogleMaps(){
     if(!this.value.trim())resetTravelData();
   });
 }
+// ── STICKY BAR + BOTTOM ESTIMATE ─────────────────────────────
+function updateStickyBar(total){
+  var bar=document.getElementById('sticky-bar');if(!bar)return;
+  if(total>0){
+    document.getElementById('sb-total').textContent=total.toLocaleString();
+    var ctLabel=S.cleanType==='deep'?'Deep Clean':S.cleanType==='moveinout'?'Move In/Out':'Regular Clean';
+    document.getElementById('sb-desc').textContent=ctLabel+' · '+S.sqm+' sqm';
+    bar.classList.remove('sb-hidden');
+  } else {
+    document.getElementById('sb-total').textContent='—';
+    document.getElementById('sb-desc').textContent='Complete the steps to see your estimate';
+    bar.classList.add('sb-hidden');
+  }
+}
+
+function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
+  var totEl=document.getElementById('be-totd');if(totEl)totEl.textContent=total>0?total.toLocaleString():'0';
+  var timeEl=document.getElementById('be-time');if(timeEl)timeEl.textContent=(t&&t.mn)?'~'+fmtT(t.mn,t.mx)+' of your day back':'';
+  var body=document.getElementById('be-body');if(!body)return;
+  if(!lines||!lines.length){
+    body.innerHTML='<div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div>';
+    var bp2=document.getElementById('be-pay');if(bp2)bp2.style.display='none';return;
+  }
+  var html=lines.map(function(ln){return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
+  html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">₱'+total.toLocaleString()+'</span></div>';
+  body.innerHTML=html;
+  var bp2=document.getElementById('be-pay');
+  if(hasPay&&bp2){
+    bp2.style.display='block';
+    var dpEl=document.getElementById('be-dp');if(dpEl)dpEl.textContent='₱'+dp.toLocaleString();
+    var balEl=document.getElementById('be-bal');if(balEl)balEl.textContent='₱'+bal.toLocaleString();
+  } else if(bp2){bp2.style.display='none';}
+}
+
+function scrollToEstimate(){
+  var be=document.getElementById('bottom-estimate');
+  if(be)be.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  // Modal wiring
+  var goBtn=document.getElementById('msn-go-btn');
+  if(goBtn)goBtn.addEventListener('click',function(){
+    document.getElementById('msn-modal').classList.remove('show');
+    window.open('https://m.me/klaygoph','_blank');
+  });
+  var overlay=document.getElementById('msn-modal');
+  if(overlay)overlay.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
+  // Logo injection for sticky + bottom estimate
+  var sbLogo=document.getElementById('sb-logo-img');
+  var beLogo=document.getElementById('be-logo-img');
+  if(sbLogo)sbLogo.src=LIGHT_LOGO;
+  if(beLogo)beLogo.src=LIGHT_LOGO;
+  // IntersectionObserver: hide sticky bar when bottom-estimate in view
+  var beEl=document.getElementById('bottom-estimate');
+  var barEl=document.getElementById('sticky-bar');
+  if(beEl&&barEl){
+    var obs=new IntersectionObserver(function(entries){
+      var vis=entries[0].isIntersecting;
+      if(vis){barEl.classList.add('sb-hidden');}
+      else{var tot=document.getElementById('sb-total');if(tot&&tot.textContent!=='—')barEl.classList.remove('sb-hidden');}
+    },{threshold:0.1});
+    obs.observe(beEl);
+  }
+});
+
 // ══════════════════════════════════════════════════════
 // END SMART ADDRESS MODULE
 // ══════════════════════════════════════════════════════
