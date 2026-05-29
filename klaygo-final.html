@@ -364,7 +364,7 @@ footer{background:var(--mn);padding:14px 24px;}
 .calc-clarifier{background:#EBF1FA;border-bottom:2px solid var(--li);padding:16px 20px;display:flex;align-items:flex-start;gap:14px;}
 .cc-icon{font-size:24px;flex-shrink:0;margin-top:2px;}
 .cc-title{font-size:14px;font-weight:700;color:var(--mn);margin-bottom:4px;line-height:1.35;}
-.cc-title span{color:#a8d4ff;}
+.cc-title span{color:var(--pr);font-weight:700;}
 .cc-sub{font-size:12px;color:var(--gr);line-height:1.7;}
 .cc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
 .cc-chip{font-size:10.5px;font-weight:600;padding:4px 11px;border-radius:14px;background:#fff;color:var(--mn);border:1.5px solid var(--li);}
@@ -496,7 +496,7 @@ footer{background:var(--mn);padding:14px 24px;}
 
 <div class="progress-wrap">
   <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
-  <div class="progress-label" id="progress-label">Step 0 of 10</div>
+  <div class="progress-label" id="progress-label">Step 1 of 10</div>
 </div>
 
 <div class="hero">
@@ -806,7 +806,7 @@ footer{background:var(--mn);padding:14px 24px;}
   <div class="whn-steps">
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num you">11</div>
+      <div class="whn-num you">1</div>
       <div class="whn-body">
         <div class="whn-who you">YOU</div>
         <div class="whn-step-title">Copy Your Estimate</div>
@@ -816,7 +816,7 @@ footer{background:var(--mn);padding:14px 24px;}
     </div>
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num you">12</div>
+      <div class="whn-num you">2</div>
       <div class="whn-body">
         <div class="whn-who you">YOU</div>
         <div class="whn-step-title">Open Messenger &amp; Paste Your Estimate</div>
@@ -826,7 +826,7 @@ footer{background:var(--mn);padding:14px 24px;}
     </div>
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num you">13</div>
+      <div class="whn-num you">3</div>
       <div class="whn-body">
         <div class="whn-who you">YOU</div>
         <div class="whn-step-title">Send Us Your Estimate &amp; Wait</div>
@@ -835,7 +835,7 @@ footer{background:var(--mn);padding:14px 24px;}
     </div>
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num us">14</div>
+      <div class="whn-num us">4</div>
       <div class="whn-body">
         <div class="whn-who us">KLAYGO PH</div>
         <div class="whn-step-title">We Confirm Your Details &amp; Send Payment Info</div>
@@ -853,7 +853,7 @@ footer{background:var(--mn);padding:14px 24px;}
     </div>
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num us">15</div>
+      <div class="whn-num us">5</div>
       <div class="whn-body">
         <div class="whn-who us">KLAYGO PH</div>
         <div class="whn-step-title">Slot Reserved Upon Confirmed Payment</div>
@@ -1789,6 +1789,10 @@ function toast(m){var t=document.getElementById('toast');t.textContent=m;t.class
 
 // ── INIT ──────────────────────────────────────────────────────
 var navLogo = document.getElementById('logo-img');
+navLogo.src = LIGHT_LOGO;
+navLogo.style.filter = 'brightness(0) invert(1)'; // blue→white on dark nav
+// Run progress bar immediately — no async wait needed
+updateProgress();
 navLogo.src = LIGHT_LOGO;
 navLogo.style.filter = 'brightness(0) invert(1)'; // blue→white on dark nav
 // est panel white bg — show blue logo as-is

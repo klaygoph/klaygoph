@@ -80,6 +80,7 @@ nav img{height:26px;}
 .leg{display:flex;align-items:center;gap:4px;font-size:11px;color:#4A5568;}
 .ld{width:12px;height:12px;border-radius:4px;}
 .cal-status{font-size:11px;color:var(--se);margin-top:5px;display:none;}
+#cal-sel-note{font-size:11.5px;color:var(--green);font-weight:600;margin-top:6px;padding:6px 10px;background:var(--gbg);border-radius:10px;border:1px solid var(--gbdr);}
 
 /* TIME SLOTS */
 .time-grid{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
@@ -264,19 +265,20 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .pb{background:#fff;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:22px 20px;margin-bottom:12px;border:1.5px solid #EBF1FA;}
 .pb h3{font-size:13px;font-weight:700;color:var(--mn);margin-bottom:14px;display:flex;align-items:center;gap:8px;letter-spacing:.01em;}
 .pb h3::after{content:'';flex:1;height:1.5px;background:#EBF1FA;margin-left:8px;}
-.acc-item{border:1.5px solid #EBF1FA;border-radius:16px;overflow:hidden;margin-bottom:8px;transition:border-color .2s,box-shadow .2s;background:#fff;}
+.acc-item{border:1.5px solid #EBF1FA;border-radius:16px;margin-bottom:8px;transition:border-color .2s,box-shadow .2s;background:#fff;}
 .acc-item:last-child{margin-bottom:0;}
 .acc-item.open{border-color:var(--li);box-shadow:0 4px 20px rgba(43,78,138,.08);}
 .acc-item.open{border-color:var(--li);}
 .acc-head{display:flex;align-items:center;gap:10px;padding:14px 15px;cursor:pointer;user-select:none;transition:background .13s;}
-.acc-head:hover{background:var(--pa);}
+.acc-head:hover{background:#EBF1FA;border-radius:16px;}
+.acc-item.open .acc-head{border-radius:16px 16px 0 0;background:#FAFCFF;}
 .acc-icon{font-size:17px;flex-shrink:0;}
 .acc-title{flex:1;font-size:13px;font-weight:600;color:var(--dk);display:block;}
 .acc-summary{display:none;}
 .acc-chevron{font-size:13px;color:var(--se);transition:transform .3s;flex-shrink:0;margin-left:auto;}
 .acc-item.open .acc-chevron{transform:rotate(180deg);}
-.acc-body{max-height:0;overflow:hidden;padding:0 15px 0 43px;font-size:12.5px;color:var(--gr);line-height:1.7;transition:max-height .35s cubic-bezier(.4,0,.2,1),padding .35s;}
-.acc-item.open .acc-body{max-height:400px;padding:0 15px 16px 43px;}
+.acc-body{max-height:0;overflow:hidden;padding:0 15px 0 43px;font-size:12.5px;color:#4A5568;line-height:1.75;transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .4s;}
+.acc-item.open .acc-body{max-height:500px;padding:0 15px 18px 43px;}
 .acc-body strong{color:var(--dk);}
 .agree-note{margin-top:14px;padding:14px 16px;background:#EBF1FA;border:1.5px solid var(--li);border-radius:16px;font-size:12px;color:var(--mn);line-height:1.75;}
 .agree-note strong{color:var(--mn);}
@@ -362,7 +364,7 @@ footer{background:var(--mn);padding:14px 24px;}
 .calc-clarifier{background:#EBF1FA;border-bottom:2px solid var(--li);padding:16px 20px;display:flex;align-items:flex-start;gap:14px;}
 .cc-icon{font-size:24px;flex-shrink:0;margin-top:2px;}
 .cc-title{font-size:14px;font-weight:700;color:var(--mn);margin-bottom:4px;line-height:1.35;}
-.cc-title span{color:#a8d4ff;}
+.cc-title span{color:var(--pr);font-weight:700;}
 .cc-sub{font-size:12px;color:var(--gr);line-height:1.7;}
 .cc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
 .cc-chip{font-size:10.5px;font-weight:600;padding:4px 11px;border-radius:14px;background:#fff;color:var(--mn);border:1.5px solid var(--li);}
@@ -430,11 +432,12 @@ footer{background:var(--mn);padding:14px 24px;}
 .sticky-left{display:flex;align-items:center;}
 .sticky-summary{display:flex;flex-direction:column;gap:1px;}
 .sticky-total-amt{font-size:19px;font-weight:700;color:#fff;line-height:1;}
+.sb-peso{font-size:14px;font-weight:400;opacity:.8;margin-right:1px;}
 .sticky-desc{font-size:10.5px;color:rgba(200,220,255,.85);line-height:1.2;margin-top:1px;}
 .sticky-cta{font-size:11.5px;color:#fff;font-weight:700;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.3);padding:8px 18px;border-radius:22px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s;}
 .sticky-cta:hover{background:rgba(255,255,255,.3);border-color:rgba(255,255,255,.5);}
 .sticky-brand{background:#2C2C2A;height:28px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.35);}
-@media(max-width:660px){#sticky-bar{display:block;}body{padding-bottom:78px;}.toast{bottom:96px!important;}}
+@media(max-width:660px){#sticky-bar{display:block;}body{padding-bottom:96px;}.toast{bottom:100px!important;}}
 
 /* ── BOTTOM ESTIMATE ────────── */
 #bottom-estimate{display:none;background:#fff;padding:22px 20px 30px;border-radius:var(--r) var(--r) 0 0;border-top:3px solid var(--mn);box-shadow:0 -6px 30px rgba(43,78,138,.1);}
@@ -493,7 +496,7 @@ footer{background:var(--mn);padding:14px 24px;}
 
 <div class="progress-wrap">
   <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
-  <div class="progress-label" id="progress-label">Step 0 of 10</div>
+  <div class="progress-label" id="progress-label">Step 1 of 10</div>
 </div>
 
 <div class="hero">
@@ -528,6 +531,7 @@ footer{background:var(--mn);padding:14px 24px;}
   </div>
   <div class="cal-grid" id="cal-grid"><div style="grid-column:1/-1;font-size:10.5px;color:var(--se);padding:8px 0;">Loading calendar...</div></div>
   <div class="cal-status" id="cal-status"></div>
+<div id="cal-sel-note" style="display:none;font-size:11px;color:var(--green);font-weight:600;padding:5px 0 2px;"></div>
   <div class="cal-note">Red = fully booked. Yellow = 1 slot left. Select any available date to continue.</div>
   <div class="legend">
     <div class="leg"><div class="ld" style="background:var(--pa);border:1.5px solid var(--li);"></div>Available</div>
@@ -802,7 +806,7 @@ footer{background:var(--mn);padding:14px 24px;}
   <div class="whn-steps">
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num you">11</div>
+      <div class="whn-num you">1</div>
       <div class="whn-body">
         <div class="whn-who you">YOU</div>
         <div class="whn-step-title">Copy Your Estimate</div>
@@ -812,7 +816,7 @@ footer{background:var(--mn);padding:14px 24px;}
     </div>
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num you">12</div>
+      <div class="whn-num you">2</div>
       <div class="whn-body">
         <div class="whn-who you">YOU</div>
         <div class="whn-step-title">Open Messenger &amp; Paste Your Estimate</div>
@@ -822,7 +826,7 @@ footer{background:var(--mn);padding:14px 24px;}
     </div>
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num you">13</div>
+      <div class="whn-num you">3</div>
       <div class="whn-body">
         <div class="whn-who you">YOU</div>
         <div class="whn-step-title">Send Us Your Estimate &amp; Wait</div>
@@ -831,7 +835,7 @@ footer{background:var(--mn);padding:14px 24px;}
     </div>
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num us">14</div>
+      <div class="whn-num us">4</div>
       <div class="whn-body">
         <div class="whn-who us">KLAYGO PH</div>
         <div class="whn-step-title">We Confirm Your Details &amp; Send Payment Info</div>
@@ -849,7 +853,7 @@ footer{background:var(--mn);padding:14px 24px;}
     </div>
     <div class="whn-step">
       <div class="whn-line"></div>
-      <div class="whn-num us">15</div>
+      <div class="whn-num us">5</div>
       <div class="whn-body">
         <div class="whn-who us">KLAYGO PH</div>
         <div class="whn-step-title">Slot Reserved Upon Confirmed Payment</div>
@@ -873,7 +877,7 @@ footer{background:var(--mn);padding:14px 24px;}
 <div class="panel-right">
   <div class="pcard">
     <div class="phead">
-      <img id="est-logo-img" alt="Klaygo PH" style="height:22px;display:block;margin-bottom:6px;opacity:.9;">
+      <img id="est-logo-img" alt="Klaygo PH" style="height:22px;display:block;margin-bottom:6px;">
       <div class="pest-id" id="p-est-id">—</div>
       <h3>Your Estimate</h3>
       <div class="ptotal"><span>₱</span><span id="ptotd">0</span></div>
@@ -940,7 +944,7 @@ footer{background:var(--mn);padding:14px 24px;}
     <div class="sticky-left">
       <img id="sb-logo-img" class="sticky-logo" alt="Klaygo PH">
       <div class="sticky-summary">
-        <div class="sticky-total-amt">₱<span id="sb-total">—</span></div>
+        <div class="sticky-total-amt"><span class="sb-peso">&#8369;</span><span id="sb-total">—</span></div>
         <div class="sticky-desc" id="sb-desc">Complete the steps to see your estimate</div>
       </div>
     </div>
@@ -993,7 +997,8 @@ var FORMSPREE  = 'mjglezpk';
 var AUTO_REFRESH_MS = 300000; // 5 min auto-refresh
 
 // GitHub-hosted image URLs
-var LIGHT_LOGO = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Light%20-%20Res%20-%20100.png';
+var LIGHT_LOGO = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
+var DARK_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
 var BLUE_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
 var PRINT_BG   = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Print%20-%20White%20Background.png';
 
@@ -1093,11 +1098,14 @@ CY=nowJS.getFullYear(); CM=nowJS.getMonth();
 function togAcc(id){
   var el=document.getElementById(id);
   if(!el)return;
-  var wasOpen=el.classList.contains('open');
-  // close all
-  document.querySelectorAll('.acc-item.open').forEach(function(item){item.classList.remove('open');});
-  // open clicked if it was closed
-  if(!wasOpen)el.classList.add('open');
+  var isOpen=el.classList.contains('open');
+  // Close all others
+  document.querySelectorAll('.acc-item').forEach(function(item){
+    if(item.id!==id)item.classList.remove('open');
+  });
+  // Toggle clicked
+  if(isOpen){el.classList.remove('open');}
+  else{el.classList.add('open');}
 }
 
 // ── PROGRESS BAR ───────────────────────────────────────
@@ -1508,7 +1516,7 @@ function compute(){
     var dp=needs50?Math.ceil(serviceTotal*0.5)+tf:tf;
     var bal=total-dp;
     document.getElementById('pay-dp').textContent='₱'+dp.toLocaleString()+(needs50?' (50% + transport)':'');
-    document.getElementById('pay-bal').textContent='₱'+Math.max(0,bal).toLocaleString();
+    document.getElementById('pay-bal').textContent='₱'+Math.max(0,Math.round(bal)).toLocaleString();
     var multiDate=recurSlots.filter(function(s){return s.date;}).length>0||S.sched!=='Initial / One-time';
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
@@ -1756,8 +1764,19 @@ function resetAll(){
 }
 
 // ── CALENDAR NAV ──────────────────────────────────────────────
-async function prevMo(){CM--;if(CM<0){CM=11;CY--;}await fetchMonth(CY,CM);renderCal();}
-async function nextMo(){CM++;if(CM>11){CM=0;CY++;}await fetchMonth(CY,CM);renderCal();}
+async function prevMo(){CM--;if(CM<0){CM=11;CY--;}await fetchMonth(CY,CM);renderCal();renderCalSelNote();}
+async function nextMo(){CM++;if(CM>11){CM=0;CY++;}await fetchMonth(CY,CM);renderCal();renderCalSelNote();}
+function renderCalSelNote(){
+  var note=document.getElementById('cal-sel-note');
+  if(!note)return;
+  if(!selDate){note.style.display='none';return;}
+  var parts=selDate.split('-');
+  var sy=+parts[0],sm=+parts[1]-1;
+  if(sy===CY&&sm===CM){note.style.display='none';return;}
+  var d=new Date(sy,sm,+parts[2]);
+  note.style.display='block';
+  note.textContent='✓ Selected: '+d.toLocaleDateString('en-PH',{weekday:'short',month:'long',day:'numeric'});
+}
 async function refreshCal(){
   monthEvts={};
   var st=document.getElementById('cal-status');if(st){st.style.display='block';st.textContent='Refreshing...';}
@@ -1769,8 +1788,22 @@ async function refreshCal(){
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3200);}
 
 // ── INIT ──────────────────────────────────────────────────────
-document.getElementById('logo-img').src = LIGHT_LOGO;
-document.getElementById('est-logo-img').src = LIGHT_LOGO;
+var navLogo = document.getElementById('logo-img');
+navLogo.src = LIGHT_LOGO;
+navLogo.style.filter = 'brightness(0) invert(1)'; // blue→white on dark nav
+// Run progress bar immediately — no async wait needed
+updateProgress();
+navLogo.src = LIGHT_LOGO;
+navLogo.style.filter = 'brightness(0) invert(1)'; // blue→white on dark nav
+// est panel white bg — show blue logo as-is
+var estLogo = document.getElementById('est-logo-img');
+if(estLogo){ estLogo.src = DARK_LOGO; }
+// sticky bar logo (dark bg) — white filter
+var sbLogoInit = document.getElementById('sb-logo-img');
+if(sbLogoInit){ sbLogoInit.src = LIGHT_LOGO; sbLogoInit.style.filter = 'brightness(0) invert(1)'; }
+// bottom estimate logo (white bg) — blue as-is
+var beLogoInit = document.getElementById('be-logo-img');
+if(beLogoInit){ beLogoInit.src = DARK_LOGO; }
 
 (async function(){
   await fetchMonth(CY,CM);
@@ -1997,17 +2030,20 @@ document.addEventListener('DOMContentLoaded',function(){
   // Logo injection for sticky + bottom estimate
   var sbLogo=document.getElementById('sb-logo-img');
   var beLogo=document.getElementById('be-logo-img');
-  if(sbLogo)sbLogo.src=LIGHT_LOGO;
-  if(beLogo)beLogo.src=LIGHT_LOGO;
-  // IntersectionObserver: hide sticky bar when bottom-estimate in view
+  // sticky bar is on dark bg → light logo; bottom estimate is now white bg → dark logo
+  if(sbLogo){ sbLogo.src=LIGHT_LOGO; sbLogo.style.filter='brightness(0) invert(1)'; }
+  if(beLogo){ beLogo.src=DARK_LOGO; }
+  // IntersectionObserver: hide sticky bar when bottom-estimate scrolled into view
   var beEl=document.getElementById('bottom-estimate');
   var barEl=document.getElementById('sticky-bar');
   if(beEl&&barEl){
     var obs=new IntersectionObserver(function(entries){
       var vis=entries[0].isIntersecting;
+      var tot=document.getElementById('sb-total');
+      var hasTotal=tot&&tot.textContent&&tot.textContent!=='—'&&tot.textContent!=='0';
       if(vis){barEl.classList.add('sb-hidden');}
-      else{var tot=document.getElementById('sb-total');if(tot&&tot.textContent!=='—')barEl.classList.remove('sb-hidden');}
-    },{threshold:0.1});
+      else if(hasTotal){barEl.classList.remove('sb-hidden');}
+    },{threshold:0.05,rootMargin:'0px 0px -40px 0px'});
     obs.observe(beEl);
   }
 });
