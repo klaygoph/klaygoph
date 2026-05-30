@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="refresh" content="0;url=pricing.html">
 <title>Klaygo PH — Redirecting...</title>
 <style>
@@ -17,6 +18,18 @@
   <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH">
 </div>
 <p>Taking you to pricing...</p>
-<script>window.location.replace('pricing.html');</script>
+<script>window.location.replace('pricing.html');
+// ── BACK TO TOP ──
+(function(){
+  var btn=document.createElement('button');
+  btn.id='back-to-top';btn.innerHTML='↑';btn.setAttribute('aria-label','Back to top');
+  btn.setAttribute('style','position:fixed;bottom:24px;right:20px;z-index:8000;width:44px;height:44px;border-radius:50%;background:#0D1F3C;border:1.5px solid rgba(168,191,224,.35);color:#F7F9FC;font-size:18px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(13,31,60,.25);');
+  btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+  document.body.appendChild(btn);
+  window.addEventListener('scroll',function(){
+    btn.style.display=window.scrollY>300?'flex':'none';
+  },{passive:true});
+})();
+</script>
 </body>
 </html>
