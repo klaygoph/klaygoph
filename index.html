@@ -2,180 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home — Klaygo PH</title>
-<link href="https://fonts.cdnfonts.com/css/argentum-novus" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<meta http-equiv="refresh" content="0;url=pricing.html">
+<title>Klaygo PH — Redirecting...</title>
 <style>
-:root{
-  --mn:#2B4E8A;--pr:#2B4E8A;--mi:#4169b0;--se:#6B8FCA;
-  --li:#A8BFE0;--pa:#EBF1FA;--bg:#F4F7FD;--gr:#6B6B68;
-  --deepnav:#0D1F3C;--nav-light:#F7F9FC;
-  --dk:#2C2C2A;--wh:#fff;--bd:#D8DCE8;--r:22px;
-  --sh:0 8px 30px rgba(43,78,138,.08);
-  --green:#1B8A4C;--gbg:#E8F7EE;--gbdr:#A3D9B8;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'DM Sans',sans-serif;background:#F4F7FD;color:var(--dk);font-size:14px;line-height:1.55;}
-
-/* ── NAV ── */
-.nav-wrap{position:sticky;top:0;z-index:200;}
-.nav-top{background:var(--deepnav);height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;}
-.nav-top-left{display:flex;align-items:center;gap:12px;}
-.nav-logo{height:24px;}
-.nav-brand-text{font-family:'Argentum Novus',sans-serif;font-size:10px;color:rgba(247,249,252,.45);line-height:1.35;display:flex;flex-direction:column;}
-.nav-brand-text strong{color:rgba(247,249,252,.7);font-weight:600;}
-.nav-top-right{display:flex;align-items:center;gap:10px;}
-.nav-hamburger{background:none;border:none;cursor:pointer;color:var(--nav-light);padding:6px;display:flex;align-items:center;border-radius:6px;transition:background .15s;}
-.nav-hamburger:hover{background:rgba(255,255,255,.08);}
-.nav-sub{background:var(--mn);display:flex;align-items:stretch;padding:0 20px;height:36px;gap:0;border-top:1px solid rgba(255,255,255,.06);}
-.nav-tab{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:0 18px;display:flex;align-items:center;position:relative;transition:color .15s;}
-.nav-tab:hover{color:rgba(247,249,252,.9);}
-.nav-tab.active{color:var(--nav-light);background:rgba(168,191,224,.12);border-radius:10px 10px 0 0;}
-.nav-tab.active::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:2.5px;background:var(--nav-light);border-radius:2px 2px 0 0;}
-.nav-mobile-page{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);display:none;}
-.nav-menu-overlay{display:none;position:fixed;inset:0;background:var(--deepnav);z-index:500;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
-.nav-menu-overlay.open{display:flex;}
-.nav-menu-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--nav-light);cursor:pointer;font-size:24px;padding:8px;font-family:inherit;}
-.nav-menu-pill{font-family:'Argentum Novus',sans-serif;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);text-decoration:none;border:1.5px solid rgba(247,249,252,.25);border-radius:50px;padding:14px 48px;transition:all .15s;width:220px;text-align:center;}
-.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.18);border-color:var(--nav-light);}
-@media(max-width:660px){.nav-brand-text{display:none;}.nav-mobile-page{display:block;}.nav-sub{display:none;}}
-
-/* ── HERO ── */
-.hero{background:linear-gradient(135deg,var(--mn) 0%,#1e3d7a 100%);padding:60px 24px 70px;text-align:center;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--li);margin-bottom:16px;}
-.hero h1{font-size:36px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.15;margin-bottom:10px;max-width:520px;}
-.hero h1 span{color:var(--li);}
-.hero-sub{font-size:14px;color:rgba(255,255,255,.72);max-width:400px;line-height:1.7;margin-bottom:28px;}
-.hero-cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
-.btn-primary{background:#fff;color:var(--mn);border:none;border-radius:50px;padding:13px 28px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s;}
-.btn-primary:hover{background:var(--pa);transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,255,255,.15);}
-.btn-ghost{background:transparent;color:rgba(255,255,255,.85);border:1.5px solid rgba(168,191,224,.4);border-radius:50px;padding:12px 26px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s;}
-.btn-ghost:hover{border-color:rgba(255,255,255,.6);color:#fff;}
-
-/* ── TRUST BADGES ── */
-.trust-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px;}
-.trust-badge{background:rgba(255,255,255,.1);border:1px solid rgba(168,191,224,.25);border-radius:20px;padding:6px 14px;font-size:10.5px;color:rgba(255,255,255,.8);font-weight:500;}
-
-/* ── SECTION PLACEHOLDER ── */
-.coming-soon-section{max-width:760px;margin:60px auto;padding:0 20px;text-align:center;}
-.cs-card{background:#fff;border-radius:28px;padding:52px 40px;border:1.5px solid #EBF1FA;box-shadow:0 8px 30px rgba(43,78,138,.06);}
-.cs-icon{font-size:48px;margin-bottom:16px;}
-.cs-title{font-size:22px;font-weight:800;color:var(--mn);margin-bottom:10px;}
-.cs-sub{font-size:14px;color:#4A5568;line-height:1.75;max-width:460px;margin:0 auto 28px;}
-.cs-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
-.cs-link{background:var(--pa);color:var(--mn);border:1.5px solid var(--li);border-radius:50px;padding:11px 24px;font-size:12.5px;font-weight:700;text-decoration:none;transition:all .15s;font-family:inherit;}
-.cs-link:hover{background:var(--mn);color:#fff;border-color:var(--mn);}
-
-/* ── FOLLOW BAR ── */
-.follow-bar{background:#fff;border-top:1px solid var(--bd);padding:20px;text-align:center;}
-.follow-text{font-size:12px;color:var(--gr);margin-bottom:10px;}
-.follow-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-.follow-link{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--pr);text-decoration:none;}
-.follow-link:hover{opacity:.75;}
-
-/* ── FOOTER ── */
-footer{background:var(--mn);padding:16px 20px;}
-.footer-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-footer span{font-size:11px;color:rgba(255,255,255,.6);}
-.footer-contacts{display:flex;align-items:center;gap:10px;}
-.footer-icon-link{color:rgba(255,255,255,.5);transition:color .15s;display:flex;}
-.footer-icon-link:hover{color:#fff;}
-.copyright-bar{background:#1e3a70;text-align:center;font-size:10.5px;color:rgba(255,255,255,.35);padding:8px 20px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:#0D1F3C;display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:16px;}
+  .logo-wrap{opacity:.8;}
+  .logo-wrap img{height:32px;filter:brightness(0) invert(1);}
+  p{color:rgba(168,191,224,.7);font-size:13px;}
 </style>
 </head>
 <body>
-
-<!-- NAV MENU OVERLAY -->
-<div class="nav-menu-overlay" id="nav-menu">
-  <button class="nav-menu-close" onclick="closeMenu()">✕</button>
-  <a href="index.html" class="nav-menu-pill active">Home</a>
-  <a href="pricing.html" class="nav-menu-pill">Pricing</a>
-  <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
+<div class="logo-wrap">
+  <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH">
 </div>
-<div class="nav-wrap">
-  <div class="nav-top">
-    <div class="nav-top-left">
-      <img id="logo-img" class="nav-logo" alt="Klaygo PH">
-      <div class="nav-brand-text"><strong>KLAYGOPH | Cleaning Services</strong><span>Clearer space, Clearer mind.</span></div>
-    </div>
-    <div class="nav-top-right">
-      <button class="nav-hamburger" onclick="openMenu()"><svg width="20" height="16" viewBox="0 0 20 16" fill="none"><rect width="20" height="2.5" rx="1.25" fill="currentColor"/><rect y="6.5" width="14" height="2.5" rx="1.25" fill="currentColor"/><rect y="13" width="20" height="2.5" rx="1.25" fill="currentColor"/></svg></button>
-    </div>
-  </div>
-  <div class="nav-sub">
-    <a href="index.html" class="nav-tab active">Home</a>
-    <span class="nav-mobile-page">HOME</span>
-    <a href="pricing.html" class="nav-tab">Pricing</a>
-    <a href="sayhello.html" class="nav-tab">Say Hello!</a>
-  </div>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-eyebrow">KLAYGOPH · Cleaning Services</div>
-  <h1>Customize your clean.<br><span>See Your Price.</span></h1>
-  <p class="hero-sub">Professional home cleaning in Metro Manila — with instant, transparent pricing. No log-in. No pressure. Just a cleaner space.</p>
-  <div class="hero-cta-row">
-    <a href="pricing.html" class="btn-primary">✨ Get Your Instant Estimate</a>
-    <a href="sayhello.html" class="btn-ghost">Say Hello! 👋</a>
-  </div>
-  <div class="trust-row">
-    <span class="trust-badge">No log-in required</span>
-    <span class="trust-badge">No bank info collected</span>
-    <span class="trust-badge">Pricing transparency only</span>
-  </div>
-</div>
-
-<!-- PLACEHOLDER — your mockup sections go here -->
-<div class="coming-soon-section">
-  <div class="cs-card">
-    <div class="cs-icon">🧹</div>
-    <div class="cs-title">Home page coming soon!</div>
-    <p class="cs-sub">This is where your full homepage will live, chong. Once you finish your mockup layouts, we'll build it all out here — services, about, testimonials, and everything.</p>
-    <div class="cs-links">
-      <a href="pricing.html" class="cs-link">✨ Get an Estimate</a>
-      <a href="sayhello.html" class="cs-link">Say Hello! 👋</a>
-    </div>
-  </div>
-</div>
-
-<!-- FOLLOW BAR -->
-<div class="follow-bar">
-  <p class="follow-text">Follow us for tips, updates &amp; promos!</p>
-  <div class="follow-links">
-    <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      @klaygoph
-    </a>
-    <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
-      @klaygoph
-    </a>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-inner">
-    <span>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila</span>
-    <span class="footer-contacts">
-      <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="footer-icon-link" title="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-      <a href="https://m.me/klaygoph" target="_blank" rel="noopener" class="footer-icon-link" title="Messenger">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
-      </a>
-      @KlayGoPH &nbsp;|&nbsp; 0992.816.4718
-    </span>
-  </div>
-</footer>
-<div class="copyright-bar">© 2025 Klaygo PH. All rights reserved.</div>
-
-<script>
-var LOGO = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
-var logoEl = document.getElementById('logo-img');
-logoEl.src = LOGO;
-logoEl.style.filter = 'brightness(0) invert(1)';
-</script>
+<p>Taking you to pricing...</p>
+<script>window.location.replace('pricing.html');</script>
 </body>
 </html>
