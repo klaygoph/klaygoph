@@ -1,0 +1,508 @@
+<link href="https://fonts.cdnfonts.com/css/argentum-novus" rel="stylesheet">
+
+<div class="kg-estimate-animation">
+
+    <!-- STEP 1 -->
+    <div class="kg-state state-adjust">
+
+        <div class="kg-label">
+            ADJUST AMOUNT
+        </div>
+
+        <div class="kg-amount">
+            ₱<span id="kg-counter">600</span>
+        </div>
+
+        <div class="kg-slider">
+
+            <div class="kg-slider-track"></div>
+
+            <div class="kg-slider-fill"></div>
+
+            <div class="kg-slider-knob"></div>
+
+        </div>
+
+        <div class="kg-range">
+            <span>₱600</span>
+            <span>₱2,450</span>
+        </div>
+
+    </div>
+
+    <!-- STEP 2 -->
+
+    <div class="kg-state state-calc">
+
+        <div class="kg-label">
+            CALCULATING
+        </div>
+
+        <div class="kg-calculator">
+
+            <div class="calc-screen"></div>
+
+            <div class="calc-buttons">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
+
+        </div>
+
+        <div class="kg-sub">
+            Preparing estimate
+        </div>
+
+    </div>
+
+    <!-- STEP 3 -->
+
+    <div class="kg-state state-receipt">
+
+        <div class="kg-receipt">
+
+            <div class="receipt-title">
+                ESTIMATE READY
+            </div>
+
+            <div class="receipt-line"></div>
+
+            <div class="receipt-total">
+                ₱2,450
+            </div>
+
+            <div class="receipt-check">
+                ✓
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+.kg-estimate-animation{
+
+    width:320px;
+    height:320px;
+
+    background:transparent;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+    overflow:hidden;
+
+    font-family:'Argentum Novus',sans-serif;
+}
+
+/* STATES */
+
+.kg-state{
+
+    position:absolute;
+    inset:0;
+
+    width:240px;
+    height:260px;
+
+    margin:auto;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    background:#FFFFFF;
+
+    border:1px solid #A8BFE0;
+    border-radius:28px;
+}
+
+/* TEXT */
+
+.kg-label{
+
+    font-size:12px;
+    letter-spacing:2px;
+
+    color:#3D6399;
+
+    margin-bottom:18px;
+}
+
+.kg-amount{
+
+    font-size:42px;
+    font-weight:700;
+
+    color:#0D1F3C;
+
+    margin-bottom:24px;
+}
+
+.kg-sub{
+
+    font-size:14px;
+
+    color:#6B6B68;
+}
+
+/* SLIDER */
+
+.kg-slider{
+
+    position:relative;
+
+    width:180px;
+    height:30px;
+}
+
+.kg-slider-track{
+
+    position:absolute;
+
+    top:11px;
+    left:0;
+
+    width:100%;
+    height:8px;
+
+    background:#EBF1FA;
+
+    border-radius:999px;
+}
+
+.kg-slider-fill{
+
+    position:absolute;
+
+    top:11px;
+    left:0;
+
+    height:8px;
+
+    background:#2B4E8A;
+
+    border-radius:999px;
+
+    animation:fillMove 3s linear infinite;
+}
+
+.kg-slider-knob{
+
+    position:absolute;
+
+    top:3px;
+
+    width:24px;
+    height:24px;
+
+    border-radius:50%;
+
+    background:#2B4E8A;
+
+    animation:knobMove 3s linear infinite;
+}
+
+.kg-range{
+
+    width:180px;
+
+    display:flex;
+    justify-content:space-between;
+
+    margin-top:12px;
+
+    font-size:11px;
+    color:#6B6B68;
+}
+
+/* CALCULATOR */
+
+.kg-calculator{
+
+    width:120px;
+    height:150px;
+
+    border:3px solid #0D1F3C;
+
+    border-radius:18px;
+
+    padding:14px;
+
+    margin-bottom:18px;
+}
+
+.calc-screen{
+
+    height:22px;
+
+    border:2px solid #A8BFE0;
+
+    border-radius:6px;
+
+    margin-bottom:14px;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.calc-screen::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:#2B4E8A;
+
+    animation:screenFill 2s linear infinite;
+}
+
+.calc-buttons{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:8px;
+}
+
+.calc-buttons span{
+
+    width:22px;
+    height:22px;
+
+    border:2px solid #0D1F3C;
+
+    border-radius:6px;
+
+    animation:pulse 1.2s infinite;
+}
+
+.calc-buttons span:nth-child(2){animation-delay:.1s;}
+.calc-buttons span:nth-child(3){animation-delay:.2s;}
+.calc-buttons span:nth-child(4){animation-delay:.3s;}
+.calc-buttons span:nth-child(5){animation-delay:.4s;}
+.calc-buttons span:nth-child(6){animation-delay:.5s;}
+.calc-buttons span:nth-child(7){animation-delay:.6s;}
+.calc-buttons span:nth-child(8){animation-delay:.7s;}
+.calc-buttons span:nth-child(9){animation-delay:.8s;}
+
+/* RECEIPT */
+
+.kg-receipt{
+    width:150px;
+}
+
+.receipt-title{
+
+    font-size:16px;
+    font-weight:700;
+
+    color:#2B4E8A;
+
+    margin-bottom:18px;
+}
+
+.receipt-line{
+
+    width:100%;
+    height:2px;
+
+    background:#A8BFE0;
+
+    margin-bottom:18px;
+}
+
+.receipt-total{
+
+    font-size:40px;
+    font-weight:700;
+
+    color:#0D1F3C;
+
+    margin-bottom:14px;
+}
+
+.receipt-check{
+
+    font-size:34px;
+
+    color:#2B4E8A;
+}
+
+/* STATE TIMELINE */
+
+.state-adjust{
+    animation:showAdjust 9s infinite;
+}
+
+.state-calc{
+    opacity:0;
+    animation:showCalc 9s infinite;
+}
+
+.state-receipt{
+    opacity:0;
+    animation:showReceipt 9s infinite;
+}
+
+/* ANIMATIONS */
+
+@keyframes showAdjust{
+
+    0%,30%{
+        opacity:1;
+    }
+
+    35%,100%{
+        opacity:0;
+    }
+}
+
+@keyframes showCalc{
+
+    0%,32%{
+        opacity:0;
+    }
+
+    38%,62%{
+        opacity:1;
+    }
+
+    68%,100%{
+        opacity:0;
+    }
+}
+
+@keyframes showReceipt{
+
+    0%,65%{
+        opacity:0;
+    }
+
+    72%,95%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+@keyframes knobMove{
+
+    0%{
+        left:0%;
+    }
+
+    100%{
+        left:86%;
+    }
+}
+
+@keyframes fillMove{
+
+    0%{
+        width:0%;
+    }
+
+    100%{
+        width:90%;
+    }
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        background:transparent;
+    }
+
+    50%{
+        background:#A8BFE0;
+    }
+}
+
+@keyframes screenFill{
+
+    from{
+        left:-100%;
+    }
+
+    to{
+        left:100%;
+    }
+}
+
+</style>
+
+<script>
+
+const counter = document.getElementById('kg-counter');
+
+const START_AMOUNT = 600;
+const END_AMOUNT = 2450;
+const DURATION = 3000;
+
+function animateCounter(){
+
+    let startTime = null;
+
+    function update(timestamp){
+
+        if(!startTime){
+            startTime = timestamp;
+        }
+
+        const progress = Math.min(
+            (timestamp - startTime) / DURATION,
+            1
+        );
+
+        const value = Math.floor(
+            START_AMOUNT +
+            ((END_AMOUNT - START_AMOUNT) * progress)
+        );
+
+        counter.textContent = value.toLocaleString();
+
+        if(progress < 1){
+            requestAnimationFrame(update);
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+animateCounter();
+
+setInterval(() => {
+
+    counter.textContent = START_AMOUNT.toLocaleString();
+
+    setTimeout(() => {
+        animateCounter();
+    }, 50);
+
+}, 9000);
+
+</script>
