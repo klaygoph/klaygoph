@@ -3,10 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Get an instant cleaning estimate — no log-in, no hidden fees. Klaygo PH professional cleaning services in Metro Manila.">
 <title>Pricing — Klaygo PH</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/argentum-novus" rel="stylesheet">
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuiza3RKflnhopjK1SPZHZo-q3yq_2S78&libraries=places&callback=initGoogleMaps" async defer></script>
+
+<!-- Preconnect to speed up third-party origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.cdnfonts.com">
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+
+<!-- Preload critical images so they render with first paint -->
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Mock%20Up%20-%20Web%20-%20Pricing%20-%20BG01.png">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
+
+<!-- Fonts: font-display:swap so text shows immediately, font swaps in when ready -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/argentum-novus?display=swap" rel="stylesheet">
+
+<!-- Google Maps deferred until location step is used -->
+<script>
+var mapsLoaded=false;
+function loadMaps(){
+  if(mapsLoaded)return;mapsLoaded=true;
+  var s=document.createElement('script');
+  s.src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCuiza3RKflnhopjK1SPZHZo-q3yq_2S78&libraries=places&callback=initGoogleMaps';
+  s.async=true;s.defer=true;
+  document.head.appendChild(s);
+}
+</script>
 <style>
 :root{
   --mn:#2B4E8A;--pr:#2B4E8A;--mi:#4169b0;--se:#6B8FCA;
@@ -20,23 +43,99 @@
   --nav-light:#F7F9FC;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'DM Sans',sans-serif;background:#F4F7FD;color:var(--dk);font-size:14px;line-height:1.55;}
+body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size:14px;line-height:1.55;}
+
+/* ── HERO — parallax container ── */
+.hero{
+  background-color:#2B4E8A;
+  position:relative;overflow:hidden;
+  min-height:60vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,6vw,80px) clamp(22px,5vw,64px) clamp(40px,6vw,72px);
+}
+/* BG layer — scales independently for cinematic parallax */
+.hero-bg{
+  position:absolute;inset:-10%;
+  background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Mock%20Up%20-%20Web%20-%20Pricing%20-%20BG01.png');
+  background-size:cover;background-position:center;
+  will-change:transform;
+  transform:scale(1.08);
+  transition:transform .1s linear;
+}
+/* Dark overlay for text readability */
+.hero-bg::after{content:'';position:absolute;inset:0;background:rgba(13,31,60,.38);}
+/* Text content above BG */
+.hero-content{position:relative;z-index:2;}
+.hero-eyebrow{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:20px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(34px,6vw,68px);font-weight:800;color:#F7F9FC;line-height:1.04;margin-bottom:12px;letter-spacing:-.5px;opacity:0;transform:translateY(28px);transition:opacity .8s ease .1s,transform .8s ease .1s;}
+.hero h1 span{color:#A8BFE0;}
+.hero-sub{font-size:clamp(13px,1.6vw,15.5px);color:rgba(247,249,252,.8);line-height:1.9;max-width:520px;margin-bottom:26px;opacity:0;transform:translateY(24px);transition:opacity .8s ease .2s,transform .8s ease .2s;}
+.hero-checks{display:flex;flex-wrap:wrap;gap:10px 26px;opacity:0;transform:translateY(20px);transition:opacity .8s ease .35s,transform .8s ease .35s;}
+.hero-check{display:flex;align-items:center;gap:8px;font-size:clamp(12px,1.3vw,13.5px);color:rgba(247,249,252,.92);font-weight:500;}
+.hero-check::before{content:'✓';color:#A8BFE0;font-weight:700;font-size:14px;flex-shrink:0;}
+/* Animate in on load */
+.hero.loaded .hero-eyebrow,
+.hero.loaded .hero h1,
+.hero.loaded .hero-sub,
+.hero.loaded .hero-checks{opacity:1;transform:translateY(0);}
+@media(max-width:700px){
+  .hero{padding:36px 20px 34px;min-height:48vh;}
+  .hero h1{font-size:clamp(28px,8vw,42px);}
+}
+
+/* ── CLARIFIER — BG02 parallax ── */
+.calc-clarifier{
+  background-color:#2B4E8A;
+  position:relative;overflow:hidden;
+  padding:clamp(32px,5vw,64px) clamp(22px,5vw,60px) clamp(44px,6vw,72px);
+  display:grid;grid-template-columns:minmax(260px,320px) 1fr;
+  gap:clamp(28px,5vw,64px);align-items:center;
+}
+.clarifier-bg{
+  position:absolute;inset:-10%;
+  background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Mock%20Up%20-%20Web%20-%20Pricing%20-%20BG02.png');
+  background-size:cover;background-position:center;
+  will-change:transform;
+  transform:scale(1.08);
+}
+.clarifier-bg::after{content:'';position:absolute;inset:0;background:rgba(13,31,60,.42);}
+.cc-anim-col{position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-start;flex-shrink:0;}
+.cc-text-col{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;}
+.cc-big-title{font-family:'Argentum Novus',sans-serif;font-size:clamp(22px,3.5vw,42px);font-weight:800;color:#F7F9FC;line-height:1.08;margin-bottom:18px;}
+.cc-sub{font-size:clamp(13px,1.4vw,15px);color:rgba(247,249,252,.72);line-height:1.9;margin-bottom:24px;}
+.cc-chips{display:flex;flex-wrap:wrap;gap:9px;}
+.cc-chip{padding:7px 16px;border-radius:22px;font-size:12px;font-weight:600;border:1.5px solid rgba(168,191,224,.3);color:rgba(247,249,252,.75);background:rgba(255,255,255,.07);}
+.cc-chip.ok{background:rgba(168,191,224,.16);border-color:rgba(168,191,224,.5);color:#F7F9FC;}
+@media(max-width:700px){
+  .calc-clarifier{grid-template-columns:1fr;padding:32px 20px 44px;gap:32px;}
+  .cc-anim-col{justify-content:center;}
+  .cc-big-title{font-size:clamp(22px,7vw,30px);}
+}
+
+/* ── SCROLL-IN ANIMATIONS — cards fade + slide up ── */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .65s cubic-bezier(.25,.46,.45,.94),transform .65s cubic-bezier(.25,.46,.45,.94);}
+.reveal.in{opacity:1;transform:translateY(0);}
+/* Widget float-in (from below, like ieExplore card stack) */
+.widget-reveal{opacity:0;transform:translateY(48px) scale(.97);transition:opacity .75s cubic-bezier(.25,.46,.45,.94),transform .75s cubic-bezier(.25,.46,.45,.94);}
+.widget-reveal.in{opacity:1;transform:translateY(0) scale(1);}
+/* Stagger delays for card groups */
+.reveal-d1{transition-delay:.05s;}
+.reveal-d2{transition-delay:.12s;}
+.reveal-d3{transition-delay:.19s;}
+.reveal-d4{transition-delay:.26s;}
 
 /* ── NAV ── */
-/* Raw asset URLs */
-:root{
-  --btn-back:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Back%20Button.png');
-  --btn-menu:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Menu%20Button.png');
-}
-.nav-wrap{position:sticky;top:0;z-index:200;}
+.nav-wrap{position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(13,31,60,.15);}
 
-/* Top bar — #0D1F3C, ~1.5 inches tall = 80px */
+/* Top bar — #0D1F3C — 20% of viewport height */
 .nav-top{
-  background:var(--deepnav);
-  height:80px;
+  background:#0D1F3C;
+  height:clamp(56px,20vh,140px);
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 28px;
+  padding:0 32px;
+  transition:height .3s ease;
 }
+.nav-top.compact{height:clamp(48px,8vh,72px);}
 .nav-top-left{display:flex;align-items:center;gap:14px;}
 .nav-logo{height:28px;}
 .nav-brand-text{
@@ -99,23 +198,26 @@ body{font-family:'DM Sans',sans-serif;background:#F4F7FD;color:var(--dk);font-si
 }
 
 @media(max-width:700px){
-  .nav-top{height:60px;padding:0 16px;position:relative;}
+  .nav-top{height:clamp(56px,20vh,120px);padding:0 16px;position:relative;}
+  .nav-top.compact{height:clamp(48px,10vh,72px);}
   .nav-brand-text{display:none;}
   .nav-logo{height:22px;}
   .nav-back-btn{display:flex;}
   .nav-mobile-page{display:block;}
   .nav-sub{display:none;}
   .btn-ref{display:none;}
-  .nav-hamburger img{width:24px;}
+  .nav-hamburger img{width:26px;}
 }
 @media(min-width:701px){
   .nav-back-btn{display:none;}
 }
+/* anchor-styled back btn */
+.nav-back-btn{text-decoration:none;}
 
 /* Mobile menu overlay */
 .nav-menu-overlay{
   display:none;position:fixed;inset:0;
-  background:var(--deepnav);z-index:500;
+  background:#0D1F3C;z-index:9999;
   flex-direction:column;align-items:center;justify-content:center;gap:20px;
 }
 .nav-menu-overlay.open{display:flex;}
@@ -135,39 +237,27 @@ body{font-family:'DM Sans',sans-serif;background:#F4F7FD;color:var(--dk);font-si
   background:rgba(168,191,224,.18);border-color:var(--nav-light);color:#fff;
 }
 
-/* ── HERO — #2B4E8A full section, tall ── */
-.hero{
-  background:#2B4E8A;
-  padding:clamp(40px,6vw,80px) clamp(22px,5vw,60px) clamp(40px,6vw,72px);
-  min-height:54vh;
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden;
-  will-change:transform;
-}
-/* subtle radial highlight for depth */
-.hero::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 90% 50%,rgba(90,123,181,.28) 0%,transparent 70%);}
-.hero-eyebrow{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.75);margin-bottom:18px;position:relative;z-index:1;}
-.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(34px,6vw,64px);font-weight:800;color:#F7F9FC;line-height:1.06;margin-bottom:10px;letter-spacing:-.5px;position:relative;z-index:1;}
+/* hero rules above */
+.hero-eyebrow{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.9);margin-bottom:18px;}
+.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(34px,6vw,64px);font-weight:800;color:#F7F9FC;line-height:1.06;margin-bottom:10px;letter-spacing:-.5px;}
 .hero h1 span{color:#A8BFE0;}
-.hero-sub{font-size:clamp(13px,1.6vw,15.5px);color:rgba(247,249,252,.62);line-height:1.85;max-width:500px;margin-bottom:24px;position:relative;z-index:1;}
-.hero-checks{display:flex;flex-wrap:wrap;gap:10px 24px;position:relative;z-index:1;}
-.hero-check{display:flex;align-items:center;gap:8px;font-size:clamp(11.5px,1.3vw,13px);color:rgba(247,249,252,.82);font-weight:500;}
+.hero-sub{font-size:clamp(13px,1.6vw,15.5px);color:rgba(247,249,252,.78);line-height:1.85;max-width:500px;margin-bottom:24px;}
+.hero-checks{display:flex;flex-wrap:wrap;gap:10px 24px;}
+.hero-check{display:flex;align-items:center;gap:8px;font-size:clamp(11.5px,1.3vw,13px);color:rgba(247,249,252,.9);font-weight:500;}
 .hero-check::before{content:'✓';color:#A8BFE0;font-weight:700;font-size:13px;flex-shrink:0;}
-@media(max-width:700px){
-  .hero{padding:36px 20px 32px;min-height:44vh;}
-  .hero h1{font-size:clamp(28px,8vw,40px);}
-}
+@media(max-width:700px){.hero{padding:36px 20px 32px;min-height:44vh;}.hero h1{font-size:clamp(28px,8vw,40px);}}
 
 /* ── CLARIFIER — continues #2B4E8A, then white body ── */
 .calc-clarifier{
   background:#2B4E8A;
+  background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Mock%20Up%20-%20Web%20-%20Pricing%20-%20BG02.png');
+  background-size:cover;background-position:center;
   padding:clamp(24px,4vw,52px) clamp(22px,5vw,60px) clamp(36px,5vw,64px);
-  display:grid;grid-template-columns:280px 1fr;
+  display:grid;grid-template-columns:300px 1fr;
   gap:clamp(28px,4vw,60px);align-items:center;
   position:relative;
 }
-.calc-clarifier::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(168,191,224,.2),transparent);}
-.cc-anim-col{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cc-anim-col{display:flex;align-items:center;justify-content:flex-start;flex-shrink:0;}
 .cc-text-col{display:flex;flex-direction:column;justify-content:center;}
 .cc-big-title{
   font-family:'Argentum Novus',sans-serif;
@@ -184,12 +274,25 @@ body{font-family:'DM Sans',sans-serif;background:#F4F7FD;color:var(--dk);font-si
   .cc-big-title{font-size:clamp(20px,6vw,28px);}
 }
 
-/* ── PROGRESS BAR — sticky below nav ── */
-.progress-wrap{background:#2B4E8A;padding:6px 32px 2px;position:sticky;top:124px;z-index:190;}
-@media(max-width:700px){.progress-wrap{top:60px;padding:6px 16px 2px;}}
-.progress-bar-track{height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;}
+/* ── PROGRESS BAR ─────────── */
+.progress-wrap{background:#2B4E8A;padding:6px 32px 2px;position:sticky;top:calc(clamp(56px,20vh,140px) + 44px);z-index:190;}
+@media(max-width:700px){.progress-wrap{top:calc(60px + 0px);padding:6px 16px 2px;}}
+.progress-bar-track{height:3px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:#A8BFE0;border-radius:2px;transition:width .4s ease;width:0%;}
-.progress-label{text-align:right;font-size:9px;color:rgba(255,255,255,.5);padding:2px 0 5px;font-family:'Argentum Novus',sans-serif;letter-spacing:.06em;}
+.progress-label{display:none;}
+
+/* ── BACK TO TOP ── */
+#back-to-top{
+  position:fixed;bottom:24px;right:20px;z-index:8000;
+  width:44px;height:44px;border-radius:50%;
+  background:#0D1F3C;border:1.5px solid rgba(168,191,224,.35);
+  color:#F7F9FC;font-size:18px;line-height:1;
+  display:none;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:0 4px 16px rgba(13,31,60,.25);
+  transition:all .18s;
+}
+#back-to-top:hover{background:#2B4E8A;border-color:#A8BFE0;transform:translateY(-2px);}
+#back-to-top.visible{display:flex;}
 
 /* MAIN */
 .main{max-width:900px;margin:0 auto;padding:18px 14px 70px;display:grid;grid-template-columns:1fr 280px;gap:14px;align-items:start;}
@@ -574,7 +677,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .pm-note{font-size:11px;color:var(--gr);margin-top:9px;line-height:1.6;padding-top:7px;border-top:1px solid var(--bd);}
 
 /* ── COPYRIGHT ──────────────── */
-.copyright-bar{text-align:center;padding:14px 18px;background:var(--mn);font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.04em;border-top:1px solid rgba(255,255,255,.06);}
+/* copyright bar — canonical rule, dark bg */
 
 /* ── MODAL ──────────────────── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(43,78,138,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:800;align-items:center;justify-content:center;padding:18px;}
@@ -659,10 +762,10 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   <div class="nav-top">
     <div class="nav-top-left">
       <!-- Mobile: back button -->
-      <button class="nav-back-btn" onclick="history.back()" aria-label="Go back">
+      <a href="index.html" class="nav-back-btn" aria-label="Go back to Home">
         <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back">
-      </button>
-      <img id="logo-img" class="nav-logo" alt="Klaygo PH">
+      </a>
+      <a href="index.html" aria-label="Klaygo PH Home"><img id="logo-img" class="nav-logo" alt="Klaygo PH"></a>
       <div class="nav-brand-text">
         <strong>KLAYGOPH | Cleaning Services</strong>
         <span>Clearer space, Clearer mind.</span>
@@ -687,23 +790,27 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
 <div class="progress-wrap">
   <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
-  <div class="progress-label" id="progress-label">Step 1 of 10</div>
+  <div class="progress-label" id="progress-label"></div>
 </div>
 
-<div class="hero">
-  <div class="hero-eyebrow">KLAYGOPH · Cleaning Services</div>
-  <h1>Customize your clean,<br><span>See Your Price.</span></h1>
-  <p class="hero-sub">Get an instant estimate — no surprises, no hidden fees.<br>Fill in the steps below and send it to us on Messenger to confirm your slot.</p>
-  <div class="hero-checks">
-    <div class="hero-check">No log in required</div>
-    <div class="hero-check">No bank info collected</div>
-    <div class="hero-check">Pricing transparency only</div>
+<div class="hero" id="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">KLAYGOPH · Cleaning Services</div>
+    <h1>Customize your clean,<br><span>See Your Price.</span></h1>
+    <p class="hero-sub">Get an instant estimate — no surprises, no hidden fees.<br>Fill in the steps below and send it to us on Messenger to confirm your slot.</p>
+    <div class="hero-checks">
+      <div class="hero-check">No log in required</div>
+      <div class="hero-check">No bank info collected</div>
+      <div class="hero-check">Pricing transparency only</div>
+    </div>
   </div>
 </div>
 
 <!-- PRICE CALCULATOR CLARIFIER -->
-<div class="calc-clarifier">
-  <div class="cc-anim-col">
+<div class="calc-clarifier" id="clarifier">
+  <div class="clarifier-bg" id="clarifier-bg"></div>
+  <div class="cc-anim-col widget-reveal">
     <!-- Animated Calculator Widget v03 -->
     <div class="kg-estimate-animation">
       <div class="kg-state state-adjust">
@@ -820,8 +927,8 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 <div class="col-left" style="display:flex;flex-direction:column;">
 
 <!-- STEP 1: DATE -->
-<div class="card" id="card-date">
-  <div class="card-head"><div class="sbadge" id="b1">1</div><div><h2>Select a Date</h2><p>Check our live calendar — max 2 slots per day</p></div></div>
+<div class="card reveal" id="card-date">
+  <div class="card reveal-head"><div class="sbadge" id="b1">1</div><div><h2>Select a Date</h2><p>Check our live calendar — max 2 slots per day</p></div></div>
   <div class="cal-nav-row">
     <button class="cal-btn" onclick="prevMo()">&#8249;</button>
     <div class="cal-title" id="cal-title">Loading...</div>
@@ -840,15 +947,15 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </div>
 
 <!-- STEP 2: TIME -->
-<div class="card locked" id="card-time">
-  <div class="card-head"><div class="sbadge" id="b2">2</div><div><h2>Select a Time</h2><p id="time-sub">Choose your date first</p></div></div>
+<div class="card reveal locked" id="card-time">
+  <div class="card reveal-head"><div class="sbadge" id="b2">2</div><div><h2>Select a Time</h2><p id="time-sub">Choose your date first</p></div></div>
   <div id="time-alerts"></div>
   <div class="time-grid" id="time-grid"><p style="font-size:10.5px;color:var(--gr);">Select a date above to see available slots.</p></div>
 </div>
 
 <!-- STEP 3: AREA SIZE -->
-<div class="card locked" id="card-area">
-  <div class="card-head"><div class="sbadge" id="b3">3</div><div><h2>Area Size</h2><p>How big is the space you need cleaned?</p></div></div>
+<div class="card reveal locked" id="card-area">
+  <div class="card reveal-head"><div class="sbadge" id="b3">3</div><div><h2>Area Size</h2><p>How big is the space you need cleaned?</p></div></div>
   <div class="area-wrap">
     <div class="area-top">
       <span class="area-lbl">Your space is approximately</span>
@@ -879,8 +986,8 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </div>
 
 <!-- STEP 4: CLEANING TYPE -->
-<div class="card locked" id="card-clean">
-  <div class="card-head"><div class="sbadge" id="b4">4</div><div><h2>Cleaning Type</h2><p>Tap to select and see what's included</p></div></div>
+<div class="card reveal locked" id="card-clean">
+  <div class="card reveal-head"><div class="sbadge" id="b4">4</div><div><h2>Cleaning Type</h2><p>Tap to select and see what's included</p></div></div>
   <div class="clean-opts">
     <div class="clean-opt sel" id="ct-regular" onclick="selCleanType('regular')">
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Regular Cleaning</div><div class="co-badge included">Base price</div></div>
@@ -911,8 +1018,8 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </div>
 
 <!-- STEP 5: UNIT TYPE -->
-<div class="card locked" id="card-svc">
-  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>Property Type</h2><p>Select the type of space you need cleaned</p></div></div>
+<div class="card reveal locked" id="card-svc">
+  <div class="card reveal-head"><div class="sbadge" id="b5">5</div><div><h2>Property Type</h2><p>Select the type of space you need cleaned</p></div></div>
   <div class="alert info" style="margin-bottom:8px;font-size:10px;"><strong>Price is determined by your area size and cleaning type above.</strong> Selecting a property type here helps us prepare appropriately — it does not change the computed price.</div>
   <div class="svc-list">
     <div class="svc" data-name="Studio Type" onclick="selSvc(this)">
@@ -947,8 +1054,8 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </div>
 
 <!-- STEP 6: SCHEDULE -->
-<div class="card locked" id="card-sched">
-  <div class="card-head"><div class="sbadge" id="b6">6</div><div><h2>Schedule</h2><p>How often do you need cleaning?</p></div></div>
+<div class="card reveal locked" id="card-sched">
+  <div class="card reveal-head"><div class="sbadge" id="b6">6</div><div><h2>Schedule</h2><p>How often do you need cleaning?</p></div></div>
   <div class="pills">
     <div class="pill sel" onclick="selPill(this)" data-s="Initial / One-time">Initial / One-time</div>
     <div class="pill" onclick="selPill(this)" data-s="Monthly">Monthly</div>
@@ -966,14 +1073,14 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </div>
 
 <!-- STEP 7: ADD-ONS -->
-<div class="card locked" id="card-ext">
-  <div class="card-head"><div class="sbadge" id="b7">7</div><div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p></div></div>
+<div class="card reveal locked" id="card-ext">
+  <div class="card reveal-head"><div class="sbadge" id="b7">7</div><div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p></div></div>
   <div class="al" id="al"></div>
 </div>
 
 <!-- STEP 8: SPECIAL INSTRUCTIONS -->
-<div class="card locked" id="card-instr">
-  <div class="card-head"><div class="sbadge" id="b8">8</div><div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p></div></div>
+<div class="card reveal locked" id="card-instr">
+  <div class="card reveal-head"><div class="sbadge" id="b8">8</div><div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p></div></div>
   <p style="font-size:10px;color:var(--gr);margin-bottom:6px;">Quick select — tap all that apply:</p>
   <div class="sit-tags">
     <div class="sit-tag" onclick="togSit(this)" data-val="Kids present">Kids present</div>
@@ -993,8 +1100,8 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </div>
 
 <!-- STEP 9: LOCATION -->
-<div class="card locked" id="card-loc">
-  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p></div></div>
+<div class="card reveal locked" id="card-loc">
+  <div class="card reveal-head"><div class="sbadge" id="b9">9</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p></div></div>
   <div style="font-size:10px;color:var(--gr);padding:6px 10px;background:var(--pa);border-radius:6px;margin-bottom:10px;line-height:1.6;">₱50 base (first 2 km) + ₱10/km up to 6 km + ₱15/km beyond. Nearby areas have fixed rates.</div>
   <div class="loc-grid" id="loc-grid"></div>
   <div class="other-inp" id="other-inp"><input type="text" id="other-txt" placeholder="Type your area / city..." oninput="compute()"></div>
@@ -1002,8 +1109,8 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </div>
 
 <!-- STEP 10: YOUR INFORMATION -->
-<div class="card locked" id="card-info">
-  <div class="card-head"><div class="sbadge" id="b10">10</div><div><h2>Your Information</h2><p>We'll use this to confirm your booking</p></div></div>
+<div class="card reveal locked" id="card-info">
+  <div class="card reveal-head"><div class="sbadge" id="b10">10</div><div><h2>Your Information</h2><p>We'll use this to confirm your booking</p></div></div>
   <div class="alert info" style="margin-bottom:8px;font-size:10px;">&#128274; No log-in required. No bank information collected. Your data is only used to process your booking request.</div>
   <div class="fields">
     <div class="field full">
@@ -1014,7 +1121,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
     <div class="field"><label>Email Address</label><input type="email" id="f-email" placeholder="email@example.com"></div>
     <div class="field full">
       <label>Complete Address</label>
-      <input type="text" id="f-addr" placeholder="Start typing your address..." autocomplete="off" style="width:100%;">
+      <input type="text" id="f-addr" placeholder="Start typing your address..." autocomplete="off" style="width:100%;" onfocus="loadMaps()" ontouchstart="loadMaps()">
       <div class="travel-card" id="travel-card" style="display:none;">
         <div class="travel-row">
           <div class="travel-icon">🚗</div>
@@ -1035,7 +1142,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </div>
 
 <!-- POLICIES -->
-<div class="pb">
+<div class="pb reveal">
   <h3>📋 Booking Policies</h3>
 
   <div class="acc-item open" id="acc-pricing">
@@ -1184,7 +1291,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
 <!-- RIGHT PANEL -->
 <div class="panel-right">
-  <div class="pcard">
+  <div class="pcard reveal">
     <div class="phead">
       <img id="est-logo-img" alt="Klaygo PH" style="height:22px;display:block;margin-bottom:6px;">
       <div class="pest-id" id="p-est-id">—</div>
@@ -1297,8 +1404,8 @@ var FORMSPREE  = 'mjglezpk';
 var AUTO_REFRESH_MS = 300000; // 5 min auto-refresh
 
 // GitHub-hosted image URLs
-var LIGHT_LOGO = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
-var DARK_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
+// Single logo URL — filter applied per background context
+
 var BLUE_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
 var PRINT_BG   = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Print%20-%20White%20Background.png';
 
@@ -1439,8 +1546,8 @@ function updateProgress(){
   var pct=Math.round(done/10*100);
   var fill=document.getElementById('progress-fill');
   var lbl=document.getElementById('progress-label');
-  if(fill)fill.style.width=Math.max(pct,3)+'%';
-  if(lbl)lbl.textContent=done===10?'All steps complete \u2713':'Step '+current+' of 10';
+  if(fill)fill.style.width=Math.max(pct,2)+'%';
+  if(lbl)lbl.textContent=''; // label removed per design
 }
 
 // ── COMPUTE BASE PRICE ────────────────────────────────────────
@@ -2146,30 +2253,70 @@ function openMenu(){document.getElementById('nav-menu').classList.add('open');do
 function closeMenu(){document.getElementById('nav-menu').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
 
-// ── COMPACT NAV ON SCROLL ──────────────────────────────────────
+// ── COMPACT NAV ON SCROLL ─────────────────────────────────────
 (function(){
   var navTop=document.querySelector('.nav-top');
-  var lastY=0;
   window.addEventListener('scroll',function(){
-    var y=window.scrollY;
-    if(navTop){
-      if(y>60){navTop.classList.add('compact');}
-      else{navTop.classList.remove('compact');}
-    }
-    lastY=y;
+    if(navTop){navTop.classList.toggle('compact',window.scrollY>80);}
   },{passive:true});
 })();
 
-// ── MINIMAL PARALLAX ──────────────────────────────────────────
+// ── PARALLAX + SCROLL ANIMATIONS ──────────────────────────────
 (function(){
-  var hero=document.querySelector('.hero');
-  var clarifier=document.querySelector('.calc-clarifier');
-  function onScroll(){
-    var y=window.scrollY;
-    // hero content drifts up very subtly
-    if(hero){hero.style.backgroundPositionY=(y*0.18)+'px';}
+  'use strict';
+  var heroBg=document.getElementById('hero-bg');
+  var clarBg=document.getElementById('clarifier-bg');
+  var heroEl=document.getElementById('hero');
+  var clarEl=document.getElementById('clarifier');
+  var prefReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // Hero text fade-in on load
+  if(heroEl){requestAnimationFrame(function(){setTimeout(function(){heroEl.classList.add('loaded');},80);});}
+
+  if(!prefReduced){
+    var ticking=false;
+    window.addEventListener('scroll',function(){
+      if(ticking)return;ticking=true;
+      requestAnimationFrame(function(){
+        var y=window.scrollY;
+        // Hero BG: cinematic slow zoom + vertical drift
+        if(heroBg&&heroEl){
+          var hH=heroEl.offsetHeight;
+          var p=Math.min(y/Math.max(hH,1),1);
+          var sc=1.08-(p*0.06);
+          var dy=y*0.28;
+          heroBg.style.transform='translateY('+dy+'px) scale('+sc+')';
+        }
+        // Clarifier BG: independent parallax
+        if(clarBg&&clarEl){
+          var r=clarEl.getBoundingClientRect();
+          var relY=-r.top;
+          var p2=Math.min(Math.max(relY/Math.max(clarEl.offsetHeight,1),0),1);
+          var sc2=1.08-(p2*0.06);
+          var dy2=relY*0.22;
+          clarBg.style.transform='translateY('+dy2+'px) scale('+sc2+')';
+        }
+        // Hero text: subtle upward drift (slower than scroll)
+        var hc=heroEl&&heroEl.querySelector('.hero-content');
+        if(hc&&heroEl&&y<heroEl.offsetHeight){
+          hc.style.transform='translateY('+(y*0.16)+'px)';
+        }
+        ticking=false;
+      });
+    },{passive:true});
   }
-  window.addEventListener('scroll',onScroll,{passive:true});
+
+  // IntersectionObserver: staggered reveal — ieExplore card stack effect
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{threshold:0.06,rootMargin:'0px 0px -28px 0px'});
+    document.querySelectorAll('.reveal,.widget-reveal').forEach(function(el){io.observe(el);});
+  } else {
+    document.querySelectorAll('.reveal,.widget-reveal').forEach(function(el){el.classList.add('in');});
+  }
 })();
 
 // ── INIT ──────────────────────────────────────────────────────
@@ -2429,6 +2576,18 @@ document.addEventListener('DOMContentLoaded',function(){
     obs.observe(beEl);
   }
 });
+
+// ── BACK TO TOP ──────────────────────────────────────────────
+(function(){
+  var btn=document.createElement('button');
+  btn.id='back-to-top';btn.innerHTML='↑';btn.setAttribute('aria-label','Back to top');
+  btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+  document.body.appendChild(btn);
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.classList.add('visible');}
+    else{btn.classList.remove('visible');}
+  },{passive:true});
+})();
 
 // ══════════════════════════════════════════════════════
 // END SMART ADDRESS MODULE
