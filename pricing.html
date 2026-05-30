@@ -22,71 +22,147 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:#F4F7FD;color:var(--dk);font-size:14px;line-height:1.55;}
 
-/* ── NAV (2-row) ── */
+/* ── NAV ── */
+/* Raw asset URLs */
+:root{
+  --btn-back:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Back%20Button.png');
+  --btn-menu:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Menu%20Button.png');
+}
 .nav-wrap{position:sticky;top:0;z-index:200;}
-.nav-top{background:var(--deepnav);height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:none;}
-.nav-top-left{display:flex;align-items:center;gap:12px;}
-.nav-logo{height:24px;}
-.nav-brand-text{font-family:'Argentum Novus',sans-serif;font-size:10px;color:rgba(247,249,252,.45);line-height:1.35;display:flex;flex-direction:column;}
-.nav-brand-text strong{color:rgba(247,249,252,.7);font-weight:600;}
+
+/* Top bar — #0D1F3C, ~1.5 inches tall = 80px */
+.nav-top{
+  background:var(--deepnav);
+  height:80px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;
+}
+.nav-top-left{display:flex;align-items:center;gap:14px;}
+.nav-logo{height:28px;}
+.nav-brand-text{
+  font-family:'Argentum Novus',sans-serif;
+  font-size:10.5px;color:rgba(247,249,252,.45);
+  line-height:1.4;display:flex;flex-direction:column;
+}
+.nav-brand-text strong{color:rgba(247,249,252,.75);font-weight:700;letter-spacing:.02em;}
 .nav-top-right{display:flex;align-items:center;gap:10px;}
-.nav-hamburger{background:none;border:none;cursor:pointer;color:var(--nav-light);padding:6px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:background .15s;}
+
+/* PNG menu button */
+.nav-hamburger{
+  background:none;border:none;cursor:pointer;
+  padding:0;width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:8px;transition:background .15s;
+}
 .nav-hamburger:hover{background:rgba(255,255,255,.08);}
-.nav-hamburger svg{display:block;}
-.btn-ref{background:transparent;border:1px solid rgba(168,191,224,.25);color:var(--li);border-radius:5px;padding:4px 10px;font-size:10px;cursor:pointer;font-family:inherit;}
+.nav-hamburger img{width:28px;height:auto;display:block;}
+.btn-ref{
+  background:transparent;border:1px solid rgba(168,191,224,.25);
+  color:var(--li);border-radius:5px;padding:4px 10px;
+  font-size:10px;cursor:pointer;font-family:inherit;
+}
 .btn-ref:hover{border-color:var(--li);color:#fff;}
 
-/* Sub-nav tabs */
-.nav-sub{background:var(--mn);display:flex;align-items:center;padding:0 20px;height:38px;gap:0;border-top:1px solid rgba(255,255,255,.06);}
-.nav-tab{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:6px 20px;display:flex;align-items:center;position:relative;transition:all .15s;white-space:nowrap;border-radius:50px;}
-.nav-tab:hover{color:rgba(247,249,252,.9);}
-.nav-tab.active{color:var(--deepnav);background:#F7F9FC;font-weight:700;}
+/* Sub-nav — #2B4E8A */
+.nav-sub{
+  background:var(--mn);display:flex;align-items:center;
+  padding:0 28px;height:44px;gap:4px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.nav-tab{
+  font-family:'Argentum Novus',sans-serif;
+  font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;color:rgba(247,249,252,.55);
+  padding:7px 22px;display:flex;align-items:center;
+  border-radius:50px;transition:all .15s;white-space:nowrap;
+}
+.nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.07);}
+/* Active tab uses white pill — optionally will show PNG overlay */
+.nav-tab.active{
+  color:var(--deepnav);background:#F7F9FC;font-weight:800;
+  position:relative;
+}
 
-/* Mobile nav */
-.nav-mobile-page{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);display:none;position:absolute;left:50%;transform:translateX(-50%);}
-@media(max-width:660px){
+/* Mobile back button (left of page name) */
+.nav-back-btn{
+  background:none;border:none;cursor:pointer;
+  padding:0;width:32px;height:32px;
+  display:none;align-items:center;justify-content:center;
+}
+.nav-back-btn img{width:24px;height:auto;display:block;}
+
+/* Mobile: page name centred */
+.nav-mobile-page{
+  font-family:'Argentum Novus',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);
+  display:none;position:absolute;left:50%;transform:translateX(-50%);
+}
+
+@media(max-width:700px){
+  .nav-top{height:60px;padding:0 16px;position:relative;}
   .nav-brand-text{display:none;}
+  .nav-logo{height:22px;}
+  .nav-back-btn{display:flex;}
   .nav-mobile-page{display:block;}
-  .nav-top{position:relative;}
   .nav-sub{display:none;}
   .btn-ref{display:none;}
+  .nav-hamburger img{width:24px;}
+}
+@media(min-width:701px){
+  .nav-back-btn{display:none;}
 }
 
 /* Mobile menu overlay */
-.nav-menu-overlay{display:none;position:fixed;inset:0;background:var(--deepnav);z-index:500;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+.nav-menu-overlay{
+  display:none;position:fixed;inset:0;
+  background:var(--deepnav);z-index:500;
+  flex-direction:column;align-items:center;justify-content:center;gap:20px;
+}
 .nav-menu-overlay.open{display:flex;}
-.nav-menu-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--nav-light);cursor:pointer;font-size:24px;padding:8px;font-family:inherit;}
-.nav-menu-pill{font-family:'Argentum Novus',sans-serif;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);text-decoration:none;border:1.5px solid rgba(247,249,252,.25);border-radius:50px;padding:14px 48px;transition:all .15s;width:220px;text-align:center;}
-.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.18);border-color:var(--nav-light);color:#fff;}
+.nav-menu-close{
+  position:absolute;top:20px;right:24px;
+  background:none;border:none;color:var(--nav-light);
+  cursor:pointer;font-size:26px;padding:8px;font-family:inherit;
+}
+.nav-menu-pill{
+  font-family:'Argentum Novus',sans-serif;
+  font-size:16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--nav-light);text-decoration:none;
+  border:1.5px solid rgba(247,249,252,.25);border-radius:50px;
+  padding:16px 52px;transition:all .15s;width:240px;text-align:center;
+}
+.nav-menu-pill:hover,.nav-menu-pill.active{
+  background:rgba(168,191,224,.18);border-color:var(--nav-light);color:#fff;
+}
 
-/* ── HERO ── */
-.hero{background:var(--deepnav);padding:36px 28px 32px;}
+/* ── HERO — full #2B4E8A block ── */
+.hero{background:var(--mn);padding:48px 40px 44px;}
 .hero-eyebrow{font-family:'Argentum Novus',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(168,191,224,.7);margin-bottom:14px;}
-.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:800;color:var(--nav-light);line-height:1.1;margin-bottom:4px;letter-spacing:-.5px;}
+.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(32px,5.5vw,58px);font-weight:800;color:var(--nav-light);line-height:1.08;margin-bottom:8px;letter-spacing:-.5px;}
 .hero h1 span{color:var(--li);}
-.hero-sub{font-size:13px;color:rgba(247,249,252,.6);line-height:1.75;max-width:480px;margin-bottom:18px;}
-.hero-checks{display:flex;flex-wrap:wrap;gap:10px;}
-.hero-check{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(247,249,252,.75);}
-.hero-check::before{content:'✓';color:var(--li);font-weight:700;font-size:12px;}
-@media(max-width:660px){.hero{padding:24px 18px 22px;}}
+.hero-sub{font-size:13.5px;color:rgba(247,249,252,.65);line-height:1.8;max-width:520px;margin-bottom:20px;}
+.hero-checks{display:flex;flex-wrap:wrap;gap:16px;}
+.hero-check{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(247,249,252,.8);}
+.hero-check::before{content:'✓';color:var(--li);font-weight:700;font-size:13px;}
+@media(max-width:700px){.hero{padding:32px 20px 28px;}}
 
-/* ── CLARIFIER (Price Calculator section) ── */
-.calc-clarifier{background:#fff;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid var(--pa);}
-.cc-anim-col{background:#F4F7FD;display:flex;align-items:center;justify-content:center;padding:32px 24px;min-height:280px;}
-.cc-text-col{padding:36px 32px;display:flex;flex-direction:column;justify-content:center;}
-.cc-big-title{font-family:'Argentum Novus',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--deepnav);line-height:1.15;margin-bottom:14px;}
-.cc-sub{font-size:13px;color:#4A5568;line-height:1.75;margin-bottom:18px;}
+/* ── CLARIFIER — continues the #2B4E8A block ── */
+.calc-clarifier{background:var(--mn);padding:0 40px 52px;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;}
+.cc-anim-col{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cc-text-col{display:flex;flex-direction:column;justify-content:center;}
+.cc-big-title{font-family:'Argentum Novus',sans-serif;font-size:clamp(20px,2.8vw,30px);font-weight:800;color:var(--nav-light);line-height:1.15;margin-bottom:16px;}
+.cc-sub{font-size:13px;color:rgba(247,249,252,.65);line-height:1.8;margin-bottom:20px;}
 .cc-chips{display:flex;flex-wrap:wrap;gap:8px;}
-.cc-chip{padding:6px 14px;border-radius:20px;font-size:11.5px;font-weight:600;border:1.5px solid var(--bd);color:var(--gr);background:#fff;}
-.cc-chip.ok{background:var(--gbg);border-color:var(--gbdr);color:var(--green);}
-@media(max-width:660px){
-  .calc-clarifier{grid-template-columns:1fr;}
-  .cc-anim-col{min-height:200px;padding:20px 16px;}
-  .cc-text-col{padding:22px 18px;}
+.cc-chip{padding:7px 16px;border-radius:20px;font-size:11.5px;font-weight:600;border:1.5px solid rgba(168,191,224,.35);color:rgba(247,249,252,.75);background:rgba(255,255,255,.07);}
+.cc-chip.ok{background:rgba(168,191,224,.15);border-color:rgba(168,191,224,.5);color:#F7F9FC;}
+@media(max-width:700px){
+  .calc-clarifier{grid-template-columns:1fr;padding:24px 20px 36px;gap:24px;}
+  .cc-anim-col{justify-content:center;}
 }
 
 /* ── PROGRESS BAR ─────────── */
-.progress-wrap{background:var(--mn);padding:8px 16px 4px;position:sticky;top:80px;z-index:190;}
+.progress-wrap{background:var(--mn);padding:8px 20px 4px;position:sticky;top:124px;z-index:190;}
+@media(max-width:700px){.progress-wrap{top:60px;}}
 .progress-bar-track{height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:#A8BFE0;border-radius:2px;transition:width .4s ease;width:0%;}
 .progress-label{text-align:right;font-size:9.5px;color:rgba(255,255,255,.65);padding:3px 0 7px;}
@@ -538,7 +614,7 @@ footer{background:var(--mn);padding:14px 24px;}
 </head>
 <body>
 
-<!-- NAV MENU OVERLAY (mobile & desktop) -->
+<!-- NAV MENU OVERLAY -->
 <div class="nav-menu-overlay" id="nav-menu">
   <button class="nav-menu-close" onclick="closeMenu()">✕</button>
   <a href="index.html" class="nav-menu-pill">Home</a>
@@ -547,9 +623,13 @@ footer{background:var(--mn);padding:14px 24px;}
 </div>
 
 <div class="nav-wrap">
-  <!-- Top bar -->
+  <!-- Top bar: #0D1F3C, ~1.5 inches tall -->
   <div class="nav-top">
     <div class="nav-top-left">
+      <!-- Mobile: back button -->
+      <button class="nav-back-btn" onclick="history.back()" aria-label="Go back">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back">
+      </button>
       <img id="logo-img" class="nav-logo" alt="Klaygo PH">
       <div class="nav-brand-text">
         <strong>KLAYGOPH | Cleaning Services</strong>
@@ -558,19 +638,16 @@ footer{background:var(--mn);padding:14px 24px;}
     </div>
     <div class="nav-top-right">
       <button class="btn-ref" onclick="refreshCal()">Refresh Calendar</button>
+      <!-- PNG menu button -->
       <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
-        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="20" height="2.5" rx="1.25" fill="currentColor"/>
-          <rect y="6.5" width="14" height="2.5" rx="1.25" fill="currentColor"/>
-          <rect y="13" width="20" height="2.5" rx="1.25" fill="currentColor"/>
-        </svg>
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Menu%20Button.png" alt="Menu">
       </button>
     </div>
   </div>
-  <!-- Sub-nav tabs -->
+  <!-- Sub-nav: #2B4E8A with active page pill -->
   <div class="nav-sub">
-    <a href="index.html" class="nav-tab">Home</a>
     <span class="nav-mobile-page">PRICING</span>
+    <a href="index.html" class="nav-tab">Home</a>
     <a href="pricing.html" class="nav-tab active">Pricing</a>
     <a href="sayhello.html" class="nav-tab">Say Hello!</a>
   </div>
@@ -595,43 +672,36 @@ footer{background:var(--mn);padding:14px 24px;}
 <!-- PRICE CALCULATOR CLARIFIER -->
 <div class="calc-clarifier">
   <div class="cc-anim-col">
-    <!-- Animated Calculator Widget -->
-    <div class="klaygo-scene">
-      <div class="bg-glow glow-1"></div>
-      <div class="bg-glow glow-2"></div>
-      <div class="flow-card">
-        <div class="state adjust-state">
-          <div class="floating-icon">☰</div>
-          <div class="anim-label">ADJUST AMOUNT</div>
-          <div class="anim-price">₱2,450</div>
-          <div class="anim-sub">Drag to adjust</div>
-          <div class="slider-wrap">
-            <div class="slider-line"></div>
-            <div class="slider-fill"></div>
-            <div class="slider-knob"></div>
-          </div>
-          <div class="anim-range"><span>₱500</span><span>₱5,000</span></div>
+    <!-- Animated Calculator Widget v02 -->
+    <div class="kg-estimate-animation">
+      <div class="kg-state state-adjust">
+        <div class="kg-label">ADJUST AMOUNT</div>
+        <div class="kg-amount">₱<span id="kg-counter">600</span></div>
+        <div class="kg-slider">
+          <div class="kg-slider-track"></div>
+          <div class="kg-slider-fill"></div>
+          <div class="kg-slider-knob"></div>
         </div>
-        <div class="state calculate-state">
-          <div class="floating-icon calc-icon">⌘</div>
-          <div class="anim-label">CALCULATING</div>
-          <div class="calculator-box">
-            <div class="anim-screen"></div>
-            <div class="calc-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="kg-range"><span>₱600</span><span>₱2,450</span></div>
+      </div>
+      <div class="kg-state state-calc">
+        <div class="kg-label">CALCULATING</div>
+        <div class="kg-calculator">
+          <div class="calc-screen"></div>
+          <div class="calc-buttons">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
           </div>
-          <div class="loading-ring"></div>
-          <div class="anim-sub">Crunching numbers...</div>
         </div>
-        <div class="state receipt-state">
-          <div class="floating-icon receipt-icon">✓</div>
-          <div class="receipt-paper">
-            <div class="receipt-title">ESTIMATE READY</div>
-            <div class="receipt-rsub">Here's your estimate</div>
-            <div class="receipt-divider"></div>
-            <div class="total-label">TOTAL AMOUNT</div>
-            <div class="receipt-total">₱2,450</div>
-            <div class="receipt-lines"><span></span><span></span></div>
-          </div>
+        <div class="kg-sub">Preparing estimate</div>
+      </div>
+      <div class="kg-state state-receipt">
+        <div class="kg-receipt">
+          <div class="receipt-title">ESTIMATE READY</div>
+          <div class="receipt-line"></div>
+          <div class="receipt-total">₱2,450</div>
+          <div class="receipt-check">✓</div>
         </div>
       </div>
     </div>
@@ -649,46 +719,59 @@ footer{background:var(--mn);padding:14px 24px;}
 </div>
 
 <style>
-/* ── ANIMATED WIDGET (inline, scoped) ── */
-.klaygo-scene{position:relative;width:120px;height:135px;display:grid;place-items:center;font-family:'Argentum Novus','DM Sans',sans-serif;}
-.bg-glow{position:absolute;border-radius:999px;filter:blur(25px);opacity:.6;}
-.glow-1{width:70px;height:70px;background:#A8BFE0;top:10px;left:10px;animation:glFloat 8s ease-in-out infinite;}
-.glow-2{width:55px;height:55px;background:#DCE7F5;bottom:10px;right:5px;animation:glFloat 10s ease-in-out infinite reverse;}
-.flow-card{position:relative;width:100px;height:117px;border-radius:16px;background:linear-gradient(180deg,#fff,#F7F9FC);border:1px solid rgba(168,191,224,.45);box-shadow:0 10px 25px rgba(13,31,60,.08);overflow:hidden;}
-.state{position:absolute;inset:0;padding:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
-.floating-icon{width:25px;height:25px;border-radius:9px;background:linear-gradient(135deg,#2B4E8A,#5A7BB5);color:#fff;display:grid;place-items:center;font-size:10px;font-weight:700;margin-bottom:7px;box-shadow:0 5px 12px rgba(43,78,138,.22);}
-.anim-label{font-size:4.5px;letter-spacing:2px;color:#2B4E8A;margin-bottom:5px;}
-.anim-price{font-size:16px;color:#0D1F3C;margin-bottom:2px;}
-.anim-sub{font-size:6px;color:#6B6B68;}
-.slider-wrap{position:relative;width:100%;height:17px;margin-top:10px;}
-.slider-line{position:absolute;top:6px;width:100%;height:4px;border-radius:999px;background:#E6EEF8;}
-.slider-fill{position:absolute;top:6px;left:0;width:58%;height:4px;border-radius:999px;background:linear-gradient(90deg,#3D6399,#5A7BB5);animation:fillMove 3s ease-in-out infinite;}
-.slider-knob{position:absolute;top:1.5px;left:55%;width:13px;height:13px;border-radius:999px;background:linear-gradient(135deg,#2B4E8A,#5A7BB5);box-shadow:0 3px 8px rgba(43,78,138,.25);animation:knobMove 3s ease-in-out infinite;}
-.anim-range{width:100%;display:flex;justify-content:space-between;margin-top:2px;font-size:5px;color:#6B6B68;}
-.calculate-state{opacity:0;animation:showCalc 9s infinite;}
-.calculator-box{position:relative;width:48px;height:55px;border-radius:11px;background:#fff;border:1px solid #EBF1FA;margin:8px 0;padding:6px;box-shadow:0 4px 10px rgba(13,31,60,.06);}
-.anim-screen{height:10px;border-radius:4px;background:#DCE7F5;margin-bottom:6px;}
-.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
-.calc-grid span{height:7px;border-radius:3px;background:#A8BFE0;animation:pulse 1.5s infinite;}
-.loading-ring{position:absolute;width:70px;height:70px;border-radius:999px;border:1px dashed rgba(61,99,153,.2);animation:spin 8s linear infinite;}
-.receipt-state{opacity:0;animation:showReceipt 9s infinite;}
-.receipt-paper{width:72px;background:#fff;border-radius:10px;padding:9px 7px;box-shadow:0 4px 12px rgba(13,31,60,.06);}
-.receipt-title{font-size:7.5px;color:#2B4E8A;margin-bottom:2px;}
-.receipt-rsub{font-size:5.5px;color:#6B6B68;margin-bottom:6px;}
-.receipt-divider{height:1px;background:#DCE7F5;margin-bottom:6px;}
-.total-label{font-size:4.5px;letter-spacing:1.5px;color:#6B6B68;margin-bottom:3px;}
-.receipt-total{font-size:14px;color:#0D1F3C;margin-bottom:6px;}
-.receipt-lines{display:flex;flex-direction:column;gap:3px;}
-.receipt-lines span{height:3px;border-radius:999px;background:#DCE7F5;}
-.adjust-state{animation:showAdjust 9s infinite;}
-@keyframes showAdjust{0%,28%{opacity:1;transform:scale(1);}33%,100%{opacity:0;transform:scale(.96);}}
-@keyframes showCalc{0%,30%{opacity:0;transform:scale(.96);}36%,60%{opacity:1;transform:scale(1);}66%,100%{opacity:0;transform:scale(.96);}}
-@keyframes showReceipt{0%,62%{opacity:0;transform:scale(.96);}70%,92%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(1);}}
-@keyframes knobMove{0%,100%{left:10%;}50%{left:65%;}}
-@keyframes fillMove{0%,100%{width:15%;}50%{width:70%;}}
-@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-@keyframes pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
-@keyframes glFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+/* ── ANIMATED WIDGET v02 ── */
+.kg-estimate-animation{
+  width:280px;height:300px;
+  background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  font-family:'Argentum Novus',sans-serif;
+}
+.kg-state{
+  position:absolute;inset:0;
+  width:240px;height:260px;margin:auto;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  background:#FFFFFF;
+  border:1px solid #A8BFE0;border-radius:28px;
+}
+.kg-label{font-size:12px;letter-spacing:2px;color:#3D6399;margin-bottom:18px;}
+.kg-amount{font-size:42px;font-weight:700;color:#0D1F3C;margin-bottom:24px;}
+.kg-sub{font-size:14px;color:#6B6B68;}
+.kg-slider{position:relative;width:180px;height:30px;}
+.kg-slider-track{position:absolute;top:11px;left:0;width:100%;height:8px;background:#EBF1FA;border-radius:999px;}
+.kg-slider-fill{position:absolute;top:11px;left:0;height:8px;background:#2B4E8A;border-radius:999px;animation:kgFillMove 3s linear infinite;}
+.kg-slider-knob{position:absolute;top:3px;width:24px;height:24px;border-radius:50%;background:#2B4E8A;animation:kgKnobMove 3s linear infinite;}
+.kg-range{width:180px;display:flex;justify-content:space-between;margin-top:12px;font-size:11px;color:#6B6B68;}
+.kg-calculator{width:120px;height:150px;border:3px solid #0D1F3C;border-radius:18px;padding:14px;margin-bottom:18px;}
+.calc-screen{height:22px;border:2px solid #A8BFE0;border-radius:6px;margin-bottom:14px;overflow:hidden;position:relative;}
+.calc-screen::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:#2B4E8A;animation:kgScreenFill 2s linear infinite;}
+.calc-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.calc-buttons span{width:22px;height:22px;border:2px solid #0D1F3C;border-radius:6px;animation:kgPulse 1.2s infinite;}
+.calc-buttons span:nth-child(2){animation-delay:.1s;}
+.calc-buttons span:nth-child(3){animation-delay:.2s;}
+.calc-buttons span:nth-child(4){animation-delay:.3s;}
+.calc-buttons span:nth-child(5){animation-delay:.4s;}
+.calc-buttons span:nth-child(6){animation-delay:.5s;}
+.calc-buttons span:nth-child(7){animation-delay:.6s;}
+.calc-buttons span:nth-child(8){animation-delay:.7s;}
+.calc-buttons span:nth-child(9){animation-delay:.8s;}
+.kg-receipt{width:150px;}
+.receipt-title{font-size:16px;font-weight:700;color:#2B4E8A;margin-bottom:18px;}
+.receipt-line{width:100%;height:2px;background:#A8BFE0;margin-bottom:18px;}
+.receipt-total{font-size:40px;font-weight:700;color:#0D1F3C;margin-bottom:14px;}
+.receipt-check{font-size:34px;color:#2B4E8A;}
+.state-adjust{animation:kgShowAdjust 9s infinite;}
+.state-calc{opacity:0;animation:kgShowCalc 9s infinite;}
+.state-receipt{opacity:0;animation:kgShowReceipt 9s infinite;}
+@keyframes kgShowAdjust{0%,30%{opacity:1;}35%,100%{opacity:0;}}
+@keyframes kgShowCalc{0%,32%{opacity:0;}38%,62%{opacity:1;}68%,100%{opacity:0;}}
+@keyframes kgShowReceipt{0%,65%{opacity:0;}72%,95%{opacity:1;}100%{opacity:0;}}
+@keyframes kgKnobMove{0%{left:0%;}100%{left:86%;}}
+@keyframes kgFillMove{0%{width:0%;}100%{width:90%;}}
+@keyframes kgPulse{0%,100%{background:transparent;}50%{background:#A8BFE0;}}
+@keyframes kgScreenFill{from{left:-100%;}to{left:100%;}}
+@media(max-width:700px){.kg-estimate-animation{width:200px;height:220px;}.kg-state{width:170px;height:185px;}.kg-amount{font-size:28px;}.kg-calculator{width:86px;height:110px;}.receipt-total{font-size:28px;}}
 </style>
 
 <div class="main">
@@ -2001,6 +2084,28 @@ async function refreshCal(){
 }
 
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3200);}
+
+// ── WIDGET COUNTER ANIMATION ──────────────────────────────────
+(function(){
+  var counter=document.getElementById('kg-counter');
+  if(!counter)return;
+  var START=600,END=2450,DUR=3000;
+  function animateCounter(){
+    var startTime=null;
+    function update(ts){
+      if(!startTime)startTime=ts;
+      var p=Math.min((ts-startTime)/DUR,1);
+      counter.textContent=Math.floor(START+(END-START)*p).toLocaleString();
+      if(p<1)requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+  animateCounter();
+  setInterval(function(){
+    counter.textContent=START.toLocaleString();
+    setTimeout(animateCounter,50);
+  },9000);
+})();
 
 // ── NAV ────────────────────────────────────────────────────────
 function openMenu(){document.getElementById('nav-menu').classList.add('open');document.body.style.overflow='hidden';}
