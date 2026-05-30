@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Klaygo PH</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/argentum-novus" rel="stylesheet">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuiza3RKflnhopjK1SPZHZo-q3yq_2S78&libraries=places&callback=initGoogleMaps" async defer></script>
+<style>
+:root{
+  --mn:#2B4E8A;--pr:#2B4E8A;--mi:#4169b0;--se:#6B8FCA;
+  --li:#A8BFE0;--pa:#EBF1FA;--bg:#F4F7FD;--gr:#6B6B68;
+  --dk:#2C2C2A;--deepnav:#0D1F3C;--wh:#fff;--bd:#D8DCE8;--r:22px;
+  --sh:0 8px 30px rgba(43,78,138,.08);
+  --sh2:0 2px 12px rgba(43,78,138,.06);
+  --green:#1B8A4C;--gbg:#E8F7EE;--gbdr:#A3D9B8;
+  --red:#C0392B;--rbg:#FDEAEA;--rbdr:#F5B7B1;
+  --amber:#7A5C00;--abg:#FFF8E7;--abdr:#F5C842;
+  --nav-light:#F7F9FC;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#F4F7FD;color:var(--dk);font-size:14px;line-height:1.55;}
+
+/* ── NAV (2-row) ── */
+.nav-wrap{position:sticky;top:0;z-index:200;}
+.nav-top{background:var(--deepnav);height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:none;}
+.nav-top-left{display:flex;align-items:center;gap:12px;}
+.nav-logo{height:24px;}
+.nav-brand-text{font-family:'Argentum Novus',sans-serif;font-size:10px;color:rgba(247,249,252,.45);line-height:1.35;display:flex;flex-direction:column;}
+.nav-brand-text strong{color:rgba(247,249,252,.7);font-weight:600;}
+.nav-top-right{display:flex;align-items:center;gap:10px;}
+.nav-hamburger{background:none;border:none;cursor:pointer;color:var(--nav-light);padding:6px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:background .15s;}
+.nav-hamburger:hover{background:rgba(255,255,255,.08);}
+.nav-hamburger svg{display:block;}
+.btn-ref{background:transparent;border:1px solid rgba(168,191,224,.25);color:var(--li);border-radius:5px;padding:4px 10px;font-size:10px;cursor:pointer;font-family:inherit;}
+.btn-ref:hover{border-color:var(--li);color:#fff;}
+
+/* Sub-nav tabs */
+.nav-sub{background:var(--mn);display:flex;align-items:stretch;padding:0 20px;height:36px;gap:0;border-top:1px solid rgba(255,255,255,.06);}
+.nav-tab{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:0 18px;display:flex;align-items:center;position:relative;transition:color .15s;white-space:nowrap;}
+.nav-tab:hover{color:rgba(247,249,252,.9);}
+.nav-tab.active{color:var(--nav-light);background:rgba(168,191,224,.12);border-radius:10px 10px 0 0;}
+.nav-tab.active::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:2.5px;background:var(--nav-light);border-radius:2px 2px 0 0;}
+
+/* Mobile nav */
+.nav-mobile-page{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);display:none;}
+@media(max-width:660px){
+  .nav-brand-text{display:none;}
+  .nav-mobile-page{display:block;}
+  .nav-sub{display:none;}
+  .btn-ref{display:none;}
+}
+
+/* Mobile menu overlay */
+.nav-menu-overlay{display:none;position:fixed;inset:0;background:var(--deepnav);z-index:500;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+.nav-menu-overlay.open{display:flex;}
+.nav-menu-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--nav-light);cursor:pointer;font-size:24px;padding:8px;font-family:inherit;}
+.nav-menu-pill{font-family:'Argentum Novus',sans-serif;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);text-decoration:none;border:1.5px solid rgba(247,249,252,.25);border-radius:50px;padding:14px 48px;transition:all .15s;width:220px;text-align:center;}
+.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.18);border-color:var(--nav-light);color:#fff;}
+
+/* ── HERO ── */
+.hero{background:var(--deepnav);padding:36px 28px 32px;}
+.hero-eyebrow{font-family:'Argentum Novus',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(168,191,224,.7);margin-bottom:14px;}
+.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:800;color:var(--nav-light);line-height:1.1;margin-bottom:4px;letter-spacing:-.5px;}
+.hero h1 span{color:var(--li);}
+.hero-sub{font-size:13px;color:rgba(247,249,252,.6);line-height:1.75;max-width:480px;margin-bottom:18px;}
+.hero-checks{display:flex;flex-wrap:wrap;gap:10px;}
+.hero-check{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(247,249,252,.75);}
+.hero-check::before{content:'✓';color:var(--li);font-weight:700;font-size:12px;}
+@media(max-width:660px){.hero{padding:24px 18px 22px;}}
+
+/* ── CLARIFIER (Price Calculator section) ── */
+.calc-clarifier{background:#fff;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid var(--pa);}
+.cc-anim-col{background:#F4F7FD;display:flex;align-items:center;justify-content:center;padding:32px 24px;min-height:280px;}
+.cc-text-col{padding:36px 32px;display:flex;flex-direction:column;justify-content:center;}
+.cc-big-title{font-family:'Argentum Novus',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--deepnav);line-height:1.15;margin-bottom:14px;}
+.cc-sub{font-size:13px;color:#4A5568;line-height:1.75;margin-bottom:18px;}
+.cc-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.cc-chip{padding:6px 14px;border-radius:20px;font-size:11.5px;font-weight:600;border:1.5px solid var(--bd);color:var(--gr);background:#fff;}
+.cc-chip.ok{background:var(--gbg);border-color:var(--gbdr);color:var(--green);}
+@media(max-width:660px){
+  .calc-clarifier{grid-template-columns:1fr;}
+  .cc-anim-col{min-height:200px;padding:20px 16px;}
+  .cc-text-col{padding:22px 18px;}
+}
+
+/* ── PROGRESS BAR ─────────── */
+.progress-wrap{background:var(--mn);padding:8px 16px 4px;position:sticky;top:80px;z-index:190;}
+.progress-bar-track{height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:#A8BFE0;border-radius:2px;transition:width .4s ease;width:0%;}
+.progress-label{text-align:right;font-size:9.5px;color:rgba(255,255,255,.65);padding:3px 0 7px;}
+
+/* MAIN */
+.main{max-width:900px;margin:0 auto;padding:18px 14px 70px;display:grid;grid-template-columns:1fr 280px;gap:14px;align-items:start;}
+@media(max-width:660px){
+  .main{grid-template-columns:1fr;padding:12px 12px 30px;}
+  .panel-right{order:2;position:relative;top:auto;}
+  .pcard{border-radius:20px;}
+}
+
+/* CARD */
+.card{background:#fff;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:20px 18px;margin-bottom:12px;transition:box-shadow .2s;border:1.5px solid #EBF1FA;}
+.card:hover{box-shadow:0 12px 36px rgba(43,78,138,.11);}
+.card.locked{opacity:.44;pointer-events:none;filter:grayscale(.2);}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sbadge{background:var(--pr);color:#fff;width:24px;height:24px;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sbadge.done{background:#2B8A5F;}
+.card-head h2{font-size:14px;font-weight:700;color:var(--mn);}
+.card-head p{font-size:11px;color:#6B7A99;margin-top:1px;line-height:1.45;}
+
+/* Alternating visual rhythm */
+.card.tinted{background:#FAFCFF;border-color:#EBF1FA;}
+.card.outlined{background:#fff;border:1.5px solid #EBF1FA;box-shadow:none;}
+.card.outlined:hover{box-shadow:var(--sh);border-color:var(--li);}
+
+/* CALENDAR */
+.cal-nav-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.cal-title{font-size:14px;font-weight:700;color:var(--mn);}
+.cal-btn{background:none;border:1.5px solid var(--bd);border-radius:10px;width:30px;height:30px;cursor:pointer;color:var(--pr);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .13s;line-height:1;}
+.cal-btn:hover{background:var(--pr);color:#fff;border-color:var(--pr);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-dow{text-align:center;font-size:10px;font-weight:700;color:var(--gr);padding:4px 0;letter-spacing:.04em;}
+.day{text-align:center;padding:6px 2px;border-radius:10px;font-size:12.5px;transition:all .13s;border:1.5px solid transparent;line-height:1.3;cursor:pointer;}
+.day:hover:not(.empty):not(.past):not(.full-d){background:var(--pa);border-color:var(--li);}
+.day.sel-d{background:var(--pr) !important;color:#F7F9FC !important;border-color:var(--pr) !important;}
+.day.today-d{border-color:var(--li);color:var(--pr);font-weight:700;}
+.day.past{color:#ccc;cursor:not-allowed;}
+.day.empty{cursor:default;}
+.day.full-d{background:var(--rbg) !important;color:var(--red) !important;border-color:var(--rbdr) !important;cursor:not-allowed;font-weight:600;}
+.day.partial-d{background:var(--abg);border-color:var(--abdr);}
+.dots{display:flex;gap:2px;justify-content:center;margin-top:2px;}
+.dot{width:4px;height:4px;border-radius:50%;}
+.dot.t{background:var(--red);}
+.dot.o{background:#ccc;}
+.cal-note{font-size:11.5px;color:#4A5568;padding:9px 12px;background:#EBF1FA;border-radius:14px;margin-top:10px;line-height:1.7;}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.leg{display:flex;align-items:center;gap:4px;font-size:11px;color:#4A5568;}
+.ld{width:12px;height:12px;border-radius:4px;}
+.cal-status{font-size:11px;color:var(--se);margin-top:5px;display:none;}
+#cal-sel-note{font-size:11.5px;color:var(--green);font-weight:600;margin-top:6px;padding:6px 10px;background:var(--gbg);border-radius:10px;border:1px solid var(--gbdr);}
+
+/* TIME SLOTS */
+.time-grid{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
+.ts{padding:7px 14px;border:1.5px solid #EBF1FA;border-radius:20px;cursor:pointer;font-size:12.5px;font-weight:500;transition:all .13s;background:#fff;color:var(--dk);}
+.ts:hover:not(.ts-b):not(.ts-p){border-color:var(--se);color:var(--pr);background:var(--pa);}
+.ts.ts-s{border-color:var(--pr);background:var(--pr);color:#fff;}
+.ts.ts-b{border-color:var(--rbdr);background:var(--rbg);color:var(--red);cursor:not-allowed;text-decoration:line-through;opacity:.65;}
+.ts.ts-p{color:#ccc;border-color:#eee;cursor:not-allowed;}
+
+/* ALERT */
+.alert{border-radius:14px;padding:10px 14px;margin-bottom:8px;font-size:11.5px;line-height:1.65;}
+.alert.info{background:var(--pa);border:1.5px solid var(--li);color:var(--pr);}
+.alert.warn{background:var(--abg);border:1.5px solid var(--abdr);color:var(--amber);}
+.alert.danger{background:var(--rbg);border:1.5px solid var(--rbdr);color:var(--red);}
+.alert strong{display:block;font-size:12px;margin-bottom:2px;}
+
+/* AREA SIZE */
+.area-wrap{padding:16px;background:#EBF1FA;border-radius:16px;}
+.area-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.area-lbl{font-size:12px;color:var(--gr);}
+.area-val{font-size:30px;font-weight:800;color:var(--mn);line-height:1;}
+.area-unit{font-size:12px;color:var(--se);margin-left:4px;}
+.area-input-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.area-input-row input[type=number]{width:88px;padding:7px 10px;border:1.5px solid var(--bd);border-radius:12px;font-family:inherit;font-size:15px;font-weight:600;color:var(--pr);text-align:center;}
+.area-input-row input[type=number]:focus{outline:none;border-color:var(--pr);}
+.area-input-row label{font-size:11.5px;color:var(--gr);}
+input[type=range]{width:100%;height:5px;border-radius:3px;outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background:linear-gradient(to right,var(--pr) 0%,var(--pr) var(--pct,18%),var(--bd) var(--pct,18%),var(--bd) 100%);}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--pr);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(43,78,138,.3);}
+.area-note{font-size:11.5px;color:#4A5568;margin-top:8px;line-height:1.7;}
+.large-space-note{display:none;margin-top:10px;padding:12px 14px;background:#FFFBEC;border:1.5px solid #F5C842;border-radius:14px;}
+.large-space-note.show{display:block;}
+.large-space-note strong{display:block;font-size:12px;color:var(--amber);margin-bottom:5px;}
+.large-space-note table{width:100%;font-size:11.5px;color:var(--amber);border-collapse:collapse;}
+.large-space-note td{padding:3px 0;}
+.large-space-note td:last-child{text-align:right;font-weight:600;}
+
+/* CLEANING TYPE */
+.clean-opts{display:flex;flex-direction:column;gap:8px;}
+.clean-opt{border:1.5px solid #EBF1FA;border-radius:18px;cursor:pointer;transition:all .15s;background:#fff;overflow:hidden;}
+.clean-opt:hover{border-color:var(--li);box-shadow:0 4px 16px rgba(43,78,138,.07);}
+.clean-opt.sel{border-color:var(--pr);background:#fff;box-shadow:0 0 0 3px rgba(43,78,138,.1);}
+.co-header{display:flex;align-items:center;gap:12px;padding:13px 15px;}
+.co-radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--bd);flex-shrink:0;transition:all .13s;}
+.clean-opt.sel .co-radio{border-color:var(--pr);background:var(--pr);}
+.co-name{font-size:13.5px;font-weight:600;color:var(--dk);flex:1;}
+.co-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:12px;white-space:nowrap;flex-shrink:0;}
+.co-badge.included{color:var(--green);background:var(--gbg);}
+.co-badge.extra{color:var(--se);background:var(--pa);}
+.co-details{display:none;padding:0 15px 14px 43px;}
+.clean-opt.sel .co-details{display:block;}
+.co-desc{font-size:12px;color:#4A5568;line-height:1.75;margin-bottom:10px;}
+.co-excl{padding:8px 11px;background:#FFF0F0;border-radius:10px;border-left:3px solid var(--rbdr);}
+.co-excl strong{display:block;font-size:11px;color:var(--red);margin-bottom:3px;}
+.co-excl p{font-size:10.5px;color:#8B2020;line-height:1.55;}
+.post-con-note{margin-top:10px;padding:10px 13px;background:#FFF0F0;border:1.5px solid var(--rbdr);border-radius:14px;font-size:11.5px;color:#8B2020;line-height:1.6;}
+.post-con-note strong{display:block;font-size:12px;margin-bottom:3px;}
+
+/* UNIT TYPE */
+.svc-list{display:flex;flex-direction:column;gap:4px;background:#F4F7FD;border-radius:14px;padding:4px;}
+.svc{display:flex;align-items:center;padding:12px 14px;border-radius:14px;cursor:pointer;transition:all .13s;border:1.5px solid transparent;background:#fff;}
+.svc:hover{background:#EBF1FA;border-color:var(--li);}
+.svc.sel{background:#EBF1FA;border-color:var(--pr);}
+.svc-radio{width:13px;height:13px;border-radius:50%;border:2px solid var(--bd);margin-right:11px;flex-shrink:0;transition:all .13s;}
+.svc.sel .svc-radio{border-color:var(--pr);background:var(--pr);}
+.svc-left{flex:1;}
+.svc-name{font-size:13px;font-weight:600;color:var(--dk);}
+.svc-sub{font-size:11px;color:#4A5568;}
+.svc-right{text-align:right;flex-shrink:0;}
+.svc-price{font-size:14px;font-weight:700;color:var(--pr);}
+.svc-time{font-size:10px;color:var(--se);}
+.svc-div{height:1px;background:var(--bg);}
+.unit-note{font-size:12px;color:#4A5568;margin-top:10px;padding:10px 14px;background:#EBF1FA;border-radius:14px;line-height:1.7;}
+.tbanner{display:none;padding:10px 13px;background:var(--pa);border-radius:14px;border-left:3px solid var(--pr);margin-top:10px;}
+.tbanner.show{display:block;}
+.tbanner strong{display:block;font-size:13px;color:var(--mn);}
+.tbanner-val{font-size:11.5px;color:var(--green);margin-top:2px;font-weight:500;}
+
+/* SCHEDULE */
+.pills{display:flex;gap:7px;flex-wrap:wrap;}
+.pill{border:1.5px solid #EBF1FA;border-radius:20px;padding:7px 16px;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .15s;color:var(--dk);background:#fff;}
+.pill:hover{border-color:var(--se);color:var(--pr);background:var(--pa);}
+.pill.sel{border-color:var(--pr);background:var(--pr);color:#fff;}
+.snote{font-size:11.5px;color:#4A5568;margin-top:8px;line-height:1.7;}
+.recur-section{display:none;margin-top:12px;padding:13px;background:var(--pa);border-radius:16px;}
+.recur-section h4{font-size:12px;font-weight:600;color:var(--mn);margin-bottom:8px;}
+.recur-row{display:flex;gap:6px;align-items:center;margin-bottom:6px;}
+.recur-row input{padding:6px 10px;border:1.5px solid var(--bd);border-radius:10px;font-family:inherit;font-size:12.5px;flex:1;}
+.recur-row input:focus{outline:none;border-color:var(--pr);}
+.recur-remove{width:26px;height:26px;border:1.5px solid var(--rbdr);border-radius:8px;background:#fff;color:var(--red);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;}
+.btn-add-slot{margin-top:5px;padding:6px 14px;border:1.5px solid var(--pr);border-radius:16px;background:transparent;color:var(--pr);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;}
+.btn-add-slot:hover{background:var(--pr);color:#fff;}
+.recur-dp{display:none;margin-top:10px;padding:10px 12px;background:#fff;border-radius:12px;font-size:12.5px;color:var(--mn);line-height:1.7;}
+.recur-dp strong{color:var(--pr);font-size:14px;}
+
+/* ADD-ONS */
+.al{display:flex;flex-direction:column;gap:5px;background:#F4F7FD;border-radius:14px;padding:5px;}
+.ar{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1.5px solid #EBF1FA;border-radius:16px;cursor:pointer;transition:all .15s;background:#fff;}
+.ar:hover{background:var(--pa);border-color:var(--li);}
+.ar.on{border-color:var(--pr);background:var(--pa);}
+.ar-ck{width:16px;height:16px;border:1.5px solid var(--bd);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;}
+.ar.on .ar-ck{background:var(--pr);border-color:var(--pr);color:#fff;}
+.ar-info{flex:1;min-width:0;}
+.ar-n{font-size:12.5px;font-weight:500;color:var(--dk);}
+.ar-no{font-size:11px;color:#4A5568;}
+.ar-p{font-size:13px;font-weight:600;color:var(--pr);white-space:nowrap;}
+.qc{display:flex;align-items:center;gap:4px;}
+.qb{width:24px;height:24px;border:1.5px solid var(--bd);border-radius:8px;background:var(--wh);color:var(--pr);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s;flex-shrink:0;line-height:1;}
+.qb:hover{background:var(--pr);color:#fff;border-color:var(--pr);}
+.qn{width:22px;text-align:center;font-size:12px;font-weight:600;}
+.rsub{display:none;flex-wrap:wrap;gap:5px;padding:8px 10px;background:var(--pa);border-radius:12px;margin-top:5px;border:1px solid var(--li);}
+.rsub.show{display:flex;}
+.rtag{padding:4px 11px;border:1.5px solid var(--bd);border-radius:14px;font-size:11.5px;cursor:pointer;background:#fff;color:var(--gr);transition:all .13s;font-weight:500;}
+.rtag:hover{border-color:var(--se);color:var(--pr);}
+.rtag.on{border-color:var(--pr);background:var(--pr);color:#fff;}
+.hsp{display:none;margin-top:6px;padding:11px;background:var(--pa);border-radius:14px;border:1px solid var(--li);}
+.hsp.show{display:block;}
+.hs-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.hs-row label{font-size:11.5px;color:var(--gr);flex:1;}
+.hs-step{display:flex;align-items:center;gap:5px;}
+.hs-step button{width:26px;height:26px;border:1.5px solid var(--bd);border-radius:8px;background:var(--wh);color:var(--pr);font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}
+.hs-step button:hover{background:var(--pr);color:#fff;border-color:var(--pr);}
+.hs-hv{width:30px;text-align:center;font-size:14px;font-weight:700;color:var(--mn);}
+.hs-opts{display:flex;gap:6px;}
+.hs-opt{flex:1;padding:9px 10px;border:1.5px solid var(--bd);border-radius:14px;cursor:pointer;transition:all .13s;background:var(--wh);}
+.hs-opt:hover{border-color:var(--li);}
+.hs-opt.sel{border-color:var(--pr);}
+.hs-opt-top{display:flex;align-items:center;gap:6px;margin-bottom:3px;}
+.hs-radio{width:13px;height:13px;border:2px solid var(--bd);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hs-opt.sel .hs-radio{border-color:var(--pr);}
+.hs-rdot{width:5px;height:5px;border-radius:50%;background:var(--pr);display:none;}
+.hs-opt.sel .hs-rdot{display:block;}
+.hs-opt-n{font-size:12px;font-weight:600;color:var(--dk);}
+.hs-opt-d{font-size:11px;color:#4A5568;line-height:1.5;}
+.hs-note{font-size:10.5px;color:var(--se);margin-top:6px;font-style:italic;line-height:1.5;}
+
+/* SITUATION TAGS */
+.sit-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;}
+.sit-tag{padding:6px 14px;border:1.5px solid #EBF1FA;border-radius:20px;font-size:12px;cursor:pointer;background:#fff;color:var(--dk);transition:all .15s;font-weight:500;}
+.sit-tag:hover{border-color:var(--se);color:var(--pr);}
+.sit-tag.on{border-color:var(--pr);background:var(--pr);color:#fff;}
+.ia{width:100%;padding:9px 12px;border:1.5px solid var(--bd);border-radius:14px;font-family:inherit;font-size:12.5px;color:var(--dk);resize:vertical;min-height:60px;}
+.ia:focus{outline:none;border-color:var(--pr);}
+.ia::placeholder{color:#c0c0c0;}
+
+/* LOCATION */
+.loc-grid{display:flex;flex-direction:column;gap:6px;}
+.lb{padding:12px 9px;border:1.5px solid #EBF1FA;border-radius:16px;text-align:center;cursor:pointer;transition:all .15s;background:#fff;position:relative;}
+.lb:hover{border-color:var(--se);background:var(--pa);transform:translateY(-2px);box-shadow:0 4px 16px rgba(43,78,138,.09);}
+.lb.sel{border-color:var(--pr);background:var(--pa);box-shadow:0 0 0 3px rgba(43,78,138,.12);}
+.lb.sel .lb-n{color:var(--pr);}
+.lb-n{font-size:11px;font-weight:600;color:var(--dk);line-height:1.3;display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap;}
+.lb-f{font-size:10.5px;color:var(--se);margin-top:2px;font-weight:500;}
+.lb.sel .lb-f{color:var(--pr);}
+.lb-tag{font-size:8px;font-weight:700;background:var(--pr);color:#fff;padding:1px 5px;border-radius:4px;letter-spacing:.04em;}
+.loc-note{font-size:11.5px;color:#7A5C00;margin-top:10px;padding:10px 14px;background:#FFFBEC;border:1.5px solid #F5C842;border-radius:14px;line-height:1.7;}
+.other-inp{display:none;margin-top:6px;}
+.other-inp input{width:100%;padding:8px 12px;border:1.5px solid var(--bd);border-radius:12px;font-family:inherit;font-size:13px;color:var(--dk);}
+.other-inp input:focus{outline:none;border-color:var(--pr);}
+.other-inp.show{display:block;}
+
+/* CLIENT FIELDS */
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.field{display:flex;flex-direction:column;gap:4px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:10.5px;font-weight:700;color:var(--gr);letter-spacing:.04em;text-transform:uppercase;}
+.field input,.field textarea{padding:10px 14px;border:1.5px solid #EBF1FA;border-radius:14px;font-family:inherit;font-size:13px;color:var(--dk);transition:border .13s;background:#fff;width:100%;}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--pr);}
+.field input::placeholder,.field textarea::placeholder{color:#c5c5c5;}
+.field textarea{resize:none;min-height:54px;}
+.acw{position:relative;}
+.acl{position:absolute;top:100%;left:0;right:0;background:#fff;border:1.5px solid var(--pr);border-top:none;border-radius:0 0 12px 12px;z-index:100;max-height:130px;overflow-y:auto;display:none;box-shadow:var(--sh);}
+.aci{padding:8px 12px;cursor:pointer;font-size:13px;color:var(--dk);}
+.aci:hover{background:var(--pa);}
+.acl.show{display:block;}
+
+/* WARNING */
+.wb{padding:10px 13px;background:var(--abg);border:1.5px solid var(--abdr);border-radius:14px;margin-top:8px;}
+.wb strong{display:block;font-size:12px;color:var(--amber);margin-bottom:3px;}
+.wb p{font-size:11.5px;color:var(--amber);line-height:1.6;}
+
+/* ── POLICIES ACCORDION ─── */
+.pb{background:#fff;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:22px 20px;margin-bottom:12px;border:1.5px solid #EBF1FA;}
+.pb h3{font-size:13px;font-weight:700;color:var(--mn);margin-bottom:14px;display:flex;align-items:center;gap:8px;letter-spacing:.01em;}
+.pb h3::after{content:'';flex:1;height:1.5px;background:#EBF1FA;margin-left:8px;}
+.acc-item{border:1.5px solid #EBF1FA;border-radius:16px;margin-bottom:8px;transition:border-color .2s,box-shadow .2s;background:#fff;}
+.acc-item:last-child{margin-bottom:0;}
+.acc-item.open{border-color:var(--li);box-shadow:0 4px 20px rgba(43,78,138,.08);}
+.acc-item.open{border-color:var(--li);}
+.acc-head{display:flex;align-items:center;gap:10px;padding:14px 15px;cursor:pointer;user-select:none;transition:background .13s;}
+.acc-head:hover{background:#EBF1FA;border-radius:16px;}
+.acc-item.open .acc-head{border-radius:16px 16px 0 0;background:#FAFCFF;}
+.acc-icon{font-size:17px;flex-shrink:0;}
+.acc-title{flex:1;font-size:13px;font-weight:600;color:var(--dk);display:block;}
+.acc-summary{display:none;}
+.acc-chevron{font-size:13px;color:var(--se);transition:transform .3s;flex-shrink:0;margin-left:auto;}
+.acc-item.open .acc-chevron{transform:rotate(180deg);}
+.acc-body{max-height:0;overflow:hidden;padding:0 15px 0 43px;font-size:12.5px;color:#4A5568;line-height:1.75;transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .4s;}
+.acc-item.open .acc-body{max-height:500px;padding:0 15px 18px 43px;}
+.acc-body strong{color:var(--dk);}
+.agree-note{margin-top:14px;padding:14px 16px;background:#EBF1FA;border:1.5px solid var(--li);border-radius:16px;font-size:12px;color:var(--mn);line-height:1.75;}
+.agree-note strong{color:var(--mn);}
+
+/* CTA */
+.cta-block{background:linear-gradient(135deg,var(--mn) 0%,var(--pr) 100%);border-radius:22px;padding:18px;margin-bottom:10px;text-align:center;}
+.cta-block h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:5px;}
+.cta-block p{font-size:11.5px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:12px;}
+
+/* FEEDBACK */
+
+/* SUMMARY PANEL */
+.panel-right{position:sticky;top:86px;}
+.pcard{background:#fff;border-radius:24px;overflow:hidden;margin-bottom:10px;box-shadow:0 8px 32px rgba(43,78,138,.12);border:1.5px solid #EBF1FA;}
+.phead{padding:18px 20px;border-bottom:1.5px solid #EBF1FA;background:linear-gradient(135deg,#EBF1FA 0%,#fff 100%);}
+.pest-id{font-size:11px;color:var(--deepnav);letter-spacing:.06em;margin-bottom:3px;font-weight:700;}
+.phead h3{color:var(--se);font-size:9px;letter-spacing:.12em;font-weight:600;text-transform:uppercase;margin-bottom:3px;}
+.ptotal{font-size:34px;font-weight:700;color:var(--mn);line-height:1;}
+.ptotal span{font-size:16px;color:var(--se);font-weight:400;}
+.pdisc{font-size:11px;color:var(--green);margin-top:4px;font-weight:500;}
+.ptime{font-size:10.5px;color:var(--gr);margin-top:3px;}
+.ptime-val{font-size:11px;color:var(--green);margin-top:2px;font-weight:500;}
+.pbody{padding:12px 20px;}
+.li{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;padding:6px 0;border-bottom:1px solid #EBF1FA;font-size:12px;}
+.li:last-child{border-bottom:none;}
+.ll{color:var(--gr);line-height:1.45;}
+.lv{color:var(--mn);font-weight:700;white-space:nowrap;}
+.li.st{margin-top:6px;padding-top:10px;border-top:2px solid var(--li);border-bottom:none;font-size:14px;}
+.li.st .ll{color:var(--mn);font-weight:600;}
+.li.st .lv{font-size:18px;color:var(--mn);}
+.empty-p{padding:20px;text-align:center;color:var(--gr);font-size:12px;line-height:1.7;}
+.pay-box{padding:12px 20px;background:#F4F7FD;border-top:1.5px solid #EBF1FA;}
+.pay-box h4{font-size:9px;color:var(--se);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:700;}
+.pr{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;}
+.pr .pk{color:var(--gr);}
+.pr .pv{color:var(--mn);font-weight:600;}
+.pr.pay-now .pk{color:var(--mn);font-weight:600;}
+.pr.pay-now .pv{color:var(--green);font-size:15px;font-weight:700;}
+.pay-note{font-size:10.5px;color:var(--gr);margin-top:6px;line-height:1.6;}
+.recur-panel{display:none;padding:12px 20px;background:#EBF1FA;border-top:1.5px solid var(--li);}
+.avail-box{padding:8px 20px;border-top:1.5px solid #EBF1FA;font-size:11.5px;}
+.avail-box.ok{color:var(--green);font-weight:500;}
+.avail-box.na{color:var(--red);font-weight:500;}
+.avail-box.none{color:var(--gr);}
+.transpo-note{padding:6px 20px;font-size:10.5px;color:var(--gr);line-height:1.6;border-top:1px solid #EBF1FA;}
+.discl{padding:8px 20px;background:#F4F7FD;font-size:10px;color:var(--gr);line-height:1.6;border-top:1px solid #EBF1FA;}
+.btn-book{display:block;width:calc(100% - 24px);margin:14px 12px 6px;padding:14px;background:var(--mn);color:#fff;border:none;border-radius:50px;font-size:13.5px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;text-decoration:none;transition:background .14s,box-shadow .14s;}
+.btn-book:hover{background:var(--pr);box-shadow:0 6px 20px rgba(43,78,138,.3);}
+.btn-copy{display:none;width:calc(100% - 24px);margin:0 12px 6px;padding:10px;background:transparent;color:var(--pr);border:1.5px solid var(--li);border-radius:50px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
+.btn-copy:hover{border-color:var(--pr);background:var(--pa);}
+.btn-print{display:block;width:calc(100% - 24px);margin:0 12px 6px;padding:8px;background:transparent;color:var(--gr);border:1.5px solid #EBF1FA;border-radius:50px;font-size:12px;font-weight:500;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
+.btn-print:hover{border-color:var(--li);color:var(--pr);}
+.btn-reset{display:block;width:calc(100% - 24px);margin:0 12px 12px;padding:5px;background:transparent;color:var(--gr);border:none;font-size:11px;font-family:inherit;cursor:pointer;text-align:center;}
+.btn-reset:hover{color:var(--mn);}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--mn);color:#fff;padding:12px 22px;border-radius:30px;font-size:12.5px;font-weight:500;box-shadow:0 6px 24px rgba(0,0,0,.25);opacity:0;transition:all .3s;z-index:999;text-align:center;max-width:320px;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+footer{background:var(--mn);padding:14px 24px;}
+.footer-inner{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;}
+.footer-inner span{color:rgba(255,255,255,.25);font-size:11px;}
+.footer-contacts{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.35) !important;font-size:11px !important;}
+.footer-icon-link{display:inline-flex;align-items:color rgba(255,255,255,.45);transition:color .13s;}
+.footer-icon-link:hover{color:rgba(255,255,255,.85);}
+.follow-bar{background:var(--mn);padding:20px 24px;text-align:center;}
+.follow-text{font-size:12.5px;color:rgba(255,255,255,.8);margin-bottom:12px;}
+.follow-links{display:flex;justify-content:center;gap:14px;}
+.follow-link{display:inline-flex;align-items:center;gap:7px;color:#fff;font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 18px;border:1.5px solid rgba(255,255,255,.3);border-radius:30px;transition:all .14s;}
+.follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6);}
+/* SMART ADDRESS / TRAVEL CARD */
+.travel-card{margin-top:10px;padding:13px 15px;background:var(--pa);border:1.5px solid var(--bd);border-radius:18px;animation:tcFade .22s ease;}
+@keyframes tcFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.travel-row{display:flex;align-items:center;gap:12px;}
+.travel-icon{font-size:22px;flex-shrink:0;line-height:1;}
+.travel-time{font-size:14px;font-weight:700;color:var(--pr);}
+.travel-lbl{font-size:11.5px;color:var(--gr);margin-top:1px;line-height:1.45;}
+.traffic-notice{margin-top:10px;padding:9px 12px;border-radius:12px;font-size:11.5px;line-height:1.6;font-weight:500;display:flex;align-items:flex-start;gap:7px;}
+.traffic-notice .tn-icon{flex-shrink:0;margin-top:1px;}
+.traffic-heavy{background:#FFF3E0;border:1px solid #FFB74D;color:#7A4500;}
+.traffic-moderate{background:var(--gbg);border:1px solid var(--gbdr);color:#1B5E20;}
+.traffic-clear{background:var(--gbg);border:1px solid var(--gbdr);color:#1B5E20;}
+.travel-surcharge{margin-top:8px;padding:6px 11px;background:rgba(43,78,138,.07);border-radius:10px;font-size:11px;color:var(--pr);font-weight:600;}
+
+/* ── CALCULATOR CLARIFIER ───── */
+.calc-clarifier{background:#EBF1FA;border-bottom:2px solid var(--li);padding:16px 20px;display:flex;align-items:flex-start;gap:14px;}
+.cc-icon{font-size:24px;flex-shrink:0;margin-top:2px;}
+.cc-title{font-size:14px;font-weight:700;color:var(--mn);margin-bottom:4px;line-height:1.35;}
+.cc-title span{color:var(--pr);font-weight:700;}
+.cc-sub{font-size:12px;color:var(--gr);line-height:1.7;}
+.cc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
+.cc-chip{font-size:10.5px;font-weight:600;padding:4px 11px;border-radius:14px;background:#fff;color:var(--mn);border:1.5px solid var(--li);}
+.cc-chip.ok{background:var(--gbg);color:var(--green);border-color:var(--gbdr);}
+
+/* ── RESTRICTION ALERT ──────── */
+.restriction-alert{display:none;margin-top:10px;padding:12px 15px;background:var(--rbg);border:1.5px solid var(--rbdr);border-radius:16px;font-size:12px;color:#8B2020;line-height:1.7;}
+.restriction-alert.show{display:block;}
+.restriction-alert strong{display:block;font-size:12.5px;margin-bottom:3px;}
+
+/* ── WHAT HAPPENS NEXT ──────── */
+.whn-section{background:#fff;border-top:none;padding:28px 20px 36px;}
+.whn-title{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pr);margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+.whn-title::after{content:'';flex:1;height:1px;background:var(--bd);}
+.whn-steps{display:flex;flex-direction:column;}
+.whn-step{display:flex;gap:16px;position:relative;}
+.whn-step:not(:last-child) .whn-line{position:absolute;left:18px;top:38px;bottom:0;width:2px;background:var(--bd);z-index:0;}
+.whn-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;flex-shrink:0;position:relative;z-index:1;margin-top:2px;}
+.whn-num.you{background:var(--pr);color:#fff;}
+.whn-num.us{background:var(--mn);color:#fff;}
+.whn-num.done{background:#3a9e5f;color:#fff;font-size:18px;}
+.whn-body{padding-bottom:22px;flex:1;}
+.whn-who{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
+.whn-who.you{color:var(--pr);}
+.whn-who.us{color:var(--mn);}
+.whn-who.done{color:#3a9e5f;}
+.whn-step-title{font-size:13px;font-weight:700;color:var(--dk);margin-bottom:4px;line-height:1.35;}
+.whn-step-desc{font-size:12.5px;color:#4A5568;line-height:1.75;}
+.whn-step-desc strong{color:var(--dk);}
+.whn-tag{display:inline-block;margin-top:7px;font-size:11px;font-weight:600;padding:4px 13px;border-radius:14px;background:var(--pa);color:var(--pr);border:1px solid var(--li);}
+
+/* ── PAYMENT METHODS ────────── */
+.pay-methods{background:#F4F7FD;border:1.5px solid #EBF1FA;border-radius:16px;padding:14px 16px;margin-top:14px;}
+.pay-methods h4{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gr);margin-bottom:10px;}
+.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.pm-item{background:#fff;border:1.5px solid var(--bd);border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:8px;}
+.pm-item-wide{grid-column:1/-1;}
+.pm-icon{font-size:20px;flex-shrink:0;}
+.pm-name{font-size:12px;font-weight:700;color:var(--dk);}
+.pm-num{font-size:11.5px;color:#4A5568;margin-top:2px;font-weight:500;}
+.pm-note{font-size:11px;color:var(--gr);margin-top:9px;line-height:1.6;padding-top:7px;border-top:1px solid var(--bd);}
+
+/* ── COPYRIGHT ──────────────── */
+.copyright-bar{text-align:center;padding:14px 18px;background:var(--mn);font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.04em;border-top:1px solid rgba(255,255,255,.06);}
+
+/* ── MODAL ──────────────────── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(43,78,138,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:800;align-items:center;justify-content:center;padding:18px;}
+.modal-overlay.show{display:flex;}
+.modal-box{background:#fff;border-radius:28px;padding:28px 24px;max-width:360px;width:100%;box-shadow:0 16px 60px rgba(43,78,138,.18);border:1.5px solid #EBF1FA;}
+.modal-icon{font-size:30px;margin-bottom:9px;display:block;}
+.modal-title{font-size:15px;font-weight:700;color:var(--mn);margin-bottom:7px;}
+.modal-body{font-size:12.5px;color:var(--gr);line-height:1.7;margin-bottom:12px;}
+.modal-steps{display:flex;flex-direction:column;gap:9px;margin:0 0 16px;}
+.modal-step{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--dk);}
+.modal-step-n{background:var(--pr);color:#fff;width:20px;height:20px;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.modal-step-t{line-height:1.6;}
+.modal-cta{display:block;width:100%;padding:14px;background:var(--mn);color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;margin-bottom:9px;transition:background .14s;}
+.modal-cancel{display:block;width:100%;padding:9px;background:transparent;color:var(--gr);border:none;font-size:12px;font-family:inherit;cursor:pointer;text-align:center;}
+
+/* ── STICKY BAR ─────────────── */
+#sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;transition:transform .28s cubic-bezier(.4,0,.2,1);}
+#sticky-bar.sb-hidden{transform:translateY(100%);}
+.sticky-top{background:var(--mn);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 -4px 24px rgba(43,78,138,.25);border-radius:22px 22px 0 0;}
+.sticky-logo{height:18px;opacity:.9;margin-right:10px;flex-shrink:0;}
+.sticky-left{display:flex;align-items:center;}
+.sticky-summary{display:flex;flex-direction:column;gap:1px;}
+.sticky-total-amt{font-size:19px;font-weight:700;color:#fff;line-height:1;}
+.sb-peso{font-size:14px;font-weight:400;opacity:.8;margin-right:1px;}
+.sticky-desc{font-size:10.5px;color:rgba(200,220,255,.85);line-height:1.2;margin-top:1px;}
+.sticky-cta{font-size:11.5px;color:#fff;font-weight:700;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.3);padding:8px 18px;border-radius:22px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s;}
+.sticky-cta:hover{background:rgba(255,255,255,.3);border-color:rgba(255,255,255,.5);}
+.sticky-brand{background:#2C2C2A;height:28px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+@media(max-width:660px){#sticky-bar{display:block;}body{padding-bottom:96px;}.toast{bottom:100px!important;}}
+
+/* ── BOTTOM ESTIMATE ────────── */
+#bottom-estimate{display:none;background:#2B4E8A;padding:22px 20px 30px;border-radius:var(--r) var(--r) 0 0;border-top:3px solid #0D1F3C;box-shadow:0 -6px 30px rgba(13,31,60,.25);}
+.be-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.be-logo{height:22px;filter:brightness(0) invert(1);}
+.be-label{font-size:9px;color:rgba(168,191,224,.8);letter-spacing:.12em;text-transform:uppercase;font-weight:600;}
+.be-total{font-size:36px;font-weight:700;color:#F7F9FC;line-height:1;margin-bottom:3px;}
+.be-total-prefix{font-size:16px;color:rgba(168,191,224,.8);font-weight:400;}
+.be-time{font-size:11.5px;color:var(--li);margin-bottom:12px;font-weight:500;}
+.be-line{display:flex;justify-content:space-between;gap:7px;padding:6px 0;border-bottom:1px solid rgba(168,191,224,.2);font-size:12.5px;}
+.be-line:last-child{border:none;}
+.be-ll{color:rgba(247,249,252,.7);line-height:1.45;}
+.be-lv{color:#F7F9FC;font-weight:700;white-space:nowrap;}
+.be-total-line{display:flex;justify-content:space-between;align-items:center;padding-top:12px;margin-top:6px;border-top:2px solid rgba(168,191,224,.35);}
+.be-total-line .be-ll{color:rgba(247,249,252,.85);font-weight:600;font-size:14px;}
+.be-total-line .be-lv{font-size:24px;font-weight:700;color:#F7F9FC;}
+.be-pay-box{background:rgba(13,31,60,.3);border-radius:16px;padding:14px 16px;margin:12px 0;border:1.5px solid rgba(168,191,224,.2);}
+.be-pay-box h4{font-size:9px;color:rgba(168,191,224,.8);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:700;}
+.be-pr{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px;}
+.be-pk{color:rgba(247,249,252,.7);}
+.be-pv{color:#F7F9FC;font-weight:600;}
+.be-pnow .be-pv{color:var(--li);font-size:15px;font-weight:700;}
+.be-avail{font-size:12px;padding:6px 0;margin-bottom:8px;font-weight:500;}
+.be-avail.ok{color:var(--li);}
+.be-avail.none{color:rgba(247,249,252,.5);}
+.be-discl{font-size:11px;color:rgba(247,249,252,.5);line-height:1.65;margin-bottom:14px;}
+.be-btn{display:block;width:100%;padding:15px;background:#F7F9FC;color:var(--mn);border:none;border-radius:50px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;margin-bottom:10px;transition:all .14s;}
+.be-btn:hover{background:var(--li);box-shadow:0 6px 20px rgba(13,31,60,.3);}
+.be-btn-sec{display:block;width:100%;padding:11px;background:transparent;color:#F7F9FC;border:1.5px solid rgba(168,191,224,.4);border-radius:50px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
+.be-btn-sec:hover{background:rgba(168,191,224,.15);border-color:rgba(168,191,224,.7);}
+.be-empty{padding:18px;text-align:center;color:rgba(247,249,252,.5);font-size:12px;line-height:1.75;}
+@media(max-width:660px){#bottom-estimate{display:block;}}
+
+/* ── POLICIES OLD ──── */
+.pi{display:flex;gap:10px;margin-bottom:8px;font-size:12px;color:var(--gr);line-height:1.7;align-items:flex-start;}
+.pi:last-child{margin-bottom:0;}
+.pi-icon{font-size:15px;flex-shrink:0;line-height:1.5;}
+.pi strong{color:var(--dk);}
+</style>
+</head>
+<body>
+
+<!-- NAV MENU OVERLAY (mobile & desktop) -->
+<div class="nav-menu-overlay" id="nav-menu">
+  <button class="nav-menu-close" onclick="closeMenu()">✕</button>
+  <a href="index.html" class="nav-menu-pill">Home</a>
+  <a href="pricing.html" class="nav-menu-pill active">Pricing</a>
+  <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
+</div>
+
+<div class="nav-wrap">
+  <!-- Top bar -->
+  <div class="nav-top">
+    <div class="nav-top-left">
+      <img id="logo-img" class="nav-logo" alt="Klaygo PH">
+      <div class="nav-brand-text">
+        <strong>KLAYGOPH | Cleaning Services</strong>
+        <span>Clearer space, Clearer mind.</span>
+      </div>
+    </div>
+    <div class="nav-top-right">
+      <button class="btn-ref" onclick="refreshCal()">Refresh Calendar</button>
+      <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
+        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="20" height="2.5" rx="1.25" fill="currentColor"/>
+          <rect y="6.5" width="14" height="2.5" rx="1.25" fill="currentColor"/>
+          <rect y="13" width="20" height="2.5" rx="1.25" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Sub-nav tabs -->
+  <div class="nav-sub">
+    <a href="index.html" class="nav-tab">Home</a>
+    <span class="nav-mobile-page">PRICING</span>
+    <a href="pricing.html" class="nav-tab active">Pricing</a>
+    <a href="sayhello.html" class="nav-tab">Say Hello!</a>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">Step 1 of 10</div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">KLAYGOPH · Cleaning Services</div>
+  <h1>Customize your clean,<br><span>See Your Price.</span></h1>
+  <p class="hero-sub">Get an instant estimate — no surprises, no hidden fees.<br>Fill in the steps below and send it to us on Messenger to confirm your slot.</p>
+  <div class="hero-checks">
+    <div class="hero-check">No log in required</div>
+    <div class="hero-check">No bank info collected</div>
+    <div class="hero-check">Pricing transparency only</div>
+  </div>
+</div>
+
+<!-- PRICE CALCULATOR CLARIFIER -->
+<div class="calc-clarifier">
+  <div class="cc-anim-col">
+    <!-- Animated Calculator Widget -->
+    <div class="klaygo-scene">
+      <div class="bg-glow glow-1"></div>
+      <div class="bg-glow glow-2"></div>
+      <div class="flow-card">
+        <div class="state adjust-state">
+          <div class="floating-icon">☰</div>
+          <div class="anim-label">ADJUST AMOUNT</div>
+          <div class="anim-price">₱2,450</div>
+          <div class="anim-sub">Drag to adjust</div>
+          <div class="slider-wrap">
+            <div class="slider-line"></div>
+            <div class="slider-fill"></div>
+            <div class="slider-knob"></div>
+          </div>
+          <div class="anim-range"><span>₱500</span><span>₱5,000</span></div>
+        </div>
+        <div class="state calculate-state">
+          <div class="floating-icon calc-icon">⌘</div>
+          <div class="anim-label">CALCULATING</div>
+          <div class="calculator-box">
+            <div class="anim-screen"></div>
+            <div class="calc-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="loading-ring"></div>
+          <div class="anim-sub">Crunching numbers...</div>
+        </div>
+        <div class="state receipt-state">
+          <div class="floating-icon receipt-icon">✓</div>
+          <div class="receipt-paper">
+            <div class="receipt-title">ESTIMATE READY</div>
+            <div class="receipt-rsub">Here's your estimate</div>
+            <div class="receipt-divider"></div>
+            <div class="total-label">TOTAL AMOUNT</div>
+            <div class="receipt-total">₱2,450</div>
+            <div class="receipt-lines"><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cc-text-col">
+    <div class="cc-big-title">This is a<br>Price Calculator,<br>not a booking app.</div>
+    <p class="cc-sub">Fill in the steps below to get your instant estimate.<br><br>Once you have your total, send it to us on Messenger to confirm your slot.</p>
+    <div class="cc-chips">
+      <span class="cc-chip ok">✓ Instant pricing</span>
+      <span class="cc-chip ok">✓ No hidden fees</span>
+      <span class="cc-chip ok">✓ Booking via Messenger / Instagram</span>
+      <span class="cc-chip ok">✓ Reservation fee via GCash / Bank transfer</span>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ── ANIMATED WIDGET (inline, scoped) ── */
+.klaygo-scene{position:relative;width:240px;height:270px;display:grid;place-items:center;font-family:'Argentum Novus','DM Sans',sans-serif;}
+.bg-glow{position:absolute;border-radius:999px;filter:blur(50px);opacity:.6;}
+.glow-1{width:140px;height:140px;background:#A8BFE0;top:20px;left:20px;animation:glFloat 8s ease-in-out infinite;}
+.glow-2{width:110px;height:110px;background:#DCE7F5;bottom:20px;right:10px;animation:glFloat 10s ease-in-out infinite reverse;}
+.flow-card{position:relative;width:200px;height:235px;border-radius:32px;background:linear-gradient(180deg,#fff,#F7F9FC);border:1px solid rgba(168,191,224,.45);box-shadow:0 20px 50px rgba(13,31,60,.08);overflow:hidden;}
+.state{position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.floating-icon{width:50px;height:50px;border-radius:18px;background:linear-gradient(135deg,#2B4E8A,#5A7BB5);color:#fff;display:grid;place-items:center;font-size:20px;font-weight:700;margin-bottom:14px;box-shadow:0 10px 24px rgba(43,78,138,.22);}
+.anim-label{font-size:9px;letter-spacing:2px;color:#2B4E8A;margin-bottom:10px;}
+.anim-price{font-size:32px;color:#0D1F3C;margin-bottom:5px;}
+.anim-sub{font-size:12px;color:#6B6B68;}
+.slider-wrap{position:relative;width:100%;height:34px;margin-top:20px;}
+.slider-line{position:absolute;top:12px;width:100%;height:8px;border-radius:999px;background:#E6EEF8;}
+.slider-fill{position:absolute;top:12px;left:0;width:58%;height:8px;border-radius:999px;background:linear-gradient(90deg,#3D6399,#5A7BB5);animation:fillMove 3s ease-in-out infinite;}
+.slider-knob{position:absolute;top:3px;left:55%;width:26px;height:26px;border-radius:999px;background:linear-gradient(135deg,#2B4E8A,#5A7BB5);box-shadow:0 6px 16px rgba(43,78,138,.25);animation:knobMove 3s ease-in-out infinite;}
+.anim-range{width:100%;display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#6B6B68;}
+.calculate-state{opacity:0;animation:showCalc 9s infinite;}
+.calculator-box{position:relative;width:96px;height:110px;border-radius:22px;background:#fff;border:1px solid #EBF1FA;margin:16px 0;padding:12px;box-shadow:0 8px 20px rgba(13,31,60,.06);}
+.anim-screen{height:20px;border-radius:8px;background:#DCE7F5;margin-bottom:12px;}
+.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.calc-grid span{height:14px;border-radius:6px;background:#A8BFE0;animation:pulse 1.5s infinite;}
+.loading-ring{position:absolute;width:140px;height:140px;border-radius:999px;border:2px dashed rgba(61,99,153,.2);animation:spin 8s linear infinite;}
+.receipt-state{opacity:0;animation:showReceipt 9s infinite;}
+.receipt-paper{width:145px;background:#fff;border-radius:20px;padding:18px 14px;box-shadow:0 8px 24px rgba(13,31,60,.06);}
+.receipt-title{font-size:15px;color:#2B4E8A;margin-bottom:5px;}
+.receipt-rsub{font-size:11px;color:#6B6B68;margin-bottom:12px;}
+.receipt-divider{height:1px;background:#DCE7F5;margin-bottom:12px;}
+.total-label{font-size:9px;letter-spacing:1.5px;color:#6B6B68;margin-bottom:7px;}
+.receipt-total{font-size:28px;color:#0D1F3C;margin-bottom:12px;}
+.receipt-lines{display:flex;flex-direction:column;gap:7px;}
+.receipt-lines span{height:6px;border-radius:999px;background:#DCE7F5;}
+.adjust-state{animation:showAdjust 9s infinite;}
+@keyframes showAdjust{0%,28%{opacity:1;transform:scale(1);}33%,100%{opacity:0;transform:scale(.96);}}
+@keyframes showCalc{0%,30%{opacity:0;transform:scale(.96);}36%,60%{opacity:1;transform:scale(1);}66%,100%{opacity:0;transform:scale(.96);}}
+@keyframes showReceipt{0%,62%{opacity:0;transform:scale(.96);}70%,92%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(1);}}
+@keyframes knobMove{0%,100%{left:10%;}50%{left:65%;}}
+@keyframes fillMove{0%,100%{width:15%;}50%{width:70%;}}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+@keyframes glFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+</style>
+
+<div class="main">
+<div class="col-left" style="display:flex;flex-direction:column;">
+
+<!-- STEP 1: DATE -->
+<div class="card" id="card-date">
+  <div class="card-head"><div class="sbadge" id="b1">1</div><div><h2>Select a Date</h2><p>Check our live calendar — max 2 slots per day</p></div></div>
+  <div class="cal-nav-row">
+    <button class="cal-btn" onclick="prevMo()">&#8249;</button>
+    <div class="cal-title" id="cal-title">Loading...</div>
+    <button class="cal-btn" onclick="nextMo()">&#8250;</button>
+  </div>
+  <div class="cal-grid" id="cal-grid"><div style="grid-column:1/-1;font-size:10.5px;color:var(--se);padding:8px 0;">Loading calendar...</div></div>
+  <div class="cal-status" id="cal-status"></div>
+<div id="cal-sel-note" style="display:none;font-size:11px;color:var(--green);font-weight:600;padding:5px 0 2px;"></div>
+  <div class="cal-note">Red = fully booked. Yellow = 1 slot left. Select any available date to continue.</div>
+  <div class="legend">
+    <div class="leg"><div class="ld" style="background:var(--pa);border:1.5px solid var(--li);"></div>Available</div>
+    <div class="leg"><div class="ld" style="background:var(--abg);border:1.5px solid var(--abdr);"></div>1 slot left</div>
+    <div class="leg"><div class="ld" style="background:var(--rbg);border:1.5px solid var(--rbdr);"></div>Fully booked</div>
+    <div class="leg"><div class="ld" style="background:var(--pr);"></div>Selected</div>
+  </div>
+</div>
+
+<!-- STEP 2: TIME -->
+<div class="card locked" id="card-time">
+  <div class="card-head"><div class="sbadge" id="b2">2</div><div><h2>Select a Time</h2><p id="time-sub">Choose your date first</p></div></div>
+  <div id="time-alerts"></div>
+  <div class="time-grid" id="time-grid"><p style="font-size:10.5px;color:var(--gr);">Select a date above to see available slots.</p></div>
+</div>
+
+<!-- STEP 3: AREA SIZE -->
+<div class="card locked" id="card-area">
+  <div class="card-head"><div class="sbadge" id="b3">3</div><div><h2>Area Size</h2><p>How big is the space you need cleaned?</p></div></div>
+  <div class="area-wrap">
+    <div class="area-top">
+      <span class="area-lbl">Your space is approximately</span>
+      <span><span class="area-val" id="area-display">30</span><span class="area-unit">sqm</span></span>
+    </div>
+    <div class="area-input-row">
+      <label>Type exact sqm:</label>
+      <input type="number" id="area-num" min="10" max="150" value="30" oninput="onAreaInput(this)">
+    </div>
+    <input type="range" id="area-slider" min="10" max="120" value="30" oninput="onAreaSlide(this)">
+    <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--gr);margin-top:3px;"><span>10 sqm</span><span>120 sqm</span></div>
+    <div class="area-note">Move the slider or type your exact area. Properties over 45 sqm are priced per sqm. We currently do not accommodate spaces exceeding 150 sqm — we take our time with every property and want to guarantee the quality of our work.</div>
+    <div class="large-space-note" id="large-note">
+      <strong>Large Space Detected (over 45 sqm)</strong>
+      <p style="margin-bottom:6px;">Your space qualifies for custom per-sqm pricing. Here's how it's calculated:</p>
+      <table>
+        <tr><td>Regular Cleaning</td><td>₱28/sqm</td></tr>
+        <tr><td>Deep Cleaning</td><td>₱33/sqm</td></tr>
+        <tr><td>Move In / Move Out</td><td>₱40/sqm</td></tr>
+      </table>
+      <p style="margin-top:5px;font-size:9px;color:var(--amber);">Final price = sqm x rate above. Select your cleaning type to see the computed amount.</p>
+    </div>
+    <div class="large-space-note" id="too-large-note" style="display:none;background:var(--rbg);border-color:var(--rbdr);">
+      <strong style="color:var(--red);">Space Exceeds Our Current Limit</strong>
+      <p style="color:var(--red);font-size:10px;line-height:1.5;">We currently accept bookings for spaces up to 150 sqm to ensure we give every property the dedicated, quality attention it deserves. For spaces larger than 150 sqm, please message us directly so we can work something out for you!</p>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4: CLEANING TYPE -->
+<div class="card locked" id="card-clean">
+  <div class="card-head"><div class="sbadge" id="b4">4</div><div><h2>Cleaning Type</h2><p>Tap to select and see what's included</p></div></div>
+  <div class="clean-opts">
+    <div class="clean-opt sel" id="ct-regular" onclick="selCleanType('regular')">
+      <div class="co-header"><div class="co-radio"></div><div class="co-name">Regular Cleaning</div><div class="co-badge included">Base price</div></div>
+      <div class="co-details">
+        <div class="co-desc">Sweeping, mopping, dusting surfaces, bathroom &amp; kitchen cleaning, making bed, general tidying. Perfect for routine upkeep of your space.</div>
+        <div class="co-excl"><strong>Not included:</strong><p>Inside cabinets, behind appliances, grout scrubbing, window glass exterior, laundry, or deep-level cleaning.</p></div>
+      </div>
+    </div>
+    <div class="clean-opt" id="ct-deep" onclick="selCleanType('deep')">
+      <div class="co-header"><div class="co-radio"></div><div class="co-name">Deep Cleaning</div><div class="co-badge extra" id="deep-badge">See estimate</div></div>
+      <div class="co-details">
+        <div class="co-desc">Everything in Regular Cleaning, plus: inside cabinets &amp; drawers, behind &amp; underneath appliances, grout scrubbing, baseboards, light fixtures, and hard-to-reach corners. Ideal for spaces that haven't been cleaned in a while.</div>
+        <div class="co-excl"><strong>Not included:</strong><p>Window glass exterior, laundry &amp; ironing (available as add-ons), post-construction debris, or hazardous material handling.</p></div>
+      </div>
+    </div>
+    <div class="clean-opt" id="ct-moveinout" onclick="selCleanType('moveinout')">
+      <div class="co-header"><div class="co-radio"></div><div class="co-name">Move In / Move Out</div><div class="co-badge extra" id="mio-badge">See estimate</div></div>
+      <div class="co-details">
+        <div class="co-desc">Comprehensive cleaning for properties being vacated or newly occupied. Covers all Regular Cleaning areas plus inside cabinets &amp; drawers, appliance interiors, hard-to-reach corners — leaving the space fresh and ready for the next occupant.</div>
+        <div class="co-excl"><strong>Not included:</strong><p>Removal of large furniture or junk, pest control, painting, repairs, window glass exterior, or post-construction debris.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="post-con-note" style="margin-top:8px;">
+    <strong>Post-Construction Cleaning — Not Currently Accepted</strong>
+    We recommend waiting until major dust and debris have fully settled before booking. Thank you for your understanding!
+  </div>
+</div>
+
+<!-- STEP 5: UNIT TYPE -->
+<div class="card locked" id="card-svc">
+  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>Property Type</h2><p>Select the type of space you need cleaned</p></div></div>
+  <div class="alert info" style="margin-bottom:8px;font-size:10px;"><strong>Price is determined by your area size and cleaning type above.</strong> Selecting a property type here helps us prepare appropriately — it does not change the computed price.</div>
+  <div class="svc-list">
+    <div class="svc" data-name="Studio Type" onclick="selSvc(this)">
+      <div class="svc-radio"></div>
+      <div class="svc-left"><div class="svc-name">Studio Type</div><div class="svc-sub">Typically 18–30 sqm</div></div>
+      <div class="svc-right"><div class="svc-price" id="p-studio">—</div><div class="svc-time" id="t-studio"></div></div>
+    </div>
+    <div class="svc-div"></div>
+    <div class="svc" data-name="1 Bedroom" onclick="selSvc(this)">
+      <div class="svc-radio"></div>
+      <div class="svc-left"><div class="svc-name">1 Bedroom</div><div class="svc-sub">Typically 31–45 sqm</div></div>
+      <div class="svc-right"><div class="svc-price" id="p-1br">—</div><div class="svc-time" id="t-1br"></div></div>
+    </div>
+    <div class="svc-div"></div>
+    <div class="svc" data-name="2 Bedroom" onclick="selSvc(this)">
+      <div class="svc-radio"></div>
+      <div class="svc-left"><div class="svc-name">2 Bedroom</div><div class="svc-sub">Typically 46–60 sqm</div></div>
+      <div class="svc-right"><div class="svc-price" id="p-2br">—</div><div class="svc-time" id="t-2br"></div></div>
+    </div>
+    <div class="svc-div"></div>
+    <div class="svc" data-name="Larger Home" onclick="selSvc(this)">
+      <div class="svc-radio"></div>
+      <div class="svc-left"><div class="svc-name">Larger Home</div><div class="svc-sub">Typically 61–120 sqm</div></div>
+      <div class="svc-right"><div class="svc-price" id="p-house">—</div><div class="svc-time" id="t-house"></div></div>
+    </div>
+  </div>
+  <div class="unit-note" id="unit-note">Price shown reflects your current area &amp; cleaning type selection.</div>
+  <div class="tbanner" id="tbanner">
+    <strong id="tstr">—</strong>
+    <div class="tbanner-val" id="tback"></div>
+  </div>
+</div>
+
+<!-- STEP 6: SCHEDULE -->
+<div class="card locked" id="card-sched">
+  <div class="card-head"><div class="sbadge" id="b6">6</div><div><h2>Schedule</h2><p>How often do you need cleaning?</p></div></div>
+  <div class="pills">
+    <div class="pill sel" onclick="selPill(this)" data-s="Initial / One-time">Initial / One-time</div>
+    <div class="pill" onclick="selPill(this)" data-s="Monthly">Monthly</div>
+    <div class="pill" onclick="selPill(this)" data-s="Bi-Monthly">Bi-Monthly</div>
+    <div class="pill" onclick="selPill(this)" data-s="Weekly">Weekly</div>
+    <div class="pill" onclick="selPill(this)" data-s="Bi-Weekly">Bi-Weekly</div>
+  </div>
+  <p class="snote">For recurring bookings on the same property — schedule confirmed after reservation fee is received for each session. Airbnb hosts and property managers may qualify for additional discounts — message us.</p>
+  <div class="recur-section" id="recur-section">
+    <h4>Add your scheduled dates &amp; times</h4>
+    <div id="recur-entries"></div>
+    <button class="btn-add-slot" onclick="addRecurSlot()">+ Add another date</button>
+    <div class="recur-dp" id="recur-dp"></div>
+  </div>
+</div>
+
+<!-- STEP 7: ADD-ONS -->
+<div class="card locked" id="card-ext">
+  <div class="card-head"><div class="sbadge" id="b7">7</div><div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p></div></div>
+  <div class="al" id="al"></div>
+</div>
+
+<!-- STEP 8: SPECIAL INSTRUCTIONS -->
+<div class="card locked" id="card-instr">
+  <div class="card-head"><div class="sbadge" id="b8">8</div><div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p></div></div>
+  <p style="font-size:10px;color:var(--gr);margin-bottom:6px;">Quick select — tap all that apply:</p>
+  <div class="sit-tags">
+    <div class="sit-tag" onclick="togSit(this)" data-val="Kids present">Kids present</div>
+    <div class="sit-tag" onclick="togSit(this)" data-val="Pet(s) at home">Pet(s) at home</div>
+    <div class="sit-tag" onclick="togSit(this)" data-val="Other workers on-site" data-restrict="true">Other workers on-site</div>
+    <div class="sit-tag" onclick="togSit(this)" data-val="Under renovation" data-restrict="true">Under renovation</div>
+  </div>
+  <div class="restriction-alert" id="restriction-alert">
+    <strong>⚠️ We're Unable to Accept This Booking</strong>
+    For the safety of our crew and the integrity of your clean, we do not service properties where active third-party work, ongoing renovation, or construction is taking place at the same time. We'd love to help once the space is ready — please rebook when all other on-site work is complete.
+  </div>
+  <textarea class="ia" id="instr" placeholder="Fragile items, areas to prioritize, access instructions, preferred products..."></textarea>
+  <div class="wb" style="margin-top:8px;">
+    <strong>Building / Gate Pass &amp; Noise Restrictions</strong>
+    <p>If your property requires a visitor or contractor pass, please arrange this before our visit. Some buildings only allow contractors until 5–6 PM — confirm with property management in advance.</p>
+  </div>
+</div>
+
+<!-- STEP 9: LOCATION -->
+<div class="card locked" id="card-loc">
+  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p></div></div>
+  <div style="font-size:10px;color:var(--gr);padding:6px 10px;background:var(--pa);border-radius:6px;margin-bottom:10px;line-height:1.6;">₱50 base (first 2 km) + ₱10/km up to 6 km + ₱15/km beyond. Nearby areas have fixed rates.</div>
+  <div class="loc-grid" id="loc-grid"></div>
+  <div class="other-inp" id="other-inp"><input type="text" id="other-txt" placeholder="Type your area / city..." oninput="compute()"></div>
+  <div class="loc-note">Transport fee is an estimate. Final amount confirmed based on your exact address.</div>
+</div>
+
+<!-- STEP 10: YOUR INFORMATION -->
+<div class="card locked" id="card-info">
+  <div class="card-head"><div class="sbadge" id="b10">10</div><div><h2>Your Information</h2><p>We'll use this to confirm your booking</p></div></div>
+  <div class="alert info" style="margin-bottom:8px;font-size:10px;">&#128274; No log-in required. No bank information collected. Your data is only used to process your booking request.</div>
+  <div class="fields">
+    <div class="field full">
+      <label>Full Name</label>
+      <div class="acw"><input type="text" id="f-name" placeholder="Juan Dela Cruz" oninput="acName(this)" autocomplete="name"><div class="acl" id="acl"></div></div>
+    </div>
+    <div class="field"><label>Contact Number</label><input type="tel" id="f-phone" placeholder="09XX XXX XXXX"></div>
+    <div class="field"><label>Email Address</label><input type="email" id="f-email" placeholder="email@example.com"></div>
+    <div class="field full">
+      <label>Complete Address</label>
+      <input type="text" id="f-addr" placeholder="Start typing your address..." autocomplete="off" style="width:100%;">
+      <div class="travel-card" id="travel-card" style="display:none;">
+        <div class="travel-row">
+          <div class="travel-icon">🚗</div>
+          <div>
+            <div class="travel-time" id="travel-time">—</div>
+            <div class="travel-lbl" id="travel-lbl">Estimating travel from Taguig…</div>
+          </div>
+        </div>
+        <div class="traffic-notice" id="traffic-notice" style="display:none;">
+          <span class="tn-icon" id="traffic-icon">⚠️</span>
+          <span id="traffic-msg"></span>
+        </div>
+        <div class="travel-surcharge" id="travel-surcharge" style="display:none;"></div>
+      </div>
+    </div>
+    <div class="field full"><label>Nearest Landmark</label><input type="text" id="f-land" placeholder="e.g. Near SM Aura, Beside Shell Station"></div>
+  </div>
+</div>
+
+<!-- POLICIES -->
+<div class="pb">
+  <h3>📋 Booking Policies</h3>
+
+  <div class="acc-item open" id="acc-pricing">
+    <div class="acc-head" onclick="togAcc('acc-pricing')">
+      <span class="acc-icon">📋</span>
+      <span class="acc-title">Pricing Transparency</span>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">This calculator is for <strong>pricing transparency only.</strong><br>It does not confirm a reservation. Booking is confirmed only after the <strong>reservation fee</strong> has been received and confirmed.</div>
+  </div>
+
+  <div class="acc-item" id="acc-resched">
+    <div class="acc-head" onclick="togAcc('acc-resched')">
+      <span class="acc-icon">🔄</span>
+      <span class="acc-title">Reschedule Policy</span>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">Rescheduling is allowed with at least <strong>24 hours notice</strong> before your scheduled cleaning.</div>
+  </div>
+
+  <div class="acc-item" id="acc-cancel">
+    <div class="acc-head" onclick="togAcc('acc-cancel')">
+      <span class="acc-icon">🚫</span>
+      <span class="acc-title">Cancellation &amp; Rescheduling Policy</span>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <strong>Free Cancellation or Rescheduling</strong><br>
+      You may cancel or reschedule at least <strong>24 hours before</strong> your scheduled service with no charge.<br><br>
+      <strong>Late Cancellation (Less than 24 Hours)</strong><br>
+      Cancellations made less than 24 hours before the scheduled service will forfeit the reservation fee already paid. No refund will be issued.<br><br>
+      <strong>Same-Day Bookings</strong><br>
+      Same-day bookings are subject to availability and must be confirmed by our team. A <strong>50% reservation fee</strong> is required upon confirmation. Once confirmed and the team assigned, cancellations are not eligible for a refund. If the cleaner is already dispatched, the booking is treated as a late cancellation. We recommend booking in advance.<br><br>
+      <strong>Same-Day Cancellation / No-Show</strong><br>
+      If a booking is cancelled on the day of service, or if our team cannot proceed due to no property access, incorrect address, client unavailability, or no-show — the reservation fee is non-refundable.<br><br>
+      <strong>Exceptions</strong><br>
+      Fees may be waived for verified medical emergencies, severe weather conditions, or unexpected urgent situations — reviewed fairly on a case-by-case basis.<br><br>
+      <strong style="color:var(--mn);">Why this policy exists:</strong> When a booking is confirmed, we reserve that time specifically for you and assign a cleaning professional. Last-minute changes affect schedules, cleaner income stability, and other clients waiting for availability.
+    </div>
+  </div>
+
+  <div class="acc-item" id="acc-large">
+    <div class="acc-head" onclick="togAcc('acc-large')">
+      <span class="acc-icon">🏠</span>
+      <span class="acc-title">Large Spaces (90+ sqm)</span>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">An <strong>additional cleaner</strong> will be assigned to ensure quality and efficiency. This may affect scheduling — we'll confirm details upon booking.<br><br>For <strong>90+ sqm spaces:</strong> A <strong>50% reservation fee</strong> is required to secure your reservation. This applies for weekend, same-day, and holiday bookings as well.</div>
+  </div>
+
+  <div class="acc-item" id="acc-payment">
+    <div class="acc-head" onclick="togAcc('acc-payment')">
+      <span class="acc-icon">💳</span>
+      <span class="acc-title">Reservation Fee &amp; Payment</span>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or 90+ sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Maya · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
+  </div>
+
+  <div class="acc-item" id="acc-onsite">
+    <div class="acc-head" onclick="togAcc('acc-onsite')">
+      <span class="acc-icon">🧹</span>
+      <span class="acc-title">Active On-Site Work</span>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">We do not service properties where <strong>active third-party workers, ongoing renovation, or construction</strong> is taking place. Please rebook once the space is ready for cleaning.</div>
+  </div>
+
+  <div class="agree-note">
+    <strong>📌 Booking Agreement</strong><br>
+    By sending us this estimate and completing your reservation fee, you confirm that you have read, understood, and agreed to all of the booking policies listed above.
+  </div>
+</div>
+
+<!-- WHAT HAPPENS NEXT -->
+<div class="whn-section">
+  <div class="whn-title">What Happens Next</div>
+  <div class="whn-steps">
+    <div class="whn-step">
+      <div class="whn-line"></div>
+      <div class="whn-num you">1</div>
+      <div class="whn-body">
+        <div class="whn-who you">YOU</div>
+        <div class="whn-step-title">Copy Your Estimate</div>
+        <div class="whn-step-desc">Tap <strong>"Copy Estimate Text"</strong> — your full booking details and total will be copied to your clipboard, ready to paste.</div>
+        <span class="whn-tag">📋 Copy Estimate Text</span>
+      </div>
+    </div>
+    <div class="whn-step">
+      <div class="whn-line"></div>
+      <div class="whn-num you">2</div>
+      <div class="whn-body">
+        <div class="whn-who you">YOU</div>
+        <div class="whn-step-title">Open Messenger &amp; Paste Your Estimate</div>
+        <div class="whn-step-desc">Click <strong>"Book on Messenger"</strong> — Messenger opens directly to our page. Long-press the message field, paste your estimate, and hit Send.</div>
+        <span class="whn-tag">💬 Book on Messenger</span>
+      </div>
+    </div>
+    <div class="whn-step">
+      <div class="whn-line"></div>
+      <div class="whn-num you">3</div>
+      <div class="whn-body">
+        <div class="whn-who you">YOU</div>
+        <div class="whn-step-title">Send Us Your Estimate &amp; Wait</div>
+        <div class="whn-step-desc">Once sent, just sit tight! We'll review your details and get back to you as soon as possible — usually within a few hours.</div>
+      </div>
+    </div>
+    <div class="whn-step">
+      <div class="whn-line"></div>
+      <div class="whn-num us">4</div>
+      <div class="whn-body">
+        <div class="whn-who us">KLAYGO PH</div>
+        <div class="whn-step-title">We Confirm Your Details &amp; Send Payment Info</div>
+        <div class="whn-step-desc">We'll confirm your date, time, and service — then send you our payment details for the reservation fee.</div>
+        <div class="pay-methods">
+          <h4>Accepted Payment Methods</h4>
+          <div class="pm-grid">
+            <div class="pm-item"><div class="pm-icon">💙</div><div><div class="pm-name">GCash</div><div class="pm-num">0992 816 4718</div></div></div>
+            <div class="pm-item"><div class="pm-icon">💚</div><div><div class="pm-name">Maya</div><div class="pm-num">0992 816 4718</div></div></div>
+            <div class="pm-item pm-item-wide"><div class="pm-icon">🏦</div><div><div class="pm-name">Bank Transfer</div><div class="pm-num">Details sent upon confirmation</div></div></div>
+          </div>
+          <div class="pm-note">💡 Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or 90+ sqm bookings.</div>
+        </div>
+      </div>
+    </div>
+    <div class="whn-step">
+      <div class="whn-line"></div>
+      <div class="whn-num us">5</div>
+      <div class="whn-body">
+        <div class="whn-who us">KLAYGO PH</div>
+        <div class="whn-step-title">Slot Reserved Upon Confirmed Payment</div>
+        <div class="whn-step-desc">Once we receive and confirm your <strong>reservation fee</strong>, your slot is officially reserved. We'll send you a confirmation message with all the details.</div>
+      </div>
+    </div>
+    <div class="whn-step">
+      <div class="whn-num done">🧹</div>
+      <div class="whn-body">
+        <div class="whn-who done">CLEANING DAY</div>
+        <div class="whn-step-title">See You on Cleaning Day!</div>
+        <div class="whn-step-desc">Our cleaner arrives at your confirmed time. The <strong>balance is paid on service day</strong> — cash or digital, your choice. Sit back and enjoy a spotless space. ✨</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /col-left -->
+
+<!-- RIGHT PANEL -->
+<div class="panel-right">
+  <div class="pcard">
+    <div class="phead">
+      <img id="est-logo-img" alt="Klaygo PH" style="height:22px;display:block;margin-bottom:6px;">
+      <div class="pest-id" id="p-est-id">—</div>
+      <h3>Your Estimate</h3>
+      <div class="ptotal"><span>₱</span><span id="ptotd">0</span></div>
+      <div class="pdisc" id="pdisc"></div>
+      <div class="ptime" id="ptime"></div>
+      <div class="ptime-val" id="ptime-val"></div>
+    </div>
+    <div class="pbody" id="pbody"><div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div></div>
+    <div class="pay-box" id="pay-box" style="display:none;">
+      <h4>Payment Schedule</h4>
+      <div class="pr"><span class="pk">Reservation fee (pay to confirm)</span><span class="pv" id="pay-dp">—</span></div>
+      <div class="pr pay-now"><span class="pk">Balance on service day</span><span class="pv" id="pay-bal">—</span></div>
+      <div class="pay-note">Reservation fee = transport fee. Confirms your slot. Balance paid on service day.</div>
+    </div>
+    <div class="recur-panel" id="recur-panel"></div>
+    <div class="avail-box none" id="avail-box">No date selected yet.</div>
+    <div class="transpo-note" id="transpo-note" style="display:none;">Transport estimate — final amount confirmed based on your exact address.</div>
+    <div class="discl">This estimate does not confirm a reservation. Booking confirmed after reservation fee is received and confirmed.</div>
+    <button class="btn-book" onclick="bookNow()">Book on Messenger</button>
+    <button class="btn-copy" id="btn-copy" onclick="copyEstimate()">Copy Estimate Text</button>
+    <button class="btn-print" onclick="openPrint()">Save / Print Estimate</button>
+    <button class="btn-reset" onclick="resetAll()">Reset</button>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- MESSENGER MODAL -->
+<div class="modal-overlay" id="msn-modal">
+  <div class="modal-box">
+    <span class="modal-icon">💬</span>
+    <div class="modal-title">Your estimate has been copied!</div>
+    <div class="modal-body">Messenger is about to open. Complete your booking in <strong>3 quick steps:</strong></div>
+    <div class="modal-steps">
+      <div class="modal-step"><div class="modal-step-n">1</div><div class="modal-step-t">Tap the <strong>message field</strong> in Messenger</div></div>
+      <div class="modal-step"><div class="modal-step-n">2</div><div class="modal-step-t"><strong>Long-press → Paste</strong> — your full estimate appears</div></div>
+      <div class="modal-step"><div class="modal-step-n">3</div><div class="modal-step-t">Hit <strong>Send</strong> — we'll reply to confirm your slot 🎉</div></div>
+    </div>
+    <button class="modal-cta" id="msn-go-btn">💬 Open Messenger Now</button>
+    <button class="modal-cancel" onclick="document.getElementById('msn-modal').classList.remove('show')">Cancel</button>
+  </div>
+</div>
+
+<!-- BOTTOM ESTIMATE — mobile -->
+<div id="bottom-estimate">
+  <div class="be-head"><img id="be-logo-img" class="be-logo" alt="Klaygo PH"><div><div class="be-label">Your Estimate</div></div></div>
+  <div class="be-total"><span class="be-total-prefix">₱</span><span id="be-totd">0</span></div>
+  <div class="be-time" id="be-time"></div>
+  <div id="be-body"><div class="be-empty">Select a date, time &amp; service to build your estimate.</div></div>
+  <div class="be-pay-box" id="be-pay" style="display:none;">
+    <h4>Payment Schedule</h4>
+    <div class="be-pr"><span class="be-pk">Reservation fee (pay to confirm)</span><span class="be-pv" id="be-dp">—</span></div>
+    <div class="be-pr be-pnow"><span class="be-pk">Balance on service day</span><span class="be-pv" id="be-bal">—</span></div>
+  </div>
+  <div class="be-avail none" id="be-avail">No date selected yet.</div>
+  <div class="be-discl">This estimate does not confirm a reservation. Booking confirmed after reservation fee is received and confirmed.</div>
+  <button class="be-btn" onclick="bookNow()">💬 Book on Messenger</button>
+  <button class="be-btn-sec" onclick="copyEstimate()">📋 Copy Estimate Text</button>
+</div>
+
+<!-- STICKY BAR — mobile -->
+<div id="sticky-bar" class="sb-hidden">
+  <div class="sticky-top">
+    <div class="sticky-left">
+      <img id="sb-logo-img" class="sticky-logo" alt="Klaygo PH">
+      <div class="sticky-summary">
+        <div class="sticky-total-amt"><span class="sb-peso">&#8369;</span><span id="sb-total">—</span></div>
+        <div class="sticky-desc" id="sb-desc">Complete the steps to see your estimate</div>
+      </div>
+    </div>
+    <button class="sticky-cta" onclick="scrollToEstimate()">View estimate ↑</button>
+  </div>
+  <div class="sticky-brand">KLAYGOPH Cleaning Services &nbsp;|&nbsp; Cleaner Space, Clearer Mind.</div>
+</div>
+
+<div class="follow-bar">
+  <p class="follow-text">Follow us for tips, updates &amp; promos!</p>
+  <div class="follow-links">
+    <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @klaygoph
+    </a>
+    <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
+      @klaygoph
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila</span>
+    <span class="footer-contacts">
+      <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="footer-icon-link" title="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://m.me/klaygoph" target="_blank" rel="noopener" class="footer-icon-link" title="Messenger">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
+      </a>
+      @KlayGoPH &nbsp;|&nbsp; 0992.816.4718
+    </span>
+  </div>
+</footer>
+<div class="copyright-bar">© 2025 Klaygo PH. All rights reserved.</div>
+<div class="toast" id="toast"></div>
+
+<script>
+'use strict';
+// ── CONFIG ────────────────────────────────────────────────────
+var API_KEY    = 'AIzaSyCuiza3RKflnhopjK1SPZHZo-q3yq_2S78';
+var CAL_ID     = '91bd20a18be9ffc46ab26dcba87513699ca82c5027a77484a75af3670ec424a8@group.calendar.google.com';
+var MAX_SLOTS  = 2;
+var SLOT_START = 8;   // 8 AM
+var SLOT_END   = 15;  // 3 PM last slot
+var ADVANCE_HRS = 8;  // min hours ahead to book
+var FORMSPREE  = 'mjglezpk';
+var AUTO_REFRESH_MS = 300000; // 5 min auto-refresh
+
+// GitHub-hosted image URLs
+var LIGHT_LOGO = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
+var DARK_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
+var BLUE_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
+var PRINT_BG   = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Print%20-%20White%20Background.png';
+
+// Pricing — bracket-based (UPDATE when final prices confirmed by KlayGo PH)
+// Format: max sqm | Regular price | Deep price | MIO price | mins (min–max) per type
+var PRICE_BRACKETS = [
+  {max: 30,  rP:600,  rMin:120,rMax:180, dP:1350, dMin:240,dMax:270,  mP:1800, mMin:270,mMax:360},
+  {max: 45,  rP:800,  rMin:150,rMax:210, dP:1750, dMin:270,dMax:300,  mP:2300, mMin:300,mMax:420},
+  {max: 60,  rP:1400, rMin:180,rMax:240, dP:2100, dMin:300,dMax:390,  mP:2800, mMin:360,mMax:480},
+  {max: 80,  rP:1960, rMin:210,rMax:270, dP:2800, dMin:360,dMax:450,  mP:3600, mMin:420,mMax:540},
+  {max: 100, rP:2520, rMin:240,rMax:300, dP:3300, dMin:420,dMax:540,  mP:4400, mMin:480,mMax:600},
+  {max: 120, rP:3080, rMin:300,rMax:360, dP:3960, dMin:480,dMax:600,  mP:5200, mMin:540,mMax:720},
+  {max: 150, rP:3780, rMin:330,rMax:420, dP:4800, dMin:540,dMax:660,  mP:6400, mMin:600,mMax:840},
+];
+function getBracket(sqm){for(var i=0;i<PRICE_BRACKETS.length;i++){if(sqm<=PRICE_BRACKETS[i].max)return PRICE_BRACKETS[i];}return PRICE_BRACKETS[PRICE_BRACKETS.length-1];}
+var LARGE_CUTOFF = 45; // threshold for showing the "large space" info note
+
+var ROOM_TYPES = ['Dining Room','Play Room','Laundry Room','Gym','Garage','Home Office','Basement','Attic'];
+var STORED = JSON.parse(localStorage.getItem('kn')||'[]');
+
+var ADDONS = [
+  {id:'room',    name:'Additional Room',      note:'per room — select type(s)',           price:250, qty:true,  max:8,  tm:30, tx:45},
+  {id:'bath',    name:'Additional Bathroom',  note:'per bathroom',                        price:250, qty:true,  max:10, tm:30, tx:45},
+  {id:'balcony', name:'Additional Balcony',   note:'per balcony · ~30–45 min each',       price:250, qty:true,  max:5,  tm:30, tx:45},
+  {id:'declut',  name:'Declutter / Organize', note:'per cabinet or area · ~25–45 min each', price:250, qty:true, max:10, tm:25, tx:45},
+  {id:'dish',    name:'Dishwashing',          note:'per set · up to 15 items',            price:150, qty:true,  max:5,  tm:25, tx:40},
+  {id:'fold',    name:'Folding Clothes',      note:'per set · up to 20 items',            price:150, qty:true,  max:5,  tm:20, tx:30},
+  {id:'iron',    name:'Ironing / Steam',      note:'per set · up to 10 items',            price:200, qty:true,  max:5,  tm:30, tx:45},
+  {id:'fridge',  name:'Fridge Cleaning',      note:'per fridge',                          price:200, qty:true,  max:3,  tm:30, tx:60},
+  {id:'fan',     name:'Fan Cleaning',         note:'per fan',                             price:150, qty:true,  max:10, tm:15, tx:20},
+];
+
+var LOCS = [
+  {id:'bgc',     name:'BGC',           km:2.5,  fixed:80,  noRT:true},
+  {id:'mck',     name:'McKinley Hill', km:1.5,  fixed:100, noRT:true},
+  {id:'taguig',  name:'Within Taguig', km:3,    fixed:150, noRT:true},
+  {id:'makati',  name:'Makati',        km:6  },
+  {id:'pasay',   name:'Pasay',         km:8  },
+  {id:'ortigas', name:'Ortigas',       km:9  },
+  {id:'pasig',   name:'Pasig',         km:10 },
+  {id:'mand',    name:'Mandaluyong',   km:11 },
+  {id:'para',    name:'Paranaque',     km:11 },
+  {id:'munt',    name:'Muntinlupa',    km:14 },
+  {id:'tondo',   name:'Tondo',         km:14 },
+  {id:'binondo', name:'Binondo',       km:14 },
+  {id:'laspi',   name:'Las Pinas',     km:15 },
+  {id:'sampaloc',name:'Sampaloc',      km:15 },
+  {id:'qc',      name:'Quezon City',   km:16 },
+  {id:'mari',    name:'Marikina',      km:17 },
+  {id:'calo',    name:'Caloocan',      km:20 },
+  {id:'others',  name:'Others',        km:0,    others:true},
+];
+
+// ── PHILIPPINE HOLIDAYS ───────────────────────────────────────
+var PH_HOLIDAYS = new Set([
+  '2025-01-01','2025-04-09','2025-04-17','2025-04-18','2025-05-01',
+  '2025-06-12','2025-08-21','2025-08-25','2025-11-01','2025-11-02',
+  '2025-11-30','2025-12-08','2025-12-24','2025-12-25','2025-12-30','2025-12-31',
+  '2026-01-01','2026-04-02','2026-04-03','2026-05-01',
+  '2026-06-12','2026-08-21','2026-08-31','2026-11-01','2026-11-02',
+  '2026-11-30','2026-12-08','2026-12-24','2026-12-25','2026-12-30','2026-12-31',
+]);
+
+// ── PROGRESS TRACKING FLAGS ────────────────────────────────────
+var sqmTouched=false, schedTouched=false;
+var analytics = JSON.parse(localStorage.getItem('kg_an')||'{"opens":0,"estimates":0,"prints":0,"lastNum":0}');
+analytics.opens++;
+localStorage.setItem('kg_an', JSON.stringify(analytics));
+
+// ── ESTIMATE ID ───────────────────────────────────────────────
+var currentEstId = '';
+function genEstId(){
+  var d=new Date(), ymd=d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate());
+  analytics.estimates++;analytics.lastNum++;
+  localStorage.setItem('kg_an',JSON.stringify(analytics));
+  currentEstId='KGPH-EST-'+ymd+'-'+('000'+analytics.lastNum).slice(-3);
+  var el=document.getElementById('p-est-id'); if(el) el.textContent=currentEstId;
+}
+function pad(n){ return n<10?'0'+n:''+n; }
+
+// ── TRANSPORT ─────────────────────────────────────────────────
+function calcFee(l){
+  if(l.others) return null;
+  if(l.fixed!==undefined) return l.fixed;
+  var k=l.km, f=50;
+  if(k>2) f+=Math.min(k-2,4)*10;
+  if(k>6) f+=(k-6)*15;
+  f=Math.round(f/5)*5;
+  return l.noRT?f:f*2;
+}
+
+// ── STATE ─────────────────────────────────────────────────────
+var CY, CM, monthEvts={};
+var selDate=null, selTime=null;
+var selSituations=new Set(), recurSlots=[];
+var S={
+  cleanType:'regular', sqm:30, isLarge:false,
+  bn:'',
+  sched:'Initial / One-time',
+  addons:{}, rt:new Set(),
+  lid:null, ln:null, lf:null
+};
+
+var nowJS=new Date();
+CY=nowJS.getFullYear(); CM=nowJS.getMonth();
+
+// ── ACCORDION ──────────────────────────────────────────
+function togAcc(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var isOpen=el.classList.contains('open');
+  // Close all others
+  document.querySelectorAll('.acc-item').forEach(function(item){
+    if(item.id!==id)item.classList.remove('open');
+  });
+  // Toggle clicked
+  if(isOpen){el.classList.remove('open');}
+  else{el.classList.add('open');}
+}
+
+// ── PROGRESS BAR ───────────────────────────────────────
+function updateProgress(){
+  var done=0;
+  if(selDate)done++;
+  if(selTime)done++;
+  if(sqmTouched)done++;
+  if(S.cleanType&&S.cleanType!=='regular')done++;else if(document.getElementById('ct-regular')&&document.getElementById('ct-regular').classList.contains('sel'))done++;
+  if(S.bn)done++;
+  if(schedTouched)done++;
+  if(document.querySelectorAll('.sit-tag.on').length||document.getElementById('instr').value.trim())done++;
+  if(S.lid)done++;
+  if(document.getElementById('f-name').value.trim())done++;
+  if(document.getElementById('f-phone').value.trim())done++;
+  done=Math.min(done,10);
+  var current=Math.min(done+1,10);
+  var pct=Math.round(done/10*100);
+  var fill=document.getElementById('progress-fill');
+  var lbl=document.getElementById('progress-label');
+  if(fill)fill.style.width=Math.max(pct,3)+'%';
+  if(lbl)lbl.textContent=done===10?'All steps complete \u2713':'Step '+current+' of 10';
+}
+
+// ── COMPUTE BASE PRICE ────────────────────────────────────────
+var PER_SQM_REG=28, PER_SQM_DEEP=33, PER_SQM_MIO=40;
+function getBasePrice(){
+  if(!selTime) return{price:0,label:'',surcharge:0};
+  var b=getBracket(S.sqm);
+  var label=S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'');
+  if(S.sqm>LARGE_CUTOFF){
+    if(S.cleanType==='regular')return{price:S.sqm*PER_SQM_REG,label:label+' — Regular (₱'+PER_SQM_REG+'/sqm)',surcharge:0};
+    if(S.cleanType==='deep')   return{price:S.sqm*PER_SQM_DEEP,label:label+' — Deep Clean (₱'+PER_SQM_DEEP+'/sqm)',surcharge:0};
+    return{price:S.sqm*PER_SQM_MIO,label:label+' — Move In/Out (₱'+PER_SQM_MIO+'/sqm)',surcharge:0};
+  }
+  if(S.cleanType==='regular')return{price:b.rP,label:label+' — Regular',surcharge:0};
+  if(S.cleanType==='deep')   return{price:b.dP,label:label+' — Deep Clean',surcharge:0};
+  return{price:b.mP,label:label+' — Move In/Out',surcharge:0};
+}
+
+// ── CALENDAR FETCH ────────────────────────────────────────────
+async function fetchMonth(y,m){
+  var tMin=new Date(y,m,1).toISOString();
+  var tMax=new Date(y,m+1,0,23,59,59).toISOString();
+  var url='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CAL_ID)+'/events?timeMin='+encodeURIComponent(tMin)+'&timeMax='+encodeURIComponent(tMax)+'&singleEvents=true&orderBy=startTime&key='+API_KEY;
+  var st=document.getElementById('cal-status');
+  try{
+    if(st){st.style.display='block';st.textContent='Syncing calendar...';}
+    var r=await fetch(url);
+    if(!r.ok){
+      if(st) st.textContent='Calendar error '+r.status+'. In Google Cloud Console, check your API key restrictions — make sure klaygoph.github.io/* is listed, or set to None temporarily.';
+      return;
+    }
+    var d=await r.json();
+    var prefix=y+'-'+pad(m+1);
+    Object.keys(monthEvts).forEach(function(k){if(k.startsWith(prefix))delete monthEvts[k];});
+    (d.items||[]).forEach(function(ev){
+      if(!ev.start)return;
+      var s=ev.start.dateTime||ev.start.date, e=ev.end?(ev.end.dateTime||ev.end.date):s;
+      var ds=s.substring(0,10);
+      if(!monthEvts[ds])monthEvts[ds]=[];
+      monthEvts[ds].push({s:s,e:e,title:ev.summary||'Booked'});
+    });
+    if(st)st.style.display='none';
+  }catch(err){
+    console.error('Calendar error:',err);
+    if(st)st.textContent='Could not connect to calendar. Check internet or tap Refresh.';
+  }
+}
+
+async function fetchDay(ds){
+  var tMin=new Date(ds+'T00:00:00+08:00').toISOString();
+  var tMax=new Date(ds+'T23:59:59+08:00').toISOString();
+  var url='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CAL_ID)+'/events?timeMin='+encodeURIComponent(tMin)+'&timeMax='+encodeURIComponent(tMax)+'&singleEvents=true&orderBy=startTime&key='+API_KEY;
+  try{
+    var r=await fetch(url); if(!r.ok)return monthEvts[ds]||[];
+    var d=await r.json();
+    var evts=(d.items||[]).map(function(ev){return{s:ev.start.dateTime||ev.start.date,e:ev.end?(ev.end.dateTime||ev.end.date):ev.start.dateTime,title:ev.summary||'Booked'};});
+    monthEvts[ds]=evts; return evts;
+  }catch(e){return monthEvts[ds]||[];}
+}
+
+// ── CALENDAR RENDER ───────────────────────────────────────────
+var MNAMES=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function renderCal(){
+  document.getElementById('cal-title').textContent=MNAMES[CM]+' '+CY;
+  var g=document.getElementById('cal-grid'); g.innerHTML='';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(function(d){var el=document.createElement('div');el.className='cal-dow';el.textContent=d;g.appendChild(el);});
+  var first=new Date(CY,CM,1).getDay(), days=new Date(CY,CM+1,0).getDate();
+  var todayD=new Date(nowJS.getFullYear(),nowJS.getMonth(),nowJS.getDate());
+  for(var i=0;i<first;i++){var el=document.createElement('div');el.className='day empty';g.appendChild(el);}
+  for(var d=1;d<=days;d++){
+    var ds=CY+'-'+pad(CM+1)+'-'+pad(d), thisD=new Date(CY,CM,d);
+    var el=document.createElement('div'); el.className='day'; el.dataset.date=ds;
+    var dn=document.createElement('div'); dn.textContent=d; el.appendChild(dn);
+    if(thisD<todayD){el.classList.add('past');}
+    else{
+      var evts=monthEvts[ds]||[], taken=evts.length;
+      var dots=document.createElement('div'); dots.className='dots';
+      var amBooked=evts.some(function(ev){var h=new Date(ev.s).getHours();return h<12;});
+      var pmBooked=evts.some(function(ev){var h=new Date(ev.s).getHours();return h>=12;});
+      var dot0=document.createElement('div');dot0.className='dot '+(amBooked?'t':'o');dots.appendChild(dot0);
+      var dot1=document.createElement('div');dot1.className='dot '+(pmBooked?'t':'o');dots.appendChild(dot1);
+      el.appendChild(dots);
+      if(amBooked&&pmBooked)el.classList.add('full-d');
+      else if(taken>0)el.classList.add('partial-d');
+      if(thisD.toDateString()===nowJS.toDateString())el.classList.add('today-d');
+      if(ds===selDate)el.classList.add('sel-d');
+      if(!el.classList.contains('full-d'))(function(dateStr,elem){elem.addEventListener('click',function(){onDateClick(dateStr,elem);});})(ds,el);
+    }
+    g.appendChild(el);
+  }
+}
+
+// ── DATE CLICK ────────────────────────────────────────────────
+async function onDateClick(ds,el){
+  selDate=ds; selTime=null;
+  document.querySelectorAll('.day.sel-d').forEach(function(d){d.classList.remove('sel-d');});
+  el.classList.add('sel-d');
+  var hrsAway=(new Date(ds+'T00:00:00+08:00')-new Date())/3600000;
+  unlock('card-time');
+  var parts=ds.split('-');
+  var dispDate=new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',month:'long',day:'numeric'});
+  document.getElementById('time-sub').textContent='Available times for '+dispDate;
+  await renderTimes(ds,hrsAway);
+  setAvail('none','Select a time slot above.');
+  document.getElementById('card-time').scrollIntoView({behavior:'smooth',block:'nearest'});
+  renderAddons(); compute();
+}
+
+async function renderTimes(ds,hrsAway){
+  var g=document.getElementById('time-grid'), alerts=document.getElementById('time-alerts');
+  g.innerHTML='<p style="font-size:10.5px;color:var(--se);">Checking live calendar...</p>';
+  alerts.innerHTML='';
+  var evts=await fetchDay(ds);
+  if(hrsAway<24&&hrsAway>=0) alerts.innerHTML='<div class="alert warn"><strong>Less than 24 hours notice</strong>Please review the short-notice cancellation policy before proceeding.</div>';
+  alerts.innerHTML+='<div class="alert info"><strong>Property access reminder</strong>Some buildings only allow contractors until 5–6 PM. Confirm with property management before selecting a late slot.</div>';
+  g.innerHTML='';
+  var nowPH=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Manila'}));
+  for(var h=SLOT_START;h<=SLOT_END;h++){
+    var slotS=new Date(ds+'T'+pad(h)+':00:00+08:00');
+    var hoursUntil=(slotS-nowPH)/3600000;
+    var busy=evts.some(function(ev){var es=new Date(ev.s),ee=new Date(ev.e);return slotS>=es&&slotS<ee;});
+    var tooSoon=hoursUntil<ADVANCE_HRS&&hoursUntil>=0, past=slotS<=nowPH;
+    var label=slotS.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
+    var elts=document.createElement('div');
+    elts.className='ts'+(busy?' ts-b':((past||tooSoon)?' ts-p':''));
+    elts.textContent=label;
+    if(busy)elts.title='Already booked';
+    if(tooSoon&&!past&&!busy)elts.title='Must be booked at least '+ADVANCE_HRS+' hours in advance';
+    if(!busy&&!past&&!tooSoon)(function(slot,e){e.addEventListener('click',function(){onTimeClick(e,slot);});})(slotS,elts);
+    g.appendChild(elts);
+  }
+}
+
+function onTimeClick(el,start){
+  document.querySelectorAll('.ts.ts-s').forEach(function(t){t.classList.remove('ts-s');});
+  el.classList.add('ts-s'); selTime=start;
+  ['card-area','card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-info'].forEach(function(id){unlock(id);});
+  var lbl=start.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
+  var parts=selDate.split('-');
+  var dlbl=new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'short',month:'short',day:'numeric'});
+  setAvail('ok','Available: '+lbl+' on '+dlbl);
+  genEstId();
+  var copyBtn=document.getElementById('btn-copy'); if(copyBtn)copyBtn.style.display='block';
+  document.getElementById('card-area').scrollIntoView({behavior:'smooth',block:'nearest'});
+  compute();
+}
+
+function unlock(id){var el=document.getElementById(id);if(el)el.classList.remove('locked');}
+function setAvail(type,msg){
+  var el=document.getElementById('avail-box');if(el){el.className='avail-box '+type;el.textContent=msg;}
+  var be=document.getElementById('be-avail');if(be){be.className='be-avail '+type;be.textContent=msg;}
+}
+
+// ── AREA SIZE ─────────────────────────────────────────────────
+function syncArea(val){
+  val=Math.max(10,Math.min(150,+val||30));
+  S.sqm=val;
+  S.isLarge=val>LARGE_CUTOFF;
+  var tooLarge=val>150;
+  document.getElementById('area-display').textContent=val;
+  var numEl=document.getElementById('area-num'); if(numEl)numEl.value=val;
+  var slider=document.getElementById('area-slider');
+  if(slider){
+    var sv=Math.min(val,120); slider.value=sv;
+    var pct=((sv-10)/(120-10)*100)+'%';
+    slider.style.setProperty('--pct',pct);
+  }
+  var ln=document.getElementById('large-note');
+  if(ln)ln.classList.toggle('show',S.isLarge&&val<=150);
+  var tln=document.getElementById('too-large-note');
+  if(tln)tln.style.display=val>150?'block':'none';
+  compute();
+}
+function onAreaSlide(inp){sqmTouched=true;syncArea(+inp.value);}
+function onAreaInput(inp){sqmTouched=true;syncArea(+inp.value);}
+
+// ── CLEANING TYPE ─────────────────────────────────────────────
+function selCleanType(type){
+  S.cleanType=type;
+  ['regular','deep','moveinout'].forEach(function(t){
+    var el=document.getElementById('ct-'+t); if(el)el.classList.toggle('sel',t===type);
+  });
+  compute();
+}
+
+// ── SERVICE (PROPERTY TYPE) ───────────────────────────────────
+function selSvc(el){
+  document.querySelectorAll('.svc').forEach(function(s){s.classList.remove('sel');}); el.classList.add('sel');
+  S.bn=el.dataset.name;
+  compute();
+}
+
+// ── SCHEDULE ──────────────────────────────────────────────────
+function selPill(el){
+  schedTouched=true;
+  document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('sel');}); el.classList.add('sel');
+  S.sched=el.dataset.s;
+  var rs=document.getElementById('recur-section');
+  if(rs)rs.style.display=(S.sched!=='Initial / One-time')?'block':'none';
+  updateRecurDP(); compute();
+}
+
+// ── SITUATION TAGS ────────────────────────────────────────────
+function togSit(el){
+  var v=el.dataset.val;
+  if(selSituations.has(v)){selSituations.delete(v);el.classList.remove('on');}
+  else{selSituations.add(v);el.classList.add('on');}
+  var hasRestrict=Array.from(document.querySelectorAll('.sit-tag[data-restrict="true"].on')).length>0;
+  var ra=document.getElementById('restriction-alert');
+  if(ra)ra.classList.toggle('show',hasRestrict);
+}
+
+// ── RECURRING DATES ───────────────────────────────────────────
+function addRecurSlot(){recurSlots.push({date:'',time:''});renderRecurSlots();}
+function removeRecurSlot(i){recurSlots.splice(i,1);renderRecurSlots();}
+function renderRecurSlots(){
+  var c=document.getElementById('recur-entries'); if(!c)return;
+  var html='';
+  for(var i=0;i<recurSlots.length;i++){
+    html+='<div class="recur-row">'
+      +'<input type="date" value="'+(recurSlots[i].date||'')+'" onchange="recurSlots['+i+'].date=this.value;updateRecurDP()">'
+      +'<input type="time" value="'+(recurSlots[i].time||'')+'" min="08:00" max="15:00" onchange="recurSlots['+i+'].time=this.value;updateRecurDP()">'
+      +'<button class="recur-remove" onclick="removeRecurSlot('+i+')">x</button>'
+      +'</div>';
+  }
+  c.innerHTML=html; updateRecurDP();
+}
+function updateRecurDP(){
+  var filled=recurSlots.filter(function(s){return s.date;});
+  var dp=document.getElementById('recur-dp'), panel=document.getElementById('recur-panel');
+  if(!dp)return;
+  if(!filled.length||!S.lf){dp.style.display='none';if(panel)panel.style.display='none';return;}
+  var totalSessions=filled.length+1; // initial + recurring
+  var totalDP=S.lf*totalSessions;
+  dp.style.display='block';
+  dp.innerHTML='<strong>'+filled.length+' additional session'+(filled.length>1?'s':'')+' added → '+totalSessions+' sessions total</strong><br>'
+    +'Reservation fee per session: <strong>₱'+S.lf.toLocaleString()+'</strong>'
+    +' × '+totalSessions+' = <strong>₱'+totalDP.toLocaleString()+'</strong><br>'
+    +'<span style="font-size:10px;color:var(--gr);">One reservation fee per session confirms each slot. Balance paid on each service day.</span>';
+  if(panel){
+    panel.style.display='block';
+    panel.innerHTML='<div style="font-size:9px;color:var(--se);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;">Reservation Fees (' + totalSessions + ' sessions)</div>'
+      +'<div style="font-size:13px;color:var(--gr);">₱'+S.lf.toLocaleString()+' × '+totalSessions+' sessions</div>'
+      +'<div style="font-size:20px;font-weight:700;color:var(--green);margin-top:3px;">₱'+totalDP.toLocaleString()+' total upfront</div>'
+      +'<div style="font-size:10px;color:var(--gr);margin-top:3px;">One per session • Balance paid on each service day.</div>';
+  }
+  }
+}
+
+// ── ADD-ONS ───────────────────────────────────────────────────
+function renderAddons(){
+  var html='';
+  ADDONS.forEach(function(a){
+    var q=S.addons[a.id]||0, on=q>0, isR=a.id==='room';
+    var rsub=isR?'<div class="rsub '+(on?'show':'')+'">'
+      +ROOM_TYPES.map(function(rt){return '<div class="rtag '+(S.rt.has(rt)?'on':'')+'" onclick="event.stopPropagation();togR(\''+rt+'\')">'+rt+'</div>';}).join('')
+      +'</div>':'';
+    var qc=a.qty?'<div class="qc" onclick="event.stopPropagation()">'
+      +'<button class="qb" onclick="chgQ(\''+a.id+'\',-1)">-</button>'
+      +'<div class="qn">'+q+'</div>'
+      +'<button class="qb" onclick="chgQ(\''+a.id+'\',1)">+</button></div>':'';
+    html+='<div class="ar '+(on?'on':'')+'" onclick="togAddon(\''+a.id+'\')">'
+      +'<div class="ar-ck">'+(on?'✓':'')+'</div>'
+      +'<div class="ar-info"><div class="ar-n">'+a.name+'</div><div class="ar-no">'+a.note+(a.tm?' · ~'+a.tm+'–'+a.tx+' min each':'')+'</div></div>'
+      +'<div class="ar-p">₱'+a.price.toLocaleString()+'</div>'
+      +qc+'</div>'+rsub;
+  });
+  document.getElementById('al').innerHTML=html;
+}
+function togAddon(id){S.addons[id]=(S.addons[id]||0)>0?0:1;if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();}
+function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[id]=Math.max(0,Math.min(a.max,(S.addons[id]||0)+d));if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();}
+function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons();compute();}
+// ── LOCATION ──────────────────────────────────────────────────
+function renderLocs(){
+  var html='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
+  LOCS.forEach(function(l,i){
+    var f=calcFee(l), ft=f===null?'Request quote':'₱'+f;
+    var fixTag=l.fixed!==undefined?'<span class="lb-tag">Fixed</span>':'';
+    html+='<div class="lb" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
+      +'<div class="lb-n">'+l.name+fixTag+'</div>'
+      +'<div class="lb-f">'+ft+'</div>'
+      +'</div>';
+  });
+  html+='</div>';
+  document.getElementById('loc-grid').innerHTML=html;
+}
+function selLoc(id){
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('sel');});
+  document.querySelector('.lb[data-id="'+id+'"]').classList.add('sel');
+  var l=LOCS.find(function(x){return x.id===id;});
+  S.lid=id;S.ln=l.name;S.lf=calcFee(l);
+  var oi=document.getElementById('other-inp');if(oi)oi.classList.toggle('show',!!l.others);
+  updateRecurDP();compute();
+}
+
+// ── TIME CALC ─────────────────────────────────────────────────
+function cT(){
+  var b=getBracket(S.sqm);
+  var mn,mx;
+  if(S.cleanType==='regular'){mn=b.rMin;mx=b.rMax;}
+  else if(S.cleanType==='deep'){mn=b.dMin;mx=b.dMax;}
+  else{mn=b.mMin;mx=b.mMax;}
+  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){mn+=a.tm*q;mx+=a.tx*q;}});
+  return{mn:mn,mx:mx};
+}
+function fmtT(mn,mx){
+  function f(m){var h=Math.floor(m/60),r=m%60;return r?h+'h '+r+'min':h+'h';}
+  if(mn%60===0&&mx%60===0)return Math.floor(mn/60)+'–'+Math.floor(mx/60)+' hours';
+  return f(mn)+' – '+f(mx);
+}
+
+// ── COMPUTE ───────────────────────────────────────────────────
+function compute(){
+  var lines=[], sub=0;
+
+  // Update property type card prices to reflect current sqm + cleaning type
+  var b=getBracket(S.sqm), t=cT();
+  var brackets=[
+    {pid:'p-studio',tid:'t-studio',b:getBracket(25)},
+    {pid:'p-1br',   tid:'t-1br',   b:getBracket(38)},
+    {pid:'p-2br',   tid:'t-2br',   b:getBracket(52)},
+    {pid:'p-house', tid:'t-house', b:getBracket(85)},
+  ];
+  brackets.forEach(function(br){
+    var el=document.getElementById(br.pid), tel=document.getElementById(br.tid);
+    if(!el)return;
+    var p,mn,mx;
+    if(S.cleanType==='regular'){p=br.b.rP;mn=br.b.rMin;mx=br.b.rMax;}
+    else if(S.cleanType==='deep'){p=br.b.dP;mn=br.b.dMin;mx=br.b.dMax;}
+    else{p=br.b.mP;mn=br.b.mMin;mx=br.b.mMax;}
+    el.textContent='₱'+p.toLocaleString();
+    if(tel)tel.textContent='~'+fmtT(mn,mx);
+  });
+
+  // Base price from bracket
+  var bp=getBasePrice();
+  if(bp.price>0){lines.push({l:bp.label,v:bp.price});sub+=bp.price;}
+
+  // Add-ons
+  ADDONS.forEach(function(a){
+    var q=S.addons[a.id]||0;
+    if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push({l:lbl,v:sv});sub+=sv;}
+  });
+
+  // Transport
+  var tf=0, isOth=S.lid==='others';
+  if(S.lid){
+    if(S.lf===null||isOth){lines.push({l:'Transport — '+(isOth?(document.getElementById('other-txt')?document.getElementById('other-txt').value||'Other area':'Other area'):S.ln),v:null,tbd:true});}
+    else{lines.push({l:'Transport — '+S.ln,v:S.lf});sub+=S.lf;tf=S.lf;}
+  }
+  // Smart travel surcharge (from address autocomplete)
+  if(travelData.surcharge>0){
+    var sLabel=travelData.rushLevel==='heavy'?'Rush Hour Buffer':'Long Distance Supplement';
+    lines.push({l:sLabel,v:travelData.surcharge});
+    sub+=travelData.surcharge;
+  }
+  var total=sub;
+
+  // Time banner
+  var tb=document.getElementById('tbanner');
+  if(t&&bp.price>0){
+    var ts=fmtT(t.mn,t.mx);
+    document.getElementById('tstr').textContent='Estimated Duration:';
+    document.getElementById('tback').textContent='You get back '+ts+' of your day.';
+    tb.classList.add('show');
+    document.getElementById('ptime').textContent='~'+ts+' est.';
+    document.getElementById('ptime-val').textContent='You get back '+ts+' of your day.';
+  } else {tb.classList.remove('show');document.getElementById('ptime').textContent='';document.getElementById('ptime-val').textContent='';}
+
+  document.getElementById('ptotd').textContent=total.toLocaleString();
+  var body=document.getElementById('pbody');
+  if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';updateStickyBar(0);updateBottomEstimate(0,[],false,0,0,null);updateProgress();return;}
+  var html=lines.map(function(ln){return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
+  html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">₱'+total.toLocaleString()+'</span></div>';
+  body.innerHTML=html;
+
+  var t2=cT();
+  updateStickyBar(total);
+
+  var pb=document.getElementById('pay-box');
+  var dow=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()):-1;
+  var isWeekend=dow===0||dow===6;
+  var isSameDay=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
+  var isHoliday=selDate&&PH_HOLIDAYS.has(selDate);
+  var isLarge=S.sqm>=90;
+  var needs50=isSameDay||isWeekend||isHoliday||isLarge;
+  var needs50Reason=isSameDay?'Same-day booking':isWeekend?'Weekend booking':isHoliday?'Holiday booking':isLarge?'90+ sqm property':'';
+  var dp,bal;
+  if(needs50){dp=Math.ceil(total*0.5);}
+  else{dp=Math.max(Math.ceil(total*0.30),tf);}
+  bal=Math.max(0,total-dp);
+  if(total>0){
+    pb.style.display='block';
+    document.getElementById('pay-dp').textContent='\u20b1'+dp.toLocaleString()+(needs50?' (50% \u2014 '+needs50Reason+')':'');
+    document.getElementById('pay-bal').textContent='\u20b1'+bal.toLocaleString();
+    var multiDate=recurSlots.filter(function(s){return s.date;}).length>0||S.sched!=='Initial / One-time';
+    var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
+    if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
+    var pnote=document.querySelector('.pay-note');
+    if(pnote)pnote.textContent=needs50?needs50Reason+': 50% reservation fee required to confirm slot. Balance paid on service day.':'Reservation fee = whichever is higher between 30% of total or transport fee. Balance paid on service day.';
+    updateBottomEstimate(total,lines,true,dp,bal,t2&&t2.mn>0?t2:null);
+  } else {
+    pb.style.display='none';
+    updateBottomEstimate(total,lines,false,0,0,t2&&t2.mn>0?t2:null);
+  }
+  document.getElementById('transpo-note').style.display=S.lid?'block':'none';
+  updateRecurDP();
+  updateProgress();
+}
+
+// ── AUTOCOMPLETE ──────────────────────────────────────────────
+function acName(inp){
+  var v=inp.value.trim().toLowerCase(),l=document.getElementById('acl');
+  if(!v||v.length<2){l.classList.remove('show');return;}
+  var m=STORED.filter(function(n){return n.toLowerCase().startsWith(v);}).slice(0,5);
+  if(!m.length){l.classList.remove('show');return;}
+  l.innerHTML=m.map(function(n){return'<div class="aci" onclick="document.getElementById(\'f-name\').value=\''+n+'\';document.getElementById(\'acl\').classList.remove(\'show\')">'+n+'</div>';}).join('');
+  l.classList.add('show');
+}
+document.addEventListener('click',function(e){if(!e.target.closest('.acw'))document.querySelectorAll('.acl').forEach(function(l){l.classList.remove('show');});});
+
+// ── BUILD MESSAGE ─────────────────────────────────────────────
+function buildMsg(){
+  var name=document.getElementById('f-name').value.trim();
+  var phone=document.getElementById('f-phone').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var addr=document.getElementById('f-addr').value.trim();
+  var land=document.getElementById('f-land').value.trim();
+  var instr=document.getElementById('instr').value.trim();
+  if(name&&!STORED.includes(name)){STORED.unshift(name);if(STORED.length>20)STORED.pop();localStorage.setItem('kn',JSON.stringify(STORED));}
+  var lines=[],sub=0,bp=getBasePrice();
+  var now=new Date(), ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
+  if(bp.price>0){lines.push(bp.label+': ₱'+bp.price.toLocaleString());sub+=bp.price;}
+  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push(lbl+': ₱'+sv.toLocaleString());sub+=sv;}});
+  var tf=0;
+  if(S.lf!==null&&S.lid&&S.lid!=='others'){lines.push('Transport — '+S.ln+': ₱'+S.lf.toLocaleString());sub+=S.lf;tf=S.lf;}
+  var total=sub,t=cT();
+  var parts=selDate?selDate.split('-'):null;
+  var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'Not selected';
+  var tl=selTime?selTime.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true}):'Not selected';
+  var msg='Hi Klaygo PH! Here is my booking request.\n\n';
+  msg+='Estimate ID: '+(currentEstId||'N/A')+'\nSubmitted: '+ts+'\n\n';
+  if(name)msg+='Name: '+name+'\n';if(phone)msg+='Contact: '+phone+'\n';if(email)msg+='Email: '+email+'\n';if(addr)msg+='Address: '+addr+'\n';if(land)msg+='Landmark: '+land+'\n';
+  msg+='\nDate: '+dl+'\nTime: '+tl+'\nSchedule: '+S.sched;
+  msg+='\nCleaning Type: '+(S.cleanType==='deep'?'Deep Cleaning':S.cleanType==='moveinout'?'Move In / Move Out':'Regular Cleaning');
+  msg+='\nArea: '+S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'')+'\n';
+  if(S.ln)msg+='Location: '+S.ln+'\n';
+  msg+='\nSERVICES:\n'+lines.join('\n')+'\nESTIMATED TOTAL: ₱'+total.toLocaleString();
+  if(t)msg+='\nEst. Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.';
+  var rFilled=recurSlots.filter(function(s){return s.date;});
+  var multiDateMsg=rFilled.length>0||S.sched!=='Initial / One-time';
+  var balLabelMsg=multiDateMsg?'Balance on each service day':'Balance on service day';
+  var isWeekendMsg=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()===0||new Date(selDate+'T12:00:00+08:00').getDay()===6):false;
+  var needs50Msg=isWeekendMsg&&S.sqm>=90;
+  var dpMsg=needs50Msg?Math.ceil((total-tf)*0.5)+tf:tf;
+  if(tf>0||needs50Msg)msg+='\n\nReservation fee (pay to confirm): ₱'+dpMsg.toLocaleString()+(needs50Msg?' (50% reservation fee)':'')+'\n'+balLabelMsg+': ₱'+Math.max(0,total-dpMsg).toLocaleString();
+  if(rFilled.length>0){
+    var totalSessions=rFilled.length+1;
+    msg+='\n\nRecurring Dates:\n'+rFilled.map(function(s){return s.date+(s.time?' at '+s.time:'');}).join('\n');
+    if(tf>0)msg+='\nTotal upfront ('+totalSessions+' sessions): ₱'+(tf*totalSessions).toLocaleString();
+  }
+  var sits=[...selSituations].join(', ');if(sits)msg+='\n\nSituation: '+sits;
+  if(instr)msg+='\n\nSpecial Instructions: '+instr;
+  msg+='\n\n---\nBy sending this estimate and completing the reservation fee, I confirm I have read and agreed to all Klaygo PH Booking Policies.';
+  return msg;
+}
+
+// ── BOOK & COPY ───────────────────────────────────────────────
+function bookNow(){
+  var msg=buildMsg();
+  function proceed(){sendEstimateEmail(msg);document.getElementById('msn-modal').classList.add('show');}
+  if(navigator.clipboard){navigator.clipboard.writeText(msg).then(proceed).catch(function(){fbCopy(msg);proceed();});}
+  else{fbCopy(msg);proceed();}
+}
+function copyEstimate(){var msg=buildMsg();if(navigator.clipboard){navigator.clipboard.writeText(msg).then(function(){toast('Estimate copied!');}).catch(function(){fbCopy(msg);});}else fbCopy(msg);}
+function fbCopy(text){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');toast('Estimate copied!');}catch(e){toast('Could not auto-copy. Please copy manually.');}document.body.removeChild(ta);}
+
+// ── EMAIL ─────────────────────────────────────────────────────
+async function sendEstimateEmail(msg){
+  if(!FORMSPREE)return;
+  var name=document.getElementById('f-name').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var phone=document.getElementById('f-phone').value.trim();
+  try{
+    await fetch('https://formspree.io/f/'+FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'[Klaygo PH] New Estimate '+(currentEstId||'')+' — '+(name||'Customer'),_replyto:email||'noreply@klaygo',name:name,phone:phone,customer_email:email||'Not provided',estimate_id:currentEstId,details:msg})});
+  }catch(e){console.log('Email err:',e);}
+  if(email){
+    try{
+      await fetch('https://formspree.io/f/'+FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({_subject:'[Klaygo PH] Your Estimate '+(currentEstId||''),_replyto:'info.klaygoph@gmail.com',name:name,email:email,
+          message:'Hi '+(name||'there')+'!\n\nThank you for using the Klaygo PH Service Calculator. Here is your estimate:\n\n'+msg+'\n\nWe will be in touch shortly to confirm your schedule and send payment details.\n\n📩 Messenger: m.me/klaygoph\n📱 0992.816.4718\n\nCleaner Space, Clearer Mind.\nKlaygo PH'})});
+      toast('Estimate sent to your email and ours!');
+    }catch(e){console.log('Cust email err:',e);}
+  }
+}
+// ── PRINT ─────────────────────────────────────────────────────
+function openPrint(){
+  var bp=getBasePrice();
+  if(!bp.price){alert('Please select a cleaning type and area size first.');return;}
+  analytics.prints++;localStorage.setItem('kg_an',JSON.stringify(analytics));
+  var name=document.getElementById('f-name').value.trim(),phone=document.getElementById('f-phone').value.trim(),email=document.getElementById('f-email').value.trim(),addr=document.getElementById('f-addr').value.trim(),land=document.getElementById('f-land').value.trim(),instr=document.getElementById('instr').value.trim();
+  var dateStr=new Date().toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'});
+  var now=new Date(),ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
+  var rows=[],sub=0;
+  rows.push([bp.label,'₱'+bp.price.toLocaleString()]);sub+=bp.price;
+  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';rows.push([lbl,'₱'+sv.toLocaleString()]);sub+=sv;}});
+  var tf=0;if(S.lf!==null&&S.lid&&S.lid!=='others'){rows.push(['Transport — '+S.ln,'₱'+S.lf.toLocaleString()]);sub+=S.lf;tf=S.lf;}
+  var total=sub,t=cT();
+  var parts=selDate?selDate.split('-'):null;
+  var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
+  var tl=selTime?selTime.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true}):'';
+  var tStr=t?'Estimated Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.':'';
+  var cR='';
+  if(name)cR+='<tr><td>Name</td><td>'+name+'</td></tr>';
+  if(phone)cR+='<tr><td>Contact</td><td>'+phone+'</td></tr>';
+  if(email)cR+='<tr><td>Email</td><td>'+email+'</td></tr>';
+  if(addr)cR+='<tr><td>Address</td><td>'+addr+'</td></tr>';
+  if(land)cR+='<tr><td>Landmark</td><td>'+land+'</td></tr>';
+  if(dl)cR+='<tr><td>Date</td><td>'+dl+'</td></tr>';
+  if(tl)cR+='<tr><td>Time</td><td>'+tl+'</td></tr>';
+  cR+='<tr><td>Submitted</td><td>'+ts+'</td></tr>';
+  var rowsHtml=rows.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
+  rowsHtml+='<tr class="tr"><td>ESTIMATED TOTAL</td><td>₱'+total.toLocaleString()+'</td></tr>';
+  var sits=[...selSituations].join(', ');var instrHtml='';
+  if(sits)instrHtml+='<div class="ib"><h4>Situation</h4><p>'+sits+'</p></div>';
+  if(instr)instrHtml+='<div class="ib"><h4>Special Instructions</h4><p>'+instr+'</p></div>';
+  var rFilled=recurSlots.filter(function(s){return s.date;});
+  var multiDatePrint=rFilled.length>0||S.sched!=='Initial / One-time';
+  var balLabelPrint=multiDatePrint?'Balance on each service day':'Balance on service day';
+  var totalSessionsPrint=rFilled.length>0?rFilled.length+1:1;
+  var payHtml=tf>0?'<div class="pay-s"><h4>Payment Schedule</h4>'
+    +'<div class="pr"><span class="pk">Reservation fee (confirms your slot)</span><span class="pv">₱'+tf.toLocaleString()+'</span></div>'
+    +'<div class="pr pn"><span class="pk">'+balLabelPrint+'</span><span class="pv">₱'+Math.max(0,total-tf).toLocaleString()+'</span></div>'
+    +(totalSessionsPrint>1?'<div class="pr" style="margin-top:3px;"><span class="pk">Total upfront ('+totalSessionsPrint+' sessions)</span><span class="pv" style="color:#2B4E8A;">₱'+(tf*totalSessionsPrint).toLocaleString()+'</span></div>':'')
+    +'</div>':'';
+  var w=window.open('','_blank','width=560,height=794');
+  w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8">'
+    +'<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">'
+    +'<style>'
+    +'@page{size:A5 portrait;margin:0;}'
+    +'*{box-sizing:border-box;margin:0;padding:0;}'
+    +'html,body{width:148mm;min-height:210mm;font-family:"DM Sans",sans-serif;color:#2C2C2A;}'
+    +'body{display:flex;flex-direction:column;position:relative;}'
+    +'.bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url("'+PRINT_BG+'") center/cover no-repeat;z-index:0;}'
+    +'.cnt{position:relative;z-index:1;display:flex;flex-direction:column;min-height:210mm;}'
+    +'.hdr{padding:28px 22px 10px;text-align:center;}'
+    +'.hdr img{height:38px;}.hdr .dt{font-size:7.5px;color:#6B6B68;margin-top:3px;}.hdr .eid{font-size:8px;font-weight:700;color:#2B4E8A;margin-top:2px;}'
+    +'.bar{background:#2B4E8A;padding:7px 22px;text-align:center;}.bar p{font-size:10px;font-weight:700;color:#fff;letter-spacing:.1em;text-transform:uppercase;}'
+    +'.bar.ft p{font-size:8.5px;letter-spacing:.04em;}'
+    +'.body{flex:1;padding:10px 22px 8px;display:flex;flex-direction:column;gap:6px;}'
+    +'.ctbl{width:100%;border-collapse:collapse;font-size:8.5px;}'
+    +'.ctbl td{padding:2.5px 3px;line-height:1.4;vertical-align:top;border-bottom:1px solid #EBF1FA;}'
+    +'.ctbl td:first-child{color:#6B6B68;width:52px;font-weight:600;}'
+    +'.stl{font-size:8.5px;font-weight:800;color:#2B4E8A;border-bottom:1.5px solid #2B4E8A;padding-bottom:3px;letter-spacing:.05em;text-transform:uppercase;}'
+    +'table.c{width:100%;border-collapse:collapse;}'
+    +'table.c tr td{padding:3.5px 3px;border-bottom:1px solid #EBF1FA;font-size:10px;line-height:1.3;}'
+    +'table.c tr td:last-child{text-align:right;font-weight:600;}'
+    +'.tr td{border-bottom:none!important;padding-top:6px!important;border-top:1.5px solid #2B4E8A!important;font-size:12px;font-weight:700;color:#2B4E8A;}'
+    +'.trow{background:rgba(235,241,250,.6);border-radius:4px;padding:5px 8px;font-size:9px;color:#2B4E8A;font-weight:700;}'
+    +'.tnote{font-size:7.5px;color:#6B6B68;font-style:italic;margin-top:2px;line-height:1.4;}'
+    +'.pay-s{background:rgba(235,241,250,.6);border-radius:5px;padding:7px 10px;}'
+    +'.pay-s h4{font-size:8px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;}'
+    +'.pr{display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px;}'
+    +'.pr .pk{color:#6B6B68;}.pr .pv{font-weight:600;color:#2C2C2A;}'
+    +'.pr.pn .pk{color:#2B4E8A;font-weight:700;}.pr.pn .pv{color:#1B8A4C;font-size:11px;font-weight:800;}'
+    +'.wb{background:#FFF8E7;border:1px solid #F5C842;border-radius:4px;padding:5px 8px;}'
+    +'.wb strong{display:block;font-size:8.5px;color:#7A5C00;font-weight:800;margin-bottom:1px;}'
+    +'.wb p{font-size:7.5px;color:#7A5C00;line-height:1.4;}'
+    +'.ib{background:rgba(255,255,255,.7);border-radius:4px;padding:5px 8px;}'
+    +'.ib h4{font-size:8.5px;font-weight:700;color:#2B4E8A;margin-bottom:2px;}'
+    +'.ib p{font-size:8px;color:#2C2C2A;line-height:1.4;}'
+    +'.pb{background:rgba(255,255,255,.7);border-radius:4px;padding:6px 8px;}'
+    +'.pb h4{font-size:9px;font-weight:800;color:#2B4E8A;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase;}'
+    +'.pi2{display:flex;gap:4px;margin-bottom:3px;font-size:7.5px;color:#4A4A48;line-height:1.5;}'
+    +'.pi2 strong{color:#2B4E8A;font-weight:700;}.pi2 .pd2{color:#2B4E8A;font-weight:800;flex-shrink:0;}'
+    +'.nor{text-align:center;font-size:10px;font-weight:900;color:#2B4E8A;letter-spacing:.08em;text-transform:uppercase;padding:6px 0 3px;border-top:2px dashed #2B4E8A;margin-top:auto;}'
+    +'</style></head><body>'
+    +'<div class="bg"></div>'
+    +'<div class="cnt">'
+    +'<div class="hdr"><img src="'+BLUE_LOGO+'" alt="Klaygo PH"><div class="dt">Service Estimate &middot; '+dateStr+'</div><div class="eid">'+(currentEstId||'KGPH-EST')+'</div></div>'
+    +'<div class="bar"><p>Cleaner Space, Clearer Mind.</p></div>'
+    +'<div class="body">'
+    +(cR?'<table class="ctbl">'+cR+'</table>':'')
+    +'<div class="stl">Services &amp; Charges</div>'
+    +'<table class="c">'+rowsHtml+'</table>'
+    +'<div class="tnote">This estimate includes a provisional transport fee. Final amount confirmed based on your exact address.</div>'
+    +(tStr?'<div class="trow">'+tStr+'</div>':'')
+    +payHtml
+    +'<div class="wb"><strong>Building / Gate Pass &amp; Noise Restrictions</strong><p>Please arrange any required pass before our visit. Some properties only allow contractors until 5–6 PM.</p></div>'
+    +instrHtml
+    +'<div class="pb"><h4>Booking Policies</h4>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>This is a price estimate only.</strong> Booking confirmed after reservation fee is received and confirmed.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>Reschedule:</strong> At least 24 hours notice required.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>Cancellation:</strong> Reservation fee non-refundable if cancelled &lt;24 hrs or cleaner is on the way/onsite.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>Exception:</strong> Booked &lt;24 hrs + cancelled 4+ hrs before + cleaner not yet departed — refund or rebooking may be arranged.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>Large Spaces (90+ sqm):</strong> An additional cleaner will be assigned to ensure quality.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>90+ sqm &amp; Weekend Slots:</strong> 50% reservation fee required to confirm booking.</div></div>'
+    +'</div>'
+    +'<div class="nor">This is not an official receipt</div>'
+    +'</div>'
+    +'<div class="bar ft"><p>@KlayGoPH &nbsp;|&nbsp; 0992.816.4718</p></div>'
+    +'</div>'
+    +'<scr'+'ipt>window.onload=function(){window.print();}<\/sc'+'ript>'
+    +'</body></html>');
+  w.document.close();toast('Print window opened!');
+}
+
+// ── RESET ─────────────────────────────────────────────────────
+function resetAll(){
+  selDate=null;selTime=null;selSituations=new Set();recurSlots=[];
+  S={cleanType:'regular',sqm:30,isLarge:false,bn:'',sched:'Initial / One-time',addons:{},rt:new Set(),lid:null,ln:null,lf:null};
+  document.querySelectorAll('.day.sel-d').forEach(function(d){d.classList.remove('sel-d');});
+  document.querySelectorAll('.svc.sel').forEach(function(s){s.classList.remove('sel');});
+  document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('sel');});
+  var def=document.querySelector('.pill[data-s="Initial / One-time"]');if(def)def.classList.add('sel');
+  ['ct-regular','ct-deep','ct-moveinout'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.toggle('sel',id==='ct-regular');});
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('sel');});
+  var oi=document.getElementById('other-inp');if(oi)oi.classList.remove('show');
+  document.getElementById('instr').value='';
+  document.querySelectorAll('.sit-tag.on').forEach(function(t){t.classList.remove('on');});
+  var rs=document.getElementById('recur-section');if(rs)rs.style.display='none';
+  var re=document.getElementById('recur-entries');if(re)re.innerHTML='';
+  document.getElementById('time-grid').innerHTML='<p style="font-size:10.5px;color:var(--gr);">Select a date above to see available slots.</p>';
+  document.getElementById('time-alerts').innerHTML='';
+  document.getElementById('time-sub').textContent='Choose your date first';
+  var tln=document.getElementById('too-large-note');if(tln)tln.style.display='none';
+  ['card-time','card-area','card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-info'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.add('locked');});
+  setAvail('none','No date selected yet.');
+  currentEstId='';var pe=document.getElementById('p-est-id');if(pe)pe.textContent='—';
+  var cb=document.getElementById('btn-copy');if(cb)cb.style.display='none';
+  ['f-name','f-phone','f-email','f-addr','f-land'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  syncArea(30);renderAddons();renderLocs();resetTravelData();compute();
+}
+
+// ── CALENDAR NAV ──────────────────────────────────────────────
+async function prevMo(){CM--;if(CM<0){CM=11;CY--;}await fetchMonth(CY,CM);renderCal();renderCalSelNote();}
+async function nextMo(){CM++;if(CM>11){CM=0;CY++;}await fetchMonth(CY,CM);renderCal();renderCalSelNote();}
+function renderCalSelNote(){
+  var note=document.getElementById('cal-sel-note');
+  if(!note)return;
+  if(!selDate){note.style.display='none';return;}
+  var parts=selDate.split('-');
+  var sy=+parts[0],sm=+parts[1]-1;
+  if(sy===CY&&sm===CM){note.style.display='none';return;}
+  var d=new Date(sy,sm,+parts[2]);
+  note.style.display='block';
+  note.textContent='✓ Selected: '+d.toLocaleDateString('en-PH',{weekday:'short',month:'long',day:'numeric'});
+}
+async function refreshCal(){
+  monthEvts={};
+  var st=document.getElementById('cal-status');if(st){st.style.display='block';st.textContent='Refreshing...';}
+  await fetchMonth(CY,CM);renderCal();
+  if(selDate){var h=(new Date(selDate+'T00:00:00+08:00')-new Date())/3600000;await renderTimes(selDate,h);}
+  toast('Calendar refreshed!');
+}
+
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3200);}
+
+// ── NAV ────────────────────────────────────────────────────────
+function openMenu(){document.getElementById('nav-menu').classList.add('open');document.body.style.overflow='hidden';}
+function closeMenu(){document.getElementById('nav-menu').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+
+// ── INIT ──────────────────────────────────────────────────────
+var navLogo = document.getElementById('logo-img');
+navLogo.src = LIGHT_LOGO;
+navLogo.style.filter = 'brightness(0) invert(1)';
+// Run progress bar immediately — no async wait needed
+updateProgress();
+navLogo.src = LIGHT_LOGO;
+navLogo.style.filter = 'brightness(0) invert(1)'; // blue→white on dark nav
+// est panel white bg — show blue logo as-is
+var estLogo = document.getElementById('est-logo-img');
+if(estLogo){ estLogo.src = DARK_LOGO; }
+// sticky bar logo (dark bg) — white filter
+var sbLogoInit = document.getElementById('sb-logo-img');
+if(sbLogoInit){ sbLogoInit.src = LIGHT_LOGO; sbLogoInit.style.filter = 'brightness(0) invert(1)'; }
+// bottom estimate logo (white bg) — blue as-is
+var beLogoInit = document.getElementById('be-logo-img');
+if(beLogoInit){ beLogoInit.src = DARK_LOGO; }
+
+(async function(){
+  await fetchMonth(CY,CM);
+  renderCal();renderLocs();renderAddons();compute();
+
+  // Auto-refresh calendar every 5 minutes
+  setInterval(function(){
+    fetchMonth(CY,CM).then(function(){renderCal();});
+  }, AUTO_REFRESH_MS);
+})();
+
+// ══════════════════════════════════════════════════════
+// KLAYGO SMART ADDRESS MODULE
+// (must be outside the IIFE so travelData exists before
+//  compute() runs, and initGoogleMaps is globally accessible
+//  for the Maps JS callback)
+// ══════════════════════════════════════════════════════
+var travelData={address:null,placeId:null,durationMins:null,distanceKm:null,rushLevel:'none',surcharge:0};
+
+// ── TRAFFIC RULES ──────────────────────────────────────
+function getRushLevel(date){
+  if(!date)return'none';
+  var h=date.getHours(),day=date.getDay(),d=date.getDate();
+  var isFri=day===5,isSat=day===6;
+  var isPayday=d===15||d>=28;
+  var isMorning=h>=7&&h<10,isEvening=h>=17&&h<20;
+  var isRush=isMorning||isEvening;
+  if(isRush&&(isFri||isPayday||isSat))return'heavy';
+  if(isRush)return'moderate';
+  return'none';
+}
+
+function getTravelSurcharge(km,rush){
+  var s=0;
+  if(km>15)s+=50;
+  if(rush==='heavy')s+=50;
+  return s;
+}
+
+// ── DISTANCE MATRIX FETCH ──────────────────────────────
+function fetchTravel(destination){
+  showTravelLoading();
+  var depTime=selTime?new Date(selTime.getTime()):new Date();
+  var svc=new google.maps.DistanceMatrixService();
+  svc.getDistanceMatrix({
+    origins:['Taguig City, Metro Manila, Philippines'],
+    destinations:[destination],
+    travelMode:google.maps.TravelMode.DRIVING,
+    drivingOptions:{departureTime:depTime,trafficModel:google.maps.TrafficModel.BEST_GUESS},
+    unitSystem:google.maps.UnitSystem.METRIC,
+  },function(res,status){
+    if(status!=='OK'||!res.rows[0]||res.rows[0].elements[0].status!=='OK'){
+      showTravelError();return;
+    }
+    var el=res.rows[0].elements[0];
+    var mins=Math.round((el.duration_in_traffic?el.duration_in_traffic.value:el.duration.value)/60);
+    var km=+(el.distance.value/1000).toFixed(1);
+    var rush=getRushLevel(depTime);
+    var surcharge=getTravelSurcharge(km,rush);
+    travelData.durationMins=mins;
+    travelData.distanceKm=km;
+    travelData.rushLevel=rush;
+    travelData.surcharge=surcharge;
+    showTravelResult(mins,km,rush,surcharge);
+    compute();
+  });
+}
+
+// ── UI HELPERS ─────────────────────────────────────────
+function showTravelLoading(){
+  var card=document.getElementById('travel-card');
+  var tEl=document.getElementById('travel-time');
+  var lEl=document.getElementById('travel-lbl');
+  if(card)card.style.display='block';
+  if(tEl)tEl.textContent='Checking…';
+  if(lEl)lEl.textContent='Estimating travel from Taguig';
+  hideTravelExtras();
+}
+
+function showTravelResult(mins,km,rush,surcharge){
+  var card=document.getElementById('travel-card');
+  var tEl=document.getElementById('travel-time');
+  var lEl=document.getElementById('travel-lbl');
+  var notice=document.getElementById('traffic-notice');
+  var icon=document.getElementById('traffic-icon');
+  var msg=document.getElementById('traffic-msg');
+  var sur=document.getElementById('travel-surcharge');
+  if(card)card.style.display='block';
+  // Format time
+  var timeStr=mins<60?mins+' min away':Math.floor(mins/60)+'h '+(mins%60)+'m away';
+  if(tEl)tEl.textContent=timeStr;
+  if(lEl){
+    lEl.textContent=km+' km from Taguig';
+    if(mins>90)lEl.textContent+=' · Please confirm availability';
+  }
+  // Traffic notice
+  if(notice&&icon&&msg){
+    if(rush==='heavy'){
+      notice.className='traffic-notice traffic-heavy';
+      icon.textContent='⚠️';
+      msg.textContent='Heavy traffic expected at this time. We\'ll plan to leave earlier to make sure we arrive on schedule.';
+      notice.style.display='flex';
+    } else if(rush==='moderate'){
+      notice.className='traffic-notice traffic-moderate';
+      icon.textContent='🟡';
+      msg.textContent='Moderate traffic expected. We\'ll keep an eye on the road and update you if needed.';
+      notice.style.display='flex';
+    } else {
+      notice.className='traffic-notice traffic-clear';
+      icon.textContent='✅';
+      msg.textContent='Traffic looks clear at this time. Great schedule!';
+      notice.style.display='flex';
+    }
+  }
+  // Surcharge pill
+  if(sur){
+    if(surcharge>0){
+      var why=[];
+      if(km>15)why.push('long distance');
+      if(rush==='heavy')why.push('rush hour');
+      sur.textContent='+₱'+surcharge+' travel supplement ('+why.join(' + ')+')';
+      sur.style.display='block';
+    } else {
+      sur.style.display='none';
+    }
+  }
+}
+
+function showTravelError(){
+  var tEl=document.getElementById('travel-time');
+  var lEl=document.getElementById('travel-lbl');
+  if(tEl)tEl.textContent='Could not detect';
+  if(lEl)lEl.textContent='We\'ll confirm the transport fee with you directly.';
+  hideTravelExtras();
+}
+
+function hideTravelExtras(){
+  var notice=document.getElementById('traffic-notice');
+  var sur=document.getElementById('travel-surcharge');
+  if(notice)notice.style.display='none';
+  if(sur)sur.style.display='none';
+}
+
+function resetTravelData(){
+  travelData={address:null,placeId:null,durationMins:null,distanceKm:null,rushLevel:'none',surcharge:0};
+  var card=document.getElementById('travel-card');
+  if(card)card.style.display='none';
+}
+
+// ── GOOGLE MAPS INIT (called by script callback) ───────
+function initGoogleMaps(){
+  var input=document.getElementById('f-addr');
+  if(!input)return;
+  var bounds=new google.maps.LatLngBounds(
+    {lat:14.35,lng:120.90},
+    {lat:14.85,lng:121.25}
+  );
+  var ac=new google.maps.places.Autocomplete(input,{
+    componentRestrictions:{country:'PH'},
+    fields:['place_id','formatted_address','geometry','name'],
+    bounds:bounds,
+    strictBounds:false,
+  });
+  ac.addListener('place_changed',function(){
+    var place=ac.getPlace();
+    if(!place.geometry){showTravelError();return;}
+    travelData.address=place.formatted_address||place.name;
+    travelData.placeId=place.place_id;
+    fetchTravel(place.geometry.location);
+  });
+  // If they clear the field, reset travel data
+  input.addEventListener('input',function(){
+    if(!this.value.trim())resetTravelData();
+  });
+}
+// ── STICKY BAR + BOTTOM ESTIMATE ─────────────────────────────
+function updateStickyBar(total){
+  var bar=document.getElementById('sticky-bar');if(!bar)return;
+  if(total>0){
+    document.getElementById('sb-total').textContent=total.toLocaleString();
+    var ctLabel=S.cleanType==='deep'?'Deep Clean':S.cleanType==='moveinout'?'Move In/Out':'Regular Clean';
+    document.getElementById('sb-desc').textContent=ctLabel+' · '+S.sqm+' sqm';
+    bar.classList.remove('sb-hidden');
+  } else {
+    document.getElementById('sb-total').textContent='—';
+    document.getElementById('sb-desc').textContent='Complete the steps to see your estimate';
+    bar.classList.add('sb-hidden');
+  }
+}
+
+function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
+  var totEl=document.getElementById('be-totd');if(totEl)totEl.textContent=total>0?total.toLocaleString():'0';
+  var timeEl=document.getElementById('be-time');if(timeEl)timeEl.textContent=(t&&t.mn)?'~'+fmtT(t.mn,t.mx)+' of your day back':'';
+  var body=document.getElementById('be-body');if(!body)return;
+  if(!lines||!lines.length){
+    body.innerHTML='<div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div>';
+    var bp2=document.getElementById('be-pay');if(bp2)bp2.style.display='none';return;
+  }
+  var html=lines.map(function(ln){return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
+  html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">₱'+total.toLocaleString()+'</span></div>';
+  body.innerHTML=html;
+  var bp2=document.getElementById('be-pay');
+  if(hasPay&&bp2){
+    bp2.style.display='block';
+    var dpEl=document.getElementById('be-dp');if(dpEl)dpEl.textContent='₱'+dp.toLocaleString();
+    var balEl=document.getElementById('be-bal');if(balEl)balEl.textContent='₱'+bal.toLocaleString();
+  } else if(bp2){bp2.style.display='none';}
+}
+
+function scrollToEstimate(){
+  var be=document.getElementById('bottom-estimate');
+  if(be)be.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  // Modal wiring
+  var goBtn=document.getElementById('msn-go-btn');
+  if(goBtn)goBtn.addEventListener('click',function(){
+    document.getElementById('msn-modal').classList.remove('show');
+    window.open('https://m.me/klaygoph','_blank');
+  });
+  var overlay=document.getElementById('msn-modal');
+  if(overlay)overlay.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
+  // Logo injection for sticky + bottom estimate
+  var sbLogo=document.getElementById('sb-logo-img');
+  var beLogo=document.getElementById('be-logo-img');
+  // sticky bar is on dark bg → light logo; bottom estimate is now white bg → dark logo
+  if(sbLogo){ sbLogo.src=LIGHT_LOGO; sbLogo.style.filter='brightness(0) invert(1)'; }
+  if(beLogo){ beLogo.src=LIGHT_LOGO; beLogo.style.filter='brightness(0) invert(1)'; }
+  // IntersectionObserver: hide sticky bar when bottom-estimate scrolled into view
+  var beEl=document.getElementById('bottom-estimate');
+  var barEl=document.getElementById('sticky-bar');
+  if(beEl&&barEl){
+    var obs=new IntersectionObserver(function(entries){
+      var vis=entries[0].isIntersecting;
+      var tot=document.getElementById('sb-total');
+      var hasTotal=tot&&tot.textContent&&tot.textContent!=='—'&&tot.textContent!=='0';
+      if(vis){barEl.classList.add('sb-hidden');}
+      else if(hasTotal){barEl.classList.remove('sb-hidden');}
+    },{threshold:0.05,rootMargin:'0px 0px -40px 0px'});
+    obs.observe(beEl);
+  }
+});
+
+// ══════════════════════════════════════════════════════
+// END SMART ADDRESS MODULE
+// ══════════════════════════════════════════════════════
+</script>
+</body>
+</html>
