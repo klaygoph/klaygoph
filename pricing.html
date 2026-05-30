@@ -135,37 +135,61 @@ body{font-family:'DM Sans',sans-serif;background:#F4F7FD;color:var(--dk);font-si
   background:rgba(168,191,224,.18);border-color:var(--nav-light);color:#fff;
 }
 
-/* ── HERO — full #2B4E8A block ── */
-.hero{background:var(--mn);padding:48px 40px 44px;}
-.hero-eyebrow{font-family:'Argentum Novus',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(168,191,224,.7);margin-bottom:14px;}
-.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(32px,5.5vw,58px);font-weight:800;color:var(--nav-light);line-height:1.08;margin-bottom:8px;letter-spacing:-.5px;}
-.hero h1 span{color:var(--li);}
-.hero-sub{font-size:13.5px;color:rgba(247,249,252,.65);line-height:1.8;max-width:520px;margin-bottom:20px;}
-.hero-checks{display:flex;flex-wrap:wrap;gap:16px;}
-.hero-check{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(247,249,252,.8);}
-.hero-check::before{content:'✓';color:var(--li);font-weight:700;font-size:13px;}
-@media(max-width:700px){.hero{padding:32px 20px 28px;}}
-
-/* ── CLARIFIER — continues the #2B4E8A block ── */
-.calc-clarifier{background:var(--mn);padding:0 40px 52px;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;}
-.cc-anim-col{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.cc-text-col{display:flex;flex-direction:column;justify-content:center;}
-.cc-big-title{font-family:'Argentum Novus',sans-serif;font-size:clamp(20px,2.8vw,30px);font-weight:800;color:var(--nav-light);line-height:1.15;margin-bottom:16px;}
-.cc-sub{font-size:13px;color:rgba(247,249,252,.65);line-height:1.8;margin-bottom:20px;}
-.cc-chips{display:flex;flex-wrap:wrap;gap:8px;}
-.cc-chip{padding:7px 16px;border-radius:20px;font-size:11.5px;font-weight:600;border:1.5px solid rgba(168,191,224,.35);color:rgba(247,249,252,.75);background:rgba(255,255,255,.07);}
-.cc-chip.ok{background:rgba(168,191,224,.15);border-color:rgba(168,191,224,.5);color:#F7F9FC;}
+/* ── HERO — #2B4E8A full section, tall ── */
+.hero{
+  background:#2B4E8A;
+  padding:clamp(40px,6vw,80px) clamp(22px,5vw,60px) clamp(40px,6vw,72px);
+  min-height:54vh;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+  will-change:transform;
+}
+/* subtle radial highlight for depth */
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 90% 50%,rgba(90,123,181,.28) 0%,transparent 70%);}
+.hero-eyebrow{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.75);margin-bottom:18px;position:relative;z-index:1;}
+.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(34px,6vw,64px);font-weight:800;color:#F7F9FC;line-height:1.06;margin-bottom:10px;letter-spacing:-.5px;position:relative;z-index:1;}
+.hero h1 span{color:#A8BFE0;}
+.hero-sub{font-size:clamp(13px,1.6vw,15.5px);color:rgba(247,249,252,.62);line-height:1.85;max-width:500px;margin-bottom:24px;position:relative;z-index:1;}
+.hero-checks{display:flex;flex-wrap:wrap;gap:10px 24px;position:relative;z-index:1;}
+.hero-check{display:flex;align-items:center;gap:8px;font-size:clamp(11.5px,1.3vw,13px);color:rgba(247,249,252,.82);font-weight:500;}
+.hero-check::before{content:'✓';color:#A8BFE0;font-weight:700;font-size:13px;flex-shrink:0;}
 @media(max-width:700px){
-  .calc-clarifier{grid-template-columns:1fr;padding:24px 20px 36px;gap:24px;}
-  .cc-anim-col{justify-content:center;}
+  .hero{padding:36px 20px 32px;min-height:44vh;}
+  .hero h1{font-size:clamp(28px,8vw,40px);}
 }
 
-/* ── PROGRESS BAR ─────────── */
-.progress-wrap{background:var(--mn);padding:8px 20px 4px;position:sticky;top:124px;z-index:190;}
-@media(max-width:700px){.progress-wrap{top:60px;}}
+/* ── CLARIFIER — continues #2B4E8A, then white body ── */
+.calc-clarifier{
+  background:#2B4E8A;
+  padding:clamp(24px,4vw,52px) clamp(22px,5vw,60px) clamp(36px,5vw,64px);
+  display:grid;grid-template-columns:280px 1fr;
+  gap:clamp(28px,4vw,60px);align-items:center;
+  position:relative;
+}
+.calc-clarifier::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(168,191,224,.2),transparent);}
+.cc-anim-col{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cc-text-col{display:flex;flex-direction:column;justify-content:center;}
+.cc-big-title{
+  font-family:'Argentum Novus',sans-serif;
+  font-size:clamp(22px,3.5vw,40px);
+  font-weight:800;color:#F7F9FC;line-height:1.1;margin-bottom:18px;
+}
+.cc-sub{font-size:clamp(13px,1.4vw,14.5px);color:rgba(247,249,252,.62);line-height:1.85;margin-bottom:22px;}
+.cc-chips{display:flex;flex-wrap:wrap;gap:9px;}
+.cc-chip{padding:7px 16px;border-radius:22px;font-size:12px;font-weight:600;border:1.5px solid rgba(168,191,224,.3);color:rgba(247,249,252,.75);background:rgba(255,255,255,.06);}
+.cc-chip.ok{background:rgba(168,191,224,.14);border-color:rgba(168,191,224,.45);color:#F7F9FC;}
+@media(max-width:700px){
+  .calc-clarifier{grid-template-columns:1fr;padding:28px 20px 40px;gap:28px;}
+  .cc-anim-col{justify-content:center;}
+  .cc-big-title{font-size:clamp(20px,6vw,28px);}
+}
+
+/* ── PROGRESS BAR — sticky below nav ── */
+.progress-wrap{background:#2B4E8A;padding:6px 32px 2px;position:sticky;top:124px;z-index:190;}
+@media(max-width:700px){.progress-wrap{top:60px;padding:6px 16px 2px;}}
 .progress-bar-track{height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:#A8BFE0;border-radius:2px;transition:width .4s ease;width:0%;}
-.progress-label{text-align:right;font-size:9.5px;color:rgba(255,255,255,.65);padding:3px 0 7px;}
+.progress-label{text-align:right;font-size:9px;color:rgba(255,255,255,.5);padding:2px 0 5px;font-family:'Argentum Novus',sans-serif;letter-spacing:.06em;}
 
 /* MAIN */
 .main{max-width:900px;margin:0 auto;padding:18px 14px 70px;display:grid;grid-template-columns:1fr 280px;gap:14px;align-items:start;}
@@ -480,7 +504,15 @@ footer{background:var(--mn);padding:14px 24px;}
 .follow-links{display:flex;justify-content:center;gap:14px;}
 .follow-link{display:inline-flex;align-items:center;gap:7px;color:#fff;font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 18px;border:1.5px solid rgba(255,255,255,.3);border-radius:30px;transition:all .14s;}
 .follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6);}
-/* SMART ADDRESS / TRAVEL CARD */
+.follow-bar{background:#2B4E8A;padding:20px 24px;text-align:center;}
+.follow-text{font-size:12.5px;color:rgba(255,255,255,.8);margin-bottom:12px;}
+.follow-links{display:flex;justify-content:center;gap:14px;}
+.follow-link{display:inline-flex;align-items:center;gap:7px;color:#F7F9FC;font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 18px;border:1.5px solid rgba(255,255,255,.25);border-radius:30px;transition:all .14s;}
+.follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);}
+footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,255,.08);}
+.footer-inner{display:flex;align-items:center;justify-content:center;text-align:center;}
+.footer-inner span{color:rgba(247,249,252,.45);font-size:11.5px;font-family:'DM Sans',sans-serif;}
+.copyright-bar{background:#2C2C2A;text-align:center;font-size:11px;color:rgba(247,249,252,.45);padding:11px 20px;font-family:'DM Sans',sans-serif;}
 .travel-card{margin-top:10px;padding:13px 15px;background:var(--pa);border:1.5px solid var(--bd);border-radius:18px;animation:tcFade .22s ease;}
 @keyframes tcFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .travel-row{display:flex;align-items:center;gap:12px;}
@@ -672,17 +704,17 @@ footer{background:var(--mn);padding:14px 24px;}
 <!-- PRICE CALCULATOR CLARIFIER -->
 <div class="calc-clarifier">
   <div class="cc-anim-col">
-    <!-- Animated Calculator Widget v02 -->
+    <!-- Animated Calculator Widget v03 -->
     <div class="kg-estimate-animation">
       <div class="kg-state state-adjust">
         <div class="kg-label">ADJUST AMOUNT</div>
-        <div class="kg-amount">₱<span id="kg-counter">600</span></div>
+        <div class="kg-amount">&#8369;<span id="kg-counter">600</span></div>
         <div class="kg-slider">
           <div class="kg-slider-track"></div>
           <div class="kg-slider-fill"></div>
           <div class="kg-slider-knob"></div>
         </div>
-        <div class="kg-range"><span>₱600</span><span>₱2,450</span></div>
+        <div class="kg-range"><span>&#8369;600</span><span>&#8369;2,450</span></div>
       </div>
       <div class="kg-state state-calc">
         <div class="kg-label">CALCULATING</div>
@@ -700,8 +732,8 @@ footer{background:var(--mn);padding:14px 24px;}
         <div class="kg-receipt">
           <div class="receipt-title">ESTIMATE READY</div>
           <div class="receipt-line"></div>
-          <div class="receipt-total">₱2,450</div>
-          <div class="receipt-check">✓</div>
+          <div class="receipt-total">&#8369;2,450</div>
+          <div class="receipt-check">&#10003;</div>
         </div>
       </div>
     </div>
@@ -719,32 +751,34 @@ footer{background:var(--mn);padding:14px 24px;}
 </div>
 
 <style>
-/* ── ANIMATED WIDGET v02 ── */
+/* ── ANIMATED WIDGET v03 ── */
 .kg-estimate-animation{
-  width:280px;height:300px;
+  width:300px;height:320px;
   background:transparent;
   display:flex;align-items:center;justify-content:center;
   position:relative;overflow:hidden;
-  font-family:'Argentum Novus',sans-serif;
+  font-family:'Argentum Novus','DM Sans',sans-serif;
 }
 .kg-state{
   position:absolute;inset:0;
-  width:240px;height:260px;margin:auto;
+  width:240px;height:270px;margin:auto;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;
   background:#FFFFFF;
-  border:1px solid #A8BFE0;border-radius:28px;
+  border:1.5px solid #A8BFE0;border-radius:28px;
+  box-shadow:0 12px 40px rgba(13,31,60,.12);
+  padding:28px 24px;
 }
-.kg-label{font-size:12px;letter-spacing:2px;color:#3D6399;margin-bottom:18px;}
-.kg-amount{font-size:42px;font-weight:700;color:#0D1F3C;margin-bottom:24px;}
-.kg-sub{font-size:14px;color:#6B6B68;}
-.kg-slider{position:relative;width:180px;height:30px;}
-.kg-slider-track{position:absolute;top:11px;left:0;width:100%;height:8px;background:#EBF1FA;border-radius:999px;}
-.kg-slider-fill{position:absolute;top:11px;left:0;height:8px;background:#2B4E8A;border-radius:999px;animation:kgFillMove 3s linear infinite;}
-.kg-slider-knob{position:absolute;top:3px;width:24px;height:24px;border-radius:50%;background:#2B4E8A;animation:kgKnobMove 3s linear infinite;}
-.kg-range{width:180px;display:flex;justify-content:space-between;margin-top:12px;font-size:11px;color:#6B6B68;}
-.kg-calculator{width:120px;height:150px;border:3px solid #0D1F3C;border-radius:18px;padding:14px;margin-bottom:18px;}
-.calc-screen{height:22px;border:2px solid #A8BFE0;border-radius:6px;margin-bottom:14px;overflow:hidden;position:relative;}
+.kg-label{font-size:11px;letter-spacing:2.5px;color:#3D6399;margin-bottom:16px;font-weight:600;}
+.kg-amount{font-size:44px;font-weight:800;color:#0D1F3C;margin-bottom:22px;line-height:1;}
+.kg-sub{font-size:13px;color:#6B6B68;margin-top:14px;}
+.kg-slider{position:relative;width:180px;height:32px;}
+.kg-slider-track{position:absolute;top:12px;left:0;width:100%;height:8px;background:#EBF1FA;border-radius:999px;}
+.kg-slider-fill{position:absolute;top:12px;left:0;height:8px;background:#2B4E8A;border-radius:999px;animation:kgFillMove 3s linear infinite;}
+.kg-slider-knob{position:absolute;top:4px;width:24px;height:24px;border-radius:50%;background:#2B4E8A;box-shadow:0 4px 12px rgba(43,78,138,.35);animation:kgKnobMove 3s linear infinite;}
+.kg-range{width:180px;display:flex;justify-content:space-between;margin-top:10px;font-size:11px;color:#6B6B68;}
+.kg-calculator{width:120px;height:150px;border:2.5px solid #0D1F3C;border-radius:18px;padding:14px;margin-bottom:16px;}
+.calc-screen{height:22px;border:2px solid #A8BFE0;border-radius:6px;margin-bottom:12px;overflow:hidden;position:relative;}
 .calc-screen::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:#2B4E8A;animation:kgScreenFill 2s linear infinite;}
 .calc-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
 .calc-buttons span{width:22px;height:22px;border:2px solid #0D1F3C;border-radius:6px;animation:kgPulse 1.2s infinite;}
@@ -756,22 +790,30 @@ footer{background:var(--mn);padding:14px 24px;}
 .calc-buttons span:nth-child(7){animation-delay:.6s;}
 .calc-buttons span:nth-child(8){animation-delay:.7s;}
 .calc-buttons span:nth-child(9){animation-delay:.8s;}
-.kg-receipt{width:150px;}
-.receipt-title{font-size:16px;font-weight:700;color:#2B4E8A;margin-bottom:18px;}
-.receipt-line{width:100%;height:2px;background:#A8BFE0;margin-bottom:18px;}
-.receipt-total{font-size:40px;font-weight:700;color:#0D1F3C;margin-bottom:14px;}
-.receipt-check{font-size:34px;color:#2B4E8A;}
+.kg-receipt{width:170px;}
+.receipt-title{font-size:17px;font-weight:800;color:#2B4E8A;margin-bottom:16px;letter-spacing:.04em;}
+.receipt-line{width:100%;height:2px;background:#A8BFE0;margin-bottom:16px;border-radius:2px;}
+.receipt-total{font-size:42px;font-weight:800;color:#0D1F3C;margin-bottom:12px;line-height:1;}
+.receipt-check{font-size:32px;color:#2B4E8A;font-weight:700;}
 .state-adjust{animation:kgShowAdjust 9s infinite;}
 .state-calc{opacity:0;animation:kgShowCalc 9s infinite;}
 .state-receipt{opacity:0;animation:kgShowReceipt 9s infinite;}
 @keyframes kgShowAdjust{0%,30%{opacity:1;}35%,100%{opacity:0;}}
 @keyframes kgShowCalc{0%,32%{opacity:0;}38%,62%{opacity:1;}68%,100%{opacity:0;}}
 @keyframes kgShowReceipt{0%,65%{opacity:0;}72%,95%{opacity:1;}100%{opacity:0;}}
-@keyframes kgKnobMove{0%{left:0%;}100%{left:86%;}}
-@keyframes kgFillMove{0%{width:0%;}100%{width:90%;}}
+@keyframes kgKnobMove{0%{left:0%;}100%{left:84%;}}
+@keyframes kgFillMove{0%{width:0%;}100%{width:88%;}}
 @keyframes kgPulse{0%,100%{background:transparent;}50%{background:#A8BFE0;}}
 @keyframes kgScreenFill{from{left:-100%;}to{left:100%;}}
-@media(max-width:700px){.kg-estimate-animation{width:200px;height:220px;}.kg-state{width:170px;height:185px;}.kg-amount{font-size:28px;}.kg-calculator{width:86px;height:110px;}.receipt-total{font-size:28px;}}
+@media(max-width:700px){
+  .kg-estimate-animation{width:220px;height:240px;}
+  .kg-state{width:180px;height:200px;padding:20px 16px;}
+  .kg-amount{font-size:32px;}
+  .kg-calculator{width:88px;height:110px;}
+  .receipt-total{font-size:30px;}
+  .kg-slider{width:140px;}
+  .kg-range{width:140px;}
+}
 </style>
 
 <div class="main">
@@ -1050,7 +1092,7 @@ footer{background:var(--mn);padding:14px 24px;}
       <span class="acc-title">Reservation Fee &amp; Payment</span>
       <span class="acc-chevron">▼</span>
     </div>
-    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or 90+ sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Maya · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
+    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or 90+ sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
   </div>
 
   <div class="acc-item" id="acc-onsite">
@@ -1112,7 +1154,6 @@ footer{background:var(--mn);padding:14px 24px;}
           <h4>Accepted Payment Methods</h4>
           <div class="pm-grid">
             <div class="pm-item"><div class="pm-icon">💙</div><div><div class="pm-name">GCash</div><div class="pm-num">0992 816 4718</div></div></div>
-            <div class="pm-item"><div class="pm-icon">💚</div><div><div class="pm-name">Maya</div><div class="pm-num">0992 816 4718</div></div></div>
             <div class="pm-item pm-item-wide"><div class="pm-icon">🏦</div><div><div class="pm-name">Bank Transfer</div><div class="pm-num">Details sent upon confirmation</div></div></div>
           </div>
           <div class="pm-note">💡 Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or 90+ sqm bookings.</div>
@@ -1237,16 +1278,7 @@ footer{background:var(--mn);padding:14px 24px;}
 
 <footer>
   <div class="footer-inner">
-    <span>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila</span>
-    <span class="footer-contacts">
-      <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="footer-icon-link" title="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-      <a href="https://m.me/klaygoph" target="_blank" rel="noopener" class="footer-icon-link" title="Messenger">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
-      </a>
-      @KlayGoPH &nbsp;|&nbsp; 0992.816.4718
-    </span>
+    <span>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila &nbsp;·&nbsp; @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</span>
   </div>
 </footer>
 <div class="copyright-bar">© 2025 Klaygo PH. All rights reserved.</div>
@@ -1317,6 +1349,8 @@ var LOCS = [
   {id:'qc',      name:'Quezon City',   km:16 },
   {id:'mari',    name:'Marikina',      km:17 },
   {id:'calo',    name:'Caloocan',      km:20 },
+  {id:'staana',  name:'Sta. Ana',      km:13 },
+  {id:'cubao',   name:'Cubao',         km:16 },
   {id:'others',  name:'Others',        km:0,    others:true},
 ];
 
@@ -2112,20 +2146,47 @@ function openMenu(){document.getElementById('nav-menu').classList.add('open');do
 function closeMenu(){document.getElementById('nav-menu').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
 
+// ── COMPACT NAV ON SCROLL ──────────────────────────────────────
+(function(){
+  var navTop=document.querySelector('.nav-top');
+  var lastY=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(navTop){
+      if(y>60){navTop.classList.add('compact');}
+      else{navTop.classList.remove('compact');}
+    }
+    lastY=y;
+  },{passive:true});
+})();
+
+// ── MINIMAL PARALLAX ──────────────────────────────────────────
+(function(){
+  var hero=document.querySelector('.hero');
+  var clarifier=document.querySelector('.calc-clarifier');
+  function onScroll(){
+    var y=window.scrollY;
+    // hero content drifts up very subtly
+    if(hero){hero.style.backgroundPositionY=(y*0.18)+'px';}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+})();
+
 // ── INIT ──────────────────────────────────────────────────────
+var LOGO_URL = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
+// Nav: dark bg → white
 var navLogo = document.getElementById('logo-img');
-navLogo.src = LIGHT_LOGO;
-navLogo.style.filter = 'brightness(0) invert(1)';
-updateProgress();
-// est panel — white bg — blue logo as-is
+if(navLogo){ navLogo.src=LOGO_URL; navLogo.style.filter='brightness(0) invert(1)'; }
+// Est panel: light bg → blue as-is
 var estLogo = document.getElementById('est-logo-img');
-if(estLogo){ estLogo.src = DARK_LOGO; }
-// sticky bar — dark bg — white logo
+if(estLogo){ estLogo.src=LOGO_URL; estLogo.style.filter='none'; }
+// Sticky bar: dark bg → white
 var sbLogoInit = document.getElementById('sb-logo-img');
-if(sbLogoInit){ sbLogoInit.src = LIGHT_LOGO; sbLogoInit.style.filter = 'brightness(0) invert(1)'; }
-// bottom estimate — dark blue bg — white logo
+if(sbLogoInit){ sbLogoInit.src=LOGO_URL; sbLogoInit.style.filter='brightness(0) invert(1)'; }
+// Bottom estimate: dark blue bg → white
 var beLogoInit = document.getElementById('be-logo-img');
-if(beLogoInit){ beLogoInit.src = LIGHT_LOGO; beLogoInit.style.filter = 'brightness(0) invert(1)'; }
+if(beLogoInit){ beLogoInit.src=LOGO_URL; beLogoInit.style.filter='brightness(0) invert(1)'; }
+updateProgress();
 
 (async function(){
   await fetchMonth(CY,CM);
@@ -2352,9 +2413,8 @@ document.addEventListener('DOMContentLoaded',function(){
   // Logo injection for sticky + bottom estimate
   var sbLogo=document.getElementById('sb-logo-img');
   var beLogo=document.getElementById('be-logo-img');
-  // sticky bar is on dark bg → light logo; bottom estimate is now white bg → dark logo
-  if(sbLogo){ sbLogo.src=LIGHT_LOGO; sbLogo.style.filter='brightness(0) invert(1)'; }
-  if(beLogo){ beLogo.src=LIGHT_LOGO; beLogo.style.filter='brightness(0) invert(1)'; }
+  if(sbLogo){ sbLogo.src=LOGO_URL; sbLogo.style.filter='brightness(0) invert(1)'; }
+  if(beLogo){ beLogo.src=LOGO_URL; beLogo.style.filter='brightness(0) invert(1)'; }
   // IntersectionObserver: hide sticky bar when bottom-estimate scrolled into view
   var beEl=document.getElementById('bottom-estimate');
   var barEl=document.getElementById('sticky-bar');
