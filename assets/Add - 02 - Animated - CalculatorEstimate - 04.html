@@ -1,0 +1,388 @@
+```html
+<link href="https://fonts.cdnfonts.com/css/argentum-novus" rel="stylesheet">
+
+<div class="klaygo-card">
+
+  <!-- ADJUST -->
+
+  <div class="screen adjust-screen">
+
+    <svg class="icon" viewBox="0 0 24 24">
+      <path d="M4 6h16M8 6v4M4 12h16M14 12v4M4 18h16M10 18v-4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"/>
+    </svg>
+
+    <div class="label">
+      ADJUST AMOUNT
+    </div>
+
+    <div class="amount" id="amount">
+      ₱500
+    </div>
+
+    <div class="slider">
+      <div class="track"></div>
+      <div class="fill" id="fill"></div>
+      <div class="knob" id="knob"></div>
+    </div>
+
+    <div class="range">
+      <span>₱500</span>
+      <span>₱5,000</span>
+    </div>
+
+    <div class="helper">
+      Drag to adjust
+    </div>
+
+  </div>
+
+  <!-- RECEIPT -->
+
+  <div class="screen receipt-screen">
+
+    <div class="receipt-wrapper">
+
+      <svg class="icon receipt-icon" viewBox="0 0 24 24">
+        <path d="M7 3h10v18l-2-1.5L12 21l-3-1.5L7 21z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"/>
+
+        <path d="M9 8h6M9 12h6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"/>
+      </svg>
+
+      <div class="label">
+        ESTIMATE READY
+      </div>
+
+      <div class="amount receipt-amount">
+        ₱5,000
+      </div>
+
+      <div class="receipt-lines">
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+
+body{
+  background:white;
+  display:grid;
+  place-items:center;
+  min-height:100vh;
+}
+
+.klaygo-card{
+
+  width:240px;
+  height:240px;
+
+  position:relative;
+
+  border-radius:28px;
+
+  border:2px solid #DCE7F5;
+
+  background:white;
+
+  box-shadow:
+    0 12px 30px rgba(13,31,60,.05);
+
+  overflow:hidden;
+
+  font-family:
+    'Argentum Novus',
+    sans-serif;
+}
+
+.screen{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  flex-direction:column;
+
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  padding:40px;
+}
+
+/* ADJUST */
+
+.adjust-screen{
+  animation:showAdjust 7s infinite;
+}
+
+/* RECEIPT */
+
+.receipt-screen{
+  opacity:0;
+  animation:showReceipt 7s infinite;
+}
+
+.receipt-wrapper{
+  animation:receiptFloat 2.5s ease-in-out infinite;
+}
+
+/* ICONS */
+
+.icon{
+  width:56px;
+  height:56px;
+
+  color:#3D6399;
+
+  margin-bottom:12px;
+}
+
+.receipt-icon{
+  animation:pulseIcon 2s infinite;
+}
+
+/* TEXT */
+
+.label{
+  font-size:11px;
+
+  letter-spacing:2px;
+
+  color:#3D6399;
+
+  margin-bottom:12px;
+}
+
+.amount{
+  font-size:34px;
+
+  line-height:1;
+
+  color:#0D1F3C;
+
+  margin-bottom:20px;
+}
+
+/* SLIDER */
+
+.slider{
+  position:relative;
+
+  width:100%;
+  height:24px;
+}
+
+.track{
+  position:absolute;
+  top:9px;
+
+  width:100%;
+  height:6px;
+
+  background:#EBF1FA;
+
+  border-radius:999px;
+}
+
+.fill{
+  position:absolute;
+  top:9px;
+
+  height:6px;
+
+  width:0%;
+
+  background:#3D6399;
+
+  border-radius:999px;
+}
+
+.knob{
+  position:absolute;
+  top:0;
+
+  width:24px;
+  height:24px;
+
+  border-radius:999px;
+
+  background:white;
+
+  border:3px solid #3D6399;
+
+  left:0;
+}
+
+.range{
+  width:100%;
+
+  display:flex;
+  justify-content:space-between;
+
+  margin-top:10px;
+
+  font-size:10px;
+  color:#6B6B68;
+}
+
+.helper{
+  margin-top:12px;
+
+  font-size:12px;
+  color:#6B6B68;
+}
+
+/* RECEIPT */
+
+.receipt-lines{
+  width:70%;
+  margin:auto;
+}
+
+.receipt-lines span{
+  display:block;
+
+  height:6px;
+
+  border-radius:999px;
+
+  background:#DCE7F5;
+
+  margin-top:10px;
+
+  animation:fadeLines 2s infinite;
+}
+
+.receipt-lines span:last-child{
+  width:70%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* ANIMATIONS */
+
+@keyframes showAdjust{
+
+  0%,50%{
+    opacity:1;
+  }
+
+  60%,100%{
+    opacity:0;
+  }
+}
+
+@keyframes showReceipt{
+
+  0%,55%{
+    opacity:0;
+  }
+
+  65%,95%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+  }
+}
+
+@keyframes pulseIcon{
+
+  0%,100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.08);
+  }
+}
+
+@keyframes receiptFloat{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-3px);
+  }
+}
+
+@keyframes fadeLines{
+
+  0%,100%{
+    opacity:.4;
+  }
+
+  50%{
+    opacity:1;
+  }
+}
+
+</style>
+
+<script>
+
+const amount = document.getElementById("amount");
+const knob = document.getElementById("knob");
+const fill = document.getElementById("fill");
+
+const min = 500;
+const max = 5000;
+
+let direction = 1;
+let progress = 0;
+
+function animateSlider(){
+
+  progress += direction * 0.005;
+
+  if(progress >= 1){
+    direction = -1;
+  }
+
+  if(progress <= 0){
+    direction = 1;
+  }
+
+  const value =
+    Math.round(
+      min + (max - min) * progress
+    );
+
+  amount.innerText =
+    "₱" + value.toLocaleString();
+
+  knob.style.left =
+    `calc(${progress * 100}% - 12px)`;
+
+  fill.style.width =
+    `${progress * 100}%`;
+
+  requestAnimationFrame(
+    animateSlider
+  );
+}
+
+animateSlider();
+
+</script>
+```
