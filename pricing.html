@@ -8,18 +8,39 @@
 
 <!-- Preconnect to speed up third-party origins -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.cdnfonts.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://raw.githubusercontent.com">
 
-<!-- Preload critical images so they render with first paint -->
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Mock%20Up%20-%20Web%20-%20Pricing%20-%20BG01.png">
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
-
-<!-- Fonts: font-display:swap so text shows immediately, font swaps in when ready -->
+<!-- DM Sans — reliable Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/argentum-novus?display=swap" rel="stylesheet">
 
-<!-- Google Maps deferred until location step is used -->
+<!-- Argentum Novus — self-hosted WOFF2 from GitHub /fonts folder -->
+<style>
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Thin.woff2') format('woff2');font-weight:100;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-ThinItalic.woff2') format('woff2');font-weight:100;font-style:italic;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-ExtraLight.woff2') format('woff2');font-weight:200;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-ExtraLightItalic.woff2') format('woff2');font-weight:200;font-style:italic;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-LightItalic.woff2') format('woff2');font-weight:300;font-style:italic;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-MediumItalic.woff2') format('woff2');font-weight:500;font-style:italic;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-SemiBoldItalic.woff2') format('woff2');font-weight:600;font-style:italic;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-BoldItalic.woff2') format('woff2');font-weight:700;font-style:italic;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-ExtraBoldItalic.woff2') format('woff2');font-weight:800;font-style:italic;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Black.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-BlackItalic.woff2') format('woff2');font-weight:900;font-style:italic;font-display:swap;}
+/* Outfit as instant fallback while fonts load */
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
 <script>
 var mapsLoaded=false;
 function loadMaps(){
@@ -41,6 +62,9 @@ function loadMaps(){
   --red:#C0392B;--rbg:#FDEAEA;--rbdr:#F5B7B1;
   --amber:#7A5C00;--abg:#FFF8E7;--abdr:#F5C842;
   --nav-light:#F7F9FC;
+  /* Font stacks */
+  --font-brand:'Argentum Novus','Outfit','DM Sans',sans-serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size:14px;line-height:1.55;}
@@ -66,8 +90,8 @@ body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size
 .hero-bg::after{content:'';position:absolute;inset:0;background:rgba(13,31,60,.38);}
 /* Text content above BG */
 .hero-content{position:relative;z-index:2;}
-.hero-eyebrow{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:20px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
-.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(34px,6vw,68px);font-weight:800;color:#F7F9FC;line-height:1.04;margin-bottom:12px;letter-spacing:-.5px;opacity:0;transform:translateY(28px);transition:opacity .8s ease .1s,transform .8s ease .1s;}
+.hero-eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:20px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.hero h1{font-family:var(--font-brand);font-size:clamp(34px,6vw,68px);font-weight:800;color:#F7F9FC;line-height:1.04;margin-bottom:12px;letter-spacing:-.5px;opacity:0;transform:translateY(28px);transition:opacity .8s ease .1s,transform .8s ease .1s;}
 .hero h1 span{color:#A8BFE0;}
 .hero-sub{font-size:clamp(13px,1.6vw,15.5px);color:rgba(247,249,252,.8);line-height:1.9;max-width:520px;margin-bottom:26px;opacity:0;transform:translateY(24px);transition:opacity .8s ease .2s,transform .8s ease .2s;}
 .hero-checks{display:flex;flex-wrap:wrap;gap:10px 26px;opacity:0;transform:translateY(20px);transition:opacity .8s ease .35s,transform .8s ease .35s;}
@@ -101,7 +125,7 @@ body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size
 .clarifier-bg::after{content:'';position:absolute;inset:0;background:rgba(13,31,60,.42);}
 .cc-anim-col{position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-start;flex-shrink:0;}
 .cc-text-col{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;}
-.cc-big-title{font-family:'Argentum Novus',sans-serif;font-size:clamp(22px,3.5vw,42px);font-weight:800;color:#F7F9FC;line-height:1.08;margin-bottom:18px;}
+.cc-big-title{font-family:var(--font-brand);font-size:clamp(22px,3.5vw,42px);font-weight:800;color:#F7F9FC;line-height:1.08;margin-bottom:18px;}
 .cc-sub{font-size:clamp(13px,1.4vw,15px);color:rgba(247,249,252,.72);line-height:1.9;margin-bottom:24px;}
 .cc-chips{display:flex;flex-wrap:wrap;gap:9px;}
 .cc-chip{padding:7px 16px;border-radius:22px;font-size:12px;font-weight:600;border:1.5px solid rgba(168,191,224,.3);color:rgba(247,249,252,.75);background:rgba(255,255,255,.07);}
@@ -139,7 +163,7 @@ body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size
 .nav-top-left{display:flex;align-items:center;gap:14px;}
 .nav-logo{height:28px;}
 .nav-brand-text{
-  font-family:'Argentum Novus',sans-serif;
+  font-family:var(--font-brand);
   font-size:10.5px;color:rgba(247,249,252,.45);
   line-height:1.4;display:flex;flex-direction:column;
 }
@@ -169,7 +193,7 @@ body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size
   border-top:1px solid rgba(255,255,255,.07);
 }
 .nav-tab{
-  font-family:'Argentum Novus',sans-serif;
+  font-family:var(--font-brand);
   font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   text-decoration:none;color:rgba(247,249,252,.55);
   padding:7px 22px;display:flex;align-items:center;
@@ -192,7 +216,7 @@ body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size
 
 /* Mobile: page name centred */
 .nav-mobile-page{
-  font-family:'Argentum Novus',sans-serif;font-size:12px;font-weight:700;
+  font-family:var(--font-brand);font-size:12px;font-weight:700;
   letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);
   display:none;position:absolute;left:50%;transform:translateX(-50%);
 }
@@ -227,7 +251,7 @@ body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size
   cursor:pointer;font-size:26px;padding:8px;font-family:inherit;
 }
 .nav-menu-pill{
-  font-family:'Argentum Novus',sans-serif;
+  font-family:var(--font-brand);
   font-size:16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:var(--nav-light);text-decoration:none;
   border:1.5px solid rgba(247,249,252,.25);border-radius:50px;
@@ -237,15 +261,7 @@ body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size
   background:rgba(168,191,224,.18);border-color:var(--nav-light);color:#fff;
 }
 
-/* hero rules above */
-.hero-eyebrow{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.9);margin-bottom:18px;}
-.hero h1{font-family:'Argentum Novus',sans-serif;font-size:clamp(34px,6vw,64px);font-weight:800;color:#F7F9FC;line-height:1.06;margin-bottom:10px;letter-spacing:-.5px;}
-.hero h1 span{color:#A8BFE0;}
-.hero-sub{font-size:clamp(13px,1.6vw,15.5px);color:rgba(247,249,252,.78);line-height:1.85;max-width:500px;margin-bottom:24px;}
-.hero-checks{display:flex;flex-wrap:wrap;gap:10px 24px;}
-.hero-check{display:flex;align-items:center;gap:8px;font-size:clamp(11.5px,1.3vw,13px);color:rgba(247,249,252,.9);font-weight:500;}
-.hero-check::before{content:'✓';color:#A8BFE0;font-weight:700;font-size:13px;flex-shrink:0;}
-@media(max-width:700px){.hero{padding:36px 20px 32px;min-height:44vh;}.hero h1{font-size:clamp(28px,8vw,40px);}}
+/* hero text and check styles defined in parallax section above */
 
 /* ── CLARIFIER — continues #2B4E8A, then white body ── */
 .calc-clarifier{
@@ -260,7 +276,7 @@ body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size
 .cc-anim-col{display:flex;align-items:center;justify-content:flex-start;flex-shrink:0;}
 .cc-text-col{display:flex;flex-direction:column;justify-content:center;}
 .cc-big-title{
-  font-family:'Argentum Novus',sans-serif;
+  font-family:var(--font-brand);
   font-size:clamp(22px,3.5vw,40px);
   font-weight:800;color:#F7F9FC;line-height:1.1;margin-bottom:18px;
 }
@@ -1809,10 +1825,9 @@ function updateRecurDP(){
   if(panel){
     panel.style.display='block';
     panel.innerHTML='<div style="font-size:9px;color:var(--se);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;">Reservation Fees (' + totalSessions + ' sessions)</div>'
-      +'<div style="font-size:13px;color:var(--gr);">₱'+S.lf.toLocaleString()+' × '+totalSessions+' sessions</div>'
-      +'<div style="font-size:20px;font-weight:700;color:var(--green);margin-top:3px;">₱'+totalDP.toLocaleString()+' total upfront</div>'
-      +'<div style="font-size:10px;color:var(--gr);margin-top:3px;">One per session • Balance paid on each service day.</div>';
-  }
+      +'<div style="font-size:13px;color:var(--gr);">&#8369;'+S.lf.toLocaleString()+' \u00d7 '+totalSessions+' sessions</div>'
+      +'<div style="font-size:20px;font-weight:700;color:var(--green);margin-top:3px;">&#8369;'+totalDP.toLocaleString()+' total upfront</div>'
+      +'<div style="font-size:10px;color:var(--gr);margin-top:3px;">One per session \u2022 Balance paid on each service day.</div>';
   }
 }
 
