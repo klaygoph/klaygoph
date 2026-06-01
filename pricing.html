@@ -209,7 +209,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .nav-menu-close:hover{opacity:1;}
 
 /* Staggered drop-in pills — above bubbles */
-.nav-menu-pill{font-family:var(--font-brand);font-size:16px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F7F9FC;text-decoration:none;border:1.5px solid rgba(247,249,252,.22);border-radius:50px;padding:16px 54px;width:250px;text-align:center;position:relative;z-index:2;opacity:0;transform:translateY(-20px);transition:background .18s,border-color .18s,opacity .32s ease,transform .32s ease;}
+.nav-menu-pill{font-family:var(--font-brand);font-size:16px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F7F9FC;text-decoration:none;border:1.5px solid rgba(247,249,252,.22);border-radius:50px;padding:16px 54px;width:250px;text-align:center;position:relative;z-index:2;opacity:0;transform:translateY(-8px);transition:background .18s,border-color .18s,opacity .22s ease,transform .22s ease;}
 .nav-menu-pill.drop-in{opacity:1;transform:translateY(0);}
 .nav-menu-pill:nth-child(2){transition-delay:.0s;}
 .nav-menu-pill:nth-child(3){transition-delay:.1s;}
@@ -217,8 +217,8 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.15);border-color:#A8BFE0;}
 
 /* ── BACK TO TOP — PNG image ── */
-#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:56px;height:56px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;}
-#back-to-top img{width:56px;height:56px;display:block;filter:drop-shadow(0 4px 14px rgba(13,31,60,.28));}
+#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:38px;height:38px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;}
+#back-to-top img{width:38px;height:38px;display:block;filter:drop-shadow(0 4px 14px rgba(13,31,60,.28));}
 #back-to-top:hover{transform:translateY(-3px);}
 #back-to-top.visible{display:flex;opacity:1;}
 
@@ -270,8 +270,8 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .day.today-d{border-color:var(--li);color:var(--pr);font-weight:700;}
 .day.past{color:#ccc;cursor:not-allowed;}
 .day.empty{cursor:default;}
-.day.full-d{background:var(--rbg) !important;color:var(--red) !important;border-color:var(--rbdr) !important;cursor:not-allowed;font-weight:600;}
-.day.partial-d{background:var(--abg);border-color:var(--abdr);}
+.day.full-d{background:#3D6399 !important;color:#F7F9FC !important;border-color:#2B4E8A !important;cursor:not-allowed;font-weight:600;}
+.day.partial-d{background:#A8BFE0;border-color:#5A7BB5;color:#0D1F3C;}
 .dots{display:flex;gap:2px;justify-content:center;margin-top:2px;}
 .dot{width:4px;height:4px;border-radius:50%;}
 .dot.t{background:var(--red);}
@@ -313,8 +313,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .area-note{font-size:11.5px;color:#4A5568;margin-top:8px;line-height:1.7;}
 .large-space-note{display:none;margin-top:10px;padding:12px 14px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:14px;}
 .large-space-note.show{display:block;}
-.large-space-note strong{display:block;font-size:12px;color:var(--amber);margin-bottom:5px;}
-.large-space-note table{width:100%;font-size:11.5px;color:var(--amber);border-collapse:collapse;}
+.large-space-note strong{display:block;font-size:12px;color:var(--mn);margin-bottom:5px;}
+.large-space-note table{width:100%;font-size:11.5px;color:var(--pr);border-collapse:collapse;}
 .large-space-note td{padding:3px 0;}
 .large-space-note td:last-child{text-align:right;font-weight:600;}
 
@@ -333,10 +333,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .co-details{display:none;padding:0 15px 14px 43px;}
 .clean-opt.sel .co-details{display:block;}
 .co-desc{font-size:12px;color:#4A5568;line-height:1.75;margin-bottom:10px;}
-.co-excl{padding:8px 11px;background:#FFF0F0;border-radius:10px;border-left:3px solid var(--rbdr);}
+.co-excl{padding:8px 11px;background:var(--pa);border-radius:10px;border-left:3px solid var(--li);}
 .co-excl strong{display:block;font-size:11px;color:var(--red);margin-bottom:3px;}
-.co-excl p{font-size:10.5px;color:#8B2020;line-height:1.55;}
-.post-con-note{margin-top:10px;padding:10px 13px;background:#FFF0F0;border:1.5px solid var(--rbdr);border-radius:14px;font-size:11.5px;color:#8B2020;line-height:1.6;}
+.co-excl p{font-size:10.5px;color:#0D1F3C;line-height:1.55;}
+.post-con-note{margin-top:10px;padding:10px 13px;background:var(--pa);border:1.5px solid var(--li);border-radius:14px;font-size:11.5px;color:var(--pr);line-height:1.6;}
 .post-con-note strong{display:block;font-size:12px;margin-bottom:3px;}
 
 /* UNIT TYPE */
@@ -358,6 +358,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .tbanner.show{display:block;}
 .tbanner strong{display:block;font-size:13px;color:var(--mn);}
 .tbanner-val{font-size:11.5px;color:var(--green);margin-top:2px;font-weight:500;}
+
+/* Recur slot selects */
+.recur-sel{padding:6px 8px;border:1.5px solid var(--bd);border-radius:10px;font-family:inherit;font-size:12.5px;color:var(--dk);background:#fff;cursor:pointer;flex-shrink:0;}
+.recur-sel:focus{outline:none;border-color:var(--pr);}
 
 /* SCHEDULE */
 .pills{display:flex;gap:7px;flex-wrap:wrap;}
@@ -564,9 +568,9 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .travel-lbl{font-size:11.5px;color:var(--gr);margin-top:1px;line-height:1.45;}
 .traffic-notice{margin-top:10px;padding:9px 12px;border-radius:12px;font-size:11.5px;line-height:1.6;font-weight:500;display:flex;align-items:flex-start;gap:7px;}
 .traffic-notice .tn-icon{flex-shrink:0;margin-top:1px;}
-.traffic-heavy{background:#FFF3E0;border:1px solid #FFB74D;color:#7A4500;}
-.traffic-moderate{background:var(--gbg);border:1px solid var(--gbdr);color:#1B5E20;}
-.traffic-clear{background:var(--gbg);border:1px solid var(--gbdr);color:#1B5E20;}
+.traffic-heavy{background:var(--pa);border:1px solid var(--li);color:var(--mn);}
+.traffic-moderate{background:var(--pa);border:1px solid var(--li);color:var(--pr);}
+.traffic-clear{background:var(--pa);border:1px solid var(--li);color:var(--pr);}
 .travel-surcharge{margin-top:8px;padding:6px 11px;background:rgba(43,78,138,.07);border-radius:10px;font-size:11px;color:var(--pr);font-weight:600;}
 
 /* ── CALCULATOR CLARIFIER ───── */
@@ -580,12 +584,12 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .cc-chip.ok{background:var(--gbg);color:var(--green);border-color:var(--gbdr);}
 
 /* ── RESTRICTION ALERT ──────── */
-.restriction-alert{display:none;margin-top:10px;padding:12px 15px;background:var(--rbg);border:1.5px solid var(--rbdr);border-radius:16px;font-size:12px;color:#8B2020;line-height:1.7;}
+.restriction-alert{display:none;margin-top:10px;padding:12px 15px;background:var(--pa);border:1.5px solid var(--li);border-radius:16px;font-size:12px;color:#0D1F3C;line-height:1.7;}
 .restriction-alert.show{display:block;}
 .restriction-alert strong{display:block;font-size:12.5px;margin-bottom:3px;}
 
 /* ── WHAT HAPPENS NEXT ──────── */
-.whn-section{background:#fff;border-top:none;padding:28px 20px 36px;}
+.whn-section{background:#F7F9FC;border-top:none;padding:28px 20px 36px;}
 .whn-title{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pr);margin-bottom:22px;display:flex;align-items:center;gap:10px;}
 .whn-title::after{content:'';flex:1;height:1px;background:var(--bd);}
 .whn-steps{display:flex;flex-direction:column;}
@@ -680,6 +684,10 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .be-empty{padding:18px;text-align:center;color:rgba(247,249,252,.5);font-size:12px;line-height:1.75;}
 @media(max-width:660px){#bottom-estimate{display:block;}}
 
+
+/* Accordion icon — styled bullet replaces emoji */
+.acc-icon{display:inline-block;width:18px;height:18px;border-radius:4px;background:var(--pa);border:1.5px solid var(--li);color:var(--pr);font-size:9px;font-weight:800;text-align:center;line-height:16px;flex-shrink:0;letter-spacing:0;}
+
 /* ── POLICIES OLD ──── */
 .pi{display:flex;gap:10px;margin-bottom:8px;font-size:12px;color:var(--gr);line-height:1.7;align-items:flex-start;}
 .pi:last-child{margin-bottom:0;}
@@ -743,7 +751,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
 <div class="hero" id="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">KLAYGOPH · Cleaning Services</div>
     <h1>Customize your clean,<br><span>See Your Price.</span></h1>
     <p class="hero-sub">Get an instant estimate — no surprises, no hidden fees.<br>Fill in the steps below and send it to us on Messenger to confirm your slot.</p>
     <div class="hero-checks">
@@ -764,13 +771,13 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
           <path d="M4 6h16M8 6v4M4 12h16M14 12v4M4 18h16M10 18v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
         <div class="kg4-label">ADJUST AMOUNT</div>
-        <div class="kg4-amount" id="kg4-amount">&#8369;500</div>
+        <div class="kg4-amount" id="kg4-amount">Php 500</div>
         <div class="kg4-slider">
           <div class="kg4-track"></div>
           <div class="kg4-fill" id="kg4-fill"></div>
           <div class="kg4-knob" id="kg4-knob"></div>
         </div>
-        <div class="kg4-range"><span>&#8369;500</span><span>&#8369;5,000</span></div>
+        <div class="kg4-range"><span>Php 500</span><span>Php 5,000</span></div>
         <div class="kg4-helper">Drag to adjust</div>
       </div>
       <div class="screen receipt-screen">
@@ -780,7 +787,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
             <path d="M9 8h6M9 12h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <div class="kg4-label">ESTIMATE READY</div>
-          <div class="kg4-amount receipt-amount">&#8369;5,000</div>
+          <div class="kg4-amount receipt-amount">Php 5,000</div>
           <div class="kg4-receipt-lines"><span></span><span></span></div>
         </div>
       </div>
@@ -853,11 +860,11 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   <div class="cal-grid" id="cal-grid"><div style="grid-column:1/-1;font-size:10.5px;color:var(--se);padding:8px 0;">Loading calendar...</div></div>
   <div class="cal-status" id="cal-status"></div>
 <div id="cal-sel-note" style="display:none;font-size:11px;color:var(--green);font-weight:600;padding:5px 0 2px;"></div>
-  <div class="cal-note">Red = fully booked. Yellow = 1 slot left. Select any available date to continue.</div>
+  <div class="cal-note">Dark blue = fully booked. Medium blue = 1 slot left. Select any available date.</div>
   <div class="legend">
     <div class="leg"><div class="ld" style="background:var(--pa);border:1.5px solid var(--li);"></div>Available</div>
-    <div class="leg"><div class="ld" style="background:var(--abg);border:1.5px solid var(--abdr);"></div>1 slot left</div>
-    <div class="leg"><div class="ld" style="background:var(--rbg);border:1.5px solid var(--rbdr);"></div>Fully booked</div>
+    <div class="leg"><div class="ld" style="background:#A8BFE0;border:1.5px solid #5A7BB5;"></div>1 slot left</div>
+    <div class="leg"><div class="ld" style="background:#3D6399;border:1.5px solid #2B4E8A;"></div>Fully booked</div>
     <div class="leg"><div class="ld" style="background:var(--pr);"></div>Selected</div>
   </div>
 </div>
@@ -888,11 +895,11 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
       <strong>Large Space Detected (over 45 sqm)</strong>
       <p style="margin-bottom:6px;">Your space qualifies for custom per-sqm pricing. Here's how it's calculated:</p>
       <table>
-        <tr><td>Regular Cleaning</td><td>₱28/sqm</td></tr>
-        <tr><td>Deep Cleaning</td><td>₱33/sqm</td></tr>
-        <tr><td>Move In / Move Out</td><td>₱40/sqm</td></tr>
+        <tr><td>Regular Cleaning</td><td>Php 28/sqm</td></tr>
+        <tr><td>Deep Cleaning</td><td>Php 33/sqm</td></tr>
+        <tr><td>Move In / Move Out</td><td>Php 40/sqm</td></tr>
       </table>
-      <p style="margin-top:5px;font-size:9px;color:var(--amber);">Final price = sqm x rate above. Select your cleaning type to see the computed amount.</p>
+      <p style="margin-top:5px;font-size:9px;color:var(--pr);">Final price = sqm x rate above. Select your cleaning type to see the computed amount.</p>
     </div>
     <div class="large-space-note" id="too-large-note" style="display:none;background:var(--rbg);border-color:var(--rbdr);">
       <strong style="color:var(--red);">Space Exceeds Our Current Limit</strong>
@@ -1005,7 +1012,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
     <div class="sit-tag" onclick="togSit(this)" data-val="Under renovation" data-restrict="true">Under renovation</div>
   </div>
   <div class="restriction-alert" id="restriction-alert">
-    <strong>⚠️ We're Unable to Accept This Booking</strong>
+    <strong>We're Unable to Accept This Booking</strong>
     For the safety of our crew and the integrity of your clean, we do not service properties where active third-party work, ongoing renovation, or construction is taking place at the same time. We'd love to help once the space is ready — please rebook when all other on-site work is complete.
   </div>
   <textarea class="ia" id="instr" placeholder="Fragile items, areas to prioritize, access instructions, preferred products..."></textarea>
@@ -1018,7 +1025,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 <!-- STEP 9: LOCATION -->
 <div class="card reveal locked" id="card-loc">
   <div class="card reveal-head"><div class="sbadge" id="b9">9</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p></div></div>
-  <div style="font-size:10px;color:var(--gr);padding:6px 10px;background:var(--pa);border-radius:6px;margin-bottom:10px;line-height:1.6;">₱50 base (first 2 km) + ₱10/km up to 6 km + ₱15/km beyond. Nearby areas have fixed rates.</div>
+  <div style="font-size:10px;color:var(--gr);padding:6px 10px;background:var(--pa);border-radius:6px;margin-bottom:10px;line-height:1.6;">Php 50 base (first 2 km) + Php 10/km up to 6 km + Php 15/km beyond. Nearby areas have fixed rates.</div>
   <div class="loc-grid" id="loc-grid"></div>
   <div class="other-inp" id="other-inp"><input type="text" id="other-txt" placeholder="Type your area / city..." oninput="compute()"></div>
   <div class="loc-note">Transport fee is an estimate. Final amount confirmed based on your exact address.</div>
@@ -1027,7 +1034,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 <!-- STEP 10: YOUR INFORMATION -->
 <div class="card reveal locked" id="card-info">
   <div class="card reveal-head"><div class="sbadge" id="b10">10</div><div><h2>Your Information</h2><p>We'll use this to confirm your booking</p></div></div>
-  <div class="alert info" style="margin-bottom:8px;font-size:10px;">&#128274; No log-in required. No bank information collected. Your data is only used to process your booking request.</div>
+  <div class="alert info" style="margin-bottom:8px;font-size:10px;">No log-in required. No bank information collected. Your data is only used to process your booking request.</div>
   <div class="fields">
     <div class="field full">
       <label>Full Name</label>
@@ -1040,7 +1047,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
       <input type="text" id="f-addr" placeholder="Start typing your address..." autocomplete="off" style="width:100%;" onfocus="loadMaps()" ontouchstart="loadMaps()">
       <div class="travel-card" id="travel-card" style="display:none;">
         <div class="travel-row">
-          <div class="travel-icon">🚗</div>
+          <div class="travel-icon" style="font-size:18px;color:var(--pr);">→</div>
           <div>
             <div class="travel-time" id="travel-time">—</div>
             <div class="travel-lbl" id="travel-lbl">Estimating travel from Taguig…</div>
@@ -1059,11 +1066,11 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
 <!-- POLICIES -->
 <div class="pb reveal">
-  <h3>📋 Booking Policies</h3>
+  <h3>Booking Policies</h3>
 
   <div class="acc-item open" id="acc-pricing">
     <div class="acc-head" onclick="togAcc('acc-pricing')">
-      <span class="acc-icon">📋</span>
+      <span class="acc-icon">P</span>
       <span class="acc-title">Pricing Transparency</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1072,7 +1079,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
   <div class="acc-item" id="acc-resched">
     <div class="acc-head" onclick="togAcc('acc-resched')">
-      <span class="acc-icon">🔄</span>
+      <span class="acc-icon">R</span>
       <span class="acc-title">Reschedule Policy</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1081,28 +1088,40 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
   <div class="acc-item" id="acc-cancel">
     <div class="acc-head" onclick="togAcc('acc-cancel')">
-      <span class="acc-icon">🚫</span>
+      <span class="acc-icon">C</span>
       <span class="acc-title">Cancellation &amp; Rescheduling Policy</span>
       <span class="acc-chevron">▼</span>
     </div>
     <div class="acc-body">
-      <strong>Free Cancellation or Rescheduling</strong><br>
-      You may cancel or reschedule at least <strong>24 hours before</strong> your scheduled service with no charge.<br><br>
-      <strong>Late Cancellation (Less than 24 Hours)</strong><br>
-      Cancellations made less than 24 hours before the scheduled service will forfeit the reservation fee already paid. No refund will be issued.<br><br>
-      <strong>Same-Day Bookings</strong><br>
-      Same-day bookings are subject to availability and must be confirmed by our team. A <strong>50% reservation fee</strong> is required upon confirmation. Once confirmed and the team assigned, cancellations are not eligible for a refund. If the cleaner is already dispatched, the booking is treated as a late cancellation. We recommend booking in advance.<br><br>
-      <strong>Same-Day Cancellation / No-Show</strong><br>
-      If a booking is cancelled on the day of service, or if our team cannot proceed due to no property access, incorrect address, client unavailability, or no-show — the reservation fee is non-refundable.<br><br>
-      <strong>Exceptions</strong><br>
-      Fees may be waived for verified medical emergencies, severe weather conditions, or unexpected urgent situations — reviewed fairly on a case-by-case basis.<br><br>
-      <strong style="color:var(--mn);">Why this policy exists:</strong> When a booking is confirmed, we reserve that time specifically for you and assign a cleaning professional. Last-minute changes affect schedules, cleaner income stability, and other clients waiting for availability.
+      <div style="display:grid;gap:14px;">
+        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--li);">
+          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Free Cancellation or Rescheduling</strong>
+          You may cancel or reschedule at least <strong>24 hours before</strong> your scheduled service with no charge.
+        </div>
+        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--li);">
+          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Late Cancellation (Less than 24 Hours)</strong>
+          Cancellations made less than 24 hours before the scheduled service will forfeit the reservation fee already paid. No refund will be issued.
+        </div>
+        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--pr);">
+          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Same-Day Bookings</strong>
+          Same-day bookings are subject to availability and must be confirmed by our team. A <strong>50% reservation fee</strong> is required upon confirmation. Once confirmed and the team assigned, cancellations are not eligible for a refund. If the cleaner is already dispatched, the booking is treated as a late cancellation.<br><br>We recommend booking in advance to secure your preferred schedule.
+        </div>
+        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--pr);">
+          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Same-Day Cancellation / No-Show</strong>
+          If a booking is cancelled on the day of service, or if our team cannot proceed due to no property access, incorrect address, client unavailability, or no-show — the reservation fee is non-refundable.
+        </div>
+        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--li);">
+          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Exceptions</strong>
+          Fees may be waived for verified medical emergencies, severe weather conditions, or unexpected urgent situations — reviewed fairly on a case-by-case basis.
+        </div>
+        <p style="font-size:11px;color:var(--gr);line-height:1.65;"><strong style="color:var(--mn);">Why this policy exists:</strong> When a booking is confirmed, we reserve that time specifically for you and assign a cleaning professional. Last-minute changes affect schedules, cleaner income stability, and other clients waiting for availability.</p>
+      </div>
     </div>
   </div>
 
   <div class="acc-item" id="acc-large">
     <div class="acc-head" onclick="togAcc('acc-large')">
-      <span class="acc-icon">🏠</span>
+      <span class="acc-icon">L</span>
       <span class="acc-title">Large Spaces (90+ sqm)</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1111,7 +1130,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
   <div class="acc-item" id="acc-payment">
     <div class="acc-head" onclick="togAcc('acc-payment')">
-      <span class="acc-icon">💳</span>
+      <span class="acc-icon">F</span>
       <span class="acc-title">Reservation Fee &amp; Payment</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1120,7 +1139,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
   <div class="acc-item" id="acc-onsite">
     <div class="acc-head" onclick="togAcc('acc-onsite')">
-      <span class="acc-icon">🧹</span>
+      <span class="acc-icon">W</span>
       <span class="acc-title">Active On-Site Work</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1128,7 +1147,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   </div>
 
   <div class="agree-note">
-    <strong>📌 Booking Agreement</strong><br>
+    <strong>Booking Agreement</strong><br>
     By sending us this estimate and completing your reservation fee, you confirm that you have read, understood, and agreed to all of the booking policies listed above.
   </div>
 </div>
@@ -1144,7 +1163,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
         <div class="whn-who you">YOU</div>
         <div class="whn-step-title">Copy Your Estimate</div>
         <div class="whn-step-desc">Tap <strong>"Copy Estimate Text"</strong> — your full booking details and total will be copied to your clipboard, ready to paste.</div>
-        <span class="whn-tag">📋 Copy Estimate Text</span>
+        <span class="whn-tag">Copy Estimate Text</span>
       </div>
     </div>
     <div class="whn-step">
@@ -1154,7 +1173,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
         <div class="whn-who you">YOU</div>
         <div class="whn-step-title">Open Messenger &amp; Paste Your Estimate</div>
         <div class="whn-step-desc">Click <strong>"Book on Messenger"</strong> — Messenger opens directly to our page. Long-press the message field, paste your estimate, and hit Send.</div>
-        <span class="whn-tag">💬 Book on Messenger</span>
+        <span class="whn-tag">Book on Messenger</span>
       </div>
     </div>
     <div class="whn-step">
@@ -1176,10 +1195,10 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
         <div class="pay-methods">
           <h4>Accepted Payment Methods</h4>
           <div class="pm-grid">
-            <div class="pm-item"><div class="pm-icon">💙</div><div><div class="pm-name">GCash</div><div class="pm-num">0992 816 4718</div></div></div>
-            <div class="pm-item pm-item-wide"><div class="pm-icon">🏦</div><div><div class="pm-name">Bank Transfer</div><div class="pm-num">Details sent upon confirmation</div></div></div>
+            <div class="pm-item"><div><div class="pm-name">GCash</div><div class="pm-num">0992 816 4718</div></div></div>
+            <div class="pm-item pm-item-wide"><div><div class="pm-name">Bank Transfer</div><div class="pm-num">Details sent upon confirmation</div></div></div>
           </div>
-          <div class="pm-note">💡 Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or 90+ sqm bookings.</div>
+          <div class="pm-note">Note: Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or 90+ sqm bookings.</div>
         </div>
       </div>
     </div>
@@ -1212,7 +1231,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
       <img id="est-logo-img" alt="Klaygo PH" style="height:22px;display:block;margin-bottom:6px;">
       <div class="pest-id" id="p-est-id">—</div>
       <h3>Your Estimate</h3>
-      <div class="ptotal"><span>₱</span><span id="ptotd">0</span></div>
+      <div class="ptotal"><span>Php&nbsp;</span><span id="ptotd">0</span></div>
       <div class="pdisc" id="pdisc"></div>
       <div class="ptime" id="ptime"></div>
       <div class="ptime-val" id="ptime-val"></div>
@@ -1240,7 +1259,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 <!-- MESSENGER MODAL -->
 <div class="modal-overlay" id="msn-modal">
   <div class="modal-box">
-    <span class="modal-icon">💬</span>
+    
     <div class="modal-title">Your estimate has been copied!</div>
     <div class="modal-body">Messenger is about to open. Complete your booking in <strong>3 quick steps:</strong></div>
     <div class="modal-steps">
@@ -1248,7 +1267,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
       <div class="modal-step"><div class="modal-step-n">2</div><div class="modal-step-t"><strong>Long-press → Paste</strong> — your full estimate appears</div></div>
       <div class="modal-step"><div class="modal-step-n">3</div><div class="modal-step-t">Hit <strong>Send</strong> — we'll reply to confirm your slot 🎉</div></div>
     </div>
-    <button class="modal-cta" id="msn-go-btn">💬 Open Messenger Now</button>
+    <button class="modal-cta" id="msn-go-btn">Open Messenger Now</button>
     <button class="modal-cancel" onclick="document.getElementById('msn-modal').classList.remove('show')">Cancel</button>
   </div>
 </div>
@@ -1256,7 +1275,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 <!-- BOTTOM ESTIMATE — mobile -->
 <div id="bottom-estimate">
   <div class="be-head"><img id="be-logo-img" class="be-logo" alt="Klaygo PH"><div><div class="be-label">Your Estimate</div></div></div>
-  <div class="be-total"><span class="be-total-prefix">₱</span><span id="be-totd">0</span></div>
+  <div class="be-total"><span class="be-total-prefix">Php&nbsp;</span><span id="be-totd">0</span></div>
   <div class="be-time" id="be-time"></div>
   <div id="be-body"><div class="be-empty">Select a date, time &amp; service to build your estimate.</div></div>
   <div class="be-pay-box" id="be-pay" style="display:none;">
@@ -1266,8 +1285,8 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   </div>
   <div class="be-avail none" id="be-avail">No date selected yet.</div>
   <div class="be-discl">This estimate does not confirm a reservation. Booking confirmed after reservation fee is received and confirmed.</div>
-  <button class="be-btn" onclick="bookNow()">💬 Book on Messenger</button>
-  <button class="be-btn-sec" onclick="copyEstimate()">📋 Copy Estimate Text</button>
+  <button class="be-btn" onclick="bookNow()">Book on Messenger</button>
+  <button class="be-btn-sec" onclick="copyEstimate()">Copy Estimate Text</button>
 </div>
 
 <!-- STICKY BAR — mobile -->
@@ -1276,13 +1295,13 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
     <div class="sticky-left">
       <img id="sb-logo-img" class="sticky-logo" alt="Klaygo PH">
       <div class="sticky-summary">
-        <div class="sticky-total-amt"><span class="sb-peso">&#8369;</span><span id="sb-total">—</span></div>
+        <div class="sticky-total-amt"><span class="sb-peso">Php&nbsp;</span><span id="sb-total">—</span></div>
         <div class="sticky-desc" id="sb-desc">Complete the steps to see your estimate</div>
       </div>
     </div>
     <button class="sticky-cta" onclick="scrollToEstimate()">View estimate ↑</button>
   </div>
-  <div class="sticky-brand">KLAYGOPH Cleaning Services &nbsp;|&nbsp; Cleaner Space, Clearer Mind.</div>
+  <div class="sticky-brand">KLAYGOPH Cleaning Services &nbsp;|&nbsp; Clearer Space, Clearer Mind.</div>
 </div>
 
 <div class="follow-bar">
@@ -1473,9 +1492,9 @@ function getBasePrice(){
   var b=getBracket(S.sqm);
   var label=S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'');
   if(S.sqm>LARGE_CUTOFF){
-    if(S.cleanType==='regular')return{price:S.sqm*PER_SQM_REG,label:label+' — Regular (₱'+PER_SQM_REG+'/sqm)',surcharge:0};
-    if(S.cleanType==='deep')   return{price:S.sqm*PER_SQM_DEEP,label:label+' — Deep Clean (₱'+PER_SQM_DEEP+'/sqm)',surcharge:0};
-    return{price:S.sqm*PER_SQM_MIO,label:label+' — Move In/Out (₱'+PER_SQM_MIO+'/sqm)',surcharge:0};
+    if(S.cleanType==='regular')return{price:S.sqm*PER_SQM_REG,label:label+' — Regular (Php '+PER_SQM_REG+'/sqm)',surcharge:0};
+    if(S.cleanType==='deep')   return{price:S.sqm*PER_SQM_DEEP,label:label+' — Deep Clean (Php '+PER_SQM_DEEP+'/sqm)',surcharge:0};
+    return{price:S.sqm*PER_SQM_MIO,label:label+' — Move In/Out (Php '+PER_SQM_MIO+'/sqm)',surcharge:0};
   }
   if(S.cleanType==='regular')return{price:b.rP,label:label+' — Regular',surcharge:0};
   if(S.cleanType==='deep')   return{price:b.dP,label:label+' — Deep Clean',surcharge:0};
@@ -1698,14 +1717,49 @@ function togSit(el){
 // ── RECURRING DATES ───────────────────────────────────────────
 function addRecurSlot(){recurSlots.push({date:'',time:''});renderRecurSlots();}
 function removeRecurSlot(i){recurSlots.splice(i,1);renderRecurSlots();}
+function getRecurAmpmOpts(selAmpm){
+  return '<option value="am"'+(selAmpm==='am'?' selected':'')+'>AM</option>'
+        +'<option value="pm"'+(selAmpm==='pm'?' selected':'')+'>PM</option>';
+}
+function getRecurHrOpts(ampm,selHr){
+  var hrs=ampm==='pm'?[12,1,2,3]:[8,9,10,11];
+  return hrs.map(function(h){return'<option value="'+h+'"'+(selHr===h?' selected':'')+'>'+h+'</option>';}).join('');
+}
+function recurAmpmChanged(i){
+  var ampm=document.querySelector('.recur-ampm-'+i).value;
+  var hrSel=document.querySelector('.recur-hr-'+i);
+  var dh=ampm==='pm'?12:8;
+  hrSel.innerHTML=getRecurHrOpts(ampm,dh);
+  var h24=ampm==='pm'?12:8;
+  recurSlots[i].time=('0'+h24).slice(-2)+':00';
+  updateRecurDP();
+}
+function recurHrChanged(i){
+  var ampm=document.querySelector('.recur-ampm-'+i).value;
+  var hr=parseInt(document.querySelector('.recur-hr-'+i).value);
+  var h24=(ampm==='pm'&&hr!==12)?hr+12:(ampm==='am'&&hr===12?0:hr);
+  recurSlots[i].time=('0'+h24).slice(-2)+':00';
+  updateRecurDP();
+}
 function renderRecurSlots(){
   var c=document.getElementById('recur-entries'); if(!c)return;
   var html='';
   for(var i=0;i<recurSlots.length;i++){
+    var defAmpm='am',defHr=8;
+    if(recurSlots[i].time){
+      var hh=parseInt(recurSlots[i].time.split(':')[0]);
+      defAmpm=hh>=12?'pm':'am';
+      defHr=hh>12?hh-12:(hh===0?12:hh);
+    }
     html+='<div class="recur-row">'
       +'<input type="date" value="'+(recurSlots[i].date||'')+'" onchange="recurSlots['+i+'].date=this.value;updateRecurDP()">'
-      +'<input type="time" value="'+(recurSlots[i].time||'')+'" min="08:00" max="15:00" onchange="recurSlots['+i+'].time=this.value;updateRecurDP()">'
-      +'<button class="recur-remove" onclick="removeRecurSlot('+i+')">x</button>'
+      +'<select class="recur-sel recur-ampm recur-ampm-'+i+'" onchange="recurAmpmChanged('+i+')">'
+      +getRecurAmpmOpts(defAmpm)
+      +'</select>'
+      +'<select class="recur-sel recur-hr recur-hr-'+i+'" onchange="recurHrChanged('+i+')">'
+      +getRecurHrOpts(defAmpm,defHr)
+      +'</select>'
+      +'<button class="recur-remove" onclick="removeRecurSlot('+i+')">×</button>'
       +'</div>';
   }
   c.innerHTML=html; updateRecurDP();
@@ -1714,19 +1768,32 @@ function updateRecurDP(){
   var filled=recurSlots.filter(function(s){return s.date;});
   var dp=document.getElementById('recur-dp'), panel=document.getElementById('recur-panel');
   if(!dp)return;
-  if(!filled.length||!S.lf){dp.style.display='none';if(panel)panel.style.display='none';return;}
-  var totalSessions=filled.length+1; // initial + recurring
-  var totalDP=S.lf*totalSessions;
+  if(!filled.length){dp.style.display='none';if(panel)panel.style.display='none';return;}
+  var totalSessions=filled.length+1;
+  // Compute correct per-session reservation fee
+  var sub2=0,tf2=S.lf||0;
+  var bp2=getBasePrice();if(bp2.price>0)sub2+=bp2.price;
+  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0)sub2+=a.price*q;});
+  if(S.lf!==null&&S.lid&&S.lid!=='others')sub2+=tf2;
+  var total2=sub2;
+  var dow2=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()):-1;
+  var isWknd2=dow2===0||dow2===6;
+  var isSameD2=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
+  var isHol2=selDate&&PH_HOLIDAYS.has(selDate);
+  var isLg2=S.sqm>=90;
+  var needs50r=isSameD2||isWknd2||isHol2||isLg2;
+  var perSess=total2>0?(needs50r?Math.ceil(total2*0.5):Math.max(Math.ceil(total2*0.30),tf2)):tf2||0;
+  var totalDP=perSess*totalSessions;
   dp.style.display='block';
-  dp.innerHTML='<strong>'+filled.length+' additional session'+(filled.length>1?'s':'')+' added → '+totalSessions+' sessions total</strong><br>'
-    +'Reservation fee per session: <strong>₱'+S.lf.toLocaleString()+'</strong>'
-    +' × '+totalSessions+' = <strong>₱'+totalDP.toLocaleString()+'</strong><br>'
+  dp.innerHTML='<strong>'+filled.length+' additional session'+(filled.length>1?'s':'')+' added \u2192 '+totalSessions+' sessions total</strong><br>'
+    +'Reservation fee per session: <strong>Php '+perSess.toLocaleString()+'</strong>'
+    +' \u00d7 '+totalSessions+' = <strong>Php '+totalDP.toLocaleString()+'</strong><br>'
     +'<span style="font-size:10px;color:var(--gr);">One reservation fee per session confirms each slot. Balance paid on each service day.</span>';
   if(panel){
     panel.style.display='block';
-    panel.innerHTML='<div style="font-size:9px;color:var(--se);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;">Reservation Fees (' + totalSessions + ' sessions)</div>'
-      +'<div style="font-size:13px;color:var(--gr);">&#8369;'+S.lf.toLocaleString()+' \u00d7 '+totalSessions+' sessions</div>'
-      +'<div style="font-size:20px;font-weight:700;color:var(--green);margin-top:3px;">&#8369;'+totalDP.toLocaleString()+' total upfront</div>'
+    panel.innerHTML='<div style="font-size:9px;color:var(--se);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;">Reservation Fees ('+totalSessions+' sessions)</div>'
+      +'<div style="font-size:13px;color:var(--gr);">Php '+perSess.toLocaleString()+' \u00d7 '+totalSessions+' sessions</div>'
+      +'<div style="font-size:20px;font-weight:700;color:var(--mn);margin-top:3px;">Php '+totalDP.toLocaleString()+' total upfront</div>'
       +'<div style="font-size:10px;color:var(--gr);margin-top:3px;">One per session \u2022 Balance paid on each service day.</div>';
   }
 }
@@ -1746,7 +1813,7 @@ function renderAddons(){
     html+='<div class="ar '+(on?'on':'')+'" onclick="togAddon(\''+a.id+'\')">'
       +'<div class="ar-ck">'+(on?'✓':'')+'</div>'
       +'<div class="ar-info"><div class="ar-n">'+a.name+'</div><div class="ar-no">'+a.note+(a.tm?' · ~'+a.tm+'–'+a.tx+' min each':'')+'</div></div>'
-      +'<div class="ar-p">₱'+a.price.toLocaleString()+'</div>'
+      +'<div class="ar-p">Php '+a.price.toLocaleString()+'</div>'
       +qc+'</div>'+rsub;
   });
   document.getElementById('al').innerHTML=html;
@@ -1758,7 +1825,7 @@ function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons
 function renderLocs(){
   var html='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
   LOCS.forEach(function(l,i){
-    var f=calcFee(l), ft=f===null?'Request quote':'₱'+f;
+    var f=calcFee(l), ft=f===null?'Request quote':'Php '+f;
     var fixTag=l.fixed!==undefined?'<span class="lb-tag">Fixed</span>':'';
     html+='<div class="lb" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
       +'<div class="lb-n">'+l.name+fixTag+'</div>'
@@ -1812,7 +1879,7 @@ function compute(){
     if(S.cleanType==='regular'){p=br.b.rP;mn=br.b.rMin;mx=br.b.rMax;}
     else if(S.cleanType==='deep'){p=br.b.dP;mn=br.b.dMin;mx=br.b.dMax;}
     else{p=br.b.mP;mn=br.b.mMin;mx=br.b.mMax;}
-    el.textContent='₱'+p.toLocaleString();
+    el.textContent='Php '+p.toLocaleString();
     if(tel)tel.textContent='~'+fmtT(mn,mx);
   });
 
@@ -1854,8 +1921,8 @@ function compute(){
   document.getElementById('ptotd').textContent=total.toLocaleString();
   var body=document.getElementById('pbody');
   if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';updateStickyBar(0);updateBottomEstimate(0,[],false,0,0,null);updateProgress();return;}
-  var html=lines.map(function(ln){return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
-  html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">₱'+total.toLocaleString()+'</span></div>';
+  var html=lines.map(function(ln){return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv">'+(ln.tbd?'TBD':'Php '+ln.v.toLocaleString())+'</span></div>';}).join('');
+  html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">Php '+total.toLocaleString()+'</span></div>';
   body.innerHTML=html;
 
   var t2=cT();
@@ -1875,8 +1942,8 @@ function compute(){
   bal=Math.max(0,total-dp);
   if(total>0){
     pb.style.display='block';
-    document.getElementById('pay-dp').textContent='\u20b1'+dp.toLocaleString()+(needs50?' (50% \u2014 '+needs50Reason+')':'');
-    document.getElementById('pay-bal').textContent='\u20b1'+bal.toLocaleString();
+    document.getElementById('pay-dp').textContent='Php '+dp.toLocaleString()+(needs50?' (50% \u2014 '+needs50Reason+')':'');
+    document.getElementById('pay-bal').textContent='Php '+bal.toLocaleString();
     var multiDate=recurSlots.filter(function(s){return s.date;}).length>0||S.sched!=='Initial / One-time';
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
@@ -1914,10 +1981,10 @@ function buildMsg(){
   if(name&&!STORED.includes(name)){STORED.unshift(name);if(STORED.length>20)STORED.pop();localStorage.setItem('kn',JSON.stringify(STORED));}
   var lines=[],sub=0,bp=getBasePrice();
   var now=new Date(), ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
-  if(bp.price>0){lines.push(bp.label+': ₱'+bp.price.toLocaleString());sub+=bp.price;}
-  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push(lbl+': ₱'+sv.toLocaleString());sub+=sv;}});
+  if(bp.price>0){lines.push(bp.label+': Php '+bp.price.toLocaleString());sub+=bp.price;}
+  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push(lbl+': Php '+sv.toLocaleString());sub+=sv;}});
   var tf=0;
-  if(S.lf!==null&&S.lid&&S.lid!=='others'){lines.push('Transport — '+S.ln+': ₱'+S.lf.toLocaleString());sub+=S.lf;tf=S.lf;}
+  if(S.lf!==null&&S.lid&&S.lid!=='others'){lines.push('Transport — '+S.ln+': Php '+S.lf.toLocaleString());sub+=S.lf;tf=S.lf;}
   var total=sub,t=cT();
   var parts=selDate?selDate.split('-'):null;
   var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'Not selected';
@@ -1929,19 +1996,23 @@ function buildMsg(){
   msg+='\nCleaning Type: '+(S.cleanType==='deep'?'Deep Cleaning':S.cleanType==='moveinout'?'Move In / Move Out':'Regular Cleaning');
   msg+='\nArea: '+S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'')+'\n';
   if(S.ln)msg+='Location: '+S.ln+'\n';
-  msg+='\nSERVICES:\n'+lines.join('\n')+'\nESTIMATED TOTAL: ₱'+total.toLocaleString();
+  msg+='\nSERVICES:\n'+lines.join('\n')+'\nESTIMATED TOTAL: Php '+total.toLocaleString();
   if(t)msg+='\nEst. Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.';
   var rFilled=recurSlots.filter(function(s){return s.date;});
   var multiDateMsg=rFilled.length>0||S.sched!=='Initial / One-time';
   var balLabelMsg=multiDateMsg?'Balance on each service day':'Balance on service day';
   var isWeekendMsg=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()===0||new Date(selDate+'T12:00:00+08:00').getDay()===6):false;
-  var needs50Msg=isWeekendMsg&&S.sqm>=90;
-  var dpMsg=needs50Msg?Math.ceil((total-tf)*0.5)+tf:tf;
-  if(tf>0||needs50Msg)msg+='\n\nReservation fee (pay to confirm): ₱'+dpMsg.toLocaleString()+(needs50Msg?' (50% reservation fee)':'')+'\n'+balLabelMsg+': ₱'+Math.max(0,total-dpMsg).toLocaleString();
+  var isSameDayMsg=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
+  var isHolidayMsg=selDate&&PH_HOLIDAYS.has(selDate);
+  var isLargeMsg=S.sqm>=90;
+  var needs50Msg=isSameDayMsg||isWeekendMsg||isHolidayMsg||isLargeMsg;
+  var needs50ReasonMsg=isSameDayMsg?'Same-day booking':isWeekendMsg?'Weekend booking':isHolidayMsg?'Holiday booking':isLargeMsg?'90+ sqm property':'';
+  var dpMsg=needs50Msg?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),tf);
+  if(total>0)msg+='\n\nReservation fee (pay to confirm): Php '+dpMsg.toLocaleString()+(needs50Msg?' (50% — '+needs50ReasonMsg+')':' (standard)')+'\n'+balLabelMsg+': Php '+Math.max(0,total-dpMsg).toLocaleString();
   if(rFilled.length>0){
     var totalSessions=rFilled.length+1;
     msg+='\n\nRecurring Dates:\n'+rFilled.map(function(s){return s.date+(s.time?' at '+s.time:'');}).join('\n');
-    if(tf>0)msg+='\nTotal upfront ('+totalSessions+' sessions): ₱'+(tf*totalSessions).toLocaleString();
+    if(tf>0)msg+='\nTotal upfront ('+totalSessions+' sessions): Php '+(tf*totalSessions).toLocaleString();
   }
   var sits=[...selSituations].join(', ');if(sits)msg+='\n\nSituation: '+sits;
   if(instr)msg+='\n\nSpecial Instructions: '+instr;
@@ -1987,9 +2058,9 @@ function openPrint(){
   var dateStr=new Date().toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'});
   var now=new Date(),ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
   var rows=[],sub=0;
-  rows.push([bp.label,'₱'+bp.price.toLocaleString()]);sub+=bp.price;
-  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';rows.push([lbl,'₱'+sv.toLocaleString()]);sub+=sv;}});
-  var tf=0;if(S.lf!==null&&S.lid&&S.lid!=='others'){rows.push(['Transport — '+S.ln,'₱'+S.lf.toLocaleString()]);sub+=S.lf;tf=S.lf;}
+  rows.push([bp.label,'Php '+bp.price.toLocaleString()]);sub+=bp.price;
+  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';rows.push([lbl,'Php '+sv.toLocaleString()]);sub+=sv;}});
+  var tf=0;if(S.lf!==null&&S.lid&&S.lid!=='others'){rows.push(['Transport — '+S.ln,'Php '+S.lf.toLocaleString()]);sub+=S.lf;tf=S.lf;}
   var total=sub,t=cT();
   var parts=selDate?selDate.split('-'):null;
   var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
@@ -2005,7 +2076,7 @@ function openPrint(){
   if(tl)cR+='<tr><td>Time</td><td>'+tl+'</td></tr>';
   cR+='<tr><td>Submitted</td><td>'+ts+'</td></tr>';
   var rowsHtml=rows.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
-  rowsHtml+='<tr class="tr"><td>ESTIMATED TOTAL</td><td>₱'+total.toLocaleString()+'</td></tr>';
+  rowsHtml+='<tr class="tr"><td>ESTIMATED TOTAL</td><td>Php '+total.toLocaleString()+'</td></tr>';
   var sits=[...selSituations].join(', ');var instrHtml='';
   if(sits)instrHtml+='<div class="ib"><h4>Situation</h4><p>'+sits+'</p></div>';
   if(instr)instrHtml+='<div class="ib"><h4>Special Instructions</h4><p>'+instr+'</p></div>';
@@ -2014,9 +2085,9 @@ function openPrint(){
   var balLabelPrint=multiDatePrint?'Balance on each service day':'Balance on service day';
   var totalSessionsPrint=rFilled.length>0?rFilled.length+1:1;
   var payHtml=tf>0?'<div class="pay-s"><h4>Payment Schedule</h4>'
-    +'<div class="pr"><span class="pk">Reservation fee (confirms your slot)</span><span class="pv">₱'+tf.toLocaleString()+'</span></div>'
-    +'<div class="pr pn"><span class="pk">'+balLabelPrint+'</span><span class="pv">₱'+Math.max(0,total-tf).toLocaleString()+'</span></div>'
-    +(totalSessionsPrint>1?'<div class="pr" style="margin-top:3px;"><span class="pk">Total upfront ('+totalSessionsPrint+' sessions)</span><span class="pv" style="color:#2B4E8A;">₱'+(tf*totalSessionsPrint).toLocaleString()+'</span></div>':'')
+    +'<div class="pr"><span class="pk">Reservation fee (confirms your slot)</span><span class="pv">Php '+tf.toLocaleString()+'</span></div>'
+    +'<div class="pr pn"><span class="pk">'+balLabelPrint+'</span><span class="pv">Php '+Math.max(0,total-tf).toLocaleString()+'</span></div>'
+    +(totalSessionsPrint>1?'<div class="pr" style="margin-top:3px;"><span class="pk">Total upfront ('+totalSessionsPrint+' sessions)</span><span class="pv" style="color:#2B4E8A;">Php '+(tf*totalSessionsPrint).toLocaleString()+'</span></div>':'')
     +'</div>':'';
   var w=window.open('','_blank','width=560,height=794');
   w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8">'
@@ -2375,17 +2446,17 @@ function showTravelResult(mins,km,rush,surcharge){
   if(notice&&icon&&msg){
     if(rush==='heavy'){
       notice.className='traffic-notice traffic-heavy';
-      icon.textContent='⚠️';
+      icon.textContent='!';
       msg.textContent='Heavy traffic expected at this time. We\'ll plan to leave earlier to make sure we arrive on schedule.';
       notice.style.display='flex';
     } else if(rush==='moderate'){
       notice.className='traffic-notice traffic-moderate';
-      icon.textContent='🟡';
+      icon.textContent='~';
       msg.textContent='Moderate traffic expected. We\'ll keep an eye on the road and update you if needed.';
       notice.style.display='flex';
     } else {
       notice.className='traffic-notice traffic-clear';
-      icon.textContent='✅';
+      icon.textContent='✓';
       msg.textContent='Traffic looks clear at this time. Great schedule!';
       notice.style.display='flex';
     }
@@ -2396,7 +2467,7 @@ function showTravelResult(mins,km,rush,surcharge){
       var why=[];
       if(km>15)why.push('long distance');
       if(rush==='heavy')why.push('rush hour');
-      sur.textContent='+₱'+surcharge+' travel supplement ('+why.join(' + ')+')';
+      sur.textContent='+Php '+surcharge+' travel supplement ('+why.join(' + ')+')';
       sur.style.display='block';
     } else {
       sur.style.display='none';
@@ -2474,14 +2545,14 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
     body.innerHTML='<div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div>';
     var bp2=document.getElementById('be-pay');if(bp2)bp2.style.display='none';return;
   }
-  var html=lines.map(function(ln){return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'₱'+ln.v.toLocaleString())+'</span></div>';}).join('');
-  html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">₱'+total.toLocaleString()+'</span></div>';
+  var html=lines.map(function(ln){return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'Php '+ln.v.toLocaleString())+'</span></div>';}).join('');
+  html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">Php '+total.toLocaleString()+'</span></div>';
   body.innerHTML=html;
   var bp2=document.getElementById('be-pay');
   if(hasPay&&bp2){
     bp2.style.display='block';
-    var dpEl=document.getElementById('be-dp');if(dpEl)dpEl.textContent='₱'+dp.toLocaleString();
-    var balEl=document.getElementById('be-bal');if(balEl)balEl.textContent='₱'+bal.toLocaleString();
+    var dpEl=document.getElementById('be-dp');if(dpEl)dpEl.textContent='Php '+dp.toLocaleString();
+    var balEl=document.getElementById('be-bal');if(balEl)balEl.textContent='Php '+bal.toLocaleString();
   } else if(bp2){bp2.style.display='none';}
 }
 
@@ -2531,7 +2602,7 @@ document.addEventListener('DOMContentLoaded',function(){
     if(prog>=1){prog=1;dir=-1;}
     if(prog<=0){prog=0;dir=1;}
     var val=Math.round(mn+(mx-mn)*prog);
-    amountEl.textContent='\u20b1'+val.toLocaleString();
+    amountEl.textContent='Php '+val.toLocaleString();
     if(knobEl)knobEl.style.left='calc('+(prog*100)+'% - 11px)';
     if(fillEl)fillEl.style.width=(prog*100)+'%';
     requestAnimationFrame(tick);
@@ -2546,7 +2617,7 @@ document.addEventListener('DOMContentLoaded',function(){
   btn.id='back-to-top';
   btn.setAttribute('aria-label','Back to top');
   var img=document.createElement('img');
-  img.src=BTT_IMG;img.alt='Back to top';img.width=56;img.height=56;
+  img.src=BTT_IMG;img.alt='Back to top';img.width=38;img.height=38;
   btn.appendChild(img);
   btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
   document.body.appendChild(btn);
