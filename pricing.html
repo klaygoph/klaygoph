@@ -119,8 +119,9 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .cc-chip{padding:7px 16px;border-radius:22px;font-size:12px;font-weight:600;border:1.5px solid #D8DCE8;color:#4A5568;background:#fff;}
 .cc-chip.ok{background:#EBF1FA;border-color:#A8BFE0;color:#2B4E8A;}
 @media(max-width:700px){
-  .calc-clarifier{grid-template-columns:1fr;padding:32px 20px 44px;gap:28px;}
-  .cc-anim-col{justify-content:center;}
+  .calc-clarifier{grid-template-columns:1fr;grid-template-rows:auto auto;padding:32px 20px 44px;gap:24px;}
+  .cc-anim-col{justify-content:center;order:-1;width:100%;}
+  .cc-text-col{order:1;}
   .cc-big-title{font-size:clamp(24px,7vw,34px);}
 }
 
@@ -685,8 +686,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 @media(max-width:660px){#bottom-estimate{display:block;}}
 
 
-/* Accordion icon — styled bullet replaces emoji */
-.acc-icon{display:inline-block;width:18px;height:18px;border-radius:4px;background:var(--pa);border:1.5px solid var(--li);color:var(--pr);font-size:9px;font-weight:800;text-align:center;line-height:16px;flex-shrink:0;letter-spacing:0;}
 
 /* ── POLICIES OLD ──── */
 .pi{display:flex;gap:10px;margin-bottom:8px;font-size:12px;color:var(--gr);line-height:1.7;align-items:flex-start;}
@@ -897,7 +896,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
       <table>
         <tr><td>Regular Cleaning</td><td>Php 28/sqm</td></tr>
         <tr><td>Deep Cleaning</td><td>Php 33/sqm</td></tr>
-        <tr><td>Move In / Move Out</td><td>Php 40/sqm</td></tr>
+        <tr><td>Move In / Move Out</td><td>Php 45/sqm</td></tr>
       </table>
       <p style="margin-top:5px;font-size:9px;color:var(--pr);">Final price = sqm x rate above. Select your cleaning type to see the computed amount.</p>
     </div>
@@ -1070,7 +1069,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
   <div class="acc-item open" id="acc-pricing">
     <div class="acc-head" onclick="togAcc('acc-pricing')">
-      <span class="acc-icon">P</span>
       <span class="acc-title">Pricing Transparency</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1079,7 +1077,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
   <div class="acc-item" id="acc-resched">
     <div class="acc-head" onclick="togAcc('acc-resched')">
-      <span class="acc-icon">R</span>
       <span class="acc-title">Reschedule Policy</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1088,12 +1085,11 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
   <div class="acc-item" id="acc-cancel">
     <div class="acc-head" onclick="togAcc('acc-cancel')">
-      <span class="acc-icon">C</span>
       <span class="acc-title">Cancellation &amp; Rescheduling Policy</span>
       <span class="acc-chevron">▼</span>
     </div>
     <div class="acc-body">
-      <div style="display:grid;gap:14px;">
+      <div style="display:grid;gap:12px;">
         <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--li);">
           <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Free Cancellation or Rescheduling</strong>
           You may cancel or reschedule at least <strong>24 hours before</strong> your scheduled service with no charge.
@@ -1101,14 +1097,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
         <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--li);">
           <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Late Cancellation (Less than 24 Hours)</strong>
           Cancellations made less than 24 hours before the scheduled service will forfeit the reservation fee already paid. No refund will be issued.
-        </div>
-        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--pr);">
-          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Same-Day Bookings</strong>
-          Same-day bookings are subject to availability and must be confirmed by our team. A <strong>50% reservation fee</strong> is required upon confirmation. Once confirmed and the team assigned, cancellations are not eligible for a refund. If the cleaner is already dispatched, the booking is treated as a late cancellation.<br><br>We recommend booking in advance to secure your preferred schedule.
-        </div>
-        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--pr);">
-          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Same-Day Cancellation / No-Show</strong>
-          If a booking is cancelled on the day of service, or if our team cannot proceed due to no property access, incorrect address, client unavailability, or no-show — the reservation fee is non-refundable.
         </div>
         <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--li);">
           <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Exceptions</strong>
@@ -1119,9 +1107,31 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
     </div>
   </div>
 
+  <div class="acc-item" id="acc-sameday">
+    <div class="acc-head" onclick="togAcc('acc-sameday')">
+      <span class="acc-title">Same-Day Booking Policy</span>
+      <span class="acc-chevron">▼</span>
+    </div>
+    <div class="acc-body">
+      <div style="display:grid;gap:12px;">
+        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--pr);">
+          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Same-Day Bookings</strong>
+          Same-day bookings are subject to availability and must be confirmed by our team before being considered final. A <strong>50% reservation fee</strong> is required upon confirmation. Once confirmed and the team has been assigned, cancellations are not eligible for a refund.<br><br>If the cleaner is already dispatched or on the way, the booking will be treated as a late cancellation. We recommend booking in advance to secure your preferred schedule and cleaner availability.
+        </div>
+        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--pr);">
+          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Same-Day Cancellation / No-Show</strong>
+          If a booking is cancelled on the day of service, or if our team is unable to proceed due to: no access to the property, incorrect address, client unavailability, or no-show — the reservation fee is non-refundable.
+        </div>
+        <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--pr);">
+          <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">50% Reservation Fee</strong>
+          A 50% reservation fee is required to secure your reservation. This applies for <strong>same-day, weekend, and holiday bookings</strong>, as well as properties <strong>90 sqm and above</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="acc-item" id="acc-large">
     <div class="acc-head" onclick="togAcc('acc-large')">
-      <span class="acc-icon">L</span>
       <span class="acc-title">Large Spaces (90+ sqm)</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1130,7 +1140,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
   <div class="acc-item" id="acc-payment">
     <div class="acc-head" onclick="togAcc('acc-payment')">
-      <span class="acc-icon">F</span>
       <span class="acc-title">Reservation Fee &amp; Payment</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1139,7 +1148,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
   <div class="acc-item" id="acc-onsite">
     <div class="acc-head" onclick="togAcc('acc-onsite')">
-      <span class="acc-icon">W</span>
       <span class="acc-title">Active On-Site Work</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1195,7 +1203,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
         <div class="pay-methods">
           <h4>Accepted Payment Methods</h4>
           <div class="pm-grid">
-            <div class="pm-item"><div><div class="pm-name">GCash</div><div class="pm-num">0992 816 4718</div></div></div>
+            <div class="pm-item"><div><div class="pm-name">GCash</div><div class="pm-num">Details sent upon confirmation</div></div></div>
             <div class="pm-item pm-item-wide"><div><div class="pm-name">Bank Transfer</div><div class="pm-num">Details sent upon confirmation</div></div></div>
           </div>
           <div class="pm-note">Note: Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or 90+ sqm bookings.</div>
@@ -1486,7 +1494,7 @@ function updateProgress(){
 }
 
 // ── COMPUTE BASE PRICE ────────────────────────────────────────
-var PER_SQM_REG=28, PER_SQM_DEEP=33, PER_SQM_MIO=40;
+var PER_SQM_REG=28, PER_SQM_DEEP=33, PER_SQM_MIO=45;
 function getBasePrice(){
   if(!selTime) return{price:0,label:'',surcharge:0};
   var b=getBracket(S.sqm);
@@ -1944,11 +1952,31 @@ function compute(){
     pb.style.display='block';
     document.getElementById('pay-dp').textContent='Php '+dp.toLocaleString()+(needs50?' (50% \u2014 '+needs50Reason+')':'');
     document.getElementById('pay-bal').textContent='Php '+bal.toLocaleString();
-    var multiDate=recurSlots.filter(function(s){return s.date;}).length>0||S.sched!=='Initial / One-time';
+    var rFilled2=recurSlots.filter(function(s){return s.date;});
+    var multiDate=rFilled2.length>0||S.sched!=='Initial / One-time';
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
     var pnote=document.querySelector('.pay-note');
     if(pnote)pnote.textContent=needs50?needs50Reason+': 50% reservation fee required to confirm slot. Balance paid on service day.':'Reservation fee = whichever is higher between 30% of total or transport fee. Balance paid on service day.';
+    // If recurring sessions exist, show total upfront = sum of all session reservation fees
+    var recurPanel=document.getElementById('recur-panel');
+    if(rFilled2.length>0){
+      var totalSess=rFilled2.length+1;
+      var totalUpfront=dp*totalSess;
+      var recurNote=document.getElementById('recur-total-note');
+      if(!recurNote){
+        recurNote=document.createElement('div');
+        recurNote.id='recur-total-note';
+        recurNote.style.cssText='margin-top:8px;padding:9px 12px;background:var(--pa);border:1.5px solid var(--li);border-radius:12px;font-size:12px;color:var(--mn);';
+        var pb2=document.getElementById('pay-box');
+        if(pb2)pb2.appendChild(recurNote);
+      }
+      recurNote.style.display='block';
+      recurNote.innerHTML='<strong>Total upfront ('+totalSess+' sessions):</strong> Php '+dp.toLocaleString()+' × '+totalSess+' = <strong>Php '+totalUpfront.toLocaleString()+'</strong><br><span style="font-size:10.5px;color:var(--gr);">One reservation fee per session confirms each slot. Balance paid on each service day.</span>';
+    } else {
+      var recurNote=document.getElementById('recur-total-note');
+      if(recurNote)recurNote.style.display='none';
+    }
     updateBottomEstimate(total,lines,true,dp,bal,t2&&t2.mn>0?t2:null);
   } else {
     pb.style.display='none';
