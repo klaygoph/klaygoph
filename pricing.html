@@ -119,9 +119,9 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .cc-chip{padding:7px 16px;border-radius:22px;font-size:12px;font-weight:600;border:1.5px solid #D8DCE8;color:#4A5568;background:#fff;}
 .cc-chip.ok{background:#EBF1FA;border-color:#A8BFE0;color:#2B4E8A;}
 @media(max-width:700px){
-  .calc-clarifier{grid-template-columns:1fr;grid-template-rows:auto auto;padding:32px 20px 44px;gap:24px;}
+  .calc-clarifier{display:grid !important;grid-template-columns:1fr;grid-template-rows:auto auto;padding:32px 20px 44px;gap:24px;}
   .cc-anim-col{justify-content:center;order:-1;width:100%;}
-  .cc-text-col{order:1;}
+  .cc-text-col{order:1;width:100%;}
   .cc-big-title{font-size:clamp(24px,7vw,34px);}
 }
 
@@ -575,7 +575,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .travel-surcharge{margin-top:8px;padding:6px 11px;background:rgba(43,78,138,.07);border-radius:10px;font-size:11px;color:var(--pr);font-weight:600;}
 
 /* ── CALCULATOR CLARIFIER ───── */
-.calc-clarifier{background:#EBF1FA;border-bottom:2px solid var(--li);padding:16px 20px;display:flex;align-items:flex-start;gap:14px;}
 .cc-icon{font-size:24px;flex-shrink:0;margin-top:2px;}
 .cc-title{font-size:14px;font-weight:700;color:var(--mn);margin-bottom:4px;line-height:1.35;}
 .cc-title span{color:var(--pr);font-weight:700;}
@@ -1289,7 +1288,8 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   <div class="be-pay-box" id="be-pay" style="display:none;">
     <h4>Payment Schedule</h4>
     <div class="be-pr"><span class="be-pk">Reservation fee (pay to confirm)</span><span class="be-pv" id="be-dp">—</span></div>
-    <div class="be-pr be-pnow"><span class="be-pk">Balance on service day</span><span class="be-pv" id="be-bal">—</span></div>
+    <div class="be-pr be-pnow"><span class="be-pk" id="be-bal-lbl">Balance on service day</span><span class="be-pv" id="be-bal">—</span></div>
+    <div id="be-recur-total" style="display:none;margin-top:10px;padding:10px 12px;background:rgba(255,255,255,.1);border-radius:12px;border:1px solid rgba(168,191,224,.3);font-size:12px;color:#F7F9FC;line-height:1.6;"></div>
   </div>
   <div class="be-avail none" id="be-avail">No date selected yet.</div>
   <div class="be-discl">This estimate does not confirm a reservation. Booking confirmed after reservation fee is received and confirmed.</div>
@@ -2571,7 +2571,9 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
   var body=document.getElementById('be-body');if(!body)return;
   if(!lines||!lines.length){
     body.innerHTML='<div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div>';
-    var bp2=document.getElementById('be-pay');if(bp2)bp2.style.display='none';return;
+    var bp2=document.getElementById('be-pay');if(bp2)bp2.style.display='none';
+    var brt=document.getElementById('be-recur-total');if(brt)brt.style.display='none';
+    return;
   }
   var html=lines.map(function(ln){return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'Php '+ln.v.toLocaleString())+'</span></div>';}).join('');
   html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">Php '+total.toLocaleString()+'</span></div>';
@@ -2579,9 +2581,37 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
   var bp2=document.getElementById('be-pay');
   if(hasPay&&bp2){
     bp2.style.display='block';
-    var dpEl=document.getElementById('be-dp');if(dpEl)dpEl.textContent='Php '+dp.toLocaleString();
+    // Compute 50% trigger for label
+    var dow=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()):-1;
+    var isWknd=dow===0||dow===6;
+    var isSameDayBE=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
+    var isHolBE=selDate&&PH_HOLIDAYS.has(selDate);
+    var isLgBE=S.sqm>=90;
+    var needs50BE=isSameDayBE||isWknd||isHolBE||isLgBE;
+    var reason50BE=isSameDayBE?'Same-day booking':isWknd?'Weekend booking':isHolBE?'Holiday booking':isLgBE?'90+ sqm property':'';
+    var dpEl=document.getElementById('be-dp');
+    if(dpEl)dpEl.textContent='Php '+dp.toLocaleString()+(needs50BE?' (50% — '+reason50BE+')':'');
     var balEl=document.getElementById('be-bal');if(balEl)balEl.textContent='Php '+bal.toLocaleString();
-  } else if(bp2){bp2.style.display='none';}
+    // Balance label — singular vs recurring
+    var rFilled3=recurSlots.filter(function(s){return s.date;});
+    var balLbl3=document.getElementById('be-bal-lbl');
+    if(balLbl3)balLbl3.textContent=rFilled3.length>0?'Balance on each service day':'Balance on service day';
+    // Multi-session upfront block
+    var brt=document.getElementById('be-recur-total');
+    if(brt){
+      if(rFilled3.length>0){
+        var totalSess3=rFilled3.length+1;
+        var totalUp3=dp*totalSess3;
+        brt.style.display='block';
+        brt.innerHTML='<strong>Total upfront ('+totalSess3+' sessions):</strong> Php '+dp.toLocaleString()+' × '+totalSess3+' = <strong>Php '+totalUp3.toLocaleString()+'</strong><br><span style="font-size:10.5px;opacity:.8;">One reservation fee per session confirms each slot. Balance paid on each service day.</span>';
+      } else {
+        brt.style.display='none';
+      }
+    }
+  } else if(bp2){
+    bp2.style.display='none';
+    var brt2=document.getElementById('be-recur-total');if(brt2)brt2.style.display='none';
+  }
 }
 
 function scrollToEstimate(){
