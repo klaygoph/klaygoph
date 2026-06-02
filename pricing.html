@@ -524,7 +524,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .pr.pay-now .pk{color:var(--mn);font-weight:600;}
 .pr.pay-now .pv{color:var(--green);font-size:15px;font-weight:700;}
 .pay-note{font-size:10.5px;color:var(--gr);margin-top:6px;line-height:1.6;}
-.recur-panel{display:none;padding:12px 20px;background:#EBF1FA;border-top:1.5px solid var(--li);}
+.recur-panel{display:none !important;}
 .avail-box{padding:8px 20px;border-top:1.5px solid #EBF1FA;font-size:11.5px;}
 .avail-box.ok{color:var(--green);font-weight:500;}
 .avail-box.na{color:var(--red);font-weight:500;}
@@ -668,6 +668,11 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .be-total-line .be-ll{color:rgba(247,249,252,.85);font-weight:600;font-size:14px;}
 .be-total-line .be-lv{font-size:24px;font-weight:700;color:#F7F9FC;}
 .be-pay-box{background:rgba(13,31,60,.3);border-radius:16px;padding:14px 16px;margin:12px 0;border:1.5px solid rgba(168,191,224,.2);}
+.be-pay-now-block{background:rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;margin-bottom:2px;border:1px solid rgba(168,191,224,.25);}
+.be-pay-now-label{font-size:9px;color:rgba(168,191,224,.8);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;}
+.be-pay-now-amt{font-size:22px;font-weight:800;color:#fff;line-height:1.2;word-break:break-word;}
+.be-pay-now-reason{font-size:10px;color:rgba(168,191,224,.85);margin-top:3px;}
+
 .be-pay-box h4{font-size:9px;color:rgba(168,191,224,.8);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:700;}
 .be-pr{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px;}
 .be-pk{color:rgba(247,249,252,.7);}
@@ -685,6 +690,16 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 @media(max-width:660px){#bottom-estimate{display:block;}}
 
 
+
+
+/* ── CLEAR PAYMENT LAYOUT ── */
+.pay-now-block{background:var(--mn);border-radius:12px;padding:12px 14px;margin-bottom:10px;}
+.pay-now-label{font-size:9px;color:rgba(247,249,252,.7);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;}
+.pay-now-amt{font-size:20px;font-weight:800;color:#fff;line-height:1.2;word-break:break-word;}
+.pay-now-reason{font-size:10px;color:rgba(168,191,224,.9);margin-top:3px;font-weight:500;}
+.pay-later-block{padding:2px 0;}
+.pay-recur-total{margin-top:10px;padding:10px 13px;background:var(--pa);border:1.5px solid var(--li);border-radius:12px;font-size:12px;color:var(--mn);line-height:1.65;}
+.pay-recur-total strong{color:var(--pr);}
 
 /* ── POLICIES OLD ──── */
 .pi{display:flex;gap:10px;margin-bottom:8px;font-size:12px;color:var(--gr);line-height:1.7;align-items:flex-start;}
@@ -1246,9 +1261,14 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
     <div class="pbody" id="pbody"><div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div></div>
     <div class="pay-box" id="pay-box" style="display:none;">
       <h4>Payment Schedule</h4>
-      <div class="pr"><span class="pk">Reservation fee (pay to confirm)</span><span class="pv" id="pay-dp">—</span></div>
-      <div class="pr pay-now"><span class="pk">Balance on service day</span><span class="pv" id="pay-bal">—</span></div>
-      <div class="pay-note">Reservation fee = transport fee. Confirms your slot. Balance paid on service day.</div>
+      <div class="pay-now-block">
+        <div class="pay-now-label">Pay now to confirm your slot</div>
+        <div class="pay-now-amt" id="pay-dp">—</div>
+      </div>
+      <div class="pay-later-block">
+        <div class="pr"><span class="pk" id="pay-bal-lbl">Balance on service day</span><span class="pv" id="pay-bal">—</span></div>
+        <div class="pay-note" id="pay-note-txt"></div>
+      </div>
     </div>
     <div class="recur-panel" id="recur-panel"></div>
     <div class="avail-box none" id="avail-box">No date selected yet.</div>
@@ -1286,10 +1306,12 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   <div class="be-time" id="be-time"></div>
   <div id="be-body"><div class="be-empty">Select a date, time &amp; service to build your estimate.</div></div>
   <div class="be-pay-box" id="be-pay" style="display:none;">
-    <h4>Payment Schedule</h4>
-    <div class="be-pr"><span class="be-pk">Reservation fee (pay to confirm)</span><span class="be-pv" id="be-dp">—</span></div>
-    <div class="be-pr be-pnow"><span class="be-pk" id="be-bal-lbl">Balance on service day</span><span class="be-pv" id="be-bal">—</span></div>
-    <div id="be-recur-total" style="display:none;margin-top:10px;padding:10px 12px;background:rgba(255,255,255,.1);border-radius:12px;border:1px solid rgba(168,191,224,.3);font-size:12px;color:#F7F9FC;line-height:1.6;"></div>
+    <div class="be-pay-now-block">
+      <div class="be-pay-now-label">Pay now to confirm your slot</div>
+      <div class="be-pay-now-amt" id="be-dp">—</div>
+    </div>
+    <div class="be-pr be-pnow" style="margin-top:8px;"><span class="be-pk" id="be-bal-lbl">Balance on service day</span><span class="be-pv" id="be-bal">—</span></div>
+    <div id="be-recur-total" style="display:none;margin-top:10px;padding:10px 12px;background:rgba(255,255,255,.12);border-radius:12px;border:1px solid rgba(168,191,224,.25);font-size:12px;color:#F7F9FC;line-height:1.6;"></div>
   </div>
   <div class="be-avail none" id="be-avail">No date selected yet.</div>
   <div class="be-discl">This estimate does not confirm a reservation. Booking confirmed after reservation fee is received and confirmed.</div>
