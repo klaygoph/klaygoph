@@ -483,8 +483,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .acc-summary{display:none;}
 .acc-chevron{font-size:13px;color:var(--se);transition:transform .3s;flex-shrink:0;margin-left:auto;}
 .acc-item.open .acc-chevron{transform:rotate(180deg);}
-.acc-body{max-height:0;overflow:hidden;padding:0 15px 0 43px;font-size:12.5px;color:#4A5568;line-height:1.75;transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .4s;}
-.acc-item.open .acc-body{max-height:500px;padding:0 15px 18px 43px;}
+.acc-body{max-height:0;overflow:hidden;padding:0 16px 0 16px;font-size:12.5px;color:#4A5568;line-height:1.75;transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .4s;}
+.acc-item.open .acc-body{max-height:800px;padding:0 16px 20px 16px;}
 .acc-body strong{color:var(--dk);}
 .agree-note{margin-top:14px;padding:14px 16px;background:#EBF1FA;border:1.5px solid var(--li);border-radius:16px;font-size:12px;color:var(--mn);line-height:1.75;}
 .agree-note strong{color:var(--mn);}
@@ -547,11 +547,6 @@ footer{background:var(--mn);padding:14px 24px;}
 .footer-contacts{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.35) !important;font-size:11px !important;}
 .footer-icon-link{display:inline-flex;align-items:color rgba(255,255,255,.45);transition:color .13s;}
 .footer-icon-link:hover{color:rgba(255,255,255,.85);}
-.follow-bar{background:var(--mn);padding:20px 24px;text-align:center;}
-.follow-text{font-size:12.5px;color:rgba(255,255,255,.8);margin-bottom:12px;}
-.follow-links{display:flex;justify-content:center;gap:14px;}
-.follow-link{display:inline-flex;align-items:center;gap:7px;color:#fff;font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 18px;border:1.5px solid rgba(255,255,255,.3);border-radius:30px;transition:all .14s;}
-.follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6);}
 .follow-bar{background:#2B4E8A;padding:20px 24px;text-align:center;}
 .follow-text{font-size:12.5px;color:rgba(255,255,255,.8);margin-bottom:12px;}
 .follow-links{display:flex;justify-content:center;gap:14px;}
@@ -706,6 +701,101 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .pi:last-child{margin-bottom:0;}
 .pi-icon{font-size:15px;flex-shrink:0;line-height:1.5;}
 .pi strong{color:var(--dk);}
+
+/* ══ PREMIUM POLISH ═══════════════════════════════════════════════════
+   Principle: whitespace + lines only. Remove background fills on nested
+   elements. Zero new network requests. Pure CSS override.
+   ═════════════════════════════════════════════════════════════════════ */
+
+/* Cards — more air */
+.card{padding:26px 24px;margin-bottom:16px;border-color:#EBF1FA;box-shadow:0 2px 16px rgba(43,78,138,.05);}
+.card:hover{box-shadow:0 8px 28px rgba(43,78,138,.09);}
+@media(max-width:700px){.card{padding:20px 16px;}}
+
+/* Step badges — watermark number, not a filled dot */
+.sbadge{background:transparent;color:#C8D8EE;font-size:13px;font-weight:800;border:1.5px solid #EBF1FA;width:26px;height:26px;}
+.sbadge.done{background:#EBF1FA;color:var(--pr);border-color:var(--li);}
+
+/* Area wrap — white with subtle border, no blue fill */
+.area-wrap{background:#fff;border:1.5px solid #EBF1FA;padding:18px;}
+
+/* Service / property list — no grey background, just rows */
+.svc-list{background:transparent;padding:0;gap:2px;}
+.svc{background:#fff;border-color:#EBF1FA;}
+.svc:hover{background:#FAFCFF;border-color:var(--li);box-shadow:none;}
+.svc.sel{background:#FAFCFF;border-color:var(--pr);}
+
+/* Add-ons list — same */
+.al{background:transparent;padding:0;gap:2px;}
+.ar{background:#fff;border-color:#EBF1FA;}
+.ar:hover{background:#FAFCFF;border-color:var(--li);}
+.ar.on{background:#FAFCFF;border-color:var(--pr);}
+
+/* Inline notes — border only, no fill */
+.cal-note{background:transparent;border:1px solid #EBF1FA;color:#6B7A99;}
+.unit-note{background:transparent;border:1px solid #EBF1FA;color:#6B7A99;}
+.loc-note{background:transparent;border:1px solid #EBF1FA;color:#4A6FA5;}
+.area-note,.snote{color:#6B7A99;}
+.large-space-note{background:#fff;border-color:#EBF1FA;}
+.large-space-note table{color:var(--mn);}
+.tbanner{background:transparent;border:1px solid #EBF1FA;border-left:2px solid var(--li);}
+.hsp{background:transparent;border-color:#EBF1FA;}
+.recur-section{background:transparent;border-color:#EBF1FA;}
+.recur-dp{background:#fff;border:1px solid #EBF1FA;}
+.alert.info{background:#fff;border-color:#D8DCE8;}
+.wb{background:transparent;border:1px solid #EBF1FA;}
+.wb strong,.wb p{color:var(--mn);}
+.post-con-note{background:transparent;border-color:#EBF1FA;border-left:2px solid var(--li);}
+.co-excl{background:transparent;border-left-color:var(--li);}
+
+/* Location buttons — no hover jump */
+.lb{border-color:#EBF1FA;padding:13px 9px;}
+.lb:hover{border-color:var(--li);background:#FAFCFF;transform:none;box-shadow:none;}
+.lb.sel{background:#FAFCFF;border-color:var(--pr);box-shadow:none;}
+
+/* Clarifier chips */
+.cc-chip{background:#fff;border-color:#EBF1FA;color:#4A5568;}
+.cc-chip.ok{background:#fff;border-color:#A8BFE0;color:var(--pr);}
+
+/* Accordion — subtle open state */
+.acc-item.open{border-color:#D8DCE8;box-shadow:none;}
+.acc-item.open .acc-head{background:transparent;border-radius:16px 16px 0 0;}
+
+/* Policy sub-boxes — left-line only, no background fill */
+.acc-body > div > div[style]{
+  background:transparent !important;
+  border-radius:0 !important;
+  padding:9px 0 10px 14px !important;
+  border-top:none !important;
+  border-right:none !important;
+  border-bottom:1px solid #EBF1FA !important;
+  border-left:2px solid #A8BFE0 !important;
+}
+.acc-body > div > div[style]:last-of-type{border-bottom:none !important;}
+.acc-body > div > p{margin-top:14px;}
+
+/* Right panel — clean white receipt */
+.pcard{box-shadow:0 4px 24px rgba(43,78,138,.08);border-color:#EBF1FA;}
+.phead{background:#fff;border-bottom:1px solid #EBF1FA;}
+.pbody{padding:14px 20px;}
+.pay-box{background:#fff;border-top:1px solid #EBF1FA;padding:14px 20px 10px;}
+.discl{background:transparent;border-top:1px solid #EBF1FA;}
+.avail-box{border-top:1px solid #EBF1FA;}
+.transpo-note{border-top:none;padding-top:4px;}
+.li{border-bottom:1px solid #F4F7FD;}
+.pay-recur-total{border-color:#EBF1FA;}
+
+/* Policies card */
+.pb{border-color:#EBF1FA;box-shadow:0 2px 16px rgba(43,78,138,.05);}
+.acc-item{border-color:#EBF1FA;}
+.agree-note{background:transparent;border-color:#EBF1FA;}
+
+/* WH Next — line separators, more breathing room */
+.whn-section{padding:32px 24px 44px;}
+
+/* Follow bar */
+.follow-bar{padding:28px 24px;}
+
 </style>
 </head>
 <body>
