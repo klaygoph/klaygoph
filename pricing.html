@@ -192,30 +192,21 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 @media(min-width:701px){.nav-back-btn{display:none;}}
 
 /* ── MENU OVERLAY — bubbles + staggered drop-in ── */
-.nav-menu-overlay{display:none;position:fixed;inset:0;background:#0D1F3C;z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:20px;overflow:hidden;}
-.nav-menu-overlay.open{display:flex;}
-
-/* Bubbles — pointer-events:none so they never block taps */
-.menu-bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
-.mbubble{position:absolute;border-radius:50%;border:1px solid rgba(168,191,224,.22);background:radial-gradient(circle at 30% 30%,rgba(247,249,252,.1),rgba(168,191,224,.04));animation:mbFloat linear infinite;}
-.mbubble:nth-child(1){width:100px;height:100px;left:8%;top:62%;animation-duration:18s;}
-.mbubble:nth-child(2){width:65px;height:65px;left:78%;top:72%;animation-duration:14s;}
-.mbubble:nth-child(3){width:130px;height:130px;left:68%;top:10%;animation-duration:22s;}
-.mbubble:nth-child(4){width:48px;height:48px;left:18%;top:18%;animation-duration:12s;}
-.mbubble:nth-child(5){width:80px;height:80px;left:42%;top:52%;animation-duration:16s;}
-@keyframes mbFloat{0%,100%{transform:translateY(0) translateX(0);}25%{transform:translateY(-15px) translateX(8px);}50%{transform:translateY(-28px) translateX(-8px);}75%{transform:translateY(-12px) translateX(10px);}}
-
-/* Close button */
-.nav-menu-close{position:absolute;top:22px;right:28px;background:none;border:none;color:#F7F9FC;cursor:pointer;font-size:28px;padding:8px;font-family:inherit;opacity:.7;transition:opacity .15s;z-index:2;}
-.nav-menu-close:hover{opacity:1;}
-
-/* Staggered drop-in pills — above bubbles */
-.nav-menu-pill{font-family:var(--font-brand);font-size:16px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F7F9FC;text-decoration:none;border:1.5px solid rgba(247,249,252,.22);border-radius:50px;padding:16px 54px;width:250px;text-align:center;position:relative;z-index:2;opacity:0;transform:translateY(-8px);transition:background .18s,border-color .18s,opacity .22s ease,transform .22s ease;}
-.nav-menu-pill.drop-in{opacity:1;transform:translateY(0);}
-.nav-menu-pill:nth-child(2){transition-delay:.0s;}
-.nav-menu-pill:nth-child(3){transition-delay:.1s;}
-.nav-menu-pill:nth-child(4){transition-delay:.2s;}
-.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.15);border-color:#A8BFE0;}
+.nav-menu-overlay{display:none;position:fixed;inset:0;background:rgba(13,31,60,.45);z-index:9999;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);}
+.nav-menu-overlay.open{display:block;}
+.menu-panel{position:absolute;top:0;right:0;bottom:0;width:min(320px,88vw);background:#F7F9FC;display:flex;flex-direction:column;justify-content:center;padding:40px 36px;gap:0;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 40px rgba(13,31,60,.16);}
+.nav-menu-overlay.open .menu-panel{transform:translateX(0);}
+.nav-menu-close{position:absolute;top:20px;right:22px;background:none;border:1.5px solid #EBF1FA;color:#0D1F3C;cursor:pointer;font-size:18px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:.7;transition:opacity .15s,border-color .15s;z-index:2;}
+.nav-menu-close:hover{opacity:1;border-color:var(--li);}
+.nav-menu-pill{font-family:var(--font-brand);font-size:22px;font-weight:700;letter-spacing:.04em;color:#0D1F3C;text-decoration:none;padding:16px 0;border-bottom:1px solid #EBF1FA;display:block;width:100%;opacity:0;transform:translateX(16px);transition:opacity .22s ease,transform .22s ease,color .15s;}
+.nav-menu-pill:last-child{border-bottom:none;}
+.nav-menu-pill.visible{opacity:1;transform:translateX(0);}
+.nav-menu-pill:hover{color:var(--pr);}
+.nav-menu-pill.active{color:var(--pr);}
+.nav-menu-pill:nth-child(1){transition-delay:.06s;}
+.nav-menu-pill:nth-child(2){transition-delay:.12s;}
+.nav-menu-pill:nth-child(3){transition-delay:.18s;}
+.menu-bubbles{display:none;}
 
 /* ── BACK TO TOP — PNG image ── */
 #back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:38px;height:38px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;}
@@ -796,24 +787,46 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 /* Follow bar */
 .follow-bar{padding:28px 24px;}
 
+/* ── ADA / ACCESSIBILITY ──────────────────────────────────── */
+.skip-link{position:absolute;top:-100px;left:16px;padding:10px 18px;background:var(--mn);color:#fff;border-radius:0 0 10px 10px;font-size:13px;font-weight:700;z-index:99999;transition:top .2s;}
+.skip-link:focus{top:0;}
+*:focus-visible{outline:2.5px solid var(--pr);outline-offset:3px;border-radius:4px;}
+button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outline:2.5px solid var(--pr);outline-offset:2px;}
+.acc-head:focus-visible{outline:2.5px solid var(--pr);outline-offset:2px;border-radius:16px;}
+
+
+/* ── BREADCRUMBS ──────────────────────────────────────────── */
+.breadcrumb-bar{background:#fff;border-bottom:1px solid #EBF1FA;padding:7px clamp(14px,4vw,32px);}
+.breadcrumb{list-style:none;display:flex;align-items:center;gap:7px;padding:0;margin:0;}
+.bc-item{font-size:11.5px;color:var(--gr);}
+.bc-link{color:var(--se);text-decoration:none;font-weight:500;}
+.bc-link:hover{color:var(--pr);text-decoration:underline;}
+.bc-current{color:var(--mn);font-weight:600;}
+.bc-sep{color:#D8DCE8;font-size:11px;}
+
+
+/* ── MARQUEE TRUST STRIP ──────────────────────────────────── */
+.marquee-strip{background:#0D1F3C;padding:9px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.1);}
+.marquee-track{display:flex;width:max-content;animation:marqueeScroll 28s linear infinite;}
+.marquee-track:hover{animation-play-state:paused;}
+.marquee-item{white-space:nowrap;font-family:var(--font-brand);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(168,191,224,.65);padding:0 28px;}
+.marquee-dot{color:rgba(168,191,224,.3);padding:0 6px;}
+@keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
+
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- NAV MENU OVERLAY -->
-<div class="nav-menu-overlay" id="nav-menu">
-  <!-- Bubbles — pointer-events:none so they never block user taps -->
-  <div class="menu-bubbles">
-    <span class="mbubble"></span>
-    <span class="mbubble"></span>
-    <span class="mbubble"></span>
-    <span class="mbubble"></span>
-    <span class="mbubble"></span>
+<div class="nav-menu-overlay" id="nav-menu" onclick="handleOverlayClick(event)">
+  <div class="menu-panel" id="menu-panel">
+    <button class="nav-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-menu-pill">Home</a>
+    <a href="pricing.html" class="nav-menu-pill active">Pricing</a>
+    <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
   </div>
-  <button class="nav-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
-  <a href="index.html" class="nav-menu-pill">Home</a>
-  <a href="pricing.html" class="nav-menu-pill active">Pricing</a>
-  <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
 </div>
 
 <div class="nav-wrap">
@@ -834,7 +847,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
       <button class="btn-ref" onclick="refreshCal()">Refresh Calendar</button>
       <!-- PNG menu button -->
       <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Menu%20Button.png" alt="Menu">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Blue.png" alt="Menu">
       </button>
     </div>
   </div>
@@ -846,6 +859,15 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
     <a href="sayhello.html" class="nav-tab">Say Hello!</a>
   </div>
 </div>
+
+
+<nav aria-label="Breadcrumb" class="breadcrumb-bar">
+  <ol class="breadcrumb">
+    <li class="bc-item"><a href="index.html" class="bc-link">Home</a></li>
+    <li class="bc-sep" aria-hidden="true">/</li>
+    <li class="bc-item bc-current" aria-current="page">Pricing</li>
+  </ol>
+</nav>
 
 <div class="progress-wrap">
   <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
@@ -865,6 +887,35 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </div>
 
 <!-- PRICE CALCULATOR CLARIFIER -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
+  </div>
+</div>
 <div class="calc-clarifier reveal" id="clarifier">
   <div class="cc-anim-col widget-reveal">
     <!-- Animated Calculator Widget v04 -->
@@ -949,7 +1000,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 </style>
 
 
-<div class="main">
+<div class="main" id="main-content" role="main">
 <div class="col-left" style="display:flex;flex-direction:column;">
 
 <!-- STEP 1: DATE -->
@@ -1157,7 +1208,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
           </div>
         </div>
         <div class="traffic-notice" id="traffic-notice" style="display:none;">
-          <span class="tn-icon" id="traffic-icon">⚠️</span>
+          <span class="tn-icon" id="traffic-icon">!</span>
           <span id="traffic-msg"></span>
         </div>
         <div class="travel-surcharge" id="travel-surcharge" style="display:none;"></div>
@@ -1172,7 +1223,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   <h3>Booking Policies</h3>
 
   <div class="acc-item open" id="acc-pricing">
-    <div class="acc-head" onclick="togAcc('acc-pricing')">
+    <div class="acc-head" onclick="togAcc(\'acc-pricing\')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){togAcc(\'acc-pricing\');event.preventDefault();}">
       <span class="acc-title">Pricing Transparency</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1180,7 +1231,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   </div>
 
   <div class="acc-item" id="acc-resched">
-    <div class="acc-head" onclick="togAcc('acc-resched')">
+    <div class="acc-head" onclick="togAcc(\'acc-resched\')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){togAcc(\'acc-resched\');event.preventDefault();}">
       <span class="acc-title">Reschedule Policy</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1188,7 +1239,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   </div>
 
   <div class="acc-item" id="acc-cancel">
-    <div class="acc-head" onclick="togAcc('acc-cancel')">
+    <div class="acc-head" onclick="togAcc(\'acc-cancel\')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){togAcc(\'acc-cancel\');event.preventDefault();}">
       <span class="acc-title">Cancellation &amp; Rescheduling Policy</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1212,7 +1263,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   </div>
 
   <div class="acc-item" id="acc-sameday">
-    <div class="acc-head" onclick="togAcc('acc-sameday')">
+    <div class="acc-head" onclick="togAcc(\'acc-sameday\')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){togAcc(\'acc-sameday\');event.preventDefault();}">
       <span class="acc-title">Same-Day Booking Policy</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1235,7 +1286,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   </div>
 
   <div class="acc-item" id="acc-large">
-    <div class="acc-head" onclick="togAcc('acc-large')">
+    <div class="acc-head" onclick="togAcc(\'acc-large\')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){togAcc(\'acc-large\');event.preventDefault();}">
       <span class="acc-title">Large Spaces (90+ sqm)</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1243,7 +1294,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   </div>
 
   <div class="acc-item" id="acc-payment">
-    <div class="acc-head" onclick="togAcc('acc-payment')">
+    <div class="acc-head" onclick="togAcc(\'acc-payment\')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){togAcc(\'acc-payment\');event.preventDefault();}">
       <span class="acc-title">Reservation Fee &amp; Payment</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1251,7 +1302,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   </div>
 
   <div class="acc-item" id="acc-onsite">
-    <div class="acc-head" onclick="togAcc('acc-onsite')">
+    <div class="acc-head" onclick="togAcc(\'acc-onsite\')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){togAcc(\'acc-onsite\');event.preventDefault();}">
       <span class="acc-title">Active On-Site Work</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1338,7 +1389,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
 <!-- RIGHT PANEL -->
 <div class="panel-right">
-  <div class="pcard reveal">
+  <div class="pcard reveal" aria-live="polite" aria-label="Your estimate">
     <div class="phead">
       <img id="est-logo-img" alt="Klaygo PH" style="height:22px;display:block;margin-bottom:6px;">
       <div class="pest-id" id="p-est-id">—</div>
@@ -1835,8 +1886,8 @@ function togSit(el){
 }
 
 // ── RECURRING DATES ───────────────────────────────────────────
-function addRecurSlot(){recurSlots.push({date:'',time:''});renderRecurSlots();}
-function removeRecurSlot(i){recurSlots.splice(i,1);renderRecurSlots();}
+function addRecurSlot(){recurSlots.push({date:'',time:''});renderRecurSlots();compute();}
+function removeRecurSlot(i){recurSlots.splice(i,1);renderRecurSlots();compute();}
 function getRecurAmpmOpts(selAmpm){
   return '<option value="am"'+(selAmpm==='am'?' selected':'')+'>AM</option>'
         +'<option value="pm"'+(selAmpm==='pm'?' selected':'')+'>PM</option>';
@@ -1852,14 +1903,14 @@ function recurAmpmChanged(i){
   hrSel.innerHTML=getRecurHrOpts(ampm,dh);
   var h24=ampm==='pm'?12:8;
   recurSlots[i].time=('0'+h24).slice(-2)+':00';
-  updateRecurDP();
+  updateRecurDP();compute();
 }
 function recurHrChanged(i){
   var ampm=document.querySelector('.recur-ampm-'+i).value;
   var hr=parseInt(document.querySelector('.recur-hr-'+i).value);
   var h24=(ampm==='pm'&&hr!==12)?hr+12:(ampm==='am'&&hr===12?0:hr);
   recurSlots[i].time=('0'+h24).slice(-2)+':00';
-  updateRecurDP();
+  updateRecurDP();compute();
 }
 function renderRecurSlots(){
   var c=document.getElementById('recur-entries'); if(!c)return;
@@ -1872,7 +1923,7 @@ function renderRecurSlots(){
       defHr=hh>12?hh-12:(hh===0?12:hh);
     }
     html+='<div class="recur-row">'
-      +'<input type="date" value="'+(recurSlots[i].date||'')+'" onchange="recurSlots['+i+'].date=this.value;updateRecurDP()">'
+      +'<input type="date" value="'+(recurSlots[i].date||'')+'" onchange="recurSlots['+i+'].date=this.value;updateRecurDP();compute()">'
       +'<select class="recur-sel recur-ampm recur-ampm-'+i+'" onchange="recurAmpmChanged('+i+')">'
       +getRecurAmpmOpts(defAmpm)
       +'</select>'
