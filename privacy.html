@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Klaygo PH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap;}
+:root{--mn:#2B4E8A;--dk:#2C2C2A;--gr:#6B6B68;--pa:#EBF1FA;--li:#A8BFE0;--deepnav:#0D1F3C;--font-brand:'Argentum Novus','DM Sans',sans-serif;--font-body:'DM Sans',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#2C2C2A;}
+body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14px;line-height:1.6;}
+.nav-wrap{position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(13,31,60,.15);}
+.nav-top{background:#0D1F3C;height:clamp(56px,12vh,90px);display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+.nav-logo{height:26px;filter:brightness(0) invert(1);}
+.nav-brand-text{font-family:var(--font-brand);font-size:10px;color:rgba(247,249,252,.5);line-height:1.4;display:flex;flex-direction:column;}
+.nav-brand-text strong{color:rgba(247,249,252,.75);font-weight:700;}
+.nav-top-left{display:flex;align-items:center;gap:14px;}
+.nav-sub{background:#2B4E8A;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;}
+.nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;border-radius:50px;transition:all .15s;white-space:nowrap;}
+.nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
+.breadcrumb-bar{background:#2B4E8A;border-bottom:1px solid rgba(168,191,224,.2);padding:7px 32px;}
+.breadcrumb{list-style:none;display:flex;align-items:center;gap:7px;}
+.bc-item{font-size:11.5px;color:rgba(247,249,252,.75);}
+.bc-link{color:rgba(247,249,252,.9);text-decoration:none;font-weight:500;}
+.bc-link:hover{color:#fff;text-decoration:underline;}
+.bc-current{color:#fff;font-weight:700;}
+.bc-sep{color:rgba(168,191,224,.5);font-size:11px;}
+.page-hero{background:#2B4E8A;padding:clamp(40px,6vw,72px) clamp(22px,5vw,64px);border-bottom:1px solid rgba(168,191,224,.15);}
+.page-hero h1{font-family:var(--font-brand);font-size:clamp(28px,5vw,48px);font-weight:900;color:#F7F9FC;margin-bottom:8px;}
+.page-hero p{font-size:13px;color:rgba(247,249,252,.7);}
+.content-wrap{max-width:760px;margin:0 auto;padding:clamp(32px,5vw,56px) clamp(20px,4vw,40px) 80px;}
+.section{background:#fff;border-radius:20px;border:1.5px solid #EBF1FA;padding:28px;margin-bottom:16px;box-shadow:0 2px 16px rgba(43,78,138,.05);}
+.section h2{font-family:var(--font-brand);font-size:15px;font-weight:800;color:#0D1F3C;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #EBF1FA;}
+.section p{font-size:13px;color:#4A5568;line-height:1.75;margin-bottom:10px;}
+.section p:last-child{margin-bottom:0;}
+.section ul{padding-left:18px;margin-top:8px;}
+.section li{font-size:13px;color:#4A5568;line-height:1.75;margin-bottom:6px;}
+.section strong{color:#2C2C2A;}
+.highlight{background:#EBF1FA;border-left:3px solid #2B4E8A;border-radius:0 10px 10px 0;padding:12px 16px;margin:12px 0;font-size:12.5px;color:#3D6399;line-height:1.7;}
+.last-updated{font-size:11px;color:var(--gr);margin-bottom:28px;padding:10px 16px;background:#EBF1FA;border-radius:10px;border:1px solid #A8BFE0;}
+.follow-bar{background:#2B4E8A;padding:28px 24px;text-align:center;}
+.follow-text{font-family:var(--font-brand);font-size:13px;color:rgba(247,249,252,.8);margin-bottom:12px;}
+.follow-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.follow-link{color:rgba(247,249,252,.9);text-decoration:none;font-size:12px;font-weight:600;border:1px solid rgba(168,191,224,.3);border-radius:50px;padding:7px 20px;transition:all .15s;}
+.follow-link:hover{background:rgba(168,191,224,.15);border-color:#A8BFE0;}
+footer{background:#0D1F3C;padding:18px 24px;text-align:center;}
+footer p{font-size:11px;color:rgba(247,249,252,.4);}
+footer a{color:rgba(168,191,224,.7);text-decoration:none;}
+footer a:hover{color:#A8BFE0;}
+@media(max-width:700px){.nav-brand-text{display:none;}.nav-top{padding:0 16px;}.nav-sub{display:none;}.breadcrumb-bar{padding:7px 16px;}}
+</style>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
+</head>
+<body>
+
+<div class="nav-wrap">
+  <div class="nav-top">
+    <div class="nav-top-left">
+      <a href="index.html" aria-label="Klaygo PH Home">
+        <img class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH">
+      </a>
+      <div class="nav-brand-text">
+        <strong>KLAYGOPH | Cleaning Services</strong>
+        <span>Clearer space, Clearer mind.</span>
+      </div>
+    </div>
+  </div>
+  <div class="nav-sub">
+    <a href="index.html" class="nav-tab">Home</a>
+    <a href="pricing.html" class="nav-tab">Pricing</a>
+    <a href="sayhello.html" class="nav-tab">Say Hello!</a>
+  </div>
+</div>
+
+<nav aria-label="Breadcrumb" class="breadcrumb-bar">
+  <ol class="breadcrumb">
+    <li class="bc-item"><a href="index.html" class="bc-link">Home</a></li>
+    <li class="bc-sep" aria-hidden="true">/</li>
+    <li class="bc-item bc-current" aria-current="page">Privacy Policy</li>
+  </ol>
+</nav>
+
+<div class="page-hero">
+  <h1>Privacy Policy</h1>
+  <p>Your data is used only to process your booking request. Nothing else.</p>
+</div>
+
+<div class="content-wrap">
+  <div class="last-updated">Last updated: June 2026 &nbsp;·&nbsp; Effective immediately</div>
+
+  <div class="section">
+    <h2>Our Commitment in Plain Language</h2>
+    <div class="highlight">
+      We do not collect bank information. We do not require log-in. We do not sell your data. The information you provide is used only to process your cleaning request and communicate with you about your booking.
+    </div>
+    <p>Klaygo PH is a small, local cleaning service business based in Metro Manila. We take privacy seriously — not because we have to, but because we respect the people who trust us in their homes.</p>
+  </div>
+
+  <div class="section">
+    <h2>1. Information We Collect</h2>
+    <p>When you use our pricing calculator or contact us, you may voluntarily provide:</p>
+    <ul>
+      <li><strong>Full name</strong> — to address you properly and confirm your booking</li>
+      <li><strong>Contact number</strong> — to reach you regarding your schedule</li>
+      <li><strong>Email address</strong> — to send your estimate and booking confirmation</li>
+      <li><strong>Property address and landmark</strong> — to calculate your transport fee and prepare for your cleaning</li>
+      <li><strong>Special instructions</strong> — to serve you better on cleaning day</li>
+    </ul>
+    <p>All of this information is <strong>optional</strong> until you choose to send your estimate or confirm a booking.</p>
+  </div>
+
+  <div class="section">
+    <h2>2. How We Use Your Information</h2>
+    <p>We use your information only for the following purposes:</p>
+    <ul>
+      <li>To confirm your booking details and communicate your schedule</li>
+      <li>To send you your estimate via email (if provided)</li>
+      <li>To calculate your transport fee based on your address</li>
+      <li>To prepare our cleaner for your specific needs and instructions</li>
+      <li>To improve our services based on aggregate, anonymized feedback</li>
+    </ul>
+    <p>We do <strong>not</strong> use your information for unsolicited marketing, spam, or third-party advertising.</p>
+  </div>
+
+  <div class="section">
+    <h2>3. Information We Do Not Collect</h2>
+    <ul>
+      <li>Bank account numbers, card numbers, or any financial details</li>
+      <li>Government IDs or national identification numbers</li>
+      <li>Passwords or login credentials (we have none)</li>
+      <li>Browsing history or behavioral tracking data beyond basic analytics</li>
+    </ul>
+    <p>Payment details (GCash, bank transfer) are communicated directly through Messenger after booking confirmation — never through our website.</p>
+  </div>
+
+  <div class="section">
+    <h2>4. How We Store Your Information</h2>
+    <p>When you submit a booking estimate, your information is transmitted to:</p>
+    <ul>
+      <li><strong>Formspree</strong> — a secure form processing service, to deliver your estimate to our team inbox</li>
+      <li><strong>Your email inbox</strong> — a copy is sent directly to you if you provide an email address</li>
+    </ul>
+    <p>We also store your name locally in your browser (using localStorage) to speed up future form submissions on the same device. You can clear this at any time by clearing your browser's site data.</p>
+    <p>We do not maintain a proprietary customer database. Your information is not stored on any server controlled by Klaygo PH beyond what is retained in our email inbox.</p>
+  </div>
+
+  <div class="section">
+    <h2>5. Information Sharing</h2>
+    <p>We do <strong>not</strong> sell, rent, or share your personal information with any third parties for marketing purposes.</p>
+    <p>The only parties who may receive your data are:</p>
+    <ul>
+      <li><strong>Formspree</strong> — for email delivery (subject to their own privacy policy)</li>
+      <li><strong>Meta / Messenger</strong> — when you initiate contact through our Messenger link (subject to Meta's privacy policy)</li>
+      <li><strong>Google</strong> — we use Google Maps API for address autocomplete; please refer to Google's privacy policy for their data practices</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Cookies &amp; Analytics</h2>
+    <p>Our website may use basic, anonymized analytics to understand how visitors use our pricing calculator (e.g., how many estimates were generated, which steps are most used). This data is not tied to any personally identifiable information.</p>
+    <p>We do not use advertising cookies or cross-site tracking. No third-party ad networks have access to our website visitors.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Request that we delete any personal information you have shared with us</li>
+      <li>Ask what information we hold about you</li>
+      <li>Opt out of any future communications from us</li>
+    </ul>
+    <p>To exercise any of these rights, simply contact us at <strong>info.klaygoph@gmail.com</strong> or message us on Messenger. We'll respond within 3 business days.</p>
+  </div>
+
+  <div class="section">
+    <h2>8. Children's Privacy</h2>
+    <p>Our services are intended for adults who can enter into service agreements. We do not knowingly collect personal information from children under 18. If you believe a child has provided us information, please contact us and we will promptly delete it.</p>
+  </div>
+
+  <div class="section">
+    <h2>9. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. The date at the top reflects the latest revision. We'll do our best to notify repeat customers of any significant changes via our social media channels.</p>
+  </div>
+
+  <div class="section">
+    <h2>10. Contact Us</h2>
+    <p>Questions about your privacy or how we handle data? Reach us here:</p>
+    <ul>
+      <li><strong>Email:</strong> info.klaygoph@gmail.com</li>
+      <li><strong>Messenger:</strong> m.me/klaygoph</li>
+      <li><strong>Phone:</strong> 0992.816.4718</li>
+      <li><strong>Instagram:</strong> @klaygoph</li>
+    </ul>
+  </div>
+</div>
+
+<div class="follow-bar">
+  <p class="follow-text">Follow us for tips, updates &amp; promos!</p>
+  <div class="follow-links">
+    <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">@klaygoph on Instagram</a>
+    <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">@klaygoph on Facebook</a>
+  </div>
+</div>
+<footer>
+  <p>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila &nbsp;·&nbsp; @KlayGoPH | 0992.816.4718</p>
+  <p style="margin-top:6px;">&copy; 2025 Klaygo PH. All rights reserved. &nbsp;·&nbsp; <a href="terms.html">Terms of Use</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
+</body>
+</html>
