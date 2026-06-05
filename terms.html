@@ -14,6 +14,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html{background:#2C2C2A;}
 body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14px;line-height:1.6;}
+/* NAV */
 .nav-wrap{position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(13,31,60,.15);}
 .nav-top{background:#0D1F3C;height:clamp(56px,12vh,90px);display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
 .nav-logo{height:26px;filter:brightness(0) invert(1);}
@@ -23,6 +24,31 @@ body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14p
 .nav-sub{background:#2B4E8A;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;}
 .nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;border-radius:50px;transition:all .15s;white-space:nowrap;}
 .nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:transparent;border:none;cursor:pointer;padding:8px;border-radius:8px;transition:background .15s;flex-shrink:0;}
+.hamburger:hover{background:rgba(255,255,255,.08);}
+.hamburger span{display:block;width:20px;height:2px;background:#F7F9FC;border-radius:2px;transition:all .25s cubic-bezier(.4,0,.2,1);}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+/* MENU OVERLAY */
+.menu-overlay{position:fixed;inset:0;background:#0D1F3C;z-index:9999;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .2s cubic-bezier(.4,0,.2,1);}
+.menu-overlay.open{opacity:1;pointer-events:all;}
+.menu-overlay-header{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:clamp(56px,12vh,90px);border-bottom:1px solid rgba(168,191,224,.12);}
+.menu-overlay-logo{height:24px;filter:brightness(0) invert(1);}
+.menu-close{background:transparent;border:none;color:#F7F9FC;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .15s;font-size:20px;line-height:1;opacity:.7;}
+.menu-close:hover{background:rgba(255,255,255,.08);opacity:1;}
+.menu-links{display:flex;flex-direction:column;padding:20px 16px;gap:4px;}
+.menu-link{font-family:var(--font-brand);font-size:17px;font-weight:400;color:rgba(247,249,252,.7);text-decoration:none;padding:14px 20px;border-radius:50px;transition:all .15s;opacity:0;transform:translateY(14px);}
+.menu-overlay.open .menu-link{animation:menuDrop .3s forwards;}
+.menu-overlay.open .menu-link:nth-child(1){animation-delay:.04s;}
+.menu-overlay.open .menu-link:nth-child(2){animation-delay:.09s;}
+.menu-overlay.open .menu-link:nth-child(3){animation-delay:.14s;}
+.menu-overlay.open .menu-link:nth-child(4){animation-delay:.19s;}
+.menu-link:hover{color:#F7F9FC;background:rgba(255,255,255,.06);}
+.menu-link.active{color:#F7F9FC;background:rgba(255,255,255,.09);font-weight:700;}
+@keyframes menuDrop{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+/* BREADCRUMB */
 .breadcrumb-bar{background:#2B4E8A;border-bottom:1px solid rgba(168,191,224,.2);padding:7px 32px;}
 .breadcrumb{list-style:none;display:flex;align-items:center;gap:7px;}
 .bc-item{font-size:11.5px;color:rgba(247,249,252,.75);}
@@ -30,11 +56,13 @@ body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14p
 .bc-link:hover{color:#fff;text-decoration:underline;}
 .bc-current{color:#fff;font-weight:700;}
 .bc-sep{color:rgba(168,191,224,.5);font-size:11px;}
+/* HERO */
 .page-hero{background:#2B4E8A;padding:clamp(40px,6vw,72px) clamp(22px,5vw,64px);border-bottom:1px solid rgba(168,191,224,.15);}
 .page-hero h1{font-family:var(--font-brand);font-size:clamp(28px,5vw,48px);font-weight:900;color:#F7F9FC;margin-bottom:8px;}
 .page-hero p{font-size:13px;color:rgba(247,249,252,.7);}
+/* CONTENT */
 .content-wrap{max-width:760px;margin:0 auto;padding:clamp(32px,5vw,56px) clamp(20px,4vw,40px) 80px;}
-.section{background:#fff;border-radius:20px;border:1.5px solid #EBF1FA;padding:28px 28px;margin-bottom:16px;box-shadow:0 2px 16px rgba(43,78,138,.05);}
+.section{background:#fff;border-radius:20px;border:1.5px solid #EBF1FA;padding:28px;margin-bottom:16px;box-shadow:0 2px 16px rgba(43,78,138,.05);}
 .section h2{font-family:var(--font-brand);font-size:15px;font-weight:800;color:#0D1F3C;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #EBF1FA;}
 .section p{font-size:13px;color:#4A5568;line-height:1.75;margin-bottom:10px;}
 .section p:last-child{margin-bottom:0;}
@@ -42,6 +70,7 @@ body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14p
 .section li{font-size:13px;color:#4A5568;line-height:1.75;margin-bottom:6px;}
 .section strong{color:#2C2C2A;}
 .last-updated{font-size:11px;color:var(--gr);margin-bottom:28px;padding:10px 16px;background:#EBF1FA;border-radius:10px;border:1px solid #A8BFE0;}
+/* FOOTER AREA */
 .follow-bar{background:#2B4E8A;padding:28px 24px;text-align:center;}
 .follow-text{font-family:var(--font-brand);font-size:13px;color:rgba(247,249,252,.8);margin-bottom:12px;}
 .follow-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
@@ -51,23 +80,52 @@ footer{background:#0D1F3C;padding:18px 24px;text-align:center;}
 footer p{font-size:11px;color:rgba(247,249,252,.4);}
 footer a{color:rgba(168,191,224,.7);text-decoration:none;}
 footer a:hover{color:#A8BFE0;}
-@media(max-width:700px){.nav-brand-text{display:none;}.nav-top{padding:0 16px;}.nav-sub{display:none;}.breadcrumb-bar{padding:7px 16px;}}
+/* BACK TO TOP */
+#back-to-top{position:fixed;bottom:24px;right:20px;z-index:8000;width:44px;height:44px;border-radius:50%;background:#0D1F3C;border:1.5px solid rgba(168,191,224,.35);color:#F7F9FC;font-size:18px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(13,31,60,.25);transition:all .15s;}
+#back-to-top:hover{background:#2B4E8A;border-color:#A8BFE0;}
+/* RESPONSIVE */
+@media(max-width:700px){
+  .nav-brand-text{display:none;}
+  .nav-top{padding:0 16px;}
+  .nav-sub{display:none;}
+  .breadcrumb-bar{padding:7px 16px;}
+  .hamburger{display:flex;}
+}
 </style>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
 </head>
 <body>
+
+<!-- MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="menu-overlay-header">
+    <a href="index.html" aria-label="Klaygo PH Home">
+      <img class="menu-overlay-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH">
+    </a>
+    <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+  </div>
+  <nav class="menu-links">
+    <a href="index.html" class="menu-link">Home</a>
+    <a href="pricing.html" class="menu-link">Pricing</a>
+    <a href="sayhello.html" class="menu-link">Say Hello!</a>
+    <a href="terms.html" class="menu-link active">Terms of Use</a>
+  </nav>
+</div>
 
 <div class="nav-wrap">
   <div class="nav-top">
     <div class="nav-top-left">
       <a href="index.html" aria-label="Klaygo PH Home">
-        <img class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH">
+        <img class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH">
       </a>
       <div class="nav-brand-text">
         <strong>KLAYGOPH | Cleaning Services</strong>
         <span>Clearer space, Clearer mind.</span>
       </div>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
   <div class="nav-sub">
     <a href="index.html" class="nav-tab">Home</a>
@@ -198,8 +256,27 @@ footer a:hover{color:#A8BFE0;}
 </div>
 <footer>
   <p>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila &nbsp;·&nbsp; @KlayGoPH | 0992.816.4718</p>
-  <p style="margin-top:6px;">&copy; 2025 Klaygo PH. All rights reserved. &nbsp;·&nbsp; <a href="terms.html">Terms of Use</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+  <p style="margin-top:6px;">&copy; 2026 Klaygo PH. All rights reserved. &nbsp;·&nbsp; <a href="terms.html">Terms of Use</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a></p>
 </footer>
 
+<button id="back-to-top" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var ham=document.getElementById('hamburger');
+  var overlay=document.getElementById('menuOverlay');
+  var close=document.getElementById('menuClose');
+  function openMenu(){overlay.classList.add('open');ham.classList.add('open');ham.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+  function closeMenu(){ham.classList.remove('open');ham.setAttribute('aria-expanded','false');document.body.style.overflow='';overlay.classList.remove('open');var links=overlay.querySelectorAll('.menu-link');links.forEach(function(l){var o=l.style.animation;l.style.animation='none';l.offsetHeight;l.style.animation=o;});}
+  ham.addEventListener('click',openMenu);
+  close.addEventListener('click',closeMenu);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+})();
+(function(){
+  var btn=document.getElementById('back-to-top');
+  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  window.addEventListener('scroll',function(){btn.style.display=window.scrollY>300?'flex':'none';},{passive:true});
+})();
+</script>
 </body>
 </html>

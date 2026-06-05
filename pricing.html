@@ -39,8 +39,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
 <script>
 var mapsLoaded=false;
 function loadMaps(){
@@ -78,7 +78,7 @@ html{background:#2C2C2A;}body{font-family:'DM Sans',sans-serif;background:#F7F9F
   display:flex;flex-direction:column;justify-content:center;
   padding:clamp(40px,6vw,80px) clamp(22px,5vw,64px) clamp(40px,6vw,72px);
 }
-.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 70% at 85% 50%,rgba(61,99,153,.45) 0%,transparent 65%);}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;}
 .hero-content{position:relative;z-index:2;}
 
 /* Text always visible — animation is enhancement only */
@@ -111,8 +111,8 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .hero-stat-plus,.hero-stat-star{font-size:.6em;color:#A8BFE0;vertical-align:super;}
 .hero-stat-lbl{font-size:10px;color:rgba(168,191,224,.85);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
 .hero-stat-div{width:1px;background:rgba(168,191,224,.2);align-self:stretch;}
-.hero-cta{display:inline-flex;align-items:center;gap:8px;background:#F0A500;color:#fff;border:none;border-radius:50px;padding:14px 32px;font-family:var(--font-brand);font-size:15px;font-weight:800;cursor:pointer;margin-bottom:22px;transition:all .18s;box-shadow:0 6px 24px rgba(240,165,0,.35);letter-spacing:.02em;}
-.hero-cta:hover{background:#D4920A;transform:translateY(-2px);box-shadow:0 10px 32px rgba(240,165,0,.4);}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#F0A500;border:2px solid #F0A500;border-radius:50px;padding:14px 32px;font-family:var(--font-brand);font-size:15px;font-weight:800;cursor:pointer;margin-bottom:22px;transition:all .18s;box-shadow:none;letter-spacing:.02em;}
+.hero-cta:hover{background:rgba(240,165,0,.08);transform:translateY(-2px);box-shadow:0 6px 20px rgba(240,165,0,.12);}
 @media(max-width:700px){
   .hero-stats{gap:0;padding:12px 0;}
   .hero-stat{padding:0 10px;}
@@ -226,9 +226,9 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .menu-panel{display:contents;}
 .nav-menu-close{position:absolute;top:22px;right:28px;background:none;border:none;color:#F7F9FC;cursor:pointer;font-size:28px;padding:8px;opacity:.7;transition:opacity .15s;}
 .nav-menu-close:hover{opacity:1;}
-.nav-menu-pill{font-family:var(--font-brand);font-size:18px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;text-decoration:none;border:1.5px solid rgba(247,249,252,.22);border-radius:50px;padding:15px 50px;width:240px;text-align:center;opacity:0;transform:translateY(-8px);transition:background .18s,border-color .18s,opacity .22s ease,transform .22s ease;}
+.nav-menu-pill{font-family:var(--font-brand);font-size:18px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,249,252,.78);text-decoration:none;border:none;border-radius:50px;padding:15px 40px;width:auto;min-width:190px;text-align:center;opacity:0;transform:translateY(-8px);transition:background .18s,opacity .22s ease,transform .22s ease;}
 .nav-menu-pill.visible{opacity:1;transform:translateY(0);}
-.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.15);border-color:#A8BFE0;}
+.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.12);color:#F7F9FC;}
 .nav-menu-pill:nth-child(2){transition-delay:.06s;}
 .nav-menu-pill:nth-child(3){transition-delay:.12s;}
 .nav-menu-pill:nth-child(4){transition-delay:.18s;}
@@ -507,7 +507,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .agree-note strong{color:var(--mn);}
 
 /* CTA */
-.cta-block{background:linear-gradient(135deg,var(--mn) 0%,var(--pr) 100%);border-radius:22px;padding:18px;margin-bottom:10px;text-align:center;}
+.cta-block{background:#2B4E8A;border-radius:22px;padding:18px;margin-bottom:10px;text-align:center;}
 .cta-block h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:5px;}
 .cta-block p{font-size:11.5px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:12px;}
 
@@ -516,7 +516,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 /* SUMMARY PANEL */
 .panel-right{position:sticky;top:86px;}
 .pcard{background:#fff;border-radius:24px;overflow:hidden;margin-bottom:10px;box-shadow:0 8px 32px rgba(43,78,138,.12);border:1.5px solid #EBF1FA;}
-.phead{padding:18px 20px;border-bottom:1.5px solid #EBF1FA;background:linear-gradient(135deg,#EBF1FA 0%,#fff 100%);}
+.phead{padding:18px 20px;border-bottom:1.5px solid #EBF1FA;background:#fff;}
 .pest-id{font-size:11px;color:var(--deepnav);letter-spacing:.06em;margin-bottom:3px;font-weight:700;}
 .phead h3{color:var(--se);font-size:9px;letter-spacing:.12em;font-weight:600;text-transform:uppercase;margin-bottom:3px;}
 .ptotal{font-size:34px;font-weight:700;color:var(--mn);line-height:1;}
@@ -680,7 +680,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .be-total-line .be-ll{color:rgba(247,249,252,.85);font-weight:600;font-size:14px;}
 .be-total-line .be-lv{font-size:24px;font-weight:700;color:#F7F9FC;}
 .be-pay-box{background:rgba(13,31,60,.3);border-radius:16px;padding:14px 16px;margin:12px 0;border:1.5px solid rgba(168,191,224,.2);}
-.be-pay-now-block{background:rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;margin-bottom:2px;border:1px solid rgba(168,191,224,.25);}
+
 .be-pay-now-label{font-size:9px;color:rgba(168,191,224,.8);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;}
 .be-pay-now-amt{font-size:16px;font-weight:700;color:rgba(247,249,252,.92);line-height:1.2;word-break:break-word;}
 .be-pay-now-reason{font-size:10px;color:rgba(168,191,224,.85);margin-top:3px;}
@@ -706,10 +706,10 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
 /* ── CLEAR PAYMENT LAYOUT ── */
 .pay-now-block{background:var(--mn);border-radius:12px;padding:12px 14px;margin-bottom:10px;}
-.pay-now-label{font-size:9px;color:rgba(247,249,252,.7);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;}
+
 .pay-now-amt{font-size:16px;font-weight:700;color:rgba(247,249,252,.92);line-height:1.2;word-break:break-word;}
 .pay-now-reason{font-size:10px;color:rgba(168,191,224,.9);margin-top:3px;font-weight:500;}
-.pay-later-block{padding:2px 0;}
+
 .pay-recur-total{margin-top:10px;padding:14px 16px;background:#0D1F3C;border:2px solid var(--pr);border-radius:12px;font-size:12px;color:#F7F9FC;line-height:1.65;}
 .pay-recur-total strong{color:#F0A500;font-size:14px;}
 .pay-recur-total .recur-total-amt{font-size:22px;font-weight:900;color:#fff;font-family:var(--font-brand);line-height:1.1;margin:4px 0;}
@@ -860,14 +860,79 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 
 /* ── MARQUEE TRUST STRIP ──────────────────────────────────── */
-.marquee-strip{background:#0D1F3C;padding:9px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.1);}
-.marquee-track{display:flex;width:max-content;animation:marqueeScroll 28s linear infinite;}
+.marquee-strip{background:#0D1F3C;padding:11px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.07);}
+.marquee-track{display:flex;width:max-content;animation:marqueeScroll 44s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
-.marquee-item{white-space:nowrap;font-family:var(--font-brand);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(168,191,224,.65);padding:0 28px;}
-.marquee-dot{color:rgba(168,191,224,.3);padding:0 6px;}
+.marquee-item{white-space:nowrap;font-family:var(--font-brand);font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:rgba(168,191,224,.42);padding:0 46px;}
+.marquee-dot{color:rgba(168,191,224,.14);font-size:4px;vertical-align:middle;padding:0;}
 @keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
 
+
+/* ═══════════════════════════════════════════════════
+   v24 PATCH — ESTIMATE BANDS, RECUR CAL, BUTTONS
+   ═══════════════════════════════════════════════════ */
+
+/* Res section (multi-session dates breakdown) */
+.be-res-section{padding:10px 12px;margin:4px 12px 6px;background:rgba(255,255,255,.06);border-radius:12px;border:1px solid rgba(168,191,224,.12);}
+.be-res-caption{font-size:9px;color:rgba(168,191,224,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.be-res-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid rgba(168,191,224,.1);}
+.be-res-reason{color:rgba(247,249,252,.62);flex:1;padding-right:8px;line-height:1.4;}
+.be-res-fee{color:#F7F9FC;font-weight:700;white-space:nowrap;}
+.be-res-dates-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;}
+.be-res-dates-lbl{color:rgba(247,249,252,.62);}
+.be-dates-count{color:#F7F9FC;font-weight:900;font-family:var(--font-brand);font-size:16px;letter-spacing:-.02em;}
+
+/* Balance band (blue) */
+.be-balance-band{margin:4px 12px 6px;background:#1A3869;border:1.5px solid rgba(168,191,224,.22);border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+/* Upfront band (gold) */
+.be-upfront-band{margin:0 12px 10px;background:rgba(22,15,0,.9);border:2px solid #C9A227;border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.be-band-text-col{flex:1;}
+.be-band-main-lbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
+.be-balance-band .be-band-main-lbl{color:rgba(168,191,224,.75);}
+.be-upfront-band .be-band-main-lbl{color:#C9A227;}
+.be-band-sub-lbl{font-size:10px;}
+.be-balance-band .be-band-sub-lbl{color:rgba(168,191,224,.38);}
+.be-upfront-band .be-band-sub-lbl{color:rgba(201,162,39,.45);}
+.be-band-num{font-family:var(--font-brand);font-size:20px;font-weight:900;white-space:nowrap;text-align:right;flex-shrink:0;}
+.be-balance-band .be-band-num{color:#A8BFE0;}
+.be-upfront-band .be-band-num{color:#C9A227;}
+
+/* Button hierarchy: copy (dark) > book (mid) > print (light) */
+.be-btn-copy{margin:2px 12px 6px;display:block;width:calc(100% - 24px);padding:13px;background:#0D1F3C;color:#F7F9FC;border:1.5px solid rgba(168,191,224,.35);border-radius:50px;font-family:var(--font-brand);font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .14s;}
+.be-btn-copy:hover{background:rgba(168,191,224,.12);border-color:rgba(168,191,224,.65);}
+/* override old be-btn for Book button */
+.be-btn{margin:0 12px 6px;display:block;width:calc(100% - 24px);padding:12px;background:transparent;color:rgba(247,249,252,.75);border:1.5px solid rgba(168,191,224,.2);border-radius:50px;font-family:var(--font-brand);font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .14s;}
+.be-btn:hover{border-color:rgba(168,191,224,.48);color:#F7F9FC;}
+.be-btn-sec{margin:0 12px 6px;display:block;width:calc(100% - 24px);padding:12px;background:transparent;color:rgba(247,249,252,.75);border:1.5px solid rgba(168,191,224,.2);border-radius:50px;font-family:var(--font-brand);font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .14s;}
+.be-btn-sec:hover{border-color:rgba(168,191,224,.48);color:#F7F9FC;}
+.be-btn-print-est{margin:0 12px 14px;display:block;width:calc(100% - 24px);padding:9px;background:transparent;color:rgba(168,191,224,.38);border:1px solid rgba(168,191,224,.1);border-radius:50px;font-family:var(--font-body);font-size:11px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .14s;}
+.be-btn-print-est:hover{color:rgba(247,249,252,.58);border-color:rgba(168,191,224,.28);}
+
+/* Right panel bands (desktop) */
+.pr-band-balance{margin:8px 12px 6px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.pr-band-upfront{margin:0 12px 6px;background:#FFF8E1;border:2px solid #C9A227;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.pr-band-lbl{font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
+.pr-band-balance .pr-band-lbl{color:#2B4E8A;}
+.pr-band-upfront .pr-band-lbl{color:#8B6914;}
+.pr-band-sub{font-size:9.5px;}
+.pr-band-balance .pr-band-sub{color:#5A7BB5;}
+.pr-band-upfront .pr-band-sub{color:rgba(139,105,20,.6);}
+.pr-band-val{font-family:var(--font-brand);font-size:17px;font-weight:900;white-space:nowrap;flex-shrink:0;}
+.pr-band-balance .pr-band-val{color:#0D1F3C;}
+.pr-band-upfront .pr-band-val{color:#8B6914;}
+
+/* Save/print button on right panel */
+.btn-print-est{display:block;width:calc(100% - 24px);margin:0 12px 8px;padding:8px;background:transparent;color:#A8BFE0;border:1px solid #EBF1FA;border-radius:50px;font-size:11px;font-family:var(--font-body);cursor:pointer;text-align:center;letter-spacing:.04em;text-transform:uppercase;transition:all .14s;}
+.btn-print-est:hover{border-color:#A8BFE0;color:#2B4E8A;}
+
+/* Recur calendar picker */
+.recur-cal-wrap{background:#fff;border-radius:16px;border:1.5px solid #EBF1FA;padding:14px;margin-top:10px;box-shadow:0 4px 20px rgba(43,78,138,.08);}
+.recur-cal-head{font-family:var(--font-brand);font-size:12px;font-weight:700;color:#0D1F3C;margin-bottom:10px;}
+.recur-date-chip{font-family:var(--font-brand);font-size:12px;font-weight:600;color:var(--mn);display:inline-block;padding:3px 12px;background:var(--pa);border-radius:50px;cursor:pointer;}
+.recur-change-lnk{font-size:11px;color:var(--se);cursor:pointer;text-decoration:underline;margin-left:8px;}
+.recur-cancel-btn{margin-top:10px;font-size:11px;color:var(--gr);background:none;border:1px solid #EBF1FA;border-radius:50px;padding:5px 14px;cursor:pointer;display:block;transition:all .14s;}
+.recur-cancel-btn:hover{border-color:#A8BFE0;color:var(--mn);}
 </style>
 </head>
 <body>
@@ -887,9 +952,9 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     <div class="nav-top-left">
       <!-- Mobile: back button -->
       <a href="index.html" class="nav-back-btn" aria-label="Go back to Home">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back">
       </a>
-      <a href="index.html" aria-label="Klaygo PH Home"><img id="logo-img" class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);"></a>
+      <a href="index.html" aria-label="Klaygo PH Home"><img id="logo-img" class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);"></a>
       <div class="nav-brand-text">
         <strong>KLAYGOPH | Cleaning Services</strong>
         <span>Clearer space, Clearer mind.</span>
@@ -928,9 +993,9 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 <div class="hero" id="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">Metro Manila&rsquo;s Trusted Cleaning Service</div>
-    <h1>Cleaner Space.<br><span>Clearer Mind.</span></h1>
-    <p class="hero-sub">Professional cleaning trusted by families and property managers across Metro Manila. Instant pricing, no hidden fees, booking in under 2 minutes.</p>
+    <div class="hero-eyebrow">Serving Metro Manila homes.</div>
+    <h1>Customize your clean,<br><span>see your price.</span></h1>
+    <p class="hero-sub">Trusted by homeowners, renters, and property managers across Metro Manila. Instant pricing, no hidden fees, no surprises.</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <div class="hero-stat-num">67<span class="hero-stat-plus">+</span></div>
@@ -1479,14 +1544,23 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     </div>
     <div class="pbody" id="pbody"><div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div></div>
     <div class="pay-box" id="pay-box" style="display:none;">
-      <h4>Payment Schedule</h4>
-      <div class="pay-now-block">
-        <div class="pay-now-label">Pay now to confirm your slot</div>
-        <div class="pay-now-amt" id="pay-dp">—</div>
+      <div class="pr pn" style="margin-bottom:4px;">
+        <span class="pk" id="pay-bal-lbl">Reservation Fee</span>
+        <span class="pv" id="pay-dp">—</span>
       </div>
-      <div class="pay-later-block">
-        <div class="pr"><span class="pk" id="pay-bal-lbl">Balance on service day</span><span class="pv" id="pay-bal">—</span></div>
-        <div class="pay-note" id="pay-note-txt"></div>
+      <div class="pay-note" id="pay-note-txt"></div>
+      <div class="pr-band-balance" id="pr-band-balance">
+        <div class="pr-band-text-col">
+          <div class="pr-band-lbl" id="pr-bal-band-lbl">Balance on Service Day</div>
+        </div>
+        <div class="pr-band-val" id="pay-bal">—</div>
+      </div>
+      <div class="pr-band-upfront" id="pr-band-upfront" style="display:none;">
+        <div class="pr-band-text-col">
+          <div class="pr-band-lbl">Total Upfront Payment</div>
+          <div class="pr-band-sub">via GCash or Bank Transfer</div>
+        </div>
+        <div class="pr-band-val" id="pr-upfront-amt">—</div>
       </div>
     </div>
     <div class="recur-panel" id="recur-panel"></div>
@@ -1520,22 +1594,44 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 <!-- BOTTOM ESTIMATE — mobile -->
 <div id="bottom-estimate">
-  <div class="be-head"><img id="be-logo-img" class="be-logo" alt="Klaygo PH"><div><div class="be-label">Your Estimate</div></div></div>
+  <div class="be-head">
+    <img id="be-logo-img" class="be-logo" alt="Klaygo PH">
+    <div id="be-est-id-mob" class="be-label"></div>
+  </div>
+  <div class="be-label" style="margin:0 12px 4px;font-size:10px;letter-spacing:.08em;">Here&rsquo;s Your Estimate!</div>
   <div class="be-total"><span class="be-total-prefix">Php&nbsp;</span><span id="be-totd">0</span></div>
   <div class="be-time" id="be-time"></div>
-  <div id="be-body"><div class="be-empty">Select a date, time &amp; service to build your estimate.</div></div>
-  <div class="be-pay-box" id="be-pay" style="display:none;">
-    <div class="be-pay-now-block">
-      <div class="be-pay-now-label">Pay now to confirm your slot</div>
-      <div class="be-pay-now-amt" id="be-dp">—</div>
+  <div id="be-body"><div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div></div>
+  <div class="be-res-section" id="be-res-section" style="display:none;">
+    <div class="be-res-caption">(Date(s) Reserved &times; Reservation Fee)</div>
+    <div class="be-res-row">
+      <span class="be-res-reason" id="be-res-reason-mob"></span>
+      <span class="be-res-fee" id="be-res-fee-mob">—</span>
     </div>
-    <div class="be-pr be-pnow" style="margin-top:8px;"><span class="be-pk" id="be-bal-lbl">Balance on service day</span><span class="be-pv" id="be-bal">—</span></div>
-    <div id="be-recur-total" style="display:none;margin-top:10px;padding:10px 12px;background:rgba(255,255,255,.12);border-radius:12px;border:1px solid rgba(168,191,224,.25);font-size:12px;color:#F7F9FC;line-height:1.6;"></div>
+    <div class="be-res-dates-row">
+      <span class="be-res-dates-lbl">Date(s) Reserved</span>
+      <span class="be-dates-count" id="be-dates-count">—</span>
+    </div>
+  </div>
+  <div class="be-balance-band" id="be-balance-band" style="display:none;">
+    <div class="be-band-text-col">
+      <div class="be-band-main-lbl" id="be-bal-band-lbl">Balance on Service Day</div>
+      <div class="be-band-sub-lbl">Paid on the day of cleaning</div>
+    </div>
+    <div class="be-band-num" id="be-band-bal-amt">—</div>
+  </div>
+  <div class="be-upfront-band" id="be-upfront-band" style="display:none;">
+    <div class="be-band-text-col">
+      <div class="be-band-main-lbl">Total Upfront Payment</div>
+      <div class="be-band-sub-lbl">via GCash or Bank Transfer</div>
+    </div>
+    <div class="be-band-num" id="be-upfront-amt">—</div>
   </div>
   <div class="be-avail none" id="be-avail">No date selected yet.</div>
   <div class="be-discl">This estimate does not confirm a reservation. Booking confirmed after reservation fee is received and confirmed.</div>
+  <button class="be-btn-copy" onclick="copyEstimate()">Copy Estimate</button>
   <button class="be-btn" onclick="bookNow()">Book on Messenger</button>
-  <button class="be-btn-sec" onclick="copyEstimate()">Copy Estimate Text</button>
+  <button class="be-btn-print-est" onclick="openPrint()">Save / Print Estimate</button>
 </div>
 
 <!-- STICKY BAR — mobile -->
@@ -1572,7 +1668,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     <span>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila &nbsp;·&nbsp; @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</span>
   </div>
 </footer>
-<div class="copyright-bar">© 2025 Klaygo PH. All rights reserved. &nbsp;·&nbsp; <a href="terms.html" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:inherit;">Terms of Use</a> &nbsp;·&nbsp; <a href="privacy.html" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:inherit;">Privacy Policy</a></div>
+<div class="copyright-bar">© 2026 Klaygo PH. All rights reserved. &nbsp;·&nbsp; <a href="terms.html" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:inherit;">Terms of Use</a> &nbsp;·&nbsp; <a href="privacy.html" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:inherit;">Privacy Policy</a></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1590,8 +1686,8 @@ var AUTO_REFRESH_MS = 300000; // 5 min auto-refresh
 // GitHub-hosted image URLs
 // Single logo URL — filter applied per background context
 
-var BLUE_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
-var PRINT_BG   = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Print%20-%20White%20Background.png';
+var BLUE_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
+var PRINT_BG   = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Print%20-%20White%20Background.png';
 
 // Pricing — bracket-based (UPDATE when final prices confirmed by KlayGo PH)
 // Format: max sqm | Regular price | Deep price | MIO price | mins (min–max) per type
@@ -1965,7 +2061,7 @@ function togSit(el){
 }
 
 // ── RECURRING DATES ───────────────────────────────────────────
-function addRecurSlot(){recurSlots.push({date:'',time:''});renderRecurSlots();compute();}
+function addRecurSlot(){recurSlots.push({date:'',time:'08:00'});renderRecurSlots();openRecurPicker(recurSlots.length-1);compute();}
 function removeRecurSlot(i){recurSlots.splice(i,1);renderRecurSlots();compute();}
 function getRecurAmpmOpts(selAmpm){
   return '<option value="am"'+(selAmpm==='am'?' selected':'')+'>AM</option>'
@@ -2001,51 +2097,125 @@ function renderRecurSlots(){
       defAmpm=hh>=12?'pm':'am';
       defHr=hh>12?hh-12:(hh===0?12:hh);
     }
-    html+='<div class="recur-row">'
-      +'<input type="date" value="'+(recurSlots[i].date||'')+'" onchange="recurSlots['+i+'].date=this.value;updateRecurDP();compute()">'
+    var dateLabel=recurSlots[i].date?formatRecurDate(recurSlots[i].date):'Tap to choose a date';
+    html+='<div class="recur-row" style="flex-direction:column;align-items:flex-start;gap:7px;">'
+      +'<div style="display:flex;align-items:center;gap:8px;width:100%;">'
+      +'<span class="recur-date-chip" onclick="openRecurPicker('+i+')" style="cursor:pointer;flex:1;">'
+      +(recurSlots[i].date?dateLabel:'<span style="opacity:.55;">'+dateLabel+'</span>')
+      +'</span>'
+      +(recurSlots[i].date?'<span class="recur-change-lnk" onclick="openRecurPicker('+i+')">Change</span>':'')
+      +'<button class="recur-remove" onclick="removeRecurSlot('+i+')">×</button>'
+      +'</div>'
+      +'<div style="display:flex;align-items:center;gap:6px;padding-left:2px;">'
       +'<select class="recur-sel recur-ampm recur-ampm-'+i+'" onchange="recurAmpmChanged('+i+')">'
       +getRecurAmpmOpts(defAmpm)
       +'</select>'
       +'<select class="recur-sel recur-hr recur-hr-'+i+'" onchange="recurHrChanged('+i+')">'
       +getRecurHrOpts(defAmpm,defHr)
       +'</select>'
-      +'<button class="recur-remove" onclick="removeRecurSlot('+i+')">×</button>'
+      +'</div>'
       +'</div>';
   }
   c.innerHTML=html; updateRecurDP();
 }
-function updateRecurDP(){
-  var filled=recurSlots.filter(function(s){return s.date;});
-  var dp=document.getElementById('recur-dp'), panel=document.getElementById('recur-panel');
+function formatRecurDate(ds){
+  var p=ds.split('-');
+  return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString('en-PH',{weekday:'short',month:'short',day:'numeric'});
+}
+// ── RECUR CALENDAR PICKER ──────────────────────────────────────
+var recurPickerTarget=-1, recurPickerY=2025, recurPickerM=0;
+function openRecurPicker(i){
+  recurPickerTarget=i;
+  recurPickerY=CY; recurPickerM=CM;
+  var dp=document.getElementById('recur-dp');
   if(!dp)return;
-  if(!filled.length){dp.style.display='none';if(panel)panel.style.display='none';return;}
-  var totalSessions=filled.length+1;
-  // Compute correct per-session reservation fee
-  var sub2=0,tf2=S.lf||0;
-  var bp2=getBasePrice();if(bp2.price>0)sub2+=bp2.price;
-  ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0)sub2+=a.price*q;});
-  if(S.lf!==null&&S.lid&&S.lid!=='others')sub2+=tf2;
-  var total2=sub2;
-  var dow2=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()):-1;
-  var isWknd2=dow2===0||dow2===6;
-  var isSameD2=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
-  var isHol2=selDate&&PH_HOLIDAYS.has(selDate);
-  var isLg2=S.sqm>=90;
-  var needs50r=isSameD2||isWknd2||isHol2||isLg2;
-  var perSess=total2>0?(needs50r?Math.ceil(total2*0.5):Math.max(Math.ceil(total2*0.30),tf2)):tf2||0;
-  var totalDP=perSess*totalSessions;
   dp.style.display='block';
-  dp.innerHTML='<strong>'+filled.length+' additional session'+(filled.length>1?'s':'')+' added \u2192 '+totalSessions+' sessions total</strong><br>'
-    +'Reservation fee per session: <strong>Php '+perSess.toLocaleString()+'</strong>'
-    +' \u00d7 '+totalSessions+' = <strong>Php '+totalDP.toLocaleString()+'</strong><br>'
-    +'<span style="font-size:10px;color:var(--gr);">One reservation fee per session confirms each slot. Balance paid on each service day.</span>';
-  if(panel){
-    panel.style.display='block';
-    panel.innerHTML='<div style="font-size:9px;color:var(--se);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;">Reservation Fees ('+totalSessions+' sessions)</div>'
-      +'<div style="font-size:13px;color:var(--gr);">Php '+perSess.toLocaleString()+' \u00d7 '+totalSessions+' sessions</div>'
-      +'<div style="font-size:20px;font-weight:700;color:var(--mn);margin-top:3px;">Php '+totalDP.toLocaleString()+' total upfront</div>'
-      +'<div style="font-size:10px;color:var(--gr);margin-top:3px;">One per session \u2022 Balance paid on each service day.</div>';
+  renderRecurPickerInner(dp);
+  setTimeout(function(){dp.scrollIntoView({behavior:'smooth',block:'nearest'});},50);
+}
+function renderRecurPickerInner(dp){
+  dp.innerHTML='<div class="recur-cal-wrap">'
+    +'<div class="recur-cal-head">Select a date for this session</div>'
+    +'<div class="cal-nav-row" style="margin:0 0 8px;">'
+    +'<button class="cal-btn" onclick="recurPickerPrev()">&#8249;</button>'
+    +'<div class="cal-title" id="rp-cal-title">'+MNAMES[recurPickerM]+' '+recurPickerY+'</div>'
+    +'<button class="cal-btn" onclick="recurPickerNext()">&#8250;</button>'
+    +'</div>'
+    +'<div class="cal-grid" id="rp-cal-grid" style="font-size:11.5px;"></div>'
+    +'<div class="cal-note" style="margin-top:8px;font-size:10.5px;color:var(--gr);">Tap an available date to add it as a session.</div>'
+    +'<button class="recur-cancel-btn" onclick="closeRecurPicker()">Cancel</button>'
+    +'</div>';
+  renderRecurPickerGrid();
+}
+function renderRecurPickerGrid(){
+  var title=document.getElementById('rp-cal-title');
+  var grid=document.getElementById('rp-cal-grid');
+  if(!title||!grid)return;
+  title.textContent=MNAMES[recurPickerM]+' '+recurPickerY;
+  grid.innerHTML='';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(function(d){
+    var el=document.createElement('div');el.className='cal-dow';el.textContent=d;grid.appendChild(el);
+  });
+  var first=new Date(recurPickerY,recurPickerM,1).getDay();
+  var days=new Date(recurPickerY,recurPickerM+1,0).getDate();
+  var todayD=new Date(nowJS.getFullYear(),nowJS.getMonth(),nowJS.getDate());
+  for(var j=0;j<first;j++){var e=document.createElement('div');e.className='day empty';grid.appendChild(e);}
+  for(var d=1;d<=days;d++){
+    var ds=recurPickerY+'-'+pad(recurPickerM+1)+'-'+pad(d);
+    var thisD=new Date(recurPickerY,recurPickerM,d);
+    var el=document.createElement('div');el.className='day';
+    var dn=document.createElement('div');dn.textContent=d;el.appendChild(dn);
+    if(thisD<todayD){el.classList.add('past');}
+    else{
+      var evts=monthEvts[ds]||[];
+      var amB=evts.some(function(ev){return new Date(ev.s).getHours()<12;});
+      var pmB=evts.some(function(ev){return new Date(ev.s).getHours()>=12;});
+      var dots=document.createElement('div');dots.className='dots';
+      var d0=document.createElement('div');d0.className='dot '+(amB?'t':'o');dots.appendChild(d0);
+      var d1=document.createElement('div');d1.className='dot '+(pmB?'t':'o');dots.appendChild(d1);
+      el.appendChild(dots);
+      if(amB&&pmB)el.classList.add('full-d');
+      else if(evts.length)el.classList.add('partial-d');
+      if(thisD.toDateString()===nowJS.toDateString())el.classList.add('today-d');
+      var alreadyPicked=recurSlots.some(function(s,si){return s.date===ds&&si!==recurPickerTarget;});
+      if(alreadyPicked||ds===selDate){el.classList.add('partial-d');el.title='Already selected';}
+      if(!el.classList.contains('full-d')&&!alreadyPicked&&ds!==selDate){
+        (function(dateStr,elem){
+          elem.addEventListener('click',function(){selectRecurPickerDate(dateStr);});
+        })(ds,el);
+      }
+    }
+    grid.appendChild(el);
   }
+}
+async function recurPickerPrev(){
+  if(recurPickerM===0){recurPickerY--;recurPickerM=11;}else recurPickerM--;
+  await fetchMonth(recurPickerY,recurPickerM);
+  renderRecurPickerGrid();
+}
+async function recurPickerNext(){
+  if(recurPickerM===11){recurPickerY++;recurPickerM=0;}else recurPickerM++;
+  await fetchMonth(recurPickerY,recurPickerM);
+  renderRecurPickerGrid();
+}
+function selectRecurPickerDate(ds){
+  if(recurPickerTarget<0||recurPickerTarget>=recurSlots.length)return;
+  recurSlots[recurPickerTarget].date=ds;
+  if(!recurSlots[recurPickerTarget].time)recurSlots[recurPickerTarget].time='08:00';
+  closeRecurPicker();
+  renderRecurSlots();
+  updateRecurDP();
+  compute();
+}
+function closeRecurPicker(){
+  var dp=document.getElementById('recur-dp');
+  if(dp){dp.style.display='none';dp.innerHTML='';}
+  recurPickerTarget=-1;
+}
+function updateRecurDP(){
+  // Session totals now shown via estimate bands — recur-panel hidden.
+  var panel=document.getElementById('recur-panel');
+  if(panel)panel.style.display='none';
 }
 
 // ── ADD-ONS ───────────────────────────────────────────────────
@@ -2196,29 +2366,19 @@ function compute(){
     document.getElementById('pay-bal').textContent='Php '+bal.toLocaleString();
     var rFilled2=recurSlots.filter(function(s){return s.date;});
     var multiDate=rFilled2.length>0||S.sched!=='Initial / One-time';
+    // Right panel estimate bands
+    var prBalBand=document.getElementById('pr-band-balance');
+    var prUpBand=document.getElementById('pr-band-upfront');
+    var prUpAmt=document.getElementById('pr-upfront-amt');
+    var prBalLblEl=document.getElementById('pr-bal-band-lbl');
+    if(prBalBand)prBalBand.style.display='flex';
+    if(prBalLblEl)prBalLblEl.textContent=rFilled2.length>0?'Balance on Each Service Day':'Balance on Service Day';
+    if(prUpBand){prUpBand.style.display='flex';if(prUpAmt)prUpAmt.textContent='Php '+((rFilled2.length+1)*dp).toLocaleString();}
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
     var pnote=document.querySelector('.pay-note');
     if(pnote)pnote.textContent=needs50?needs50Reason+': 50% reservation fee required to confirm slot. Balance paid on service day.':'Reservation fee = whichever is higher between 30% of total or transport fee. Balance paid on service day.';
-    // If recurring sessions exist, show total upfront = sum of all session reservation fees
-    var recurPanel=document.getElementById('recur-panel');
-    if(rFilled2.length>0){
-      var totalSess=rFilled2.length+1;
-      var totalUpfront=dp*totalSess;
-      var recurNote=document.getElementById('recur-total-note');
-      if(!recurNote){
-        recurNote=document.createElement('div');
-        recurNote.id='recur-total-note';
-        recurNote.style.cssText='margin-top:8px;padding:9px 12px;background:var(--pa);border:1.5px solid var(--li);border-radius:12px;font-size:12px;color:var(--mn);';
-        var pb2=document.getElementById('pay-box');
-        if(pb2)pb2.appendChild(recurNote);
-      }
-      recurNote.style.display='block';
-      recurNote.innerHTML='<div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#A8BFE0;font-weight:700;margin-bottom:4px;">Total Upfront ('+totalSess+' Sessions)</div><div class="recur-total-amt">Php '+totalUpfront.toLocaleString()+'</div><div style="font-size:11px;color:rgba(168,191,224,.8);">Php '+dp.toLocaleString()+' &times; '+totalSess+' sessions</div><div class="recur-total-note">One reservation fee per session confirms each slot. Balance of Php '+bal.toLocaleString()+' paid on each service day.</div>';
-    } else {
-      var recurNote=document.getElementById('recur-total-note');
-      if(recurNote)recurNote.style.display='none';
-    }
+    // Multi-session totals handled by be-upfront-band + pr-band-upfront.
     updateBottomEstimate(total,lines,true,dp,bal,t2&&t2.mn>0?t2:null);
   } else {
     pb.style.display='none';
@@ -2364,11 +2524,18 @@ function openPrint(){
   var pReason=pIsSameDay?'Same-day booking':pIsWknd?'Weekend booking':pIsHol?'Holiday booking':pIsLg?'90+ sqm property':'';
   var dpPrint=pNeeds50?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),tf);
   var balPrint=Math.max(0,total-dpPrint);
-  var payHtml=total>0?'<div class="pay-s"><h4>Payment Schedule</h4>'
-    +'<div class="pr pn"><span class="pk">Reservation fee (confirms your slot)</span><span class="pv">Php '+dpPrint.toLocaleString()+(pNeeds50?' (50% — '+pReason+')':'')+'</span></div>'
-    +'<div class="pr"><span class="pk">'+balLabelPrint+'</span><span class="pv">Php '+balPrint.toLocaleString()+'</span></div>'
-    +(totalSessionsPrint>1?'<div class="pr" style="margin-top:6px;padding-top:6px;border-top:1.5px solid #EBF1FA;"><span class="pk" style="font-weight:700;color:#2B4E8A;">Total upfront ('+totalSessionsPrint+' sessions)</span><span class="pv" style="font-weight:800;color:#2B4E8A;font-size:11px;">Php '+(dpPrint*totalSessionsPrint).toLocaleString()+'</span></div>'
-    +'<div style="font-size:7px;color:#6B6B68;margin-top:3px;">Php '+dpPrint.toLocaleString()+' × '+totalSessionsPrint+' sessions. One reservation fee per session confirms each slot.</div>':'')
+  var payHtml=total>0?'<div class="pay-s">'
+    +'<h4>Payment Summary</h4>'
+    +'<div class="pr pn"><span class="pk">Reservation Fee'+(pNeeds50?' (50% — '+pReason+')':' — confirms your slot')+'</span><span class="pv">Php '+dpPrint.toLocaleString()+'</span></div>'
+    +'<div style="margin:5px 0 3px;padding:5px 8px;background:#EBF1FA;border:1px solid #A8BFE0;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">'
+    +'<div><div style="font-size:7.5px;font-weight:700;color:#2B4E8A;letter-spacing:.08em;text-transform:uppercase;">'+(totalSessionsPrint>1?'Balance on Each Service Day':'Balance on Service Day')+'</div>'
+    +'<div style="font-size:7px;color:#5A7BB5;">Paid on the day of cleaning</div></div>'
+    +'<div style="font-size:11px;font-weight:900;color:#0D1F3C;">Php '+balPrint.toLocaleString()+'</div></div>'
+    +(totalSessionsPrint>1?'<div style="margin:3px 0;padding:5px 8px;background:#FFF8E1;border:1.5px solid #C9A227;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">'
+    +'<div><div style="font-size:7.5px;font-weight:700;color:#8B6914;letter-spacing:.08em;text-transform:uppercase;">Total Upfront Payment</div>'
+    +'<div style="font-size:7px;color:rgba(139,105,20,.6);">Php '+dpPrint.toLocaleString()+' × '+totalSessionsPrint+' sessions</div></div>'
+    +'<div style="font-size:11px;font-weight:900;color:#8B6914;">Php '+(dpPrint*totalSessionsPrint).toLocaleString()+'</div></div>':'')
+    +'<div style="font-size:7px;color:#6B6B68;margin-top:4px;line-height:1.5;">via GCash or Bank Transfer. Balance paid on the day of service.</div>'
     +'</div>':'';
   var w=window.open('','_blank','width=560,height=794');
   w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8">'
@@ -2614,7 +2781,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();
 })();
 
 // ── INIT ──────────────────────────────────────────────────────
-var LOGO_URL = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
+var LOGO_URL = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
 // Nav: dark bg → white
 var navLogo = document.getElementById('logo-img');
 if(navLogo){ navLogo.src=LOGO_URL; navLogo.style.filter='brightness(0) invert(1)'; }
@@ -2819,51 +2986,68 @@ function updateStickyBar(total){
 }
 
 function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
-  var totEl=document.getElementById('be-totd');if(totEl)totEl.textContent=total>0?total.toLocaleString():'0';
-  var timeEl=document.getElementById('be-time');if(timeEl)timeEl.textContent=(t&&t.mn)?'~'+fmtT(t.mn,t.mx)+' of your day back':'';
+  // ── Totals ──────────────────────────────────────────────────
+  var totEl=document.getElementById('be-totd');
+  if(totEl)totEl.textContent=total>0?total.toLocaleString():'0';
+  var timeEl=document.getElementById('be-time');
+  if(timeEl)timeEl.textContent=(t&&t.mn)?'You get back ~'+fmtT(t.mn,t.mx)+' of your day.':'';
+  var beIdMob=document.getElementById('be-est-id-mob');
+  if(beIdMob&&currentEstId)beIdMob.textContent=currentEstId;
+  // ── Line items ──────────────────────────────────────────────
   var body=document.getElementById('be-body');if(!body)return;
+  var bandIds=['be-res-section','be-balance-band','be-upfront-band'];
+  function hideBands(){bandIds.forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});}
   if(!lines||!lines.length){
     body.innerHTML='<div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div>';
-    var bp2=document.getElementById('be-pay');if(bp2)bp2.style.display='none';
-    var brt=document.getElementById('be-recur-total');if(brt)brt.style.display='none';
-    return;
+    hideBands();return;
   }
-  var html=lines.map(function(ln){return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'Php '+ln.v.toLocaleString())+'</span></div>';}).join('');
+  var html=lines.map(function(ln){
+    return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'Php '+ln.v.toLocaleString())+'</span></div>';
+  }).join('');
   html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">Php '+total.toLocaleString()+'</span></div>';
   body.innerHTML=html;
-  var bp2=document.getElementById('be-pay');
-  if(hasPay&&bp2){
-    bp2.style.display='block';
-    // Compute 50% trigger for label
+  // ── Payment bands ────────────────────────────────────────────
+  if(hasPay){
+    var rFilled3=recurSlots.filter(function(s){return s.date;});
+    var isMulti=rFilled3.length>0;
+    var totalSess3=isMulti?rFilled3.length+1:1;
+    var totalUpfront3=dp*totalSess3;
+    // 50% reason
     var dow=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()):-1;
-    var isWknd=dow===0||dow===6;
+    var isWkndBE=dow===0||dow===6;
     var isSameDayBE=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
     var isHolBE=selDate&&PH_HOLIDAYS.has(selDate);
     var isLgBE=S.sqm>=90;
-    var needs50BE=isSameDayBE||isWknd||isHolBE||isLgBE;
-    var reason50BE=isSameDayBE?'Same-day booking':isWknd?'Weekend booking':isHolBE?'Holiday booking':isLgBE?'90+ sqm property':'';
-    var dpEl=document.getElementById('be-dp');
-    if(dpEl)dpEl.textContent='Php '+dp.toLocaleString()+(needs50BE?' (50% — '+reason50BE+')':'');
-    var balEl=document.getElementById('be-bal');if(balEl)balEl.textContent='Php '+bal.toLocaleString();
-    // Balance label — singular vs recurring
-    var rFilled3=recurSlots.filter(function(s){return s.date;});
-    var balLbl3=document.getElementById('be-bal-lbl');
-    if(balLbl3)balLbl3.textContent=rFilled3.length>0?'Balance on each service day':'Balance on service day';
-    // Multi-session upfront block
-    var brt=document.getElementById('be-recur-total');
-    if(brt){
-      if(rFilled3.length>0){
-        var totalSess3=rFilled3.length+1;
-        var totalUp3=dp*totalSess3;
-        brt.style.display='block';
-        brt.innerHTML='<div style="font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(168,191,224,.8);font-weight:700;margin-bottom:3px;">Total Upfront ('+totalSess3+' Sessions)</div><div style="font-size:24px;font-weight:900;color:#fff;font-family:var(--font-brand);line-height:1;">Php '+totalUp3.toLocaleString()+'</div><div style="font-size:11px;color:rgba(168,191,224,.75);margin-top:2px;">Php '+dp.toLocaleString()+' × '+totalSess3+' sessions</div><div style="font-size:10px;color:rgba(168,191,224,.6);margin-top:5px;line-height:1.5;border-top:1px solid rgba(168,191,224,.2);padding-top:5px;">One fee per session confirms each slot. Balance paid on service day.</div>';
-      } else {
-        brt.style.display='none';
-      }
+    var needs50BE=isSameDayBE||isWkndBE||isHolBE||isLgBE;
+    var reasonBE=isSameDayBE?'Same-day booking':isWkndBE?'Weekend booking':isHolBE?'Holiday booking':isLgBE?'90+ sqm property':'Standard';
+    var pctBE=needs50BE?'50%':'30%';
+    // Reservation section (multi-session only)
+    var resSec=document.getElementById('be-res-section');
+    if(resSec){
+      if(isMulti){
+        resSec.style.display='block';
+        var resR=resSec.querySelector('.be-res-reason');
+        var resFee=resSec.querySelector('.be-res-fee');
+        var dCount=document.getElementById('be-dates-count');
+        if(resR)resR.textContent=pctBE+' Reservation fee — '+reasonBE;
+        if(resFee)resFee.textContent='Php '+dp.toLocaleString();
+        if(dCount)dCount.textContent=totalSess3+' DAYS';
+      } else {resSec.style.display='none';}
     }
-  } else if(bp2){
-    bp2.style.display='none';
-    var brt2=document.getElementById('be-recur-total');if(brt2)brt2.style.display='none';
+    // Balance band
+    var balBand=document.getElementById('be-balance-band');
+    var balLblEl=document.getElementById('be-bal-band-lbl');
+    var balAmtEl=document.getElementById('be-band-bal-amt');
+    if(balBand)balBand.style.display='flex';
+    if(balLblEl)balLblEl.textContent=isMulti?'Balance on Each Service Day':'Balance on Service Day';
+    if(balAmtEl)balAmtEl.textContent='Php '+bal.toLocaleString();
+    // Upfront band
+    var upBand=document.getElementById('be-upfront-band');
+    var upAmtEl=document.getElementById('be-upfront-amt');
+    if(upBand)upBand.style.display='flex';
+    if(upAmtEl)upAmtEl.textContent='Php '+totalUpfront3.toLocaleString();
+  } else {
+    hideBands();
   }
 }
 
@@ -2949,7 +3133,7 @@ function togWHN(){
 
 // ── BACK TO TOP — PNG button ──────────────────────────────────
 (function(){
-  var BTT_IMG='https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
+  var BTT_IMG='https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
   var btn=document.createElement('button');
   btn.id='back-to-top';
   btn.setAttribute('aria-label','Back to top');
