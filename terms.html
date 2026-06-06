@@ -96,20 +96,49 @@ footer a:hover{color:#A8BFE0;}
 </head>
 <body>
 
-<!-- MENU OVERLAY -->
-<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Site navigation">
-  <div class="menu-overlay-header">
-    <a href="index.html" aria-label="Klaygo PH Home">
-      <img class="menu-overlay-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH">
-    </a>
-    <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+<!-- NAV MENU OVERLAY -->
+<div class="nav-menu-overlay" id="nav-menu">
+  <button class="nav-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  <a href="index.html" class="nav-menu-pill">Home</a>
+  <a href="pricing.html" class="nav-menu-pill">Pricing</a>
+  <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-top">
+    <div class="nav-top-left">
+      <a href="pricing.html" class="nav-back-btn" aria-label="Go back">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back">
+      </a>
+      <a href="index.html" aria-label="Klaygo PH Home">
+        <img class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);">
+      </a>
+      <div class="nav-brand-text">
+        <strong>KLAYGOPH | Cleaning Services</strong>
+        <span>Clearer space, Clearer mind.</span>
+      </div>
+    </div>
+    <div class="nav-top-right">
+      <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Blue.png" alt="Menu">
+      </button>
+    </div>
   </div>
-  <nav class="menu-links">
-    <a href="index.html" class="menu-link">Home</a>
-    <a href="pricing.html" class="menu-link">Pricing</a>
-    <a href="sayhello.html" class="menu-link">Say Hello!</a>
-    <a href="terms.html" class="menu-link active">Terms of Use</a>
-  </nav>
+  <div class="nav-sub">
+    <span class="nav-mobile-page">TERMS OF USE</span>
+    <a href="index.html" class="nav-tab">Home</a>
+    <a href="pricing.html" class="nav-tab">Pricing</a>
+    <a href="sayhello.html" class="nav-tab">Say Hello!</a>
+  </div>
+</div>
+
+<nav aria-label="Breadcrumb" class="breadcrumb-bar">
+  <ol class="breadcrumb">
+    <li class="bc-item"><a href="index.html" class="bc-link">Home</a></li>
+    <li class="bc-sep" aria-hidden="true">/</li>
+    <li class="bc-item bc-current" aria-current="page">Terms of Use</li>
+  </ol>
+</nav>
 </div>
 
 <div class="nav-wrap">
@@ -250,32 +279,45 @@ footer a:hover{color:#A8BFE0;}
 <div class="follow-bar">
   <p class="follow-text">Follow us for tips, updates &amp; promos!</p>
   <div class="follow-links">
-    <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">@klaygoph on Instagram</a>
-    <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">@klaygoph on Facebook</a>
+    <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @klaygoph
+    </a>
+    <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
+      @klaygoph
+    </a>
   </div>
 </div>
 <footer>
-  <p>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila &nbsp;·&nbsp; @KlayGoPH | 0992.816.4718</p>
-  <p style="margin-top:6px;">&copy; 2026 Klaygo PH. All rights reserved. &nbsp;·&nbsp; <a href="terms.html">Terms of Use</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+  <div class="footer-inner">
+    <span>Klaygo PH &nbsp;&middot;&nbsp; Cleaning Services &nbsp;&middot;&nbsp; Metro Manila &nbsp;&middot;&nbsp; @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</span>
+  </div>
 </footer>
-
-<button id="back-to-top" aria-label="Back to top">↑</button>
-
+<div class="copyright-bar">&copy; 2026 Klaygo PH. All rights reserved. &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></div>
 <script>
+function openMenu(){
+  var overlay=document.getElementById('nav-menu');
+  var burger=document.querySelector('.nav-hamburger');
+  overlay.classList.add('open');document.body.style.overflow='hidden';
+  if(burger){burger.classList.remove('rotating');void burger.offsetWidth;burger.classList.add('rotating');}
+  var pills=overlay.querySelectorAll('.nav-menu-pill');
+  pills.forEach(function(p){p.classList.remove('visible');});
+  setTimeout(function(){pills.forEach(function(p,i){setTimeout(function(){p.classList.add('visible');},i*90);});},40);
+}
+function closeMenu(){
+  var overlay=document.getElementById('nav-menu');
+  if(overlay){overlay.querySelectorAll('.nav-menu-pill').forEach(function(p){p.classList.remove('visible');});overlay.classList.remove('open');}
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
 (function(){
-  var ham=document.getElementById('hamburger');
-  var overlay=document.getElementById('menuOverlay');
-  var close=document.getElementById('menuClose');
-  function openMenu(){overlay.classList.add('open');ham.classList.add('open');ham.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
-  function closeMenu(){ham.classList.remove('open');ham.setAttribute('aria-expanded','false');document.body.style.overflow='';overlay.classList.remove('open');var links=overlay.querySelectorAll('.menu-link');links.forEach(function(l){var o=l.style.animation;l.style.animation='none';l.offsetHeight;l.style.animation=o;});}
-  ham.addEventListener('click',openMenu);
-  close.addEventListener('click',closeMenu);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
-})();
-(function(){
-  var btn=document.getElementById('back-to-top');
-  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-  window.addEventListener('scroll',function(){btn.style.display=window.scrollY>300?'flex':'none';},{passive:true});
+  var BTT_IMG='https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
+  var btn=document.createElement('button');btn.id='back-to-top';btn.setAttribute('aria-label','Back to top');
+  var img=document.createElement('img');img.src=BTT_IMG;img.alt='Back to top';img.width=38;img.height=38;
+  btn.appendChild(img);btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+  document.body.appendChild(btn);
+  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);},{passive:true});
 })();
 </script>
 </body>

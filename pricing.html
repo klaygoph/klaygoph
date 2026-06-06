@@ -542,10 +542,12 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .pr.pay-now .pv{color:var(--green);font-size:15px;font-weight:700;}
 .pay-note{font-size:10.5px;color:var(--gr);margin-top:6px;line-height:1.6;}
 .recur-panel{display:none !important;}
-.avail-box{padding:8px 20px;border-top:1.5px solid #EBF1FA;font-size:11.5px;}
-.avail-box.ok{color:var(--green);font-weight:500;}
-.avail-box.na{color:var(--red);font-weight:500;}
-.avail-box.none{color:var(--gr);}
+.avail-box{padding:0 12px 10px;border:none;background:transparent;}
+.avail-box.none{padding:8px 20px;font-size:11.5px;color:var(--gr);border-top:1px solid #EBF1FA;}
+.avail-box.na{padding:8px 20px;font-size:11.5px;color:var(--red);font-weight:500;border-top:1px solid #EBF1FA;}
+.avail-card{background:#2B4E8A;border-radius:16px;padding:14px 16px;}
+.avail-for-line{font-size:13px;font-weight:700;color:#F7F9FC;margin-bottom:6px;}
+.avail-summary{font-size:11.5px;color:rgba(168,191,224,.9);line-height:1.65;}
 .transpo-note{padding:6px 20px;font-size:10.5px;color:var(--gr);line-height:1.6;border-top:1px solid #EBF1FA;}
 .discl{padding:8px 20px;background:#F4F7FD;font-size:10px;color:var(--gr);line-height:1.6;border-top:1px solid #EBF1FA;}
 .btn-book{display:block;width:calc(100% - 24px);margin:14px 12px 6px;padding:14px;background:var(--mn);color:#fff;border:none;border-radius:50px;font-size:13.5px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;text-decoration:none;transition:background .14s,box-shadow .14s;}
@@ -690,9 +692,9 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .be-pk{color:rgba(247,249,252,.7);}
 .be-pv{color:#F7F9FC;font-weight:600;}
 .be-pnow .be-pv{color:var(--li);font-size:15px;font-weight:700;}
-.be-avail{font-size:12px;padding:6px 0;margin-bottom:8px;font-weight:500;}
-.be-avail.ok{color:var(--li);}
-.be-avail.none{color:rgba(247,249,252,.5);}
+.be-avail{padding:0 12px 8px;background:transparent;}
+.be-avail.none{padding:6px 12px;font-size:11.5px;color:rgba(247,249,252,.5);}
+.be-avail.na{padding:6px 12px;font-size:11.5px;color:#f88;font-weight:500;}
 .be-discl{font-size:11px;color:rgba(247,249,252,.5);line-height:1.65;margin-bottom:14px;}
 .be-btn{display:block;width:100%;padding:15px;background:#F0A500;color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;margin-bottom:10px;transition:all .14s;box-shadow:0 4px 18px rgba(240,165,0,.3);}
 .be-btn:hover{background:var(--li);box-shadow:0 6px 20px rgba(13,31,60,.3);}
@@ -995,7 +997,6 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <div class="hero-content">
     <div class="hero-eyebrow">Serving Metro Manila homes.</div>
     <h1>Customize your clean,<br><span>see your price.</span></h1>
-    <p class="hero-sub">Trusted by homeowners, renters, and property managers across Metro Manila. Instant pricing, no hidden fees, no surprises.</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <div class="hero-stat-num">67<span class="hero-stat-plus">+</span></div>
@@ -1461,7 +1462,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     <div class="whn-acc-sub">From estimate to spotless home — 6 simple steps</div>
     <div class="whn-acc-chevron" id="whn-chev">▼</div>
   </div>
-  <div class="whn-section" id="whn-body" style="display:none;">
+  <div class="whn-section" id="whn-body">
   <div class="whn-steps">
     <div class="whn-step">
       <div class="whn-line"></div>
@@ -1988,7 +1989,7 @@ function onTimeClick(el,start){
   var lbl=start.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
   var parts=selDate.split('-');
   var dlbl=new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'short',month:'short',day:'numeric'});
-  setAvail('ok','Available: '+lbl+' on '+dlbl);
+  buildAvailCard();
   genEstId();
   var copyBtn=document.getElementById('btn-copy'); if(copyBtn)copyBtn.style.display='block';
   document.getElementById('card-area').scrollIntoView({behavior:'smooth',block:'nearest'});
@@ -1999,6 +2000,23 @@ function unlock(id){var el=document.getElementById(id);if(el)el.classList.remove
 function setAvail(type,msg){
   var el=document.getElementById('avail-box');if(el){el.className='avail-box '+type;el.textContent=msg;}
   var be=document.getElementById('be-avail');if(be){be.className='be-avail '+type;be.textContent=msg;}
+}
+function buildAvailCard(){
+  if(!selTime||!selDate){setAvail('none','No date selected yet.');return;}
+  var lbl=selTime.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
+  var parts=selDate.split('-');
+  var dlbl=new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',month:'long',day:'numeric'});
+  var summParts=[];
+  var bp=getBasePrice();
+  if(bp.price>0) summParts.push(bp.label);
+  if(S.ln) summParts.push('Transport — '+S.ln);
+  if(S.sched&&S.sched!=='Initial / One-time') summParts.push('Schedule: '+S.sched);
+  var summHtml=summParts.length?'<div class="avail-summary">'+summParts.join('<br>')+'</div>':'';
+  var cardHtml='<div class="avail-card"><div class="avail-for-line">for '+lbl+', '+dlbl+'</div>'+summHtml+'</div>';
+  var el=document.getElementById('avail-box');
+  if(el){el.className='avail-box ok';el.innerHTML=cardHtml;}
+  var be=document.getElementById('be-avail');
+  if(be){be.className='be-avail ok';be.innerHTML=cardHtml;}
 }
 
 // ── AREA SIZE ─────────────────────────────────────────────────
@@ -2386,6 +2404,7 @@ function compute(){
   }
   document.getElementById('transpo-note').style.display=S.lid?'block':'none';
   updateRecurDP();
+  if(selTime)buildAvailCard();
   updateProgress();
 }
 
@@ -2547,8 +2566,8 @@ function openPrint(){
     +'body{display:flex;flex-direction:column;position:relative;}'
     +'.bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url("'+PRINT_BG+'") center/cover no-repeat;z-index:0;}'
     +'.cnt{position:relative;z-index:1;display:flex;flex-direction:column;min-height:210mm;}'
-    +'.hdr{padding:28px 22px 10px;text-align:center;}'
-    +'.hdr img{height:38px;}.hdr .dt{font-size:7.5px;color:#6B6B68;margin-top:3px;}.hdr .eid{font-size:8px;font-weight:700;color:#2B4E8A;margin-top:2px;}'
+    +'.hdr{padding:22px 22px 8px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;border-bottom:2px solid #2B4E8A;}'
+    +'.hdr img{height:30px;margin-bottom:4px;}.hdr .eid{font-size:9px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;margin-bottom:1px;}.hdr .dt{font-size:7.5px;color:#6B6B68;}'
     +'.bar{background:#2B4E8A;padding:7px 22px;text-align:center;}.bar p{font-size:10px;font-weight:700;color:#fff;letter-spacing:.1em;text-transform:uppercase;}'
     +'.bar.ft p{font-size:8.5px;letter-spacing:.04em;}'
     +'.body{flex:1;padding:10px 22px 8px;display:flex;flex-direction:column;gap:6px;}'
@@ -2602,7 +2621,7 @@ function openPrint(){
     +'</div>'
     +'<div class="nor">This is not an official receipt</div>'
     +'</div>'
-    +'<div class="bar ft"><p>@KlayGoPH &nbsp;|&nbsp; 0992.816.4718</p></div>'
+    +'<div class="bar ft"><p>Klaygo PH &nbsp;&middot;&nbsp; Cleaning Services &nbsp;&middot;&nbsp; Metro Manila &nbsp;&middot;&nbsp; @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</p></div>'
     +'</div>'
     +'<scr'+'ipt>window.onload=function(){window.print();}<\/sc'+'ript>'
     +'</body></html>');

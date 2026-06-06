@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Say Hello! — Klaygo PH</title>
-<link href="https://fonts.cdnfonts.com/css/argentum-novus" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap;}
+@font-face{font-family:'Argentum Novus';src:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/fonts/ArgentumNovus-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+</style>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -19,27 +25,51 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:var(--dk);font-size:14px;line-height:1.55;}
 
-/* ── NAV ── */
-.nav-wrap{position:sticky;top:0;z-index:200;}
-.nav-top{background:var(--deepnav);height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;}
+/* ── NAV shared ── */
+.nav-wrap{position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(13,31,60,.15);}
+.nav-top{background:#0D1F3C;height:clamp(56px,12vh,90px);display:flex;align-items:center;justify-content:space-between;padding:0 32px;transition:height .3s ease;}
+.nav-logo{height:26px;filter:brightness(0) invert(1);}
+.nav-brand-text{font-family:'Argentum Novus','DM Sans',sans-serif;font-size:10px;color:rgba(247,249,252,.5);line-height:1.4;display:flex;flex-direction:column;}
+.nav-brand-text strong{color:rgba(247,249,252,.75);font-weight:700;}
 .nav-top-left{display:flex;align-items:center;gap:12px;}
-.nav-logo{height:24px;}
-.nav-brand-text{font-family:'Argentum Novus',sans-serif;font-size:10px;color:rgba(247,249,252,.45);line-height:1.35;display:flex;flex-direction:column;}
-.nav-brand-text strong{color:rgba(247,249,252,.7);font-weight:600;}
 .nav-top-right{display:flex;align-items:center;gap:10px;}
-.nav-hamburger{background:none;border:none;cursor:pointer;color:var(--nav-light);padding:6px;display:flex;align-items:center;border-radius:6px;transition:background .15s;}
-.nav-hamburger:hover{background:rgba(255,255,255,.08);}
-.nav-sub{background:var(--mn);display:flex;align-items:center;padding:0 20px;height:38px;gap:0;border-top:1px solid rgba(255,255,255,.06);}
-.nav-tab{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:6px 20px;display:flex;align-items:center;position:relative;transition:all .15s;white-space:nowrap;border-radius:50px;}
-.nav-tab:hover{color:rgba(247,249,252,.9);}
-.nav-tab.active{color:var(--deepnav);background:#F7F9FC;font-weight:700;}
-.nav-mobile-page{font-family:'Argentum Novus',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);display:none;position:absolute;left:50%;transform:translateX(-50%);}
-.nav-menu-overlay{display:none;position:fixed;inset:0;background:var(--deepnav);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+.nav-back-btn{background:none;border:none;cursor:pointer;padding:0;width:36px;height:36px;display:none;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;}
+.nav-back-btn img{width:28px;height:auto;display:block;}
+.nav-mobile-page{font-family:'Argentum Novus','DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;}
+.nav-hamburger{background:#F7F9FC;border:none;cursor:pointer;padding:7px 9px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:background .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.12);}
+.nav-hamburger:hover{background:#EBF1FA;}
+.nav-hamburger img{width:28px;height:auto;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+.nav-hamburger.rotating img{transform:rotate(360deg);}
+.nav-sub{background:#2B4E8A;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(255,255,255,.07);}
+.nav-tab{font-family:'Argentum Novus','DM Sans',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:50px;transition:all .15s;white-space:nowrap;}
+.nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
+.nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
+.nav-menu-overlay{display:none;position:fixed;inset:0;background:#0D1F3C;z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
 .nav-menu-overlay.open{display:flex;}
-.nav-menu-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--nav-light);cursor:pointer;font-size:24px;padding:8px;font-family:inherit;}
-.nav-menu-pill{font-family:'Argentum Novus',sans-serif;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-light);text-decoration:none;border:1.5px solid rgba(247,249,252,.25);border-radius:50px;padding:14px 48px;transition:all .15s;width:220px;text-align:center;}
-.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.18);border-color:var(--nav-light);}
-@media(max-width:660px){.nav-brand-text{display:none;}.nav-mobile-page{display:block;}.nav-top{position:relative;}.nav-sub{display:none;}}
+.nav-menu-close{position:absolute;top:22px;right:28px;background:none;border:none;color:#F7F9FC;cursor:pointer;font-size:28px;padding:8px;opacity:.7;transition:opacity .15s;}
+.nav-menu-close:hover{opacity:1;}
+.nav-menu-pill{font-family:'Argentum Novus','DM Sans',sans-serif;font-size:18px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,249,252,.78);text-decoration:none;border:none;border-radius:50px;padding:15px 40px;min-width:190px;text-align:center;opacity:0;transform:translateY(-8px);transition:background .18s,opacity .22s ease,transform .22s ease;}
+.nav-menu-pill.visible{opacity:1;transform:translateY(0);}
+.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.12);color:#F7F9FC;}
+.nav-menu-pill:nth-child(2){transition-delay:.06s;}
+.nav-menu-pill:nth-child(3){transition-delay:.12s;}
+.breadcrumb-bar{background:#2B4E8A;border-bottom:1px solid rgba(168,191,224,.2);padding:7px clamp(14px,4vw,32px);}
+.breadcrumb{list-style:none;display:flex;align-items:center;gap:7px;padding:0;margin:0;}
+.bc-item{font-size:11.5px;color:rgba(247,249,252,.75);}
+.bc-link{color:rgba(247,249,252,.9);text-decoration:none;font-weight:500;}
+.bc-link:hover{color:#fff;text-decoration:underline;}
+.bc-current{color:#fff;font-weight:700;}
+.bc-sep{color:rgba(168,191,224,.5);font-size:11px;}
+@media(max-width:700px){
+  .nav-top{padding:0 16px;position:relative;}
+  .nav-brand-text{display:none;}
+  .nav-logo{height:22px;}
+  .nav-back-btn{display:flex;}
+  .nav-mobile-page{display:block;}
+  .nav-sub{display:none;}
+  .nav-hamburger img{width:24px;}
+}
+@media(min-width:701px){.nav-back-btn{display:none;}}.nav-top{position:relative;}.nav-sub{display:none;}}
 
 /* ── HERO ── */
 .hero{background:linear-gradient(135deg,var(--mn) 0%,#1e3d7a 100%);padding:48px 24px 52px;text-align:center;}
@@ -87,20 +117,20 @@ body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:var(--dk);font-si
 .btn-white:hover{background:var(--pa);transform:translateY(-1px);}
 
 /* ── FOLLOW BAR ── */
-.follow-bar{background:#fff;border-top:1px solid var(--bd);padding:20px;text-align:center;}
-.follow-text{font-size:12px;color:var(--gr);margin-bottom:10px;}
-.follow-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-.follow-link{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--pr);text-decoration:none;}
-.follow-link:hover{opacity:.75;}
-
-/* ── FOOTER ── */
-footer{background:var(--mn);padding:16px 20px;}
-.footer-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-footer span{font-size:11px;color:rgba(255,255,255,.6);}
-.footer-contacts{display:flex;align-items:center;gap:10px;}
-.footer-icon-link{color:rgba(255,255,255,.5);transition:color .15s;display:flex;}
-.footer-icon-link:hover{color:#fff;}
-.copyright-bar{background:#1e3a70;text-align:center;font-size:10.5px;color:rgba(255,255,255,.35);padding:8px 20px;}
+.follow-bar{background:#2B4E8A;padding:24px;text-align:center;}
+.follow-text{font-size:12.5px;color:rgba(255,255,255,.8);margin-bottom:12px;}
+.follow-links{display:flex;justify-content:center;gap:10px;flex-wrap:nowrap;overflow-x:auto;}
+.follow-link{display:inline-flex;align-items:center;gap:7px;color:#F7F9FC;font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 18px;border:1.5px solid rgba(255,255,255,.25);border-radius:30px;transition:all .14s;white-space:nowrap;}
+.follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);}
+footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,255,.08);}
+.footer-inner{display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+.footer-inner span{color:rgba(247,249,252,.45);font-size:clamp(7.5px,2vw,11px);font-family:'DM Sans',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.copyright-bar{background:#2C2C2A;text-align:center;font-size:11px;color:rgba(247,249,252,.45);padding:11px 20px;font-family:'DM Sans',sans-serif;}
+.copyright-bar a{color:rgba(247,249,252,.45);text-decoration:none;}
+#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:38px;height:38px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;}
+#back-to-top img{width:38px;height:38px;display:block;filter:drop-shadow(0 4px 14px rgba(13,31,60,.28));}
+#back-to-top:hover{transform:translateY(-3px);}
+#back-to-top.visible{display:flex;opacity:1;}
 
 /* Menu animation */
 .nav-hamburger{transition:transform .4s ease;transform-origin:center;}
@@ -114,7 +144,7 @@ footer span{font-size:11px;color:rgba(255,255,255,.6);}
 
 <!-- NAV MENU OVERLAY -->
 <div class="nav-menu-overlay" id="nav-menu">
-  <button class="nav-menu-close" onclick="closeMenu()">✕</button>
+  <button class="nav-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
   <a href="index.html" class="nav-menu-pill">Home</a>
   <a href="pricing.html" class="nav-menu-pill">Pricing</a>
   <a href="sayhello.html" class="nav-menu-pill active">Say Hello!</a>
@@ -122,20 +152,35 @@ footer span{font-size:11px;color:rgba(255,255,255,.6);}
 <div class="nav-wrap">
   <div class="nav-top">
     <div class="nav-top-left">
-      <a href="index.html" aria-label="Klaygo PH Home"><img id="logo-img" class="nav-logo" alt="Klaygo PH"></a>
+      <a href="pricing.html" class="nav-back-btn" aria-label="Go back">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back">
+      </a>
+      <a href="index.html" aria-label="Klaygo PH Home">
+        <img class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);">
+      </a>
       <div class="nav-brand-text"><strong>KLAYGOPH | Cleaning Services</strong><span>Clearer space, Clearer mind.</span></div>
     </div>
     <div class="nav-top-right">
-      <button class="nav-hamburger" onclick="openMenu()"><svg width="20" height="16" viewBox="0 0 20 16" fill="none"><rect width="20" height="2.5" rx="1.25" fill="currentColor"/><rect y="6.5" width="14" height="2.5" rx="1.25" fill="currentColor"/><rect y="13" width="20" height="2.5" rx="1.25" fill="currentColor"/></svg></button>
+      <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Blue.png" alt="Menu">
+      </button>
     </div>
   </div>
   <div class="nav-sub">
-    <a href="index.html" class="nav-tab">Home</a>
     <span class="nav-mobile-page">SAY HELLO!</span>
+    <a href="index.html" class="nav-tab">Home</a>
     <a href="pricing.html" class="nav-tab">Pricing</a>
     <a href="sayhello.html" class="nav-tab active">Say Hello!</a>
   </div>
 </div>
+
+<nav aria-label="Breadcrumb" class="breadcrumb-bar">
+  <ol class="breadcrumb">
+    <li class="bc-item"><a href="index.html" class="bc-link">Home</a></li>
+    <li class="bc-sep" aria-hidden="true">/</li>
+    <li class="bc-item bc-current" aria-current="page">Say Hello!</li>
+  </ol>
+</nav>
 
 <!-- HERO -->
 <div class="hero">
@@ -234,69 +279,12 @@ footer span{font-size:11px;color:rgba(255,255,255,.6);}
     </a>
   </div>
 </div>
-
 <footer>
   <div class="footer-inner">
-    <span>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila</span>
-    <span class="footer-contacts">
-      <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="footer-icon-link" title="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-      <a href="https://m.me/klaygoph" target="_blank" rel="noopener" class="footer-icon-link" title="Messenger">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
-      </a>
-      @KlayGoPH &nbsp;|&nbsp; 0992.816.4718
-    </span>
+    <span>Klaygo PH &nbsp;&middot;&nbsp; Cleaning Services &nbsp;&middot;&nbsp; Metro Manila &nbsp;&middot;&nbsp; @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</span>
   </div>
 </footer>
-<div style="background:#2C2C2A;text-align:center;font-size:11px;color:rgba(247,249,252,.45);padding:11px 20px;font-family:DM Sans,sans-serif;">© 2025 Klaygo PH. All rights reserved.</div>
+<div class="copyright-bar">&copy; 2026 Klaygo PH. All rights reserved. &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></div>
 
-<script>
-var LOGO_URL='https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
-var BTT_IMG='https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
-document.getElementById('logo-img').src=LOGO_URL;
-document.getElementById('logo-img').style.filter='brightness(0) invert(1)';
-
-// ── MENU ──
-function openMenu(){
-  var overlay=document.getElementById('nav-menu');
-  var hbtn=document.querySelector('.nav-hamburger');
-  overlay.classList.add('open');
-  document.body.style.overflow='hidden';
-  if(hbtn)hbtn.classList.add('rotating');
-  setTimeout(function(){
-    var pills=overlay.querySelectorAll('.nav-menu-pill');
-    pills.forEach(function(p,i){setTimeout(function(){p.classList.add('visible');},i*90);});
-  },60);
-}
-function closeMenu(){
-  var overlay=document.getElementById('nav-menu');
-  var hbtn=document.querySelector('.nav-hamburger');
-  overlay.classList.remove('open');
-  document.body.style.overflow='';
-  if(hbtn)hbtn.classList.remove('rotating');
-  overlay.querySelectorAll('.nav-menu-pill').forEach(function(p){p.classList.remove('visible');});
-}
-
-// ── BACK TO TOP ──
-(function(){
-  var btn=document.createElement('button');
-  btn.id='back-to-top';
-  btn.setAttribute('aria-label','Back to top');
-  btn.style.cssText='position:fixed;bottom:28px;right:22px;z-index:8000;width:38px;height:38px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;';
-  var img=document.createElement('img');
-  img.src=BTT_IMG;img.alt='Back to top';img.width=38;img.height=38;
-  img.style.cssText='width:38px;height:38px;display:block;filter:drop-shadow(0 4px 14px rgba(13,31,60,.28));';
-  btn.appendChild(img);
-  btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
-  btn.onmouseenter=function(){btn.style.transform='translateY(-3px)';};
-  btn.onmouseleave=function(){btn.style.transform='';};
-  document.body.appendChild(btn);
-  window.addEventListener('scroll',function(){
-    if(window.scrollY>300){btn.style.display='flex';setTimeout(function(){btn.style.opacity='1';},10);}
-    else{btn.style.opacity='0';setTimeout(function(){if(parseFloat(btn.style.opacity)<0.1)btn.style.display='none';},220);}
-  },{passive:true});
-})();
-</script>
 </body>
 </html>
