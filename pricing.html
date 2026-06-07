@@ -191,13 +191,13 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* ── NAV HAMBURGER — rotates 360° clockwise on open ── */
 .nav-hamburger{background:#F7F9FC;border:none;cursor:pointer;padding:7px 9px;width:auto;height:auto;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:background .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.12);}
 .nav-hamburger:hover{background:#EBF1FA;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.nav-hamburger svg{display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
-.nav-hamburger.rotating svg{transform:rotate(360deg);}
+.nav-hamburger img{display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+.nav-hamburger.rotating img{transform:rotate(360deg);}
 .btn-ref{background:transparent;border:1px solid rgba(168,191,224,.25);color:var(--li);border-radius:5px;padding:4px 10px;font-size:10px;cursor:pointer;font-family:inherit;}
 .btn-ref:hover{border-color:var(--li);color:#fff;}
 
 /* ── NAV SUB-BAR ── */
-.nav-sub{background:var(--mn);display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(255,255,255,.07);}
+.nav-sub{background:#0D1F3C;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(168,191,224,.1);}
 .nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:50px;transition:all .15s;white-space:nowrap;}
 .nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
 .nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
@@ -252,17 +252,17 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 }
 .menu-bubbles{display:none;}
 
-/* ── BACK TO TOP — SVG inline ── */
-#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:42px;height:42px;border:none;background:#0D1F3C;border-radius:50%;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s,background .15s;opacity:0;box-shadow:0 4px 14px rgba(13,31,60,.35);}
-#back-to-top svg{display:block;pointer-events:none;}
-#back-to-top:hover{transform:translateY(-3px);background:#2B4E8A;}
+/* ── BACK TO TOP — GitHub PNG asset ── */
+#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:42px;height:42px;border:none;background:transparent;border-radius:50%;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;box-shadow:none;}
+#back-to-top img{display:block;width:42px;height:42px;border-radius:50%;}
+#back-to-top:hover{transform:translateY(-3px);}
 #back-to-top.visible{display:flex;opacity:1;}
 
 /* ── CLARIFIER — continues #2B4E8A, then white body ── */
 /* clarifier CSS defined in hero section above */
 
 /* ── PROGRESS BAR — inside sticky nav-wrap, no separate sticky needed ── */
-.progress-wrap{background:#2B4E8A;padding:5px 32px 2px;}
+.progress-wrap{background:#0D1F3C;padding:5px 32px 2px;}
 @media(max-width:700px){.progress-wrap{padding:5px 16px 2px;}}
 .progress-bar-track{height:3px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:#A8BFE0;border-radius:2px;transition:width .4s ease;width:0%;}
@@ -567,7 +567,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .avail-box{padding:0 12px 10px;border:none;background:transparent;}
 .avail-box.none{padding:8px 20px;font-size:11.5px;color:var(--gr);border-top:1px solid #EBF1FA;}
 .avail-box.na{padding:8px 20px;font-size:11.5px;color:var(--red);font-weight:500;border-top:1px solid #EBF1FA;}
-.avail-card{background:#2B4E8A;border-radius:16px;padding:14px 16px;}
+.avail-card{background:#2B4E8A;border-radius:16px;padding:14px 16px;border:2px solid rgba(247,249,252,.35);}
 .avail-for-line{font-size:13px;font-weight:700;color:#F7F9FC;margin-bottom:6px;}
 .avail-summary{font-size:11.5px;color:rgba(168,191,224,.9);line-height:1.65;}
 .transpo-note{padding:6px 20px;font-size:10.5px;color:var(--gr);line-height:1.6;border-top:1px solid #EBF1FA;}
@@ -981,9 +981,9 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <!-- Top bar: #0D1F3C -->
   <div class="nav-top">
     <div class="nav-top-left">
-      <!-- Mobile: back button — inline SVG, never broken -->
+      <!-- Mobile: back button — GitHub PNG asset -->
       <a href="index.html" class="nav-back-btn" aria-label="Go back to Home">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F7F9FC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Back%20Button.png" width="28" height="28" alt="Back" style="display:block;">
       </a>
       <a href="index.html" aria-label="Klaygo PH Home"><img id="logo-img" class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);"></a>
       <div class="nav-brand-text">
@@ -993,13 +993,9 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     </div>
     <div class="nav-top-right">
       <button class="btn-ref" onclick="refreshCal()">Refresh Calendar</button>
-      <!-- Inline SVG menu button — never broken, no external image needed -->
+      <!-- Hamburger menu button — PNG asset, consistent with all pages -->
       <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2B4E8A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Blue.png" width="26" height="26" alt="Menu" style="display:block;">
       </button>
     </div>
   </div>
@@ -2573,25 +2569,32 @@ function openPrint(){
     +'body{display:flex;flex-direction:column;position:relative;}'
     +'.bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url("'+PRINT_BG+'") center/cover no-repeat;z-index:0;}'
     +'.cnt{position:relative;z-index:1;display:flex;flex-direction:column;min-height:210mm;}'
-    +'.hdr{padding:22px 22px 8px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;border-bottom:2px solid #2B4E8A;}'
-    +'.hdr img{height:30px;margin-bottom:4px;}.hdr .eid{font-size:9px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;margin-bottom:1px;}.hdr .dt{font-size:7.5px;color:#6B6B68;}'
+    +'.hdr{padding:18px 22px 10px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;border-bottom:2px solid #2B4E8A;}'
+    +'.hdr img{height:28px;margin-bottom:5px;}'
+    +'.hdr .eid{font-size:10px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;margin-bottom:2px;}'
+    +'.hdr .dt{font-size:7.5px;color:#6B6B68;}'
     +'.bar{background:#2B4E8A;padding:7px 22px;text-align:center;}.bar p{font-size:10px;font-weight:700;color:#fff;letter-spacing:.1em;text-transform:uppercase;}'
     +'.bar.ft p{font-size:8.5px;letter-spacing:.04em;}'
     +'.body{flex:1;padding:10px 22px 8px;display:flex;flex-direction:column;gap:6px;}'
+    +'.appt-box{background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:6px;padding:8px 10px;}'
+    +'.appt-for{font-size:9px;font-weight:800;color:#2B4E8A;letter-spacing:.02em;margin-bottom:3px;}'
+    +'.appt-detail{font-size:8.5px;color:#3D6399;line-height:1.55;}'
     +'.ctbl{width:100%;border-collapse:collapse;font-size:8.5px;}'
     +'.ctbl td{padding:2.5px 3px;line-height:1.4;vertical-align:top;border-bottom:1px solid #EBF1FA;}'
-    +'.ctbl td:first-child{color:#6B6B68;width:52px;font-weight:600;}'
+    +'.ctbl td:first-child{color:#6B6B68;width:56px;font-weight:600;}'
     +'.stl{font-size:8.5px;font-weight:800;color:#2B4E8A;border-bottom:1.5px solid #2B4E8A;padding-bottom:3px;letter-spacing:.05em;text-transform:uppercase;}'
-    +'table.c{width:100%;border-collapse:collapse;}'
-    +'table.c tr td{padding:3.5px 3px;border-bottom:1px solid #EBF1FA;font-size:10px;line-height:1.3;}'
-    +'table.c tr td:last-child{text-align:right;font-weight:600;}'
+    +'table.c{width:100%;border-collapse:collapse;table-layout:fixed;}'
+    +'table.c tr td{padding:3.5px 4px;border-bottom:1px solid #EBF1FA;font-size:10px;line-height:1.3;word-wrap:break-word;}'
+    +'table.c tr td:first-child{width:72%;}'
+    +'table.c tr td:last-child{text-align:right;font-weight:600;width:28%;white-space:nowrap;}'
     +'.tr td{border-bottom:none!important;padding-top:6px!important;border-top:1.5px solid #2B4E8A!important;font-size:12px;font-weight:700;color:#2B4E8A;}'
+    +'.tr td:last-child{text-align:right;}'
     +'.trow{background:rgba(235,241,250,.6);border-radius:4px;padding:5px 8px;font-size:9px;color:#2B4E8A;font-weight:700;}'
     +'.tnote{font-size:7.5px;color:#6B6B68;font-style:italic;margin-top:2px;line-height:1.4;}'
     +'.pay-s{background:rgba(235,241,250,.6);border-radius:5px;padding:7px 10px;}'
     +'.pay-s h4{font-size:8px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;}'
-    +'.pr{display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px;}'
-    +'.pr .pk{color:#6B6B68;}.pr .pv{font-weight:600;color:#2C2C2A;}'
+    +'.pr{display:flex;justify-content:space-between;align-items:baseline;gap:4px;font-size:9px;margin-bottom:3px;}'
+    +'.pr .pk{color:#6B6B68;flex:1;}.pr .pv{font-weight:600;color:#2C2C2A;white-space:nowrap;}'
     +'.pr.pn .pk{color:#2B4E8A;font-weight:700;}.pr.pn .pv{color:#1B8A4C;font-size:11px;font-weight:800;}'
     +'.wb{background:#EBF1FA;border:1px solid #A8BFE0;border-radius:4px;padding:5px 8px;}'
     +'.wb strong{display:block;font-size:8.5px;color:#2B4E8A;font-weight:800;margin-bottom:1px;}'
@@ -2607,10 +2610,15 @@ function openPrint(){
     +'</style></head><body>'
     +'<div class="bg"></div>'
     +'<div class="cnt">'
-    +'<div class="hdr"><img src="'+BLUE_LOGO+'" alt="Klaygo PH"><div class="dt">Service Estimate &middot; '+dateStr+'</div><div class="eid">'+(currentEstId||'KGPH-EST')+'</div></div>'
+    +'<div class="hdr"><img src="'+BLUE_LOGO+'" alt="Klaygo PH"><div class="eid">'+(currentEstId||'KGPH-EST')+'</div><div class="dt">Service Estimate &middot; '+dateStr+'</div></div>'
     +'<div class="bar"><p>Cleaner Space, Clearer Mind.</p></div>'
     +'<div class="body">'
     +(cR?'<table class="ctbl">'+cR+'</table>':'')
+    +(dl||tl?'<div class="appt-box"><div class="appt-for">for '+(tl?tl+', ':'')+dl+'</div>'
+      +(bp.label?'<div class="appt-detail">'+bp.label+'</div>':'')
+      +(S.ln?'<div class="appt-detail">Transport — '+S.ln+'</div>':'')
+      +(S.sched&&S.sched!=='Initial / One-time'?'<div class="appt-detail">Schedule: '+S.sched+'</div>':'')
+      +'</div>':'')
     +'<div class="stl">Services &amp; Charges</div>'
     +'<table class="c">'+rowsHtml+'</table>'
     +'<div class="tnote">This estimate includes a provisional transport fee. Final amount confirmed based on your exact address.</div>'
@@ -3159,12 +3167,12 @@ function togWHN(){
   document.querySelectorAll('.whn-reveal').forEach(function(el){obs.observe(el);});
 })();
 
-// ── BACK TO TOP — inline SVG, always visible ──────────────────
+// ── BACK TO TOP — GitHub PNG asset ──────────────────────
 (function(){
   var btn=document.createElement('button');
   btn.id='back-to-top';
   btn.setAttribute('aria-label','Back to top');
-  btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F7F9FC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  btn.innerHTML='<img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png" width="42" height="42" alt="Back to top" style="display:block;border-radius:50%;">';
   btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
   document.body.appendChild(btn);
   window.addEventListener('scroll',function(){

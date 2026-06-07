@@ -46,9 +46,9 @@ body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14p
 .nav-top-right{display:flex;align-items:center;gap:10px;}
 .nav-hamburger{background:#F7F9FC;border:none;cursor:pointer;padding:7px 9px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:background .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.12);}
 .nav-hamburger:hover{background:#EBF1FA;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.nav-hamburger svg{display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
-.nav-hamburger.rotating svg{transform:rotate(360deg);}
-.nav-sub{background:#2B4E8A;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(255,255,255,.07);}
+.nav-hamburger img{display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+.nav-hamburger.rotating img{transform:rotate(360deg);}
+.nav-sub{background:#0D1F3C;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(168,191,224,.1);}
 .nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:50px;transition:all .15s;white-space:nowrap;}
 .nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
 .nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
@@ -237,11 +237,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
     </div>
     <div class="nav-top-right">
       <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2B4E8A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Blue.png" width="26" height="26" alt="Menu" style="display:block;">
       </button>
     </div>
   </div>

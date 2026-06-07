@@ -30,7 +30,7 @@ body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14p
 .nav-hamburger:hover{background:#EBF1FA;}
 .nav-hamburger img{width:28px;height:auto;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
 .nav-hamburger.rotating img{transform:rotate(360deg);}
-.nav-sub{background:#2B4E8A;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(255,255,255,.07);}
+.nav-sub{background:#0D1F3C;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(168,191,224,.1);}
 .nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:50px;transition:all .15s;white-space:nowrap;}
 .nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
 .nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
@@ -75,11 +75,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   .nav-hamburger img{width:24px;}
 }
 @media(min-width:701px){.nav-back-btn{display:none;}}
-  .nav-top{padding:0 16px;}
-  .nav-sub{display:none;}
-  .breadcrumb-bar{padding:7px 16px;}
-  .hamburger{display:flex;}
-}
 </style>
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
 </head>
@@ -115,37 +110,6 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
   </div>
   <div class="nav-sub">
     <span class="nav-mobile-page">PRIVACY POLICY</span>
-    <a href="index.html" class="nav-tab">Home</a>
-    <a href="pricing.html" class="nav-tab">Pricing</a>
-    <a href="sayhello.html" class="nav-tab">Say Hello!</a>
-  </div>
-</div>
-
-<nav aria-label="Breadcrumb" class="breadcrumb-bar">
-  <ol class="breadcrumb">
-    <li class="bc-item"><a href="index.html" class="bc-link">Home</a></li>
-    <li class="bc-sep" aria-hidden="true">/</li>
-    <li class="bc-item bc-current" aria-current="page">Privacy Policy</li>
-  </ol>
-</nav>
-</div>
-
-<div class="nav-wrap">
-  <div class="nav-top">
-    <div class="nav-top-left">
-      <a href="index.html" aria-label="Klaygo PH Home">
-        <img class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH">
-      </a>
-      <div class="nav-brand-text">
-        <strong>KLAYGOPH | Cleaning Services</strong>
-        <span>Clearer space, Clearer mind.</span>
-      </div>
-    </div>
-    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="nav-sub">
     <a href="index.html" class="nav-tab">Home</a>
     <a href="pricing.html" class="nav-tab">Pricing</a>
     <a href="sayhello.html" class="nav-tab">Say Hello!</a>
