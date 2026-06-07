@@ -191,8 +191,8 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* ── NAV HAMBURGER — rotates 360° clockwise on open ── */
 .nav-hamburger{background:#F7F9FC;border:none;cursor:pointer;padding:7px 9px;width:auto;height:auto;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:background .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.12);}
 .nav-hamburger:hover{background:#EBF1FA;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.nav-hamburger img{width:28px;height:auto;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
-.nav-hamburger.rotating img{transform:rotate(360deg);}
+.nav-hamburger svg{display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+.nav-hamburger.rotating svg{transform:rotate(360deg);}
 .btn-ref{background:transparent;border:1px solid rgba(168,191,224,.25);color:var(--li);border-radius:5px;padding:4px 10px;font-size:10px;cursor:pointer;font-family:inherit;}
 .btn-ref:hover{border-color:var(--li);color:#fff;}
 
@@ -204,7 +204,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 
 /* ── MOBILE BACK / PAGE LABEL ── */
 .nav-back-btn{background:none;border:none;cursor:pointer;padding:0;width:36px;height:36px;display:none;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;}
-.nav-back-btn img{width:28px;height:auto;display:block;}
+.nav-back-btn svg{display:block;}
 .nav-mobile-page{font-family:var(--font-brand);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;}
 
 @media(max-width:700px){
@@ -216,36 +216,54 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
   .nav-mobile-page{display:block;}
   .nav-sub{display:none;}
   .btn-ref{display:none;}
-  .nav-hamburger img{width:24px;}
+  .nav-hamburger svg{width:22px;height:22px;}
 }
 @media(min-width:701px){.nav-back-btn{display:none;}}
 
-/* ── MENU OVERLAY — bubbles + staggered drop-in ── */
+/* ── MENU OVERLAY — full-screen mobile, sidebar on desktop ── */
 .nav-menu-overlay{display:none;position:fixed;inset:0;background:#0D1F3C;z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:24px;overflow:hidden;}
 .nav-menu-overlay.open{display:flex;}
 .menu-panel{display:contents;}
 .nav-menu-close{position:absolute;top:22px;right:28px;background:none;border:none;color:#F7F9FC;cursor:pointer;font-size:28px;padding:8px;opacity:.7;transition:opacity .15s;}
 .nav-menu-close:hover{opacity:1;}
-.nav-menu-pill{font-family:var(--font-brand);font-size:18px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,249,252,.78);text-decoration:none;border:none;border-radius:50px;padding:15px 40px;width:auto;min-width:190px;text-align:center;opacity:0;transform:translateY(-8px);transition:background .18s,opacity .22s ease,transform .22s ease;}
+.nav-menu-pill{font-family:var(--font-brand);font-size:18px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,249,252,.78);text-decoration:none;border:none;border-radius:50px;padding:15px 40px;width:auto;min-width:190px;text-align:center;opacity:0;transform:translateY(-8px);transition:background .18s,opacity .22s ease,transform .22s ease;cursor:pointer;pointer-events:auto;}
 .nav-menu-pill.visible{opacity:1;transform:translateY(0);}
 .nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.12);color:#F7F9FC;}
 .nav-menu-pill:nth-child(2){transition-delay:.06s;}
 .nav-menu-pill:nth-child(3){transition-delay:.12s;}
 .nav-menu-pill:nth-child(4){transition-delay:.18s;}
+.nav-menu-pill:nth-child(5){transition-delay:.24s;}
+.nav-menu-pill:nth-child(6){transition-delay:.30s;}
+/* Desktop: slide-in sidebar from right (~25% of screen width) */
+@media(min-width:701px){
+  .nav-menu-overlay{
+    left:auto;
+    width:300px;
+    align-items:flex-start;
+    justify-content:flex-start;
+    padding:80px 0 40px 32px;
+    gap:6px;
+    box-shadow:-16px 0 48px rgba(0,0,0,.45);
+    border-left:1px solid rgba(168,191,224,.1);
+    overflow-y:auto;
+  }
+  .nav-menu-close{top:22px;right:22px;}
+  .nav-menu-pill{font-size:14px;padding:11px 20px;min-width:unset;width:calc(100% - 32px);text-align:left;border-radius:12px;}
+}
 .menu-bubbles{display:none;}
 
-/* ── BACK TO TOP — PNG image ── */
-#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:38px;height:38px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;}
-#back-to-top img{width:38px;height:38px;display:block;filter:drop-shadow(0 4px 14px rgba(13,31,60,.28));}
-#back-to-top:hover{transform:translateY(-3px);}
+/* ── BACK TO TOP — SVG inline ── */
+#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:42px;height:42px;border:none;background:#0D1F3C;border-radius:50%;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s,background .15s;opacity:0;box-shadow:0 4px 14px rgba(13,31,60,.35);}
+#back-to-top svg{display:block;pointer-events:none;}
+#back-to-top:hover{transform:translateY(-3px);background:#2B4E8A;}
 #back-to-top.visible{display:flex;opacity:1;}
 
 /* ── CLARIFIER — continues #2B4E8A, then white body ── */
 /* clarifier CSS defined in hero section above */
 
-/* ── PROGRESS BAR ─────────── */
-.progress-wrap{background:#2B4E8A;padding:6px 32px 2px;position:sticky;top:calc(clamp(56px,20vh,140px) + 44px);z-index:190;}
-@media(max-width:700px){.progress-wrap{top:calc(60px + 0px);padding:6px 16px 2px;}}
+/* ── PROGRESS BAR — inside sticky nav-wrap, no separate sticky needed ── */
+.progress-wrap{background:#2B4E8A;padding:5px 32px 2px;}
+@media(max-width:700px){.progress-wrap{padding:5px 16px 2px;}}
 .progress-bar-track{height:3px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:#A8BFE0;border-radius:2px;transition:width .4s ease;width:0%;}
 .progress-label{display:none;}
@@ -256,9 +274,13 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .main{max-width:900px;margin:0 auto;padding:18px 14px 70px;display:grid;grid-template-columns:1fr 280px;gap:14px;align-items:start;}
 @media(max-width:660px){
   .main{grid-template-columns:1fr;padding:12px 12px 30px;}
-  .panel-right{order:2;position:relative;top:auto;}
+  .panel-right{display:none;}/* light estimate hidden on mobile — bottom estimate handles it */
   .pcard{border-radius:20px;}
 }
+@media(max-width:660px){#sticky-bar{display:block;}.toast{bottom:100px!important;}}
+/* Sticky spacer — sits after copyright-bar to fill the area behind sticky-bar without white flash */
+.sticky-spacer{display:none;height:0;}
+@media(max-width:660px){.sticky-spacer{display:block;height:84px;background:#2C2C2A;}}
 
 /* CARD */
 .card{background:#fff;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:20px 18px;margin-bottom:12px;transition:box-shadow .2s;border:1.5px solid #EBF1FA;}
@@ -554,8 +576,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .btn-book:hover{background:var(--pr);box-shadow:0 6px 20px rgba(43,78,138,.3);}
 .btn-copy{display:none;width:calc(100% - 24px);margin:0 12px 6px;padding:10px;background:transparent;color:var(--pr);border:1.5px solid var(--li);border-radius:50px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
 .btn-copy:hover{border-color:var(--pr);background:var(--pa);}
-.btn-print{display:block;width:calc(100% - 24px);margin:0 12px 6px;padding:8px;background:transparent;color:var(--gr);border:1.5px solid #EBF1FA;border-radius:50px;font-size:12px;font-weight:500;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
-.btn-print:hover{border-color:var(--li);color:var(--pr);}
+.btn-print{display:block;width:calc(100% - 24px);margin:0 12px 6px;padding:9px;background:#A8BFE0;color:#0D1F3C;border:1.5px solid #A8BFE0;border-radius:50px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
+.btn-print:hover{background:#EBF1FA;border-color:#EBF1FA;color:#0D1F3C;}
 .btn-reset{display:block;width:calc(100% - 24px);margin:0 12px 12px;padding:5px;background:transparent;color:var(--gr);border:none;font-size:11px;font-family:inherit;cursor:pointer;text-align:center;}
 .btn-reset:hover{color:var(--mn);}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--mn);color:#fff;padding:12px 22px;border-radius:30px;font-size:12.5px;font-weight:500;box-shadow:0 6px 24px rgba(0,0,0,.25);opacity:0;transition:all .3s;z-index:999;text-align:center;max-width:320px;pointer-events:none;}
@@ -664,7 +686,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .sticky-cta{font-size:11.5px;color:#fff;font-weight:700;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.3);padding:8px 18px;border-radius:22px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s;}
 .sticky-cta:hover{background:rgba(255,255,255,.3);border-color:rgba(255,255,255,.5);}
 .sticky-brand{background:#2C2C2A;height:28px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.35);}
-@media(max-width:660px){#sticky-bar{display:block;}body{padding-bottom:96px;}.toast{bottom:100px!important;}}
+@media(max-width:660px){#sticky-bar{display:block;}.toast{bottom:100px!important;}}
 
 /* ── BOTTOM ESTIMATE ────────── */
 #bottom-estimate{display:none;background:#2B4E8A;padding:22px 20px 30px;border-radius:var(--r) var(--r) 0 0;border-top:3px solid #0D1F3C;box-shadow:0 -6px 30px rgba(13,31,60,.25);}
@@ -799,7 +821,9 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .pcard{box-shadow:0 4px 24px rgba(43,78,138,.08);border-color:#EBF1FA;}
 .phead{background:#fff;border-bottom:1px solid #EBF1FA;}
 .pbody{padding:14px 20px;}
-.pay-box{background:#fff;border-top:1px solid #EBF1FA;padding:14px 20px 10px;}
+.pay-box{background:#fff;border-top:1px solid #EBF1FA;padding:14px 0 10px;}
+/* Row text inside pay-box keeps its horizontal indent */
+.pay-box .pr,.pay-box .pay-note{padding-left:20px;padding-right:20px;}
 .discl{background:transparent;border-top:1px solid #EBF1FA;}
 .avail-box{border-top:1px solid #EBF1FA;}
 .transpo-note{border-top:none;padding-top:4px;}
@@ -820,10 +844,11 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
 /* ── WHN ACCORDION WRAPPER ── */
 .whn-acc-wrap{background:#F7F9FC;border-top:1px solid #EBF1FA;border-radius:0 0 var(--r) var(--r);overflow:hidden;}
-.whn-acc-head{display:flex;align-items:center;gap:12px;padding:18px 24px;cursor:pointer;user-select:none;background:#fff;border:1.5px solid #EBF1FA;border-radius:20px;margin:16px 0 0;transition:background .15s;}
+.whn-acc-head{display:flex;align-items:center;gap:14px;padding:18px 24px;cursor:pointer;user-select:none;background:#fff;border:1.5px solid #EBF1FA;border-radius:20px;margin:16px 0 0;transition:background .15s;}
 .whn-acc-head:hover{background:#FAFCFF;}
-.whn-acc-title{font-family:var(--font-brand);font-size:15px;font-weight:800;color:var(--mn);flex:0 0 auto;}
-.whn-acc-sub{font-size:11px;color:var(--gr);flex:1;}
+.whn-acc-text-block{flex:1;min-width:0;}
+.whn-acc-title{font-family:var(--font-brand);font-size:15px;font-weight:800;color:var(--mn);display:block;margin-bottom:3px;}
+.whn-acc-sub{font-size:11px;color:var(--gr);display:block;line-height:1.5;}
 .whn-acc-chevron{font-size:13px;color:var(--li);transition:transform .3s ease;flex:0 0 auto;}
 .whn-acc-wrap.open .whn-acc-chevron{transform:rotate(180deg);}
 #whn-body{display:none;padding-top:0;}
@@ -833,12 +858,14 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 .whn-confirm-note{display:flex;align-items:flex-start;gap:10px;background:#EBF1FA;border:1px solid #A8BFE0;border-radius:12px;padding:12px 16px;margin:16px 24px 0;font-size:12px;color:#3D6399;line-height:1.6;}
 .whn-confirm-icon{font-size:14px;flex-shrink:0;margin-top:1px;}
 
-/* WHN step parallax reveal */
-.whn-reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.25,.46,.45,.94),transform .6s cubic-bezier(.25,.46,.45,.94);}
+/* WHN step: staggered fade-up reveal */
+.whn-reveal{opacity:0;transform:translateY(18px);transition:opacity .55s cubic-bezier(.25,.46,.45,.94),transform .55s cubic-bezier(.25,.46,.45,.94);}
 .whn-reveal.in{opacity:1;transform:translateY(0);}
-.whn-reveal:nth-child(even){transform:translateX(20px);}
-.whn-reveal:nth-child(odd){transform:translateX(-20px);}
-.whn-reveal.in:nth-child(even),.whn-reveal.in:nth-child(odd){transform:translateX(0);}
+.whn-reveal:nth-child(1){transition-delay:0s;}
+.whn-reveal:nth-child(2){transition-delay:.10s;}
+.whn-reveal:nth-child(3){transition-delay:.20s;}
+.whn-reveal:nth-child(4){transition-delay:.30s;}
+.whn-reveal:nth-child(5){transition-delay:.40s;}
 @media(prefers-reduced-motion:reduce){.whn-reveal{opacity:1;transform:none !important;transition:none;}}
 
 
@@ -908,8 +935,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .be-btn:hover{border-color:rgba(168,191,224,.48);color:#F7F9FC;}
 .be-btn-sec{margin:0 12px 6px;display:block;width:calc(100% - 24px);padding:12px;background:transparent;color:rgba(247,249,252,.75);border:1.5px solid rgba(168,191,224,.2);border-radius:50px;font-family:var(--font-brand);font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .14s;}
 .be-btn-sec:hover{border-color:rgba(168,191,224,.48);color:#F7F9FC;}
-.be-btn-print-est{margin:0 12px 14px;display:block;width:calc(100% - 24px);padding:9px;background:transparent;color:rgba(168,191,224,.38);border:1px solid rgba(168,191,224,.1);border-radius:50px;font-family:var(--font-body);font-size:11px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .14s;}
-.be-btn-print-est:hover{color:rgba(247,249,252,.58);border-color:rgba(168,191,224,.28);}
+.be-btn-print-est{margin:0 12px 14px;display:block;width:calc(100% - 24px);padding:11px;background:#A8BFE0;color:#0D1F3C;border:1.5px solid #A8BFE0;border-radius:50px;font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .14s;}
+.be-btn-print-est:hover{background:#EBF1FA;border-color:#EBF1FA;color:#0D1F3C;}
 
 /* Right panel bands (desktop) */
 .pr-band-balance{margin:8px 12px 6px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
@@ -946,15 +973,17 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <a href="index.html" class="nav-menu-pill">Home</a>
   <a href="pricing.html" class="nav-menu-pill active">Pricing</a>
   <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
+  <a href="terms.html" class="nav-menu-pill">Terms of Use</a>
+  <a href="privacy.html" class="nav-menu-pill">Privacy Policy</a>
 </div>
 
 <div class="nav-wrap">
-  <!-- Top bar: #0D1F3C, ~1.5 inches tall -->
+  <!-- Top bar: #0D1F3C -->
   <div class="nav-top">
     <div class="nav-top-left">
-      <!-- Mobile: back button -->
+      <!-- Mobile: back button — inline SVG, never broken -->
       <a href="index.html" class="nav-back-btn" aria-label="Go back to Home">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F7F9FC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
       </a>
       <a href="index.html" aria-label="Klaygo PH Home"><img id="logo-img" class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);"></a>
       <div class="nav-brand-text">
@@ -964,9 +993,13 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     </div>
     <div class="nav-top-right">
       <button class="btn-ref" onclick="refreshCal()">Refresh Calendar</button>
-      <!-- PNG menu button -->
+      <!-- Inline SVG menu button — never broken, no external image needed -->
       <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Blue.png" alt="Menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2B4E8A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
       </button>
     </div>
   </div>
@@ -977,20 +1010,11 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     <a href="pricing.html" class="nav-tab active">Pricing</a>
     <a href="sayhello.html" class="nav-tab">Say Hello!</a>
   </div>
-</div>
-
-
-<nav aria-label="Breadcrumb" class="breadcrumb-bar">
-  <ol class="breadcrumb">
-    <li class="bc-item"><a href="index.html" class="bc-link">Home</a></li>
-    <li class="bc-sep" aria-hidden="true">/</li>
-    <li class="bc-item bc-current" aria-current="page">Pricing</li>
-  </ol>
-</nav>
-
-<div class="progress-wrap">
-  <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
-  <div class="progress-label" id="progress-label"></div>
+  <!-- Progress bar lives here — always flush below nav, never floats -->
+  <div class="progress-wrap">
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    <div class="progress-label" id="progress-label"></div>
+  </div>
 </div>
 
 <div class="hero" id="hero">
@@ -1442,8 +1466,10 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 <!-- WHAT HAPPENS NEXT -->
 <div class="whn-acc-wrap" id="whn-acc-wrap">
   <div class="whn-acc-head" onclick="togWHN()" id="whn-acc-head">
-    <div class="whn-acc-title">What Happens Next</div>
-    <div class="whn-acc-sub">From estimate to spotless home — 6 simple steps</div>
+    <div class="whn-acc-text-block">
+      <div class="whn-acc-title">What Happens Next</div>
+      <div class="whn-acc-sub">From estimate to spotless home — 6 simple steps</div>
+    </div>
     <div class="whn-acc-chevron" id="whn-chev">▼</div>
   </div>
   <div class="whn-section" id="whn-body">
@@ -1654,6 +1680,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   </div>
 </footer>
 <div class="copyright-bar">© 2026 Klaygo PH. All rights reserved. &nbsp;·&nbsp; <a href="terms.html" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:inherit;">Terms of Use</a> &nbsp;·&nbsp; <a href="privacy.html" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:inherit;">Privacy Policy</a></div>
+<div class="sticky-spacer"></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -2099,23 +2126,19 @@ function renderRecurSlots(){
       defAmpm=hh>=12?'pm':'am';
       defHr=hh>12?hh-12:(hh===0?12:hh);
     }
-    var dateLabel=recurSlots[i].date?formatRecurDate(recurSlots[i].date):'Tap to choose a date';
-    html+='<div class="recur-row" style="flex-direction:column;align-items:flex-start;gap:7px;">'
-      +'<div style="display:flex;align-items:center;gap:8px;width:100%;">'
-      +'<span class="recur-date-chip" onclick="openRecurPicker('+i+')" style="cursor:pointer;flex:1;">'
+    var dateLabel=recurSlots[i].date?formatRecurDate(recurSlots[i].date):'Pick a date';
+    html+='<div class="recur-row" style="flex-direction:row;align-items:center;gap:8px;flex-wrap:nowrap;">'
+      +'<span class="recur-date-chip" onclick="openRecurPicker('+i+')" style="cursor:pointer;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'
       +(recurSlots[i].date?dateLabel:'<span style="opacity:.55;">'+dateLabel+'</span>')
       +'</span>'
-      +(recurSlots[i].date?'<span class="recur-change-lnk" onclick="openRecurPicker('+i+')">Change</span>':'')
-      +'<button class="recur-remove" onclick="removeRecurSlot('+i+')">×</button>'
-      +'</div>'
-      +'<div style="display:flex;align-items:center;gap:6px;padding-left:2px;">'
-      +'<select class="recur-sel recur-ampm recur-ampm-'+i+'" onchange="recurAmpmChanged('+i+')">'
+      +'<select class="recur-sel recur-ampm recur-ampm-'+i+'" onchange="recurAmpmChanged('+i+')" style="flex-shrink:0;">'
       +getRecurAmpmOpts(defAmpm)
       +'</select>'
-      +'<select class="recur-sel recur-hr recur-hr-'+i+'" onchange="recurHrChanged('+i+')">'
+      +'<select class="recur-sel recur-hr recur-hr-'+i+'" onchange="recurHrChanged('+i+')" style="flex-shrink:0;">'
       +getRecurHrOpts(defAmpm,defHr)
       +'</select>'
-      +'</div>'
+      +(recurSlots[i].date?'<span class="recur-change-lnk" onclick="openRecurPicker('+i+')" style="flex-shrink:0;">↩</span>':'')
+      +'<button class="recur-remove" onclick="removeRecurSlot('+i+')" style="flex-shrink:0;">×</button>'
       +'</div>';
   }
   c.innerHTML=html; updateRecurDP();
@@ -2698,6 +2721,8 @@ function openMenu(){
     void burger.offsetWidth; // force reflow to restart animation
     burger.classList.add('rotating');
   }
+  // Click on backdrop area (transparent left side on desktop) to close
+  overlay.onclick=function(e){if(e.target===overlay)closeMenu();};
   // Stagger drop-in for menu pills — reset then apply after short delay
   var pills=overlay.querySelectorAll('.nav-menu-pill');
   pills.forEach(function(p){p.classList.remove('visible');});
@@ -3134,15 +3159,12 @@ function togWHN(){
   document.querySelectorAll('.whn-reveal').forEach(function(el){obs.observe(el);});
 })();
 
-// ── BACK TO TOP — PNG button ──────────────────────────────────
+// ── BACK TO TOP — inline SVG, always visible ──────────────────
 (function(){
-  var BTT_IMG='https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
   var btn=document.createElement('button');
   btn.id='back-to-top';
   btn.setAttribute('aria-label','Back to top');
-  var img=document.createElement('img');
-  img.src=BTT_IMG;img.alt='Back to top';img.width=38;img.height=38;
-  btn.appendChild(img);
+  btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F7F9FC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
   btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
   document.body.appendChild(btn);
   window.addEventListener('scroll',function(){
