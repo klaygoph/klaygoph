@@ -11,9 +11,16 @@
 <title>Klaygo PH — Cleaner Space, Clearer Mind</title>
 
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<!-- Manrope — self-hosted body font -->
+<style>
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-ExtraLight.woff2') format('woff2');font-weight:200;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-Light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap;}
+</style>
 <!-- Self-hosted Argentum Novus -->
 <style>
 @font-face{font-family:'Argentum Novus';src:url('fonts/ArgentumNovus-Black.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap;}
@@ -25,8 +32,8 @@
 :root{
   --mn:#0D1F3C;--pr:#2B4E8A;--se:#3D6399;--li:#A8BFE0;--pa:#EBF1FA;--bd:#D0DBF2;
   --dk:#2C2C2A;--gr:#6B6B68;
-  --font-brand:'Argentum Novus','Outfit','DM Sans',sans-serif;
-  --font-body:'DM Sans',system-ui,sans-serif;
+  --font-brand:'Argentum Novus','Outfit',sans-serif;
+  --font-body:'Manrope',system-ui,sans-serif;
   --r:20px;--sh:0 4px 24px rgba(43,78,138,.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -37,7 +44,7 @@ body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14p
    NAV
 ═══════════════════════════════════════════════ */
 .nav-wrap{position:sticky;top:0;z-index:200;}
-.nav-top{background:#0D1F3C;height:clamp(64px,12vh,100px);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,40px);transition:height .3s cubic-bezier(.4,0,.2,1);}
+.nav-top{background:#0D1F3C;height:clamp(72px,14vh,110px);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,40px);transition:height .3s cubic-bezier(.4,0,.2,1);}
 .nav-top.compact{height:clamp(50px,8vh,64px);}
 .nav-top-left{display:flex;align-items:center;gap:14px;}
 .nav-logo{height:28px;width:auto;display:block;}
@@ -46,9 +53,9 @@ body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14p
 .nav-top-right{display:flex;align-items:center;gap:10px;}
 .nav-hamburger{background:#F7F9FC;border:none;cursor:pointer;padding:7px 9px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:background .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.12);}
 .nav-hamburger:hover{background:#EBF1FA;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.nav-hamburger img{display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
-.nav-hamburger.rotating img{transform:rotate(360deg);}
-.nav-sub{background:#0D1F3C;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(168,191,224,.1);}
+.nav-hamburger svg{display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+.nav-hamburger.rotating svg{transform:rotate(360deg);}
+.nav-sub{background:#2B4E8A;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;}
 .nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:50px;transition:all .15s;white-space:nowrap;}
 .nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
 .nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
@@ -61,7 +68,7 @@ body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14p
   .nav-logo{height:22px;}
   .nav-mobile-page{display:block;}
   .nav-sub{display:none;}
-  .nav-hamburger svg{width:22px;height:22px;}
+  .nav-hamburger img{width:30px;height:30px;}
 }
 
 /* Menu overlay */
@@ -237,7 +244,7 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
     </div>
     <div class="nav-top-right">
       <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Blue.png" width="26" height="26" alt="Menu" style="display:block;">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/d50ebc17c041ce8f4e3f3796ba0cb9e635ed5efd/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button.png" alt="Menu" onerror="this.outerHTML='<svg width=26 height=26 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;#F7F9FC&quot; stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><line x1=3 y1=6 x2=21 y2=6/><line x1=3 y1=12 x2=21 y2=12/><line x1=3 y1=18 x2=21 y2=18/></svg>';">
       </button>
     </div>
   </div>
@@ -454,6 +461,25 @@ function closeMenu(){
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+// ── BACK TO TOP — PNG image with SVG fallback ──
+(function(){
+  var BTT='https://raw.githubusercontent.com/klaygoph/klaygoph/d50ebc17c041ce8f4e3f3796ba0cb9e635ed5efd/assets/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
+  var btn=document.createElement('button');btn.id='back-to-top';btn.setAttribute('aria-label','Back to top');
+  btn.style.cssText='position:fixed;bottom:28px;right:22px;z-index:8000;width:44px;height:44px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;';
+  var img=document.createElement('img');img.src=BTT;img.alt='';img.width=44;img.height=44;
+  img.style.cssText='width:44px;height:44px;display:block;filter:drop-shadow(0 4px 14px rgba(13,31,60,.28));';
+  img.onerror=function(){btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F7F9FC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';btn.style.background='#0D1F3C';btn.style.borderRadius='50%';btn.style.alignItems='center';btn.style.justifyContent='center';};
+  btn.appendChild(img);
+  btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+  btn.addEventListener('mouseenter',function(){btn.style.transform='translateY(-3px)';});
+  btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+  document.body.appendChild(btn);
+  window.addEventListener('scroll',function(){
+    var vis=window.scrollY>300;
+    btn.style.display=vis?'flex':'none';
+    btn.style.opacity=vis?'1':'0';
+  },{passive:true});
+})();
 </script>
 </body>
 </html>
