@@ -84,19 +84,21 @@ html{background:#2C2C2A;}body{font-family:'Manrope',sans-serif;background:#F7F9F
   position:relative;overflow:hidden;
   min-height:100vh;
   min-height:100dvh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(40px,6vw,80px) clamp(22px,5vw,64px) clamp(40px,6vw,72px);
+  display:flex;flex-direction:column;justify-content:flex-start;
+  padding:clamp(56px,10vh,100px) clamp(28px,5vw,72px) clamp(48px,7vh,80px);
 }
 .hero::before{content:'';position:absolute;inset:0;pointer-events:none;}
-.hero-content{position:relative;z-index:2;}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;flex:1;}
 
 /* Text always visible — animation is enhancement only */
-.hero-eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:20px;}
-.hero h1{font-family:var(--font-brand);font-size:clamp(40px,7vw,80px);font-weight:900;color:#F7F9FC;line-height:1.0;margin-bottom:16px;letter-spacing:-.8px;}
+.hero-eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:clamp(18px,3vh,32px);}
+.hero h1{font-family:var(--font-brand);font-size:clamp(36px,6.5vw,76px);font-weight:900;color:#F7F9FC;line-height:1.04;margin-bottom:clamp(18px,3vh,30px);letter-spacing:-.8px;}
 .hero h1 span{color:#A8BFE0;}
-.hero-sub{font-size:clamp(13px,1.6vw,15.5px);color:rgba(247,249,252,.85);line-height:1.9;max-width:520px;margin-bottom:26px;}
-.hero-checks{display:flex;flex-wrap:wrap;gap:10px 26px;}
-.hero-check{display:flex;align-items:center;gap:8px;font-size:clamp(12px,1.3vw,13.5px);color:rgba(247,249,252,.95);font-weight:500;}
+.hero-sub{font-size:clamp(14px,1.6vw,16px);color:rgba(247,249,252,.82);line-height:1.85;max-width:540px;margin-bottom:clamp(32px,5vh,56px);}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#F7F9FC;border:2px solid #F7F9FC;border-radius:50px;padding:16px 36px;font-family:var(--font-brand);font-size:15px;font-weight:800;cursor:pointer;margin-bottom:0;transition:all .18s;box-shadow:none;letter-spacing:.02em;align-self:flex-start;}
+.hero-cta:hover{background:rgba(247,249,252,.1);transform:translateY(-2px);box-shadow:0 6px 20px rgba(247,249,252,.08);}
+.hero-checks{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:auto;padding-top:clamp(36px,6vh,64px);}
+.hero-check{display:flex;align-items:center;gap:10px;font-size:clamp(12px,1.3vw,13.5px);color:rgba(247,249,252,.9);font-weight:500;}
 .hero-check::before{content:'✓';color:#A8BFE0;font-weight:700;font-size:14px;flex-shrink:0;}
 
 /* JS-enhanced fade-in — only kicks in when .js-ready is set on body */
@@ -107,9 +109,10 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 @keyframes heroFadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
 @media(max-width:700px){
-  .hero{padding:36px 20px 34px;min-height:100vh;min-height:100dvh;}
+  .hero{padding:clamp(48px,12vh,80px) 24px clamp(40px,7vh,64px);min-height:100vh;min-height:100dvh;}
   .hero h1{font-size:clamp(32px,9vw,48px);}
-  .hero-checks{flex-direction:column;gap:10px;}
+  .hero-checks{flex-direction:column;gap:14px;}
+  .hero-cta{align-self:stretch;justify-content:center;padding:16px 24px;}
 }
 
 
@@ -1028,6 +1031,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <div class="hero-content">
     <div class="hero-eyebrow">Serving Metro Manila homes.</div>
     <h1>Customize your cleaning service,<br><span>get a quote before you book.</span></h1>
+    <p class="hero-sub">Transparent pricing, professional cleaners, and zero hidden fees — all in one easy estimate.</p>
     <button class="hero-cta" onclick="document.getElementById('card-date').scrollIntoView({behavior:'smooth'})">
       Get Your Instant Estimate ↓
     </button>
