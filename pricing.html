@@ -11,8 +11,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://raw.githubusercontent.com">
 
-<!-- DM Sans — reliable Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<!-- Manrope — self-hosted body font -->
+<style>
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-ExtraLight.woff2') format('woff2');font-weight:200;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-Light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:'Manrope';src:url('fonts/Manrope-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap;}
+</style>
 
 <!-- Argentum Novus — self-hosted WOFF2 from GitHub /fonts folder -->
 <style>
@@ -63,18 +71,19 @@ function loadMaps(){
   --amber:#5A7BB5;--abg:#EBF1FA;--abdr:#A8BFE0;
   --nav-light:#F7F9FC;
   --accent:#F0A500;
-  /* Font stacks */
-  --font-brand:'Argentum Novus','Outfit','DM Sans',sans-serif;
-  --font-body:'DM Sans',system-ui,sans-serif;
+  /* Font stacks — Argentum Novus: headlines | Manrope: body, pricing, buttons */
+  --font-brand:'Argentum Novus','Outfit',sans-serif;
+  --font-body:'Manrope',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{background:#2C2C2A;}body{font-family:'DM Sans',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size:14px;line-height:1.55;}
+html{background:#2C2C2A;}body{font-family:'Manrope',sans-serif;background:#F7F9FC;color:#2C2C2A;font-size:14px;line-height:1.55;}
 
 /* ── HERO — #2B4E8A solid, mockup-accurate ── */
 .hero{
   background:#2B4E8A;
   position:relative;overflow:hidden;
-  min-height:70vh;
+  min-height:100vh;
+  min-height:100dvh;
   display:flex;flex-direction:column;justify-content:center;
   padding:clamp(40px,6vw,80px) clamp(22px,5vw,64px) clamp(40px,6vw,72px);
 }
@@ -98,7 +107,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 @keyframes heroFadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
 @media(max-width:700px){
-  .hero{padding:36px 20px 34px;min-height:48vh;}
+  .hero{padding:36px 20px 34px;min-height:100vh;min-height:100dvh;}
   .hero h1{font-size:clamp(32px,9vw,48px);}
   .hero-checks{flex-direction:column;gap:10px;}
 }
@@ -111,8 +120,8 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .hero-stat-plus,.hero-stat-star{font-size:.6em;color:#A8BFE0;vertical-align:super;}
 .hero-stat-lbl{font-size:10px;color:rgba(168,191,224,.85);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
 .hero-stat-div{width:1px;background:rgba(168,191,224,.2);align-self:stretch;}
-.hero-cta{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#F0A500;border:2px solid #F0A500;border-radius:50px;padding:14px 32px;font-family:var(--font-brand);font-size:15px;font-weight:800;cursor:pointer;margin-bottom:22px;transition:all .18s;box-shadow:none;letter-spacing:.02em;}
-.hero-cta:hover{background:rgba(240,165,0,.08);transform:translateY(-2px);box-shadow:0 6px 20px rgba(240,165,0,.12);}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#F7F9FC;border:2px solid #F7F9FC;border-radius:50px;padding:14px 32px;font-family:var(--font-brand);font-size:15px;font-weight:800;cursor:pointer;margin-bottom:22px;transition:all .18s;box-shadow:none;letter-spacing:.02em;}
+.hero-cta:hover{background:rgba(247,249,252,.1);transform:translateY(-2px);box-shadow:0 6px 20px rgba(247,249,252,.08);}
 @media(max-width:700px){
   .hero-stats{gap:0;padding:12px 0;}
   .hero-stat{padding:0 10px;}
@@ -172,12 +181,12 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* Top bar — #0D1F3C — 20% of viewport height */
 .nav-top{
   background:#0D1F3C;
-  height:clamp(56px,20vh,140px);
+  height:clamp(72px,14vh,110px);
   display:flex;align-items:center;justify-content:space-between;
   padding:0 32px;
   transition:height .3s ease;
 }
-.nav-top.compact{height:clamp(48px,8vh,72px);}
+.nav-top.compact{height:clamp(56px,8vh,72px);}
 .nav-top-left{display:flex;align-items:center;gap:14px;}
 .nav-logo{height:28px;}
 .nav-brand-text{
@@ -188,23 +197,23 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .nav-brand-text strong{color:rgba(247,249,252,.75);font-weight:700;letter-spacing:.02em;}
 .nav-top-right{display:flex;align-items:center;gap:10px;}
 
-/* ── NAV HAMBURGER — rotates 360° clockwise on open ── */
-.nav-hamburger{background:#F7F9FC;border:none;cursor:pointer;padding:7px 9px;width:auto;height:auto;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:background .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.12);}
-.nav-hamburger:hover{background:#EBF1FA;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.nav-hamburger img{display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+/* ── NAV HAMBURGER — PNG image, transparent bg ── */
+.nav-hamburger{background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:opacity .15s;}
+.nav-hamburger:hover{opacity:.75;}
+.nav-hamburger img{width:38px;height:38px;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
 .nav-hamburger.rotating img{transform:rotate(360deg);}
 .btn-ref{background:transparent;border:1px solid rgba(168,191,224,.25);color:var(--li);border-radius:5px;padding:4px 10px;font-size:10px;cursor:pointer;font-family:inherit;}
 .btn-ref:hover{border-color:var(--li);color:#fff;}
 
-/* ── NAV SUB-BAR ── */
-.nav-sub{background:#0D1F3C;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(168,191,224,.1);}
+/* ── NAV SUB-BAR — no dividing line ── */
+.nav-sub{background:var(--mn);display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;}
 .nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:50px;transition:all .15s;white-space:nowrap;}
 .nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
 .nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
 
-/* ── MOBILE BACK / PAGE LABEL ── */
+/* ── MOBILE BACK BUTTON — PNG image ── */
 .nav-back-btn{background:none;border:none;cursor:pointer;padding:0;width:36px;height:36px;display:none;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;}
-.nav-back-btn svg{display:block;}
+.nav-back-btn img{width:32px;height:32px;display:block;}
 .nav-mobile-page{font-family:var(--font-brand);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;}
 
 @media(max-width:700px){
@@ -216,7 +225,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
   .nav-mobile-page{display:block;}
   .nav-sub{display:none;}
   .btn-ref{display:none;}
-  .nav-hamburger svg{width:22px;height:22px;}
+  .nav-hamburger img{width:30px;height:30px;}
 }
 @media(min-width:701px){.nav-back-btn{display:none;}}
 
@@ -252,9 +261,9 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 }
 .menu-bubbles{display:none;}
 
-/* ── BACK TO TOP — GitHub PNG asset ── */
-#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:42px;height:42px;border:none;background:transparent;border-radius:50%;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;box-shadow:none;}
-#back-to-top img{display:block;width:42px;height:42px;border-radius:50%;}
+/* ── BACK TO TOP — PNG image with SVG fallback ── */
+#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:44px;height:44px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;}
+#back-to-top img{width:44px;height:44px;display:block;filter:drop-shadow(0 4px 14px rgba(13,31,60,.28));}
 #back-to-top:hover{transform:translateY(-3px);}
 #back-to-top.visible{display:flex;opacity:1;}
 
@@ -262,7 +271,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* clarifier CSS defined in hero section above */
 
 /* ── PROGRESS BAR — inside sticky nav-wrap, no separate sticky needed ── */
-.progress-wrap{background:#0D1F3C;padding:5px 32px 2px;}
+.progress-wrap{background:#2B4E8A;padding:5px 32px 2px;}
 @media(max-width:700px){.progress-wrap{padding:5px 16px 2px;}}
 .progress-bar-track{height:3px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:#A8BFE0;border-radius:2px;transition:width .4s ease;width:0%;}
@@ -567,7 +576,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .avail-box{padding:0 12px 10px;border:none;background:transparent;}
 .avail-box.none{padding:8px 20px;font-size:11.5px;color:var(--gr);border-top:1px solid #EBF1FA;}
 .avail-box.na{padding:8px 20px;font-size:11.5px;color:var(--red);font-weight:500;border-top:1px solid #EBF1FA;}
-.avail-card{background:#2B4E8A;border-radius:16px;padding:14px 16px;border:2px solid rgba(247,249,252,.35);}
+.avail-card{background:#2B4E8A;border-radius:16px;padding:14px 16px;}
 .avail-for-line{font-size:13px;font-weight:700;color:#F7F9FC;margin-bottom:6px;}
 .avail-summary{font-size:11.5px;color:rgba(168,191,224,.9);line-height:1.65;}
 .transpo-note{padding:6px 20px;font-size:10.5px;color:var(--gr);line-height:1.6;border-top:1px solid #EBF1FA;}
@@ -595,8 +604,8 @@ footer{background:var(--mn);padding:14px 24px;}
 .follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);}
 footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,255,.08);}
 .footer-inner{display:flex;align-items:center;justify-content:center;text-align:center;}
-.footer-inner span{color:rgba(247,249,252,.45);font-size:11.5px;font-family:'DM Sans',sans-serif;}
-.copyright-bar{background:#2C2C2A;text-align:center;font-size:11px;color:rgba(247,249,252,.45);padding:11px 20px;font-family:'DM Sans',sans-serif;}
+.footer-inner span{color:rgba(247,249,252,.45);font-size:11.5px;font-family:'Manrope',sans-serif;}
+.copyright-bar{background:#2C2C2A;text-align:center;font-size:11px;color:rgba(247,249,252,.45);padding:11px 20px;font-family:'Manrope',sans-serif;}
 .travel-card{margin-top:10px;padding:13px 15px;background:var(--pa);border:1.5px solid var(--bd);border-radius:18px;animation:tcFade .22s ease;}
 @keyframes tcFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .travel-row{display:flex;align-items:center;gap:12px;}
@@ -981,32 +990,34 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <!-- Top bar: #0D1F3C -->
   <div class="nav-top">
     <div class="nav-top-left">
-      <!-- Mobile: back button — GitHub PNG asset -->
+      <!-- Mobile: back button PNG -->
       <a href="index.html" class="nav-back-btn" aria-label="Go back to Home">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Back%20Button.png" width="28" height="28" alt="Back" style="display:block;">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/d50ebc17c041ce8f4e3f3796ba0cb9e635ed5efd/assets/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back"
+             onerror="this.outerHTML='<svg width=28 height=28 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;#F7F9FC&quot; stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d=&quot;M15 18l-6-6 6-6&quot;/></svg>';">
       </a>
       <a href="index.html" aria-label="Klaygo PH Home"><img id="logo-img" class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);"></a>
       <div class="nav-brand-text">
         <strong>KLAYGOPH | Cleaning Services</strong>
-        <span>Clearer space, Clearer mind.</span>
+        <span>Cleaner Space, Clearer Mind.</span>
       </div>
     </div>
     <div class="nav-top-right">
       <button class="btn-ref" onclick="refreshCal()">Refresh Calendar</button>
-      <!-- Hamburger menu button — PNG asset, consistent with all pages -->
+      <!-- Menu button PNG -->
       <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Blue.png" width="26" height="26" alt="Menu" style="display:block;">
+        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/5cfc250fc655e6786a0bfb0c89167f62d5b8d6e7/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Full.png" alt="Menu"
+             onerror="this.outerHTML='<svg width=26 height=26 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;#F7F9FC&quot; stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><line x1=3 y1=6 x2=21 y2=6/><line x1=3 y1=12 x2=21 y2=12/><line x1=3 y1=18 x2=21 y2=18/></svg>';">
       </button>
     </div>
   </div>
-  <!-- Sub-nav: #2B4E8A with active page pill -->
+  <!-- Sub-nav -->
   <div class="nav-sub">
     <span class="nav-mobile-page">PRICING</span>
     <a href="index.html" class="nav-tab">Home</a>
     <a href="pricing.html" class="nav-tab active">Pricing</a>
     <a href="sayhello.html" class="nav-tab">Say Hello!</a>
   </div>
-  <!-- Progress bar lives here — always flush below nav, never floats -->
+  <!-- Progress bar lives here — always flush below nav, no floating -->
   <div class="progress-wrap">
     <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
     <div class="progress-label" id="progress-label"></div>
@@ -1016,7 +1027,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 <div class="hero" id="hero">
   <div class="hero-content">
     <div class="hero-eyebrow">Serving Metro Manila homes.</div>
-    <h1>Customize your clean,<br><span>see your price.</span></h1>
+    <h1>Customize your cleaning service,<br><span>get a quote before you book.</span></h1>
     <button class="hero-cta" onclick="document.getElementById('card-date').scrollIntoView({behavior:'smooth'})">
       Get Your Instant Estimate ↓
     </button>
@@ -1687,7 +1698,7 @@ var CAL_ID     = '91bd20a18be9ffc46ab26dcba87513699ca82c5027a77484a75af3670ec424
 var MAX_SLOTS  = 2;
 var SLOT_START = 8;   // 8 AM
 var SLOT_END   = 15;  // 3 PM last slot
-var ADVANCE_HRS = 8;  // min hours ahead to book
+var ADVANCE_HRS = 6;  // min hours ahead to book
 var FORMSPREE  = 'mjglezpk';
 var AUTO_REFRESH_MS = 300000; // 5 min auto-refresh
 
@@ -2569,32 +2580,25 @@ function openPrint(){
     +'body{display:flex;flex-direction:column;position:relative;}'
     +'.bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url("'+PRINT_BG+'") center/cover no-repeat;z-index:0;}'
     +'.cnt{position:relative;z-index:1;display:flex;flex-direction:column;min-height:210mm;}'
-    +'.hdr{padding:18px 22px 10px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;border-bottom:2px solid #2B4E8A;}'
-    +'.hdr img{height:28px;margin-bottom:5px;}'
-    +'.hdr .eid{font-size:10px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;margin-bottom:2px;}'
-    +'.hdr .dt{font-size:7.5px;color:#6B6B68;}'
+    +'.hdr{padding:22px 22px 8px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;border-bottom:2px solid #2B4E8A;}'
+    +'.hdr img{height:30px;margin-bottom:4px;}.hdr .eid{font-size:9px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;margin-bottom:1px;}.hdr .dt{font-size:7.5px;color:#6B6B68;}'
     +'.bar{background:#2B4E8A;padding:7px 22px;text-align:center;}.bar p{font-size:10px;font-weight:700;color:#fff;letter-spacing:.1em;text-transform:uppercase;}'
     +'.bar.ft p{font-size:8.5px;letter-spacing:.04em;}'
     +'.body{flex:1;padding:10px 22px 8px;display:flex;flex-direction:column;gap:6px;}'
-    +'.appt-box{background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:6px;padding:8px 10px;}'
-    +'.appt-for{font-size:9px;font-weight:800;color:#2B4E8A;letter-spacing:.02em;margin-bottom:3px;}'
-    +'.appt-detail{font-size:8.5px;color:#3D6399;line-height:1.55;}'
     +'.ctbl{width:100%;border-collapse:collapse;font-size:8.5px;}'
     +'.ctbl td{padding:2.5px 3px;line-height:1.4;vertical-align:top;border-bottom:1px solid #EBF1FA;}'
-    +'.ctbl td:first-child{color:#6B6B68;width:56px;font-weight:600;}'
+    +'.ctbl td:first-child{color:#6B6B68;width:52px;font-weight:600;}'
     +'.stl{font-size:8.5px;font-weight:800;color:#2B4E8A;border-bottom:1.5px solid #2B4E8A;padding-bottom:3px;letter-spacing:.05em;text-transform:uppercase;}'
-    +'table.c{width:100%;border-collapse:collapse;table-layout:fixed;}'
-    +'table.c tr td{padding:3.5px 4px;border-bottom:1px solid #EBF1FA;font-size:10px;line-height:1.3;word-wrap:break-word;}'
-    +'table.c tr td:first-child{width:72%;}'
-    +'table.c tr td:last-child{text-align:right;font-weight:600;width:28%;white-space:nowrap;}'
+    +'table.c{width:100%;border-collapse:collapse;}'
+    +'table.c tr td{padding:3.5px 3px;border-bottom:1px solid #EBF1FA;font-size:10px;line-height:1.3;}'
+    +'table.c tr td:last-child{text-align:right;font-weight:600;}'
     +'.tr td{border-bottom:none!important;padding-top:6px!important;border-top:1.5px solid #2B4E8A!important;font-size:12px;font-weight:700;color:#2B4E8A;}'
-    +'.tr td:last-child{text-align:right;}'
     +'.trow{background:rgba(235,241,250,.6);border-radius:4px;padding:5px 8px;font-size:9px;color:#2B4E8A;font-weight:700;}'
     +'.tnote{font-size:7.5px;color:#6B6B68;font-style:italic;margin-top:2px;line-height:1.4;}'
     +'.pay-s{background:rgba(235,241,250,.6);border-radius:5px;padding:7px 10px;}'
     +'.pay-s h4{font-size:8px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;}'
-    +'.pr{display:flex;justify-content:space-between;align-items:baseline;gap:4px;font-size:9px;margin-bottom:3px;}'
-    +'.pr .pk{color:#6B6B68;flex:1;}.pr .pv{font-weight:600;color:#2C2C2A;white-space:nowrap;}'
+    +'.pr{display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px;}'
+    +'.pr .pk{color:#6B6B68;}.pr .pv{font-weight:600;color:#2C2C2A;}'
     +'.pr.pn .pk{color:#2B4E8A;font-weight:700;}.pr.pn .pv{color:#1B8A4C;font-size:11px;font-weight:800;}'
     +'.wb{background:#EBF1FA;border:1px solid #A8BFE0;border-radius:4px;padding:5px 8px;}'
     +'.wb strong{display:block;font-size:8.5px;color:#2B4E8A;font-weight:800;margin-bottom:1px;}'
@@ -2610,15 +2614,10 @@ function openPrint(){
     +'</style></head><body>'
     +'<div class="bg"></div>'
     +'<div class="cnt">'
-    +'<div class="hdr"><img src="'+BLUE_LOGO+'" alt="Klaygo PH"><div class="eid">'+(currentEstId||'KGPH-EST')+'</div><div class="dt">Service Estimate &middot; '+dateStr+'</div></div>'
+    +'<div class="hdr"><img src="'+BLUE_LOGO+'" alt="Klaygo PH"><div class="dt">Service Estimate &middot; '+dateStr+'</div><div class="eid">'+(currentEstId||'KGPH-EST')+'</div></div>'
     +'<div class="bar"><p>Cleaner Space, Clearer Mind.</p></div>'
     +'<div class="body">'
     +(cR?'<table class="ctbl">'+cR+'</table>':'')
-    +(dl||tl?'<div class="appt-box"><div class="appt-for">for '+(tl?tl+', ':'')+dl+'</div>'
-      +(bp.label?'<div class="appt-detail">'+bp.label+'</div>':'')
-      +(S.ln?'<div class="appt-detail">Transport — '+S.ln+'</div>':'')
-      +(S.sched&&S.sched!=='Initial / One-time'?'<div class="appt-detail">Schedule: '+S.sched+'</div>':'')
-      +'</div>':'')
     +'<div class="stl">Services &amp; Charges</div>'
     +'<table class="c">'+rowsHtml+'</table>'
     +'<div class="tnote">This estimate includes a provisional transport fee. Final amount confirmed based on your exact address.</div>'
@@ -3167,17 +3166,21 @@ function togWHN(){
   document.querySelectorAll('.whn-reveal').forEach(function(el){obs.observe(el);});
 })();
 
-// ── BACK TO TOP — GitHub PNG asset ──────────────────────
+// ── BACK TO TOP — PNG image, SVG fallback on error ──────────
 (function(){
+  var BTT='https://raw.githubusercontent.com/klaygoph/klaygoph/d50ebc17c041ce8f4e3f3796ba0cb9e635ed5efd/assets/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
   var btn=document.createElement('button');
-  btn.id='back-to-top';
-  btn.setAttribute('aria-label','Back to top');
-  btn.innerHTML='<img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png" width="42" height="42" alt="Back to top" style="display:block;border-radius:50%;">';
+  btn.id='back-to-top';btn.setAttribute('aria-label','Back to top');
+  var img=document.createElement('img');
+  img.src=BTT;img.alt='Back to top';img.width=44;img.height=44;
+  img.onerror=function(){
+    btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F7F9FC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    btn.style.cssText='background:#0D1F3C;border-radius:50%;width:42px;height:42px;';
+  };
+  btn.appendChild(img);
   btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
   document.body.appendChild(btn);
-  window.addEventListener('scroll',function(){
-    btn.classList.toggle('visible',window.scrollY>300);
-  },{passive:true});
+  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);},{passive:true});
 })();
 
 // ══════════════════════════════════════════════════════
