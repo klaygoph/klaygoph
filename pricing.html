@@ -1,3 +1,11 @@
+<!--
+  ════════════════════════════════════════════════════════════════
+  KLAYGO PH — Pricing Calculator
+  This file and its design, copy, branding, and code are the
+  property of Klaygo PH (klaygoph.com). Unauthorized copying,
+  redistribution, or resale is not permitted.
+  ════════════════════════════════════════════════════════════════
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Get an instant cleaning estimate — no log-in, no hidden fees. Klaygo PH professional cleaning services in Metro Manila.">
 <title>Pricing — Klaygo PH</title>
+
 
 <!-- Preconnect to speed up third-party origins -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,9 +56,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/45aee36bff2c9b766100b565212c13f56b750a4f/assets/KlaygoPH%20-%20Rebranded%20-%20Profile%20Picture%20-%2001%20-%20Blue%20-%200D1F3C.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/klaygoph/klaygoph/45aee36bff2c9b766100b565212c13f56b750a4f/assets/KlaygoPH%20-%20Rebranded%20-%20Profile%20Picture%20-%2001%20-%20Blue%20-%200D1F3C.png">
 <script>
+// NOTE: Maps/Places/Distance Matrix/Calendar API key is restricted via
+// HTTP referrer + API restrictions in Google Cloud Console (resolved —
+// see klaygoph.com, www.klaygoph.com, klaygoph.github.io). Key exposure
+// in this client-side source is expected and already addressed; no
+// action needed if this gets flagged again in future scans.
 var mapsLoaded=false;
 function loadMaps(){
   if(mapsLoaded)return;mapsLoaded=true;
@@ -323,7 +337,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .day.past{color:#ccc;cursor:not-allowed;}
 .day.empty{cursor:default;}
 .day.full-d{background:#0D1F3C !important;color:#F7F9FC !important;border-color:#0D1F3C !important;cursor:not-allowed;font-weight:600;}
-.day.partial-d{background:#EBF1FA;border-color:#F0A500;border-width:2px;color:#0D1F3C;font-weight:600;}
+.day.partial-d{background:#EBF1FA;border-color:#0D1F3C;border-width:2px;color:#0D1F3C;font-weight:600;}
 .dots{display:flex;gap:2px;justify-content:center;margin-top:2px;}
 .dot{width:4px;height:4px;border-radius:50%;}
 .dot.t{background:var(--red);}
@@ -508,6 +522,12 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .lb-f{font-size:10.5px;color:var(--se);margin-top:2px;font-weight:500;}
 .lb.sel .lb-f{color:var(--pr);}
 .lb-tag{font-size:8px;font-weight:700;background:var(--pr);color:#fff;padding:1px 5px;border-radius:4px;letter-spacing:.04em;}
+/* List view — rows aligned as if in two invisible columns (name left, fee right) */
+.loc-list{display:flex;flex-direction:column;gap:6px;}
+.lb.lb-row{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;padding:11px 14px;}
+.lb.lb-row:hover{transform:none;}
+.lb.lb-row .lb-n{justify-content:flex-start;flex:1;text-align:left;}
+.lb.lb-row .lb-f{margin-top:0;flex-shrink:0;min-width:78px;text-align:right;}
 .loc-note{font-size:11.5px;color:#2B4E8A;margin-top:10px;padding:10px 14px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:14px;line-height:1.7;}
 .other-inp{display:none;margin-top:6px;}
 .other-inp input{width:100%;padding:8px 12px;border:1.5px solid var(--bd);border-radius:12px;font-family:inherit;font-size:13px;color:var(--dk);}
@@ -595,7 +615,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .avail-box{padding:0 12px 10px;border:none;background:transparent;}
 .avail-box.none{padding:8px 20px;font-size:11.5px;color:var(--gr);border-top:1px solid #EBF1FA;}
 .avail-box.na{padding:8px 20px;font-size:11.5px;color:var(--red);font-weight:500;border-top:1px solid #EBF1FA;}
-.avail-card{background:#2B4E8A;border-radius:16px;padding:14px 16px;}
+.avail-card{background:#2B4E8A;border-radius:16px;padding:14px 16px;border:1px solid rgba(168,191,224,.25);}
 .avail-for-line{font-size:13px;font-weight:700;color:#F7F9FC;margin-bottom:6px;}
 .avail-summary{font-size:11.5px;color:rgba(168,191,224,.9);line-height:1.65;}
 .transpo-note{padding:6px 20px;font-size:10.5px;color:var(--gr);line-height:1.6;border-top:1px solid #EBF1FA;}
@@ -622,9 +642,11 @@ footer{background:var(--mn);padding:14px 24px;}
 .follow-link{display:inline-flex;align-items:center;gap:7px;color:#F7F9FC;font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 18px;border:1.5px solid rgba(255,255,255,.25);border-radius:30px;transition:all .14s;}
 .follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);}
 footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,255,.08);}
-.footer-inner{display:flex;align-items:center;justify-content:center;text-align:center;}
-.footer-inner span{color:rgba(247,249,252,.45);font-size:11.5px;font-family:'Manrope',sans-serif;}
-.copyright-bar{background:#2C2C2A;text-align:center;font-size:11px;color:rgba(247,249,252,.45);padding:11px 20px;font-family:'Manrope',sans-serif;}
+.footer-inner{display:flex;align-items:center;justify-content:center;text-align:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.footer-inner::-webkit-scrollbar{display:none;}
+.footer-inner span{color:rgba(247,249,252,.45);font-size:clamp(7px,2.6vw,11.5px);font-family:'Manrope',sans-serif;white-space:nowrap;}
+.copyright-bar{background:#2C2C2A;text-align:center;font-size:clamp(7px,2.4vw,11px);color:rgba(247,249,252,.45);padding:11px 20px;font-family:'Manrope',sans-serif;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.copyright-bar::-webkit-scrollbar{display:none;}
 .travel-card{margin-top:10px;padding:13px 15px;background:var(--pa);border:1.5px solid var(--bd);border-radius:18px;animation:tcFade .22s ease;}
 @keyframes tcFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .travel-row{display:flex;align-items:center;gap:12px;}
@@ -1151,7 +1173,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
       <span class="cc-chip ok">✓ Instant pricing</span>
       <span class="cc-chip ok">✓ No hidden fees</span>
       <span class="cc-chip ok">✓ Booking confirmed via Messenger</span>
-      <span class="cc-chip ok">✓ Reservation fee via GCash / Maya / Bank Transfer</span>
+      <span class="cc-chip ok">✓ Reservation fee via GCash / Bank Transfer</span>
     </div>
   </div>
 </div>
@@ -1214,7 +1236,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <div class="cal-note">Dark blue = fully booked. Medium blue = 1 slot left. Select any available date.</div>
   <div class="legend">
     <div class="leg"><div class="ld" style="background:var(--pa);border:1.5px solid var(--li);"></div>Available</div>
-    <div class="leg"><div class="ld" style="background:#FFF8E7;border:1.5px solid #F0A500;"></div>1 slot left</div>
+    <div class="leg"><div class="ld" style="background:#EBF1FA;border:1.5px solid #0D1F3C;"></div>1 slot left</div>
     <div class="leg"><div class="ld" style="background:#0D1F3C;border:1.5px solid #0D1F3C;"></div>Fully booked</div>
     <div class="leg"><div class="ld" style="background:var(--pr);"></div>Selected</div>
   </div>
@@ -1334,7 +1356,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
       <span class="sched-badge">5% off</span>
     </div>
   </div>
-  <div class="recur-req-note" id="recur-req-note">Please add at least one scheduled date to unlock your recurring discount and proceed with this schedule.</div>
+  <div class="recur-req-note" id="recur-req-note">By adding at least one scheduled date below, your recurring discount will be applied and this schedule can proceed.</div>
   <p class="snote">Recurring discounts apply automatically once you add your dates: Monthly 2% off · Twice a Month 3% off · Weekly 4% off · Twice a Week 5% off. Discounts apply to your full estimate total. Schedule confirmed after reservation fee is received for each session.</p>
   <div class="recur-section" id="recur-section">
     <h4>Add your scheduled dates &amp; times</h4>
@@ -1478,7 +1500,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
         </div>
         <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--pr);">
           <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">50% Reservation Fee</strong>
-          A 50% reservation fee is required to secure your reservation. This applies for <strong>same-day, weekend, and holiday bookings</strong>, as well as properties <strong>80 sqm and above</strong>.
+          A 50% reservation fee is required to secure your reservation. This applies for <strong>same-day, weekend, and holiday bookings</strong>, as well as properties <strong>60 sqm and above</strong>.
         </div>
       </div>
     </div>
@@ -1486,10 +1508,10 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
   <div class="acc-item" id="acc-large">
     <div class="acc-head" onclick="togAcc('acc-large')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' '){togAcc('acc-large');event.preventDefault();}">
-      <span class="acc-title">Large Spaces (80+ sqm)</span>
+      <span class="acc-title">Large Spaces (60+ sqm)</span>
       <span class="acc-chevron">▼</span>
     </div>
-    <div class="acc-body">An <strong>additional cleaner</strong> will be automatically assigned at no extra charge for spaces 80 sqm and above, to ensure quality and efficiency. This may affect scheduling and we'll confirm details upon booking.<br><br>For <strong>80+ sqm spaces:</strong> A <strong>50% reservation fee</strong> is required to secure your reservation. This applies for weekend, same-day, and holiday bookings as well.</div>
+    <div class="acc-body">An <strong>additional cleaner</strong> will be automatically assigned at no extra charge for spaces 60 sqm and above, to ensure quality and efficiency. This may affect scheduling and we'll confirm details upon booking.<br><br>For <strong>60+ sqm spaces:</strong> A <strong>50% reservation fee</strong> is required to secure your reservation. This applies for weekend, same-day, and holiday bookings as well.</div>
   </div>
 
   <div class="acc-item" id="acc-payment">
@@ -1497,7 +1519,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
       <span class="acc-title">Reservation Fee &amp; Payment</span>
       <span class="acc-chevron">▼</span>
     </div>
-    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or 80+ sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Maya · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
+    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or 60+ sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
   </div>
 
   <div class="acc-item" id="acc-onsite">
@@ -1565,7 +1587,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
             <div class="pm-item"><div><div class="pm-name">GCash</div><div class="pm-num">Details sent upon confirmation</div></div></div>
             <div class="pm-item pm-item-wide"><div><div class="pm-name">Bank Transfer</div><div class="pm-num">Details sent upon confirmation</div></div></div>
           </div>
-          <div class="pm-note">Note: Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or 80+ sqm bookings.</div>
+          <div class="pm-note">Note: Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or 60+ sqm bookings.</div>
         </div>
       </div>
     </div>
@@ -1620,7 +1642,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
       <div class="pr-band-upfront" id="pr-band-upfront" style="display:none;">
         <div class="pr-band-text-col">
           <div class="pr-band-lbl">Total Upfront Payment</div>
-          <div class="pr-band-sub">via GCash, Maya, or Bank Transfer</div>
+          <div class="pr-band-sub">via GCash or Bank Transfer</div>
         </div>
         <div class="pr-band-val" id="pr-upfront-amt">—</div>
       </div>
@@ -1687,7 +1709,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <div class="be-upfront-band" id="be-upfront-band" style="display:none;">
     <div class="be-band-text-col">
       <div class="be-band-main-lbl">Total Upfront Payment</div>
-      <div class="be-band-sub-lbl">via GCash, Maya, or Bank Transfer</div>
+      <div class="be-band-sub-lbl">via GCash or Bank Transfer</div>
     </div>
     <div class="be-band-num" id="be-upfront-amt">—</div>
   </div>
@@ -1739,6 +1761,9 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 <script>
 'use strict';
 // ── CONFIG ────────────────────────────────────────────────────
+// API_KEY restriction resolved in Google Cloud Console (HTTP referrers:
+// klaygoph.com, www.klaygoph.com, klaygoph.github.io + restricted to
+// Maps JS, Places, Distance Matrix, Calendar APIs). Safe — do not re-flag.
 var API_KEY    = 'AIzaSyCuiza3RKflnhopjK1SPZHZo-q3yq_2S78';
 var CAL_ID     = '91bd20a18be9ffc46ab26dcba87513699ca82c5027a77484a75af3670ec424a8@group.calendar.google.com';
 var MAX_SLOTS  = 2;
@@ -2125,7 +2150,7 @@ function buildAvailCard(){
 function syncArea(val){
   val=Math.max(46,Math.min(120,+val||46));
   S.sqm=val;
-  S.isLarge=val>=80; // 80+ sqm triggers 50% reservation fee and auto-cleaner
+  S.isLarge=val>=60; // 60+ sqm triggers 50% reservation fee and auto-cleaner
   var disp=document.getElementById('area-display'); if(disp)disp.textContent=val;
   var slider=document.getElementById('area-slider');
   if(slider){
@@ -2372,12 +2397,11 @@ function renderAddons(){
   });
   // ── ADDITIONAL CLEANER separator + conditional row ──────────
   html+='<div class="al-separator">Additional Personnel</div>';
-  if(S.sqm>=80){
-    // Auto-included for 80+ sqm — show as included badge, not selectable
+  if(S.sqm>=60){
     html+='<div class="ar" style="opacity:.85;cursor:default;background:#EBF1FA;border-color:#A8BFE0;">'
       +'<div class="ar-ck" style="background:#2B4E8A;border-color:#2B4E8A;color:#fff;">✓</div>'
       +'<div class="ar-info"><div class="ar-n">Additional Cleaner</div>'
-      +'<div class="ar-no">Auto-included for 80+ sqm · First 3 hours · No extra transport fee</div></div>'
+      +'<div class="ar-no">Auto-included for 60+ sqm · First 3 hours</div></div>'
       +'<div class="ar-p" style="color:#2B4E8A;font-size:11px;">Included</div>'
       +'</div>';
   } else {
@@ -2385,7 +2409,7 @@ function renderAddons(){
     html+='<div class="ar '+(cleanerOn?'on':'')+'" onclick="togAddon(\'cleaner\')">'
       +'<div class="ar-ck">'+(cleanerOn?'✓':'')+'</div>'
       +'<div class="ar-info"><div class="ar-n">Additional Cleaner</div>'
-      +'<div class="ar-no">First 3 hours · No extra transport fee · For units below 80 sqm</div></div>'
+      +'<div class="ar-no">First 3 hours · For units under 60 sqm</div></div>'
       +'<div class="ar-p">Php 1,000</div>'
       +'</div>';
   }
@@ -2401,34 +2425,31 @@ function togAddon(id){
 function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[id]=Math.max(0,Math.min(a.max,(S.addons[id]||0)+d));if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();}
 function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons();compute();}
 // ── LOCATION ──────────────────────────────────────────────────
-var locViewMode='grid'; // 'grid' or 'dropdown'
+var locViewMode='grid'; // 'grid' or 'list'
 function toggleLocView(){
-  locViewMode=locViewMode==='grid'?'dropdown':'grid';
+  locViewMode=locViewMode==='grid'?'list':'grid';
   var btn=document.getElementById('loc-toggle-btn');
   if(btn)btn.textContent=locViewMode==='grid'?'Switch to List':'Switch to Grid';
   renderLocs();
   // Restore selection after re-render
   if(S.lid){
-    if(locViewMode==='grid'){
-      var lb=document.querySelector('.lb[data-id="'+S.lid+'"]');
-      if(lb)lb.classList.add('sel');
-    } else {
-      var dd=document.getElementById('loc-select');
-      if(dd)dd.value=S.lid;
-    }
+    var lb=document.querySelector('.lb[data-id="'+S.lid+'"]');
+    if(lb)lb.classList.add('sel');
   }
 }
 function renderLocs(){
   var grid=document.getElementById('loc-grid');
   if(!grid)return;
-  if(locViewMode==='dropdown'){
-    var html='<select class="loc-dropdown" id="loc-select" onchange="selLocById(this.value)">'
-      +'<option value="">— Select your area —</option>';
+  if(locViewMode==='list'){
+    var html='<div class="loc-list">';
     LOCS.forEach(function(l){
       var f=calcFee(l), ft=f===null?'Request quote':'Php '+f;
-      html+='<option value="'+l.id+'"'+(S.lid===l.id?' selected':'')+'>'+l.name+(l.others?'':' — '+ft)+'</option>';
+      html+='<div class="lb lb-row'+(S.lid===l.id?' sel':'')+'" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
+        +'<div class="lb-n">'+l.name+'</div>'
+        +'<div class="lb-f">'+ft+'</div>'
+        +'</div>';
     });
-    html+='</select>';
+    html+='</div>';
     grid.innerHTML=html;
   } else {
     var html='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
@@ -2531,9 +2552,9 @@ function compute(){
     if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push({l:lbl,v:sv});sub+=sv;}
   });
   // Additional cleaner logic
-  if(S.sqm>=80){
-    // Auto-included at no charge for 80+ sqm
-    lines.push({l:'Additional Cleaner (included — 80+ sqm)',v:0,free:true});
+  if(S.sqm>=60){
+    // Auto-included at no charge for 60+ sqm
+    lines.push({l:'Additional Cleaner (included — 60+ sqm)',v:0,free:true});
   } else if(S.addons['cleaner']>0){
     lines.push({l:'Additional Cleaner',v:1000});sub+=1000;
   }
@@ -2602,9 +2623,9 @@ function compute(){
   var isWeekend=dow===0||dow===6;
   var isSameDay=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
   var isHoliday=selDate&&PH_HOLIDAYS.has(selDate);
-  var isLarge=S.sqm>=80;
+  var isLarge=S.sqm>=60;
   var needs50=isSameDay||isWeekend||isHoliday||isLarge;
-  var needs50Reason=isSameDay?'Same-day booking':isWeekend?'Weekend booking':isHoliday?'Holiday booking':isLarge?'80+ sqm property':'';
+  var needs50Reason=isSameDay?'Same-day booking':isWeekend?'Weekend booking':isHoliday?'Holiday booking':isLarge?'60+ sqm property':'';
   var dp,bal;
   if(needs50){dp=Math.ceil(total*0.5);}
   else{dp=Math.max(Math.ceil(total*0.30),tf);}
@@ -2663,7 +2684,7 @@ function buildMsg(){
   var now=new Date(), ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
   if(bp.price>0){lines.push(bp.label+': Php '+bp.price.toLocaleString());sub+=bp.price;}
   ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push(lbl+': Php '+sv.toLocaleString());sub+=sv;}});
-  if(S.sqm>=80){lines.push('Additional Cleaner (included — 80+ sqm): Included');}
+  if(S.sqm>=60){lines.push('Additional Cleaner (included — 60+ sqm): Included');}
   else if(S.addons['cleaner']>0){lines.push('Additional Cleaner: Php 1,000');sub+=1000;}
   var tf=0;
   if(S.lf!==null&&S.lid&&S.lid!=='others'){lines.push('Transport — '+S.ln+': Php '+S.lf.toLocaleString());sub+=S.lf;tf=S.lf;}
@@ -2685,9 +2706,9 @@ function buildMsg(){
   var isWeekendMsg=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()===0||new Date(selDate+'T12:00:00+08:00').getDay()===6):false;
   var isSameDayMsg=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
   var isHolidayMsg=selDate&&PH_HOLIDAYS.has(selDate);
-  var isLargeMsg=S.sqm>=80;
+  var isLargeMsg=S.sqm>=60;
   var needs50Msg=isSameDayMsg||isWeekendMsg||isHolidayMsg||isLargeMsg;
-  var needs50ReasonMsg=isSameDayMsg?'Same-day booking':isWeekendMsg?'Weekend booking':isHolidayMsg?'Holiday booking':isLargeMsg?'80+ sqm property':'';
+  var needs50ReasonMsg=isSameDayMsg?'Same-day booking':isWeekendMsg?'Weekend booking':isHolidayMsg?'Holiday booking':isLargeMsg?'60+ sqm property':'';
   var dpMsg=needs50Msg?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),tf);
   if(total>0)msg+='\n\nReservation fee (pay to confirm): Php '+dpMsg.toLocaleString()+(needs50Msg?' (50% — '+needs50ReasonMsg+')':' (standard)')+'\n'+balLabelMsg+': Php '+Math.max(0,total-dpMsg).toLocaleString();
   if(rFilled.length>0){
@@ -2706,7 +2727,7 @@ function validateRecurring(){
   if(S.sched==='Initial / One-time')return true;
   var rFilled=recurSlots.filter(function(s){return s.date;});
   if(rFilled.length===0){
-    toast('Please add at least one date for your '+S.sched+' schedule.');
+    toast('Add at least one date for your '+S.sched+' schedule to continue.');
     var rs=document.getElementById('card-sched');
     if(rs)rs.scrollIntoView({behavior:'smooth',block:'nearest'});
     return false;
@@ -2759,7 +2780,7 @@ function openPrint(){
   var bpLabel=bp.label+(S.bn?' ('+S.bn+')':'');
   rows.push([bpLabel,'Php '+bp.price.toLocaleString()]);sub+=bp.price;
   ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';rows.push([lbl,'Php '+sv.toLocaleString()]);sub+=sv;}});
-  if(S.sqm>=80){rows.push(['Additional Cleaner (included — 80+ sqm)','Included']);}
+  if(S.sqm>=60){rows.push(['Additional Cleaner (included — 60+ sqm)','Included']);}
   else if(S.addons['cleaner']>0){rows.push(['Additional Cleaner','Php 1,000']);sub+=1000;}
   var tf=0;if(S.lf!==null&&S.lid&&S.lid!=='others'){rows.push(['Transport — '+S.ln,'Php '+S.lf.toLocaleString()]);sub+=S.lf;tf=S.lf;}
   var total=sub,t=cT();
@@ -2799,9 +2820,9 @@ function openPrint(){
   var pIsWknd=pDow===0||pDow===6;
   var pIsSameDay=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
   var pIsHol=selDate&&PH_HOLIDAYS.has(selDate);
-  var pIsLg=S.sqm>=80;
+  var pIsLg=S.sqm>=60;
   var pNeeds50=pIsSameDay||pIsWknd||pIsHol||pIsLg;
-  var pReason=pIsSameDay?'Same-day booking':pIsWknd?'Weekend booking':pIsHol?'Holiday booking':pIsLg?'80+ sqm property':'';
+  var pReason=pIsSameDay?'Same-day booking':pIsWknd?'Weekend booking':pIsHol?'Holiday booking':pIsLg?'60+ sqm property':'';
   var dpPrint=pNeeds50?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),tf);
   var balPrint=Math.max(0,total-dpPrint);
   var payHtml=total>0?'<div class="pay-s">'
@@ -2815,15 +2836,18 @@ function openPrint(){
     +'<div><div style="font-size:7.5px;font-weight:700;color:#A8BFE0;letter-spacing:.08em;text-transform:uppercase;">Total Upfront Payment</div>'
     +'<div style="font-size:7px;color:rgba(168,191,224,.6);">Php '+dpPrint.toLocaleString()+' × '+totalSessionsPrint+' sessions</div></div>'
     +'<div style="font-size:11px;font-weight:900;color:#F7F9FC;">Php '+(dpPrint*totalSessionsPrint).toLocaleString()+'</div></div>':'')
-    +'<div style="font-size:7px;color:#6B6B68;margin-top:4px;line-height:1.5;">via GCash, Maya, or Bank Transfer. Balance paid on the day of service.</div>'
+    +'<div style="font-size:7px;color:#6B6B68;margin-top:4px;line-height:1.5;">via GCash or Bank Transfer. Balance paid on the day of service.</div>'
     +'</div>':'';
 
   // ── BUILD FULL HTML AS STRING, THEN USE BLOB URL (fixes blank screen in modern browsers) ──
   var printHTML='<!DOCTYPE html><html><head><meta charset="UTF-8">'
+    +'<link rel="preconnect" href="https://fonts.googleapis.com">'
+    +'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+    +'<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">'
     +'<style>'
     +'@page{size:A5 portrait;margin:0;}'
     +'*{box-sizing:border-box;margin:0;padding:0;}'
-    +'html,body{width:148mm;min-height:210mm;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#2C2C2A;}'
+    +'html,body{width:148mm;min-height:210mm;font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;color:#2C2C2A;}'
     +'body{display:flex;flex-direction:column;position:relative;}'
     +'.bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url("'+PRINT_BG+'") center/cover no-repeat;z-index:0;}'
     +'.cnt{position:relative;z-index:1;display:flex;flex-direction:column;min-height:210mm;}'
@@ -2877,8 +2901,8 @@ function openPrint(){
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Reschedule:</strong> At least 24 hours notice required.</div></div>'
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Cancellation:</strong> Reservation fee non-refundable if cancelled &lt;24 hrs or cleaner is on the way/onsite.</div></div>'
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Exception:</strong> Booked &lt;24 hrs + cancelled 4+ hrs before + cleaner not yet departed — refund or rebooking may be arranged.</div></div>'
-    +'<div class="pi2"><div class="pd2">-</div><div><strong>Large Spaces (80+ sqm):</strong> An additional cleaner is automatically included at no extra charge.</div></div>'
-    +'<div class="pi2"><div class="pd2">-</div><div><strong>80+ sqm &amp; Weekend Slots:</strong> 50% reservation fee required to confirm booking.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>Large Spaces (60+ sqm):</strong> An additional cleaner is automatically included at no extra charge.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>60+ sqm &amp; Weekend Slots:</strong> 50% reservation fee required to confirm booking.</div></div>'
     +'</div>'
     +'<div class="nor">This is not an official receipt</div>'
     +'</div>'
@@ -3308,9 +3332,9 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
     var isWkndBE=dow===0||dow===6;
     var isSameDayBE=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
     var isHolBE=selDate&&PH_HOLIDAYS.has(selDate);
-    var isLgBE=S.sqm>=80;
+    var isLgBE=S.sqm>=60;
     var needs50BE=isSameDayBE||isWkndBE||isHolBE||isLgBE;
-    var reasonBE=isSameDayBE?'Same-day booking':isWkndBE?'Weekend booking':isHolBE?'Holiday booking':isLgBE?'80+ sqm property':'Standard';
+    var reasonBE=isSameDayBE?'Same-day booking':isWkndBE?'Weekend booking':isHolBE?'Holiday booking':isLgBE?'60+ sqm property':'Standard';
     var pctBE=needs50BE?'50%':'30%';
     // Reservation section (multi-session only)
     var resSec=document.getElementById('be-res-section');
