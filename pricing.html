@@ -99,8 +99,6 @@ h1,h2,h3,h4,.font-brand,[class*="hero-eyebrow"],[class*="nav-brand"],[class*="na
 .hero h1{font-family:var(--font-brand);font-size:clamp(34px,6.5vw,72px);font-weight:900;color:#F7F9FC;line-height:1.05;margin-bottom:clamp(16px,2.5vh,26px);letter-spacing:-.8px;}
 .hero h1 span{color:#A8BFE0;}
 .hero-sub{font-family:'Manrope',sans-serif;font-size:clamp(14px,1.6vw,16px);color:rgba(247,249,252,.82);line-height:1.85;max-width:540px;margin-bottom:clamp(28px,4vh,48px);}
-.hero-cta{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#F7F9FC;border:2px solid #F7F9FC;border-radius:50px;padding:16px 36px;font-family:var(--font-brand);font-size:15px;font-weight:800;cursor:pointer;transition:all .18s;box-shadow:none;letter-spacing:.02em;align-self:flex-start;}
-.hero-cta:hover{background:rgba(247,249,252,.1);transform:translateY(-2px);box-shadow:0 6px 20px rgba(247,249,252,.08);}
 .hero-checks{display:flex;flex-wrap:wrap;gap:12px 32px;position:relative;z-index:2;}
 .hero-check{display:flex;align-items:center;gap:10px;font-family:'Manrope',sans-serif;font-size:clamp(12px,1.3vw,13.5px);color:rgba(247,249,252,.9);font-weight:500;}
 .hero-check::before{content:'✓';color:#A8BFE0;font-weight:700;font-size:14px;flex-shrink:0;}
@@ -110,8 +108,6 @@ body.js-ready .hero-eyebrow{animation:heroFadeUp .7s ease both;}
 body.js-ready .hero h1{animation:heroFadeUp .8s ease .1s both;}
 body.js-ready .hero-sub{animation:heroFadeUp .8s ease .22s both;}
 body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
-@keyframes heroFadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
-
 @media(max-width:700px){
   .hero{padding:clamp(44px,10vh,72px) 24px clamp(36px,6vh,56px);min-height:100vh;min-height:100dvh;}
   .hero h1{font-size:clamp(30px,8.5vw,46px);}
@@ -887,6 +883,27 @@ footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,25
 
 
 .recur-conflict-warn{margin-top:6px;padding:7px 10px;background:#FFF8E7;border:1px solid #F0A500;border-radius:8px;font-size:11px;color:#8B5A00;line-height:1.5;}
+
+/* ── LARGER HOME INLINE SLIDER ── */
+.lh-slider-wrap{display:none;padding:14px 16px 16px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:0 0 14px 14px;margin-top:-2px;}
+.lh-slider-wrap.show{display:block;animation:fadeSlideDown .25s cubic-bezier(.25,.46,.45,.94);}
+@keyframes fadeSlideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.lh-slider-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:12px;color:#2B4E8A;font-weight:600;}
+.lh-slider-top .area-val{font-family:var(--font-brand);font-size:20px;font-weight:900;color:#0D1F3C;}
+.lh-slider-top .area-unit{font-size:12px;color:#5A7BB5;margin-left:2px;}
+.lh-slider-range-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--gr);margin-top:3px;}
+.lh-price-hint{margin-top:10px;padding:8px 12px;background:#fff;border:1px solid #A8BFE0;border-radius:8px;font-size:11px;color:#3D6399;line-height:1.6;}
+.lh-req-note{margin-top:8px;font-size:10px;color:#5A7BB5;line-height:1.5;}
+
+/* ── DISCOUNT LINE IN ESTIMATE ── */
+.li.disc{border-color:#A8BFE0;}
+.li.disc .ll{color:#2B4E8A;font-weight:600;}
+.li.disc .lv{color:#2B4E8A;font-weight:700;}
+.pdisc{font-size:11px;font-weight:600;color:#2B4E8A;padding:3px 0 0;min-height:0;}
+
+/* ── RECUR REQUIRED NOTICE ── */
+.recur-req-note{margin-top:8px;padding:8px 12px;background:#FFF8E7;border:1px solid #F0A500;border-radius:8px;font-size:11px;color:#8B5A00;line-height:1.5;display:none;}
+.recur-req-note.show{display:block;}
 /* ── ADA / ACCESSIBILITY ──────────────────────────────────── */
 .skip-link{position:absolute;top:-100px;left:16px;padding:10px 18px;background:var(--mn);color:#fff;border-radius:0 0 10px 10px;font-size:13px;font-weight:700;z-index:99999;transition:top .2s;}
 .skip-link:focus{top:0;}
@@ -1194,41 +1211,9 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <div class="time-grid" id="time-grid"><p style="font-size:10.5px;color:var(--gr);">Select a date above to see available slots.</p></div>
 </div>
 
-<!-- STEP 3: AREA SIZE -->
-<div class="card reveal locked" id="card-area">
-  <div class="card-head"><div class="sbadge" id="b3">3</div><div><h2>Area Size</h2><p>How big is the space you need cleaned?</p></div></div>
-  <div class="area-wrap">
-    <div class="area-top">
-      <span class="area-lbl">Your space is approximately</span>
-      <span><span class="area-val" id="area-display">30</span><span class="area-unit">sqm</span></span>
-    </div>
-    <div class="area-input-row">
-      <label>Type exact sqm:</label>
-      <input type="number" id="area-num" min="10" max="150" value="30" oninput="onAreaInput(this)">
-    </div>
-    <input type="range" id="area-slider" min="10" max="120" value="30" oninput="onAreaSlide(this)">
-    <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--gr);margin-top:3px;"><span>10 sqm</span><span>120 sqm</span></div>
-    <div class="area-note">Move the slider or type your exact area. Properties over 45 sqm are priced per sqm. We currently do not accommodate spaces exceeding 150 sqm — we take our time with every property and want to guarantee the quality of our work.</div>
-    <div class="large-space-note" id="large-note">
-      <strong>Large Space Detected (over 45 sqm)</strong>
-      <p style="margin-bottom:6px;">Your space qualifies for custom per-sqm pricing. Here's how it's calculated:</p>
-      <table>
-        <tr><td>Regular Cleaning</td><td>Php 28/sqm</td></tr>
-        <tr><td>Deep Cleaning</td><td>Php 33/sqm</td></tr>
-        <tr><td>Move In / Move Out</td><td>Php 45/sqm</td></tr>
-      </table>
-      <p style="margin-top:5px;font-size:9px;color:var(--pr);">Final price = sqm x rate above. Select your cleaning type to see the computed amount.</p>
-    </div>
-    <div class="large-space-note" id="too-large-note" style="display:none;background:var(--rbg);border-color:var(--rbdr);">
-      <strong style="color:var(--red);">Space Exceeds Our Current Limit</strong>
-      <p style="color:var(--red);font-size:10px;line-height:1.5;">We currently accept bookings for spaces up to 150 sqm to ensure we give every property the dedicated, quality attention it deserves. For spaces larger than 150 sqm, please message us directly so we can work something out for you!</p>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 4: CLEANING TYPE -->
+<!-- STEP 3: CLEANING TYPE -->
 <div class="card reveal locked" id="card-clean">
-  <div class="card-head"><div class="sbadge" id="b4">4</div><div><h2>Cleaning Type</h2><p>Tap to select and see what's included</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b3">3</div><div><h2>Cleaning Type</h2><p>Tap to select and see what's included</p></div></div>
   <div class="clean-opts">
     <div class="clean-opt sel" id="ct-regular" onclick="selCleanType('regular')">
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Regular Cleaning</div><div class="co-badge included">Base price</div></div>
@@ -1258,45 +1243,55 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   </div>
 </div>
 
-<!-- STEP 5: UNIT TYPE -->
+<!-- STEP 4: UNIT TYPE -->
 <div class="card reveal locked" id="card-svc">
-  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>Property Type</h2><p>Select the type of space you need cleaned</p></div></div>
-  <div class="alert info" style="margin-bottom:8px;font-size:10px;"><strong>Price is determined by your area size and cleaning type above.</strong> Selecting a property type here helps us prepare appropriately — it does not change the computed price.</div>
+  <div class="card-head"><div class="sbadge" id="b4">4</div><div><h2>Property Type</h2><p>Select the type of space you need cleaned</p></div></div>
+  <div class="alert info" style="margin-bottom:8px;font-size:10px;"><strong>Prices are fixed per property type.</strong> Larger Home is priced per sqm — a slider will appear when selected.</div>
   <div class="svc-list">
     <div class="svc" data-name="Studio Type" onclick="selSvc(this)">
       <div class="svc-radio"></div>
-      <div class="svc-left"><div class="svc-name">Studio Type</div><div class="svc-sub">Typically 18–30 sqm</div></div>
+      <div class="svc-left"><div class="svc-name">Studio Type</div><div class="svc-sub">Up to 30 sqm</div></div>
       <div class="svc-right"><div class="svc-price" id="p-studio">—</div><div class="svc-time" id="t-studio"></div></div>
     </div>
     <div class="svc-div"></div>
     <div class="svc" data-name="1 Bedroom" onclick="selSvc(this)">
       <div class="svc-radio"></div>
-      <div class="svc-left"><div class="svc-name">1 Bedroom</div><div class="svc-sub">Typically 31–45 sqm</div></div>
+      <div class="svc-left"><div class="svc-name">1 Bedroom</div><div class="svc-sub">Up to 35 sqm</div></div>
       <div class="svc-right"><div class="svc-price" id="p-1br">—</div><div class="svc-time" id="t-1br"></div></div>
     </div>
     <div class="svc-div"></div>
     <div class="svc" data-name="2 Bedroom" onclick="selSvc(this)">
       <div class="svc-radio"></div>
-      <div class="svc-left"><div class="svc-name">2 Bedroom</div><div class="svc-sub">Typically 46–60 sqm</div></div>
+      <div class="svc-left"><div class="svc-name">2 Bedroom</div><div class="svc-sub">Up to 45 sqm</div></div>
       <div class="svc-right"><div class="svc-price" id="p-2br">—</div><div class="svc-time" id="t-2br"></div></div>
     </div>
     <div class="svc-div"></div>
     <div class="svc" data-name="Larger Home" onclick="selSvc(this)">
       <div class="svc-radio"></div>
-      <div class="svc-left"><div class="svc-name">Larger Home</div><div class="svc-sub">Typically 61–120 sqm</div></div>
+      <div class="svc-left"><div class="svc-name">Larger Home</div><div class="svc-sub">46–120 sqm · priced per sqm</div></div>
       <div class="svc-right"><div class="svc-price" id="p-house">—</div><div class="svc-time" id="t-house"></div></div>
     </div>
   </div>
-  <div class="unit-note" id="unit-note">Price shown reflects your current area &amp; cleaning type selection.</div>
+  <!-- Larger Home inline slider — shown only when Larger Home is selected -->
+  <div class="lh-slider-wrap" id="lh-slider-wrap">
+    <div class="lh-slider-top">
+      <span>How big is your space?</span>
+      <span><span class="area-val" id="area-display">46</span><span class="area-unit"> sqm</span></span>
+    </div>
+    <input type="range" id="area-slider" min="46" max="120" value="46" oninput="onAreaSlide(this)">
+    <div class="lh-slider-range-labels"><span>46 sqm</span><span>120 sqm</span></div>
+    <div class="lh-price-hint" id="lh-price-hint">Move the slider to set your area. Price updates instantly above.</div>
+  </div>
+  <div class="unit-note" id="unit-note">Price shown reflects your current cleaning type selection.</div>
   <div class="tbanner" id="tbanner">
     <strong id="tstr">—</strong>
     <div class="tbanner-val" id="tback"></div>
   </div>
 </div>
 
-<!-- STEP 6: SCHEDULE -->
+<!-- STEP 5: SCHEDULE -->
 <div class="card reveal locked" id="card-sched">
-  <div class="card-head"><div class="sbadge" id="b6">6</div><div><h2>Schedule</h2><p>How often do you need cleaning?</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>Schedule</h2><p>How often do you need cleaning?</p></div></div>
   <div class="pills">
     <div class="pill sel" onclick="selPill(this)" data-s="Initial / One-time">Initial / One-time</div>
     <div class="pill" onclick="selPill(this)" data-s="Monthly">Monthly</div>
@@ -1304,7 +1299,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     <div class="pill" onclick="selPill(this)" data-s="Weekly">Weekly</div>
     <div class="pill" onclick="selPill(this)" data-s="Bi-Weekly">Bi-Weekly</div>
   </div>
-  <p class="snote">For recurring bookings on the same property — schedule confirmed after reservation fee is received for each session. Airbnb hosts and property managers may qualify for additional discounts — message us.</p>
+  <div class="recur-req-note" id="recur-req-note">Please add at least one scheduled date to unlock your recurring discount and proceed with this schedule.</div>
+  <p class="snote">Recurring discounts apply automatically once you add your dates: Monthly 2% off · Bi-Monthly 3% off · Weekly 4% off · Bi-Weekly 5% off. Discounts apply to your full estimate total. Schedule confirmed after reservation fee is received for each session.</p>
   <div class="recur-section" id="recur-section">
     <h4>Add your scheduled dates &amp; times</h4>
     <div id="recur-entries"></div>
@@ -1313,15 +1309,15 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   </div>
 </div>
 
-<!-- STEP 7: ADD-ONS -->
+<!-- STEP 6: ADD-ONS -->
 <div class="card reveal locked" id="card-ext">
-  <div class="card-head"><div class="sbadge" id="b7">7</div><div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b6">6</div><div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p></div></div>
   <div class="al" id="al"></div>
 </div>
 
-<!-- STEP 8: SPECIAL INSTRUCTIONS -->
+<!-- STEP 7: SPECIAL INSTRUCTIONS -->
 <div class="card reveal locked" id="card-instr">
-  <div class="card-head"><div class="sbadge" id="b8">8</div><div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b7">7</div><div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p></div></div>
   <p style="font-size:10px;color:var(--gr);margin-bottom:6px;">Quick select — tap all that apply:</p>
   <div class="sit-tags">
     <div class="sit-tag" onclick="togSit(this)" data-val="Kids present">Kids present</div>
@@ -1340,18 +1336,18 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   </div>
 </div>
 
-<!-- STEP 9: LOCATION -->
+<!-- STEP 8: LOCATION -->
 <div class="card reveal locked" id="card-loc">
-  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b8">8</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p></div></div>
   <div style="font-size:10px;color:var(--gr);padding:6px 10px;background:var(--pa);border-radius:6px;margin-bottom:10px;line-height:1.6;">Php 50 base (first 2 km) + Php 10/km up to 6 km + Php 15/km beyond. Nearby areas have fixed rates.</div>
   <div class="loc-grid" id="loc-grid"></div>
   <div class="other-inp" id="other-inp"><input type="text" id="other-txt" placeholder="Type your area / city..." oninput="compute()"></div>
   <div class="loc-note">Transport fee is an estimate. Final amount confirmed based on your exact address.</div>
 </div>
 
-<!-- STEP 10: YOUR INFORMATION -->
+<!-- STEP 9: YOUR INFORMATION -->
 <div class="card reveal locked" id="card-info">
-  <div class="card-head"><div class="sbadge" id="b10">10</div><div><h2>Your Information</h2><p>We'll use this to confirm your booking</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Your Information</h2><p>We'll use this to confirm your booking</p></div></div>
   <div class="alert info" style="margin-bottom:8px;font-size:10px;">No log-in required. No bank information collected. Your data is only used to process your booking request.</div>
   <div class="fields">
     <div class="field full">
@@ -1387,7 +1383,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <h3>Booking Policies</h3>
 
   <div class="acc-item open" id="acc-pricing">
-    <div class="acc-head" onclick="togAcc('acc-pricing')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' '){togAcc('acc-pricing');event.preventDefault();}">
+    <div class="acc-head" onclick="togAcc('acc-pricing')" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter'||event.key===' '){togAcc('acc-pricing');event.preventDefault();}">
       <span class="acc-title">Pricing Transparency</span>
       <span class="acc-chevron">▼</span>
     </div>
@@ -1719,19 +1715,26 @@ var AUTO_REFRESH_MS = 300000; // 5 min auto-refresh
 var BLUE_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
 var PRINT_BG   = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Print%20-%20White%20Background.png';
 
-// Pricing — bracket-based (UPDATE when final prices confirmed by KlayGo PH)
-// Format: max sqm | Regular price | Deep price | MIO price | mins (min–max) per type
-var PRICE_BRACKETS = [
-  {max: 30,  rP:600,  rMin:120,rMax:180, dP:1350, dMin:240,dMax:270,  mP:1800, mMin:270,mMax:360},
-  {max: 45,  rP:800,  rMin:150,rMax:210, dP:1750, dMin:270,dMax:300,  mP:2300, mMin:300,mMax:420},
-  {max: 60,  rP:1400, rMin:180,rMax:240, dP:2100, dMin:300,dMax:390,  mP:2800, mMin:360,mMax:480},
-  {max: 80,  rP:1960, rMin:210,rMax:270, dP:2800, dMin:360,dMax:450,  mP:3600, mMin:420,mMax:540},
-  {max: 100, rP:2520, rMin:240,rMax:300, dP:3300, dMin:420,dMax:540,  mP:4400, mMin:480,mMax:600},
-  {max: 120, rP:3080, rMin:300,rMax:360, dP:3960, dMin:480,dMax:600,  mP:5200, mMin:540,mMax:720},
-  {max: 150, rP:3780, rMin:330,rMax:420, dP:4800, dMin:540,dMax:660,  mP:6400, mMin:600,mMax:840},
+// ── FIXED PRICES (Studio / 1BR / 2BR) ────────────────────────
+var FIXED_PRICES={
+  'Studio Type': {regular:600,  deep:1350, moveinout:1800},
+  '1 Bedroom':   {regular:750,  deep:1625, moveinout:2150},
+  '2 Bedroom':   {regular:900,  deep:2025, moveinout:2700},
+};
+var PER_SQM_RATES={regular:28, deep:33, moveinout:45};
+
+// PRICE_BRACKETS — used for time estimation only (rMin/rMax/dMin/dMax/mMin/mMax)
+var PRICE_BRACKETS=[
+  {max: 30, rMin:120,rMax:180, dMin:180,dMax:240, mMin:210,mMax:270},
+  {max: 35, rMin:150,rMax:210, dMin:210,dMax:270, mMin:240,mMax:300},
+  {max: 45, rMin:180,rMax:240, dMin:240,dMax:300, mMin:270,mMax:360},
+  {max: 60, rMin:210,rMax:270, dMin:300,dMax:390, mMin:360,mMax:480},
+  {max: 80, rMin:240,rMax:300, dMin:360,dMax:450, mMin:420,mMax:540},
+  {max:100, rMin:270,rMax:330, dMin:420,dMax:540, mMin:480,mMax:600},
+  {max:120, rMin:300,rMax:360, dMin:480,dMax:600, mMin:540,mMax:660},
 ];
 function getBracket(sqm){for(var i=0;i<PRICE_BRACKETS.length;i++){if(sqm<=PRICE_BRACKETS[i].max)return PRICE_BRACKETS[i];}return PRICE_BRACKETS[PRICE_BRACKETS.length-1];}
-var LARGE_CUTOFF = 45; // threshold for showing the "large space" info note
+var LARGE_CUTOFF=45;
 
 var ROOM_TYPES = ['Dining Room','Play Room','Laundry Room','Gym','Garage','Home Office','Basement','Attic'];
 var STORED = JSON.parse(localStorage.getItem('kn')||'[]');
@@ -1783,7 +1786,7 @@ var PH_HOLIDAYS = new Set([
 ]);
 
 // ── PROGRESS TRACKING FLAGS ────────────────────────────────────
-var sqmTouched=false, schedTouched=false;
+var schedTouched=false;
 var analytics = JSON.parse(localStorage.getItem('kg_an')||'{"opens":0,"estimates":0,"prints":0,"lastNum":0}');
 analytics.opens++;
 localStorage.setItem('kg_an', JSON.stringify(analytics));
@@ -1815,7 +1818,7 @@ var CY, CM, monthEvts={};
 var selDate=null, selTime=null;
 var selSituations=new Set(), recurSlots=[];
 var S={
-  cleanType:'regular', sqm:30, isLarge:false,
+  cleanType:'regular', sqm:46, isLarge:false,
   bn:'',
   sched:'Initial / One-time',
   addons:{}, rt:new Set(),
@@ -1844,7 +1847,6 @@ function updateProgress(){
   var done=0;
   if(selDate)done++;
   if(selTime)done++;
-  if(sqmTouched)done++;
   if(S.cleanType&&S.cleanType!=='regular')done++;else if(document.getElementById('ct-regular')&&document.getElementById('ct-regular').classList.contains('sel'))done++;
   if(S.bn)done++;
   if(schedTouched)done++;
@@ -1852,29 +1854,26 @@ function updateProgress(){
   if(S.lid)done++;
   if(document.getElementById('f-name').value.trim())done++;
   if(document.getElementById('f-phone').value.trim())done++;
-  done=Math.min(done,10);
-  var current=Math.min(done+1,10);
-  var pct=Math.round(done/10*100);
+  done=Math.min(done,9);
+  var pct=Math.round(done/9*100);
   var fill=document.getElementById('progress-fill');
   var lbl=document.getElementById('progress-label');
   if(fill)fill.style.width=Math.max(pct,2)+'%';
-  if(lbl)lbl.textContent=''; // label removed per design
+  if(lbl)lbl.textContent='';
 }
 
 // ── COMPUTE BASE PRICE ────────────────────────────────────────
-var PER_SQM_REG=28, PER_SQM_DEEP=33, PER_SQM_MIO=45;
 function getBasePrice(){
-  if(!selTime) return{price:0,label:'',surcharge:0};
-  var b=getBracket(S.sqm);
-  var label=S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'');
-  if(S.sqm>LARGE_CUTOFF){
-    if(S.cleanType==='regular')return{price:S.sqm*PER_SQM_REG,label:label+' — Regular (Php '+PER_SQM_REG+'/sqm)',surcharge:0};
-    if(S.cleanType==='deep')   return{price:S.sqm*PER_SQM_DEEP,label:label+' — Deep Clean (Php '+PER_SQM_DEEP+'/sqm)',surcharge:0};
-    return{price:S.sqm*PER_SQM_MIO,label:label+' — Move In/Out (Php '+PER_SQM_MIO+'/sqm)',surcharge:0};
+  if(!selTime)return{price:0,label:'',surcharge:0};
+  var typeLabel=S.cleanType==='deep'?'Deep Cleaning':S.cleanType==='moveinout'?'Move In / Move Out':'Regular Cleaning';
+  if(S.bn==='Larger Home'){
+    var rate=PER_SQM_RATES[S.cleanType]||28;
+    return{price:S.sqm*rate,label:'Larger Home — '+S.sqm+' sqm — '+typeLabel+' (Php '+rate+'/sqm)',surcharge:0};
   }
-  if(S.cleanType==='regular')return{price:b.rP,label:label+' — Regular',surcharge:0};
-  if(S.cleanType==='deep')   return{price:b.dP,label:label+' — Deep Clean',surcharge:0};
-  return{price:b.mP,label:label+' — Move In/Out',surcharge:0};
+  var fp=FIXED_PRICES[S.bn];
+  if(!fp)return{price:0,label:'',surcharge:0};
+  var p=fp[S.cleanType]||fp.regular;
+  return{price:p,label:S.bn+' — '+typeLabel,surcharge:0};
 }
 
 // ── CALENDAR FETCH ────────────────────────────────────────────
@@ -2014,14 +2013,14 @@ async function renderTimes(ds,hrsAway){
 function onTimeClick(el,start){
   document.querySelectorAll('.ts.ts-s').forEach(function(t){t.classList.remove('ts-s');});
   el.classList.add('ts-s'); selTime=start;
-  ['card-area','card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-info'].forEach(function(id){unlock(id);});
+  ['card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-info'].forEach(function(id){unlock(id);});
   var lbl=start.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
   var parts=selDate.split('-');
   var dlbl=new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'short',month:'short',day:'numeric'});
   buildAvailCard();
   genEstId();
   var copyBtn=document.getElementById('btn-copy'); if(copyBtn)copyBtn.style.display='block';
-  document.getElementById('card-area').scrollIntoView({behavior:'smooth',block:'nearest'});
+  document.getElementById('card-clean').scrollIntoView({behavior:'smooth',block:'nearest'});
   compute();
 }
 
@@ -2050,26 +2049,20 @@ function buildAvailCard(){
 
 // ── AREA SIZE ─────────────────────────────────────────────────
 function syncArea(val){
-  val=Math.max(10,Math.min(150,+val||30));
+  val=Math.max(46,Math.min(120,+val||46));
   S.sqm=val;
-  S.isLarge=val>LARGE_CUTOFF;
-  var tooLarge=val>150;
-  document.getElementById('area-display').textContent=val;
-  var numEl=document.getElementById('area-num'); if(numEl)numEl.value=val;
+  S.isLarge=val>=90; // 90+ sqm triggers 50% reservation fee
+  var disp=document.getElementById('area-display'); if(disp)disp.textContent=val;
   var slider=document.getElementById('area-slider');
   if(slider){
-    var sv=Math.min(val,120); slider.value=sv;
-    var pct=((sv-10)/(120-10)*100)+'%';
+    slider.value=val;
+    var pct=((val-46)/(120-46)*100)+'%';
     slider.style.setProperty('--pct',pct);
   }
-  var ln=document.getElementById('large-note');
-  if(ln)ln.classList.toggle('show',S.isLarge&&val<=150);
-  var tln=document.getElementById('too-large-note');
-  if(tln)tln.style.display=val>150?'block':'none';
   compute();
 }
-function onAreaSlide(inp){sqmTouched=true;syncArea(+inp.value);}
-function onAreaInput(inp){sqmTouched=true;syncArea(+inp.value);}
+function onAreaSlide(inp){syncArea(+inp.value);}
+function onAreaInput(inp){syncArea(+inp.value);}
 
 // ── CLEANING TYPE ─────────────────────────────────────────────
 function selCleanType(type){
@@ -2084,6 +2077,19 @@ function selCleanType(type){
 function selSvc(el){
   document.querySelectorAll('.svc').forEach(function(s){s.classList.remove('sel');}); el.classList.add('sel');
   S.bn=el.dataset.name;
+  var lhWrap=document.getElementById('lh-slider-wrap');
+  if(S.bn==='Larger Home'){
+    // Slider starts at 46 sqm
+    S.sqm=46; S.isLarge=false;
+    if(lhWrap)lhWrap.classList.add('show');
+    var disp=document.getElementById('area-display'); if(disp)disp.textContent='46';
+    var slider=document.getElementById('area-slider'); if(slider)slider.value=46;
+  } else {
+    if(lhWrap)lhWrap.classList.remove('show');
+    // Set fixed sqm per type (for time estimates and reservation fee check)
+    S.sqm=S.bn==='Studio Type'?30:S.bn==='1 Bedroom'?35:S.bn==='2 Bedroom'?45:30;
+    S.isLarge=false;
+  }
   compute();
 }
 
@@ -2309,7 +2315,8 @@ function selLoc(id){
 
 // ── TIME CALC ─────────────────────────────────────────────────
 function cT(){
-  var b=getBracket(S.sqm);
+  var sqmRef=S.bn==='Studio Type'?30:S.bn==='1 Bedroom'?35:S.bn==='2 Bedroom'?45:S.sqm;
+  var b=getBracket(sqmRef);
   var mn,mx;
   if(S.cleanType==='regular'){mn=b.rMin;mx=b.rMax;}
   else if(S.cleanType==='deep'){mn=b.dMin;mx=b.dMax;}
@@ -2327,24 +2334,44 @@ function fmtT(mn,mx){
 function compute(){
   var lines=[], sub=0;
 
-  // Update property type card prices to reflect current sqm + cleaning type
-  var b=getBracket(S.sqm), t=cT();
-  var brackets=[
-    {pid:'p-studio',tid:'t-studio',b:getBracket(25)},
-    {pid:'p-1br',   tid:'t-1br',   b:getBracket(38)},
-    {pid:'p-2br',   tid:'t-2br',   b:getBracket(52)},
-    {pid:'p-house', tid:'t-house', b:getBracket(85)},
+  // Update property type card prices to reflect current cleaning type
+  var svcCards=[
+    {pid:'p-studio',tid:'t-studio',name:'Studio Type', sqmRef:30},
+    {pid:'p-1br',   tid:'t-1br',   name:'1 Bedroom',   sqmRef:35},
+    {pid:'p-2br',   tid:'t-2br',   name:'2 Bedroom',   sqmRef:45},
   ];
-  brackets.forEach(function(br){
-    var el=document.getElementById(br.pid), tel=document.getElementById(br.tid);
+  svcCards.forEach(function(sc){
+    var el=document.getElementById(sc.pid),tel=document.getElementById(sc.tid);
     if(!el)return;
-    var p,mn,mx;
-    if(S.cleanType==='regular'){p=br.b.rP;mn=br.b.rMin;mx=br.b.rMax;}
-    else if(S.cleanType==='deep'){p=br.b.dP;mn=br.b.dMin;mx=br.b.dMax;}
-    else{p=br.b.mP;mn=br.b.mMin;mx=br.b.mMax;}
+    var fp=FIXED_PRICES[sc.name], p=fp[S.cleanType]||fp.regular;
     el.textContent='Php '+p.toLocaleString();
+    var tb=getBracket(sc.sqmRef),mn,mx;
+    if(S.cleanType==='regular'){mn=tb.rMin;mx=tb.rMax;}
+    else if(S.cleanType==='deep'){mn=tb.dMin;mx=tb.dMax;}
+    else{mn=tb.mMin;mx=tb.mMax;}
     if(tel)tel.textContent='~'+fmtT(mn,mx);
   });
+  // Larger Home card — show per-sqm rate and computed price if selected
+  var phEl=document.getElementById('p-house'),phT=document.getElementById('t-house');
+  if(phEl){
+    var rate=PER_SQM_RATES[S.cleanType]||28;
+    if(S.bn==='Larger Home'){
+      phEl.textContent='Php '+(S.sqm*rate).toLocaleString();
+      if(phT){var hb=getBracket(S.sqm),hmn,hmx;if(S.cleanType==='regular'){hmn=hb.rMin;hmx=hb.rMax;}else if(S.cleanType==='deep'){hmn=hb.dMin;hmx=hb.dMax;}else{hmn=hb.mMin;hmx=hb.mMax;}phT.textContent='~'+fmtT(hmn,hmx);}
+    } else {
+      phEl.textContent='Php '+rate+'/sqm';
+      if(phT)phT.textContent='';
+    }
+  }
+  // Update larger home price hint
+  var lhHint=document.getElementById('lh-price-hint');
+  if(lhHint&&S.bn==='Larger Home'){
+    var r2=PER_SQM_RATES[S.cleanType]||28;
+    var typeL=S.cleanType==='deep'?'Deep Cleaning':S.cleanType==='moveinout'?'Move In / Move Out':'Regular Cleaning';
+    lhHint.textContent=S.sqm+' sqm × Php '+r2+'/sqm ('+typeL+') = Php '+(S.sqm*r2).toLocaleString();
+  }
+
+  var t=cT();
 
   // Base price from bracket
   var bp=getBasePrice();
@@ -2368,7 +2395,27 @@ function compute(){
     lines.push({l:sLabel,v:travelData.surcharge});
     sub+=travelData.surcharge;
   }
-  var total=sub;
+
+  // ── RECURRING DISCOUNT ────────────────────────────────────
+  var rFilledDisc=recurSlots.filter(function(s){return s.date;});
+  var discPct=0, discLabel='';
+  if(S.sched==='Monthly'&&rFilledDisc.length>=1){discPct=0.02;discLabel='Monthly recurring — 2% off';}
+  else if(S.sched==='Bi-Monthly'&&rFilledDisc.length>=2){discPct=0.03;discLabel='Bi-Monthly recurring — 3% off';}
+  else if(S.sched==='Weekly'&&rFilledDisc.length>=3){discPct=0.04;discLabel='Weekly recurring — 4% off';}
+  else if(S.sched==='Bi-Weekly'&&rFilledDisc.length>=4){discPct=0.05;discLabel='Bi-Weekly recurring — 5% off';}
+  var discAmt=discPct>0?Math.floor(sub*discPct):0;
+  if(discAmt>0)lines.push({l:discLabel,v:-discAmt,disc:true});
+  var total=sub-discAmt;
+
+  // Show/hide recurring required note
+  var rReqNote=document.getElementById('recur-req-note');
+  if(rReqNote){
+    var needsDates=S.sched!=='Initial / One-time'&&rFilledDisc.length===0;
+    rReqNote.classList.toggle('show',needsDates);
+  }
+  // Update pdisc label
+  var pdiscEl=document.getElementById('pdisc');
+  if(pdiscEl)pdiscEl.textContent=discAmt>0?'Recurring discount applied: \u2212Php '+discAmt.toLocaleString():'';
 
   // Time banner
   var tb=document.getElementById('tbanner');
@@ -2384,7 +2431,10 @@ function compute(){
   document.getElementById('ptotd').textContent=total.toLocaleString();
   var body=document.getElementById('pbody');
   if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';updateStickyBar(0);updateBottomEstimate(0,[],false,0,0,null);updateProgress();return;}
-  var html=lines.map(function(ln){return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv">'+(ln.tbd?'TBD':'Php '+ln.v.toLocaleString())+'</span></div>';}).join('');
+  var html=lines.map(function(ln){
+    if(ln.disc)return'<div class="li disc"><span class="ll">'+ln.l+'</span><span class="lv">\u2212Php '+Math.abs(ln.v).toLocaleString()+'</span></div>';
+    return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv">'+(ln.tbd?'TBD':'Php '+ln.v.toLocaleString())+'</span></div>';
+  }).join('');
   html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">Php '+total.toLocaleString()+'</span></div>';
   body.innerHTML=html;
 
@@ -2469,7 +2519,6 @@ function buildMsg(){
   msg+='\nDate: '+dl+'\nTime: '+tl+'\nSchedule: '+S.sched;
   msg+='\nCleaning Type: '+(S.cleanType==='deep'?'Deep Cleaning':S.cleanType==='moveinout'?'Move In / Move Out':'Regular Cleaning');
   msg+='\nArea: '+S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'')+'\n';
-  if(S.ln)msg+='Location: '+S.ln+'\n';
   msg+='\nSERVICES:\n'+lines.join('\n')+'\nESTIMATED TOTAL: Php '+total.toLocaleString();
   if(t)msg+='\nEst. Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.';
   var rFilled=recurSlots.filter(function(s){return s.date;});
@@ -2494,14 +2543,31 @@ function buildMsg(){
   return msg;
 }
 
+// ── RECURRING VALIDATION ──────────────────────────────────────
+function validateRecurring(){
+  if(S.sched==='Initial / One-time')return true;
+  var rFilled=recurSlots.filter(function(s){return s.date;});
+  if(rFilled.length===0){
+    toast('Please add at least one date for your '+S.sched+' schedule.');
+    var rs=document.getElementById('card-sched');
+    if(rs)rs.scrollIntoView({behavior:'smooth',block:'nearest'});
+    return false;
+  }
+  return true;
+}
+
 // ── BOOK & COPY ───────────────────────────────────────────────
 function bookNow(){
+  if(!validateRecurring())return;
   var msg=buildMsg();
   function proceed(){sendEstimateEmail(msg);document.getElementById('msn-modal').classList.add('show');}
   if(navigator.clipboard){navigator.clipboard.writeText(msg).then(proceed).catch(function(){fbCopy(msg);proceed();});}
   else{fbCopy(msg);proceed();}
 }
-function copyEstimate(){var msg=buildMsg();if(navigator.clipboard){navigator.clipboard.writeText(msg).then(function(){toast('Estimate copied!');}).catch(function(){fbCopy(msg);});}else fbCopy(msg);}
+function copyEstimate(){
+  if(!validateRecurring())return;
+  var msg=buildMsg();if(navigator.clipboard){navigator.clipboard.writeText(msg).then(function(){toast('Estimate copied!');}).catch(function(){fbCopy(msg);});}else fbCopy(msg);
+}
 function fbCopy(text){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');toast('Estimate copied!');}catch(e){toast('Could not auto-copy. Please copy manually.');}document.body.removeChild(ta);}
 
 // ── EMAIL ─────────────────────────────────────────────────────
@@ -2583,11 +2649,10 @@ function openPrint(){
     +'</div>':'';
   var w=window.open('','_blank','width=560,height=794');
   w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8">'
-    +'<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">'
     +'<style>'
     +'@page{size:A5 portrait;margin:0;}'
     +'*{box-sizing:border-box;margin:0;padding:0;}'
-    +'html,body{width:148mm;min-height:210mm;font-family:"DM Sans",sans-serif;color:#2C2C2A;}'
+    +'html,body{width:148mm;min-height:210mm;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#2C2C2A;}'
     +'body{display:flex;flex-direction:column;position:relative;}'
     +'.bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url("'+PRINT_BG+'") center/cover no-repeat;z-index:0;}'
     +'.cnt{position:relative;z-index:1;display:flex;flex-direction:column;min-height:210mm;}'
@@ -2656,7 +2721,7 @@ function openPrint(){
 // ── RESET ─────────────────────────────────────────────────────
 function resetAll(){
   selDate=null;selTime=null;selSituations=new Set();recurSlots=[];
-  S={cleanType:'regular',sqm:30,isLarge:false,bn:'',sched:'Initial / One-time',addons:{},rt:new Set(),lid:null,ln:null,lf:null};
+  S={cleanType:'regular',sqm:46,isLarge:false,bn:'',sched:'Initial / One-time',addons:{},rt:new Set(),lid:null,ln:null,lf:null};
   document.querySelectorAll('.day.sel-d').forEach(function(d){d.classList.remove('sel-d');});
   document.querySelectorAll('.svc.sel').forEach(function(s){s.classList.remove('sel');});
   document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('sel');});
@@ -2671,13 +2736,14 @@ function resetAll(){
   document.getElementById('time-grid').innerHTML='<p style="font-size:10.5px;color:var(--gr);">Select a date above to see available slots.</p>';
   document.getElementById('time-alerts').innerHTML='';
   document.getElementById('time-sub').textContent='Choose your date first';
-  var tln=document.getElementById('too-large-note');if(tln)tln.style.display='none';
-  ['card-time','card-area','card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-info'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.add('locked');});
+  // Hide Larger Home slider
+  var lhw=document.getElementById('lh-slider-wrap');if(lhw)lhw.classList.remove('show');
+  ['card-time','card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-info'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.add('locked');});
   setAvail('none','No date selected yet.');
   currentEstId='';var pe=document.getElementById('p-est-id');if(pe)pe.textContent='—';
   var cb=document.getElementById('btn-copy');if(cb)cb.style.display='none';
   ['f-name','f-phone','f-email','f-addr','f-land'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-  syncArea(30);renderAddons();renderLocs();resetTravelData();compute();
+  renderAddons();renderLocs();resetTravelData();compute();
 }
 
 // ── CALENDAR NAV ──────────────────────────────────────────────
@@ -3022,7 +3088,8 @@ function updateStickyBar(total){
   if(total>0){
     document.getElementById('sb-total').textContent=total.toLocaleString();
     var ctLabel=S.cleanType==='deep'?'Deep Clean':S.cleanType==='moveinout'?'Move In/Out':'Regular Clean';
-    document.getElementById('sb-desc').textContent=ctLabel+' · '+S.sqm+' sqm';
+    var propLabel=S.bn==='Larger Home'?S.sqm+' sqm':S.bn||'';
+    document.getElementById('sb-desc').textContent=ctLabel+(propLabel?' · '+propLabel:'');
     bar.classList.remove('sb-hidden');
   } else {
     document.getElementById('sb-total').textContent='—';
