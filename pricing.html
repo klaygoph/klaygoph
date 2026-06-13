@@ -1150,8 +1150,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     <div class="cc-chips">
       <span class="cc-chip ok">✓ Instant pricing</span>
       <span class="cc-chip ok">✓ No hidden fees</span>
-      <span class="cc-chip ok">✓ Booking via Messenger / Instagram</span>
-      <span class="cc-chip ok">✓ Reservation fee via GCash / Bank transfer</span>
+      <span class="cc-chip ok">✓ Booking confirmed via Messenger</span>
+      <span class="cc-chip ok">✓ Reservation fee via GCash / Maya / Bank Transfer</span>
     </div>
   </div>
 </div>
@@ -1497,7 +1497,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
       <span class="acc-title">Reservation Fee &amp; Payment</span>
       <span class="acc-chevron">▼</span>
     </div>
-    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or 80+ sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
+    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or 80+ sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Maya · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
   </div>
 
   <div class="acc-item" id="acc-onsite">
@@ -1620,7 +1620,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
       <div class="pr-band-upfront" id="pr-band-upfront" style="display:none;">
         <div class="pr-band-text-col">
           <div class="pr-band-lbl">Total Upfront Payment</div>
-          <div class="pr-band-sub">via GCash or Bank Transfer</div>
+          <div class="pr-band-sub">via GCash, Maya, or Bank Transfer</div>
         </div>
         <div class="pr-band-val" id="pr-upfront-amt">—</div>
       </div>
@@ -1687,7 +1687,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <div class="be-upfront-band" id="be-upfront-band" style="display:none;">
     <div class="be-band-text-col">
       <div class="be-band-main-lbl">Total Upfront Payment</div>
-      <div class="be-band-sub-lbl">via GCash or Bank Transfer</div>
+      <div class="be-band-sub-lbl">via GCash, Maya, or Bank Transfer</div>
     </div>
     <div class="be-band-num" id="be-upfront-amt">—</div>
   </div>
@@ -1816,12 +1816,47 @@ var LOCS = [
 
 // ── PHILIPPINE HOLIDAYS ───────────────────────────────────────
 var PH_HOLIDAYS = new Set([
-  '2025-01-01','2025-04-09','2025-04-17','2025-04-18','2025-05-01',
-  '2025-06-12','2025-08-21','2025-08-25','2025-11-01','2025-11-02',
-  '2025-11-30','2025-12-08','2025-12-24','2025-12-25','2025-12-30','2025-12-31',
-  '2026-01-01','2026-04-02','2026-04-03','2026-05-01',
-  '2026-06-12','2026-08-21','2026-08-31','2026-11-01','2026-11-02',
-  '2026-11-30','2026-12-08','2026-12-24','2026-12-25','2026-12-30','2026-12-31',
+  // 2025
+  '2025-01-01', // New Year's Day
+  '2025-01-29', // Chinese New Year
+  '2025-03-29', // Black Saturday (Special Non-Working)
+  '2025-04-09', // Araw ng Kagitingan
+  '2025-04-17', // Maundy Thursday
+  '2025-04-18', // Good Friday
+  '2025-05-01', // Labor Day
+  '2025-05-12', // Eid'l Fitr (estimated)
+  '2025-06-06', // Eid'l Adha (estimated)
+  '2025-06-12', // Independence Day
+  '2025-08-21', // Ninoy Aquino Day
+  '2025-08-25', // National Heroes Day
+  '2025-11-01', // All Saints' Day
+  '2025-11-02', // All Souls' Day (Special Non-Working)
+  '2025-11-30', // Bonifacio Day
+  '2025-12-08', // Feast of the Immaculate Conception
+  '2025-12-24', // Christmas Eve (Special Non-Working)
+  '2025-12-25', // Christmas Day
+  '2025-12-30', // Rizal Day
+  '2025-12-31', // New Year's Eve (Special Non-Working)
+  // 2026
+  '2026-01-01', // New Year's Day
+  '2026-02-17', // Chinese New Year
+  '2026-04-02', // Maundy Thursday
+  '2026-04-03', // Good Friday
+  '2026-04-04', // Black Saturday (Special Non-Working)
+  '2026-05-01', // Labor Day
+  '2026-05-01', // Eid'l Fitr (estimated — may shift by proclamation)
+  '2026-05-27', // Eid'l Adha (estimated)
+  '2026-06-12', // Independence Day
+  '2026-08-21', // Ninoy Aquino Day
+  '2026-08-31', // National Heroes Day
+  '2026-11-01', // All Saints' Day
+  '2026-11-02', // All Souls' Day (Special Non-Working)
+  '2026-11-30', // Bonifacio Day
+  '2026-12-08', // Feast of the Immaculate Conception
+  '2026-12-24', // Christmas Eve (Special Non-Working)
+  '2026-12-25', // Christmas Day
+  '2026-12-30', // Rizal Day
+  '2026-12-31', // New Year's Eve (Special Non-Working)
 ]);
 
 // ── PROGRESS TRACKING FLAGS ────────────────────────────────────
@@ -2658,7 +2693,7 @@ function buildMsg(){
   if(rFilled.length>0){
     var totalSessions=rFilled.length+1;
     msg+='\n\nRecurring Dates:\n'+rFilled.map(function(s){return s.date+(s.time?' at '+s.time:'');}).join('\n');
-    if(tf>0)msg+='\nTotal upfront ('+totalSessions+' sessions): Php '+(tf*totalSessions).toLocaleString();
+    msg+='\nTotal upfront ('+totalSessions+' sessions × Php '+dpMsg.toLocaleString()+'): Php '+(dpMsg*totalSessions).toLocaleString();
   }
   var sits=[...selSituations].join(', ');if(sits)msg+='\n\nSituation: '+sits;
   if(instr)msg+='\n\nSpecial Instructions: '+instr;
@@ -2701,12 +2736,12 @@ async function sendEstimateEmail(msg){
   var phone=document.getElementById('f-phone').value.trim();
   try{
     await fetch('https://formspree.io/f/'+FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({_subject:'[Klaygo PH] New Estimate '+(currentEstId||'')+' — '+(name||'Customer'),_replyto:email||'noreply@klaygo',name:name,phone:phone,customer_email:email||'Not provided',estimate_id:currentEstId,details:msg})});
+      body:JSON.stringify({_subject:'[Klaygo PH] New Estimate '+(currentEstId||'')+' — '+(name||'Customer'),_replyto:email||'noreply@klaygoph.com',name:name,phone:phone,customer_email:email||'Not provided',estimate_id:currentEstId,details:msg})});
   }catch(e){console.log('Email err:',e);}
   if(email){
     try{
       await fetch('https://formspree.io/f/'+FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({_subject:'[Klaygo PH] Your Estimate '+(currentEstId||''),_replyto:'info.klaygoph@gmail.com',name:name,email:email,
+        body:JSON.stringify({_subject:'[Klaygo PH] Your Estimate '+(currentEstId||''),_replyto:'hello@klaygoph.com',name:name,email:email,
           message:'Hi '+(name||'there')+'!\n\nThank you for using the Klaygo PH Service Calculator. Here is your estimate:\n\n'+msg+'\n\nWe will be in touch shortly to confirm your schedule and send payment details.\n\n Messenger: m.me/klaygoph\n 0992.816.4718\n\nCleaner Space, Clearer Mind.\nKlaygo PH'})});
       toast('Estimate sent to your email and ours!');
     }catch(e){console.log('Cust email err:',e);}
@@ -2721,7 +2756,8 @@ function openPrint(){
   var dateStr=new Date().toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'});
   var now=new Date(),ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
   var rows=[],sub=0;
-  rows.push([bp.label,'Php '+bp.price.toLocaleString()]);sub+=bp.price;
+  var bpLabel=bp.label+(S.bn?' ('+S.bn+')':'');
+  rows.push([bpLabel,'Php '+bp.price.toLocaleString()]);sub+=bp.price;
   ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';rows.push([lbl,'Php '+sv.toLocaleString()]);sub+=sv;}});
   if(S.sqm>=80){rows.push(['Additional Cleaner (included — 80+ sqm)','Included']);}
   else if(S.addons['cleaner']>0){rows.push(['Additional Cleaner','Php 1,000']);sub+=1000;}
@@ -2731,21 +2767,30 @@ function openPrint(){
   var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
   var tl=selTime?selTime.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true}):'';
   var tStr=t?'Estimated Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.':'';
+  var rFilled=recurSlots.filter(function(s){return s.date;});
   var cR='';
   if(name)cR+='<tr><td>Name</td><td>'+name+'</td></tr>';
   if(phone)cR+='<tr><td>Contact</td><td>'+phone+'</td></tr>';
   if(email)cR+='<tr><td>Email</td><td>'+email+'</td></tr>';
   if(addr)cR+='<tr><td>Address</td><td>'+addr+'</td></tr>';
   if(land)cR+='<tr><td>Landmark</td><td>'+land+'</td></tr>';
+  cR+='<tr><td>Schedule</td><td>'+S.sched+'</td></tr>';
   if(dl)cR+='<tr><td>Date</td><td>'+dl+'</td></tr>';
   if(tl)cR+='<tr><td>Time</td><td>'+tl+'</td></tr>';
+  if(rFilled.length>0){
+    var rdLines=rFilled.map(function(s){
+      var rp=s.date.split('-');
+      var rd=new Date(+rp[0],+rp[1]-1,+rp[2]).toLocaleDateString('en-PH',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+      return rd+(s.time?' — '+s.time:'');
+    }).join('<br>');
+    cR+='<tr><td style="vertical-align:top;">Recurring</td><td>'+rdLines+'</td></tr>';
+  }
   cR+='<tr><td>Submitted</td><td>'+ts+'</td></tr>';
   var rowsHtml=rows.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
   rowsHtml+='<tr class="tr"><td>ESTIMATED TOTAL</td><td>Php '+total.toLocaleString()+'</td></tr>';
   var sits=[...selSituations].join(', ');var instrHtml='';
   if(sits)instrHtml+='<div class="ib"><h4>Situation</h4><p>'+sits+'</p></div>';
   if(instr)instrHtml+='<div class="ib"><h4>Special Instructions</h4><p>'+instr+'</p></div>';
-  var rFilled=recurSlots.filter(function(s){return s.date;});
   var multiDatePrint=rFilled.length>0||S.sched!=='Initial / One-time';
   var balLabelPrint=multiDatePrint?'Balance on each service day':'Balance on service day';
   var totalSessionsPrint=rFilled.length>0?rFilled.length+1:1;
@@ -2766,11 +2811,11 @@ function openPrint(){
     +'<div><div style="font-size:7.5px;font-weight:700;color:#2B4E8A;letter-spacing:.08em;text-transform:uppercase;">'+(totalSessionsPrint>1?'Balance on Each Service Day':'Balance on Service Day')+'</div>'
     +'<div style="font-size:7px;color:#5A7BB5;">Paid on the day of cleaning</div></div>'
     +'<div style="font-size:11px;font-weight:900;color:#0D1F3C;">Php '+balPrint.toLocaleString()+'</div></div>'
-    +(totalSessionsPrint>1?'<div style="margin:3px 0;padding:5px 8px;background:#FFF8E1;border:1.5px solid #C9A227;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">'
-    +'<div><div style="font-size:7.5px;font-weight:700;color:#8B6914;letter-spacing:.08em;text-transform:uppercase;">Total Upfront Payment</div>'
-    +'<div style="font-size:7px;color:rgba(139,105,20,.6);">Php '+dpPrint.toLocaleString()+' × '+totalSessionsPrint+' sessions</div></div>'
-    +'<div style="font-size:11px;font-weight:900;color:#8B6914;">Php '+(dpPrint*totalSessionsPrint).toLocaleString()+'</div></div>':'')
-    +'<div style="font-size:7px;color:#6B6B68;margin-top:4px;line-height:1.5;">via GCash or Bank Transfer. Balance paid on the day of service.</div>'
+    +(totalSessionsPrint>1?'<div style="margin:3px 0;padding:5px 8px;background:#0D1F3C;border:1.5px solid #2B4E8A;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">'
+    +'<div><div style="font-size:7.5px;font-weight:700;color:#A8BFE0;letter-spacing:.08em;text-transform:uppercase;">Total Upfront Payment</div>'
+    +'<div style="font-size:7px;color:rgba(168,191,224,.6);">Php '+dpPrint.toLocaleString()+' × '+totalSessionsPrint+' sessions</div></div>'
+    +'<div style="font-size:11px;font-weight:900;color:#F7F9FC;">Php '+(dpPrint*totalSessionsPrint).toLocaleString()+'</div></div>':'')
+    +'<div style="font-size:7px;color:#6B6B68;margin-top:4px;line-height:1.5;">via GCash, Maya, or Bank Transfer. Balance paid on the day of service.</div>'
     +'</div>':'';
 
   // ── BUILD FULL HTML AS STRING, THEN USE BLOB URL (fixes blank screen in modern browsers) ──
@@ -2801,7 +2846,7 @@ function openPrint(){
     +'.pay-s h4{font-size:8px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;}'
     +'.pr{display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px;}'
     +'.pr .pk{color:#6B6B68;}.pr .pv{font-weight:600;color:#2C2C2A;}'
-    +'.pr.pn .pk{color:#2B4E8A;font-weight:700;}.pr.pn .pv{color:#1B8A4C;font-size:11px;font-weight:800;}'
+    +'.pr.pn .pk{color:#2B4E8A;font-weight:700;}.pr.pn .pv{color:#0D1F3C;font-size:11px;font-weight:800;}'
     +'.wb{background:#EBF1FA;border:1px solid #A8BFE0;border-radius:4px;padding:5px 8px;}'
     +'.wb strong{display:block;font-size:8.5px;color:#2B4E8A;font-weight:800;margin-bottom:1px;}'
     +'.wb p{font-size:7.5px;color:#3D6399;line-height:1.4;}'
