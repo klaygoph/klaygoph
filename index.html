@@ -33,28 +33,25 @@
 
 <style>
 :root{
-  --mn:#0D1F3C;   /* deep navy   — topbar, footer, headings, numerals */
-  --pr:#2B4E8A;   /* medium blue — accent, links, primary button */
+  --mn:#0D1F3C;   /* deep navy   — topbar, footer, hero overlay */
+  --pr:#2B4E8A;   /* medium blue — links on light areas */
   --se:#3D6399;   /* hover state for blue elements */
-  --li:#A8BFE0;   /* light blue  — badge dot, light accents */
-  --bd:#D0DBF2;   /* hairline dividers, input borders */
-  --gr:#6B6B68;   /* secondary text */
-  --dk:#2C2C2A;   /* primary body text */
-  --deep:#1A3D63; /* photo tint + caption bar — distinct register for the field photo */
-  --bg:#F7F9FC;   /* page background */
+  --li:#A8BFE0;   /* light blue  — accents on dark/photo background */
+  --bg:#F7F9FC;   /* near-white  — text on dark, page chrome */
+  --hl: rgba(255,255,255,.15); /* hairlines on dark */
   --font-brand:'Argentum Novus','Outfit',sans-serif;
   --font-body:'Manrope',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{background:var(--mn);}
-body{font-family:var(--font-body);background:var(--bg);color:var(--dk);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font-body);background:var(--mn);color:var(--bg);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
 img{display:block;max-width:100%;}
-a{color:var(--pr);}
-:focus-visible{outline:2px solid var(--pr);outline-offset:3px;border-radius:2px;}
+a{color:var(--li);}
+:focus-visible{outline:2px solid var(--li);outline-offset:3px;border-radius:2px;}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
 /* Skip link */
-.skip-link{position:absolute;left:-9999px;top:0;padding:10px 18px;background:var(--mn);color:var(--bg);z-index:999;font-size:13px;border-radius:0 0 6px 0;}
+.skip-link{position:absolute;left:-9999px;top:0;padding:10px 18px;background:var(--bg);color:var(--mn);z-index:999;font-size:13px;border-radius:0 0 6px 0;}
 .skip-link:focus{left:0;}
 
 /* ═══════════════════════════════════════════════
@@ -64,75 +61,76 @@ a{color:var(--pr);}
 .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
 .brand{display:block;line-height:0;}
 .brand img{height:24px;width:auto;display:block;}
-.topbar-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(247,249,252,.22);border-radius:30px;padding:8px 16px;font-size:12px;font-weight:600;color:rgba(247,249,252,.82);white-space:nowrap;}
-.topbar-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--li);flex-shrink:0;}
-.topbar-badge strong{color:#F7F9FC;font-weight:800;}
+.topbar-badge{font-size:12px;font-weight:600;color:rgba(247,249,252,.7);white-space:nowrap;}
+.topbar-badge strong{color:var(--bg);font-weight:800;}
 
 /* ═══════════════════════════════════════════════
-   LAYOUT
+   HERO — photo background
 ═══════════════════════════════════════════════ */
-.layout{display:grid;grid-template-columns:1fr;}
-.content{padding:clamp(40px,7vw,88px) clamp(20px,5vw,64px);}
+.hero{
+  position:relative;
+  min-height:78vh;
+  display:flex;
+  align-items:center;
+  background-color:var(--mn);
+  background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001.png');
+  background-size:cover;
+  background-position:38% 35%;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(105deg, rgba(13,31,60,.97) 0%, rgba(13,31,60,.94) 40%, rgba(13,31,60,.6) 68%, rgba(13,31,60,.24) 100%);
+}
+.content{position:relative;z-index:1;width:100%;padding:clamp(40px,7vw,88px) clamp(20px,5vw,64px);}
 .content-inner{max-width:560px;}
 
-.eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--pr);margin-bottom:18px;}
-h1{font-family:var(--font-brand);font-weight:900;font-size:clamp(34px,5.2vw,58px);line-height:1.08;letter-spacing:-.5px;color:var(--mn);margin-bottom:18px;}
-h1 .accent{color:var(--pr);}
-.lede{font-size:clamp(14px,1.6vw,16px);color:var(--gr);line-height:1.85;max-width:46ch;}
+.eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--li);margin-bottom:18px;}
+h1{font-family:var(--font-brand);font-weight:900;font-size:clamp(34px,5.2vw,58px);line-height:1.08;letter-spacing:-.5px;color:var(--bg);margin-bottom:18px;}
+h1 .accent{color:var(--li);}
+.lede{font-size:clamp(14px,1.6vw,16px);color:rgba(247,249,252,.72);line-height:1.85;max-width:46ch;}
 
 /* Countdown */
 .countdown{display:flex;margin:clamp(28px,4vw,40px) 0;}
 .cd-unit{display:flex;flex-direction:column;align-items:flex-start;padding:0 clamp(14px,2.6vw,30px);}
 .cd-unit:first-child{padding-left:0;}
-.cd-unit:not(:first-child){border-left:1px solid var(--bd);}
-.cd-num{font-family:var(--font-brand);font-weight:900;font-size:clamp(26px,4.4vw,42px);line-height:1;color:var(--mn);font-variant-numeric:tabular-nums;letter-spacing:-.5px;}
-.cd-label{margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gr);}
+.cd-unit:not(:first-child){border-left:1px solid var(--hl);}
+.cd-num{font-family:var(--font-brand);font-weight:900;font-size:clamp(26px,4.4vw,42px);line-height:1;color:var(--bg);font-variant-numeric:tabular-nums;letter-spacing:-.5px;}
+.cd-label{margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,249,252,.55);}
 
-.divider{height:1px;background:var(--bd);margin:clamp(28px,4vw,40px) 0;}
+.divider{height:1px;background:var(--hl);margin:clamp(28px,4vw,40px) 0;}
 
 /* Notify form */
-.notify h2{font-family:var(--font-brand);font-weight:800;font-size:clamp(17px,2vw,20px);color:var(--mn);margin-bottom:12px;}
+.notify h2{font-family:var(--font-brand);font-weight:800;font-size:clamp(17px,2vw,20px);color:var(--bg);margin-bottom:12px;}
 .notify-form{display:flex;gap:10px;max-width:440px;}
-.notify-form input[type=email]{flex:1;min-width:0;padding:13px 16px;font-family:var(--font-body);font-size:14px;color:var(--dk);background:#fff;border:1.5px solid var(--li);border-radius:6px;transition:border-color .15s,box-shadow .15s;}
-.notify-form input[type=email]::placeholder{color:#9AA3AE;}
-.notify-form input[type=email]:focus{border-color:var(--pr);box-shadow:0 0 0 3px rgba(43,78,138,.14);outline:none;}
-.notify-form button{font-family:var(--font-brand);font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#F7F9FC;background:var(--pr);border:none;border-radius:6px;padding:13px 26px;cursor:pointer;transition:background .15s;white-space:nowrap;}
-.notify-form button:hover{background:var(--se);}
-.notify-note{margin-top:12px;font-size:12px;color:var(--gr);}
+.notify-form input[type=email]{flex:1;min-width:0;padding:13px 16px;font-family:var(--font-body);font-size:14px;color:var(--bg);background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.25);border-radius:6px;transition:border-color .15s,box-shadow .15s;}
+.notify-form input[type=email]::placeholder{color:rgba(247,249,252,.45);}
+.notify-form input[type=email]:focus{border-color:var(--li);box-shadow:0 0 0 3px rgba(168,191,224,.18);outline:none;}
+.notify-form button{font-family:var(--font-brand);font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--mn);background:var(--li);border:none;border-radius:6px;padding:13px 26px;cursor:pointer;transition:background .15s;white-space:nowrap;}
+.notify-form button:hover{background:var(--bg);}
+.notify-note{margin-top:12px;font-size:12px;color:rgba(247,249,252,.55);}
 
 /* Meanwhile */
-.meanwhile-label{font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pr);margin-bottom:10px;}
-.meanwhile p{font-size:13.5px;color:var(--dk);line-height:1.85;max-width:48ch;}
-.meanwhile a{color:var(--pr);text-decoration:underline;text-decoration-color:var(--bd);text-underline-offset:2px;}
-.meanwhile a:hover{color:var(--se);text-decoration-color:var(--se);}
-
-/* ═══════════════════════════════════════════════
-   VISUAL (field photo)
-═══════════════════════════════════════════════ */
-.visual{display:flex;flex-direction:column;}
-.visual-frame{position:relative;overflow:hidden;aspect-ratio:4/3;}
-.visual-frame img{width:100%;height:100%;object-fit:cover;object-position:42% 38%;}
-.visual-frame::after{content:'';position:absolute;inset:0;background:var(--deep);opacity:.12;mix-blend-mode:multiply;pointer-events:none;}
-.visual-caption{background:var(--deep);padding:16px clamp(20px,5vw,40px);}
-.vc-label{display:block;font-family:var(--font-brand);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--li);margin-bottom:6px;}
-.vc-text{font-size:12.5px;color:rgba(247,249,252,.85);line-height:1.7;max-width:46ch;}
+.meanwhile-label{font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--li);margin-bottom:10px;}
+.meanwhile p{font-size:13.5px;color:rgba(247,249,252,.85);line-height:1.85;max-width:48ch;}
+.meanwhile a{color:var(--li);text-decoration:underline;text-decoration-color:rgba(255,255,255,.3);text-underline-offset:2px;}
+.meanwhile a:hover{color:var(--bg);text-decoration-color:var(--bg);}
 
 /* ═══════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════ */
-.sitefoot{background:var(--mn);padding:22px clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);}
+.sitefoot{background:var(--mn);padding:22px clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--hl);}
 .sitefoot .copy{font-size:11.5px;color:rgba(247,249,252,.45);}
 .social{display:flex;gap:10px;}
 .social a{display:inline-flex;align-items:center;gap:7px;color:rgba(247,249,252,.7);font-size:12px;font-weight:600;text-decoration:none;padding:7px 16px;border:1.5px solid rgba(255,255,255,.18);border-radius:30px;transition:all .15s;}
-.social a:hover{color:#F7F9FC;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.06);}
+.social a:hover{color:var(--bg);border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.06);}
 
 /* ═══════════════════════════════════════════════
-   DESKTOP — two-column split
+   MOBILE — flatten overlay, no min-height forcing
 ═══════════════════════════════════════════════ */
-@media(min-width:1000px){
-  .layout{grid-template-columns:1.15fr 1fr;align-items:stretch;}
-  .content{display:flex;align-items:center;}
-  .visual-frame{aspect-ratio:auto;flex:1;min-height:0;}
+@media(max-width:999px){
+  .hero{min-height:0;}
+  .hero-overlay{background:rgba(13,31,60,.93);}
+  .hero{background-position:38% 35%;}
 }
 
 /* ═══════════════════════════════════════════════
@@ -162,14 +160,12 @@ body.ready .content-inner > *:nth-child(7){animation-delay:.38s;}
     <a href="/" class="brand" aria-label="Klaygo PH home">
       <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Light%20-%20Res%20-%20100.png" alt="Klaygo PH">
     </a>
-    <div class="topbar-badge">
-      <span class="dot" aria-hidden="true"></span>
-      New site launching <strong>August&nbsp;1,&nbsp;2026</strong>
-    </div>
+    <p class="topbar-badge">New site launching <strong>August&nbsp;1,&nbsp;2026</strong></p>
   </div>
 </header>
 
-<main id="main-content" class="layout">
+<main id="main-content" class="hero">
+  <div class="hero-overlay" aria-hidden="true"></div>
 
   <section class="content">
     <div class="content-inner">
@@ -222,21 +218,10 @@ body.ready .content-inner > *:nth-child(7){animation-delay:.38s;}
 
     </div>
   </section>
-
-  <aside class="visual">
-    <div class="visual-frame">
-      <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001.png" alt="A Klaygo PH cleaner in a navy polo and blue shoe covers mopping the floor of a modern condominium living room." loading="lazy">
-    </div>
-    <div class="visual-caption">
-      <span class="vc-label">From the field</span>
-      <span class="vc-text">One of our cleaners finishing up a floor care job in a BGC condo, right on schedule.</span>
-    </div>
-  </aside>
-
 </main>
 
 <footer class="sitefoot">
-  <span class="copy">© 2026 Klaygo PH. All rights reserved.</span>
+  <span class="copy">© 2025 Klaygo PH. All rights reserved.</span>
   <div class="social">
     <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
