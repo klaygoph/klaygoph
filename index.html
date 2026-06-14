@@ -3,15 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Klaygo PH — Professional home cleaning services in Metro Manila. Transparent pricing, trusted cleaners. BGC, Makati, Taguig, Pasig, Quezon City and more.">
-<meta property="og:title" content="Klaygo PH — Cleaner Space, Clearer Mind">
-<meta property="og:description" content="Professional cleaning services across Metro Manila. See instant pricing — no login required.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0D1F3C">
+<meta name="description" content="Klaygo PH is refreshing klaygoph.com. The new site launches August 1, 2026 — bookings continue as usual via Facebook, Instagram, or text.">
+<meta property="og:title" content="Klaygo PH — New site launching soon">
+<meta property="og:description" content="A clearer Klaygo PH is on its way. New site launches August 1, 2026.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://klaygoph.github.io/">
-<title>Klaygo PH — Cleaner Space, Clearer Mind</title>
+<meta property="og:url" content="https://klaygoph.com/">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Favicon%20-%20Dark%20Square.png">
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+<title>Klaygo PH — New Site Launching Soon</title>
 
-<!-- Fonts -->
-<!-- Manrope — self-hosted body font -->
+<!-- Self-hosted Manrope -->
 <style>
 @font-face{font-family:'Manrope';src:url('fonts/Manrope-ExtraLight.woff2') format('woff2');font-weight:200;font-style:normal;font-display:swap;}
 @font-face{font-family:'Manrope';src:url('fonts/Manrope-Light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap;}
@@ -30,455 +33,265 @@
 
 <style>
 :root{
-  --mn:#0D1F3C;--pr:#2B4E8A;--se:#3D6399;--li:#A8BFE0;--pa:#EBF1FA;--bd:#D0DBF2;
-  --dk:#2C2C2A;--gr:#6B6B68;
+  --mn:#0D1F3C;   /* deep navy   — topbar, footer, headings, numerals */
+  --pr:#2B4E8A;   /* medium blue — accent, links, primary button */
+  --se:#3D6399;   /* hover state for blue elements */
+  --li:#A8BFE0;   /* light blue  — badge dot, light accents */
+  --bd:#D0DBF2;   /* hairline dividers, input borders */
+  --gr:#6B6B68;   /* secondary text */
+  --dk:#2C2C2A;   /* primary body text */
+  --deep:#1A3D63; /* photo tint + caption bar — distinct register for the field photo */
+  --bg:#F7F9FC;   /* page background */
   --font-brand:'Argentum Novus','Outfit',sans-serif;
   --font-body:'Manrope',system-ui,sans-serif;
-  --r:20px;--sh:0 4px 24px rgba(43,78,138,.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{background:#2C2C2A;}
-body{font-family:var(--font-body);background:#F7F9FC;color:#2C2C2A;font-size:14px;line-height:1.55;overflow-x:hidden;}
+html{background:var(--mn);}
+body{font-family:var(--font-body);background:var(--bg);color:var(--dk);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{color:var(--pr);}
+:focus-visible{outline:2px solid var(--pr);outline-offset:3px;border-radius:2px;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+/* Skip link */
+.skip-link{position:absolute;left:-9999px;top:0;padding:10px 18px;background:var(--mn);color:var(--bg);z-index:999;font-size:13px;border-radius:0 0 6px 0;}
+.skip-link:focus{left:0;}
 
 /* ═══════════════════════════════════════════════
-   NAV
+   TOPBAR
 ═══════════════════════════════════════════════ */
-.nav-wrap{position:sticky;top:0;z-index:200;}
-.nav-top{background:#0D1F3C;height:clamp(72px,14vh,110px);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,40px);transition:height .3s cubic-bezier(.4,0,.2,1);}
-.nav-top.compact{height:clamp(50px,8vh,64px);}
-.nav-top-left{display:flex;align-items:center;gap:14px;}
-.nav-logo{height:28px;width:auto;display:block;}
-.nav-brand-text{font-family:var(--font-brand);font-size:10.5px;color:rgba(247,249,252,.45);line-height:1.4;display:flex;flex-direction:column;}
-.nav-brand-text strong{color:rgba(247,249,252,.75);font-weight:700;letter-spacing:.02em;}
-.nav-top-right{display:flex;align-items:center;gap:10px;}
-.nav-hamburger{background:#F7F9FC;border:none;cursor:pointer;padding:7px 9px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:background .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.12);}
-.nav-hamburger:hover{background:#EBF1FA;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.nav-hamburger svg{display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
-.nav-hamburger.rotating svg{transform:rotate(360deg);}
-.nav-sub{background:#2B4E8A;display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;}
-.nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:50px;transition:all .15s;white-space:nowrap;}
-.nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
-.nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
-
-/* Mobile nav */
-.nav-mobile-page{font-family:var(--font-brand);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;}
-@media(max-width:700px){
-  .nav-top{padding:0 16px;position:relative;}
-  .nav-brand-text{display:none;}
-  .nav-logo{height:22px;}
-  .nav-mobile-page{display:block;}
-  .nav-sub{display:none;}
-  .nav-hamburger img{width:30px;height:30px;}
-}
-
-/* Menu overlay */
-.nav-menu-overlay{display:none;position:fixed;inset:0;background:#0D1F3C;z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:24px;overflow:hidden;}
-.nav-menu-overlay.open{display:flex;}
-.nav-menu-close{position:absolute;top:22px;right:28px;background:none;border:none;color:#F7F9FC;cursor:pointer;font-size:28px;padding:8px;opacity:.7;transition:opacity .15s;}
-.nav-menu-close:hover{opacity:1;}
-.nav-menu-pill{font-family:var(--font-brand);font-size:18px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,249,252,.78);text-decoration:none;border:none;border-radius:50px;padding:15px 40px;width:auto;min-width:190px;text-align:center;opacity:0;transform:translateY(-8px);transition:background .18s,opacity .22s ease,transform .22s ease;cursor:pointer;pointer-events:auto;}
-.nav-menu-pill.visible{opacity:1;transform:translateY(0);}
-.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.12);color:#F7F9FC;}
-.nav-menu-pill:nth-child(2){transition-delay:.06s;}
-.nav-menu-pill:nth-child(3){transition-delay:.12s;}
-.nav-menu-pill:nth-child(4){transition-delay:.18s;}
-.nav-menu-pill:nth-child(5){transition-delay:.24s;}
-.nav-menu-pill:nth-child(6){transition-delay:.30s;}
-@media(min-width:701px){
-  .nav-menu-overlay{left:auto;width:300px;align-items:flex-start;justify-content:flex-start;padding:80px 0 40px 32px;gap:6px;box-shadow:-16px 0 48px rgba(0,0,0,.45);border-left:1px solid rgba(168,191,224,.1);overflow-y:auto;}
-  .nav-menu-close{top:22px;right:22px;}
-  .nav-menu-pill{font-size:14px;padding:11px 20px;min-width:unset;width:calc(100% - 32px);text-align:left;border-radius:12px;}
-}
+.topbar{background:var(--mn);padding:18px clamp(20px,4vw,48px);}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.brand{display:block;line-height:0;}
+.brand img{height:24px;width:auto;display:block;}
+.topbar-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(247,249,252,.22);border-radius:30px;padding:8px 16px;font-size:12px;font-weight:600;color:rgba(247,249,252,.82);white-space:nowrap;}
+.topbar-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--li);flex-shrink:0;}
+.topbar-badge strong{color:#F7F9FC;font-weight:800;}
 
 /* ═══════════════════════════════════════════════
-   HERO  (transferred from pricing.html)
+   LAYOUT
 ═══════════════════════════════════════════════ */
-.hero{
-  background:#2B4E8A;
-  position:relative;overflow:hidden;
-  min-height:72vh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(50px,8vw,100px) clamp(22px,5vw,72px) clamp(50px,8vw,88px);
-}
-#hero-bg{position:absolute;inset:0;background:
-  radial-gradient(ellipse 70% 80% at 110% 50%,rgba(13,31,60,.55) 0%,transparent 70%),
-  linear-gradient(135deg,#1A3A6E 0%,#2B4E8A 50%,#1E3868 100%);
-  will-change:transform;transform-origin:center;transition:none;
-}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to bottom,transparent,rgba(13,31,60,.18));pointer-events:none;}
-.hero-content{position:relative;z-index:2;max-width:640px;}
-.hero-eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:20px;}
-.hero h1{font-family:var(--font-brand);font-size:clamp(40px,7vw,80px);font-weight:900;color:#F7F9FC;line-height:1.0;margin-bottom:10px;letter-spacing:-.8px;}
-.hero h1 span{color:#A8BFE0;}
-.hero-sub{font-size:clamp(13px,1.5vw,15.5px);color:rgba(247,249,252,.82);line-height:1.85;max-width:480px;margin-bottom:28px;}
+.layout{display:grid;grid-template-columns:1fr;}
+.content{padding:clamp(40px,7vw,88px) clamp(20px,5vw,64px);}
+.content-inner{max-width:560px;}
 
-/* CTA button — #F7F9FC border + text as requested */
-.hero-cta{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#F7F9FC;border:2px solid #F7F9FC;border-radius:50px;padding:14px 36px;font-family:var(--font-brand);font-size:15px;font-weight:800;cursor:pointer;margin-bottom:26px;transition:all .18s;letter-spacing:.02em;text-decoration:none;}
-.hero-cta:hover{background:rgba(247,249,252,.12);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--pr);margin-bottom:18px;}
+h1{font-family:var(--font-brand);font-weight:900;font-size:clamp(34px,5.2vw,58px);line-height:1.08;letter-spacing:-.5px;color:var(--mn);margin-bottom:18px;}
+h1 .accent{color:var(--pr);}
+.lede{font-size:clamp(14px,1.6vw,16px);color:var(--gr);line-height:1.85;max-width:46ch;}
 
-.hero-checks{display:flex;flex-wrap:wrap;gap:10px 26px;}
-.hero-check{display:flex;align-items:center;gap:8px;font-size:clamp(12px,1.3vw,13.5px);color:rgba(247,249,252,.9);font-weight:500;}
-.hero-check::before{content:'✓';color:#A8BFE0;font-weight:700;font-size:14px;flex-shrink:0;}
+/* Countdown */
+.countdown{display:flex;margin:clamp(28px,4vw,40px) 0;}
+.cd-unit{display:flex;flex-direction:column;align-items:flex-start;padding:0 clamp(14px,2.6vw,30px);}
+.cd-unit:first-child{padding-left:0;}
+.cd-unit:not(:first-child){border-left:1px solid var(--bd);}
+.cd-num{font-family:var(--font-brand);font-weight:900;font-size:clamp(26px,4.4vw,42px);line-height:1;color:var(--mn);font-variant-numeric:tabular-nums;letter-spacing:-.5px;}
+.cd-label{margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gr);}
 
-/* Hero text animations */
-body.js-ready .hero-eyebrow{animation:heroFadeUp .7s ease both;}
-body.js-ready .hero h1{animation:heroFadeUp .8s ease .1s both;}
-body.js-ready .hero-sub{animation:heroFadeUp .8s ease .22s both;}
-body.js-ready .hero-cta{animation:heroFadeUp .8s ease .34s both;}
-body.js-ready .hero-checks{animation:heroFadeUp .8s ease .46s both;}
-@keyframes heroFadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
-@media(prefers-reduced-motion:reduce){.hero-eyebrow,.hero h1,.hero-sub,.hero-cta,.hero-checks{animation:none;opacity:1;transform:none;}}
+.divider{height:1px;background:var(--bd);margin:clamp(28px,4vw,40px) 0;}
 
-@media(max-width:700px){
-  .hero{padding:40px 20px 36px;min-height:56vh;}
-  .hero h1{font-size:clamp(32px,9vw,52px);}
-  .hero-sub{font-size:14px;}
-  .hero-checks{flex-direction:column;gap:10px;}
-  .hero-cta{padding:13px 28px;font-size:14px;}
+/* Notify form */
+.notify h2{font-family:var(--font-brand);font-weight:800;font-size:clamp(17px,2vw,20px);color:var(--mn);margin-bottom:12px;}
+.notify-form{display:flex;gap:10px;max-width:440px;}
+.notify-form input[type=email]{flex:1;min-width:0;padding:13px 16px;font-family:var(--font-body);font-size:14px;color:var(--dk);background:#fff;border:1.5px solid var(--li);border-radius:6px;transition:border-color .15s,box-shadow .15s;}
+.notify-form input[type=email]::placeholder{color:#9AA3AE;}
+.notify-form input[type=email]:focus{border-color:var(--pr);box-shadow:0 0 0 3px rgba(43,78,138,.14);outline:none;}
+.notify-form button{font-family:var(--font-brand);font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#F7F9FC;background:var(--pr);border:none;border-radius:6px;padding:13px 26px;cursor:pointer;transition:background .15s;white-space:nowrap;}
+.notify-form button:hover{background:var(--se);}
+.notify-note{margin-top:12px;font-size:12px;color:var(--gr);}
+
+/* Meanwhile */
+.meanwhile-label{font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pr);margin-bottom:10px;}
+.meanwhile p{font-size:13.5px;color:var(--dk);line-height:1.85;max-width:48ch;}
+.meanwhile a{color:var(--pr);text-decoration:underline;text-decoration-color:var(--bd);text-underline-offset:2px;}
+.meanwhile a:hover{color:var(--se);text-decoration-color:var(--se);}
+
+/* ═══════════════════════════════════════════════
+   VISUAL (field photo)
+═══════════════════════════════════════════════ */
+.visual{display:flex;flex-direction:column;}
+.visual-frame{position:relative;overflow:hidden;aspect-ratio:4/3;}
+.visual-frame img{width:100%;height:100%;object-fit:cover;object-position:42% 38%;}
+.visual-frame::after{content:'';position:absolute;inset:0;background:var(--deep);opacity:.12;mix-blend-mode:multiply;pointer-events:none;}
+.visual-caption{background:var(--deep);padding:16px clamp(20px,5vw,40px);}
+.vc-label{display:block;font-family:var(--font-brand);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--li);margin-bottom:6px;}
+.vc-text{font-size:12.5px;color:rgba(247,249,252,.85);line-height:1.7;max-width:46ch;}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+.sitefoot{background:var(--mn);padding:22px clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);}
+.sitefoot .copy{font-size:11.5px;color:rgba(247,249,252,.45);}
+.social{display:flex;gap:10px;}
+.social a{display:inline-flex;align-items:center;gap:7px;color:rgba(247,249,252,.7);font-size:12px;font-weight:600;text-decoration:none;padding:7px 16px;border:1.5px solid rgba(255,255,255,.18);border-radius:30px;transition:all .15s;}
+.social a:hover{color:#F7F9FC;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.06);}
+
+/* ═══════════════════════════════════════════════
+   DESKTOP — two-column split
+═══════════════════════════════════════════════ */
+@media(min-width:1000px){
+  .layout{grid-template-columns:1.15fr 1fr;align-items:stretch;}
+  .content{display:flex;align-items:center;}
+  .visual-frame{aspect-ratio:auto;flex:1;min-height:0;}
 }
 
 /* ═══════════════════════════════════════════════
-   MARQUEE
+   LOAD-IN
 ═══════════════════════════════════════════════ */
-.marquee-strip{background:#0D1F3C;padding:11px 0;overflow:hidden;white-space:nowrap;user-select:none;}
-.marquee-track{display:inline-flex;gap:0;animation:marqueeScroll 32s linear infinite;}
-.marquee-track:hover{animation-play-state:paused;}
-.marquee-item{font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(168,191,224,.7);padding:0 16px;}
-.marquee-dot{color:rgba(168,191,224,.3);font-size:10px;align-self:center;}
-@keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-/* ═══════════════════════════════════════════════
-   VALUE PROP SECTION
-═══════════════════════════════════════════════ */
-.value-section{background:#fff;padding:clamp(48px,6vw,80px) clamp(22px,5vw,60px);}
-.section-eyebrow{font-family:var(--font-brand);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3D6399;margin-bottom:14px;}
-.section-title{font-family:var(--font-brand);font-size:clamp(26px,4vw,44px);font-weight:900;color:#0D1F3C;line-height:1.08;margin-bottom:16px;}
-.section-sub{font-size:clamp(13px,1.4vw,15px);color:#4A5568;line-height:1.9;max-width:540px;margin-bottom:40px;}
-.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;}
-.value-card{background:#F7F9FC;border:1.5px solid #EBF1FA;border-radius:20px;padding:24px 22px;transition:box-shadow .2s,transform .2s;}
-.value-card:hover{box-shadow:0 10px 32px rgba(43,78,138,.1);transform:translateY(-3px);}
-.value-icon{font-size:28px;margin-bottom:12px;display:block;}
-.value-title{font-family:var(--font-brand);font-size:15px;font-weight:800;color:#0D1F3C;margin-bottom:6px;}
-.value-desc{font-size:12.5px;color:#4A5568;line-height:1.75;}
-@media(max-width:700px){
-  .value-section{padding:40px 20px;}
-  .value-grid{grid-template-columns:1fr;gap:14px;}
+.content-inner > *{opacity:0;transform:translateY(14px);}
+body.ready .content-inner > *{animation:fadeUp .6s ease both;}
+body.ready .content-inner > *:nth-child(1){animation-delay:.02s;}
+body.ready .content-inner > *:nth-child(2){animation-delay:.08s;}
+body.ready .content-inner > *:nth-child(3){animation-delay:.14s;}
+body.ready .content-inner > *:nth-child(4){animation-delay:.2s;}
+body.ready .content-inner > *:nth-child(5){animation-delay:.26s;}
+body.ready .content-inner > *:nth-child(6){animation-delay:.32s;}
+body.ready .content-inner > *:nth-child(7){animation-delay:.38s;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+@media(prefers-reduced-motion:reduce){
+  .content-inner > *{opacity:1;transform:none;}
+  body.ready .content-inner > *{animation:none;}
 }
-
-/* ═══════════════════════════════════════════════
-   HOW IT WORKS
-═══════════════════════════════════════════════ */
-.how-section{background:#EBF1FA;padding:clamp(48px,6vw,80px) clamp(22px,5vw,60px);}
-.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:900px;margin-top:36px;position:relative;}
-.how-steps::before{content:'';position:absolute;top:22px;left:30px;right:30px;height:2px;background:#A8BFE0;z-index:0;}
-.how-step{position:relative;z-index:1;text-align:center;}
-.how-num{width:44px;height:44px;border-radius:50%;background:#2B4E8A;color:#fff;font-family:var(--font-brand);font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;border:3px solid #EBF1FA;}
-.how-title{font-family:var(--font-brand);font-size:13px;font-weight:800;color:#0D1F3C;margin-bottom:6px;}
-.how-desc{font-size:11.5px;color:#4A5568;line-height:1.7;}
-@media(max-width:700px){
-  .how-section{padding:40px 20px;}
-  .how-steps{grid-template-columns:1fr 1fr;gap:18px;}
-  .how-steps::before{display:none;}
-}
-
-/* ═══════════════════════════════════════════════
-   CTA BAND
-═══════════════════════════════════════════════ */
-.cta-band{background:#0D1F3C;padding:clamp(44px,5vw,72px) clamp(22px,5vw,60px);text-align:center;}
-.cta-band h2{font-family:var(--font-brand);font-size:clamp(26px,4vw,44px);font-weight:900;color:#F7F9FC;margin-bottom:10px;line-height:1.1;}
-.cta-band p{font-size:clamp(13px,1.4vw,15px);color:rgba(247,249,252,.7);margin-bottom:30px;line-height:1.8;}
-.cta-main-btn{display:inline-flex;align-items:center;gap:8px;background:#2B4E8A;color:#F7F9FC;border:2px solid #5A7BB5;border-radius:50px;padding:16px 44px;font-family:var(--font-brand);font-size:16px;font-weight:800;cursor:pointer;text-decoration:none;transition:all .18s;letter-spacing:.02em;}
-.cta-main-btn:hover{background:#3D6399;transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,0,0,.3);}
-.cta-sub-links{margin-top:18px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
-.cta-sub-link{font-size:12px;color:rgba(168,191,224,.7);text-decoration:none;transition:color .15s;}
-.cta-sub-link:hover{color:#A8BFE0;}
-
-/* ═══════════════════════════════════════════════
-   FOLLOW + FOOTER + COPYRIGHT
-═══════════════════════════════════════════════ */
-.follow-bar{background:#2B4E8A;padding:28px 24px;text-align:center;}
-.follow-text{font-size:12.5px;color:rgba(255,255,255,.8);margin-bottom:12px;}
-.follow-links{display:flex;justify-content:center;gap:14px;}
-.follow-link{display:inline-flex;align-items:center;gap:7px;color:#F7F9FC;font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 18px;border:1.5px solid rgba(255,255,255,.25);border-radius:30px;transition:all .14s;}
-.follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);}
-footer{background:#2B4E8A;padding:14px 24px;border-top:1px solid rgba(255,255,255,.08);}
-.footer-inner{display:flex;align-items:center;justify-content:center;text-align:center;}
-.footer-inner span{color:rgba(247,249,252,.45);font-size:11.5px;font-family:var(--font-body);}
-.copyright-bar{background:#2C2C2A;text-align:center;font-size:11px;color:rgba(247,249,252,.45);padding:11px 20px;font-family:var(--font-body);}
-
-/* ═══════════════════════════════════════════════
-   SCROLL REVEALS
-═══════════════════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.25,.46,.45,.94),transform .6s cubic-bezier(.25,.46,.45,.94);}
-.reveal.in{opacity:1;transform:translateY(0);}
-.reveal-d1{transition-delay:.06s;}
-.reveal-d2{transition-delay:.14s;}
-.reveal-d3{transition-delay:.22s;}
-.reveal-d4{transition-delay:.30s;}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
 </style>
 </head>
 <body>
-<a href="#main-content" style="position:absolute;left:-9999px;top:0;padding:8px 16px;background:#0D1F3C;color:#F7F9FC;z-index:9999;border-radius:0 0 8px 0;font-size:13px;" onfocus="this.style.left='0'">Skip to main content</a>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- NAV MENU OVERLAY -->
-<div class="nav-menu-overlay" id="nav-menu">
-  <button class="nav-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
-  <a href="index.html" class="nav-menu-pill active">Home</a>
-  <a href="pricing.html" class="nav-menu-pill">Pricing</a>
-  <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
-  <a href="terms.html" class="nav-menu-pill">Terms of Use</a>
-  <a href="privacy.html" class="nav-menu-pill">Privacy Policy</a>
-</div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="brand" aria-label="Klaygo PH home">
+      <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Light%20-%20Res%20-%20100.png" alt="Klaygo PH">
+    </a>
+    <div class="topbar-badge">
+      <span class="dot" aria-hidden="true"></span>
+      New site launching <strong>August&nbsp;1,&nbsp;2026</strong>
+    </div>
+  </div>
+</header>
 
-<div class="nav-wrap">
-  <div class="nav-top">
-    <div class="nav-top-left">
-      <a href="index.html" aria-label="Klaygo PH Home">
-        <img id="logo-img" class="nav-logo" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);">
-      </a>
-      <div class="nav-brand-text">
-        <strong>KLAYGOPH | Cleaning Services</strong>
-        <span>Clearer space, Clearer mind.</span>
+<main id="main-content" class="layout">
+
+  <section class="content">
+    <div class="content-inner">
+
+      <p class="eyebrow">Website refresh</p>
+
+      <h1>A <span class="accent">clearer</span> Klaygo PH is on its way.</h1>
+
+      <p class="lede">We're rebuilding klaygoph.com with simpler pricing, easier booking, and a few surprises. While we put on the finishing touches, our team is still cleaning homes across Metro Manila exactly as before.</p>
+
+      <div class="countdown" role="group" aria-label="Countdown to launch">
+        <div class="cd-unit" aria-hidden="true">
+          <span class="cd-num" id="cd-d">00</span>
+          <span class="cd-label">Days</span>
+        </div>
+        <div class="cd-unit" aria-hidden="true">
+          <span class="cd-num" id="cd-h">00</span>
+          <span class="cd-label">Hours</span>
+        </div>
+        <div class="cd-unit" aria-hidden="true">
+          <span class="cd-num" id="cd-m">00</span>
+          <span class="cd-label">Minutes</span>
+        </div>
+        <div class="cd-unit" aria-hidden="true">
+          <span class="cd-num" id="cd-s">00</span>
+          <span class="cd-label">Seconds</span>
+        </div>
+        <p class="sr-only" id="cd-sr" aria-live="polite"></p>
       </div>
-    </div>
-    <div class="nav-top-right">
-      <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/d50ebc17c041ce8f4e3f3796ba0cb9e635ed5efd/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button.png" alt="Menu" onerror="this.outerHTML='<svg width=26 height=26 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;#F7F9FC&quot; stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><line x1=3 y1=6 x2=21 y2=6/><line x1=3 y1=12 x2=21 y2=12/><line x1=3 y1=18 x2=21 y2=18/></svg>';">
-      </button>
-    </div>
-  </div>
-  <div class="nav-sub">
-    <span class="nav-mobile-page">HOME</span>
-    <a href="index.html" class="nav-tab active">Home</a>
-    <a href="pricing.html" class="nav-tab">Pricing</a>
-    <a href="sayhello.html" class="nav-tab">Say Hello!</a>
-  </div>
-</div>
 
-<!-- ═══ HERO ═══ -->
-<main id="main-content">
-<div class="hero" id="hero">
-  <div id="hero-bg" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Serving Metro Manila homes.</div>
-    <h1>Customize your clean,<br><span>see your price.</span></h1>
-    <p class="hero-sub">Transparent pricing, professional cleaners, and zero hidden fees — all in one easy estimate.</p>
-    <a href="pricing.html" class="hero-cta">Get Your Instant Estimate →</a>
-    <div class="hero-checks">
-      <div class="hero-check">No log in required</div>
-      <div class="hero-check">No bank info collected</div>
-      <div class="hero-check">Pricing transparency only</div>
-    </div>
-  </div>
-</div>
+      <div class="divider"></div>
 
-<!-- ═══ MARQUEE ═══ -->
-<div class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
-  </div>
-</div>
+      <div class="notify">
+        <h2>Get notified when we're live</h2>
+        <form class="notify-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <label for="notify-email" class="sr-only">Email address</label>
+          <input type="email" id="notify-email" name="email" placeholder="you@email.com" required autocomplete="email">
+          <input type="hidden" name="_subject" value="Notify me — Klaygo PH new site">
+          <button type="submit">Notify me</button>
+        </form>
+        <p class="notify-note">One email when the new site is live. No spam, ever.</p>
+      </div>
 
-<!-- ═══ VALUE PROPS ═══ -->
-<section class="value-section">
-  <div class="section-eyebrow">Why Klaygo PH</div>
-  <h2 class="section-title">Professional cleaning,<br>done right.</h2>
-  <p class="section-sub">We handle the mess so you don't have to. Trusted by Metro Manila homes since day one.</p>
-  <div class="value-grid">
-    <div class="value-card reveal reveal-d1">
-      <span class="value-icon">💸</span>
-      <div class="value-title">Transparent Pricing</div>
-      <p class="value-desc">See the exact cost before you book. No surprises, no hidden charges. What you see is what you pay.</p>
-    </div>
-    <div class="value-card reveal reveal-d2">
-      <span class="value-icon">🧽</span>
-      <div class="value-title">Deep & Regular Cleans</div>
-      <p class="value-desc">We cover everything from one-time deep cleans to weekly or bi-weekly recurring sessions — your schedule, your terms.</p>
-    </div>
-    <div class="value-card reveal reveal-d3">
-      <span class="value-icon">📍</span>
-      <div class="value-title">Metro Manila Coverage</div>
-      <p class="value-desc">Serving 19+ areas across Metro Manila. BGC, Makati, Pasig, QC, Parañaque, and many more.</p>
-    </div>
-  </div>
-</section>
+      <div class="divider"></div>
 
-<!-- ═══ HOW IT WORKS ═══ -->
-<section class="how-section">
-  <div class="section-eyebrow">How it works</div>
-  <h2 class="section-title">From estimate to<br>spotless home.</h2>
-  <div class="how-steps">
-    <div class="how-step reveal reveal-d1">
-      <div class="how-num">1</div>
-      <div class="how-title">Get Your Estimate</div>
-      <p class="how-desc">Use our instant calculator — no login, no personal info needed.</p>
-    </div>
-    <div class="how-step reveal reveal-d2">
-      <div class="how-num">2</div>
-      <div class="how-title">Send It to Us</div>
-      <p class="how-desc">Copy and send your estimate via Messenger. We reply in 2–4 hours.</p>
-    </div>
-    <div class="how-step reveal reveal-d3">
-      <div class="how-num">3</div>
-      <div class="how-title">Confirm &amp; Reserve</div>
-      <p class="how-desc">Pay your reservation fee via GCash or bank transfer. Slot confirmed.</p>
-    </div>
-    <div class="how-step reveal reveal-d4">
-      <div class="how-num">4</div>
-      <div class="how-title">Cleaning Day!</div>
-      <p class="how-desc">Our cleaner arrives on time. Balance paid on service day — cash or digital.</p>
-    </div>
-  </div>
-</section>
+      <div class="meanwhile">
+        <p class="meanwhile-label">Need a cleaning before then?</p>
+        <p>Message us on <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener">Facebook</a> or <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener">Instagram</a>, or call or text <a href="tel:+639928164718">0992&nbsp;816&nbsp;4718</a>. We're still taking bookings the usual way.</p>
+      </div>
 
-<!-- ═══ CTA BAND ═══ -->
-<div class="cta-band">
-  <h2 class="reveal">Ready for a cleaner home?</h2>
-  <p class="reveal">Get your instant price in under 2 minutes — no sign-up, no commitment.</p>
-  <a href="pricing.html" class="cta-main-btn reveal">Build My Estimate →</a>
-  <div class="cta-sub-links">
-    <a href="sayhello.html" class="cta-sub-link">Questions? Say Hello →</a>
-    <a href="pricing.html" class="cta-sub-link">See Pricing Details →</a>
-  </div>
-</div>
+    </div>
+  </section>
+
+  <aside class="visual">
+    <div class="visual-frame">
+      <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001.png" alt="A Klaygo PH cleaner in a navy polo and blue shoe covers mopping the floor of a modern condominium living room." loading="lazy">
+    </div>
+    <div class="visual-caption">
+      <span class="vc-label">From the field</span>
+      <span class="vc-text">One of our cleaners finishing up a floor care job in a BGC condo, right on schedule.</span>
+    </div>
+  </aside>
 
 </main>
 
-<!-- FOLLOW + FOOTER -->
-<div class="follow-bar">
-  <p class="follow-text">Follow us for tips, updates &amp; promos!</p>
-  <div class="follow-links">
-    <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+<footer class="sitefoot">
+  <span class="copy">© 2026 Klaygo PH. All rights reserved.</span>
+  <div class="social">
+    <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
       @klaygoph
     </a>
-    <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
+    <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
       @klaygoph
     </a>
-  </div>
-</div>
-<footer>
-  <div class="footer-inner">
-    <span>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila &nbsp;·&nbsp; @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</span>
   </div>
 </footer>
-<div class="copyright-bar">© 2026 Klaygo PH. All rights reserved. &nbsp;·&nbsp; <a href="terms.html" style="color:rgba(255,255,255,.45);text-decoration:none;">Terms of Use</a> &nbsp;·&nbsp; <a href="privacy.html" style="color:rgba(255,255,255,.45);text-decoration:none;">Privacy Policy</a></div>
 
 <script>
 'use strict';
-// Mark JS ready for animations
-document.body.classList.add('js-ready');
+document.body.classList.add('ready');
 
-// Compact nav on scroll
 (function(){
-  var navTop=document.querySelector('.nav-top');
-  window.addEventListener('scroll',function(){
-    if(navTop)navTop.classList.toggle('compact',window.scrollY>80);
-  },{passive:true});
-})();
+  var target = new Date('2026-08-01T00:00:00+08:00').getTime();
+  var elD = document.getElementById('cd-d');
+  var elH = document.getElementById('cd-h');
+  var elM = document.getElementById('cd-m');
+  var elS = document.getElementById('cd-s');
+  var sr  = document.getElementById('cd-sr');
+  var timer;
 
-// Subtle hero parallax
-(function(){
-  var heroBg=document.getElementById('hero-bg');
-  var heroEl=document.getElementById('hero');
-  var prefReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(!prefReduced&&heroBg&&heroEl){
-    var ticking=false;
-    window.addEventListener('scroll',function(){
-      if(ticking)return;ticking=true;
-      requestAnimationFrame(function(){
-        var y=window.scrollY;
-        var hH=heroEl.offsetHeight;
-        var p=Math.min(y/Math.max(hH,1),1);
-        var sc=1.06-(p*0.04);
-        heroBg.style.transform='translateY('+(y*0.25)+'px) scale('+sc+')';
-        ticking=false;
-      });
-    },{passive:true});
+  function pad(n){ return n < 10 ? '0' + n : String(n); }
+
+  function tick(){
+    var diff = target - Date.now();
+    if(diff <= 0){
+      elD.textContent = '00'; elH.textContent = '00';
+      elM.textContent = '00'; elS.textContent = '00';
+      sr.textContent = 'Klaygo PH\u2019s new site is launching now.';
+      clearInterval(timer);
+      return;
+    }
+    var totalSec = Math.floor(diff / 1000);
+    var days  = Math.floor(totalSec / 86400);
+    var hours = Math.floor((totalSec % 86400) / 3600);
+    var mins  = Math.floor((totalSec % 3600) / 60);
+    var secs  = totalSec % 60;
+
+    elD.textContent = String(days);
+    elH.textContent = pad(hours);
+    elM.textContent = pad(mins);
+    elS.textContent = pad(secs);
+
+    if(tick.lastMin !== mins){
+      tick.lastMin = mins;
+      sr.textContent = 'Launching in ' + days + ' days, ' + hours + ' hours and ' + mins + ' minutes.';
+    }
   }
-})();
 
-// Scroll-in reveals
-(function(){
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
-      });
-    },{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
-    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-  } else {
-    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
-  }
-})();
-
-// Menu
-function openMenu(){
-  var overlay=document.getElementById('nav-menu');
-  var burger=document.querySelector('.nav-hamburger');
-  overlay.classList.add('open');
-  document.body.style.overflow='hidden';
-  if(burger){burger.classList.remove('rotating');void burger.offsetWidth;burger.classList.add('rotating');}
-  overlay.onclick=function(e){if(e.target===overlay)closeMenu();};
-  var pills=overlay.querySelectorAll('.nav-menu-pill');
-  pills.forEach(function(p){p.classList.remove('visible');});
-  setTimeout(function(){
-    pills.forEach(function(p,i){setTimeout(function(){p.classList.add('visible');},i*90);});
-  },40);
-}
-function closeMenu(){
-  var overlay=document.getElementById('nav-menu');
-  var pills=overlay?overlay.querySelectorAll('.nav-menu-pill'):[];
-  pills.forEach(function(p){p.classList.remove('visible');});
-  if(overlay)overlay.classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
-// ── BACK TO TOP — PNG image with SVG fallback ──
-(function(){
-  var BTT='https://raw.githubusercontent.com/klaygoph/klaygoph/d50ebc17c041ce8f4e3f3796ba0cb9e635ed5efd/assets/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
-  var btn=document.createElement('button');btn.id='back-to-top';btn.setAttribute('aria-label','Back to top');
-  btn.style.cssText='position:fixed;bottom:28px;right:22px;z-index:8000;width:44px;height:44px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;';
-  var img=document.createElement('img');img.src=BTT;img.alt='';img.width=44;img.height=44;
-  img.style.cssText='width:44px;height:44px;display:block;filter:drop-shadow(0 4px 14px rgba(13,31,60,.28));';
-  img.onerror=function(){btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F7F9FC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';btn.style.background='#0D1F3C';btn.style.borderRadius='50%';btn.style.alignItems='center';btn.style.justifyContent='center';};
-  btn.appendChild(img);
-  btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
-  btn.addEventListener('mouseenter',function(){btn.style.transform='translateY(-3px)';});
-  btn.addEventListener('mouseleave',function(){btn.style.transform='';});
-  document.body.appendChild(btn);
-  window.addEventListener('scroll',function(){
-    var vis=window.scrollY>300;
-    btn.style.display=vis?'flex':'none';
-    btn.style.opacity=vis?'1':'0';
-  },{passive:true});
+  tick();
+  timer = setInterval(tick, 1000);
 })();
 </script>
 </body>
