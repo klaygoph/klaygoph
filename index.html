@@ -94,7 +94,7 @@ h1 .accent{color:var(--li);}
 .cd-unit:not(:first-child){border-left:1px solid var(--hl);}
 .cd-num{font-family:var(--font-brand);font-weight:900;font-size:clamp(26px,4.4vw,42px);line-height:1;color:var(--bg);font-variant-numeric:tabular-nums;letter-spacing:-.5px;}
 .cd-label{margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,249,252,.55);}
-.cd-caption{margin-top:16px;font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--li);}
+.cd-caption{margin-bottom:14px;font-family:var(--font-brand);font-size:clamp(14px,1.8vw,16px);font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--li);}
 
 .divider{height:1px;background:var(--hl);margin:clamp(28px,4vw,40px) 0;}
 
@@ -176,6 +176,7 @@ body.ready .content-inner > *:nth-child(7){animation-delay:.38s;}
       <p class="lede">Soon you'll be able to get an instant cleaning estimate, check our coverage areas, and enjoy perks like a digital loyalty card. For now, you can still reach us the same way you always have.</p>
 
       <div class="countdown-wrap">
+        <p class="cd-caption">Launching August&nbsp;1, 2026</p>
         <div class="countdown" role="group" aria-label="Countdown to launch">
           <div class="cd-unit" aria-hidden="true">
             <span class="cd-num" id="cd-d">00</span>
@@ -195,14 +196,13 @@ body.ready .content-inner > *:nth-child(7){animation-delay:.38s;}
           </div>
           <p class="sr-only" id="cd-sr" aria-live="polite"></p>
         </div>
-        <p class="cd-caption">Launching August&nbsp;1, 2026</p>
       </div>
 
       <div class="divider"></div>
 
       <div class="notify">
         <h2>Get notified when we're live</h2>
-        <form class="notify-form" id="notify-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form class="notify-form" id="notify-form" action="https://formspree.io/f/mgobdrob" method="POST">
           <label for="notify-email" class="sr-only">Email address</label>
           <input type="email" id="notify-email" name="email" placeholder="you@email.com" required autocomplete="email">
           <input type="hidden" name="_subject" value="Notify me: Klaygo PH new site">
