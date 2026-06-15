@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0D1F3C">
-<meta name="description" content="Klaygo PH is refreshing klaygoph.com. The new site launches August 1, 2026 — bookings continue as usual via Facebook, Instagram, or text.">
-<meta property="og:title" content="Klaygo PH — New site launching soon">
-<meta property="og:description" content="A clearer Klaygo PH is on its way. New site launches August 1, 2026.">
+<meta name="description" content="Klaygo PH's new website launches August 1, 2026. Get instant cleaning estimates, check coverage areas, and more, while bookings continue as usual via Facebook, Instagram, or text.">
+<meta property="og:title" content="Klaygo PH is going online">
+<meta property="og:description" content="Instant cleaning estimates, coverage areas, and more. New site launches August 1, 2026.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://klaygoph.com/">
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Favicon%20-%20Dark%20Square.png">
 <link rel="preconnect" href="https://raw.githubusercontent.com">
-<title>Klaygo PH — New Site Launching Soon</title>
+<title>Klaygo PH | New Site Launching Soon</title>
 
 <!-- Self-hosted Manrope -->
 <style>
@@ -60,9 +60,7 @@ a{color:var(--li);}
 .topbar{background:var(--mn);padding:18px clamp(20px,4vw,48px);}
 .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
 .brand{display:block;line-height:0;}
-.brand img{height:24px;width:auto;display:block;}
-.topbar-badge{font-size:12px;font-weight:600;color:rgba(247,249,252,.7);white-space:nowrap;}
-.topbar-badge strong{color:var(--bg);font-weight:800;}
+.brand img{height:32px;width:auto;display:block;}
 
 /* ═══════════════════════════════════════════════
    HERO — photo background
@@ -73,7 +71,7 @@ a{color:var(--li);}
   display:flex;
   align-items:center;
   background-color:var(--mn);
-  background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001.png');
+  background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001%20-%20Desktop.jpg');
   background-size:cover;
   background-position:38% 35%;
 }
@@ -84,18 +82,19 @@ a{color:var(--li);}
 .content{position:relative;z-index:1;width:100%;padding:clamp(40px,7vw,88px) clamp(20px,5vw,64px);}
 .content-inner{max-width:560px;}
 
-.eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--li);margin-bottom:18px;}
 h1{font-family:var(--font-brand);font-weight:900;font-size:clamp(34px,5.2vw,58px);line-height:1.08;letter-spacing:-.5px;color:var(--bg);margin-bottom:18px;}
 h1 .accent{color:var(--li);}
 .lede{font-size:clamp(14px,1.6vw,16px);color:rgba(247,249,252,.72);line-height:1.85;max-width:46ch;}
 
 /* Countdown */
-.countdown{display:flex;margin:clamp(28px,4vw,40px) 0;}
+.countdown-wrap{margin:clamp(28px,4vw,40px) 0;}
+.countdown{display:flex;}
 .cd-unit{display:flex;flex-direction:column;align-items:flex-start;padding:0 clamp(14px,2.6vw,30px);}
 .cd-unit:first-child{padding-left:0;}
 .cd-unit:not(:first-child){border-left:1px solid var(--hl);}
 .cd-num{font-family:var(--font-brand);font-weight:900;font-size:clamp(26px,4.4vw,42px);line-height:1;color:var(--bg);font-variant-numeric:tabular-nums;letter-spacing:-.5px;}
 .cd-label{margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,249,252,.55);}
+.cd-caption{margin-top:16px;font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--li);}
 
 .divider{height:1px;background:var(--hl);margin:clamp(28px,4vw,40px) 0;}
 
@@ -108,6 +107,8 @@ h1 .accent{color:var(--li);}
 .notify-form button{font-family:var(--font-brand);font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--mn);background:var(--li);border:none;border-radius:6px;padding:13px 26px;cursor:pointer;transition:background .15s;white-space:nowrap;}
 .notify-form button:hover{background:var(--bg);}
 .notify-note{margin-top:12px;font-size:12px;color:rgba(247,249,252,.55);}
+.notify-note.is-success{color:var(--bg);font-weight:700;}
+.notify-note.is-error{color:var(--li);}
 
 /* Meanwhile */
 .meanwhile-label{font-family:var(--font-brand);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--li);margin-bottom:10px;}
@@ -128,9 +129,10 @@ h1 .accent{color:var(--li);}
    MOBILE — flatten overlay, no min-height forcing
 ═══════════════════════════════════════════════ */
 @media(max-width:999px){
-  .hero{min-height:0;}
+  .hero{min-height:70vh;}
   .hero-overlay{background:rgba(13,31,60,.93);}
   .hero{background-position:38% 35%;}
+  .hero{background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001%20-%20Mobile.jpg');}
 }
 
 /* ═══════════════════════════════════════════════
@@ -160,7 +162,6 @@ body.ready .content-inner > *:nth-child(7){animation-delay:.38s;}
     <a href="/" class="brand" aria-label="Klaygo PH home">
       <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Light%20-%20Res%20-%20100.png" alt="Klaygo PH">
     </a>
-    <p class="topbar-badge">New site launching <strong>August&nbsp;1,&nbsp;2026</strong></p>
   </div>
 </header>
 
@@ -170,49 +171,50 @@ body.ready .content-inner > *:nth-child(7){animation-delay:.38s;}
   <section class="content">
     <div class="content-inner">
 
-      <p class="eyebrow">Website refresh</p>
+      <h1>Klaygo PH is going <span class="accent">online</span>.</h1>
 
-      <h1>A <span class="accent">clearer</span> Klaygo PH is on its way.</h1>
+      <p class="lede">Soon you'll be able to get an instant cleaning estimate, check our coverage areas, and enjoy perks like a digital loyalty card. For now, you can still reach us the same way you always have.</p>
 
-      <p class="lede">We're rebuilding klaygoph.com with simpler pricing, easier booking, and a few surprises. While we put on the finishing touches, our team is still cleaning homes across Metro Manila exactly as before.</p>
-
-      <div class="countdown" role="group" aria-label="Countdown to launch">
-        <div class="cd-unit" aria-hidden="true">
-          <span class="cd-num" id="cd-d">00</span>
-          <span class="cd-label">Days</span>
+      <div class="countdown-wrap">
+        <div class="countdown" role="group" aria-label="Countdown to launch">
+          <div class="cd-unit" aria-hidden="true">
+            <span class="cd-num" id="cd-d">00</span>
+            <span class="cd-label">Days</span>
+          </div>
+          <div class="cd-unit" aria-hidden="true">
+            <span class="cd-num" id="cd-h">00</span>
+            <span class="cd-label">Hours</span>
+          </div>
+          <div class="cd-unit" aria-hidden="true">
+            <span class="cd-num" id="cd-m">00</span>
+            <span class="cd-label">Minutes</span>
+          </div>
+          <div class="cd-unit" aria-hidden="true">
+            <span class="cd-num" id="cd-s">00</span>
+            <span class="cd-label">Seconds</span>
+          </div>
+          <p class="sr-only" id="cd-sr" aria-live="polite"></p>
         </div>
-        <div class="cd-unit" aria-hidden="true">
-          <span class="cd-num" id="cd-h">00</span>
-          <span class="cd-label">Hours</span>
-        </div>
-        <div class="cd-unit" aria-hidden="true">
-          <span class="cd-num" id="cd-m">00</span>
-          <span class="cd-label">Minutes</span>
-        </div>
-        <div class="cd-unit" aria-hidden="true">
-          <span class="cd-num" id="cd-s">00</span>
-          <span class="cd-label">Seconds</span>
-        </div>
-        <p class="sr-only" id="cd-sr" aria-live="polite"></p>
+        <p class="cd-caption">Launching August&nbsp;1, 2026</p>
       </div>
 
       <div class="divider"></div>
 
       <div class="notify">
         <h2>Get notified when we're live</h2>
-        <form class="notify-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form class="notify-form" id="notify-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <label for="notify-email" class="sr-only">Email address</label>
           <input type="email" id="notify-email" name="email" placeholder="you@email.com" required autocomplete="email">
-          <input type="hidden" name="_subject" value="Notify me — Klaygo PH new site">
+          <input type="hidden" name="_subject" value="Notify me: Klaygo PH new site">
           <button type="submit">Notify me</button>
         </form>
-        <p class="notify-note">One email when the new site is live. No spam, ever.</p>
+        <p class="notify-note" id="notify-status" role="status" aria-live="polite">One email when the new site is live. No spam, ever.</p>
       </div>
 
       <div class="divider"></div>
 
       <div class="meanwhile">
-        <p class="meanwhile-label">Need a cleaning before then?</p>
+        <p class="meanwhile-label">Need cleaning soon?</p>
         <p>Message us on <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener">Facebook</a> or <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener">Instagram</a>, or call or text <a href="tel:+639928164718">0992&nbsp;816&nbsp;4718</a>. We're still taking bookings the usual way.</p>
       </div>
 
@@ -277,6 +279,40 @@ document.body.classList.add('ready');
 
   tick();
   timer = setInterval(tick, 1000);
+})();
+
+(function(){
+  var form = document.getElementById('notify-form');
+  var status = document.getElementById('notify-status');
+  var defaultMsg = status.textContent;
+  var btn = form.querySelector('button');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    status.classList.remove('is-success', 'is-error');
+    status.textContent = defaultMsg;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res){
+      if(res.ok){
+        form.style.display = 'none';
+        status.classList.add('is-success');
+        status.textContent = 'Thanks! We\u2019ll email you the moment we\u2019re live.';
+      } else {
+        throw new Error('Submission failed');
+      }
+    }).catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Notify me';
+      status.classList.add('is-error');
+      status.textContent = 'Something went wrong. Please try again, or message us on Facebook or Instagram.';
+    });
+  });
 })();
 </script>
 </body>
