@@ -1780,12 +1780,15 @@ var BLUE_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/asset
 var PRINT_BG   = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Print%20-%20White%20Background.png';
 
 // ── FIXED PRICES (Studio / 1BR / 2BR) ────────────────────────
+// ── PRICES (effective August 1, 2026) ────────────────────────
+// Fixed prices for Studio, 1BR, 2BR are standalone totals.
+// Larger Home uses PER_SQM_RATES as standalone per-sqm rates.
 var FIXED_PRICES={
-  'Studio Type': {regular:600,  deep:1350, moveinout:1800},
-  '1 Bedroom':   {regular:750,  deep:1625, moveinout:2150},
-  '2 Bedroom':   {regular:900,  deep:2025, moveinout:2700},
+  'Studio Type': {regular:700,  deep:950,  moveinout:1200},
+  '1 Bedroom':   {regular:800,  deep:1050, moveinout:1400},
+  '2 Bedroom':   {regular:950,  deep:1200, moveinout:1800},
 };
-var PER_SQM_RATES={regular:28, deep:33, moveinout:45};
+var PER_SQM_RATES={regular:25, deep:33, moveinout:43};
 
 // PRICE_BRACKETS — used for time estimation only (rMin/rMax/dMin/dMax/mMin/mMax)
 var PRICE_BRACKETS=[
@@ -1962,17 +1965,20 @@ function updateProgress(){
 }
 
 // ── COMPUTE BASE PRICE ────────────────────────────────────────
+// All prices are standalone — no additive formula.
+// Returns an array of one {price, label} item.
+// Array format kept for consistency with compute/buildMsg/openPrint loops.
 function getBasePrice(){
-  if(!selTime)return{price:0,label:'',surcharge:0};
+  if(!selTime)return[];
   var typeLabel=S.cleanType==='deep'?'Deep Cleaning':S.cleanType==='moveinout'?'Move In / Move Out':'Regular Cleaning';
   if(S.bn==='Larger Home'){
-    var rate=PER_SQM_RATES[S.cleanType]||28;
-    return{price:S.sqm*rate,label:'Larger Home — '+S.sqm+' sqm — '+typeLabel+' (Php '+rate+'/sqm)',surcharge:0};
+    var rate=PER_SQM_RATES[S.cleanType]||25;
+    return[{price:S.sqm*rate, label:'Larger Home — '+S.sqm+' sqm — '+typeLabel+' (Php '+rate+'/sqm)'}];
   }
   var fp=FIXED_PRICES[S.bn];
-  if(!fp)return{price:0,label:'',surcharge:0};
+  if(!fp)return[];
   var p=fp[S.cleanType]||fp.regular;
-  return{price:p,label:S.bn+' — '+typeLabel,surcharge:0};
+  return[{price:p, label:S.bn+' — '+typeLabel}];
 }
 
 // ── CALENDAR FETCH ────────────────────────────────────────────
@@ -2134,8 +2140,8 @@ function buildAvailCard(){
   var parts=selDate.split('-');
   var dlbl=new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',month:'long',day:'numeric'});
   var summParts=[];
-  var bp=getBasePrice();
-  if(bp.price>0) summParts.push(bp.label);
+  var bpLines=getBasePrice();
+  bpLines.forEach(function(bp){if(bp.price>0)summParts.push(bp.label);});
   if(S.ln) summParts.push('Transport — '+S.ln);
   if(S.sched&&S.sched!=='Initial / One-time') summParts.push('Schedule: '+S.sched);
   var summHtml=summParts.length?'<div class="avail-summary">'+summParts.join('<br>')+'</div>':'';
@@ -2520,31 +2526,31 @@ function compute(){
     else{mn=tb.mMin;mx=tb.mMax;}
     if(tel)tel.textContent='~'+fmtT(mn,mx);
   });
-  // Larger Home card — show per-sqm rate and computed price if selected
+  // Larger Home card — show rate or computed price
   var phEl=document.getElementById('p-house'),phT=document.getElementById('t-house');
   if(phEl){
-    var rate=PER_SQM_RATES[S.cleanType]||28;
+    var lhRate=PER_SQM_RATES[S.cleanType]||25;
     if(S.bn==='Larger Home'){
-      phEl.textContent='Php '+(S.sqm*rate).toLocaleString();
+      phEl.textContent='Php '+(S.sqm*lhRate).toLocaleString();
       if(phT){var hb=getBracket(S.sqm),hmn,hmx;if(S.cleanType==='regular'){hmn=hb.rMin;hmx=hb.rMax;}else if(S.cleanType==='deep'){hmn=hb.dMin;hmx=hb.dMax;}else{hmn=hb.mMin;hmx=hb.mMax;}phT.textContent='~'+fmtT(hmn,hmx);}
     } else {
-      phEl.textContent='Php '+rate+'/sqm';
+      phEl.textContent='Php '+lhRate+'/sqm';
       if(phT)phT.textContent='';
     }
   }
   // Update larger home price hint
   var lhHint=document.getElementById('lh-price-hint');
   if(lhHint&&S.bn==='Larger Home'){
-    var r2=PER_SQM_RATES[S.cleanType]||28;
+    var lhRate2=PER_SQM_RATES[S.cleanType]||25;
     var typeL=S.cleanType==='deep'?'Deep Cleaning':S.cleanType==='moveinout'?'Move In / Move Out':'Regular Cleaning';
-    lhHint.textContent=S.sqm+' sqm × Php '+r2+'/sqm ('+typeL+') = Php '+(S.sqm*r2).toLocaleString();
+    lhHint.textContent=S.sqm+' sqm × Php '+lhRate2+'/sqm ('+typeL+') = Php '+(S.sqm*lhRate2).toLocaleString();
   }
 
   var t=cT();
 
-  // Base price from bracket
-  var bp=getBasePrice();
-  if(bp.price>0){lines.push({l:bp.label,v:bp.price});sub+=bp.price;}
+  // Base price lines (array — Larger Home deep/MOI returns two lines)
+  var bpLines=getBasePrice();
+  bpLines.forEach(function(bp){if(bp.price>0){lines.push({l:bp.label,v:bp.price});sub+=bp.price;}});
 
   // Add-ons
   ADDONS.forEach(function(a){
@@ -2595,7 +2601,7 @@ function compute(){
 
   // Time banner
   var tb=document.getElementById('tbanner');
-  if(t&&bp.price>0){
+  if(t&&sub>0){
     var ts=fmtT(t.mn,t.mx);
     document.getElementById('tstr').textContent='Estimated Duration:';
     document.getElementById('tback').textContent='You get back '+ts+' of your day.';
@@ -2680,9 +2686,9 @@ function buildMsg(){
   var land=document.getElementById('f-land').value.trim();
   var instr=document.getElementById('instr').value.trim();
   if(name&&!STORED.includes(name)){STORED.unshift(name);if(STORED.length>20)STORED.pop();localStorage.setItem('kn',JSON.stringify(STORED));}
-  var lines=[],sub=0,bp=getBasePrice();
+  var lines=[],sub=0,bpLines=getBasePrice();
   var now=new Date(), ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
-  if(bp.price>0){lines.push(bp.label+': Php '+bp.price.toLocaleString());sub+=bp.price;}
+  bpLines.forEach(function(bp){if(bp.price>0){lines.push(bp.label+': Php '+bp.price.toLocaleString());sub+=bp.price;}});
   ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push(lbl+': Php '+sv.toLocaleString());sub+=sv;}});
   if(S.sqm>=60){lines.push('Additional Cleaner (included — 60+ sqm): Included');}
   else if(S.addons['cleaner']>0){lines.push('Additional Cleaner: Php 1,000');sub+=1000;}
@@ -2770,15 +2776,14 @@ async function sendEstimateEmail(msg){
 }
 // ── PRINT ─────────────────────────────────────────────────────
 function openPrint(){
-  var bp=getBasePrice();
-  if(!bp.price){alert('Please select a cleaning type and area size first.');return;}
+  var bpLines=getBasePrice();
+  if(!bpLines.length||!bpLines[0].price){alert('Please select a cleaning type and area size first.');return;}
   analytics.prints++;localStorage.setItem('kg_an',JSON.stringify(analytics));
   var name=document.getElementById('f-name').value.trim(),phone=document.getElementById('f-phone').value.trim(),email=document.getElementById('f-email').value.trim(),addr=document.getElementById('f-addr').value.trim(),land=document.getElementById('f-land').value.trim(),instr=document.getElementById('instr').value.trim();
   var dateStr=new Date().toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'});
   var now=new Date(),ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
   var rows=[],sub=0;
-  var bpLabel=bp.label+(S.bn?' ('+S.bn+')':'');
-  rows.push([bpLabel,'Php '+bp.price.toLocaleString()]);sub+=bp.price;
+  bpLines.forEach(function(bp){rows.push([bp.label,'Php '+bp.price.toLocaleString()]);sub+=bp.price;});
   ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';rows.push([lbl,'Php '+sv.toLocaleString()]);sub+=sv;}});
   if(S.sqm>=60){rows.push(['Additional Cleaner (included — 60+ sqm)','Included']);}
   else if(S.addons['cleaner']>0){rows.push(['Additional Cleaner','Php 1,000']);sub+=1000;}
