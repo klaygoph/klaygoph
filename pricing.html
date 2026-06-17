@@ -75,17 +75,20 @@ function loadMaps(){
 </script>
 <style>
 :root{
-  --mn:#2B4E8A;--pr:#2B4E8A;--mi:#4169b0;--se:#6B8FCA;
-  --li:#A8BFE0;--pa:#EBF1FA;--bg:#F4F7FD;--gr:#6B6B68;
-  --dk:#2C2C2A;--deepnav:#0D1F3C;--wh:#fff;--bd:#D8DCE8;--r:18px;
-  --sh:0 8px 30px rgba(43,78,138,.08);
-  --sh2:0 2px 12px rgba(43,78,138,.06);
-  --green:#3D6399;--gbg:#EBF1FA;--gbdr:#A8BFE0;
-  --red:#3D6399;--rbg:#EBF1FA;--rbdr:#A8BFE0;
-  --amber:#5A7BB5;--abg:#EBF1FA;--abdr:#A8BFE0;
-  --nav-light:#F7F9FC;
-  --accent:#F0A500;
-  /* Font stacks — Argentum Novus: headlines | Manrope: body, pricing, buttons */
+  --mn:#0D1F3C;   /* deep navy       — topbar, footer text */
+  --pr:#2B4E8A;   /* medium blue     — links, primary accents */
+  --dp:#1A3D63;   /* dark primary    — step badges, strong accents */
+  --dk:#0A1931;   /* darkest navy    — deep shadows */
+  --se:#3D6399;   /* secondary blue  — hover states */
+  --mi:#4169b0;   /* mid blue        — inline accents */
+  --li:#A8BFE0;   /* light blue      — borders on dark bg */
+  --sl:#B3CFE5;   /* soft light blue — subtle borders */
+  --pa:#EBF1FA;   /* pale blue       — light bg panels */
+  --bg:#F4F7FD;   /* near white      — page chrome */
+  --gr:#6B6B68;   /* warm gray       — secondary text */
+  --bd:#D5E3F3;   /* border          — card edges */
+  --sh:0 4px 24px rgba(43,78,138,.1); /* shadow */
+  --red:#B94040;--green:#2E6B4F;--gbg:#E8F4EE;--gbdr:#9FCFB5;
   --font-brand:'Argentum Novus','Outfit',sans-serif;
   --font-body:'Manrope',system-ui,sans-serif;
 }
@@ -96,19 +99,30 @@ p,span,div,li,label,input,textarea,select,button,a,td,th,small,strong,em{font-fa
 /* Brand font — Argentum Novus applies ONLY to headings and explicit brand elements */
 h1,h2,h3,h4,.font-brand,[class*="hero-eyebrow"],[class*="nav-brand"],[class*="nav-tab"],[class*="nav-menu-pill"],[class*="sbadge"],[class*="hero-cta"],[class*="be-total"],[class*="be-btn-copy"],[class*="whn-acc-title"],[class*="recur-date-chip"],[class*="cc-big-title"],[class*="hero-stat-num"],[class*="pr-band-val"],[class*="be-band-num"]{font-family:var(--font-brand);}
 
-/* ── HERO — #2B4E8A solid, mockup-accurate ── */
+/* ── HERO — photo background + gradient overlay (matches index.html) ── */
 .hero{
-  background:#2B4E8A;
+  background-color:#0D1F3C;
+  background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001%20-%20Desktop.jpg');
+  background-size:cover;
+  background-position:38% 35%;
   position:relative;overflow:hidden;
   min-height:100vh;
   min-height:100dvh;
   display:flex;flex-direction:column;justify-content:space-between;
   padding:clamp(48px,9vh,96px) clamp(28px,5vw,72px) clamp(44px,7vh,72px);
 }
-.hero::before{content:'';position:absolute;inset:0;pointer-events:none;}
+.hero-overlay{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg, rgba(13,31,60,.97) 0%, rgba(13,31,60,.94) 40%, rgba(13,31,60,.65) 68%, rgba(13,31,60,.28) 100%);
+  z-index:1;
+}
 .hero-content{position:relative;z-index:2;display:flex;flex-direction:column;}
 
-/* Text always visible — animation is enhancement only */
+/* ── TEXT REVEAL — character roll animation (desktop hover only) ── */
+.tr-wrap{display:inline;line-height:inherit;}
+.tr-line{display:inline-block;overflow:hidden;vertical-align:bottom;line-height:1.1;}
+.tr-char{display:inline-block;will-change:transform;transition:transform 250ms ease-in-out;}
+@media(prefers-reduced-motion:reduce){.tr-char{transition:none!important;text-shadow:none!important;}}
 .hero-eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:clamp(16px,2.5vh,28px);}
 .hero h1{font-family:var(--font-brand);font-size:clamp(34px,6.5vw,72px);font-weight:900;color:#F7F9FC;line-height:1.05;margin-bottom:clamp(16px,2.5vh,26px);letter-spacing:-.8px;}
 .hero h1 span{color:#A8BFE0;}
@@ -123,7 +137,10 @@ body.js-ready .hero h1{animation:heroFadeUp .8s ease .1s both;}
 body.js-ready .hero-sub{animation:heroFadeUp .8s ease .22s both;}
 body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 @media(max-width:700px){
-  .hero{padding:clamp(44px,10vh,72px) 24px clamp(36px,6vh,56px);min-height:100vh;min-height:100dvh;}
+  .hero{min-height:100vh;min-height:100dvh;padding:clamp(44px,10vh,72px) 24px clamp(36px,6vh,56px);}
+  .hero{background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001%20-%20Mobile.jpg');}
+  .hero{background-position:38% 35%;}
+  .hero-overlay{background:rgba(13,31,60,.93);}
   .hero h1{font-size:clamp(30px,8.5vw,46px);}
   .hero-checks{flex-direction:column;gap:14px;}
   .hero-cta{align-self:stretch;justify-content:center;text-align:center;}
@@ -205,7 +222,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 }
 .nav-top.compact{height:clamp(56px,8vh,72px);}
 .nav-top-left{display:flex;align-items:center;gap:14px;}
-.nav-logo{height:28px;}
+.nav-logo{height:32px;}
 .nav-brand-text{
   font-family:var(--font-brand);
   font-size:10.5px;color:rgba(247,249,252,.45);
@@ -237,7 +254,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
   .nav-top{height:clamp(56px,20vh,120px);padding:0 16px;position:relative;}
   .nav-top.compact{height:clamp(48px,10vh,72px);}
   .nav-brand-text{display:none;}
-  .nav-logo{height:22px;}
+  .nav-logo{height:26px;}
   .nav-back-btn{display:flex;}
   .nav-mobile-page{display:block;}
   .nav-sub{display:none;}
@@ -313,7 +330,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .card:hover{box-shadow:0 12px 36px rgba(43,78,138,.11);}
 .card.locked{opacity:.44;pointer-events:none;filter:grayscale(.2);}
 .card-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-.sbadge{background:var(--pr);color:#fff;width:24px;height:24px;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sbadge{background:var(--dp);color:#fff;width:24px;height:24px;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .sbadge.done{background:#2B8A5F;}
 .card-head h2{font-size:14px;font-weight:700;color:var(--mn);margin:0;line-height:1.2;}
 .card-head p{font-size:11px;color:#6B7A99;margin-top:1px;line-height:1.45;}
@@ -1103,9 +1120,13 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 </div>
 
 <div class="hero" id="hero">
+  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Serving Metro Manila homes.</div>
-    <h1>Customize your cleaning service,<br><span>get a quote before you book.</span></h1>
+    <h1>
+      <span class="tr-target" data-textreveal="Customize your cleaning service,"></span><br>
+      <span class="tr-target" data-textreveal="get a quote before you book."></span>
+    </h1>
     <p class="hero-sub">Transparent pricing, professional cleaners, and zero hidden fees — all in one easy estimate.</p>
     <button class="hero-cta" onclick="document.getElementById('card-date').scrollIntoView({behavior:'smooth'})">
       Get Your Instant Estimate ↓
@@ -2050,15 +2071,18 @@ function manilaISO(y,m,d,h,mi,s){
 }
 
 async function fetchMonth(y,m){
-  // Use midnight Manila time as boundaries so no events slip into wrong month
   var tMin=manilaISO(y,m,1,0,0,0);
   var lastDay=new Date(y,m+1,0).getDate();
   var tMax=manilaISO(y,m,lastDay,23,59,59);
   var url='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CAL_ID)+'/events?timeMin='+encodeURIComponent(tMin)+'&timeMax='+encodeURIComponent(tMax)+'&singleEvents=true&orderBy=startTime&key='+API_KEY;
   var st=document.getElementById('cal-status');
+  // Abort after 7 seconds so renderCal() always gets called
+  var ctrl=new AbortController();
+  var tid=setTimeout(function(){ctrl.abort();},7000);
   try{
     if(st){st.style.display='block';st.textContent='Syncing calendar...';}
-    var r=await fetch(url);
+    var r=await fetch(url,{signal:ctrl.signal});
+    clearTimeout(tid);
     if(!r.ok){
       if(st) st.textContent='Calendar error '+r.status+'. Check API key restrictions in Google Cloud Console.';
       return;
@@ -2070,15 +2094,15 @@ async function fetchMonth(y,m){
       if(!ev.start)return;
       var s=ev.start.dateTime||ev.start.date;
       var e=ev.end?(ev.end.dateTime||ev.end.date):s;
-      // Always extract date in Manila timezone — fixes cross-midnight UTC shift
       var ds=s.length===10?s:manilaDate(s);
       if(!monthEvts[ds])monthEvts[ds]=[];
       monthEvts[ds].push({s:s,e:e,title:ev.summary||'Booked'});
     });
     if(st)st.style.display='none';
   }catch(err){
+    clearTimeout(tid);
     console.error('Calendar error:',err);
-    if(st)st.textContent='Could not connect to calendar. Check internet or tap Refresh.';
+    if(st)st.textContent=err.name==='AbortError'?'Calendar sync timed out. Dates shown may not reflect live bookings.':'Could not connect to calendar. Check internet or tap Refresh.';
   }
 }
 
@@ -3437,6 +3461,62 @@ function scrollToEstimate(){
   var be=document.getElementById('bottom-estimate');
   if(be)be.scrollIntoView({behavior:'smooth',block:'start'});
 }
+
+// ── TEXT REVEAL ────────────────────────────────────────────────
+// Vanilla JS port of the TextReveal React component.
+// Each character rolls up on hover using textShadow + translateY.
+// Desktop/hover-capable devices only. Respects prefers-reduced-motion.
+(function(){
+  var reducedMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var hasHover=window.matchMedia('(hover:hover)').matches;
+
+  function buildReveal(el){
+    var text=el.getAttribute('data-textreveal')||'';
+    var stagger=25,dur=250;
+    // Wrap in overflow-hidden line container
+    var line=document.createElement('span');
+    line.className='tr-line';
+    // Set aria-label on parent h1 for screen readers
+    el.setAttribute('aria-label',text);
+
+    // Split into characters (grapheme-aware if available)
+    var chars;
+    if(typeof Intl!=='undefined'&&Intl.Segmenter){
+      chars=Array.from(new Intl.Segmenter('en',{granularity:'grapheme'}).segment(text),function(s){return s.segment;});
+    }else{
+      chars=Array.from(text);
+    }
+
+    chars.forEach(function(ch,i){
+      var s=document.createElement('span');
+      s.className='tr-char';
+      s.textContent=ch===' '?'\u00A0':ch;
+      if(!reducedMotion){
+        // textShadow places a copy 1em below — revealed when translateY(-1em) on hover
+        s.style.textShadow='0 1em currentColor';
+        s.style.transitionDelay=(i*stagger)+'ms';
+      }
+      line.appendChild(s);
+    });
+
+    el.textContent='';
+    el.appendChild(line);
+
+    // Only wire hover on pointer devices
+    if(!hasHover||reducedMotion)return;
+    var h1=el.closest('h1')||el.parentElement;
+    function onEnter(){
+      line.querySelectorAll('.tr-char').forEach(function(c){c.style.transform='translateY(-1em)';});
+    }
+    function onLeave(){
+      line.querySelectorAll('.tr-char').forEach(function(c){c.style.transform='translateY(0)';});
+    }
+    h1.addEventListener('mouseenter',onEnter);
+    h1.addEventListener('mouseleave',onLeave);
+  }
+
+  document.querySelectorAll('.tr-target[data-textreveal]').forEach(buildReveal);
+})();
 
 document.addEventListener('DOMContentLoaded',function(){
   // Modal wiring
