@@ -1830,9 +1830,21 @@ var PRICE_BRACKETS=[
   {max:120, rMin:300,rMax:360, dMin:480,dMax:600, mMin:540,mMax:660},
 ];
 function getBracket(sqm){for(var i=0;i<PRICE_BRACKETS.length;i++){if(sqm<=PRICE_BRACKETS[i].max)return PRICE_BRACKETS[i];}return PRICE_BRACKETS[PRICE_BRACKETS.length-1];}
-var LARGE_CUTOFF=45;
+// LARGE_CUTOFF removed — sqm>60 threshold used directly via calcReservationFee
 
 var ROOM_TYPES = ['Dining Room','Play Room','Laundry Room','Gym','Garage','Home Office','Basement','Attic'];
+// ── SECURITY UTILITIES ────────────────────────────────────────
+// escapeHtml: sanitize user input before injecting into HTML strings.
+// Use this on every user-supplied value that touches innerHTML or print HTML.
+function escapeHtml(s){
+  return String(s==null?'':s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
 var STORED = JSON.parse(localStorage.getItem('kn')||'[]');
 
 var ADDONS = [
@@ -1901,7 +1913,7 @@ var PH_HOLIDAYS = new Set([
   '2026-04-03', // Good Friday
   '2026-04-04', // Black Saturday (Special Non-Working)
   '2026-05-01', // Labor Day
-  '2026-05-01', // Eid'l Fitr (estimated — may shift by proclamation)
+  '2026-03-20', // Eid'l Fitr 2026 (estimated — confirm via official proclamation)
   '2026-05-27', // Eid'l Adha (estimated)
   '2026-06-12', // Independence Day
   '2026-08-21', // Ninoy Aquino Day
@@ -1964,13 +1976,19 @@ function togAcc(id){
   var el=document.getElementById(id);
   if(!el)return;
   var isOpen=el.classList.contains('open');
-  // Close all others
+  // Close all others and reset their aria-expanded
   document.querySelectorAll('.acc-item').forEach(function(item){
-    if(item.id!==id)item.classList.remove('open');
+    if(item.id!==id){
+      item.classList.remove('open');
+      var h=item.querySelector('.acc-head');
+      if(h)h.setAttribute('aria-expanded','false');
+    }
   });
-  // Toggle clicked
-  if(isOpen){el.classList.remove('open');}
-  else{el.classList.add('open');}
+  // Toggle clicked and update aria-expanded
+  var nowOpen=!isOpen;
+  el.classList.toggle('open',nowOpen);
+  var head=el.querySelector('.acc-head');
+  if(head)head.setAttribute('aria-expanded',String(nowOpen));
 }
 
 // ── PROGRESS BAR ───────────────────────────────────────
@@ -2019,6 +2037,10 @@ function getBasePrice(){
 function manilaDate(isoOrDateStr){
   // returns 'YYYY-MM-DD' in Asia/Manila timezone
   return new Date(isoOrDateStr).toLocaleDateString('en-CA',{timeZone:'Asia/Manila'});
+}
+function manilaHour(isoOrDateStr){
+  // returns the hour (0-23) in Asia/Manila timezone — used for AM/PM dot detection
+  return parseInt(new Date(isoOrDateStr).toLocaleString('en-US',{timeZone:'Asia/Manila',hour:'numeric',hour12:false}),10);
 }
 function manilaISO(y,m,d,h,mi,s){
   // Build an ISO string representing a Manila-local datetime as UTC
@@ -2091,8 +2113,8 @@ function renderCal(){
     else{
       var evts=monthEvts[ds]||[], taken=evts.length;
       var dots=document.createElement('div'); dots.className='dots';
-      var amBooked=evts.some(function(ev){var h=new Date(ev.s).getHours();return h<12;});
-      var pmBooked=evts.some(function(ev){var h=new Date(ev.s).getHours();return h>=12;});
+      var amBooked=evts.some(function(ev){var h=manilaHour(ev.s);return h<12;});
+      var pmBooked=evts.some(function(ev){var h=manilaHour(ev.s);return h>=12;});
       var dot0=document.createElement('div');dot0.className='dot '+(amBooked?'t':'o');dots.appendChild(dot0);
       var dot1=document.createElement('div');dot1.className='dot '+(pmBooked?'t':'o');dots.appendChild(dot1);
       el.appendChild(dots);
@@ -2364,8 +2386,8 @@ function renderRecurPickerGrid(){
     if(thisD<todayD){el.classList.add('past');}
     else{
       var evts=monthEvts[ds]||[];
-      var amB=evts.some(function(ev){return new Date(ev.s).getHours()<12;});
-      var pmB=evts.some(function(ev){return new Date(ev.s).getHours()>=12;});
+      var amB=evts.some(function(ev){return manilaHour(ev.s)<12;});
+      var pmB=evts.some(function(ev){return manilaHour(ev.s)>=12;});
       var dots=document.createElement('div');dots.className='dots';
       var d0=document.createElement('div');d0.className='dot '+(amB?'t':'o');dots.appendChild(d0);
       var d1=document.createElement('div');d1.className='dot '+(pmB?'t':'o');dots.appendChild(d1);
@@ -2537,6 +2559,25 @@ function fmtT(mn,mx){
   return f(mn)+' – '+f(mx);
 }
 
+// ── RESERVATION FEE HELPER ────────────────────────────────────
+// Single source of truth for reservation fee logic.
+// 50% applies for: same-day, weekend, holiday, or above 60 sqm.
+// Standard: whichever is higher — 30% of total or transport fee.
+function calcReservationFee(total, transportFee, dateStr){
+  if(!total||total<=0)return{dp:0,bal:0,needs50:false,reason:''};
+  var parts=dateStr?dateStr.split('-'):null;
+  var dow=parts?(new Date(+parts[0],+parts[1]-1,+parts[2]).getDay()):-1;
+  var isWeekend=dow===0||dow===6;
+  var isSameDay=dateStr&&((new Date(dateStr+'T12:00:00+08:00')-nowJS)/3600000)<24;
+  var isHoliday=dateStr&&PH_HOLIDAYS.has(dateStr);
+  var isLarge=S.sqm>60;
+  var needs50=!!(isSameDay||isWeekend||isHoliday||isLarge);
+  var reason=isSameDay?'Same-day booking':isWeekend?'Weekend booking':isHoliday?'Holiday booking':isLarge?'above 60 sqm':'';
+  var dp=needs50?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),transportFee||0);
+  var bal=Math.max(0,total-dp);
+  return{dp:dp,bal:bal,needs50:needs50,reason:reason};
+}
+
 // ── COMPUTE ───────────────────────────────────────────────────
 function compute(){
   var lines=[], sub=0;
@@ -2658,21 +2699,11 @@ function compute(){
   updateStickyBar(total);
 
   var pb=document.getElementById('pay-box');
-  var dow=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()):-1;
-  var isWeekend=dow===0||dow===6;
-  var isSameDay=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
-  var isHoliday=selDate&&PH_HOLIDAYS.has(selDate);
-  var isLarge=S.sqm>60;
-  var needs50=isSameDay||isWeekend||isHoliday||isLarge;
-  var needs50Reason=isSameDay?'Same-day booking':isWeekend?'Weekend booking':isHoliday?'Holiday booking':isLarge?'above 60 sqm':'';
-  var dp,bal;
-  if(needs50){dp=Math.ceil(total*0.5);}
-  else{dp=Math.max(Math.ceil(total*0.30),tf);}
-  bal=Math.max(0,total-dp);
+  var rf=calcReservationFee(total,tf,selDate);
   if(total>0){
     pb.style.display='block';
-    document.getElementById('pay-dp').textContent='Php '+dp.toLocaleString()+(needs50?' (50% \u2014 '+needs50Reason+')':'');
-    document.getElementById('pay-bal').textContent='Php '+bal.toLocaleString();
+    document.getElementById('pay-dp').textContent='Php '+rf.dp.toLocaleString()+(rf.needs50?' (50% \u2014 '+rf.reason+')':'');
+    document.getElementById('pay-bal').textContent='Php '+rf.bal.toLocaleString();
     var rFilled2=recurSlots.filter(function(s){return s.date;});
     var multiDate=rFilled2.length>0||S.sched!=='Initial / One-time';
     // Right panel estimate bands
@@ -2682,13 +2713,12 @@ function compute(){
     var prBalLblEl=document.getElementById('pr-bal-band-lbl');
     if(prBalBand)prBalBand.style.display='flex';
     if(prBalLblEl)prBalLblEl.textContent=rFilled2.length>0?'Balance on Each Service Day':'Balance on Service Day';
-    if(prUpBand){prUpBand.style.display='flex';if(prUpAmt)prUpAmt.textContent='Php '+((rFilled2.length+1)*dp).toLocaleString();}
+    if(prUpBand){prUpBand.style.display='flex';if(prUpAmt)prUpAmt.textContent='Php '+((rFilled2.length+1)*rf.dp).toLocaleString();}
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
     var pnote=document.querySelector('.pay-note');
-    if(pnote)pnote.textContent=needs50?needs50Reason+': 50% reservation fee required to confirm slot. Balance paid on service day.':'Reservation fee = whichever is higher between 30% of total or transport fee. Balance paid on service day.';
-    // Multi-session totals handled by be-upfront-band + pr-band-upfront.
-    updateBottomEstimate(total,lines,true,dp,bal,t2&&t2.mn>0?t2:null);
+    if(pnote)pnote.textContent=rf.needs50?rf.reason+': 50% reservation fee required to confirm slot. Balance paid on service day.':'Reservation fee = whichever is higher between 30% of total or transport fee. Balance paid on service day.';
+    updateBottomEstimate(total,lines,true,rf.dp,rf.bal,t2&&t2.mn>0?t2:null);
   } else {
     pb.style.display='none';
     updateBottomEstimate(total,lines,false,0,0,t2&&t2.mn>0?t2:null);
@@ -2705,7 +2735,18 @@ function acName(inp){
   if(!v||v.length<2){l.classList.remove('show');return;}
   var m=STORED.filter(function(n){return n.toLowerCase().startsWith(v);}).slice(0,5);
   if(!m.length){l.classList.remove('show');return;}
-  l.innerHTML=m.map(function(n){return'<div class="aci" onclick="document.getElementById(\'f-name\').value=\''+n+'\';document.getElementById(\'acl\').classList.remove(\'show\')">'+n+'</div>';}).join('');
+  // Safe: use createElement + textContent — never innerHTML with user data
+  l.textContent='';
+  m.forEach(function(n){
+    var d=document.createElement('div');
+    d.className='aci';
+    d.textContent=n;
+    d.addEventListener('click',function(){
+      document.getElementById('f-name').value=n;
+      document.getElementById('acl').classList.remove('show');
+    });
+    l.appendChild(d);
+  });
   l.classList.add('show');
 }
 document.addEventListener('click',function(e){if(!e.target.closest('.acw'))document.querySelectorAll('.acl').forEach(function(l){l.classList.remove('show');});});
@@ -2742,14 +2783,8 @@ function buildMsg(){
   var rFilled=recurSlots.filter(function(s){return s.date;});
   var multiDateMsg=rFilled.length>0||S.sched!=='Initial / One-time';
   var balLabelMsg=multiDateMsg?'Balance on each service day':'Balance on service day';
-  var isWeekendMsg=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()===0||new Date(selDate+'T12:00:00+08:00').getDay()===6):false;
-  var isSameDayMsg=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
-  var isHolidayMsg=selDate&&PH_HOLIDAYS.has(selDate);
-  var isLargeMsg=S.sqm>60;
-  var needs50Msg=isSameDayMsg||isWeekendMsg||isHolidayMsg||isLargeMsg;
-  var needs50ReasonMsg=isSameDayMsg?'Same-day booking':isWeekendMsg?'Weekend booking':isHolidayMsg?'Holiday booking':isLargeMsg?'above 60 sqm':'';
-  var dpMsg=needs50Msg?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),tf);
-  if(total>0)msg+='\n\nReservation fee (pay to confirm): Php '+dpMsg.toLocaleString()+(needs50Msg?' (50% — '+needs50ReasonMsg+')':' (standard)')+'\n'+balLabelMsg+': Php '+Math.max(0,total-dpMsg).toLocaleString();
+  var rfMsg=calcReservationFee(total,tf,selDate);
+  if(total>0)msg+='\n\nReservation fee (pay to confirm): Php '+rfMsg.dp.toLocaleString()+(rfMsg.needs50?' (50% — '+rfMsg.reason+')':' (standard)')+'\n'+balLabelMsg+': Php '+rfMsg.bal.toLocaleString();
   if(rFilled.length>0){
     var totalSessions=rFilled.length+1;
     msg+='\n\nRecurring Dates:\n'+rFilled.map(function(s){return s.date+(s.time?' at '+s.time:'');}).join('\n');
@@ -2828,14 +2863,14 @@ function openPrint(){
   var tStr=t?'Estimated Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.':'';
   var rFilled=recurSlots.filter(function(s){return s.date;});
   var cR='';
-  if(name)cR+='<tr><td>Name</td><td>'+name+'</td></tr>';
-  if(phone)cR+='<tr><td>Contact</td><td>'+phone+'</td></tr>';
-  if(email)cR+='<tr><td>Email</td><td>'+email+'</td></tr>';
-  if(addr)cR+='<tr><td>Address</td><td>'+addr+'</td></tr>';
-  if(land)cR+='<tr><td>Landmark</td><td>'+land+'</td></tr>';
-  cR+='<tr><td>Schedule</td><td>'+S.sched+'</td></tr>';
-  if(dl)cR+='<tr><td>Date</td><td>'+dl+'</td></tr>';
-  if(tl)cR+='<tr><td>Time</td><td>'+tl+'</td></tr>';
+  if(name)cR+='<tr><td>Name</td><td>'+escapeHtml(name)+'</td></tr>';
+  if(phone)cR+='<tr><td>Contact</td><td>'+escapeHtml(phone)+'</td></tr>';
+  if(email)cR+='<tr><td>Email</td><td>'+escapeHtml(email)+'</td></tr>';
+  if(addr)cR+='<tr><td>Address</td><td>'+escapeHtml(addr)+'</td></tr>';
+  if(land)cR+='<tr><td>Landmark</td><td>'+escapeHtml(land)+'</td></tr>';
+  cR+='<tr><td>Schedule</td><td>'+escapeHtml(S.sched)+'</td></tr>';
+  if(dl)cR+='<tr><td>Date</td><td>'+escapeHtml(dl)+'</td></tr>';
+  if(tl)cR+='<tr><td>Time</td><td>'+escapeHtml(tl)+'</td></tr>';
   if(rFilled.length>0){
     var rdLines=rFilled.map(function(s){
       var rp=s.date.split('-');
@@ -2848,21 +2883,14 @@ function openPrint(){
   var rowsHtml=rows.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
   rowsHtml+='<tr class="tr"><td colspan="2"><div class="tr-band"><span>ESTIMATED TOTAL</span><span>Php '+total.toLocaleString()+'</span></div></td></tr>';
   var sits=[...selSituations].join(', ');var instrHtml='';
-  if(sits)instrHtml+='<div class="ib"><h4>Situation</h4><p>'+sits+'</p></div>';
-  if(instr)instrHtml+='<div class="ib"><h4>Special Instructions</h4><p>'+instr+'</p></div>';
+  if(sits)instrHtml+='<div class="ib"><h4>Situation</h4><p>'+escapeHtml(sits)+'</p></div>';
+  if(instr)instrHtml+='<div class="ib"><h4>Special Instructions</h4><p>'+escapeHtml(instr)+'</p></div>';
   var multiDatePrint=rFilled.length>0||S.sched!=='Initial / One-time';
   var balLabelPrint=multiDatePrint?'Balance on each service day':'Balance on service day';
   var totalSessionsPrint=rFilled.length>0?rFilled.length+1:1;
   // Compute correct reservation fee for print (same logic as main compute)
-  var pDow=parts?(new Date(+parts[0],+parts[1]-1,+parts[2]).getDay()):-1;
-  var pIsWknd=pDow===0||pDow===6;
-  var pIsSameDay=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
-  var pIsHol=selDate&&PH_HOLIDAYS.has(selDate);
-  var pIsLg=S.sqm>60;
-  var pNeeds50=pIsSameDay||pIsWknd||pIsHol||pIsLg;
-  var pReason=pIsSameDay?'Same-day booking':pIsWknd?'Weekend booking':pIsHol?'Holiday booking':pIsLg?'above 60 sqm':'';
-  var dpPrint=pNeeds50?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),tf);
-  var balPrint=Math.max(0,total-dpPrint);
+  var rfPrint=calcReservationFee(total,tf,selDate);
+  var pNeeds50=rfPrint.needs50, pReason=rfPrint.reason, dpPrint=rfPrint.dp, balPrint=rfPrint.bal;
   var payHtml=total>0?'<div class="pay-s">'
     +'<h4>Payment Summary</h4>'
     +'<div class="pr pn"><span class="pk">Reservation Fee'+(pNeeds50?' (50% — '+pReason+')':' — confirms your slot')+'</span><span class="pv">Php '+dpPrint.toLocaleString()+'</span></div>'
