@@ -123,11 +123,7 @@ h1,h2,h3,h4,.font-brand,[class*="hero-eyebrow"],[class*="nav-brand"],[class*="na
 }
 .hero-content{position:relative;z-index:2;display:flex;flex-direction:column;}
 
-/* ── TEXT REVEAL — character roll animation (desktop hover only) ── */
-.tr-wrap{display:inline;line-height:inherit;}
-.tr-line{display:inline-block;overflow:hidden;vertical-align:bottom;line-height:1.1;}
-.tr-char{display:inline-block;will-change:transform;transition:transform 250ms ease-in-out;}
-@media(prefers-reduced-motion:reduce){.tr-char{transition:none!important;text-shadow:none!important;}}
+/* Text reveal animation removed — hero h1 renders plain text */
 .hero-eyebrow{font-family:var(--font-brand);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:clamp(16px,2.5vh,28px);}
 .hero h1{font-family:var(--font-brand);font-size:clamp(34px,6.5vw,72px);font-weight:900;color:#F7F9FC;line-height:1.05;margin-bottom:clamp(16px,2.5vh,26px);letter-spacing:-.8px;}
 .hero h1 span{color:#A8BFE0;}
@@ -2948,7 +2944,7 @@ function openPrint(){
     +'*{box-sizing:border-box;margin:0;padding:0;}'
     +'html,body{width:148mm;min-height:210mm;font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;color:#2C2C2A;}'
     +'body{display:flex;flex-direction:column;position:relative;}'
-    +'.bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url("'+PRINT_BG+'") center/cover no-repeat;z-index:0;}'
+    +'.bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url("'+PRINT_BG+'") center/cover no-repeat;z-index:0;opacity:0.06;}'
     +'.cnt{position:relative;z-index:1;display:flex;flex-direction:column;min-height:210mm;}'
     +'.hdr{padding:22px 22px 8px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;border-bottom:2px solid #2B4E8A;}'
     +'.hdr img{height:30px;margin-bottom:4px;}.hdr .eid{font-size:9px;font-weight:800;color:#2B4E8A;letter-spacing:.06em;margin-bottom:1px;}.hdr .dt{font-size:7.5px;color:#6B6B68;}'
@@ -2979,7 +2975,7 @@ function openPrint(){
     +'.ib p{font-size:8px;color:#2C2C2A;line-height:1.4;}'
     +'.pb{background:rgba(255,255,255,.7);border-radius:4px;padding:6px 8px;}'
     +'.pb h4{font-size:9px;font-weight:800;color:#2B4E8A;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase;}'
-    +'.pi2{display:flex;gap:4px;margin-bottom:3px;font-size:7.5px;color:#4A4A48;line-height:1.5;}'
+    +'.pi2{display:flex;gap:4px;margin-bottom:3px;font-size:8.5px;color:#4A4A48;line-height:1.5;}'
     +'.pi2 strong{color:#2B4E8A;font-weight:700;}.pi2 .pd2{color:#2B4E8A;font-weight:800;flex-shrink:0;}'
     +'.nor{text-align:center;font-size:10px;font-weight:900;color:#2B4E8A;letter-spacing:.08em;text-transform:uppercase;padding:6px 0 3px;border-top:2px dashed #2B4E8A;margin-top:auto;}'
     +'</style></head><body>'
@@ -3002,7 +2998,7 @@ function openPrint(){
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Cancellation:</strong> Reservation fee non-refundable if cancelled &lt;24 hrs or cleaner is on the way/onsite.</div></div>'
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Exception:</strong> Booked &lt;24 hrs + cancelled 4+ hrs before + cleaner not yet departed — refund or rebooking may be arranged.</div></div>'
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Large Spaces (above 60 sqm):</strong> An additional cleaner is automatically included at no extra charge.</div></div>'
-    +'<div class="pi2"><div class="pd2">-</div><div><strong>above 60 sqm &amp; Weekend Slots:</strong> 50% reservation fee required to confirm booking.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>Above 60 sqm &amp; Weekend Slots:</strong> 50% reservation fee required to confirm booking.</div></div>'
     +'</div>'
     +'<div class="nor">This is not an official receipt</div>'
     +'</div>'
@@ -3481,57 +3477,7 @@ function scrollToEstimate(){
 // Vanilla JS port of the TextReveal React component.
 // Each character rolls up on hover using textShadow + translateY.
 // Desktop/hover-capable devices only. Respects prefers-reduced-motion.
-(function(){
-  var reducedMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  var hasHover=window.matchMedia('(hover:hover)').matches;
-
-  function buildReveal(el){
-    var text=el.getAttribute('data-textreveal')||'';
-    var stagger=25,dur=250;
-    // Wrap in overflow-hidden line container
-    var line=document.createElement('span');
-    line.className='tr-line';
-    // Set aria-label on parent h1 for screen readers
-    el.setAttribute('aria-label',text);
-
-    // Split into characters (grapheme-aware if available)
-    var chars;
-    if(typeof Intl!=='undefined'&&Intl.Segmenter){
-      chars=Array.from(new Intl.Segmenter('en',{granularity:'grapheme'}).segment(text),function(s){return s.segment;});
-    }else{
-      chars=Array.from(text);
-    }
-
-    chars.forEach(function(ch,i){
-      var s=document.createElement('span');
-      s.className='tr-char';
-      s.textContent=ch===' '?'\u00A0':ch;
-      if(!reducedMotion){
-        // textShadow places a copy 1em below — revealed when translateY(-1em) on hover
-        s.style.textShadow='0 1em currentColor';
-        s.style.transitionDelay=(i*stagger)+'ms';
-      }
-      line.appendChild(s);
-    });
-
-    el.textContent='';
-    el.appendChild(line);
-
-    // Only wire hover on pointer devices
-    if(!hasHover||reducedMotion)return;
-    var h1=el.closest('h1')||el.parentElement;
-    function onEnter(){
-      line.querySelectorAll('.tr-char').forEach(function(c){c.style.transform='translateY(-1em)';});
-    }
-    function onLeave(){
-      line.querySelectorAll('.tr-char').forEach(function(c){c.style.transform='translateY(0)';});
-    }
-    h1.addEventListener('mouseenter',onEnter);
-    h1.addEventListener('mouseleave',onLeave);
-  }
-
-  document.querySelectorAll('.tr-target[data-textreveal]').forEach(buildReveal);
-})();
+/* Text reveal animation removed — hero h1 renders plain text via HTML */
 
 document.addEventListener('DOMContentLoaded',function(){
   // Modal wiring
