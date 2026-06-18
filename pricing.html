@@ -259,7 +259,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
   .nav-top{height:clamp(56px,20vh,120px);padding:0 16px;position:relative;}
   .nav-top.compact{height:clamp(48px,10vh,72px);}
   .nav-brand-text{display:none;}
-  .nav-logo{height:26px;}
+  .nav-logo{height:32px;}
   .nav-back-btn{display:flex;}
   .nav-mobile-page{display:block;}
   .nav-sub{display:none;}
@@ -282,6 +282,8 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .nav-menu-pill:nth-child(4){transition-delay:.18s;}
 .nav-menu-pill:nth-child(5){transition-delay:.24s;}
 .nav-menu-pill:nth-child(6){transition-delay:.30s;}
+.nav-menu-pill:nth-child(7){transition-delay:.36s;}
+.nav-menu-pill:nth-child(8){transition-delay:.42s;}
 /* Desktop: slide-in sidebar from right (~25% of screen width) */
 @media(min-width:701px){
   .nav-menu-overlay{
@@ -1079,8 +1081,9 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 <!-- NAV MENU OVERLAY -->
 <div class="nav-menu-overlay" id="nav-menu">
   <button class="nav-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
-  <a href="index.html" class="nav-menu-pill">Home</a>
-  <a href="pricing.html" class="nav-menu-pill active">Pricing</a>
+  <a href="about.html" class="nav-menu-pill">About Us</a>
+  <a href="pricing.html" class="nav-menu-pill active">Estimate</a>
+  <a href="loyalty.html" class="nav-menu-pill">Loyalty Card</a>
   <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
   <a href="terms.html" class="nav-menu-pill">Terms of Use</a>
   <a href="privacy.html" class="nav-menu-pill">Privacy Policy</a>
@@ -1114,7 +1117,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <div class="nav-sub">
     <span class="nav-mobile-page">PRICING</span>
     <a href="index.html" class="nav-tab">Home</a>
-    <a href="pricing.html" class="nav-tab active">Pricing</a>
+    <a href="pricing.html" class="nav-tab active">Estimate</a>
+    <a href="loyalty.html" class="nav-tab">Loyalty Card</a>
     <a href="sayhello.html" class="nav-tab">Say Hello!</a>
   </div>
   <!-- Progress bar lives here — always flush below nav, no floating -->
@@ -3599,7 +3603,6 @@ function togSecAcc(id){
 }
 // Legacy alias kept in case any inline handler still calls togWHN
 function togWHN(){togSecAcc('whn-acc-wrap');}
-}
 // IntersectionObserver for WHN steps parallax
 (function(){
   if(!window.IntersectionObserver) return;
