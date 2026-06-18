@@ -89,6 +89,11 @@ function loadMaps(){
   --bd:#D5E3F3;   /* border          — card edges */
   --sh:0 4px 24px rgba(43,78,138,.1); /* shadow */
   --red:#B94040;--green:#2E6B4F;--gbg:#E8F4EE;--gbdr:#9FCFB5;
+  /* Backwards-compat aliases — used in older CSS rules, do not remove */
+  --deepnav:#0D1F3C;--wh:#fff;--r:18px;--sh2:0 2px 12px rgba(43,78,138,.06);
+  --amber:#5A7BB5;--abg:#EBF1FA;--abdr:#A8BFE0;
+  --rbg:#FEF2F2;--rbdr:#FECACA;
+  --nav-light:#F7F9FC;--accent:#F0A500;
   --font-brand:'Argentum Novus','Outfit',sans-serif;
   --font-body:'Manrope',system-ui,sans-serif;
 }
@@ -1124,8 +1129,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   <div class="hero-content">
     <div class="hero-eyebrow">Serving Metro Manila homes.</div>
     <h1>
-      <span class="tr-target" data-textreveal="Customize your cleaning service,"></span><br>
-      <span class="tr-target" data-textreveal="get a quote before you book."></span>
+      <span class="tr-target" data-textreveal="Customize your cleaning service,">Customize your cleaning service,</span><br>
+      <span class="tr-target" data-textreveal="get a quote before you book.">get a quote before you book.</span>
     </h1>
     <p class="hero-sub">Transparent pricing, professional cleaners, and zero hidden fees — all in one easy estimate.</p>
     <button class="hero-cta" onclick="document.getElementById('card-date').scrollIntoView({behavior:'smooth'})">
@@ -3202,12 +3207,18 @@ if(beLogoInit){ beLogoInit.src=LOGO_URL; beLogoInit.style.filter='brightness(0) 
 updateProgress();
 
 (async function(){
-  await fetchMonth(CY,CM);
-  renderCal();renderLocs();renderAddons();compute();
+  try{
+    await fetchMonth(CY,CM);
+  }catch(e){
+    console.error('Calendar init error:',e);
+  }finally{
+    // Guaranteed: calendar always renders regardless of API success or failure
+    renderCal();renderLocs();renderAddons();compute();
+  }
 
   // Auto-refresh calendar every 5 minutes
   setInterval(function(){
-    fetchMonth(CY,CM).then(function(){renderCal();});
+    fetchMonth(CY,CM).then(function(){renderCal();}).catch(function(){});
   }, AUTO_REFRESH_MS);
 })();
 
