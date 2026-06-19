@@ -320,9 +320,9 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
   .pcard{border-radius:20px;}
 }
 @media(max-width:660px){#sticky-bar{display:block;}.toast{bottom:100px!important;}}
-/* Sticky spacer — sits after copyright-bar to fill the area behind sticky-bar without white flash */
-.sticky-spacer{display:none;height:0;}
-@media(max-width:660px){.sticky-spacer{display:block;height:84px;background:#2C2C2A;}}
+/* Sticky spacer removed — copyright-bar absorbs the scroll protection padding on mobile */
+.sticky-spacer{display:none !important;}
+@media(max-width:660px){.copyright-bar{padding-bottom:88px;}}
 
 /* CARD */
 .card{background:#fff;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:20px 18px;margin-bottom:12px;transition:box-shadow .2s;border:1.5px solid #EBF1FA;}
@@ -666,12 +666,12 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .footer-contacts{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.35) !important;font-size:11px !important;}
 .footer-icon-link{display:inline-flex;align-items:color rgba(255,255,255,.45);transition:color .13s;}
 .footer-icon-link:hover{color:rgba(255,255,255,.85);}
-.follow-bar{background:#2B4E8A;padding:20px 24px;text-align:center;}
+.follow-bar{background:#2B4E8A;padding:20px 24px;text-align:center;margin:0;}
 .follow-text{font-size:12.5px;color:rgba(255,255,255,.8);margin-bottom:12px;}
 .follow-links{display:flex;justify-content:center;gap:14px;}
 .follow-link{display:inline-flex;align-items:center;gap:7px;color:#F7F9FC;font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 18px;border:1.5px solid rgba(255,255,255,.25);border-radius:30px;transition:all .14s;}
 .follow-link:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);}
-footer{background:#2B4E8A;padding:14px 24px;}
+footer{background:#2B4E8A;padding:14px 24px;margin:0;}
 .footer-inner{display:flex;align-items:center;justify-content:center;text-align:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .footer-inner::-webkit-scrollbar{display:none;}
 .footer-inner span{color:rgba(247,249,252,.45);font-size:clamp(7px,2.6vw,11.5px);font-family:'Manrope',sans-serif;white-space:nowrap;}
@@ -770,8 +770,8 @@ footer{background:#2B4E8A;padding:14px 24px;}
 @media(max-width:660px){#sticky-bar{display:block;}.toast{bottom:100px!important;}}
 
 /* ── BOTTOM ESTIMATE ────────── */
-#bottom-estimate{display:none;background:#2B4E8A;padding:22px 20px 30px;border-radius:var(--r) var(--r) 0 0;box-shadow:0 -6px 30px rgba(13,31,60,.25);}
-.be-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+#bottom-estimate{display:none;background:#0D1F3C;padding:22px 20px 30px;border-radius:var(--r) var(--r) 0 0;box-shadow:0 -6px 30px rgba(13,31,60,.25);}
+.be-head{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:14px;}
 .be-logo{height:22px;filter:brightness(0) invert(1);}
 .be-label{font-size:9px;color:rgba(168,191,224,.8);letter-spacing:.12em;text-transform:uppercase;font-weight:600;}
 .be-total{font-size:36px;font-weight:700;color:#F7F9FC;line-height:1;margin-bottom:3px;}
@@ -1732,8 +1732,6 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     <img id="be-logo-img" class="be-logo" alt="Klaygo PH">
     <div id="be-est-id-mob" class="be-label"></div>
   </div>
-  <div class="be-label" style="margin:0 12px 4px;font-size:10px;letter-spacing:.08em;">Here&rsquo;s Your Estimate!</div>
-  <div class="be-total"><span class="be-total-prefix">Php&nbsp;</span><span id="be-totd">0</span></div>
   <div class="be-summary-card">
   <div class="be-time" id="be-time"></div>
   <div id="be-body"><div class="be-empty">Select a date, time &amp; service<br>to build your estimate.</div></div>
@@ -2644,9 +2642,10 @@ function compute(){
 
   var t=cT();
 
-  // Base price lines
+  // Base price lines — location embedded into first line label
   var bpLines=getBasePrice();
-  bpLines.forEach(function(bp){if(bp.price>0){lines.push({l:bp.displayMain||bp.label, sub:bp.displaySub||null, v:bp.price});sub+=bp.price;}});
+  var firstBpDone=false;
+  bpLines.forEach(function(bp){if(bp.price>0){var lbl=bp.displayMain||bp.label;if(!firstBpDone&&S.ln){lbl+='\u00a0\u2014 '+S.ln;firstBpDone=true;}lines.push({l:lbl,sub:bp.displaySub||null,v:bp.price});sub+=bp.price;}});
 
   // Add-ons
   ADDONS.forEach(function(a){
@@ -2661,7 +2660,7 @@ function compute(){
     lines.push({l:'Additional Cleaner',v:1000});sub+=1000;
   }
 
-  // Transport
+  // Transport — fee added to total but location already shown in first line
   var tf=0, isOth=S.lid==='others';
   if(S.lid){
     if(S.lf===null||isOth){
@@ -2669,7 +2668,7 @@ function compute(){
       var otherLabel=isOth?escapeHtml(otherInp&&otherInp.value?otherInp.value:'Other area'):S.ln;
       lines.push({l:'Transport — '+otherLabel,v:null,tbd:true});
     }
-    else{lines.push({l:'Transport — '+S.ln,v:S.lf});sub+=S.lf;tf=S.lf;}
+    else{sub+=S.lf;tf=S.lf;} // location already in first line — no separate line needed
   }
   // Smart travel surcharge (from address autocomplete)
   if(travelData.surcharge>0){
@@ -3425,7 +3424,7 @@ function updateStickyBar(total){
         var d=new Date(+p[0],+p[1]-1,+p[2]);
         var dStr=d.toLocaleDateString('en-PH',{weekday:'short',month:'short',day:'numeric'});
         var tStr=selTime.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
-        sbDate.textContent=dStr+' · '+tStr;
+        sbDate.textContent=dStr+' · '+tStr+(S.ln?' · '+S.ln:'');
       } else {
         sbDate.textContent='';
       }
