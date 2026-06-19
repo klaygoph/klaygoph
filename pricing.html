@@ -1830,6 +1830,7 @@ var AUTO_REFRESH_MS = 300000; // 5 min auto-refresh
 // Single logo URL — filter applied per background context
 
 var BLUE_LOGO  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
+var LOGO_URL   = BLUE_LOGO; // alias — one URL, one place to update
 var PRINT_BG   = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Print%20-%20White%20Background.png';
 
 // ── FIXED PRICES (Studio / 1BR / 2BR) ────────────────────────
@@ -1950,6 +1951,27 @@ var PH_HOLIDAYS = new Set([
   '2026-12-25', // Christmas Day
   '2026-12-30', // Rizal Day
   '2026-12-31', // New Year's Eve (Special Non-Working)
+  // 2027
+  '2027-01-01', // New Year's Day
+  '2027-02-06', // Chinese New Year (Year of the Goat — estimated, confirm via proclamation)
+  '2027-04-01', // Maundy Thursday
+  '2027-04-02', // Good Friday
+  '2027-04-03', // Black Saturday (Special Non-Working)
+  '2027-04-09', // Araw ng Kagitingan
+  '2027-05-01', // Labor Day
+  '2027-03-21', // Eid'l Fitr (estimated — confirm via official proclamation)
+  '2027-05-28', // Eid'l Adha (estimated — confirm via official proclamation)
+  '2027-06-12', // Independence Day
+  '2027-08-21', // Ninoy Aquino Day
+  '2027-08-30', // National Heroes Day (last Monday of August)
+  '2027-11-01', // All Saints' Day
+  '2027-11-02', // All Souls' Day (Special Non-Working)
+  '2027-11-30', // Bonifacio Day
+  '2027-12-08', // Feast of the Immaculate Conception
+  '2027-12-24', // Christmas Eve (Special Non-Working)
+  '2027-12-25', // Christmas Day
+  '2027-12-30', // Rizal Day
+  '2027-12-31', // New Year's Eve (Special Non-Working)
 ]);
 
 // ── PROGRESS TRACKING FLAGS ────────────────────────────────────
@@ -2524,8 +2546,9 @@ function toggleLocView(){
 function renderLocs(){
   var grid=document.getElementById('loc-grid');
   if(!grid)return;
+  var html='';
   if(locViewMode==='list'){
-    var html='<div class="loc-list">';
+    html='<div class="loc-list">';
     LOCS.forEach(function(l){
       var f=calcFee(l), ft=f===null?'Request quote':'Php '+f;
       html+='<div class="lb lb-row'+(S.lid===l.id?' sel':'')+'" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
@@ -2536,7 +2559,7 @@ function renderLocs(){
     html+='</div>';
     grid.innerHTML=html;
   } else {
-    var html='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
+    html='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
     LOCS.forEach(function(l,i){
       var f=calcFee(l), ft=f===null?'Request quote':'Php '+f;
       html+='<div class="lb'+(S.lid===l.id?' sel':'')+'" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
@@ -2600,6 +2623,20 @@ function calcReservationFee(total, transportFee, dateStr){
   var dp=needs50?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),transportFee||0);
   var bal=Math.max(0,total-dp);
   return{dp:dp,bal:bal,needs50:needs50,reason:reason};
+}
+
+// ── RECURRING DISCOUNT HELPER ─────────────────────────────────
+// Single source of truth for recurring discount logic.
+// All three callers (compute, buildMsg, openPrint) use this — do not duplicate.
+function calcDiscount(sub){
+  var rFilled=recurSlots.filter(function(s){return s.date;});
+  var pct=0,label='';
+  if(S.sched==='Monthly'&&rFilled.length>=1){pct=0.02;label='Monthly recurring — 2% off';}
+  else if((S.sched==='Twice a Month'||S.sched==='Bi-Monthly')&&rFilled.length>=2){pct=0.03;label='Twice a Month recurring — 3% off';}
+  else if(S.sched==='Weekly'&&rFilled.length>=3){pct=0.04;label='Weekly recurring — 4% off';}
+  else if((S.sched==='Twice a Week'||S.sched==='Bi-Weekly')&&rFilled.length>=4){pct=0.05;label='Twice a Week recurring — 5% off';}
+  var amt=pct>0?Math.floor(sub*pct):0;
+  return{pct:pct,label:label,amt:amt};
 }
 
 // ── COMPUTE ───────────────────────────────────────────────────
@@ -2680,25 +2717,19 @@ function compute(){
   }
 
   // ── RECURRING DISCOUNT ────────────────────────────────────
-  var rFilledDisc=recurSlots.filter(function(s){return s.date;});
-  var discPct=0, discLabel='';
-  if(S.sched==='Monthly'&&rFilledDisc.length>=1){discPct=0.02;discLabel='Monthly recurring — 2% off';}
-  else if((S.sched==='Twice a Month'||S.sched==='Bi-Monthly')&&rFilledDisc.length>=2){discPct=0.03;discLabel='Twice a Month recurring — 3% off';}
-  else if(S.sched==='Weekly'&&rFilledDisc.length>=3){discPct=0.04;discLabel='Weekly recurring — 4% off';}
-  else if((S.sched==='Twice a Week'||S.sched==='Bi-Weekly')&&rFilledDisc.length>=4){discPct=0.05;discLabel='Twice a Week recurring — 5% off';}
-  var discAmt=discPct>0?Math.floor(sub*discPct):0;
-  if(discAmt>0)lines.push({l:discLabel,v:-discAmt,disc:true});
-  var total=sub-discAmt;
+  var disc=calcDiscount(sub);
+  if(disc.amt>0)lines.push({l:disc.label,v:-disc.amt,disc:true});
+  var total=sub-disc.amt;
 
   // Show/hide recurring required note
   var rReqNote=document.getElementById('recur-req-note');
   if(rReqNote){
-    var needsDates=S.sched!=='Initial / One-time'&&rFilledDisc.length===0;
+    var needsDates=S.sched!=='Initial / One-time'&&recurSlots.filter(function(s){return s.date;}).length===0;
     rReqNote.classList.toggle('show',needsDates);
   }
   // Update pdisc label
   var pdiscEl=document.getElementById('pdisc');
-  if(pdiscEl)pdiscEl.textContent=discAmt>0?'Recurring discount applied: \u2212Php '+discAmt.toLocaleString():'';
+  if(pdiscEl)pdiscEl.textContent=disc.amt>0?'Recurring discount applied: \u2212Php '+disc.amt.toLocaleString():'';
 
   // Time banner
   var tb=document.getElementById('tbanner');
@@ -2723,7 +2754,6 @@ function compute(){
   html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">Php '+total.toLocaleString()+'</span></div>';
   body.innerHTML=html;
 
-  var t2=cT();
   updateStickyBar(total);
 
   var pb=document.getElementById('pay-box');
@@ -2746,10 +2776,10 @@ function compute(){
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
     var pnote=document.querySelector('.pay-note');
     if(pnote)pnote.textContent=rf.needs50?rf.reason+': 50% reservation fee required to confirm slot. Balance paid on service day.':'Reservation fee = whichever is higher between 30% of total or transport fee. Balance paid on service day.';
-    updateBottomEstimate(total,lines,true,rf.dp,rf.bal,t2&&t2.mn>0?t2:null);
+    updateBottomEstimate(total,lines,true,rf.dp,rf.bal,t&&t.mn>0?t:null,rf);
   } else {
     pb.style.display='none';
-    updateBottomEstimate(total,lines,false,0,0,t2&&t2.mn>0?t2:null);
+    updateBottomEstimate(total,lines,false,0,0,t&&t.mn>0?t:null,null);
   }
   document.getElementById('transpo-note').style.display=S.lid?'block':'none';
   updateRecurDP();
@@ -2797,15 +2827,9 @@ function buildMsg(){
   var tf=0;
   if(S.lf!==null&&S.lid&&S.lid!=='others'){lines.push('Transport — '+S.ln+': Php '+S.lf.toLocaleString());sub+=S.lf;tf=S.lf;}
   // Apply recurring discount (same logic as compute())
-  var rFilledDiscMsg=recurSlots.filter(function(s){return s.date;});
-  var discPctMsg=0,discLabelMsg='';
-  if(S.sched==='Monthly'&&rFilledDiscMsg.length>=1){discPctMsg=0.02;discLabelMsg='Monthly recurring — 2% off';}
-  else if((S.sched==='Twice a Month'||S.sched==='Bi-Monthly')&&rFilledDiscMsg.length>=2){discPctMsg=0.03;discLabelMsg='Twice a Month recurring — 3% off';}
-  else if(S.sched==='Weekly'&&rFilledDiscMsg.length>=3){discPctMsg=0.04;discLabelMsg='Weekly recurring — 4% off';}
-  else if((S.sched==='Twice a Week'||S.sched==='Bi-Weekly')&&rFilledDiscMsg.length>=4){discPctMsg=0.05;discLabelMsg='Twice a Week recurring — 5% off';}
-  var discAmtMsg=discPctMsg>0?Math.floor(sub*discPctMsg):0;
-  if(discAmtMsg>0)lines.push(discLabelMsg+': \u2212Php '+discAmtMsg.toLocaleString());
-  var total=sub-discAmtMsg,t=cT();
+  var discMsg=calcDiscount(sub);
+  if(discMsg.amt>0)lines.push(discMsg.label+': \u2212Php '+discMsg.amt.toLocaleString());
+  var total=sub-discMsg.amt,t=cT();
   var parts=selDate?selDate.split('-'):null;
   var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'Not selected';
   var tl=selTime?selTime.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true}):'Not selected';
@@ -2882,7 +2906,7 @@ async function sendEstimateEmail(msg){
 // ── PRINT ─────────────────────────────────────────────────────
 function openPrint(){
   var bpLines=getBasePrice();
-  if(!bpLines.length||!bpLines[0].price){alert('Please select a cleaning type and area size first.');return;}
+  if(!bpLines.length||!bpLines[0].price){toast('Please select a cleaning type and area size first.');return;}
   analytics.prints++;localStorage.setItem('kg_an',JSON.stringify(analytics));
   var name=document.getElementById('f-name').value.trim(),phone=document.getElementById('f-phone').value.trim(),email=document.getElementById('f-email').value.trim(),addr=document.getElementById('f-addr').value.trim(),land=document.getElementById('f-land').value.trim(),instr=document.getElementById('instr').value.trim();
   var dateStr=new Date().toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'});
@@ -2894,15 +2918,9 @@ function openPrint(){
   else if(S.addons['cleaner']>0){rows.push(['Additional Cleaner','Php 1,000']);sub+=1000;}
   var tf=0;if(S.lf!==null&&S.lid&&S.lid!=='others'){rows.push(['Transport — '+S.ln,'Php '+S.lf.toLocaleString()]);sub+=S.lf;tf=S.lf;}
   // Apply recurring discount (same logic as compute())
-  var rFilledDiscPrint=recurSlots.filter(function(s){return s.date;});
-  var discPctPrint=0,discLabelPrint='';
-  if(S.sched==='Monthly'&&rFilledDiscPrint.length>=1){discPctPrint=0.02;discLabelPrint='Monthly recurring — 2% off';}
-  else if((S.sched==='Twice a Month'||S.sched==='Bi-Monthly')&&rFilledDiscPrint.length>=2){discPctPrint=0.03;discLabelPrint='Twice a Month recurring — 3% off';}
-  else if(S.sched==='Weekly'&&rFilledDiscPrint.length>=3){discPctPrint=0.04;discLabelPrint='Weekly recurring — 4% off';}
-  else if((S.sched==='Twice a Week'||S.sched==='Bi-Weekly')&&rFilledDiscPrint.length>=4){discPctPrint=0.05;discLabelPrint='Twice a Week recurring — 5% off';}
-  var discAmtPrint=discPctPrint>0?Math.floor(sub*discPctPrint):0;
-  if(discAmtPrint>0)rows.push([discLabelPrint,'\u2212Php '+discAmtPrint.toLocaleString()]);
-  var total=sub-discAmtPrint,t=cT();
+  var discPrint=calcDiscount(sub);
+  if(discPrint.amt>0)rows.push([discPrint.label,'\u2212Php '+discPrint.amt.toLocaleString()]);
+  var total=sub-discPrint.amt,t=cT();
   var parts=selDate?selDate.split('-'):null;
   var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
   var tl=selTime?selTime.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true}):'';
@@ -3216,7 +3234,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();
 })();
 
 // ── INIT ──────────────────────────────────────────────────────
-var LOGO_URL = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
 // Nav: dark bg → white
 var navLogo = document.getElementById('logo-img');
 if(navLogo){ navLogo.src=LOGO_URL; navLogo.style.filter='brightness(0) invert(1)'; }
@@ -3441,7 +3458,7 @@ function updateStickyBar(total){
   }
 }
 
-function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
+function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
   // ── Totals ──────────────────────────────────────────────────
   var totEl=document.getElementById('be-totd');
   if(totEl)totEl.textContent=total>0?total.toLocaleString():'0';
@@ -3470,15 +3487,11 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t){
     var isMulti=rFilled3.length>0;
     var totalSess3=isMulti?rFilled3.length+1:1;
     var totalUpfront3=dp*totalSess3;
-    // 50% reason
-    var dow=selDate?(new Date(selDate+'T12:00:00+08:00').getDay()):-1;
-    var isWkndBE=dow===0||dow===6;
-    var isSameDayBE=selDate&&((new Date(selDate+'T12:00:00+08:00')-nowJS)/3600000)<24;
-    var isHolBE=selDate&&PH_HOLIDAYS.has(selDate);
-    var isLgBE=S.sqm>60;
-    var needs50BE=isSameDayBE||isWkndBE||isHolBE||isLgBE;
-    var reasonBE=isSameDayBE?'Same-day booking':isWkndBE?'Weekend booking':isHolBE?'Holiday booking':isLgBE?'above 60 sqm':'Standard';
-    var pctBE=needs50BE?'50%':'30%';
+    // Use rf passed from compute() — avoids re-implementing 50% logic here.
+    // Fallback calcReservationFee(total,0,selDate) is defensive only.
+    var rfBE=rf||calcReservationFee(total,0,selDate);
+    var pctBE=rfBE.needs50?'50%':'30%';
+    var reasonBE=rfBE.needs50?rfBE.reason:'Standard';
     // Reservation section (multi-session only)
     var resSec=document.getElementById('be-res-section');
     if(resSec){
