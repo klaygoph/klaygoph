@@ -1068,6 +1068,156 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .recur-cancel-btn{margin-top:10px;font-size:11px;color:var(--gr);background:none;border:1px solid #EBF1FA;border-radius:50px;padding:5px 14px;cursor:pointer;display:block;transition:all .14s;}
 .recur-cancel-btn:hover{border-color:#A8BFE0;color:var(--mn);}
 </style>
+
+<!-- ── FOOTER STYLES ────────────────────────────────────────── -->
+<style>
+
+/* ── OUTLINE MARQUEE — large stroke text, footer top ── */
+.footer-marquee{
+  background:#0D1F3C;
+  overflow:hidden;
+  padding:clamp(18px,3vh,32px) 0;
+  border-top:1px solid rgba(168,191,224,.08);
+  position:relative;
+}
+/* Fade edges — masks the left and right overflow */
+.footer-marquee::before,
+.footer-marquee::after{
+  content:'';position:absolute;top:0;bottom:0;width:14%;z-index:2;pointer-events:none;
+}
+.footer-marquee::before{left:0;background:linear-gradient(to right,#0D1F3C 40%,transparent);}
+.footer-marquee::after{right:0;background:linear-gradient(to left,#0D1F3C 40%,transparent);}
+.footer-marquee-track{
+  display:flex;white-space:nowrap;width:max-content;
+  animation:marqueeScroll 40s linear infinite; /* reuses existing @keyframes */
+}
+@media(prefers-reduced-motion:reduce){.footer-marquee-track{animation:none;}}
+.footer-marquee-text{
+  font-family:var(--font-brand);
+  font-size:clamp(44px,8.5vw,92px);
+  font-weight:900;
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(168,191,224,.28);
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+  line-height:1.1;
+  padding:0 clamp(20px,3.5vw,52px);
+  display:inline-block;
+}
+.footer-marquee-sep{
+  font-family:var(--font-brand);
+  font-size:clamp(22px,4vw,44px);
+  color:rgba(168,191,224,.14);
+  padding:0 clamp(8px,1.5vw,20px);
+  display:inline-block;
+  line-height:1.1;
+}
+
+/* ── SITE FOOTER — three-column grid ── */
+.site-footer{
+  background:#0D1F3C;
+  padding:clamp(40px,6vh,64px) clamp(24px,5vw,64px) clamp(32px,5vh,52px);
+  margin:0;
+}
+.footer-grid{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:2fr 1.1fr 1.7fr;
+  gap:clamp(28px,5vw,64px);
+  align-items:start;
+}
+
+/* Brand column */
+.footer-wordmark{
+  height:clamp(26px,2.8vw,36px);
+  display:block;
+  margin-bottom:clamp(20px,3vh,32px);
+}
+.footer-nav{display:flex;flex-direction:column;gap:clamp(10px,1.4vh,14px);}
+.footer-nav-link{
+  font-family:var(--font-brand);
+  font-size:clamp(10px,1vw,12px);
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(247,249,252,.45);
+  text-decoration:none;
+  transition:color .14s;
+  width:fit-content;
+}
+.footer-nav-link:hover{color:#F7F9FC;}
+.footer-nav-link:focus-visible{outline:2px solid var(--pr);outline-offset:3px;border-radius:2px;}
+
+/* Contact column */
+.footer-contact-col{display:flex;flex-direction:column;gap:3px;}
+.footer-contact-line{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(11px,1.05vw,12.5px);
+  font-weight:600;
+  color:rgba(247,249,252,.72);
+  line-height:1.55;
+  margin:0;
+  letter-spacing:.01em;
+}
+.footer-contact-gap{margin-top:clamp(12px,1.8vh,18px);}
+.footer-contact-dim{color:rgba(247,249,252,.35);}
+.footer-contact-link{
+  color:rgba(247,249,252,.72);
+  text-decoration:none;
+  letter-spacing:.03em;
+  transition:color .14s;
+}
+.footer-contact-link:hover{color:#A8BFE0;}
+
+/* Review + social column */
+.footer-review-col{display:flex;flex-direction:column;gap:clamp(16px,2.5vh,24px);}
+.footer-review-inner{display:flex;align-items:flex-start;gap:clamp(12px,1.8vw,20px);}
+.footer-review-text{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(11px,1.05vw,12.5px);
+  color:rgba(247,249,252,.62);
+  line-height:1.75;
+  margin:0;
+  flex:1;
+}
+.footer-review-text strong{color:#F7F9FC;font-weight:700;}
+.footer-qr-link{flex-shrink:0;display:block;border-radius:6px;overflow:hidden;transition:opacity .14s;}
+.footer-qr-link:hover{opacity:.8;}
+.footer-qr{
+  width:clamp(88px,8.5vw,116px);
+  height:clamp(88px,8.5vw,116px);
+  display:block;
+}
+/* Social icons row */
+.footer-social{display:flex;align-items:center;gap:clamp(18px,2.2vw,28px);}
+.footer-social a{
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .14s,transform .14s;
+}
+.footer-social a:hover{opacity:.7;transform:translateY(-2px);}
+.footer-social a:focus-visible{outline:2px solid var(--pr);outline-offset:4px;border-radius:4px;}
+.footer-social-icon{
+  width:clamp(20px,2vw,26px);
+  height:clamp(20px,2vw,26px);
+  display:block;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:840px){
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+    gap:32px 28px;
+  }
+  .footer-review-col{grid-column:1 / -1;}
+  .footer-review-inner{align-items:flex-start;}
+}
+@media(max-width:560px){
+  .footer-grid{grid-template-columns:1fr;gap:28px;}
+  .footer-review-col{grid-column:auto;}
+  .footer-marquee-text{font-size:clamp(38px,11vw,60px);}
+}
+</style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -1787,25 +1937,108 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 </div>
 
 <div class="bottom-wrapper">
-<div class="follow-bar">
-  <p class="follow-text">Follow us for tips, updates &amp; promos!</p>
-  <div class="follow-links">
-    <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      @klaygoph
-    </a>
-    <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
-      @klaygoph
-    </a>
+
+<!-- OUTLINE MARQUEE — "Cleaner Space, Clearer Mind." big stroke text -->
+<div class="footer-marquee" aria-hidden="true">
+  <div class="footer-marquee-track">
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">·</span>
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">·</span>
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">·</span>
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">·</span>
   </div>
 </div>
 
-<footer>
-  <div class="footer-inner">
-    <span>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila &nbsp;·&nbsp; @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</span>
+<!-- MAIN FOOTER — three-column grid -->
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <!-- Col 1: Brand + Nav -->
+    <div class="footer-brand-col">
+      <a href="index.html" aria-label="Klaygo PH Home">
+        <img class="footer-wordmark"
+             src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png"
+             alt="Klaygo PH"
+             style="filter:brightness(0) invert(1);">
+      </a>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html" class="footer-nav-link">About Us</a>
+        <a href="pricing.html" class="footer-nav-link">Estimate</a>
+        <a href="loyalty.html" class="footer-nav-link">Loyalty Card</a>
+        <a href="sayhello.html" class="footer-nav-link">Say Hello!</a>
+        <a href="terms.html" class="footer-nav-link">Terms of Use</a>
+        <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
+      </nav>
+    </div>
+
+    <!-- Col 2: Contact -->
+    <div class="footer-contact-col">
+      <p class="footer-contact-line">0992.816.4718</p>
+      <p class="footer-contact-line footer-contact-dim">08:00AM – 05:00PM</p>
+      <p class="footer-contact-line footer-contact-gap">
+        <a href="mailto:hello@klaygoph.com" class="footer-contact-link">HELLO@KLAYGOPH.COM</a>
+      </p>
+      <p class="footer-contact-line">
+        <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-contact-link">WWW.KLAYGOPH.COM</a>
+      </p>
+    </div>
+
+    <!-- Col 3: Review + Social -->
+    <div class="footer-review-col">
+      <div class="footer-review-inner">
+        <p class="footer-review-text">
+          Help others discover <strong>KLAYGOPH.</strong> Scan to leave a quick review.
+        </p>
+        <!-- QR code: filter:invert(1) flips dark QR to light for dark background -->
+        <a href="https://g.page/r/CRmAgvsRP9qDEBM/review"
+           target="_blank" rel="noopener"
+           class="footer-qr-link"
+           aria-label="Scan to leave a Google Review for Klaygo PH">
+          <img class="footer-qr"
+               src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Google%20Review%20QR.png"
+               alt="Google Review QR Code"
+               style="filter:invert(1);">
+        </a>
+      </div>
+      <!-- Social icons — filter:brightness(0) invert(1) ensures white on dark bg -->
+      <div class="footer-social">
+        <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook">
+          <img class="footer-social-icon"
+               src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Facebook.png"
+               alt="Facebook"
+               style="filter:brightness(0) invert(1);"
+               onerror="this.closest('a').style.display='none'">
+        </a>
+        <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram">
+          <img class="footer-social-icon"
+               src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Instagram.png"
+               alt="Instagram"
+               style="filter:brightness(0) invert(1);"
+               onerror="this.closest('a').style.display='none'">
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <img class="footer-social-icon"
+               src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Whatsapp.png"
+               alt="WhatsApp"
+               style="filter:brightness(0) invert(1);"
+               onerror="this.closest('a').style.display='none'">
+        </a>
+        <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok">
+          <img class="footer-social-icon"
+               src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/TikTok.png"
+               alt="TikTok"
+               style="filter:brightness(0) invert(1);"
+               onerror="this.closest('a').style.display='none'">
+        </a>
+      </div>
+    </div>
+
   </div>
 </footer>
+
 <div class="copyright-bar">© 2026 Klaygo PH. All rights reserved. &nbsp;·&nbsp; <a href="terms.html" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:inherit;">Terms of Use</a> &nbsp;·&nbsp; <a href="privacy.html" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:inherit;">Privacy Policy</a></div>
 </div>
 <div class="sticky-spacer"></div>
