@@ -315,13 +315,14 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* back-to-top CSS defined in new nav block above */
 
 /* MAIN */
-/* min-width:0 on col-left is required: flex containers inside CSS grid tracks
-   do not automatically inherit the track width in all browsers — this fixes
-   the calendar overflowing its column on mobile. */
-.col-left{min-width:0;width:100%;}
-.main{max-width:900px;margin:0 auto;padding:18px 14px 70px;display:grid;grid-template-columns:1fr 280px;gap:14px;align-items:start;}
+/* minmax(0,1fr) is required instead of bare 1fr.
+   Plain 1fr = minmax(auto,1fr) — the 'auto' minimum lets the column grow
+   to match content width, causing the calendar and cards to overflow on mobile.
+   minmax(0,1fr) pins the minimum to 0 so the column is truly constrained. */
+.col-left{min-width:0;}
+.main{max-width:900px;margin:0 auto;padding:18px 14px 70px;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:14px;align-items:start;}
 @media(max-width:660px){
-  .main{grid-template-columns:1fr;padding:12px 12px 30px;}
+  .main{grid-template-columns:minmax(0,1fr);padding:12px 12px 30px;}
   .panel-right{display:none;}/* light estimate hidden on mobile — bottom estimate handles it */
   .pcard{border-radius:20px;}
 }
@@ -998,7 +999,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 
 /* ── MARQUEE TRUST STRIP ──────────────────────────────────── */
-.marquee-strip{background:#0D1F3C;padding:16px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.07);position:relative;contain:paint;}
+.marquee-strip{background:#0D1F3C;padding:16px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.07);position:relative;contain:paint;transform:translateZ(0);}
 .marquee-track{display:flex;width:max-content;animation:marqueeScroll 44s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
 .marquee-item{white-space:nowrap;font-family:var(--font-brand);font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#A8BFE0;padding:0 46px;}
@@ -1084,6 +1085,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   border-top:1px solid rgba(168,191,224,.08);
   position:relative;
   contain:paint;
+  transform:translateZ(0);
 }
 /* Fade edges — masks the left and right overflow */
 .footer-marquee::before,
