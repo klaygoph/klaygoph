@@ -1160,11 +1160,10 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .footer-qr-link{
   flex-shrink:0;
   display:block;
-  border-radius:8px;
+  border-radius:10px;
   overflow:hidden;
   transition:opacity .14s;
-  background:#FFFFFF;
-  padding:8px;
+  /* No white bg — QR is already #0D1F3C background, sits flush on footer */
 }
 .footer-qr-link:hover{opacity:.8;}
 .footer-qr{
@@ -1173,8 +1172,13 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   display:block;
 }
 
-/* Nav column — Col 2 */
-.footer-nav-col{display:flex;flex-direction:column;}
+
+/* Nav column — Col 2: top-padding aligns first link with content below logo in Col 1 */
+.footer-nav-col{
+  display:flex;
+  flex-direction:column;
+  padding-top:clamp(48px,5.5vw,72px); /* offsets logo height so nav aligns visually */
+}
 .footer-nav{display:flex;flex-direction:column;gap:clamp(10px,1.4vh,14px);}
 .footer-nav-link{
   font-family:var(--font-brand);
@@ -1191,7 +1195,12 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .footer-nav-link:focus-visible{outline:2px solid var(--pr);outline-offset:3px;border-radius:2px;}
 
 /* Contact + Social column — Col 3 */
-.footer-contact-col{display:flex;flex-direction:column;gap:clamp(14px,1.8vh,20px);}
+.footer-contact-col{
+  display:flex;
+  flex-direction:column;
+  gap:clamp(14px,1.8vh,20px);
+  padding-top:clamp(48px,5.5vw,72px); /* matches Col 2 padding — all columns top-aligned */
+}
 /* Each contact item: circle icon + text side by side */
 .footer-contact-item{display:flex;align-items:flex-start;gap:clamp(10px,1.2vw,14px);}
 .footer-contact-icon{
@@ -1253,21 +1262,24 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
     grid-template-columns:minmax(0,1fr) minmax(0,1fr);
     gap:24px 20px;
   }
-  /* Brand+QR col spans full width on tablet */
-  .footer-brand-col{grid-column:1 / -1;flex-direction:row;align-items:flex-start;gap:clamp(20px,4vw,40px);}
-  .footer-brand-left{display:flex;flex-direction:column;}
+  /* Col 2+3 padding-top cancels on tablet — they're in their own row */
+  .footer-nav-col{padding-top:0;}
+  .footer-contact-col{padding-top:0;}
+  /* Brand col spans full width */
+  .footer-brand-col{grid-column:1 / -1;}
 }
 @media(max-width:560px){
   .site-footer{padding:28px 20px 24px;}
   .footer-grid{grid-template-columns:minmax(0,1fr);gap:20px;}
   .footer-brand-col{flex-direction:column;gap:0;}
+  .footer-nav-col{padding-top:0;}
+  .footer-contact-col{padding-top:0;}
   .footer-wordmark{margin-bottom:16px;}
   .footer-marquee-text{font-size:clamp(38px,11vw,60px);}
 }
 </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- NAV MENU OVERLAY -->
 <div class="nav-menu-overlay" id="nav-menu">
@@ -2008,7 +2020,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
          class="footer-qr-link"
          aria-label="Scan to leave a Google Review for Klaygo PH">
         <img class="footer-qr"
-             src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/footer/Google%20Review%20QR%20-%20Copy.png"
+             src="https://raw.githubusercontent.com/klaygoph/klaygoph/29ff0aeed5644db5b1687fb6571104812487cfef/footer/Google%20Review%20QR%20-%200D1F3C.png"
              alt="Google Review QR Code"
              onerror="this.style.display='none';this.closest('.footer-qr-link').style.display='none';">
       </a>
