@@ -99,7 +99,7 @@ function loadMaps(){
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{background:#0D1F3C;overflow-x:hidden;}
-.bottom-wrapper{background:#0D1F3C;margin:0;padding:0;display:block;}
+.bottom-wrapper{background:#0D1F3C;margin:0;padding:0;display:block;position:relative;z-index:10;}
 @media(max-width:660px){.bottom-wrapper{margin-top:-2px;}}
 body{font-family:'Manrope',system-ui,sans-serif;background:#F7F9FC;color:#2C2C2A;font-size:14px;line-height:1.55;}
 p,span,div,li,label,input,textarea,select,button,a,td,th,small,strong,em{font-family:'Manrope',system-ui,sans-serif;}
@@ -332,7 +332,8 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 @media(max-width:660px){.copyright-bar{padding-bottom:88px;}}
 
 /* CARD */
-.card{background:#fff;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:20px 18px;margin-bottom:12px;transition:box-shadow .2s;border:1.5px solid #EBF1FA;min-width:0;}
+.card{background:#F7F9FC;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:20px 18px;margin-bottom:12px;transition:box-shadow .2s;border:1.5px solid #EBF1FA;min-width:0;}
+.card:nth-child(even){background:#EBF1FA;}
 .card:hover{box-shadow:0 12px 36px rgba(43,78,138,.11);}
 .card.locked{opacity:.44;pointer-events:none;filter:grayscale(.2);}
 .card-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
@@ -1121,33 +1122,28 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 }
 
 /* ══════════════════════════════════════════
-   SITE FOOTER
-   Desktop (≥700px): Image-1 mockup
-     Col 1 [Logo + review text + QR in white box]
-     Col 2 [Nav links]
-     Col 3 [Contact with circle icons + Social]
-   Mobile (<700px): Image-2 mockup
-     Col 1 [Logo + Nav links below]
-     Col 2 [Contact plain text]
-     Col 3 [Review text + QR + Social]
-   Uses .f-dt (desktop-only) / .f-mb (mobile-only)
+   SITE FOOTER — Dual layout
+   Desktop ≥700px: 3 col [Logo+QR] [Nav] [Contact+Social]
+   Mobile  <700px: 2 col [Logo+Nav+Contact] [Review+QR+Social]
+   .f-dt = visible on desktop, hidden on mobile
+   .f-mb = hidden on desktop, visible on mobile
 ═══════════════════════════════════════════ */
-/* Desktop: show f-dt, hide f-mb */
 .f-dt{display:revert;}
 .f-mb{display:none!important;}
-/* Mobile: flip visibility. Use block for most; flex for specific containers */
 @media(max-width:699px){
   .f-dt{display:none!important;}
+  /* Default: block. Specific containers override below. */
   .f-mb{display:block!important;}
-  /* Containers that need flex layout override block default */
-  .footer-contact-plain.f-mb,
-  .footer-mobile-right.f-mb{display:flex!important;}
-  .footer-mobile-nav.f-mb{display:flex!important;flex-direction:column;}
+  nav.f-mb,.footer-mb-right.f-mb,.footer-mb-contact.f-mb{display:flex!important;}
+  nav.f-mb{flex-direction:column;}
+  .footer-mb-right.f-mb{flex-direction:column;align-items:flex-start;}
+  .footer-mb-contact.f-mb{flex-direction:column;}
 }
 
+/* ── Footer shell ── */
 .site-footer{
   background:#0D1F3C;
-  padding:clamp(40px,6vh,64px) clamp(20px,5vw,60px) clamp(32px,5vh,52px);
+  padding:clamp(36px,5vh,56px) clamp(20px,5vw,56px) clamp(28px,4vh,44px);
   margin:0;
 }
 .footer-grid{
@@ -1160,139 +1156,172 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   align-items:start;
 }
 
-/* ── Col 1: Brand column ── */
+/* ── Col 1 (always): Brand logo ── */
 .footer-brand-col{display:flex;flex-direction:column;align-items:flex-start;}
 .footer-wordmark{
-  height:clamp(30px,3.5vw,46px);
+  height:clamp(28px,3.5vw,44px);
   display:block;
-  margin-bottom:clamp(18px,2.5vh,26px);
+  margin-bottom:clamp(16px,2.5vh,24px);
 }
 
-/* Desktop QR block (inside Col 1) */
-.footer-qr-block{display:flex;flex-direction:column;align-items:flex-start;}
+/* Desktop: QR block below logo */
+.footer-qr-block{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(12px,1.6vh,18px);}
 .footer-review-text{
   font-family:'Manrope',sans-serif;
-  font-size:clamp(11px,1.1vw,13px);
-  color:rgba(247,249,252,.6);
+  font-size:clamp(11px,1.05vw,13px);
+  color:rgba(247,249,252,.60);
   line-height:1.7;
-  margin:0 0 clamp(14px,2vh,20px) 0;
+  margin:0;
 }
 .footer-review-text strong{color:#F7F9FC;font-weight:700;}
+/* QR — NO white border, sits directly on navy */
 .footer-qr-link{
-  flex-shrink:0;
   display:block;
-  background:#FFFFFF;
-  padding:8px;
-  border-radius:10px;
+  border-radius:6px;
   overflow:hidden;
   transition:opacity .15s;
+  line-height:0;
 }
-.footer-qr-link:hover{opacity:.85;}
+.footer-qr-link:hover{opacity:.8;}
 .footer-qr{
-  width:clamp(110px,10vw,148px);
-  height:clamp(110px,10vw,148px);
+  width:clamp(110px,10vw,144px);
+  height:clamp(110px,10vw,144px);
   display:block;
 }
 
-/* Mobile nav block (inside Col 1 on mobile) */
-.footer-mobile-nav{display:flex;flex-direction:column;gap:clamp(8px,1.4vh,12px);margin-top:clamp(12px,1.6vh,16px);}
+/* Mobile: nav links below logo (inside col 1) */
+nav.footer-mb-nav{flex-direction:column;gap:clamp(8px,1.3vh,12px);margin-top:clamp(10px,1.5vh,14px);}
+.footer-mb-nav-link{
+  font-family:var(--font-brand);
+  font-size:clamp(10px,2.4vw,12px);
+  font-weight:700;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:rgba(247,249,252,.48);
+  text-decoration:none;
+  transition:color .14s;
+  display:block;
+  width:fit-content;
+}
+.footer-mb-nav-link:hover{color:#F7F9FC;}
+
+/* Mobile: contact below nav (inside col 1) */
+.footer-mb-contact{
+  flex-direction:column;
+  gap:2px;
+  margin-top:clamp(18px,3vh,28px);
+}
+.footer-mb-contact-line{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(10px,2.3vw,12px);
+  font-weight:600;
+  color:rgba(247,249,252,.68);
+  line-height:1.6;
+  margin:0;
+  letter-spacing:.01em;
+}
+.footer-mb-contact-dim{color:rgba(247,249,252,.35);font-weight:400;}
+.footer-mb-contact-link{color:rgba(247,249,252,.68);text-decoration:none;transition:color .14s;}
+.footer-mb-contact-link:hover{color:#A8BFE0;}
 
 /* ── Col 2 Desktop: Nav links ── */
 .footer-nav-col{display:flex;flex-direction:column;}
 .footer-nav{display:flex;flex-direction:column;gap:clamp(9px,1.3vh,13px);}
-.footer-nav-link,
-.footer-mobile-nav-link{
+.footer-nav-link{
   font-family:var(--font-brand);
-  font-size:clamp(9.5px,0.95vw,11.5px);
+  font-size:clamp(9.5px,0.9vw,11.5px);
   font-weight:700;
   letter-spacing:.14em;
   text-transform:uppercase;
   color:rgba(247,249,252,.42);
   text-decoration:none;
   transition:color .14s;
+  display:block;
   width:fit-content;
-  display:block; /* ensure each link is on its own line */
 }
-.footer-nav-link:hover,.footer-mobile-nav-link:hover{color:#F7F9FC;}
-.footer-nav-link:focus-visible,.footer-mobile-nav-link:focus-visible{outline:2px solid var(--pr);outline-offset:3px;border-radius:2px;}
+.footer-nav-link:hover{color:#F7F9FC;}
+.footer-nav-link:focus-visible{outline:2px solid var(--pr);outline-offset:3px;border-radius:2px;}
 
-/* ── Col 2 Mobile: Contact plain text ── */
-.footer-contact-plain{display:flex;flex-direction:column;gap:2px;}
-.footer-contact-plain-group{margin-bottom:clamp(10px,1.4vh,14px);}
-.footer-contact-plain-line{
-  font-family:'Manrope',sans-serif;
-  font-size:clamp(9px,1.1vw,11px);
-  font-weight:600;
-  color:rgba(247,249,252,.70);
-  line-height:1.55;
-  margin:0;
-  letter-spacing:.01em;
-}
-.footer-contact-plain-dim{color:rgba(247,249,252,.35);font-weight:400;}
-.footer-contact-plain-link{color:rgba(247,249,252,.70);text-decoration:none;transition:color .14s;}
-.footer-contact-plain-link:hover{color:#A8BFE0;}
-
-/* ── Col 3 Desktop: Contact with circle icons ── */
-.footer-contact-col{display:flex;flex-direction:column;gap:clamp(13px,1.7vh,19px);}
-.footer-contact-item{display:flex;align-items:flex-start;gap:clamp(10px,1.2vw,14px);}
+/* ── Col 3 Desktop: Contact with circle icons + Social ── */
+.footer-contact-col{display:flex;flex-direction:column;gap:clamp(12px,1.6vh,18px);}
+.footer-contact-item{display:flex;align-items:flex-start;gap:clamp(10px,1.1vw,13px);}
 .footer-contact-icon{
   flex-shrink:0;
-  width:clamp(28px,2.6vw,36px);
-  height:clamp(28px,2.6vw,36px);
+  width:clamp(28px,2.5vw,34px);
+  height:clamp(28px,2.5vw,34px);
   border-radius:50%;
-  border:1.5px solid rgba(247,249,252,.32);
+  border:1.5px solid rgba(247,249,252,.28);
   display:flex;align-items:center;justify-content:center;
   margin-top:1px;
 }
 .footer-contact-icon svg{
-  width:clamp(12px,1.1vw,15px);
-  height:clamp(12px,1.1vw,15px);
-  stroke:rgba(247,249,252,.70);
+  width:clamp(11px,1vw,14px);
+  height:clamp(11px,1vw,14px);
+  stroke:rgba(247,249,252,.68);
   stroke-width:1.8;
-  fill:none;
-  stroke-linecap:round;
-  stroke-linejoin:round;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;
 }
 .footer-contact-text{display:flex;flex-direction:column;gap:2px;}
 .footer-contact-line{
   font-family:'Manrope',sans-serif;
-  font-size:clamp(10px,1vw,12px);
+  font-size:clamp(10px,0.95vw,12px);
   font-weight:600;
-  color:rgba(247,249,252,.70);
+  color:rgba(247,249,252,.68);
   line-height:1.45;
   margin:0;
-  letter-spacing:.01em;
 }
 .footer-contact-dim{color:rgba(247,249,252,.35);font-weight:400;}
-.footer-contact-link{color:rgba(247,249,252,.70);text-decoration:none;letter-spacing:.02em;transition:color .14s;}
+.footer-contact-link{color:rgba(247,249,252,.68);text-decoration:none;transition:color .14s;}
 .footer-contact-link:hover{color:#A8BFE0;}
-.footer-social-wrap{margin-top:clamp(8px,1.1vh,13px);}
+.footer-social-wrap{margin-top:clamp(6px,1vh,12px);}
 
-/* ── Col 3 Mobile: Review + QR + Social ── */
-.footer-mobile-right{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(10px,1.4vh,14px);}
-.footer-mobile-qr-link{
+/* ── Mobile Col 2: Review + QR + Social + Website ── */
+.footer-mb-right{
+  gap:clamp(12px,1.8vh,18px);
+}
+.footer-mb-review{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(10.5px,2.2vw,12.5px);
+  color:rgba(247,249,252,.60);
+  line-height:1.7;
+  margin:0;
+}
+.footer-mb-review strong{color:#F7F9FC;font-weight:700;}
+/* Mobile QR — NO white border */
+.footer-mb-qr-link{
   display:block;
-  background:#FFFFFF;
-  padding:6px;
-  border-radius:8px;
+  border-radius:6px;
   overflow:hidden;
   transition:opacity .15s;
+  line-height:0;
 }
-.footer-mobile-qr-link:hover{opacity:.85;}
-.footer-mobile-qr{width:clamp(90px,22vw,130px);height:clamp(90px,22vw,130px);display:block;}
+.footer-mb-qr-link:hover{opacity:.8;}
+.footer-mb-qr{
+  width:clamp(100px,25vw,140px);
+  height:clamp(100px,25vw,140px);
+  display:block;
+}
+.footer-mb-website{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(9.5px,2.1vw,11.5px);
+  font-weight:600;
+  color:rgba(247,249,252,.55);
+  text-decoration:none;
+  letter-spacing:.02em;
+  transition:color .14s;
+}
+.footer-mb-website:hover{color:#A8BFE0;}
 
 /* ── Social icons (shared) ── */
-.footer-social{display:flex;align-items:center;gap:clamp(14px,1.8vw,24px);flex-wrap:wrap;}
+.footer-social{display:flex;align-items:center;gap:clamp(14px,1.8vw,22px);flex-wrap:wrap;}
 .footer-social a{display:flex;align-items:center;justify-content:center;transition:opacity .14s,transform .14s;}
 .footer-social a:hover{opacity:.7;transform:translateY(-2px);}
-.footer-social a:focus-visible{outline:2px solid var(--pr);outline-offset:4px;border-radius:4px;}
-.footer-social-icon{width:clamp(18px,1.8vw,24px);height:clamp(18px,1.8vw,24px);display:block;}
+.footer-social-icon{width:clamp(17px,1.8vw,22px);height:clamp(17px,1.8vw,22px);display:block;}
 
 /* ── Copyright bar ── */
 .copyright-bar{
   background:transparent;
   border-top:1px solid rgba(247,249,252,.10);
-  text-align:center;
   font-size:clamp(9px,2.2vw,11px);
   color:rgba(247,249,252,.4);
   padding:14px 20px;
@@ -1300,7 +1329,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:16px;
+  gap:12px;
   white-space:nowrap;
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
@@ -1313,21 +1342,21 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 /* ── FOOTER RESPONSIVE ── */
 @media(max-width:699px){
-  .site-footer{padding:clamp(28px,5vh,40px) clamp(16px,5vw,24px) clamp(20px,3vh,28px);}
+  .site-footer{padding:clamp(28px,5vh,40px) clamp(16px,5vw,22px) clamp(20px,3vh,28px);}
   .footer-grid{
-    /* Mobile: [Logo+Nav] [Contact] [QR+Social] — 3 narrow cols */
-    grid-template-columns:minmax(0,2fr) minmax(0,1.6fr) minmax(0,2fr);
-    gap:clamp(12px,3vw,20px);
+    /* Mobile: 2 col [Logo+Nav+Contact] [Review+QR+Social] */
+    grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+    gap:clamp(14px,4vw,24px);
   }
-  .footer-wordmark{height:clamp(24px,8vw,36px);margin-bottom:clamp(10px,1.8vh,16px);}
-  .footer-nav-col{display:none;} /* Nav is inside Col 1 on mobile via .f-mb */
-  .footer-contact-col{display:none;} /* Contact-with-icons hidden; plain shown via .f-mb */
-  .footer-marquee-text{font-size:clamp(38px,11vw,60px);}
+  .footer-wordmark{height:clamp(26px,7vw,34px);margin-bottom:clamp(10px,1.6vh,14px);}
+  /* Desktop-only cols collapse to nothing */
+  .footer-nav-col{display:none!important;}
+  .footer-contact-col{display:none!important;}
+  .footer-marquee-text{font-size:clamp(36px,10.5vw,58px);}
 }
-@media(max-width:400px){
-  .footer-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:10px;}
-  .footer-contact-plain-line{font-size:8.5px;}
-  .footer-mobile-nav-link{font-size:8.5px;}
+@media(max-width:380px){
+  .footer-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;}
+  .footer-mb-nav-link,.footer-mb-contact-line{font-size:9px;}
 }
 
 /* ── SKELETON LOADERS ──────────────────────────────────────────
@@ -2199,53 +2228,47 @@ textarea{
 
 <div class="bottom-wrapper">
 
-<!-- MAIN FOOTER ─ Two-layout design:
-     Desktop (≥700px) Image 1: [Logo+QR] [Nav] [Contact+Social]
-     Mobile  (<700px) Image 2: [Logo+Nav] [Contact] [QR+Social]
+<!-- MAIN FOOTER — new 2-col mobile / 3-col desktop
      .f-dt = desktop-only  .f-mb = mobile-only -->
 <footer class="site-footer">
   <div class="footer-grid">
 
-    <!-- ── COL 1: Brand logo (always) + QR block (desktop) + Nav (mobile) ── -->
+    <!-- COL 1 (always): Logo + [desktop: QR] + [mobile: Nav + Contact] -->
     <div class="footer-brand-col">
       <a href="index.html" aria-label="Klaygo PH Home">
-        <img class="footer-wordmark"
-             src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png"
-             alt="Klaygo PH" style="filter:brightness(0) invert(1);">
+        <img class="footer-wordmark" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);">
       </a>
 
-      <!-- Desktop: review text + QR in white box -->
+      <!-- Desktop: review blurb + QR, NO white border -->
       <div class="footer-qr-block f-dt">
-        <p class="footer-review-text">
-          Help others discover <strong>KLAYGOPH.</strong><br>
-          Scan to leave a quick review.
-        </p>
-        <a href="https://g.page/r/CRmAgvsRP9qDEBM/review"
-           target="_blank" rel="noopener"
-           class="footer-qr-link"
-           aria-label="Scan to leave a Google Review for Klaygo PH">
-          <img class="footer-qr"
-               src="https://raw.githubusercontent.com/klaygoph/klaygoph/29ff0aeed5644db5b1687fb6571104812487cfef/footer/Google%20Review%20QR%20-%200D1F3C.png"
-               alt="Google Review QR Code"
-               onerror="this.style.display='none';this.closest('.footer-qr-link').style.display='none';">
+        <p class="footer-review-text">Help others discover <strong>KLAYGOPH.</strong><br>Scan to leave a quick review.</p>
+        <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-qr-link" aria-label="Leave a Google Review">
+          <img class="footer-qr" src="https://raw.githubusercontent.com/klaygoph/klaygoph/29ff0aeed5644db5b1687fb6571104812487cfef/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-qr-link').style.display='none'">
         </a>
       </div>
 
-      <!-- Mobile: nav links below logo -->
-      <nav class="footer-mobile-nav f-mb" aria-label="Footer navigation mobile">
-        <a href="index.html" class="footer-mobile-nav-link">About Us</a>
-        <a href="pricing.html" class="footer-mobile-nav-link">Estimate</a>
-        <a href="loyalty.html" class="footer-mobile-nav-link">Loyalty Card</a>
-        <a href="faq.html" class="footer-mobile-nav-link">FAQs</a>
-        <a href="sayhello.html" class="footer-mobile-nav-link">Say Hello!</a>
-        <a href="terms.html" class="footer-mobile-nav-link">Terms of Use</a>
-        <a href="privacy.html" class="footer-mobile-nav-link">Privacy Policy</a>
+      <!-- Mobile: nav links -->
+      <nav class="footer-mb-nav f-mb" aria-label="Footer navigation">
+        <a href="index.html" class="footer-mb-nav-link">About Us</a>
+        <a href="pricing.html" class="footer-mb-nav-link">Estimate</a>
+        <a href="loyalty.html" class="footer-mb-nav-link">Loyalty Card</a>
+        <a href="faq.html" class="footer-mb-nav-link">FAQs</a>
+        <a href="sayhello.html" class="footer-mb-nav-link">Say Hello!</a>
+        <a href="terms.html" class="footer-mb-nav-link">Terms of Use</a>
+        <a href="privacy.html" class="footer-mb-nav-link">Privacy Policy</a>
       </nav>
+
+      <!-- Mobile: contact info below nav -->
+      <div class="footer-mb-contact f-mb">
+        <p class="footer-mb-contact-line">0992.816.4718</p>
+        <p class="footer-mb-contact-line footer-mb-contact-dim">08:00AM-05:00PM</p>
+        <a href="mailto:hello@klaygoph.com" class="footer-mb-contact-line footer-mb-contact-link">HELLO@KLAYGOPH.COM</a>
+      </div>
     </div>
 
-    <!-- ── COL 2: Nav links (desktop) / Contact plain text (mobile) ── -->
+    <!-- COL 2 Desktop: Nav links -->
     <div class="footer-nav-col f-dt">
-      <nav class="footer-nav" aria-label="Footer navigation">
+      <nav class="footer-nav" aria-label="Footer navigation desktop">
         <a href="index.html" class="footer-nav-link">About Us</a>
         <a href="pricing.html" class="footer-nav-link">Estimate</a>
         <a href="loyalty.html" class="footer-nav-link">Loyalty Card</a>
@@ -2256,25 +2279,23 @@ textarea{
       </nav>
     </div>
 
-    <!-- Mobile Col 2: plain contact info, no icons -->
-    <div class="footer-contact-plain f-mb">
-      <div class="footer-contact-plain-group">
-        <p class="footer-contact-plain-line">0992.816.4718</p>
-        <p class="footer-contact-plain-line footer-contact-plain-dim">08:00AM-05:00PM</p>
+    <!-- COL 2 Mobile: Review + QR + Social + Website -->
+    <div class="footer-mb-right f-mb">
+      <p class="footer-mb-review">Help others discover <strong>KLAYGOPH.</strong> Scan to leave a quick review.</p>
+      <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-mb-qr-link" aria-label="Leave a Google Review">
+        <img class="footer-mb-qr" src="https://raw.githubusercontent.com/klaygoph/klaygoph/29ff0aeed5644db5b1687fb6571104812487cfef/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-mb-qr-link').style.display='none'">
+      </a>
+      <div class="footer-social">
+          <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
       </div>
-      <div class="footer-contact-plain-group">
-        <a href="mailto:hello@klaygoph.com" class="footer-contact-plain-line footer-contact-plain-link">HELLO@KLAYGOPH.COM</a>
-      </div>
-      <div>
-        <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-contact-plain-line footer-contact-plain-link">WWW.KLAYGOPH.COM</a>
-      </div>
+      <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-mb-website">WWW.KLAYGOPH.COM</a>
     </div>
 
-    <!-- ── COL 3: Contact+Social (desktop) / Review+QR+Social (mobile) ── -->
-
-    <!-- Desktop Col 3: circle icons + social -->
+    <!-- COL 3 Desktop: Contact with circle icons + Social -->
     <div class="footer-contact-col f-dt">
-      <!-- Phone -->
       <div class="footer-contact-item">
         <div class="footer-contact-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 5.72 5.72l1.73-1.74a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -2284,7 +2305,6 @@ textarea{
           <p class="footer-contact-line footer-contact-dim">08:00AM – 05:00PM</p>
         </div>
       </div>
-      <!-- Email -->
       <div class="footer-contact-item">
         <div class="footer-contact-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
@@ -2293,7 +2313,6 @@ textarea{
           <a href="mailto:hello@klaygoph.com" class="footer-contact-line footer-contact-link">HELLO@KLAYGOPH.COM</a>
         </div>
       </div>
-      <!-- Website -->
       <div class="footer-contact-item">
         <div class="footer-contact-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
@@ -2302,52 +2321,13 @@ textarea{
           <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-contact-line footer-contact-link">WWW.KLAYGOPH.COM</a>
         </div>
       </div>
-      <!-- Social -->
       <div class="footer-social-wrap">
         <div class="footer-social">
-          <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook">
-            <img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'">
-          </a>
-          <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram">
-            <img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'">
-          </a>
-          <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'">
-          </a>
-          <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok">
-            <img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'">
-          </a>
+          <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
         </div>
-      </div>
-    </div>
-
-    <!-- Mobile Col 3: review + QR + social -->
-    <div class="footer-mobile-right f-mb">
-      <p class="footer-review-text">
-        Help others discover <strong>KLAYGOPH.</strong> Scan to leave a quick review.
-      </p>
-      <a href="https://g.page/r/CRmAgvsRP9qDEBM/review"
-         target="_blank" rel="noopener"
-         class="footer-mobile-qr-link"
-         aria-label="Scan to leave a Google Review">
-        <img class="footer-mobile-qr"
-             src="https://raw.githubusercontent.com/klaygoph/klaygoph/29ff0aeed5644db5b1687fb6571104812487cfef/footer/Google%20Review%20QR%20-%200D1F3C.png"
-             alt="Google Review QR Code"
-             onerror="this.style.display='none';this.closest('a').style.display='none';">
-      </a>
-      <div class="footer-social">
-          <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook">
-            <img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'">
-          </a>
-          <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram">
-            <img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'">
-          </a>
-          <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'">
-          </a>
-          <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok">
-            <img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'">
-          </a>
       </div>
     </div>
 
@@ -4072,41 +4052,35 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
   // ── Payment bands ────────────────────────────────────────────
   if(hasPay){
     var rFilled3=recurSlots.filter(function(s){return s.date;});
-    // FIX: any recurring schedule (even with 1 date) should show upfront band
-    var isMulti=rFilled3.length>0 || S.sched!=='Initial / One-time';
+    var isRecurring=S.sched!=='Initial / One-time';
     var totalSess3=rFilled3.length+1; // always at least 1 session
     var totalUpfront3=dp*totalSess3;
-    // Use rf passed from compute() — avoids re-implementing 50% logic here.
-    // Fallback calcReservationFee(total,0,selDate) is defensive only.
     var rfBE=rf||calcReservationFee(total,0,selDate);
     var pctBE=rfBE.needs50?'50%':'30%';
     var reasonBE=rfBE.needs50?rfBE.reason:'Standard';
-    // Reservation section (multi-session only)
+    // ── Reservation fee section — show for ALL bookings with hasPay ──
     var resSec=document.getElementById('be-res-section');
     if(resSec){
-      if(isMulti){
-        resSec.style.display='block';
-        var resR=resSec.querySelector('.be-res-reason');
-        var resFee=resSec.querySelector('.be-res-fee');
-        var dCount=document.getElementById('be-dates-count');
-        if(resR)resR.textContent=pctBE+' Reservation fee — '+reasonBE;
-        if(resFee)resFee.textContent='Php '+dp.toLocaleString();
-        // FIX: "1 DAY" singular, "N DAYS" plural
-        if(dCount)dCount.textContent=totalSess3+(totalSess3===1?' DAY':' DAYS');
-      } else {resSec.style.display='none';}
+      resSec.style.display='block';
+      var resR=resSec.querySelector('.be-res-reason');
+      var resFee=resSec.querySelector('.be-res-fee');
+      var dCount=document.getElementById('be-dates-count');
+      if(resR)resR.textContent=pctBE+' Reservation fee — '+reasonBE;
+      if(resFee)resFee.textContent='Php '+dp.toLocaleString();
+      if(dCount)dCount.textContent=totalSess3+(totalSess3===1?' DAY':' DAYS');
     }
-    // Balance band
+    // ── Balance band — always visible ──
     var balBand=document.getElementById('be-balance-band');
     var balLblEl=document.getElementById('be-bal-band-lbl');
     var balAmtEl=document.getElementById('be-band-bal-amt');
     if(balBand)balBand.style.display='flex';
-    if(balLblEl)balLblEl.textContent=isMulti?'Balance on Each Service Day':'Balance on Service Day';
+    if(balLblEl)balLblEl.textContent=isRecurring&&totalSess3>1?'Balance on Each Service Day':'Balance on Service Day';
     if(balAmtEl)balAmtEl.textContent='Php '+bal.toLocaleString();
-    // Upfront band — only shown for multi-session recurring bookings
+    // ── Upfront band — always visible (shows total upfront commitment) ──
     var upBand=document.getElementById('be-upfront-band');
     var upAmtEl=document.getElementById('be-upfront-amt');
-    if(upBand)upBand.style.display=isMulti?'flex':'none';
-    if(isMulti&&upAmtEl)upAmtEl.textContent='Php '+totalUpfront3.toLocaleString();
+    if(upBand)upBand.style.display='flex';
+    if(upAmtEl)upAmtEl.textContent='Php '+totalUpfront3.toLocaleString();
   } else {
     hideBands();
   }
