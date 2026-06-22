@@ -214,14 +214,14 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* Top bar — #0D1F3C — 20% of viewport height */
 .nav-top{
   background:#0D1F3C;
-  height:clamp(72px,14vh,110px);
+  height:clamp(84px,14vh,120px); /* taller — more breathing room above logo */
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;
+  padding:0 40px;
   transition:height .3s ease;
 }
-.nav-top.compact{height:clamp(56px,8vh,72px);}
+.nav-top.compact{height:clamp(60px,8vh,76px);}
 .nav-top-left{display:flex;align-items:center;gap:14px;}
-.nav-logo{height:32px;}
+.nav-logo{height:clamp(38px,3.8vw,52px);} /* bigger on desktop */
 .nav-brand-text{
   font-family:var(--font-brand);
   font-size:10.5px;color:rgba(247,249,252,.45);
@@ -253,7 +253,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
   .nav-top{height:clamp(56px,20vh,120px);padding:0 16px;position:relative;}
   .nav-top.compact{height:clamp(48px,10vh,72px);}
   .nav-brand-text{display:none;}
-  .nav-logo{height:32px;}
+  .nav-logo{height:32px;} /* mobile keeps 32px */
   .nav-back-btn{display:flex;}
   .nav-mobile-page{display:block;}
   .nav-sub{display:none;}
@@ -783,7 +783,7 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 .be-total{font-size:36px;font-weight:700;color:#F7F9FC;line-height:1;margin-bottom:3px;}
 .be-total-prefix{font-size:16px;color:rgba(168,191,224,.8);font-weight:400;}
 .be-time{font-size:12px;color:#F7F9FC;margin-bottom:0;font-weight:600;}
-.be-summary-card{border:1.5px solid rgba(247,249,252,.25);border-radius:16px;padding:14px 16px;margin:10px 12px 12px;background:rgba(255,255,255,.06);}
+.be-summary-card{border:1.5px solid rgba(247,249,252,.25);border-radius:16px;padding:14px 16px;margin:10px 14px 12px;background:rgba(255,255,255,.06);}
 .be-line{display:flex;justify-content:space-between;gap:7px;padding:6px 0;border-bottom:1px solid rgba(168,191,224,.15);font-size:12.5px;}
 .be-line:last-child{border:none;}
 .be-ll{color:rgba(247,249,252,.7);line-height:1.45;}
@@ -802,13 +802,13 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 .be-pk{color:rgba(247,249,252,.7);}
 .be-pv{color:#F7F9FC;font-weight:600;}
 .be-pnow .be-pv{color:var(--li);font-size:15px;font-weight:700;}
-.be-avail{padding:0 12px 8px;background:transparent;}
-.be-avail.none{padding:6px 12px;font-size:11.5px;color:rgba(247,249,252,.5);}
-.be-avail.na{padding:6px 12px;font-size:11.5px;color:#f88;font-weight:500;}
-.be-discl{font-size:11px;color:rgba(247,249,252,.5);line-height:1.65;margin:0 12px 14px;}
-.be-btn{display:block;width:100%;padding:15px;background:#F0A500;color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;margin-bottom:10px;transition:all .14s;box-shadow:0 4px 18px rgba(240,165,0,.3);}
+.be-avail{padding:0 14px 8px;background:transparent;}
+.be-avail.none{padding:6px 14px;font-size:11.5px;color:rgba(247,249,252,.5);}
+.be-avail.na{padding:6px 14px;font-size:11.5px;color:#f88;font-weight:500;}
+.be-discl{font-size:11px;color:rgba(247,249,252,.5);line-height:1.65;margin:0 14px 14px;}
+.be-btn{display:block;width:calc(100% - 28px);margin:0 14px 10px;padding:15px;background:#F0A500;color:#fff;border:none;border-radius:50px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;box-shadow:0 4px 18px rgba(240,165,0,.3);}
 .be-btn:hover{background:var(--li);box-shadow:0 6px 20px rgba(13,31,60,.3);}
-.be-btn-sec{display:block;width:100%;padding:11px;background:transparent;color:#F7F9FC;border:1.5px solid rgba(168,191,224,.4);border-radius:50px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
+.be-btn-sec{display:block;width:calc(100% - 28px);margin:0 14px 8px;padding:11px;background:transparent;color:#F7F9FC;border:1.5px solid rgba(168,191,224,.4);border-radius:50px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
 .be-btn-sec:hover{background:rgba(168,191,224,.15);border-color:rgba(168,191,224,.7);}
 .be-empty{padding:18px;text-align:center;color:rgba(247,249,252,.5);font-size:12px;line-height:1.75;}
 @media(max-width:660px){#bottom-estimate{display:block;}body{background:#0D1F3C;}}
@@ -1012,7 +1012,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
    ═══════════════════════════════════════════════════ */
 
 /* Res section (multi-session dates breakdown) */
-.be-res-section{padding:10px 12px;margin:4px 12px 6px;background:rgba(255,255,255,.06);border-radius:12px;border:1px solid rgba(168,191,224,.12);}
+.be-res-section{padding:10px 14px;margin:4px 14px 6px;background:rgba(255,255,255,.06);border-radius:12px;border:1px solid rgba(168,191,224,.12);}
 .be-res-caption{font-size:9px;color:rgba(168,191,224,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
 .be-res-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid rgba(168,191,224,.1);}
 .be-res-reason{color:rgba(247,249,252,.62);flex:1;padding-right:8px;line-height:1.4;}
@@ -1022,9 +1022,9 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .be-dates-count{color:#F7F9FC;font-weight:900;font-family:var(--font-brand);font-size:16px;letter-spacing:-.02em;}
 
 /* Balance band (blue) */
-.be-balance-band{margin:4px 12px 6px;background:#1A3869;border:1.5px solid rgba(168,191,224,.22);border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.be-balance-band{margin:4px 14px 6px;background:#1A3869;border:1.5px solid rgba(168,191,224,.22);border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
 /* Upfront band (gold) */
-.be-upfront-band{margin:0 12px 10px;background:rgba(22,15,0,.9);border:2px solid #C9A227;border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.be-upfront-band{margin:0 14px 10px;background:rgba(22,15,0,.9);border:2px solid #C9A227;border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
 .be-band-text-col{flex:1;}
 .be-band-main-lbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
 .be-balance-band .be-band-main-lbl{color:rgba(168,191,224,.75);}
@@ -1132,9 +1132,18 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
      Col 3 [Review text + QR + Social]
    Uses .f-dt (desktop-only) / .f-mb (mobile-only)
 ═══════════════════════════════════════════ */
+/* Desktop: show f-dt, hide f-mb */
 .f-dt{display:revert;}
-.f-mb{display:none;}
-@media(max-width:699px){.f-dt{display:none!important;}.f-mb{display:revert!important;}}
+.f-mb{display:none!important;}
+/* Mobile: flip visibility. Use block for most; flex for specific containers */
+@media(max-width:699px){
+  .f-dt{display:none!important;}
+  .f-mb{display:block!important;}
+  /* Containers that need flex layout override block default */
+  .footer-contact-plain.f-mb,
+  .footer-mobile-right.f-mb{display:flex!important;}
+  .footer-mobile-nav.f-mb{display:flex!important;flex-direction:column;}
+}
 
 .site-footer{
   background:#0D1F3C;
@@ -1202,6 +1211,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   text-decoration:none;
   transition:color .14s;
   width:fit-content;
+  display:block; /* ensure each link is on its own line */
 }
 .footer-nav-link:hover,.footer-mobile-nav-link:hover{color:#F7F9FC;}
 .footer-nav-link:focus-visible,.footer-mobile-nav-link:focus-visible{outline:2px solid var(--pr);outline-offset:3px;border-radius:2px;}
@@ -2875,6 +2885,11 @@ function selSched(el){
   document.querySelectorAll('.sched-opt').forEach(function(p){p.classList.remove('sel');});
   el.classList.add('sel');
   S.sched=el.dataset.s;
+  // FIX: clear all recurring state when switching back to one-time
+  if(S.sched==='Initial / One-time'){
+    recurSlots=[];
+    var rc=document.getElementById('recur-entries');if(rc)rc.innerHTML='';
+  }
   var rs=document.getElementById('recur-section');
   if(rs)rs.style.display=(S.sched!=='Initial / One-time')?'block':'none';
   updateRecurDP(); compute();
@@ -3326,7 +3341,7 @@ function compute(){
     document.getElementById('pay-dp').textContent='Php '+rf.dp.toLocaleString()+(rf.needs50?' (50% \u2014 '+rf.reason+')':'');
     document.getElementById('pay-bal').textContent='Php '+rf.bal.toLocaleString();
     var rFilled2=recurSlots.filter(function(s){return s.date;});
-    var multiDate=rFilled2.length>0||S.sched!=='Initial / One-time';
+    var multiDate=rFilled2.length>0||S.sched!=='Initial / One-time'; // already correct
     // Right panel estimate bands
     var prBalBand=document.getElementById('pr-band-balance');
     var prUpBand=document.getElementById('pr-band-upfront');
@@ -3334,7 +3349,9 @@ function compute(){
     var prBalLblEl=document.getElementById('pr-bal-band-lbl');
     if(prBalBand)prBalBand.style.display='flex';
     if(prBalLblEl)prBalLblEl.textContent=rFilled2.length>0?'Balance on Each Service Day':'Balance on Service Day';
-    if(prUpBand){prUpBand.style.display=rFilled2.length>0?'flex':'none';if(prUpAmt)prUpAmt.textContent='Php '+((rFilled2.length+1)*rf.dp).toLocaleString();}
+    // FIX: show upfront band for any recurring schedule, not just multi-date
+    var showUpBand=rFilled2.length>0||S.sched!=='Initial / One-time';
+    if(prUpBand){prUpBand.style.display=showUpBand?'flex':'none';if(prUpAmt)prUpAmt.textContent='Php '+((rFilled2.length+1)*rf.dp).toLocaleString();}
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
     var pnote=document.querySelector('.pay-note');
@@ -4055,8 +4072,9 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
   // ── Payment bands ────────────────────────────────────────────
   if(hasPay){
     var rFilled3=recurSlots.filter(function(s){return s.date;});
-    var isMulti=rFilled3.length>0;
-    var totalSess3=isMulti?rFilled3.length+1:1;
+    // FIX: any recurring schedule (even with 1 date) should show upfront band
+    var isMulti=rFilled3.length>0 || S.sched!=='Initial / One-time';
+    var totalSess3=rFilled3.length+1; // always at least 1 session
     var totalUpfront3=dp*totalSess3;
     // Use rf passed from compute() — avoids re-implementing 50% logic here.
     // Fallback calcReservationFee(total,0,selDate) is defensive only.
@@ -4073,7 +4091,8 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
         var dCount=document.getElementById('be-dates-count');
         if(resR)resR.textContent=pctBE+' Reservation fee — '+reasonBE;
         if(resFee)resFee.textContent='Php '+dp.toLocaleString();
-        if(dCount)dCount.textContent=totalSess3+' DAYS';
+        // FIX: "1 DAY" singular, "N DAYS" plural
+        if(dCount)dCount.textContent=totalSess3+(totalSess3===1?' DAY':' DAYS');
       } else {resSec.style.display='none';}
     }
     // Balance band
