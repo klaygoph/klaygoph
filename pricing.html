@@ -99,7 +99,7 @@ function loadMaps(){
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{background:#0D1F3C;overflow-x:hidden;}
-.bottom-wrapper{background:#0D1F3C;margin:0;padding:0;display:block;position:relative;z-index:10;}
+.bottom-wrapper{background:#0D1F3C;margin:0;padding:0;display:block;clear:both;}
 @media(max-width:660px){.bottom-wrapper{margin-top:-2px;}}
 body{font-family:'Manrope',system-ui,sans-serif;background:#F7F9FC;color:#2C2C2A;font-size:14px;line-height:1.55;}
 p,span,div,li,label,input,textarea,select,button,a,td,th,small,strong,em{font-family:'Manrope',system-ui,sans-serif;}
@@ -239,7 +239,8 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .btn-ref:hover{border-color:var(--li);color:#fff;}
 
 /* ── NAV SUB-BAR — no dividing line ── */
-.nav-sub{background:var(--mn);display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;}
+.nav-sub{background:var(--mn);display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap;}
+.nav-sub::-webkit-scrollbar{display:none;}
 .nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:50px;transition:all .15s;white-space:nowrap;}
 .nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
 .nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
@@ -319,11 +320,28 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
    Plain 1fr = minmax(auto,1fr) — the 'auto' minimum lets the column grow
    to match content width, causing the calendar and cards to overflow on mobile.
    minmax(0,1fr) pins the minimum to 0 so the column is truly constrained. */
+/* ── MAIN TWO-COLUMN LAYOUT ──────────────────────────────────
+   Left col: form cards. Right col: sticky estimate panel.
+   Important: panel-right uses max-height + overflow-y:auto
+   so it CANNOT grow beyond the viewport and bleed into footer.
+   bottom-wrapper sits in normal flow BELOW this grid — no overlap.
+────────────────────────────────────────────────────────────── */
 .col-left{min-width:0;}
-.main{max-width:900px;margin:0 auto;padding:18px 14px 70px;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:14px;align-items:start;}
-@media(max-width:660px){
+.main{
+  max-width:1100px;
+  margin:0 auto;
+  padding:24px 32px 80px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 300px;
+  gap:24px;
+  align-items:start;
+}
+@media(max-width:900px){
+  .main{grid-template-columns:minmax(0,1fr) 260px;padding:18px 16px 60px;gap:14px;}
+}
+@media(max-width:700px){
   .main{grid-template-columns:minmax(0,1fr);padding:12px 12px 30px;}
-  .panel-right{display:none;}/* light estimate hidden on mobile — bottom estimate handles it */
+  .panel-right{display:none;}
   .pcard{border-radius:20px;}
 }
 @media(max-width:660px){#sticky-bar{display:block;}.toast{bottom:100px!important;}}
@@ -622,7 +640,20 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 /* FEEDBACK */
 
 /* SUMMARY PANEL */
-.panel-right{position:sticky;top:86px;}
+.panel-right{
+  position:sticky;
+  top:145px; /* nav-top(~86) + nav-sub(44) + progress(10) + buffer */
+  /* max-height caps the panel at viewport minus everything above.
+     overflow-y:auto lets it scroll internally — it CANNOT bleed into footer. */
+  max-height:calc(100vh - 160px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(43,78,138,.2) transparent;
+  border-radius:20px;
+}
+.panel-right::-webkit-scrollbar{width:4px;}
+.panel-right::-webkit-scrollbar-thumb{background:rgba(43,78,138,.2);border-radius:2px;}
 .pcard{background:#fff;border-radius:20px;overflow:hidden;margin-bottom:10px;box-shadow:0 8px 32px rgba(43,78,138,.12);border:1.5px solid #EBF1FA;}
 .phead{padding:18px 20px;border-bottom:1.5px solid #EBF1FA;background:#fff;}
 .pest-id{font-size:11px;color:var(--deepnav);letter-spacing:.06em;margin-bottom:3px;font-weight:700;}
