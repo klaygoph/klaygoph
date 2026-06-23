@@ -353,6 +353,26 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .card{background:#F7F9FC;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:20px 18px;margin-bottom:12px;transition:box-shadow .2s;border:1.5px solid #EBF1FA;min-width:0;}
 .card:nth-child(even){background:#EBF1FA;}
 .card:hover{box-shadow:0 12px 36px rgba(43,78,138,.11);}
+/* Alternating card: buttons/fields use white bg + deeper border so they
+   contrast against the #EBF1FA card background */
+.card:nth-child(even) .svc,
+.card:nth-child(even) .lb,
+.card:nth-child(even) .sched-opt,
+.card:nth-child(even) .ar{background:#fff;border-color:#A8BFE0;}
+.card:nth-child(even) .svc:hover,
+.card:nth-child(even) .lb:hover,
+.card:nth-child(even) .sched-opt:hover,
+.card:nth-child(even) .ar:hover{background:#F7F9FC;border-color:var(--pr);}
+.card:nth-child(even) .svc.sel,
+.card:nth-child(even) .lb.sel,
+.card:nth-child(even) .sched-opt.sel,
+.card:nth-child(even) .ar.on{background:#fff;border-color:var(--pr);box-shadow:0 0 0 2px rgba(43,78,138,.12);}
+.card:nth-child(even) .field input,
+.card:nth-child(even) .field select,
+.card:nth-child(even) .field textarea{background:#fff;border-color:#A8BFE0;}
+.card:nth-child(even) .field input:focus,
+.card:nth-child(even) .field select:focus,
+.card:nth-child(even) .field textarea:focus{background:#fff;border-color:var(--pr);}
 .card.locked{opacity:.44;pointer-events:none;filter:grayscale(.2);}
 .card-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
 .sbadge{background:var(--dp);color:#fff;width:24px;height:24px;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -809,6 +829,19 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 
 /* ── BOTTOM ESTIMATE ────────── */
 #bottom-estimate{display:none;background:#0D1F3C;padding:22px 20px 30px;border-radius:var(--r) var(--r) 0 0;box-shadow:0 -6px 30px rgba(13,31,60,.25);}
+/* Desktop: bottom estimate shows below the 2-col grid, full-width before footer */
+@media(min-width:661px){
+  #bottom-estimate{
+    border-radius:20px;
+    margin:0 auto 28px;
+    max-width:1100px;
+    padding:24px 32px 32px;
+    box-shadow:0 8px 40px rgba(13,31,60,.2);
+  }
+}
+/* panel-right fade when bottom estimate comes into view */
+.panel-right{transition:opacity .3s ease;}
+.panel-right.is-faded{opacity:0;pointer-events:none;}
 .be-head{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:14px;}
 .be-logo{height:22px;filter:brightness(0) invert(1);}
 .be-label{font-size:9px;color:rgba(168,191,224,.8);letter-spacing:.12em;text-transform:uppercase;font-weight:600;}
@@ -1190,9 +1223,22 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 /* ── Col 1 (always): Brand logo ── */
 .footer-brand-col{display:flex;flex-direction:column;align-items:flex-start;}
 .footer-wordmark{
-  height:clamp(28px,3.5vw,44px);
+  height:clamp(36px,4.5vw,56px);
   display:block;
   margin-bottom:clamp(16px,2.5vh,24px);
+}
+/* Google rating badge */
+.footer-rating{
+  display:flex;align-items:center;gap:7px;
+  margin-bottom:clamp(8px,1vh,12px);
+}
+.footer-rating-stars{color:#F0A500;letter-spacing:2px;font-size:clamp(13px,1.2vw,16px);line-height:1;}
+.footer-rating-text{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(10.5px,0.95vw,12.5px);
+  color:rgba(247,249,252,.60);
+  font-weight:600;
+  letter-spacing:.01em;
 }
 
 /* Desktop: QR block below logo */
@@ -1223,12 +1269,12 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 /* Mobile: nav links below logo (inside col 1) */
 nav.footer-mb-nav{flex-direction:column;gap:clamp(8px,1.3vh,12px);margin-top:clamp(10px,1.5vh,14px);}
 .footer-mb-nav-link{
-  font-family:var(--font-brand);
-  font-size:clamp(10px,2.4vw,12px);
-  font-weight:700;
-  letter-spacing:.13em;
-  text-transform:uppercase;
-  color:rgba(247,249,252,.48);
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(10.5px,2.5vw,13px);
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+  color:rgba(247,249,252,.50);
   text-decoration:none;
   transition:color .14s;
   display:block;
@@ -1251,20 +1297,21 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(8px,1.3vh,12px);margin-top:cla
   margin:0;
   letter-spacing:.01em;
 }
-.footer-mb-contact-dim{color:rgba(247,249,252,.35);font-weight:400;}
+.footer-mb-contact-dim{color:rgba(247,249,252,.55);font-weight:400;}
 .footer-mb-contact-link{color:rgba(247,249,252,.68);text-decoration:none;transition:color .14s;}
 .footer-mb-contact-link:hover{color:#A8BFE0;}
 
 /* ── Col 2 Desktop: Nav links ── */
-.footer-nav-col{display:flex;flex-direction:column;}
-.footer-nav{display:flex;flex-direction:column;gap:clamp(9px,1.3vh,13px);}
+/* padding-top keeps nothing parallel to the logo */
+.footer-nav-col{display:flex;flex-direction:column;padding-top:clamp(42px,5.5vh,62px);}
+.footer-nav{display:flex;flex-direction:column;gap:clamp(10px,1.4vh,14px);}
 .footer-nav-link{
-  font-family:var(--font-brand);
-  font-size:clamp(9.5px,0.9vw,11.5px);
-  font-weight:700;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:rgba(247,249,252,.42);
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(10px,0.95vw,12.5px);
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+  color:rgba(247,249,252,.48);
   text-decoration:none;
   transition:color .14s;
   display:block;
@@ -1274,7 +1321,9 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(8px,1.3vh,12px);margin-top:cla
 .footer-nav-link:focus-visible{outline:2px solid var(--pr);outline-offset:3px;border-radius:2px;}
 
 /* ── Col 3 Desktop: Contact with circle icons + Social ── */
-.footer-contact-col{display:flex;flex-direction:column;gap:clamp(12px,1.6vh,18px);}
+/* padding-top shifts contact down so WWW.KLAYGOPH.COM aligns with HELLO@KLAYGOPH.COM
+   visually: col 3 pushed down by ~one contact-item height (icon + gap ≈ 48px) */
+.footer-contact-col{display:flex;flex-direction:column;gap:clamp(12px,1.6vh,18px);padding-top:clamp(42px,5.5vh,62px);}
 .footer-contact-item{display:flex;align-items:flex-start;gap:clamp(10px,1.1vw,13px);}
 .footer-contact-icon{
   flex-shrink:0;
@@ -1301,14 +1350,17 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(8px,1.3vh,12px);margin-top:cla
   line-height:1.45;
   margin:0;
 }
-.footer-contact-dim{color:rgba(247,249,252,.35);font-weight:400;}
+.footer-contact-dim{color:rgba(247,249,252,.58);font-weight:400;}
 .footer-contact-link{color:rgba(247,249,252,.68);text-decoration:none;transition:color .14s;}
 .footer-contact-link:hover{color:#A8BFE0;}
 .footer-social-wrap{margin-top:clamp(6px,1vh,12px);}
 
 /* ── Mobile Col 2: Review + QR + Social + Website ── */
+/* justify-content:space-between pushes WWW.KLAYGOPH.COM to bottom of col,
+   aligning it with HELLO@KLAYGOPH.COM at the bottom of mobile col 1 */
 .footer-mb-right{
   gap:clamp(12px,1.8vh,18px);
+  justify-content:space-between;
 }
 .footer-mb-review{
   font-family:'Manrope',sans-serif;
@@ -1379,7 +1431,7 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(8px,1.3vh,12px);margin-top:cla
     grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
     gap:clamp(14px,4vw,24px);
   }
-  .footer-wordmark{height:clamp(26px,7vw,34px);margin-bottom:clamp(10px,1.6vh,14px);}
+  .footer-wordmark{height:clamp(32px,8.5vw,42px);margin-bottom:clamp(10px,1.6vh,14px);}
   /* Desktop-only cols collapse to nothing */
   .footer-nav-col{display:none!important;}
   .footer-contact-col{display:none!important;}
@@ -2270,11 +2322,15 @@ textarea{
         <img class="footer-wordmark" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);">
       </a>
 
-      <!-- Desktop: review blurb + QR, NO white border -->
+      <!-- Desktop: Google rating + review blurb + QR, NO white border -->
       <div class="footer-qr-block f-dt">
-        <p class="footer-review-text">Help others discover <strong>KLAYGOPH.</strong><br>Scan to leave a quick review.</p>
+        <div class="footer-rating">
+          <span class="footer-rating-stars">★★★★★</span>
+          <span class="footer-rating-text">4.9 on Google</span>
+        </div>
+        <p class="footer-review-text">Help others discover<br><strong>KLAYGOPH.</strong><br>Scan to leave a quick review.</p>
         <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-qr-link" aria-label="Leave a Google Review">
-          <img class="footer-qr" src="https://raw.githubusercontent.com/klaygoph/klaygoph/29ff0aeed5644db5b1687fb6571104812487cfef/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-qr-link').style.display='none'">
+          <img class="footer-qr" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-qr-link').style.display='none'">
         </a>
       </div>
 
@@ -2310,11 +2366,15 @@ textarea{
       </nav>
     </div>
 
-    <!-- COL 2 Mobile: Review + QR + Social + Website -->
+    <!-- COL 2 Mobile: Google rating + Review + QR + Social + Website -->
     <div class="footer-mb-right f-mb">
-      <p class="footer-mb-review">Help others discover <strong>KLAYGOPH.</strong> Scan to leave a quick review.</p>
+      <div class="footer-rating">
+        <span class="footer-rating-stars" style="font-size:clamp(12px,3vw,15px);">★★★★★</span>
+        <span class="footer-rating-text" style="font-size:clamp(9.5px,2.1vw,11.5px);">4.9 on Google</span>
+      </div>
+      <p class="footer-mb-review">Help others discover<br><strong>KLAYGOPH.</strong><br>Scan to leave a quick review.</p>
       <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-mb-qr-link" aria-label="Leave a Google Review">
-        <img class="footer-mb-qr" src="https://raw.githubusercontent.com/klaygoph/klaygoph/29ff0aeed5644db5b1687fb6571104812487cfef/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-mb-qr-link').style.display='none'">
+        <img class="footer-mb-qr" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-mb-qr-link').style.display='none'">
       </a>
       <div class="footer-social">
           <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
@@ -2380,7 +2440,7 @@ textarea{
 </div>
 
 <div class="copyright-bar">
-  <span>© 2026 Klaygo PH. All rights reserved.</span>
+  <span>© 2025 Klaygo PH. All rights reserved.</span>
   <span class="copyright-sep">·</span>
   <a href="terms.html">Terms of Use</a>
   <span class="copyright-sep">·</span>
@@ -3360,9 +3420,9 @@ function compute(){
     var prBalLblEl=document.getElementById('pr-bal-band-lbl');
     if(prBalBand)prBalBand.style.display='flex';
     if(prBalLblEl)prBalLblEl.textContent=rFilled2.length>0?'Balance on Each Service Day':'Balance on Service Day';
-    // FIX: show upfront band for any recurring schedule, not just multi-date
-    var showUpBand=rFilled2.length>0||S.sched!=='Initial / One-time';
-    if(prUpBand){prUpBand.style.display=showUpBand?'flex':'none';if(prUpAmt)prUpAmt.textContent='Php '+((rFilled2.length+1)*rf.dp).toLocaleString();}
+    // Always show upfront band whenever there's a total — shows for ALL booking types
+    var totalSessDt=rFilled2.length+1;
+    if(prUpBand){prUpBand.style.display='flex';if(prUpAmt)prUpAmt.textContent='Php '+(totalSessDt*rf.dp).toLocaleString();}
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
     var pnote=document.querySelector('.pay-note');
@@ -4058,6 +4118,11 @@ function updateStickyBar(total){
 }
 
 function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
+  // ── Show/hide container on desktop ──────────────────────────
+  var beContainer=document.getElementById('bottom-estimate');
+  if(beContainer&&window.innerWidth>660){
+    beContainer.style.display=(lines&&lines.length)?'block':'none';
+  }
   // ── Totals ──────────────────────────────────────────────────
   var totEl=document.getElementById('be-totd');
   if(totEl)totEl.textContent=total>0?total.toLocaleString():'0';
@@ -4142,7 +4207,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var beLogo=document.getElementById('be-logo-img');
   if(sbLogo){ sbLogo.src=LOGO_URL; sbLogo.style.filter='brightness(0) invert(1)'; }
   if(beLogo){ beLogo.src=LOGO_URL; beLogo.style.filter='brightness(0) invert(1)'; }
-  // IntersectionObserver: hide sticky bar when bottom-estimate scrolled into view
+  // IntersectionObserver: hide sticky bar + fade desktop panel-right when bottom-estimate is in view
   var beEl=document.getElementById('bottom-estimate');
   var barEl=document.getElementById('sticky-bar');
   if(beEl&&barEl){
@@ -4150,8 +4215,16 @@ document.addEventListener('DOMContentLoaded',function(){
       var vis=entries[0].isIntersecting;
       var tot=document.getElementById('sb-total');
       var hasTotal=tot&&tot.textContent&&tot.textContent!=='—'&&tot.textContent!=='0';
-      if(vis){barEl.classList.add('sb-hidden');}
-      else if(hasTotal){barEl.classList.remove('sb-hidden');}
+      if(vis){
+        barEl.classList.add('sb-hidden');
+        // Desktop: fade out sticky panel-right so bottom estimate takes over
+        var panelRight=document.querySelector('.panel-right');
+        if(panelRight&&window.innerWidth>660)panelRight.classList.add('is-faded');
+      } else if(hasTotal){
+        barEl.classList.remove('sb-hidden');
+        var panelRight=document.querySelector('.panel-right');
+        if(panelRight)panelRight.classList.remove('is-faded');
+      }
     },{threshold:0.05,rootMargin:'0px 0px -40px 0px'});
     obs.observe(beEl);
   }
