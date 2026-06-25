@@ -100,7 +100,7 @@ function loadMaps(){
 *{box-sizing:border-box;margin:0;padding:0;}
 html{background:#0D1F3C;overflow-x:hidden;}
 .bottom-wrapper{background:#0D1F3C;margin:0;padding:0;display:block;clear:both;}
-@media(max-width:660px){.bottom-wrapper{margin-top:0;}}
+@media(max-width:768px){.bottom-wrapper{margin-top:0;}}
 /* Seamless dark zone — covers the gap between the last card and the dark footer
    on BOTH mobile and desktop */
 .page-dark-zone{
@@ -146,7 +146,7 @@ body.js-ready .hero-eyebrow{animation:heroFadeUp .7s ease both;}
 body.js-ready .hero h1{animation:heroFadeUp .8s ease .1s both;}
 body.js-ready .hero-sub{animation:heroFadeUp .8s ease .22s both;}
 body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
-@media(max-width:700px){
+@media(max-width:768px){
   .hero{min-height:100vh;min-height:100dvh;padding:clamp(44px,10vh,72px) 24px clamp(36px,6vh,56px);}
   .hero{background-image:url('https://raw.githubusercontent.com/klaygoph/klaygoph/main/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001%20-%20Mobile.jpg');}
   .hero{background-position:38% 35%;}
@@ -164,7 +164,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .hero-stat-lbl{font-size:10px;color:rgba(168,191,224,.85);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
 .hero-stat-div{width:1px;background:rgba(168,191,224,.2);align-self:stretch;}
 /* .hero-cta removed */
-@media(max-width:700px){
+@media(max-width:768px){
   .hero-stats{gap:0;padding:12px 0;}
   .hero-stat{padding:0 10px;}
   .hero-stat-num{font-size:clamp(20px,5vw,28px);}
@@ -196,7 +196,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .cc-chips{display:flex;flex-wrap:wrap;gap:9px;}
 .cc-chip{padding:7px 16px;border-radius:22px;font-size:12px;font-weight:600;border:1.5px solid #D8DCE8;color:#4A5568;background:#fff;}
 .cc-chip.ok{background:#EBF1FA;border-color:#A8BFE0;color:#2B4E8A;}
-@media(max-width:700px){
+@media(max-width:768px){
   .calc-clarifier{display:grid !important;grid-template-columns:1fr;grid-template-rows:auto auto;padding:32px 20px 44px;gap:24px;}
   .cc-anim-col{justify-content:center;order:-1;width:100%;}
   .cc-text-col{order:1;width:100%;}
@@ -257,7 +257,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .nav-back-btn img{width:32px;height:32px;display:block;}
 .nav-mobile-page{font-family:var(--font-brand);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;}
 
-@media(max-width:700px){
+@media(max-width:768px){
   .nav-top{height:clamp(56px,20vh,120px);padding:0 16px;position:relative;}
   .nav-top.compact{height:clamp(48px,10vh,72px);}
   .nav-brand-text{display:none;}
@@ -268,7 +268,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
   .btn-ref{display:none;}
   .nav-hamburger img{width:30px;height:30px;}
 }
-@media(min-width:701px){.nav-back-btn{display:none;}}
+@media(min-width:769px){.nav-back-btn{display:none;}}
 
 /* ── MENU OVERLAY — full-screen mobile, sidebar on desktop ── */
 .nav-menu-overlay{display:none;position:fixed;inset:0;background:#0D1F3C;z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:24px;overflow:hidden;}
@@ -287,7 +287,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .nav-menu-pill:nth-child(7){transition-delay:.36s;}
 .nav-menu-pill:nth-child(8){transition-delay:.42s;}
 /* Desktop: slide-in sidebar from right (~25% of screen width) */
-@media(min-width:701px){
+@media(min-width:769px){
   .nav-menu-overlay{
     left:auto;
     width:300px;
@@ -315,7 +315,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 
 /* ── PROGRESS BAR — inside sticky nav-wrap, no separate sticky needed ── */
 .progress-wrap{background:#2B4E8A;padding:5px 32px 2px;}
-@media(max-width:700px){.progress-wrap{padding:5px 16px 2px;}}
+@media(max-width:768px){.progress-wrap{padding:5px 16px 2px;}}
 .progress-bar-track{height:3px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:#A8BFE0;border-radius:2px;transition:width .4s ease;width:0%;}
 .progress-label{display:none;}
@@ -346,18 +346,25 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 @media(max-width:900px){
   .main{grid-template-columns:minmax(0,1fr) 260px;padding:18px 16px 60px;gap:14px;}
 }
-@media(max-width:700px){
+@media(max-width:768px){
   .main{grid-template-columns:minmax(0,1fr);padding:12px 12px 30px;}
   .panel-right{display:none;}
   .pcard{border-radius:20px;}
 }
-@media(max-width:660px){#sticky-bar{display:block;}.toast{bottom:100px!important;}}
+@media(max-width:768px){#sticky-bar{display:block;}.toast{bottom:100px!important;}}
 /* Sticky spacer removed — copyright-bar absorbs the scroll protection padding on mobile */
 .sticky-spacer{display:none !important;}
-@media(max-width:660px){.copyright-bar{padding-bottom:88px;}}
+@media(max-width:768px){.copyright-bar{padding-bottom:88px;}}
 
 /* CARD */
 .card{background:#F7F9FC;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:20px 18px;margin-bottom:12px;transition:box-shadow .2s;border:1.5px solid #EBF1FA;min-width:0;}
+/* ── Mobile: cards 80% width, centered ── */
+@media(max-width:660px){
+  .card{width:80%;margin-left:auto;margin-right:auto;}
+  .sec-acc-wrap{width:80%;margin-left:auto;margin-right:auto;}
+  .pb{width:80%;margin-left:auto;margin-right:auto;}
+  .restriction-alert{width:80%;margin-left:auto;margin-right:auto;}
+}
 .card:nth-child(even){background:#EBF1FA;}
 .card:hover{box-shadow:0 12px 36px rgba(43,78,138,.11);}
 /* Alternating card (#EBF1FA bg): buttons use white so they contrast the blue-tinted bg.
@@ -835,7 +842,7 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 .sticky-cta{font-size:11.5px;color:#fff;font-weight:700;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.3);padding:8px 18px;border-radius:22px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s;}
 .sticky-cta:hover{background:rgba(255,255,255,.3);border-color:rgba(255,255,255,.5);}
 .sticky-brand{background:#2C2C2A;height:18px;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.35);}
-@media(max-width:660px){#sticky-bar{display:block;}.toast{bottom:100px!important;}}
+@media(max-width:768px){#sticky-bar{display:block;}.toast{bottom:100px!important;}}
 
 /* ── BOTTOM ESTIMATE ────────── */
 #bottom-estimate{
@@ -848,12 +855,15 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 /* Desktop: bottom estimate appears below the 2-col form,
    aligned to the same horizontal extent as the form cards (col-left)
    Show/hide handled by JS in updateBottomEstimate() */
-@media(min-width:661px){
+@media(min-width:769px){
   #bottom-estimate{
     border-radius:var(--r);
     padding:24px 28px 32px;
     box-shadow:none;
     margin-bottom:0;
+    max-width:1100px;   /* align with main form width */
+    margin-left:auto;
+    margin-right:auto;
   }
 }
 .be-head{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:14px;}
@@ -890,7 +900,7 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 .be-btn-sec{display:block;width:calc(100% - 28px);margin:0 14px 8px;padding:11px;background:transparent;color:#F7F9FC;border:1.5px solid rgba(168,191,224,.4);border-radius:50px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
 .be-btn-sec:hover{background:rgba(168,191,224,.15);border-color:rgba(168,191,224,.7);}
 .be-empty{padding:18px;text-align:center;color:rgba(247,249,252,.5);font-size:12px;line-height:1.75;}
-@media(max-width:660px){
+@media(max-width:768px){
   #bottom-estimate{display:block;}
   body{background:#0D1F3C;}
 }
@@ -923,7 +933,7 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 /* Cards — more air */
 .card{padding:26px 24px;margin-bottom:16px;border-color:#EBF1FA;box-shadow:0 2px 16px rgba(43,78,138,.05);}
 .card:hover{box-shadow:0 8px 28px rgba(43,78,138,.09);}
-@media(max-width:700px){.card{padding:20px 16px;}}
+@media(max-width:768px){.card{padding:20px 16px;}}
 
 /* Step badges — watermark number, not a filled dot */
 .sbadge{background:transparent;color:#C8D8EE;font-size:13px;font-weight:800;border:1.5px solid #EBF1FA;width:26px;height:26px;}
@@ -1211,7 +1221,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 ═══════════════════════════════════════════ */
 .f-dt{display:revert;}
 .f-mb{display:none!important;}
-@media(max-width:699px){
+@media(max-width:768px){
   .f-dt{display:none!important;}
   /* Default: block. Specific containers override below. */
   .f-mb{display:block!important;}
@@ -1228,8 +1238,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
   margin:0;
 }
 .footer-grid{
-  max-width:none;
-  margin:0;
+  max-width:1100px;    /* aligns with main form width */
+  margin:0 auto;       /* center within the dark footer bg */
   display:grid;
   /* Desktop: [Logo+QR] [Nav] [Contact+Social] */
   grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.6fr);
@@ -1258,6 +1268,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 /* Desktop: QR block below logo */
 .footer-qr-block{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(12px,1.6vh,18px);}
+/* Social icons below QR on desktop — max-width matches QR */
+.footer-qr-social{margin-top:2px;gap:clamp(12px,1.4vw,18px);}
 .footer-review-text{
   font-family:'Manrope',sans-serif;
   font-size:clamp(11px,1.05vw,13px);
@@ -1276,8 +1288,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 }
 .footer-qr-link:hover{opacity:.8;}
 .footer-qr{
-  width:clamp(110px,10vw,144px);
-  height:clamp(110px,10vw,144px);
+  width:clamp(80px,6.5vw,104px);
+  height:clamp(80px,6.5vw,104px);
   display:block;
 }
 
@@ -1417,6 +1429,8 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 .footer-social a{display:flex;align-items:center;justify-content:center;transition:opacity .14s,transform .14s;}
 .footer-social a:hover{opacity:.7;transform:translateY(-2px);}
 .footer-social-icon{width:clamp(17px,1.8vw,22px);height:clamp(17px,1.8vw,22px);display:block;}
+/* Desktop: social icons placed below QR — slightly tighter gap to stay within QR column width */
+.footer-qr-social{gap:clamp(10px,1.2vw,16px);}
 
 /* ── Copyright bar ── */
 .copyright-bar{
@@ -1441,7 +1455,7 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 .copyright-sep{opacity:.35;}
 
 /* ── FOOTER RESPONSIVE ── */
-@media(max-width:699px){
+@media(max-width:768px){
   .site-footer{padding:clamp(28px,5vh,40px) clamp(16px,5vw,22px) clamp(20px,3vh,28px);}
   .footer-grid{
     /* Mobile: 2 col [Logo+Nav+Contact] [Review+QR+Social]
@@ -1771,7 +1785,7 @@ textarea{
 @keyframes kg4Pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}
 @keyframes kg4Float{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}
 @keyframes kg4FadeLines{0%,100%{opacity:.4;}50%{opacity:1;}}
-@media(max-width:700px){
+@media(max-width:768px){
   .klaygo-card{width:180px;height:180px;}
   .kg4-amount{font-size:22px;}
   .kg4-icon{width:36px;height:36px;}
@@ -2357,6 +2371,13 @@ textarea{
         <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-qr-link" aria-label="Leave a Google Review">
           <img class="footer-qr" src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-qr-link').style.display='none'">
         </a>
+        <!-- Social icons below QR on desktop — aligned to QR width -->
+        <div class="footer-social footer-qr-social">
+          <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        </div>
       </div>
 
       <!-- Mobile: nav links -->
@@ -2436,14 +2457,6 @@ textarea{
         </div>
         <div class="footer-contact-text">
           <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-contact-line footer-contact-link">WWW.KLAYGOPH.COM</a>
-        </div>
-      </div>
-      <div class="footer-social-wrap">
-        <div class="footer-social">
-          <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
-          <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
-          <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
-          <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="https://raw.githubusercontent.com/klaygoph/klaygoph/fdc1508aa4a1eaf915740e8be871d5f7cb6142a0/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
         </div>
       </div>
     </div>
@@ -4135,7 +4148,14 @@ function updateStickyBar(total){
         sbDate.textContent='';
       }
     }
-    bar.classList.remove('sb-hidden');
+    // Only show sticky bar if the bottom estimate is NOT currently in view
+    var beEl=document.getElementById('bottom-estimate');
+    var beInView=false;
+    if(beEl){
+      var rect=beEl.getBoundingClientRect();
+      beInView=rect.top<(window.innerHeight||document.documentElement.clientHeight)&&rect.bottom>0;
+    }
+    if(!beInView){bar.classList.remove('sb-hidden');}
   } else {
     flashUpdate('sb-total');document.getElementById('sb-total').textContent='—';
     document.getElementById('sb-desc').textContent='Complete the steps to see your estimate';
@@ -4148,7 +4168,7 @@ function updateStickyBar(total){
 function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
   // ── Desktop: show/hide the container based on whether there are line items ──
   var beContainer=document.getElementById('bottom-estimate');
-  if(beContainer&&window.innerWidth>660){
+  if(beContainer&&window.innerWidth>768){
     beContainer.style.display=(lines&&lines.length)?'block':'none';
   }
   // ── Totals ──────────────────────────────────────────────────
