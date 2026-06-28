@@ -1603,6 +1603,158 @@ textarea{
     font-size:13px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   SPLIT-SCREEN LAYOUT
+   Desktop ≥1024px : left = sticky 42% image panel, right = 58% form
+   Mobile <1024px  : stacked — 280px image banner then full form
+═══════════════════════════════════════════════════════════════ */
+
+/* Hide the old hero — split-left replaces it entirely */
+.hero{display:none !important;}
+
+.page-split{display:block;}
+@media(min-width:1024px){
+  .page-split{
+    display:grid;
+    grid-template-columns:42% 58%;
+    align-items:start;
+  }
+}
+
+/* ── Left image panel ── */
+.split-left{
+  position:relative;
+  background:#0D1F3C;
+  overflow:hidden;
+  height:280px; /* mobile hero */
+}
+@media(min-width:1024px){
+  .split-left{
+    position:sticky;
+    top:0;
+    height:100vh;
+    height:100dvh;
+  }
+}
+
+/* Images — stacked; only .active is visible */
+.split-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  opacity:0;
+  transition:opacity .9s ease, transform 1.4s ease;
+  transform:scale(1.05);
+  will-change:opacity,transform;
+}
+.split-img.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* Dark gradient overlay for legibility */
+.split-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    160deg,
+    rgba(13,31,60,.44) 0%,
+    rgba(13,31,60,.12) 52%,
+    rgba(13,31,60,.50) 100%
+  );
+  z-index:1;
+  pointer-events:none;
+}
+
+/* Tagline on the panel */
+.split-hero-text{
+  position:absolute;
+  bottom:clamp(22px,4vh,42px);
+  left:clamp(20px,3vw,34px);
+  z-index:2;
+}
+.split-hero-tagline{
+  font-family:'Argentum Novus',serif;
+  font-size:clamp(12px,1.3vw,16px);
+  font-weight:300;
+  color:#F7F9FC;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  opacity:.82;
+  text-shadow:0 2px 14px rgba(13,31,60,.65);
+}
+
+/* Dot indicators */
+.split-dots{
+  position:absolute;
+  bottom:clamp(14px,2vh,22px);
+  right:clamp(16px,2vw,24px);
+  z-index:2;
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+.split-dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:rgba(247,249,252,.32);
+  transition:background .3s, transform .3s;
+  cursor:pointer;
+  border:none;
+  padding:0;
+  flex-shrink:0;
+}
+.split-dot.active{
+  background:#F7F9FC;
+  transform:scale(1.45);
+}
+
+/* ── Right form panel ── */
+.split-right{
+  background:#F7F9FC;
+  min-height:100vh;
+  overflow:hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BACK TO TOP — vertical text pill, fixed to right screen edge
+═══════════════════════════════════════════════════════════════ */
+#back-to-top{
+  position:fixed;
+  right:0;
+  top:50%;
+  transform:translateY(-50%) translateX(100%);
+  z-index:999;
+  background:#2B4E8A;
+  color:#F7F9FC;
+  border:none;
+  border-radius:8px 0 0 8px;
+  padding:22px 10px;
+  cursor:pointer;
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  font-family:'Manrope',sans-serif;
+  font-size:9.5px;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  line-height:1;
+  transition:transform .35s cubic-bezier(.34,1.1,.64,1), background .2s;
+  box-shadow:-3px 0 16px rgba(13,31,60,.2);
+  -webkit-user-select:none;user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+#back-to-top.visible{
+  transform:translateY(-50%) translateX(0);
+}
+#back-to-top:hover{background:#3D6399;}
+#back-to-top:active{
+  transform:translateY(-50%) translateX(0) scale(.95);
+}
 </style>
 </head>
 <body>
@@ -1659,6 +1811,36 @@ textarea{
     <div class="progress-label" id="progress-label"></div>
   </div>
 </div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SPLIT-SCREEN WRAPPER
+     Left = sticky image panel (desktop) / hero banner (mobile)
+     Right = all pricing form content
+══════════════════════════════════════════════════════════════ -->
+<div class="page-split">
+
+  <!-- LEFT PANEL: rotating images -->
+  <div class="split-left" id="split-left" aria-hidden="true">
+    <img class="split-img active" src="assets/webp/KlaygoPh - Web - Images - 01.webp" alt="" loading="eager" decoding="async">
+    <img class="split-img" src="assets/webp/KlaygoPh - Web - Images - 02.webp" alt="" loading="lazy" decoding="async">
+    <img class="split-img" src="assets/webp/KlaygoPh - Web - Images - 03.webp" alt="" loading="lazy" decoding="async">
+    <img class="split-img" src="assets/webp/KlaygoPh - Web - Images - 04.webp" alt="" loading="lazy" decoding="async">
+    <img class="split-img" src="assets/webp/KlaygoPh - Web - Images - 05.webp" alt="" loading="lazy" decoding="async">
+    <div class="split-overlay" aria-hidden="true"></div>
+    <div class="split-hero-text">
+      <div class="split-hero-tagline">Cleaner Space, Clearer Mind.</div>
+    </div>
+    <div class="split-dots" id="split-dots" aria-hidden="true">
+      <button class="split-dot active" onclick="showSplitImg(0)" aria-label="Image 1"></button>
+      <button class="split-dot" onclick="showSplitImg(1)" aria-label="Image 2"></button>
+      <button class="split-dot" onclick="showSplitImg(2)" aria-label="Image 3"></button>
+      <button class="split-dot" onclick="showSplitImg(3)" aria-label="Image 4"></button>
+      <button class="split-dot" onclick="showSplitImg(4)" aria-label="Image 5"></button>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: pricing form -->
+  <div class="split-right">
 
 <div class="hero" id="hero">
   <div class="hero-overlay" aria-hidden="true"></div>
@@ -2489,6 +2671,9 @@ textarea{
 </div><!-- /page-dark-zone -->
 <div class="sticky-spacer"></div>
 <div class="toast" id="toast"></div>
+
+  </div><!-- /split-right -->
+</div><!-- /page-split -->
 
 <script>
 'use strict';
@@ -4328,21 +4513,58 @@ function togWHN(){togSecAcc('whn-acc-wrap');}
   document.querySelectorAll('.whn-reveal').forEach(function(el){obs.observe(el);});
 })();
 
-// ── BACK TO TOP — PNG image, SVG fallback on error ──────────
+// ── BACK TO TOP — vertical text pill, fixed right edge ──────
 (function(){
-  var BTT='https://raw.githubusercontent.com/klaygoph/klaygoph/d50ebc17c041ce8f4e3f3796ba0cb9e635ed5efd/assets/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
   var btn=document.createElement('button');
-  btn.id='back-to-top';btn.setAttribute('aria-label','Back to top');
-  var img=document.createElement('img');
-  img.src=BTT;img.alt='Back to top';img.width=44;img.height=44;
-  img.onerror=function(){
-    btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F7F9FC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
-    btn.style.cssText='background:#0D1F3C;border-radius:50%;width:42px;height:42px;';
-  };
-  btn.appendChild(img);
+  btn.id='back-to-top';
+  btn.setAttribute('aria-label','Back to top');
+  btn.textContent='BACK TO TOP';
   btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
   document.body.appendChild(btn);
-  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);},{passive:true});
+  window.addEventListener('scroll',function(){
+    btn.classList.toggle('visible',window.scrollY>300);
+  },{passive:true});
+})();
+
+// ── SPLIT IMAGE SWITCHER ─────────────────────────────────────
+// Images switch based on scroll progress through the right panel.
+// showSplitImg() is also called by the dot buttons for manual control.
+(function(){
+  var imgs=Array.from(document.querySelectorAll('.split-img'));
+  var dots=Array.from(document.querySelectorAll('.split-dot'));
+  var current=0;
+  var total=imgs.length;
+  if(!total)return;
+
+  function showSplitImg(idx){
+    if(idx<0)idx=0;
+    if(idx>=total)idx=total-1;
+    if(idx===current)return;
+    imgs[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current=idx;
+    imgs[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  // Expose for dot onclick handlers
+  window.showSplitImg=showSplitImg;
+
+  // Drive image changes from scroll position
+  var ticking=false;
+  function onScroll(){
+    if(ticking)return;
+    ticking=true;
+    requestAnimationFrame(function(){
+      var scrolled=window.scrollY;
+      var docH=document.documentElement.scrollHeight-window.innerHeight;
+      if(docH<=0){ticking=false;return;}
+      var progress=Math.min(scrolled/docH,1); // 0 → 1
+      var idx=Math.min(Math.floor(progress*total),total-1);
+      showSplitImg(idx);
+      ticking=false;
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
 })();
 
 // ══════════════════════════════════════════════════════
