@@ -677,15 +677,23 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 /* SUMMARY PANEL */
 .panel-right{
   position:sticky;
-  top:145px; /* nav-top(~86) + nav-sub(44) + progress(10) + buffer */
-  /* max-height caps the panel at viewport minus everything above.
-     overflow-y:auto lets it scroll internally — it CANNOT bleed into footer. */
-  max-height:calc(100vh - 160px);
+  top:90px; /* nav height + small buffer (progress bar removed) */
+  max-height:calc(100vh - 110px);
   overflow-y:auto;
   overflow-x:hidden;
   scrollbar-width:thin;
   scrollbar-color:rgba(43,78,138,.2) transparent;
   border-radius:20px;
+  /* Option B: hidden until estimate has content — desktop only */
+  opacity:0;
+  transform:translateX(22px);
+  pointer-events:none;
+  transition:opacity .4s ease, transform .45s cubic-bezier(.34,1.06,.64,1);
+}
+.panel-right.has-content{
+  opacity:1;
+  transform:translateX(0);
+  pointer-events:auto;
 }
 .panel-right::-webkit-scrollbar{width:4px;}
 .panel-right::-webkit-scrollbar-thumb{background:rgba(43,78,138,.2);border-radius:2px;}
@@ -1138,8 +1146,15 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .be-btn-print-est:hover{background:#EBF1FA;border-color:#EBF1FA;color:#0D1F3C;}
 
 /* Right panel bands (desktop) */
-.pr-band-balance{margin:8px 12px 6px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
-.pr-band-upfront{margin:0 12px 6px;background:#FFF8E1;border:2px solid #C9A227;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.pr-band-balance{margin:8px 6px 6px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.pr-band-upfront{margin:0 6px 6px;background:#FFF8E1;border:2px solid #C9A227;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+
+/* ── Mobile: match be-cards to the 80% accordion card width above ── */
+@media(max-width:1023px){
+  .be-summary-card{margin:10px 10% 12px;}
+  .be-balance-band{margin:4px 10% 6px;}
+  .be-upfront-band{margin:0 10% 10px;}
+}
 .pr-band-lbl{font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
 .pr-band-balance .pr-band-lbl{color:#2B4E8A;}
 .pr-band-upfront .pr-band-lbl{color:#8B6914;}
@@ -3643,7 +3658,8 @@ function compute(){
 
   document.getElementById('ptotd').textContent=total.toLocaleString();
   var body=document.getElementById('pbody');
-  if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';updateStickyBar(0);updateBottomEstimate(0,[],false,0,0,null);updateProgress();return;}
+  var panelRight=document.querySelector('.panel-right');
+  if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';if(panelRight)panelRight.classList.remove('has-content');updateStickyBar(0);updateBottomEstimate(0,[],false,0,0,null);updateProgress();return;}
   var html=lines.map(function(ln){
     if(ln.disc)return'<div class="li disc"><span class="ll">'+ln.l+'</span><span class="lv">\u2212Php '+Math.abs(ln.v).toLocaleString()+'</span></div>';
     if(ln.free)return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv" style="color:#2B4E8A;font-size:11px;">Included</span></div>';
@@ -3652,6 +3668,7 @@ function compute(){
   }).join('');
   html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">Php '+total.toLocaleString()+'</span></div>';
   body.innerHTML=html;
+  if(panelRight)panelRight.classList.add('has-content');
 
   updateStickyBar(total);
 
