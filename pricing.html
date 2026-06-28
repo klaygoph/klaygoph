@@ -194,8 +194,9 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .cc-big-title{font-family:var(--font-brand);font-size:clamp(26px,4vw,52px);font-weight:800;color:#0D1F3C;line-height:1.06;margin-bottom:20px;}
 .cc-sub{font-size:clamp(13px,1.4vw,15px);color:#4A5568;line-height:1.9;margin-bottom:24px;}
 .cc-chips{display:flex;flex-wrap:wrap;gap:9px;}
-.cc-chip{padding:7px 16px;border-radius:22px;font-size:12px;font-weight:600;border:1.5px solid #D8DCE8;color:#4A5568;background:#fff;}
-.cc-chip.ok{background:#EBF1FA;border-color:#A8BFE0;color:#2B4E8A;}
+/* Checkmark trust badges — no border, no pill shape, plain text feel */
+.cc-chip{padding:5px 0;border-radius:0;font-size:12px;font-weight:600;border:none;color:#4A5568;background:transparent;}
+.cc-chip.ok{background:transparent;border:none;color:#2B4E8A;}
 @media(max-width:768px){
   .calc-clarifier{display:grid !important;grid-template-columns:1fr;grid-template-rows:auto auto;padding:32px 20px 44px;gap:24px;}
   .cc-anim-col{justify-content:center;order:-1;width:100%;}
@@ -768,8 +769,8 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 .cc-title span{color:var(--pr);font-weight:700;}
 .cc-sub{font-size:12px;color:var(--gr);line-height:1.7;}
 .cc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
-.cc-chip{font-size:10.5px;font-weight:600;padding:4px 11px;border-radius:14px;background:#fff;color:var(--mn);border:1.5px solid var(--li);}
-.cc-chip.ok{background:var(--gbg);color:var(--green);border-color:var(--gbdr);}
+.cc-chip{font-size:10.5px;font-weight:600;padding:4px 0;border-radius:0;background:transparent;color:var(--mn);border:none;}
+.cc-chip.ok{background:transparent;color:var(--green);border:none;}
 
 /* ── RESTRICTION ALERT ──────── */
 .restriction-alert{display:none;margin-top:10px;padding:12px 15px;background:var(--pa);border:1.5px solid var(--li);border-radius:16px;font-size:12px;color:#0D1F3C;line-height:1.7;}
@@ -974,8 +975,8 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 .lb.sel{background:#FAFCFF;border-color:var(--pr);box-shadow:none;}
 
 /* Clarifier chips */
-.cc-chip{background:#fff;border-color:#EBF1FA;color:#4A5568;}
-.cc-chip.ok{background:#fff;border-color:#A8BFE0;color:var(--pr);}
+.cc-chip{background:transparent;border:none;color:#4A5568;}
+.cc-chip.ok{background:transparent;border:none;color:var(--pr);}
 
 /* Accordion — subtle open state */
 .acc-item.open{border-color:#D8DCE8;box-shadow:none;}
@@ -1604,7 +1605,12 @@ textarea{
 /* ── Remove top progress bar ── */
 .progress-wrap{display:none!important;}
 
-/* ── Mobile: 80% width for form content in split-right ── */
+/* ── Right panel content: max-width + centered on all screen sizes ── */
+.split-right .main-wrap{
+  max-width:740px;
+  margin-left:auto;
+  margin-right:auto;
+}
 @media(max-width:1023px){
   .split-right .main-wrap{
     padding-left:10%;
@@ -2339,6 +2345,7 @@ textarea{
     <strong>Booking Agreement</strong><br>
     By sending us this estimate and completing your reservation fee, you confirm that you have read, understood, and agreed to all of the booking policies listed above.
   </div>
+    </div><!-- /pb -->
     </div><!-- /sec-acc-inner -->
   </div><!-- /sec-acc-body -->
 </div><!-- /pol-acc-wrap -->
