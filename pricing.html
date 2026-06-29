@@ -1155,11 +1155,20 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .pr-band-balance{margin:8px 6px 6px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
 .pr-band-upfront{margin:0 6px 6px;background:#FFF8E1;border:2px solid #C9A227;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
 
-/* ── Mobile: match be-cards to the 80% accordion card width above ── */
+/* ── Mobile: match ALL be-elements to 10% for uniform column width ── */
 @media(max-width:1023px){
   .be-summary-card{margin:10px 10% 12px;}
   .be-balance-band{margin:4px 10% 6px;}
   .be-upfront-band{margin:0 10% 10px;}
+  .be-res-section{margin:4px 10% 6px;}
+  .be-avail,.be-avail.none,.be-avail.na{padding-left:10%;padding-right:10%;}
+  .be-discl{margin-left:10%;margin-right:10%;}
+  .be-btn-copy,.be-btn,.be-btn-sec,.be-btn-print-est{
+    margin-left:10%;
+    margin-right:10%;
+    width:80%;
+    box-sizing:border-box;
+  }
 }
 .pr-band-lbl{font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
 .pr-band-balance .pr-band-lbl{color:#2B4E8A;}
