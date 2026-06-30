@@ -319,11 +319,54 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* clarifier CSS defined in hero section above */
 
 /* ── PROGRESS BAR — inside sticky nav-wrap, no separate sticky needed ── */
-.progress-wrap{background:#2B4E8A;padding:5px 32px 2px;}
-@media(max-width:768px){.progress-wrap{padding:5px 16px 2px;}}
-.progress-bar-track{height:3px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
-.progress-bar-fill{height:100%;background:#A8BFE0;border-radius:2px;transition:width .4s ease;width:0%;}
-.progress-label{display:none;}
+/* ── Progress dots (replaces bar) ── */
+.progress-wrap{background:#2B4E8A;padding:10px clamp(40px,5vw,64px);}
+@media(max-width:768px){.progress-wrap{padding:10px 20px;}}
+.progress-dots{display:flex;align-items:center;gap:0;width:100%;}
+.progress-dot{
+  width:7px;height:7px;
+  border-radius:50%;
+  background:rgba(247,249,252,.18);
+  flex-shrink:0;
+  transition:background .35s ease, transform .35s ease;
+  position:relative;
+}
+/* Connecting line between dots */
+.progress-dot+.progress-dot::before{
+  content:'';
+  position:absolute;
+  left:-100%;width:100%;
+  height:2px;top:50%;transform:translateY(-50%);
+  background:rgba(247,249,252,.12);
+  transition:background .35s ease;
+}
+/* stretch connectors to fill full width */
+.progress-dots{justify-content:space-between;}
+.progress-dot.done{background:#A8BFE0;}
+.progress-dot.done+.progress-dot::before{background:#A8BFE0;}
+.progress-dot.active{background:#F7F9FC;transform:scale(1.45);box-shadow:0 0 0 3px rgba(247,249,252,.15);}
+
+/* SUMMARY PANEL — always visible, no cut-off */
+.panel-right{
+  position:sticky;
+  top:90px;
+  max-height:calc(100vh - 95px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(43,78,138,.2) transparent;
+  border-radius:20px;
+  opacity:1;
+  transform:translateX(0);
+  pointer-events:auto;
+  transition:opacity .4s ease, transform .45s cubic-bezier(.34,1.06,.64,1);
+}
+/* Slide out only when footer comes into view */
+.panel-right.near-footer{
+  opacity:0 !important;
+  transform:translateX(22px) !important;
+  pointer-events:none !important;
+}
 
 /* back-to-top CSS defined in new nav block above */
 
@@ -681,33 +724,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 
 /* FEEDBACK */
 
-/* SUMMARY PANEL */
-.panel-right{
-  position:sticky;
-  top:90px;
-  max-height:calc(100vh - 100px);
-  overflow-y:auto;
-  overflow-x:hidden;
-  scrollbar-width:thin;
-  scrollbar-color:rgba(43,78,138,.2) transparent;
-  border-radius:20px;
-  /* Option B: hidden until estimate has content — desktop only */
-  opacity:0;
-  transform:translateX(22px);
-  pointer-events:none;
-  transition:opacity .4s ease, transform .45s cubic-bezier(.34,1.06,.64,1);
-}
-.panel-right.has-content{
-  opacity:1;
-  transform:translateX(0);
-  pointer-events:auto;
-}
-/* Slide out when footer comes into view */
-.panel-right.near-footer{
-  opacity:0 !important;
-  transform:translateX(22px) !important;
-  pointer-events:none !important;
-}
+/* scrollbar styling */
 .panel-right::-webkit-scrollbar{width:4px;}
 .panel-right::-webkit-scrollbar-thumb{background:rgba(43,78,138,.2);border-radius:2px;}
 .pcard{background:#fff;border-radius:20px;overflow:hidden;margin-bottom:10px;box-shadow:0 8px 32px rgba(43,78,138,.12);border:1.5px solid #EBF1FA;}
@@ -1639,14 +1656,17 @@ textarea{
   }
 }
 
-/* ── Remove top progress bar ── */
-.progress-wrap{display:none!important;}
-
 /* ── Right panel content: max-width + centered on all screen sizes ── */
 .split-right .main-wrap{
   max-width:740px;
   margin-left:auto;
   margin-right:auto;
+}
+@media(min-width:1024px){
+  .split-right .main-wrap{
+    padding-left:5%;
+    padding-right:5%;
+  }
 }
 @media(max-width:1023px){
   .split-right .main-wrap{
@@ -1866,8 +1886,52 @@ textarea{
   </div>
   <!-- Progress bar lives here — always flush below nav, no floating -->
   <div class="progress-wrap">
-    <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
-    <div class="progress-label" id="progress-label"></div>
+    <div class="progress-dots" id="progress-dots" role="progressbar" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0">
+      <span class="progress-dot" id="pdot-1"></span>
+      <span class="progress-dot" id="pdot-2"></span>
+      <span class="progress-dot" id="pdot-3"></span>
+      <span class="progress-dot" id="pdot-4"></span>
+      <span class="progress-dot" id="pdot-5"></span>
+      <span class="progress-dot" id="pdot-6"></span>
+      <span class="progress-dot" id="pdot-7"></span>
+      <span class="progress-dot" id="pdot-8"></span>
+      <span class="progress-dot" id="pdot-9"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     LOCATION MARQUEE — full-width below nav, above split layout
+══════════════════════════════════════════════════════════════ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
   </div>
 </div>
 
@@ -1920,37 +1984,6 @@ textarea{
 </div>
 
 <!-- PRICE CALCULATOR CLARIFIER -->
-<div class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
-    <!-- duplicate for seamless loop -->
-    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
-  </div>
-</div>
 <div class="calc-clarifier reveal" id="clarifier">
   <div class="cc-anim-col widget-reveal">
     <!-- Animated Calculator Widget v04 -->
@@ -2988,11 +3021,16 @@ function updateProgress(){
   if(document.getElementById('f-name').value.trim())done++;
   if(document.getElementById('f-phone').value.trim())done++;
   done=Math.min(done,9);
-  var pct=Math.round(done/9*100);
-  var fill=document.getElementById('progress-fill');
-  var lbl=document.getElementById('progress-label');
-  if(fill)fill.style.width=Math.max(pct,2)+'%';
-  if(lbl)lbl.textContent='';
+  // Update dot indicators
+  var dotsEl=document.getElementById('progress-dots');
+  if(dotsEl)dotsEl.setAttribute('aria-valuenow',done);
+  for(var i=1;i<=9;i++){
+    var dot=document.getElementById('pdot-'+i);
+    if(!dot)continue;
+    dot.classList.remove('done','active');
+    if(i<done)dot.classList.add('done');
+    else if(i===done)dot.classList.add('active');
+  }
 }
 
 // ── COMPUTE BASE PRICE ────────────────────────────────────────
@@ -3690,7 +3728,7 @@ function compute(){
   document.getElementById('ptotd').textContent=total.toLocaleString();
   var body=document.getElementById('pbody');
   var panelRight=document.querySelector('.panel-right');
-  if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';if(panelRight)panelRight.classList.remove('has-content');updateStickyBar(0);updateBottomEstimate(0,[],false,0,0,null);updateProgress();return;}
+  if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';updateStickyBar(0);updateBottomEstimate(0,[],false,0,0,null);updateProgress();return;}
   var html=lines.map(function(ln){
     if(ln.disc)return'<div class="li disc"><span class="ll">'+ln.l+'</span><span class="lv">\u2212Php '+Math.abs(ln.v).toLocaleString()+'</span></div>';
     if(ln.free)return'<div class="li"><span class="ll">'+ln.l+'</span><span class="lv" style="color:#2B4E8A;font-size:11px;">Included</span></div>';
@@ -3699,7 +3737,6 @@ function compute(){
   }).join('');
   html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">Php '+total.toLocaleString()+'</span></div>';
   body.innerHTML=html;
-  if(panelRight)panelRight.classList.add('has-content');
 
   updateStickyBar(total);
 
