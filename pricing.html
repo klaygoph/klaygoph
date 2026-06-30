@@ -224,7 +224,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
   background:#0D1F3C;
   height:clamp(84px,14vh,120px); /* taller — more breathing room above logo */
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 40px;
+  padding:0 clamp(40px,5vw,64px);
   transition:height .3s ease;
 }
 .nav-top.compact{height:clamp(60px,8vh,76px);}
@@ -253,13 +253,20 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
 .nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
 
+/* ── Breadcrumb (replaces nav-tab list) ── */
+.breadcrumb{display:flex;align-items:center;gap:6px;padding:0 22px;font-family:var(--font-brand);font-size:11px;font-weight:600;letter-spacing:.04em;}
+.breadcrumb a{color:rgba(247,249,252,.5);text-decoration:none;transition:color .15s;}
+.breadcrumb a:hover{color:rgba(247,249,252,.85);}
+.breadcrumb-sep{color:rgba(247,249,252,.3);font-size:13px;}
+.breadcrumb-current{color:#F7F9FC;font-weight:800;text-transform:uppercase;}
+
 /* ── MOBILE BACK BUTTON — PNG image ── */
 .nav-back-btn{background:none;border:none;cursor:pointer;padding:0;width:36px;height:36px;display:none;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;}
 .nav-back-btn img{width:32px;height:32px;display:block;}
 .nav-mobile-page{font-family:var(--font-brand);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;}
 
 @media(max-width:768px){
-  .nav-top{height:clamp(56px,20vh,120px);padding:0 16px;position:relative;}
+  .nav-top{height:clamp(56px,20vh,120px);padding:0 20px;position:relative;}
   .nav-top.compact{height:clamp(48px,10vh,72px);}
   .nav-brand-text{display:none;}
   .nav-logo{height:32px;} /* mobile keeps 32px */
@@ -1262,12 +1269,12 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 /* ── Footer shell ── */
 .site-footer{
   background:#0D1F3C;
-  padding:clamp(36px,5vh,56px) clamp(24px,4vw,52px) clamp(28px,4vh,44px);
+  padding:clamp(36px,5vh,56px) clamp(40px,5vw,64px) clamp(28px,4vh,44px);
   margin:0;
 }
 .footer-grid{
-  max-width:1100px;    /* aligns with main form width */
-  margin:0 auto;       /* center within the dark footer bg */
+  max-width:1100px;    /* caps logo+content width on very large screens */
+  margin:0;             /* left-aligned to site-footer padding — matches header logo position exactly */
   display:grid;
   /* Desktop: [Logo+QR] [Nav] [Contact+Social] */
   grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.6fr);
@@ -1484,7 +1491,7 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 
 /* ── FOOTER RESPONSIVE ── */
 @media(max-width:768px){
-  .site-footer{padding:clamp(28px,5vh,40px) clamp(16px,5vw,22px) clamp(20px,3vh,28px);}
+  .site-footer{padding:clamp(28px,5vh,40px) 20px clamp(20px,3vh,28px);}
   .footer-grid{
     /* Mobile: 2 col [Logo+Nav+Contact] [Review+QR+Social]
        align-items:stretch makes both cols equal height so right col
@@ -1848,14 +1855,14 @@ textarea{
       </button>
     </div>
   </div>
-  <!-- Sub-nav -->
+  <!-- Sub-nav: breadcrumb (replaces full tab list — hamburger handles navigation now) -->
   <div class="nav-sub">
     <span class="nav-mobile-page">PRICING</span>
-    <a href="index.html" class="nav-tab">Home</a>
-    <a href="pricing.html" class="nav-tab active">Estimate</a>
-    <a href="loyalty.html" class="nav-tab">Loyalty Card</a>
-    <a href="faq.html" class="nav-tab">FAQs</a>
-    <a href="sayhello.html" class="nav-tab">Say Hello!</a>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span class="breadcrumb-current">Estimate</span>
+    </nav>
   </div>
   <!-- Progress bar lives here — always flush below nav, no floating -->
   <div class="progress-wrap">
