@@ -318,33 +318,50 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* ── CLARIFIER — continues #2B4E8A, then white body ── */
 /* clarifier CSS defined in hero section above */
 
-/* ── PROGRESS BAR — inside sticky nav-wrap, no separate sticky needed ── */
-/* ── Progress dots (replaces bar) ── */
-.progress-wrap{background:#2B4E8A;padding:10px clamp(40px,5vw,64px);}
-@media(max-width:768px){.progress-wrap{padding:10px 20px;}}
-.progress-dots{display:flex;align-items:center;gap:0;width:100%;}
+/* ── PROGRESS DOTS — fixed vertical pill, stacked directly above Back to Top ── */
+#progress-dots-fixed{
+  position:fixed;
+  right:0;
+  z-index:998; /* just under back-to-top's 999 so it tucks neatly beneath it visually */
+  background:#2B4E8A;
+  border-radius:8px 0 0 8px;
+  padding:16px 11px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:9px;
+  box-shadow:-3px 0 16px rgba(13,31,60,.2);
+  opacity:0;
+  transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.34,1.1,.64,1), opacity .35s ease;
+  pointer-events:none;
+}
+#progress-dots-fixed.visible{
+  opacity:1;
+  transform:translateX(0);
+  pointer-events:auto;
+}
 .progress-dot{
   width:7px;height:7px;
   border-radius:50%;
-  background:rgba(247,249,252,.18);
+  background:rgba(247,249,252,.28);
+  border:1.5px solid rgba(247,249,252,.28);
   flex-shrink:0;
-  transition:background .35s ease, transform .35s ease;
+  transition:background .35s ease, border-color .35s ease, transform .35s ease;
   position:relative;
 }
-/* Connecting line between dots */
+/* Connecting line between dots — vertical now */
 .progress-dot+.progress-dot::before{
   content:'';
   position:absolute;
-  left:-100%;width:100%;
-  height:2px;top:50%;transform:translateY(-50%);
-  background:rgba(247,249,252,.12);
+  top:-9px;left:50%;transform:translateX(-50%);
+  width:2px;height:9px;
+  background:rgba(247,249,252,.18);
   transition:background .35s ease;
 }
-/* stretch connectors to fill full width */
-.progress-dots{justify-content:space-between;}
-.progress-dot.done{background:#A8BFE0;}
-.progress-dot.done+.progress-dot::before{background:#A8BFE0;}
-.progress-dot.active{background:#F7F9FC;transform:scale(1.45);box-shadow:0 0 0 3px rgba(247,249,252,.15);}
+.progress-dot.done{background:#F7F9FC;border-color:#F7F9FC;}
+.progress-dot.done+.progress-dot::before{background:#F7F9FC;}
+.progress-dot.active{background:#2B4E8A;border-color:#F7F9FC;transform:scale(1.35);}
 
 /* SUMMARY PANEL — always visible, no cut-off */
 .panel-right{
@@ -1878,20 +1895,7 @@ textarea{
       <span class="breadcrumb-current">Estimate</span>
     </nav>
   </div>
-  <!-- Progress bar lives here — always flush below nav, no floating -->
-  <div class="progress-wrap">
-    <div class="progress-dots" id="progress-dots" role="progressbar" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0">
-      <span class="progress-dot" id="pdot-1"></span>
-      <span class="progress-dot" id="pdot-2"></span>
-      <span class="progress-dot" id="pdot-3"></span>
-      <span class="progress-dot" id="pdot-4"></span>
-      <span class="progress-dot" id="pdot-5"></span>
-      <span class="progress-dot" id="pdot-6"></span>
-      <span class="progress-dot" id="pdot-7"></span>
-      <span class="progress-dot" id="pdot-8"></span>
-      <span class="progress-dot" id="pdot-9"></span>
-    </div>
-  </div>
+  <!-- Progress dots relocated — now a fixed vertical pill above Back to Top (see JS + CSS) -->
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -3015,7 +3019,7 @@ function updateProgress(){
   if(document.getElementById('f-phone').value.trim())done++;
   done=Math.min(done,9);
   // Update dot indicators
-  var dotsEl=document.getElementById('progress-dots');
+  var dotsEl=document.getElementById('progress-dots-fixed');
   if(dotsEl)dotsEl.setAttribute('aria-valuenow',done);
   for(var i=1;i<=9;i++){
     var dot=document.getElementById('pdot-'+i);
@@ -4634,8 +4638,40 @@ function togWHN(){togSecAcc('whn-acc-wrap');}
   btn.textContent='BACK TO TOP';
   btn.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
   document.body.appendChild(btn);
+
+  // ── Progress dots pill — stacks directly above Back to Top ──
+  var dotsWrap=document.createElement('div');
+  dotsWrap.id='progress-dots-fixed';
+  dotsWrap.setAttribute('role','progressbar');
+  dotsWrap.setAttribute('aria-valuemin','0');
+  dotsWrap.setAttribute('aria-valuemax','9');
+  dotsWrap.setAttribute('aria-valuenow','0');
+  dotsWrap.setAttribute('aria-label','Estimate progress');
+  for(var i=1;i<=9;i++){
+    var d=document.createElement('span');
+    d.className='progress-dot';
+    d.id='pdot-'+i;
+    dotsWrap.appendChild(d);
+  }
+  document.body.appendChild(dotsWrap);
+
+  // Position dotsWrap's bottom = back-to-top's own bottom offset + its rendered height + small gap
+  function positionDots(){
+    var gap=10;
+    var backToTopBottom=parseFloat(getComputedStyle(btn).bottom)||0;
+    var backToTopHeight=btn.offsetHeight;
+    dotsWrap.style.bottom=(backToTopBottom+backToTopHeight+gap)+'px';
+  }
+  positionDots();
+  window.addEventListener('resize',positionDots,{passive:true});
+  // Re-measure after fonts/layout settle (vertical text height can shift slightly on load)
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(positionDots);}
+  setTimeout(positionDots,300);
+
   window.addEventListener('scroll',function(){
-    btn.classList.toggle('visible',window.scrollY>300);
+    var show=window.scrollY>300;
+    btn.classList.toggle('visible',show);
+    dotsWrap.classList.toggle('visible',show);
   },{passive:true});
 })();
 
