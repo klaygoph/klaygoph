@@ -318,21 +318,17 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* ── CLARIFIER — continues #2B4E8A, then white body ── */
 /* clarifier CSS defined in hero section above */
 
-/* ── PROGRESS DOTS — fixed vertical pill, stacked directly above Back to Top ── */
+/* ── PROGRESS DOTS — fixed vertical stack, no background pill, above Back to Top ── */
 #progress-dots-fixed{
   position:fixed;
-  right:0;
-  z-index:998; /* just under back-to-top's 999 so it tucks neatly beneath it visually */
-  background:#2B4E8A;
-  border-radius:8px 0 0 8px;
-  padding:16px 11px;
+  right:clamp(10px,1.5vw,18px);
+  z-index:998;
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:9px;
-  box-shadow:-3px 0 16px rgba(13,31,60,.2);
   opacity:0;
-  transform:translateX(100%);
+  transform:translateX(20px);
   transition:transform .35s cubic-bezier(.34,1.1,.64,1), opacity .35s ease;
   pointer-events:none;
 }
@@ -344,24 +340,13 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .progress-dot{
   width:7px;height:7px;
   border-radius:50%;
-  background:rgba(247,249,252,.28);
-  border:1.5px solid rgba(247,249,252,.28);
+  background:transparent;
+  border:1.5px solid #2B4E8A;
   flex-shrink:0;
   transition:background .35s ease, border-color .35s ease, transform .35s ease;
-  position:relative;
 }
-/* Connecting line between dots — vertical now */
-.progress-dot+.progress-dot::before{
-  content:'';
-  position:absolute;
-  top:-9px;left:50%;transform:translateX(-50%);
-  width:2px;height:9px;
-  background:rgba(247,249,252,.18);
-  transition:background .35s ease;
-}
-.progress-dot.done{background:#F7F9FC;border-color:#F7F9FC;}
-.progress-dot.done+.progress-dot::before{background:#F7F9FC;}
-.progress-dot.active{background:#2B4E8A;border-color:#F7F9FC;transform:scale(1.35);}
+.progress-dot.done{background:#2B4E8A;border-color:#2B4E8A;}
+.progress-dot.active{background:#2B4E8A;border-color:#2B4E8A;transform:scale(1.35);}
 
 /* SUMMARY PANEL — always visible, no cut-off */
 .panel-right{
