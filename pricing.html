@@ -406,13 +406,9 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 
 /* CARD */
 .card{background:#F7F9FC;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:20px 18px;margin-bottom:12px;transition:box-shadow .2s;border:1.5px solid #EBF1FA;min-width:0;}
-/* ── Mobile: cards 80% width, centered ── */
-@media(max-width:660px){
-  .card{width:80%;margin-left:auto;margin-right:auto;}
-  .sec-acc-wrap{width:80%;margin-left:auto;margin-right:auto;}
-  .pb{width:80%;margin-left:auto;margin-right:auto;}
-  .restriction-alert{width:80%;margin-left:auto;margin-right:auto;}
-}
+/* (old stale 80%-width mobile rule removed — .sec-acc-wrap/.pb/.restriction-alert
+   now unified with .card at 90% via .split-right selector below, so they can
+   never drift apart from the main step cards again) */
 .card:nth-child(even){background:#EBF1FA;}
 .card:hover{box-shadow:0 12px 36px rgba(43,78,138,.11);}
 /* Alternating card (#EBF1FA bg): buttons use white so they contrast the blue-tinted bg.
@@ -1672,7 +1668,7 @@ textarea{
      display:none), so col-left = full split-right width = full screen width,
      same as the footer's container. 90%/5% here now genuinely pixel-matches
      the footer's be-summary-card etc (widened from 80% per repeated feedback). */
-  .split-right .card{margin-left:5%;margin-right:5%;width:90%;box-sizing:border-box;}
+  .split-right .card,.split-right .sec-acc-wrap,.split-right .restriction-alert{margin-left:5%;margin-right:5%;width:90%;box-sizing:border-box;}
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1829,6 +1825,11 @@ textarea{
 }
 #back-to-top.visible{
   transform:translateX(0);
+}
+@media(max-width:768px){
+  /* Sticky bottom estimate bar is 74px tall on mobile (.sticky-top 56px + .sticky-brand 18px)
+     — Back to Top must clear it, not sit inside it. */
+  #back-to-top{bottom:calc(74px + 14px);}
 }
 #back-to-top:hover{background:#3D6399;}
 #back-to-top:active{
@@ -2664,7 +2665,7 @@ textarea{
       <!-- Mobile: nav links -->
       <nav class="footer-mb-nav f-mb" aria-label="Footer navigation">
         <a href="index.html" class="footer-mb-nav-link">About Us</a>
-        <a href="pricing.html" class="footer-mb-nav-link">Estimate</a>
+        <a href="pricing.html" class="footer-mb-nav-link">Pricing</a>
         <a href="loyalty.html" class="footer-mb-nav-link">Loyalty Card</a>
         <a href="faq.html" class="footer-mb-nav-link">FAQs</a>
         <a href="sayhello.html" class="footer-mb-nav-link">Say Hello!</a>
@@ -2684,7 +2685,7 @@ textarea{
     <div class="footer-nav-col f-dt">
       <nav class="footer-nav" aria-label="Footer navigation desktop">
         <a href="index.html" class="footer-nav-link">About Us</a>
-        <a href="pricing.html" class="footer-nav-link">Estimate</a>
+        <a href="pricing.html" class="footer-nav-link">Pricing</a>
         <a href="loyalty.html" class="footer-nav-link">Loyalty Card</a>
         <a href="faq.html" class="footer-nav-link">FAQs</a>
         <a href="sayhello.html" class="footer-nav-link">Say Hello!</a>
