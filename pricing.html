@@ -1118,7 +1118,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .marquee-strip{background:#0D1F3C;padding:16px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.07);position:relative;contain:paint;transform:translateZ(0);}
 .marquee-track{display:flex;width:max-content;animation:marqueeScroll 44s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
-.marquee-item{white-space:nowrap;font-family:'Manrope',sans-serif;font-weight:400;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#A8BFE0;padding:0 46px;}
+.marquee-item{white-space:nowrap;font-family:'Manrope',sans-serif;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#A8BFE0;padding:0 40px;}
 .marquee-dot{color:rgba(168,191,224,.35);font-size:5px;vertical-align:middle;padding:0;}
 @keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .marquee-track-reverse{animation-name:marqueeScrollReverse;}
@@ -2251,6 +2251,7 @@ textarea{
   <div class="card-head"><div class="sbadge" id="b7">7</div><div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p></div></div>
   <p style="font-size:10px;color:var(--gr);margin-bottom:6px;">Quick select — tap all that apply:</p>
   <div class="sit-tags">
+    <div class="sit-tag" onclick="togSit(this)" data-val="None">None</div>
     <div class="sit-tag" onclick="togSit(this)" data-val="Kids present">Kids present</div>
     <div class="sit-tag" onclick="togSit(this)" data-val="Pet(s) at home">Pet(s) at home</div>
     <div class="sit-tag" onclick="togSit(this)" data-val="Other workers on-site" data-restrict="true">Other workers on-site</div>
@@ -3304,8 +3305,22 @@ function selSched(el){
 // ── SITUATION TAGS ────────────────────────────────────────────
 function togSit(el){
   var v=el.dataset.val;
-  if(selSituations.has(v)){selSituations.delete(v);el.classList.remove('on');}
-  else{selSituations.add(v);el.classList.add('on');}
+  if(v==='None'){
+    if(selSituations.has('None')){selSituations.delete('None');el.classList.remove('on');}
+    else{
+      selSituations.clear();
+      document.querySelectorAll('.sit-tag').forEach(function(t){t.classList.remove('on');});
+      selSituations.add('None');el.classList.add('on');
+    }
+  } else {
+    if(selSituations.has('None')){
+      selSituations.delete('None');
+      var noneEl=document.querySelector('.sit-tag[data-val="None"]');
+      if(noneEl)noneEl.classList.remove('on');
+    }
+    if(selSituations.has(v)){selSituations.delete(v);el.classList.remove('on');}
+    else{selSituations.add(v);el.classList.add('on');}
+  }
   var hasRestrict=Array.from(document.querySelectorAll('.sit-tag[data-restrict="true"].on')).length>0;
   var ra=document.getElementById('restriction-alert');
   if(ra)ra.classList.toggle('show',hasRestrict);
@@ -3470,6 +3485,12 @@ function updateRecurDP(){
 // ── ADD-ONS ───────────────────────────────────────────────────
 function renderAddons(){
   var html='';
+  // "None" — quick reassurance for users who don't need any add-ons
+  var noAddonsSelected=Object.keys(S.addons).every(function(k){return !S.addons[k]||k==='cleaner'&&S.sqm>60;})&&S.rt.size===0;
+  html+='<div class="ar '+(noAddonsSelected?'on':'')+'" onclick="clearAddons()">'
+    +'<div class="ar-ck">'+(noAddonsSelected?'✓':'')+'</div>'
+    +'<div class="ar-info"><div class="ar-n">None</div><div class="ar-no">I don\'t need any add-ons</div></div>'
+    +'</div>';
   // Regular add-ons
   ADDONS.forEach(function(a){
     var q=S.addons[a.id]||0, on=q>0, isR=a.id==='room';
@@ -3512,6 +3533,9 @@ function togAddon(id){
     renderAddons();compute();return;
   }
   S.addons[id]=(S.addons[id]||0)>0?0:1;if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();
+}
+function clearAddons(){
+  S.addons={};S.rt.clear();renderAddons();compute();
 }
 function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[id]=Math.max(0,Math.min(a.max,(S.addons[id]||0)+d));if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();}
 function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons();compute();}
