@@ -318,23 +318,24 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 /* ── CLARIFIER — continues #2B4E8A, then white body ── */
 /* clarifier CSS defined in hero section above */
 
-/* ── PROGRESS DOTS — fixed vertical stack, no background pill, above Back to Top ── */
+/* ── PROGRESS DOTS — fixed vertical stack, centered on screen ── */
 #progress-dots-fixed{
   position:fixed;
   right:clamp(10px,1.5vw,18px);
+  top:50%;
   z-index:998;
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:9px;
   opacity:0;
-  transform:translateX(20px);
+  transform:translateY(-50%) translateX(20px);
   transition:transform .35s cubic-bezier(.34,1.1,.64,1), opacity .35s ease;
   pointer-events:none;
 }
 #progress-dots-fixed.visible{
   opacity:1;
-  transform:translateX(0);
+  transform:translateY(-50%) translateX(0);
   pointer-events:auto;
 }
 .progress-dot{
@@ -1121,9 +1122,12 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .marquee-strip{background:#0D1F3C;padding:16px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.07);position:relative;contain:paint;transform:translateZ(0);}
 .marquee-track{display:flex;width:max-content;animation:marqueeScroll 44s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
-.marquee-item{white-space:nowrap;font-family:var(--font-brand);font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#A8BFE0;padding:0 46px;}
+.marquee-item{white-space:nowrap;font-family:'Manrope',sans-serif;font-weight:400;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#A8BFE0;padding:0 46px;}
 .marquee-dot{color:rgba(168,191,224,.35);font-size:5px;vertical-align:middle;padding:0;}
 @keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.marquee-track-reverse{animation-name:marqueeScrollReverse;}
+@keyframes marqueeScrollReverse{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+.marquee-strip-services{border-top:1px solid rgba(168,191,224,.07);}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
 
 
@@ -1172,16 +1176,16 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .pr-band-upfront{margin:0 6px 6px;background:#FFF8E1;border:2px solid #C9A227;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
 
 /* ── All screens: match ALL be-elements to 10%/80% uniform column width ── */
-.be-summary-card{margin:10px 10% 12px;}
-.be-balance-band{margin:4px 10% 6px;}
-.be-upfront-band{margin:0 10% 10px;}
-.be-res-section{margin:4px 10% 6px;}
-.be-avail,.be-avail.none,.be-avail.na{padding-left:10%;padding-right:10%;}
-.be-discl{margin-left:10%;margin-right:10%;}
+.be-summary-card{margin:10px 5% 12px;}
+.be-balance-band{margin:4px 5% 6px;}
+.be-upfront-band{margin:0 5% 10px;}
+.be-res-section{margin:4px 5% 6px;}
+.be-avail,.be-avail.none,.be-avail.na{padding-left:5%;padding-right:5%;}
+.be-discl{margin-left:5%;margin-right:5%;}
 .be-btn-copy,.be-btn,.be-btn-sec,.be-btn-print-est{
-  margin-left:10%;
-  margin-right:10%;
-  width:80%;
+  margin-left:5%;
+  margin-right:5%;
+  width:90%;
   box-sizing:border-box;
 }
 .pr-band-lbl{font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
@@ -1655,7 +1659,7 @@ textarea{
   padding-bottom:80px;
 }
 @media(min-width:1024px){
-  .split-right .main{padding-left:clamp(20px,3vw,40px);padding-right:clamp(20px,3vw,40px);}
+  .split-right .main{padding-left:clamp(12px,2vw,24px);padding-right:clamp(12px,2vw,24px);}
   /* Desktop: sticky summary sidebar sits beside the cards — cards fill their
      grid track naturally. Forcing 80% here would fight the sidebar for space
      and NOT match the footer's width anyway (footer spans the full screen;
@@ -1666,9 +1670,9 @@ textarea{
   .split-right .main{padding-left:0;padding-right:0;}
   /* Mobile/tablet: sidebar is fully hidden below 1024px (see .panel-right
      display:none), so col-left = full split-right width = full screen width,
-     same as the footer's container. 80%/10% here now genuinely pixel-matches
-     the footer's be-summary-card etc. */
-  .split-right .card{margin-left:10%;margin-right:10%;width:80%;box-sizing:border-box;}
+     same as the footer's container. 90%/5% here now genuinely pixel-matches
+     the footer's be-summary-card etc (widened from 80% per repeated feedback). */
+  .split-right .card{margin-left:5%;margin-right:5%;width:90%;box-sizing:border-box;}
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1800,7 +1804,7 @@ textarea{
 #back-to-top{
   position:fixed;
   right:0;
-  bottom:clamp(60px,9vh,100px);
+  bottom:clamp(20px,4vh,40px);
   transform:translateX(100%);
   z-index:999;
   background:#2B4E8A;
@@ -1839,7 +1843,7 @@ textarea{
   <button class="nav-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
   <a href="index.html" class="nav-menu-pill">Home</a>
   <a href="about.html" class="nav-menu-pill">About Us</a>
-  <a href="pricing.html" class="nav-menu-pill active">Estimate</a>
+  <a href="pricing.html" class="nav-menu-pill active">Pricing</a>
   <a href="loyalty.html" class="nav-menu-pill">Loyalty Card</a>
   <a href="faq.html" class="nav-menu-pill">FAQs</a>
   <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
@@ -1877,7 +1881,7 @@ textarea{
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="index.html">Home</a>
       <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <span class="breadcrumb-current">Estimate</span>
+      <span class="breadcrumb-current">Pricing</span>
     </nav>
   </div>
   <!-- Progress dots relocated — now a fixed vertical pill above Back to Top (see JS + CSS) -->
@@ -1915,6 +1919,22 @@ textarea{
     <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
     <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
     <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- Services marquee — scrolls left → right (reverse direction) -->
+<div class="marquee-strip marquee-strip-services" aria-hidden="true">
+  <div class="marquee-track marquee-track-reverse">
+    <span class="marquee-item">Regular Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Deep Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Move In / Move Out</span><span class="marquee-dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Regular Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Deep Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Move In / Move Out</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Regular Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Deep Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Move In / Move Out</span><span class="marquee-dot">·</span>
   </div>
 </div>
 
@@ -3926,7 +3946,7 @@ function openPrint(){
   var payHtml=total>0?'<div class="pay-s">'
     +'<h4>Payment Summary</h4>'
     +'<div class="pr pn"><span class="pk">Reservation Fee'+(pNeeds50?' (50% — '+pReason+')':' — confirms your slot')+'</span><span class="pv">Php '+dpPrint.toLocaleString()+'</span></div>'
-    +'<div style="margin:5px 0 3px;padding:5px 8px;background:#EBF1FA;border:1px solid #A8BFE0;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">'
+    +'<div style="margin:5px -8px 3px 0;padding:5px 8px;background:#EBF1FA;border:1px solid #A8BFE0;border-radius:6px;display:flex;justify-content:space-between;align-items:center;">'
     +'<div><div style="font-size:7.5px;font-weight:700;color:#2B4E8A;letter-spacing:.08em;text-transform:uppercase;">'+(totalSessionsPrint>1?'Balance on Each Service Day':'Balance on Service Day')+'</div>'
     +'<div style="font-size:7px;color:#5A7BB5;">Paid on the day of cleaning</div></div>'
     +'<div style="font-size:11px;font-weight:900;color:#0D1F3C;">Php '+balPrint.toLocaleString()+'</div></div>'
@@ -4005,7 +4025,7 @@ function openPrint(){
     +'</div>'
     +'<div class="nor">This is not an official receipt</div>'
     +'</div>'
-    +'<div class="bar ft"><p>Klaygo PH &nbsp;&middot;&nbsp; Cleaning Services &nbsp;&middot;&nbsp; Metro Manila &nbsp;&middot;&nbsp; @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</p></div>'
+    +'<div class="bar ft"><p>Klaygo PH &nbsp;&middot;&nbsp; Cleaning Services &nbsp;&middot;&nbsp; Metro Manila &nbsp;&middot;&nbsp; 0992.816.4718 &nbsp;&middot;&nbsp; KLAYGOPH.COM</p></div>'
     +'</div>'
     +'<script>window.onload=function(){window.print();}<\/script>'
     +'</body></html>';
@@ -4639,19 +4659,6 @@ function togWHN(){togSecAcc('whn-acc-wrap');}
     dotsWrap.appendChild(d);
   }
   document.body.appendChild(dotsWrap);
-
-  // Position dotsWrap's bottom = back-to-top's own bottom offset + its rendered height + small gap
-  function positionDots(){
-    var gap=10;
-    var backToTopBottom=parseFloat(getComputedStyle(btn).bottom)||0;
-    var backToTopHeight=btn.offsetHeight;
-    dotsWrap.style.bottom=(backToTopBottom+backToTopHeight+gap)+'px';
-  }
-  positionDots();
-  window.addEventListener('resize',positionDots,{passive:true});
-  // Re-measure after fonts/layout settle (vertical text height can shift slightly on load)
-  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(positionDots);}
-  setTimeout(positionDots,300);
 
   window.addEventListener('scroll',function(){
     var show=window.scrollY>300;
