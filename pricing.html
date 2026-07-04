@@ -406,6 +406,14 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 
 /* CARD */
 .card{background:#F7F9FC;border-radius:var(--r);box-shadow:0 4px 24px rgba(43,78,138,.07);padding:20px 18px;margin-bottom:12px;transition:box-shadow .2s;border:1.5px solid #EBF1FA;min-width:0;}
+
+/* ── Add-Ons accordion ── */
+.addon-acc-head{cursor:pointer;user-select:none;position:relative;padding-right:32px;}
+.addon-acc-chevron{position:absolute;right:0;top:50%;transform:translateY(-50%) rotate(0deg);color:#6B6B68;transition:transform .25s ease;flex-shrink:0;}
+#card-ext.addon-open .addon-acc-chevron{transform:translateY(-50%) rotate(180deg);}
+.al-collapse{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;}
+.al-collapse>.al{overflow:hidden;}
+#card-ext.addon-open .al-collapse{grid-template-rows:1fr;margin-top:14px;}
 /* (old stale 80%-width mobile rule removed — .sec-acc-wrap/.pb/.restriction-alert
    now unified with .card at 90% via .split-right selector below, so they can
    never drift apart from the main step cards again) */
@@ -808,6 +816,21 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 
 /* ── RESTRICTION ALERT ──────── */
 .restriction-alert{display:none;margin-top:10px;padding:12px 15px;background:var(--pa);border:1.5px solid var(--li);border-radius:16px;font-size:12px;color:#0D1F3C;line-height:1.7;}
+
+/* ── Policies/What-Happens-Next required-read warning ── */
+.policies-warning{
+  display:none;
+  padding:12px 16px;
+  background:var(--rbg);
+  border:1.5px solid var(--rbdr);
+  border-radius:16px;
+  font-size:12.5px;
+  color:var(--red);
+  line-height:1.6;
+  margin-bottom:12px;
+}
+.policies-warning.show{display:block;animation:policiesWarningPulse .5s ease;}
+@keyframes policiesWarningPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.015);}}
 .restriction-alert.show{display:block;}
 .restriction-alert strong{display:block;font-size:12.5px;margin-bottom:3px;}
 
@@ -1668,7 +1691,7 @@ textarea{
      display:none), so col-left = full split-right width = full screen width,
      same as the footer's container. 90%/5% here now genuinely pixel-matches
      the footer's be-summary-card etc (widened from 80% per repeated feedback). */
-  .split-right .card,.split-right .sec-acc-wrap,.split-right .restriction-alert{margin-left:5%;margin-right:5%;width:90%;box-sizing:border-box;}
+  .split-right .card,.split-right .sec-acc-wrap,.split-right .restriction-alert,.split-right .policies-warning{margin-left:5%;margin-right:5%;width:90%;box-sizing:border-box;}
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -2242,8 +2265,14 @@ textarea{
 
 <!-- STEP 6: ADD-ONS -->
 <div class="card reveal locked" id="card-ext">
-  <div class="card-head"><div class="sbadge" id="b6">6</div><div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p></div></div>
-  <div class="al" id="al"></div>
+  <div class="card-head addon-acc-head" onclick="toggleAddonsAcc()" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' '){toggleAddonsAcc();event.preventDefault();}">
+    <div class="sbadge" id="b6">6</div>
+    <div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p></div>
+    <svg class="addon-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="al-collapse" id="al-collapse">
+    <div class="al" id="al"></div>
+  </div>
 </div>
 
 <!-- STEP 7: SPECIAL INSTRUCTIONS -->
@@ -2315,6 +2344,9 @@ textarea{
 </div>
 
 <!-- POLICIES -->
+<div class="policies-warning" id="policies-warning">
+  <strong>Please review before booking:</strong> open <em>Booking Policies</em> and <em>What Happens Next</em> below so you know what to expect.
+</div>
 <div class="sec-acc-wrap reveal" id="pol-acc-wrap">
   <div class="sec-acc-head" onclick="togSecAcc('pol-acc-wrap')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' '){togSecAcc('pol-acc-wrap');event.preventDefault();}">
     <div class="sec-acc-text">
@@ -2947,6 +2979,7 @@ var PH_HOLIDAYS = new Set([
 
 // ── PROGRESS TRACKING FLAGS ────────────────────────────────────
 var schedTouched=false;
+var policiesOpened=false, whnOpened=false;
 var analytics = JSON.parse(localStorage.getItem('kg_an')||'{"opens":0,"estimates":0,"prints":0,"lastNum":0}');
 analytics.opens++;
 localStorage.setItem('kg_an', JSON.stringify(analytics));
@@ -2993,6 +3026,14 @@ CY=+_mParts[0]; CM=+_mParts[1]-1;
 var nowJS=new Date();
 
 // ── ACCORDION ──────────────────────────────────────────
+function toggleAddonsAcc(){
+  var card=document.getElementById('card-ext');
+  if(!card||card.classList.contains('locked'))return;
+  var isOpen=card.classList.contains('addon-open');
+  card.classList.toggle('addon-open',!isOpen);
+  var head=card.querySelector('.addon-acc-head');
+  if(head)head.setAttribute('aria-expanded',!isOpen);
+}
 function togAcc(id){
   var el=document.getElementById(id);
   if(!el)return;
@@ -3019,7 +3060,7 @@ function updateProgress(){
   if(selTime)done++;
   if(S.cleanType&&S.cleanType!=='regular')done++;else if(document.getElementById('ct-regular')&&document.getElementById('ct-regular').classList.contains('sel'))done++;
   if(S.bn)done++;
-  if(schedTouched)done++;
+  if(document.querySelector('.sched-opt.sel'))done++;
   if(document.querySelectorAll('.sit-tag.on').length||document.getElementById('instr').value.trim())done++;
   if(S.lid)done++;
   if(document.getElementById('f-name').value.trim())done++;
@@ -3884,7 +3925,24 @@ function validateRecurring(){
 }
 
 // ── BOOK & COPY ───────────────────────────────────────────────
+function updatePoliciesWarning(){
+  var note=document.getElementById('policies-warning');
+  if(!note)return;
+  var bothDone=policiesOpened&&whnOpened;
+  note.classList.toggle('show',!bothDone);
+}
+function validatePoliciesRead(){
+  if(policiesOpened&&whnOpened)return true;
+  var note=document.getElementById('policies-warning');
+  if(note){
+    note.classList.add('show');
+    note.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  toast('Please review Booking Policies & What Happens Next first.');
+  return false;
+}
 function bookNow(){
+  if(!validatePoliciesRead())return;
   if(!validateRecurring())return;
   var msg=buildMsg();
   function proceed(){sendEstimateEmail(msg);document.getElementById('msn-modal').classList.add('show');}
@@ -3892,6 +3950,7 @@ function bookNow(){
   else{fbCopy(msg);proceed();}
 }
 function copyEstimate(){
+  if(!validatePoliciesRead())return;
   if(!validateRecurring())return;
   var msg=buildMsg();if(navigator.clipboard){navigator.clipboard.writeText(msg).then(function(){toast('Estimate copied!');}).catch(function(){fbCopy(msg);});}else fbCopy(msg);
 }
@@ -4067,6 +4126,10 @@ function openPrint(){
 // ── RESET ─────────────────────────────────────────────────────
 function resetAll(){
   selDate=null;selTime=null;selSituations=new Set();recurSlots=[];schedTouched=false;
+  policiesOpened=false;whnOpened=false;
+  ['pol-acc-wrap','whn-acc-wrap'].forEach(function(id){var w=document.getElementById(id);if(w)w.classList.remove('open');});
+  var cext=document.getElementById('card-ext');if(cext)cext.classList.remove('addon-open');
+  updatePoliciesWarning();
   S={cleanType:'regular',sqm:46,isLarge:false,bn:'',sched:'Initial / One-time',addons:{},rt:new Set(),lid:null,ln:null,lf:null};
   document.querySelectorAll('.day.sel-d').forEach(function(d){d.classList.remove('sel-d');});
   document.querySelectorAll('.svc.sel').forEach(function(s){s.classList.remove('sel');});
@@ -4628,6 +4691,9 @@ function togSecAcc(id){
   wrap.classList.toggle('open',!isOpen);
   var head=wrap.querySelector('.sec-acc-head');
   if(head)head.setAttribute('aria-expanded',!isOpen);
+  if(id==='pol-acc-wrap'&&!isOpen)policiesOpened=true;
+  if(id==='whn-acc-wrap'&&!isOpen)whnOpened=true;
+  updatePoliciesWarning();
   // Trigger reveals when WHN opens
   if(id==='whn-acc-wrap'&&!isOpen){
     setTimeout(function(){
