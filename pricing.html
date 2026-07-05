@@ -886,7 +886,7 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 /* ── STICKY BAR ─────────────── */
 #sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;transition:transform .28s cubic-bezier(.4,0,.2,1);}
 #sticky-bar.sb-hidden{transform:translateY(100%);}
-.sticky-top{background:var(--mn);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 -4px 24px rgba(43,78,138,.25);border-radius:18px 18px 0 0;}
+.sticky-top{background:var(--mn);height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 -4px 24px rgba(43,78,138,.25);border-radius:18px 18px 0 0;}
 .sticky-logo{height:18px;opacity:.9;margin-right:10px;flex-shrink:0;}
 .sticky-left{display:flex;align-items:center;}
 .sticky-summary{display:flex;flex-direction:column;gap:1px;}
@@ -1138,8 +1138,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 
 /* ── MARQUEE TRUST STRIP ──────────────────────────────────── */
-.marquee-strip{background:#0D1F3C;padding:16px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.07);position:relative;contain:paint;transform:translateZ(0);}
-.marquee-track{display:flex;width:max-content;animation:marqueeScroll 44s linear infinite;}
+.marquee-strip{background:#0D1F3C;padding:24px 0 18px;overflow:hidden;border-top:1px solid rgba(168,191,224,.12);position:relative;contain:paint;transform:translateZ(0);}
+.marquee-track{display:flex;width:max-content;animation:marqueeScroll 22s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
 .marquee-item{white-space:nowrap;font-family:'Manrope',sans-serif;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#A8BFE0;padding:0 40px;}
 .marquee-dot{color:rgba(168,191,224,.35);font-size:5px;vertical-align:middle;padding:0;}
@@ -1848,9 +1848,9 @@ textarea{
   transform:translateX(0);
 }
 @media(max-width:768px){
-  /* Sticky bottom estimate bar is 74px tall on mobile (.sticky-top 56px + .sticky-brand 18px)
+  /* Sticky bottom estimate bar is 88px tall on mobile (.sticky-top 70px + .sticky-brand 18px)
      — Back to Top must clear it, not sit inside it. */
-  #back-to-top{bottom:calc(74px + 14px);}
+  #back-to-top{bottom:calc(88px + 14px);}
 }
 #back-to-top:hover{background:#3D6399;}
 #back-to-top:active{
