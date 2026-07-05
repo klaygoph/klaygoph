@@ -1228,10 +1228,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .recur-change-lnk{font-size:11px;color:var(--se);cursor:pointer;text-decoration:underline;margin-left:8px;}
 .recur-cancel-btn{margin-top:10px;font-size:11px;color:var(--gr);background:none;border:1px solid #EBF1FA;border-radius:50px;padding:5px 14px;cursor:pointer;display:block;transition:all .14s;}
 .recur-cancel-btn:hover{border-color:#A8BFE0;color:var(--mn);}
-</style>
 
-<!-- ── FOOTER STYLES ────────────────────────────────────────── -->
-<style>
+/* ── FOOTER STYLES ────────────────────────────────────────── */
 
 /* ── OUTLINE MARQUEE — large stroke text, footer top ── */
 .footer-marquee{
@@ -1858,6 +1856,43 @@ textarea{
 #back-to-top:active{
   transform:translateX(0) scale(.95);
 }
+
+/* ── ANIMATED WIDGET v04 (merged from a separate mid-body stylesheet tag) ── */
+.klaygo-card{
+  width:240px;height:240px;position:relative;border-radius:20px;
+  border:2px solid #EBF1FA;background:white;
+  box-shadow:0 12px 30px rgba(13,31,60,.07);overflow:hidden;
+  font-family:var(--font-brand);
+}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:36px;}
+.adjust-screen{animation:kg4ShowAdjust 7s infinite;}
+.receipt-screen{opacity:0;animation:kg4ShowReceipt 7s infinite;}
+.receipt-wrapper{animation:kg4Float 2.5s ease-in-out infinite;}
+.kg4-icon{width:50px;height:50px;color:#3D6399;margin-bottom:10px;}
+.receipt-icon{animation:kg4Pulse 2s infinite;}
+.kg4-label{font-size:10px;letter-spacing:2px;color:#3D6399;margin-bottom:10px;font-weight:600;}
+.kg4-amount{font-size:30px;font-weight:700;line-height:1;color:#0D1F3C;margin-bottom:16px;}
+.receipt-amount{margin-bottom:12px;}
+.kg4-helper{margin-top:8px;font-size:11px;color:#6B6B68;}
+.kg4-slider{position:relative;width:100%;height:22px;}
+.kg4-track{position:absolute;top:8px;width:100%;height:6px;background:#EBF1FA;border-radius:999px;}
+.kg4-fill{position:absolute;top:8px;height:6px;background:#2B4E8A;border-radius:999px;width:0%;}
+.kg4-knob{position:absolute;top:0;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #2B4E8A;left:0;}
+.kg4-range{width:100%;display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:#6B6B68;}
+.kg4-receipt-lines{width:65%;margin:0 auto;}
+.kg4-receipt-lines span{display:block;height:5px;border-radius:999px;background:#EBF1FA;margin-top:8px;animation:kg4FadeLines 2s infinite;}
+.kg4-receipt-lines span:last-child{width:70%;margin-left:auto;margin-right:auto;}
+@keyframes kg4ShowAdjust{0%,50%{opacity:1;}60%,100%{opacity:0;}}
+@keyframes kg4ShowReceipt{0%,55%{opacity:0;}65%,95%{opacity:1;}100%{opacity:0;}}
+@keyframes kg4Pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}
+@keyframes kg4Float{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}
+@keyframes kg4FadeLines{0%,100%{opacity:.4;}50%{opacity:1;}}
+@media(max-width:768px){
+  .klaygo-card{width:180px;height:180px;}
+  .kg4-amount{font-size:22px;}
+  .kg4-icon{width:36px;height:36px;}
+  .screen{padding:22px;}
+}
 </style>
 </head>
 <body>
@@ -2053,46 +2088,6 @@ textarea{
     </div>
   </div>
 </div>
-
-
-<style>
-/* ── ANIMATED WIDGET v04 ── */
-.klaygo-card{
-  width:240px;height:240px;position:relative;border-radius:20px;
-  border:2px solid #EBF1FA;background:white;
-  box-shadow:0 12px 30px rgba(13,31,60,.07);overflow:hidden;
-  font-family:var(--font-brand);
-}
-.screen{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:36px;}
-.adjust-screen{animation:kg4ShowAdjust 7s infinite;}
-.receipt-screen{opacity:0;animation:kg4ShowReceipt 7s infinite;}
-.receipt-wrapper{animation:kg4Float 2.5s ease-in-out infinite;}
-.kg4-icon{width:50px;height:50px;color:#3D6399;margin-bottom:10px;}
-.receipt-icon{animation:kg4Pulse 2s infinite;}
-.kg4-label{font-size:10px;letter-spacing:2px;color:#3D6399;margin-bottom:10px;font-weight:600;}
-.kg4-amount{font-size:30px;font-weight:700;line-height:1;color:#0D1F3C;margin-bottom:16px;}
-.receipt-amount{margin-bottom:12px;}
-.kg4-helper{margin-top:8px;font-size:11px;color:#6B6B68;}
-.kg4-slider{position:relative;width:100%;height:22px;}
-.kg4-track{position:absolute;top:8px;width:100%;height:6px;background:#EBF1FA;border-radius:999px;}
-.kg4-fill{position:absolute;top:8px;height:6px;background:#2B4E8A;border-radius:999px;width:0%;}
-.kg4-knob{position:absolute;top:0;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #2B4E8A;left:0;}
-.kg4-range{width:100%;display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:#6B6B68;}
-.kg4-receipt-lines{width:65%;margin:0 auto;}
-.kg4-receipt-lines span{display:block;height:5px;border-radius:999px;background:#EBF1FA;margin-top:8px;animation:kg4FadeLines 2s infinite;}
-.kg4-receipt-lines span:last-child{width:70%;margin-left:auto;margin-right:auto;}
-@keyframes kg4ShowAdjust{0%,50%{opacity:1;}60%,100%{opacity:0;}}
-@keyframes kg4ShowReceipt{0%,55%{opacity:0;}65%,95%{opacity:1;}100%{opacity:0;}}
-@keyframes kg4Pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}
-@keyframes kg4Float{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}
-@keyframes kg4FadeLines{0%,100%{opacity:.4;}50%{opacity:1;}}
-@media(max-width:768px){
-  .klaygo-card{width:180px;height:180px;}
-  .kg4-amount{font-size:22px;}
-  .kg4-icon{width:36px;height:36px;}
-  .screen{padding:22px;}
-}
-</style>
 
 
 <div class="main" id="main-content" role="main">
@@ -3065,11 +3060,13 @@ function updateProgress(){
   if(S.lid)done++;
   if(document.getElementById('f-name').value.trim())done++;
   if(document.getElementById('f-phone').value.trim())done++;
-  done=Math.min(done,9);
+  if(policiesOpened)done++;
+  if(whnOpened)done++;
+  done=Math.min(done,11);
   // Update dot indicators
   var dotsEl=document.getElementById('progress-dots-fixed');
   if(dotsEl)dotsEl.setAttribute('aria-valuenow',done);
-  for(var i=1;i<=9;i++){
+  for(var i=1;i<=11;i++){
     var dot=document.getElementById('pdot-'+i);
     if(!dot)continue;
     dot.classList.remove('done','active');
@@ -4694,6 +4691,7 @@ function togSecAcc(id){
   if(id==='pol-acc-wrap'&&!isOpen)policiesOpened=true;
   if(id==='whn-acc-wrap'&&!isOpen)whnOpened=true;
   updatePoliciesWarning();
+  updateProgress();
   // Trigger reveals when WHN opens
   if(id==='whn-acc-wrap'&&!isOpen){
     setTimeout(function(){
@@ -4740,10 +4738,10 @@ function togWHN(){togSecAcc('whn-acc-wrap');}
   dotsWrap.id='progress-dots-fixed';
   dotsWrap.setAttribute('role','progressbar');
   dotsWrap.setAttribute('aria-valuemin','0');
-  dotsWrap.setAttribute('aria-valuemax','9');
+  dotsWrap.setAttribute('aria-valuemax','11');
   dotsWrap.setAttribute('aria-valuenow','0');
   dotsWrap.setAttribute('aria-label','Estimate progress');
-  for(var i=1;i<=9;i++){
+  for(var i=1;i<=11;i++){
     var d=document.createElement('span');
     d.className='progress-dot';
     d.id='pdot-'+i;
