@@ -746,7 +746,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .ll{color:var(--gr);line-height:1.45;}
 .lv{color:var(--mn);font-weight:700;white-space:nowrap;}
 .li-sub{display:block;font-size:10.5px;color:var(--se);margin-top:1px;font-weight:400;}
-.li.st{margin:10px 0 4px;padding:11px 14px;background:#EBF1FA;border:2px solid #2B4E8A;border-radius:12px;font-size:14px;display:flex;justify-content:space-between;align-items:center;}
+.li.st{margin:10px -14px 4px;padding:11px 14px;background:#EBF1FA;border:2px solid #2B4E8A;border-radius:12px;font-size:14px;display:flex;justify-content:space-between;align-items:center;}
 .li.st .ll{color:var(--mn);font-weight:700;}
 .li.st .lv{font-size:18px;color:var(--mn);font-weight:800;}
 .empty-p{padding:20px;text-align:center;color:var(--gr);font-size:12px;line-height:1.7;}
@@ -1191,8 +1191,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .be-btn-print-est:hover{background:#EBF1FA;border-color:#EBF1FA;color:#0D1F3C;}
 
 /* Right panel bands (desktop) */
-.pr-band-balance{margin:8px 6px 6px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
-.pr-band-upfront{margin:0 6px 6px;background:#FFF8E1;border:2px solid #C9A227;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.pr-band-balance{margin:8px -14px 6px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.pr-band-upfront{margin:0 -14px 6px;background:#FFF8E1;border:2px solid #C9A227;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
 
 /* ── All screens: match ALL be-elements to 10%/80% uniform column width ── */
 .be-summary-card{margin:10px 5% 12px;}
@@ -2412,7 +2412,7 @@ textarea{
         </div>
         <div style="padding:12px 14px;background:var(--pa);border-radius:12px;border-left:3px solid var(--pr);">
           <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">50% Reservation Fee</strong>
-          A 50% reservation fee is required to secure your reservation. This applies for <strong>same-day, weekend, and holiday bookings</strong>, as well as properties <strong>above 60 sqm</strong>.
+          A 50% reservation fee is required to secure your reservation. This applies for <strong>same-day, weekend, and holiday bookings</strong>, as well as properties <strong>above 45 sqm</strong>.
         </div>
       </div>
     </div>
@@ -2423,7 +2423,7 @@ textarea{
       <span class="acc-title">Large Spaces (above 60 sqm)</span>
       <span class="acc-chevron">▼</span>
     </div>
-    <div class="acc-body">An <strong>additional cleaner</strong> will be automatically assigned at no extra charge for spaces above 60 sqm, to ensure quality and efficiency. This may affect scheduling and we'll confirm details upon booking.<br><br>For <strong>spaces above 60 sqm:</strong> A <strong>50% reservation fee</strong> is required to secure your reservation. <strong>This applies for weekend, same-day, and holiday bookings as well.</strong></div>
+    <div class="acc-body">An <strong>additional cleaner</strong> will be automatically assigned at no extra charge for spaces above 60 sqm, to ensure quality and efficiency. This may affect scheduling and we'll confirm details upon booking.<br><br>Separately, for <strong>spaces above 45 sqm:</strong> A <strong>50% reservation fee</strong> is required to secure your reservation. <strong>This also applies for weekend, same-day, and holiday bookings.</strong></div>
   </div>
 
   <div class="acc-item" id="acc-payment">
@@ -2431,7 +2431,7 @@ textarea{
       <span class="acc-title">Reservation Fee &amp; Payment</span>
       <span class="acc-chevron">▼</span>
     </div>
-    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or above 60 sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
+    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or above 45 sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
   </div>
 
   <div class="acc-item" id="acc-onsite">
@@ -2503,7 +2503,7 @@ textarea{
             <div class="pm-item"><div><div class="pm-name">GCash</div><div class="pm-num">Details sent upon confirmation</div></div></div>
             <div class="pm-item pm-item-wide"><div><div class="pm-name">Bank Transfer</div><div class="pm-num">Details sent upon confirmation</div></div></div>
           </div>
-          <div class="pm-note">Note: Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or above 60 sqm bookings.</div>
+          <div class="pm-note">Note: Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or above 45 sqm bookings.</div>
         </div>
       </div>
     </div>
@@ -3664,9 +3664,9 @@ function calcReservationFee(total, transportFee, dateStr){
   var isWeekend=dow===0||dow===6;
   var isSameDay=dateStr&&((new Date(dateStr+'T12:00:00+08:00')-nowJS)/3600000)<24;
   var isHoliday=dateStr&&PH_HOLIDAYS.has(dateStr);
-  var isLarge=S.sqm>60;
+  var isLarge=S.sqm>45;
   var needs50=!!(isSameDay||isWeekend||isHoliday||isLarge);
-  var reason=isSameDay?'Same-day booking':isWeekend?'Weekend booking':isHoliday?'Holiday booking':isLarge?'above 60 sqm':'';
+  var reason=isSameDay?'Same-day booking':isWeekend?'Weekend booking':isHoliday?'Holiday booking':isLarge?'above 45 sqm':'';
   var dp=needs50?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),transportFee||0);
   var bal=Math.max(0,total-dp);
   return{dp:dp,bal:bal,needs50:needs50,reason:reason};
@@ -4102,7 +4102,7 @@ function openPrint(){
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Cancellation:</strong> Reservation fee non-refundable if cancelled &lt;24 hrs or cleaner is on the way/onsite.</div></div>'
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Exception:</strong> Booked &lt;24 hrs + cancelled 4+ hrs before + cleaner not yet departed — refund or rebooking may be arranged.</div></div>'
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Large Spaces (above 60 sqm):</strong> An additional cleaner is automatically included at no extra charge.</div></div>'
-    +'<div class="pi2"><div class="pd2">-</div><div><strong>Above 60 sqm &amp; Weekend Slots:</strong> 50% reservation fee required to confirm booking.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>Above 45 sqm &amp; Weekend Slots:</strong> 50% reservation fee required to confirm booking.</div></div>'
     +'</div>'
     +'<div class="nor">This is not an official receipt</div>'
     +'</div>'
