@@ -1145,6 +1145,10 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 /* ── MARQUEE TRUST STRIP ──────────────────────────────────── */
 .marquee-strip{background:#0D1F3C;padding:6px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.12);position:relative;contain:paint;transform:translateZ(0);}
 .marquee-strip:not(.marquee-strip-services){padding-top:38px;}
+.marquee-strip::before,
+.marquee-strip::after{content:'';position:absolute;top:0;bottom:0;width:8%;z-index:2;pointer-events:none;}
+.marquee-strip::before{left:0;background:linear-gradient(to right,#0D1F3C 40%,transparent);}
+.marquee-strip::after{right:0;background:linear-gradient(to left,#0D1F3C 40%,transparent);}
 .marquee-track{display:flex;width:max-content;animation:marqueeScroll 22s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
 .marquee-item{white-space:nowrap;font-family:'Manrope',sans-serif;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#A8BFE0;padding:0 16px;}
