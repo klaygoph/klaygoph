@@ -1143,7 +1143,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 
 /* ── MARQUEE TRUST STRIP ──────────────────────────────────── */
-.marquee-strip{background:#0D1F3C;padding:14px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.12);position:relative;contain:paint;transform:translateZ(0);}
+.marquee-strip{background:#0D1F3C;padding:6px 0;overflow:hidden;border-top:1px solid rgba(168,191,224,.12);position:relative;contain:paint;transform:translateZ(0);}
 .marquee-strip:not(.marquee-strip-services){padding-top:38px;}
 .marquee-track{display:flex;width:max-content;animation:marqueeScroll 22s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
@@ -1152,7 +1152,7 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 @keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .marquee-track-reverse{animation-name:marqueeScrollReverse;}
 @keyframes marqueeScrollReverse{from{transform:translateX(-50%);}to{transform:translateX(0);}}
-.marquee-strip-services{border-top:1px solid rgba(168,191,224,.07);}
+.marquee-strip-services{border-top:none;}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
 
 
