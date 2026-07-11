@@ -843,6 +843,11 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 }
 .policies-warning.show{display:block;animation:policiesWarningPulse .5s ease;}
 @keyframes policiesWarningPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.015);}}
+.missing-warning{display:none;margin:0 14px 12px;padding:12px 16px;background:var(--rbg);border:1.5px solid var(--rbdr);border-radius:16px;font-size:12.5px;color:var(--red);line-height:1.6;}
+.missing-warning.show{display:block;animation:policiesWarningPulse .5s ease;}
+.missing-warning strong{display:block;margin-bottom:5px;}
+.missing-warning ul{margin:0;padding-left:18px;}
+.missing-warning li{margin-bottom:2px;}
 .restriction-alert.show{display:block;}
 .restriction-alert strong{display:block;font-size:12.5px;margin-bottom:3px;}
 
@@ -2756,6 +2761,10 @@ textarea{
     <div class="be-band-num" id="be-upfront-amt">—</div>
   </div>
   <div class="be-avail none" id="be-avail">No date selected yet.</div>
+  <div class="missing-warning" id="missing-warning">
+    <strong>Please complete before booking:</strong>
+    <ul id="missing-warning-list"></ul>
+  </div>
   <div class="be-discl">This estimate does not confirm a reservation. Booking confirmed after reservation fee is received and confirmed.</div>
   <button class="be-btn-copy" onclick="copyEstimate()">Copy Estimate</button>
   <button class="be-btn" onclick="bookNow()">Book on Messenger</button>
@@ -3096,7 +3105,7 @@ var PH_HOLIDAYS = new Set([
 
 // ── PROGRESS TRACKING FLAGS ────────────────────────────────────
 var schedTouched=false;
-var policiesOpened=false, whnOpened=false;
+var policiesOpened=false, whnOpened=false, addonsOpened=false;
 var analytics = JSON.parse(localStorage.getItem('kg_an')||'{"opens":0,"estimates":0,"prints":0,"lastNum":0}');
 analytics.opens++;
 localStorage.setItem('kg_an', JSON.stringify(analytics));
@@ -3150,6 +3159,7 @@ function toggleAddonsAcc(){
   card.classList.toggle('addon-open',!isOpen);
   var head=card.querySelector('.addon-acc-head');
   if(head)head.setAttribute('aria-expanded',!isOpen);
+  if(!isOpen)addonsOpened=true;
 }
 function togAcc(id){
   var el=document.getElementById(id);
@@ -4043,6 +4053,38 @@ function validateRecurring(){
   return true;
 }
 
+function getMissingSections(){
+  var missing=[];
+  if(!selDate)missing.push({label:'Select a Date',id:'card-date'});
+  if(!selTime)missing.push({label:'Select a Time',id:'card-time'});
+  if(!S.bn)missing.push({label:'Select a Property Type',id:'card-svc'});
+  if(!addonsOpened)missing.push({label:'Review Add-Ons (choose items, or leave none)',id:'card-ext'});
+  var hasSit=document.querySelectorAll('.sit-tag.on').length>0||document.getElementById('instr').value.trim();
+  if(!hasSit)missing.push({label:'Answer Special Instructions (tap at least one option)',id:'card-instr'});
+  if(!S.lid)missing.push({label:'Select your Location',id:'card-loc'});
+  if(!document.getElementById('f-name').value.trim())missing.push({label:'Enter your Full Name',id:'f-name'});
+  if(!document.getElementById('f-phone').value.trim())missing.push({label:'Enter your Contact Number',id:'f-phone'});
+  if(!document.getElementById('f-email').value.trim())missing.push({label:'Enter your Email Address',id:'f-email'});
+  if(!document.getElementById('f-addr').value.trim())missing.push({label:'Enter your Complete Address',id:'f-addr'});
+  if(!policiesOpened)missing.push({label:'Open Booking Policies',id:'pol-acc-wrap'});
+  if(!whnOpened)missing.push({label:'Open What Happens Next',id:'whn-acc-wrap'});
+  return missing;
+}
+function validateAllSections(){
+  var missing=getMissingSections();
+  var banner=document.getElementById('missing-warning');
+  var list=document.getElementById('missing-warning-list');
+  if(missing.length===0){
+    if(banner)banner.classList.remove('show');
+    return true;
+  }
+  if(list)list.innerHTML=missing.map(function(m){return '<li>'+m.label+'</li>';}).join('');
+  if(banner)banner.classList.add('show');
+  var first=document.getElementById(missing[0].id);
+  if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
+  toast('Please complete the highlighted steps before booking.');
+  return false;
+}
 // ── BOOK & COPY ───────────────────────────────────────────────
 function updatePoliciesWarning(){
   var note=document.getElementById('policies-warning');
@@ -4061,7 +4103,7 @@ function validatePoliciesRead(){
   return false;
 }
 function bookNow(){
-  if(!validatePoliciesRead())return;
+  if(!validateAllSections())return;
   if(!validateRecurring())return;
   var msg=buildMsg();
   function proceed(){sendEstimateEmail(msg);document.getElementById('msn-modal').classList.add('show');}
@@ -4069,7 +4111,7 @@ function bookNow(){
   else{fbCopy(msg);proceed();}
 }
 function bookInstagram(){
-  if(!validatePoliciesRead())return;
+  if(!validateAllSections())return;
   if(!validateRecurring())return;
   var msg=buildMsg();
   function proceed(){sendEstimateEmail(msg);document.getElementById('ig-modal').classList.add('show');}
@@ -4077,7 +4119,7 @@ function bookInstagram(){
   else{fbCopy(msg);proceed();}
 }
 function copyEstimate(){
-  if(!validatePoliciesRead())return;
+  if(!validateAllSections())return;
   if(!validateRecurring())return;
   var msg=buildMsg();if(navigator.clipboard){navigator.clipboard.writeText(msg).then(function(){toast('Estimate copied!');}).catch(function(){fbCopy(msg);});}else fbCopy(msg);
 }
@@ -4253,7 +4295,7 @@ function openPrint(){
 // ── RESET ─────────────────────────────────────────────────────
 function resetAll(){
   selDate=null;selTime=null;selSituations=new Set();recurSlots=[];schedTouched=false;
-  policiesOpened=false;whnOpened=false;
+  policiesOpened=false;whnOpened=false;addonsOpened=false;
   ['pol-acc-wrap','whn-acc-wrap'].forEach(function(id){var w=document.getElementById(id);if(w)w.classList.remove('open');});
   var cext=document.getElementById('card-ext');if(cext)cext.classList.remove('addon-open');
   updatePoliciesWarning();
