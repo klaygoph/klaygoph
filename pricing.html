@@ -532,12 +532,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .co-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:12px;white-space:nowrap;flex-shrink:0;}
 .co-badge.included{color:var(--green);background:var(--gbg);}
 .co-badge.extra{color:var(--se);background:var(--pa);}
-.co-details{display:none;padding:0 15px 14px 43px;}
-.clean-opt.sel .co-details{display:block;}
+.co-details{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);}
+.clean-opt.sel .co-details{grid-template-rows:1fr;}
+.co-details-inner{overflow:hidden;padding:0 15px 14px 43px;}
 .co-desc{font-size:12px;color:#6B6B68;line-height:1.75;margin-bottom:10px;}
 .co-excl{padding:8px 11px;background:var(--pa);border-radius:10px;border-left:3px solid var(--li);}
 .co-excl strong{display:block;font-size:11px;color:var(--red);margin-bottom:3px;}
 .co-excl p{font-size:10.5px;color:#0D1F3C;line-height:1.55;}
+.co-list{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:5px;}
+.co-list li{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#6B6B68;line-height:1.5;}
+.co-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
+.co-excl-list{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;}
+.co-excl-list li{display:flex;align-items:flex-start;gap:6px;font-size:10.5px;color:#0D1F3C;line-height:1.5;}
+.co-excl-list li::before{content:'✕';color:var(--red);font-weight:700;flex-shrink:0;font-size:9px;margin-top:2px;}
 .post-con-note{margin-top:10px;padding:10px 13px;background:var(--pa);border:1.5px solid var(--li);border-radius:14px;font-size:11.5px;color:var(--pr);line-height:1.6;}
 .post-con-note strong{display:block;font-size:12px;margin-bottom:3px;}
 
@@ -2172,22 +2179,97 @@ textarea{
     <div class="clean-opt sel" id="ct-regular" onclick="selCleanType('regular')">
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Regular Cleaning</div><div class="co-badge included">Base price</div></div>
       <div class="co-details">
-        <div class="co-desc">Sweeping, mopping, dusting surfaces, bathroom &amp; kitchen cleaning, making bed, general tidying. Perfect for routine upkeep of your space.</div>
-        <div class="co-excl"><strong>Not included:</strong><p>Inside cabinets, behind appliances, grout scrubbing, window glass exterior, laundry, or deep-level cleaning.</p></div>
+        <div class="co-details-inner">
+          <ul class="co-list">
+            <li>Sweeping &amp; vacuuming floors</li>
+            <li>Mopping floors</li>
+            <li>Dusting accessible surfaces</li>
+            <li>Wiping tables, counters &amp; shelves</li>
+            <li>Cleaning mirrors</li>
+            <li>Bathroom cleaning</li>
+            <li>Kitchen surface cleaning</li>
+            <li>Trash collection &amp; disposal</li>
+            <li>General room tidying</li>
+          </ul>
+          <div class="co-excl"><strong>Not included:</strong>
+            <ul class="co-excl-list">
+              <li>Interior of cabinets, drawers &amp; wardrobes</li>
+              <li>Interior of refrigerators</li>
+              <li>Interior oven cleaning</li>
+              <li>Heavy grease buildup removal</li>
+              <li>Mold treatment</li>
+              <li>Hard water stain restoration</li>
+              <li>Construction debris cleanup</li>
+              <li>Moving furniture or heavy lifting</li>
+              <li>High-reach areas requiring ladders</li>
+              <li>Deep scrubbing of neglected spaces</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <div class="clean-opt" id="ct-deep" onclick="selCleanType('deep')">
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Deep Cleaning</div><div class="co-badge extra" id="deep-badge">See estimate</div></div>
       <div class="co-details">
-        <div class="co-desc">Everything in Regular Cleaning, plus: inside cabinets &amp; drawers, behind &amp; underneath appliances, grout scrubbing, baseboards, light fixtures, and hard-to-reach corners. Ideal for spaces that haven't been cleaned in a while.</div>
-        <div class="co-excl"><strong>Not included:</strong><p>Window glass exterior, laundry &amp; ironing (available as add-ons), post-construction debris, or hazardous material handling.</p></div>
+        <div class="co-details-inner">
+          <div class="co-desc">Everything in Regular Cleaning, plus:</div>
+          <ul class="co-list">
+            <li>Bathroom scrubbing</li>
+            <li>Detailed kitchen cleaning</li>
+            <li>Interior cabinet cleaning</li>
+            <li>Interior drawer cleaning</li>
+            <li>Removal of accumulated dust buildup</li>
+            <li>Baseboards &amp; corners</li>
+            <li>Door frames &amp; light switches</li>
+            <li>Detailed spot cleaning of walls</li>
+            <li>Hard-to-reach areas within safe access</li>
+          </ul>
+          <div class="co-excl"><strong>Not included:</strong>
+            <ul class="co-excl-list">
+              <li>Post-construction cleaning</li>
+              <li>Paint, cement or adhesive removal</li>
+              <li>Major mold remediation</li>
+              <li>Pest control services</li>
+              <li>Exterior window cleaning</li>
+              <li>Upholstery shampooing</li>
+              <li>Mattress deep extraction</li>
+              <li>Appliance disassembly</li>
+              <li>Moving large furniture</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <div class="clean-opt" id="ct-moveinout" onclick="selCleanType('moveinout')">
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Move In / Move Out</div><div class="co-badge extra" id="mio-badge">See estimate</div></div>
       <div class="co-details">
-        <div class="co-desc">Comprehensive cleaning for properties being vacated or newly occupied. Covers all Regular Cleaning areas plus inside cabinets &amp; drawers, appliance interiors, hard-to-reach corners — leaving the space fresh and ready for the next occupant.</div>
-        <div class="co-excl"><strong>Not included:</strong><p>Removal of large furniture or junk, pest control, painting, repairs, window glass exterior, or post-construction debris.</p></div>
+        <div class="co-details-inner">
+          <div class="co-desc">Everything in Deep Cleaning, plus:</div>
+          <ul class="co-list">
+            <li>Empty-space cleaning</li>
+            <li>Interior cabinets &amp; storage spaces</li>
+            <li>Interior drawers &amp; wardrobes</li>
+            <li>Detailed kitchen cleaning</li>
+            <li>Detailed bathroom cleaning</li>
+            <li>Removal of leftover dust &amp; dirt</li>
+            <li>Window tracks &amp; ledges</li>
+            <li>Spot cleaning throughout the unit</li>
+            <li>Ready-for-turnover cleaning</li>
+            <li>Ready-for-occupancy cleaning</li>
+          </ul>
+          <div class="co-excl"><strong>Not included:</strong>
+            <ul class="co-excl-list">
+              <li>Construction debris hauling</li>
+              <li>Paint, cement or grout removal</li>
+              <li>Renovation cleanup requiring special equipment</li>
+              <li>Mold remediation</li>
+              <li>Pest control</li>
+              <li>Appliance repair or maintenance</li>
+              <li>Furniture moving services</li>
+              <li>Exterior facade cleaning</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
