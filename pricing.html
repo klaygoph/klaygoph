@@ -545,6 +545,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .co-excl-list{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;}
 .co-excl-list li{display:flex;align-items:flex-start;gap:6px;font-size:10.5px;color:#0D1F3C;line-height:1.5;}
 .co-excl-list li::before{content:'✕';color:var(--red);font-weight:700;flex-shrink:0;font-size:9px;margin-top:2px;}
+.co-sub-acc{border:1px solid #EBF1FA;border-radius:10px;margin-bottom:8px;}
+.co-sub-acc:last-child{margin-bottom:0;}
+.co-sub-acc-head{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;background:transparent;border:none;cursor:pointer;font-family:var(--font-body);font-size:11.5px;font-weight:700;color:#0D1F3C;text-align:left;}
+.co-sub-acc-head.excl{color:var(--red);}
+.co-sub-acc-chev{font-size:9px;transition:transform .25s ease;color:#6B6B68;flex-shrink:0;}
+.co-sub-acc-head[aria-expanded="true"] .co-sub-acc-chev{transform:rotate(180deg);}
+.co-sub-acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;}
+.co-sub-acc-body.open{grid-template-rows:1fr;}
+.co-sub-acc-body-inner{overflow:hidden;padding:0 12px;}
+.co-sub-acc-body.open .co-sub-acc-body-inner{padding:0 12px 12px;}
+.co-sub-acc .co-list,.co-sub-acc .co-excl-list{margin:0;}
+.co-sub-acc .co-excl{padding:0;background:transparent;border:none;}
 .post-con-note{margin-top:10px;padding:10px 13px;background:var(--pa);border:1.5px solid var(--li);border-radius:14px;font-size:11.5px;color:var(--pr);line-height:1.6;}
 .post-con-note strong{display:block;font-size:12px;margin-bottom:3px;}
 
@@ -1213,8 +1225,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 .be-btn-print-est:hover{background:#EBF1FA;border-color:#EBF1FA;color:#0D1F3C;}
 
 /* Right panel bands (desktop) */
-.pr-band-balance{margin:8px -14px 6px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
-.pr-band-upfront{margin:0 -14px 6px;background:#FFF8E1;border:2px solid #C9A227;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.pr-band-balance{margin:8px 20px 6px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.pr-band-upfront{margin:0 20px 6px;background:#FFF8E1;border:2px solid #C9A227;border-radius:12px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
 
 /* ── All screens: match ALL be-elements to 10%/80% uniform column width ── */
 .be-summary-card{margin:10px 5% 12px;}
@@ -2185,30 +2197,46 @@ textarea{
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Regular Cleaning</div><div class="co-badge included">Base price</div></div>
       <div class="co-details">
         <div class="co-details-inner">
-          <ul class="co-list">
-            <li>Sweeping &amp; vacuuming floors</li>
-            <li>Mopping floors</li>
-            <li>Dusting accessible surfaces</li>
-            <li>Wiping tables, counters &amp; shelves</li>
-            <li>Cleaning mirrors</li>
-            <li>Bathroom cleaning</li>
-            <li>Kitchen surface cleaning</li>
-            <li>Trash collection &amp; disposal</li>
-            <li>General room tidying</li>
-          </ul>
-          <div class="co-excl"><strong>Not included:</strong>
-            <ul class="co-excl-list">
-              <li>Interior of cabinets, drawers &amp; wardrobes</li>
-              <li>Interior of refrigerators</li>
-              <li>Interior oven cleaning</li>
-              <li>Heavy grease buildup removal</li>
-              <li>Mold treatment</li>
-              <li>Hard water stain restoration</li>
-              <li>Construction debris cleanup</li>
-              <li>Moving furniture or heavy lifting</li>
-              <li>High-reach areas requiring ladders</li>
-              <li>Deep scrubbing of neglected spaces</li>
-            </ul>
+          <div class="co-sub-acc">
+            <button type="button" class="co-sub-acc-head" onclick="toggleCoSub(this)" aria-expanded="false">
+              <span>✓ What's Included</span><span class="co-sub-acc-chev">▾</span>
+            </button>
+            <div class="co-sub-acc-body">
+              <div class="co-sub-acc-body-inner">
+                <ul class="co-list">
+                  <li>Sweeping &amp; vacuuming floors</li>
+                  <li>Mopping floors</li>
+                  <li>Dusting accessible surfaces</li>
+                  <li>Wiping tables, counters &amp; shelves</li>
+                  <li>Cleaning mirrors</li>
+                  <li>Bathroom cleaning</li>
+                  <li>Kitchen surface cleaning</li>
+                  <li>Trash collection &amp; disposal</li>
+                  <li>General room tidying</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="co-sub-acc">
+            <button type="button" class="co-sub-acc-head excl" onclick="toggleCoSub(this)" aria-expanded="false">
+              <span>✕ What's Not Included</span><span class="co-sub-acc-chev">▾</span>
+            </button>
+            <div class="co-sub-acc-body">
+              <div class="co-sub-acc-body-inner">
+                <ul class="co-excl-list">
+                  <li>Interior of cabinets, drawers &amp; wardrobes</li>
+                  <li>Interior of refrigerators</li>
+                  <li>Interior oven cleaning</li>
+                  <li>Heavy grease buildup removal</li>
+                  <li>Mold treatment</li>
+                  <li>Hard water stain restoration</li>
+                  <li>Construction debris cleanup</li>
+                  <li>Moving furniture or heavy lifting</li>
+                  <li>High-reach areas requiring ladders</li>
+                  <li>Deep scrubbing of neglected spaces</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2217,30 +2245,46 @@ textarea{
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Deep Cleaning</div><div class="co-badge extra" id="deep-badge">See estimate</div></div>
       <div class="co-details">
         <div class="co-details-inner">
-          <div class="co-desc">Everything in Regular Cleaning, plus:</div>
-          <ul class="co-list">
-            <li>Bathroom scrubbing</li>
-            <li>Detailed kitchen cleaning</li>
-            <li>Interior cabinet cleaning</li>
-            <li>Interior drawer cleaning</li>
-            <li>Removal of accumulated dust buildup</li>
-            <li>Baseboards &amp; corners</li>
-            <li>Door frames &amp; light switches</li>
-            <li>Detailed spot cleaning of walls</li>
-            <li>Hard-to-reach areas within safe access</li>
-          </ul>
-          <div class="co-excl"><strong>Not included:</strong>
-            <ul class="co-excl-list">
-              <li>Post-construction cleaning</li>
-              <li>Paint, cement or adhesive removal</li>
-              <li>Major mold remediation</li>
-              <li>Pest control services</li>
-              <li>Exterior window cleaning</li>
-              <li>Upholstery shampooing</li>
-              <li>Mattress deep extraction</li>
-              <li>Appliance disassembly</li>
-              <li>Moving large furniture</li>
-            </ul>
+          <div class="co-sub-acc">
+            <button type="button" class="co-sub-acc-head" onclick="toggleCoSub(this)" aria-expanded="false">
+              <span>✓ What's Included</span><span class="co-sub-acc-chev">▾</span>
+            </button>
+            <div class="co-sub-acc-body">
+              <div class="co-sub-acc-body-inner">
+                <div class="co-desc">Everything in Regular Cleaning, plus:</div>
+                <ul class="co-list">
+                  <li>Bathroom scrubbing</li>
+                  <li>Detailed kitchen cleaning</li>
+                  <li>Interior cabinet cleaning</li>
+                  <li>Interior drawer cleaning</li>
+                  <li>Removal of accumulated dust buildup</li>
+                  <li>Baseboards &amp; corners</li>
+                  <li>Door frames &amp; light switches</li>
+                  <li>Detailed spot cleaning of walls</li>
+                  <li>Hard-to-reach areas within safe access</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="co-sub-acc">
+            <button type="button" class="co-sub-acc-head excl" onclick="toggleCoSub(this)" aria-expanded="false">
+              <span>✕ What's Not Included</span><span class="co-sub-acc-chev">▾</span>
+            </button>
+            <div class="co-sub-acc-body">
+              <div class="co-sub-acc-body-inner">
+                <ul class="co-excl-list">
+                  <li>Post-construction cleaning</li>
+                  <li>Paint, cement or adhesive removal</li>
+                  <li>Major mold remediation</li>
+                  <li>Pest control services</li>
+                  <li>Exterior window cleaning</li>
+                  <li>Upholstery shampooing</li>
+                  <li>Mattress deep extraction</li>
+                  <li>Appliance disassembly</li>
+                  <li>Moving large furniture</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2249,30 +2293,46 @@ textarea{
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Move In / Move Out</div><div class="co-badge extra" id="mio-badge">See estimate</div></div>
       <div class="co-details">
         <div class="co-details-inner">
-          <div class="co-desc">Everything in Deep Cleaning, plus:</div>
-          <ul class="co-list">
-            <li>Empty-space cleaning</li>
-            <li>Interior cabinets &amp; storage spaces</li>
-            <li>Interior drawers &amp; wardrobes</li>
-            <li>Detailed kitchen cleaning</li>
-            <li>Detailed bathroom cleaning</li>
-            <li>Removal of leftover dust &amp; dirt</li>
-            <li>Window tracks &amp; ledges</li>
-            <li>Spot cleaning throughout the unit</li>
-            <li>Ready-for-turnover cleaning</li>
-            <li>Ready-for-occupancy cleaning</li>
-          </ul>
-          <div class="co-excl"><strong>Not included:</strong>
-            <ul class="co-excl-list">
-              <li>Construction debris hauling</li>
-              <li>Paint, cement or grout removal</li>
-              <li>Renovation cleanup requiring special equipment</li>
-              <li>Mold remediation</li>
-              <li>Pest control</li>
-              <li>Appliance repair or maintenance</li>
-              <li>Furniture moving services</li>
-              <li>Exterior facade cleaning</li>
-            </ul>
+          <div class="co-sub-acc">
+            <button type="button" class="co-sub-acc-head" onclick="toggleCoSub(this)" aria-expanded="false">
+              <span>✓ What's Included</span><span class="co-sub-acc-chev">▾</span>
+            </button>
+            <div class="co-sub-acc-body">
+              <div class="co-sub-acc-body-inner">
+                <div class="co-desc">Everything in Deep Cleaning, plus:</div>
+                <ul class="co-list">
+                  <li>Empty-space cleaning</li>
+                  <li>Interior cabinets &amp; storage spaces</li>
+                  <li>Interior drawers &amp; wardrobes</li>
+                  <li>Detailed kitchen cleaning</li>
+                  <li>Detailed bathroom cleaning</li>
+                  <li>Removal of leftover dust &amp; dirt</li>
+                  <li>Window tracks &amp; ledges</li>
+                  <li>Spot cleaning throughout the unit</li>
+                  <li>Ready-for-turnover cleaning</li>
+                  <li>Ready-for-occupancy cleaning</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="co-sub-acc">
+            <button type="button" class="co-sub-acc-head excl" onclick="toggleCoSub(this)" aria-expanded="false">
+              <span>✕ What's Not Included</span><span class="co-sub-acc-chev">▾</span>
+            </button>
+            <div class="co-sub-acc-body">
+              <div class="co-sub-acc-body-inner">
+                <ul class="co-excl-list">
+                  <li>Construction debris hauling</li>
+                  <li>Paint, cement or grout removal</li>
+                  <li>Renovation cleanup requiring special equipment</li>
+                  <li>Mold remediation</li>
+                  <li>Pest control</li>
+                  <li>Appliance repair or maintenance</li>
+                  <li>Furniture moving services</li>
+                  <li>Exterior facade cleaning</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -3152,6 +3212,12 @@ CY=+_mParts[0]; CM=+_mParts[1]-1;
 var nowJS=new Date();
 
 // ── ACCORDION ──────────────────────────────────────────
+function toggleCoSub(btn){
+  var isOpen=btn.getAttribute('aria-expanded')==='true';
+  btn.setAttribute('aria-expanded',String(!isOpen));
+  var body=btn.nextElementSibling;
+  if(body)body.classList.toggle('open',!isOpen);
+}
 function toggleAddonsAcc(){
   var card=document.getElementById('card-ext');
   if(!card||card.classList.contains('locked'))return;
