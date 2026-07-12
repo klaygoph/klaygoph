@@ -800,6 +800,20 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .btn-reset{display:block;width:calc(100% - 24px);margin:0 12px 12px;padding:5px;background:transparent;color:var(--gr);border:none;font-size:11px;font-family:inherit;cursor:pointer;text-align:center;}
 .btn-reset:hover{color:var(--mn);}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--mn);color:#fff;padding:12px 22px;border-radius:30px;font-size:12.5px;font-weight:500;box-shadow:0 6px 24px rgba(0,0,0,.25);opacity:0;transition:all .3s;z-index:999;text-align:center;max-width:320px;pointer-events:none;}
+.copy-confirm{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.75);background:#0D1F3C;color:#fff;padding:24px 34px;border-radius:20px;box-shadow:0 16px 48px rgba(0,0,0,.4);z-index:10001;opacity:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:9px;transition:opacity .22s ease,transform .32s cubic-bezier(.34,1.56,.64,1);}
+.copy-confirm.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.copy-confirm-icon{width:46px;height:46px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;flex-shrink:0;}
+.copy-confirm.show .copy-confirm-icon{animation:copyConfirmPop .45s cubic-bezier(.34,1.56,.64,1) .05s both;}
+.copy-confirm-text{font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:.02em;}
+@keyframes copyConfirmPop{0%{transform:scale(0);}60%{transform:scale(1.15);}100%{transform:scale(1);}}
+.copy-success-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10000;pointer-events:none;opacity:0;transition:opacity .2s ease;}
+.copy-success-overlay.show{opacity:1;}
+.copy-success-box{background:#0D1F3C;color:#fff;padding:24px 34px;border-radius:20px;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 20px 60px rgba(0,0,0,.4);transform:scale(.7);transition:transform .35s cubic-bezier(.34,1.56,.64,1);}
+.copy-success-overlay.show .copy-success-box{transform:scale(1);}
+.copy-success-icon{width:46px;height:46px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;}
+.copy-success-overlay.show .copy-success-icon{animation:copyCheckPop .45s cubic-bezier(.34,1.56,.64,1) .08s both;}
+@keyframes copyCheckPop{0%{transform:scale(0);}60%{transform:scale(1.18);}100%{transform:scale(1);}}
+.copy-success-text{font-size:13px;font-weight:600;letter-spacing:.02em;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .footer-inner{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;}
 .footer-inner span{color:rgba(255,255,255,.25);font-size:11px;}
@@ -2999,6 +3013,16 @@ textarea{
 </div><!-- /page-dark-zone -->
 <div class="sticky-spacer"></div>
 <div class="toast" id="toast"></div>
+<div class="copy-confirm" id="copy-confirm" aria-live="polite">
+  <div class="copy-confirm-icon">✓</div>
+  <div class="copy-confirm-text">Copied!</div>
+</div>
+<div class="copy-success-overlay" id="copy-success">
+  <div class="copy-success-box">
+    <div class="copy-success-icon">✓</div>
+    <div class="copy-success-text">Copied to clipboard!</div>
+  </div>
+</div>
 
 <script>
 'use strict';
@@ -3200,7 +3224,7 @@ var S={
   cleanType:'regular', sqm:46, isLarge:false,
   bn:'',
   sched:'Initial / One-time',
-  addons:{}, rt:new Set(),
+  addons:{}, rt:new Set(), noAddonsConfirmed:false,
   lid:null, ln:null, lf:null
 };
 
@@ -3722,7 +3746,7 @@ function updateRecurDP(){
 function renderAddons(){
   var html='';
   // "None" — quick reassurance for users who don't need any add-ons
-  var noAddonsSelected=Object.keys(S.addons).every(function(k){return !S.addons[k]||k==='cleaner'&&S.sqm>60;})&&S.rt.size===0;
+  var noAddonsSelected=S.noAddonsConfirmed===true;
   html+='<div class="ar '+(noAddonsSelected?'on':'')+'" onclick="clearAddons()">'
     +'<div class="ar-ck">'+(noAddonsSelected?'✓':'')+'</div>'
     +'<div class="ar-info"><div class="ar-n">None</div><div class="ar-no">I don\'t need any add-ons</div></div>'
@@ -3766,15 +3790,16 @@ function renderAddons(){
 function togAddon(id){
   if(id==='cleaner'){
     S.addons['cleaner']=(S.addons['cleaner']||0)>0?0:1;
+    S.noAddonsConfirmed=false;
     renderAddons();compute();return;
   }
-  S.addons[id]=(S.addons[id]||0)>0?0:1;if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();
+  S.addons[id]=(S.addons[id]||0)>0?0:1;if(id==='room'&&!S.addons[id])S.rt.clear();S.noAddonsConfirmed=false;renderAddons();compute();
 }
 function clearAddons(){
-  S.addons={};S.rt.clear();renderAddons();compute();
+  S.addons={};S.rt.clear();S.noAddonsConfirmed=true;renderAddons();compute();
 }
-function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[id]=Math.max(0,Math.min(a.max,(S.addons[id]||0)+d));if(id==='room'&&!S.addons[id])S.rt.clear();renderAddons();compute();}
-function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);renderAddons();compute();}
+function chgQ(id,d){var a=ADDONS.find(function(x){return x.id===id;});S.addons[id]=Math.max(0,Math.min(a.max,(S.addons[id]||0)+d));if(id==='room'&&!S.addons[id])S.rt.clear();S.noAddonsConfirmed=false;renderAddons();compute();}
+function togR(rt){if(S.rt.has(rt))S.rt.delete(rt);else S.rt.add(rt);S.noAddonsConfirmed=false;renderAddons();compute();}
 // ── LOCATION ──────────────────────────────────────────────────
 var locViewMode='grid'; // 'grid' or 'list'
 function toggleLocView(){
@@ -4187,7 +4212,7 @@ function bookInstagram(){
 function copyEstimate(){
   if(!validateAllSections())return;
   if(!validateRecurring())return;
-  var msg=buildMsg();if(navigator.clipboard){navigator.clipboard.writeText(msg).then(function(){toast('Estimate copied!');}).catch(function(){fbCopy(msg);});}else fbCopy(msg);
+  var msg=buildMsg();if(navigator.clipboard){navigator.clipboard.writeText(msg).then(function(){showCopyConfirm();}).catch(function(){fbCopy(msg);});}else fbCopy(msg);
 }
 function fbCopy(text){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');toast('Estimate copied!');}catch(e){toast('Could not auto-copy. Please copy manually.');}document.body.removeChild(ta);}
 
@@ -4365,7 +4390,7 @@ function resetAll(){
   ['pol-acc-wrap','whn-acc-wrap'].forEach(function(id){var w=document.getElementById(id);if(w)w.classList.remove('open');});
   var cext=document.getElementById('card-ext');if(cext)cext.classList.remove('addon-open');
   updatePoliciesWarning();
-  S={cleanType:'regular',sqm:46,isLarge:false,bn:'',sched:'Initial / One-time',addons:{},rt:new Set(),lid:null,ln:null,lf:null};
+  S={cleanType:'regular',sqm:46,isLarge:false,bn:'',sched:'Initial / One-time',addons:{},rt:new Set(),noAddonsConfirmed:false,lid:null,ln:null,lf:null};
   document.querySelectorAll('.day.sel-d').forEach(function(d){d.classList.remove('sel-d');});
   document.querySelectorAll('.svc.sel').forEach(function(s){s.classList.remove('sel');});
   // Reset schedule visual (sched-opt replaces old pill system)
@@ -4414,6 +4439,23 @@ async function refreshCal(){
 }
 
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3200);}
+var _copyConfirmTimer;
+function showCopyConfirm(){
+  var el=document.getElementById('copy-confirm');
+  if(!el)return;
+  el.classList.remove('show');
+  void el.offsetWidth; // restart animation if triggered twice in a row
+  el.classList.add('show');
+  clearTimeout(_copyConfirmTimer);
+  _copyConfirmTimer=setTimeout(function(){el.classList.remove('show');},1500);
+}
+function showCopySuccess(){
+  var el=document.getElementById('copy-success');
+  if(!el)return;
+  el.classList.add('show');
+  clearTimeout(showCopySuccess._t);
+  showCopySuccess._t=setTimeout(function(){el.classList.remove('show');},1500);
+}
 
 // ── WIDGET COUNTER ANIMATION ──────────────────────────────────
 (function(){
