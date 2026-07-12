@@ -739,6 +739,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .sec-acc-text{flex:1;min-width:0;}
 .sec-acc-title{font-family:var(--font-brand);font-size:15px;font-weight:800;color:var(--mn);display:block;margin-bottom:2px;}
 .sec-acc-sub{font-size:11px;color:var(--gr);display:block;line-height:1.5;}
+.card-why{display:inline-block;margin-top:6px;padding:3px 10px;border-radius:20px;background:var(--pa);color:var(--mn);font-family:var(--font-body);font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
 .sec-acc-chevron{font-size:13px;color:var(--li);transition:transform .3s ease;flex-shrink:0;}
 .sec-acc-wrap.open .sec-acc-chevron{transform:rotate(180deg);}
 .sec-acc-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);}
@@ -2157,7 +2158,7 @@ textarea{
 
 <!-- STEP 1: DATE -->
 <div class="card" id="card-date">
-  <div class="card-head"><div class="sbadge" id="b1">1</div><div><h2>Select a Date</h2><p>Check our live calendar — max 2 slots per day</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b1">1</div><div><h2>Select a Date</h2><p>Check our live calendar — max 2 slots per day</p><span class="card-why">Affects your price</span></div></div>
   <div class="cal-nav-row">
     <button class="cal-btn" onclick="prevMo()">&#8249;</button>
     <div class="cal-title" id="cal-title">Loading...</div>
@@ -2193,7 +2194,7 @@ textarea{
 
 <!-- STEP 2: TIME -->
 <div class="card reveal locked" id="card-time">
-  <div class="card-head"><div class="sbadge" id="b2">2</div><div><h2>Select a Time</h2><p id="time-sub">Choose your date first</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b2">2</div><div><h2>Select a Time</h2><p id="time-sub">Choose your date first</p><span class="card-why">Helps us prepare</span></div></div>
   <div id="time-alerts"></div>
   <div class="time-grid" id="time-grid">
   <div class="skel-text short" style="width:55%;margin-bottom:10px;opacity:.4;"></div>
@@ -2205,7 +2206,7 @@ textarea{
 
 <!-- STEP 3: CLEANING TYPE -->
 <div class="card reveal locked" id="card-clean">
-  <div class="card-head"><div class="sbadge" id="b3">3</div><div><h2>Cleaning Type</h2><p>Tap to select and see what's included</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b3">3</div><div><h2>Cleaning Type</h2><p>Tap to select and see what's included</p><span class="card-why">Affects your price</span></div></div>
   <div class="clean-opts">
     <div class="clean-opt sel" id="ct-regular" onclick="selCleanType('regular')">
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Regular Cleaning</div><div class="co-badge included">Base price</div></div>
@@ -2360,7 +2361,7 @@ textarea{
 
 <!-- STEP 4: UNIT TYPE -->
 <div class="card reveal locked" id="card-svc">
-  <div class="card-head"><div class="sbadge" id="b4">4</div><div><h2>Property Type</h2><p>Select the type of space you need cleaned</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b4">4</div><div><h2>Property Type</h2><p>Select the type of space you need cleaned</p><span class="card-why">Affects your price</span></div></div>
   <div class="alert info" style="margin-bottom:8px;font-size:10px;"><strong>Prices are fixed per property type.</strong> Larger Home is priced per sqm — a slider will appear when selected.</div>
   <div class="svc-list">
     <div class="svc" data-name="Studio Type" onclick="selSvc(this)">
@@ -2406,7 +2407,7 @@ textarea{
 
 <!-- STEP 5: SCHEDULE -->
 <div class="card reveal locked" id="card-sched">
-  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>Schedule</h2><p>How often do you need cleaning?</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>Schedule</h2><p>How often do you need cleaning?</p><span class="card-why">Affects your price</span></div></div>
   <div class="sched-list">
     <div class="sched-opt sel" onclick="selSched(this)" data-s="Initial / One-time">
       <div class="sched-radio"></div>
@@ -2447,7 +2448,7 @@ textarea{
 <div class="card reveal locked" id="card-ext">
   <div class="card-head addon-acc-head" onclick="toggleAddonsAcc()" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' '){toggleAddonsAcc();event.preventDefault();}">
     <div class="sbadge" id="b6">6</div>
-    <div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p></div>
+    <div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p><span class="card-why">Affects your price</span></div>
     <svg class="addon-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="al-collapse" id="al-collapse">
@@ -2457,7 +2458,7 @@ textarea{
 
 <!-- STEP 7: SPECIAL INSTRUCTIONS -->
 <div class="card reveal locked" id="card-instr">
-  <div class="card-head"><div class="sbadge" id="b7">7</div><div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b7">7</div><div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p><span class="card-why">Helps us prepare</span></div></div>
   <p style="font-size:10px;color:var(--gr);margin-bottom:6px;">Quick select — tap all that apply:</p>
   <div class="sit-tags">
     <div class="sit-tag" onclick="togSit(this)" data-val="None">None</div>
@@ -2479,7 +2480,7 @@ textarea{
 
 <!-- STEP 8: LOCATION -->
 <div class="card reveal locked" id="card-loc">
-  <div class="card-head"><div class="sbadge" id="b8">8</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b8">8</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p><span class="card-why">Affects your price</span></div></div>
   <div style="font-size:10px;color:var(--gr);padding:6px 10px;background:var(--pa);border-radius:6px;margin-bottom:10px;line-height:1.6;">Php 50 base (first 2 km) + Php 10/km up to 6 km + Php 15/km beyond. Nearby areas have fixed rates.</div>
   <div class="loc-toggle-row">
     <span style="font-size:10.5px;color:var(--gr);">View as:</span>
@@ -2492,7 +2493,7 @@ textarea{
 
 <!-- STEP 9: YOUR INFORMATION -->
 <div class="card reveal locked" id="card-info">
-  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Your Information</h2><p>We'll use this to confirm your booking</p></div></div>
+  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Your Information</h2><p>We'll use this to confirm your booking</p><span class="card-why">Required before booking</span></div></div>
   <div class="alert info" style="margin-bottom:8px;font-size:10px;">No log-in required. No bank information collected. Your data is only used to process your booking request.</div>
   <div class="fields">
     <div class="field full">
@@ -2532,6 +2533,7 @@ textarea{
     <div class="sec-acc-text">
       <span class="sec-acc-title">Booking Policies</span>
       <span class="sec-acc-sub">Cancellation, reschedule, and what to expect</span>
+      <span class="card-why">Required before booking</span>
     </div>
     <span class="sec-acc-chevron">▼</span>
   </div>
@@ -2642,6 +2644,7 @@ textarea{
     <div class="sec-acc-text">
       <div class="sec-acc-title">What Happens Next</div>
       <div class="sec-acc-sub">From estimate to spotless home — 6 simple steps</div>
+      <span class="card-why">Required before booking</span>
     </div>
     <span class="sec-acc-chevron" id="whn-chev">▼</span>
   </div>
