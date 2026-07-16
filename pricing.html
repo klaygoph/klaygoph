@@ -415,11 +415,17 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 
 /* ── Add-Ons accordion ── */
 .addon-acc-head{cursor:pointer;user-select:none;position:relative;padding-right:32px;}
+.instr-acc-head{cursor:pointer;user-select:none;position:relative;padding-right:32px;}
 .addon-acc-chevron{position:absolute;right:0;top:50%;transform:translateY(-50%) rotate(0deg);color:#6B6B68;transition:transform .25s ease;flex-shrink:0;}
 #card-ext.addon-open .addon-acc-chevron{transform:translateY(-50%) rotate(180deg);}
 .al-collapse{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;}
 .al-collapse>.al{overflow:hidden;}
 #card-ext.addon-open .al-collapse{grid-template-rows:1fr;margin-top:14px;}
+.instr-acc-chevron{position:absolute;right:0;top:50%;transform:translateY(-50%) rotate(0deg);color:#6B6B68;transition:transform .25s ease;flex-shrink:0;}
+#card-instr.instr-open .instr-acc-chevron{transform:translateY(-50%) rotate(180deg);}
+.instr-collapse{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;}
+.instr-collapse>.instr-inner{overflow:hidden;}
+#card-instr.instr-open .instr-collapse{grid-template-rows:1fr;margin-top:14px;}
 /* (old stale 80%-width mobile rule removed — .sec-acc-wrap/.pb/.restriction-alert
    now unified with .card at 90% via .split-right selector below, so they can
    never drift apart from the main step cards again) */
@@ -523,14 +529,15 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 
 /* CLEANING TYPE */
 .clean-opts{display:flex;flex-direction:column;gap:8px;}
-.opts-change-btn{display:none;margin-top:10px;background:none;border:none;color:var(--pr);font-family:var(--font-body);font-size:11.5px;font-weight:700;text-decoration:underline;text-underline-offset:2px;cursor:pointer;padding:4px 0;}
-.clean-opts.collapsed .clean-opt:not(.sel){display:none;}
-.clean-opts.collapsed+.opts-change-btn{display:inline-block;}
-#svc-list-wrap.collapsed .svc:not(.sel){display:none;}
-#svc-list-wrap.collapsed .svc-div{display:none;}
-#svc-list-wrap.collapsed+.opts-change-btn{display:inline-block;}
-#loc-grid.collapsed .lb:not(.sel),#loc-grid.collapsed .lb-row:not(.sel){display:none;}
-#loc-grid.collapsed+.opts-change-btn{display:inline-block;}
+.clean-opts.opts-chosen .clean-opt:not(.sel){opacity:.4;filter:saturate(.35);transform:scale(.98);}
+.clean-opts.opts-chosen .clean-opt{transition:opacity .3s ease,filter .3s ease,transform .3s ease;}
+.clean-opts.opts-chosen .clean-opt:not(.sel):hover{opacity:.75;filter:saturate(.7);}
+#svc-list-wrap.opts-chosen .svc:not(.sel){opacity:.4;filter:saturate(.35);transform:scale(.98);}
+#svc-list-wrap.opts-chosen .svc{transition:opacity .3s ease,filter .3s ease,transform .3s ease;}
+#svc-list-wrap.opts-chosen .svc:not(.sel):hover{opacity:.75;filter:saturate(.7);}
+#loc-grid.opts-chosen .lb:not(.sel){opacity:.4;filter:saturate(.35);transform:scale(.98);}
+#loc-grid.opts-chosen .lb{transition:opacity .3s ease,filter .3s ease,transform .3s ease;}
+#loc-grid.opts-chosen .lb:not(.sel):hover{opacity:.75;filter:saturate(.7);}
 .clean-opt{border:1.5px solid #EBF1FA;border-radius:18px;cursor:pointer;transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease;background:#fff;overflow:hidden;}
 .clean-opt:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(43,78,138,.08);}
 .clean-opt:hover{border-color:var(--li);box-shadow:0 4px 16px rgba(43,78,138,.07);}
@@ -1217,14 +1224,14 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
    ═══════════════════════════════════════════════════ */
 
 /* Res section (multi-session dates breakdown) */
-.be-res-section{padding:10px 14px;margin:4px 14px 6px;background:rgba(255,255,255,.06);border-radius:12px;border:1px solid rgba(168,191,224,.12);}
+.be-res-section{padding:10px 16px;margin:4px 14px 6px;background:rgba(255,255,255,.06);border-radius:12px;border:1px solid rgba(168,191,224,.12);}
 .be-res-caption{font-size:9px;color:rgba(168,191,224,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
 .be-res-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid rgba(168,191,224,.1);}
 .be-res-reason{color:rgba(247,249,252,.62);flex:1;padding-right:8px;line-height:1.4;}
-.be-res-fee{color:#F7F9FC;font-weight:700;white-space:nowrap;}
+.be-res-fee{color:#F7F9FC;font-weight:800;font-size:15px;white-space:nowrap;}
 .be-res-dates-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;}
 .be-res-dates-lbl{color:rgba(247,249,252,.62);}
-.be-dates-count{color:#F7F9FC;font-weight:900;font-family:var(--font-body);font-size:16px;letter-spacing:-.02em;}
+.be-dates-count{color:#F7F9FC;font-weight:800;font-family:var(--font-body);font-size:15px;letter-spacing:-.02em;}
 
 /* Balance band (blue) */
 .be-balance-band{margin:4px 14px 6px;background:#0D1F3C;border:1.5px solid rgba(168,191,224,.22);border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
@@ -2222,7 +2229,7 @@ textarea{
 <!-- STEP 3: CLEANING TYPE -->
 <div class="card card-price reveal locked" id="card-clean">
   <div class="card-head"><div class="sbadge" id="b3">3</div><div><h2>Cleaning Type</h2><p>Tap to select and see what's included</p><span class="card-why">Affects your price</span></div></div>
-  <div class="clean-opts" id="clean-opts-wrap">
+  <div class="clean-opts opts-chosen" id="clean-opts-wrap">
     <div class="clean-opt sel" id="ct-regular" onclick="selCleanType('regular')">
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Regular Cleaning</div><div class="co-badge included">Base price</div></div>
       <div class="co-details">
@@ -2368,7 +2375,6 @@ textarea{
       </div>
     </div>
   </div>
-  <button type="button" class="opts-change-btn" id="clean-opts-change" onclick="expandOpts('clean-opts-wrap','clean-opts-change')">Change cleaning type</button>
   <div class="post-con-note" style="margin-top:8px;">
     <strong>Post-Construction Cleaning — Not Currently Accepted</strong>
     We recommend waiting until major dust and debris have fully settled before booking. Thank you for your understanding!
@@ -2404,7 +2410,6 @@ textarea{
       <div class="svc-right"><div class="svc-price" id="p-house">—</div><div class="svc-time" id="t-house"></div></div>
     </div>
   </div>
-  <button type="button" class="opts-change-btn" id="svc-list-change" onclick="expandOpts('svc-list-wrap','svc-list-change')">Change property type</button>
   <!-- Larger Home inline slider — shown only when Larger Home is selected -->
   <div class="lh-slider-wrap" id="lh-slider-wrap">
     <div class="lh-slider-top">
@@ -2475,23 +2480,31 @@ textarea{
 
 <!-- STEP 7: SPECIAL INSTRUCTIONS -->
 <div class="card reveal locked" id="card-instr">
-  <div class="card-head"><div class="sbadge" id="b7">7</div><div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p><span class="card-why">Helps us prepare</span></div></div>
-  <p style="font-size:10px;color:var(--gr);margin-bottom:6px;">Quick select — tap all that apply:</p>
-  <div class="sit-tags">
-    <div class="sit-tag" onclick="togSit(this)" data-val="None">None</div>
-    <div class="sit-tag" onclick="togSit(this)" data-val="Kids present">Kids present</div>
-    <div class="sit-tag" onclick="togSit(this)" data-val="Pet(s) at home">Pet(s) at home</div>
-    <div class="sit-tag" onclick="togSit(this)" data-val="Other workers on-site" data-restrict="true">Other workers on-site</div>
-    <div class="sit-tag" onclick="togSit(this)" data-val="Under renovation" data-restrict="true">Under renovation</div>
+  <div class="card-head instr-acc-head" onclick="toggleInstrAcc()" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' '){toggleInstrAcc();event.preventDefault();}">
+    <div class="sbadge" id="b7">7</div>
+    <div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p><span class="card-why">Helps us prepare</span></div>
+    <svg class="instr-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
-  <div class="restriction-alert" id="restriction-alert">
-    <strong>We're Unable to Accept This Booking</strong>
-    For the safety of our crew and the integrity of your clean, we do not service properties where active third-party work, ongoing renovation, or construction is taking place at the same time. We'd love to help once the space is ready — please rebook when all other on-site work is complete.
-  </div>
-  <textarea class="ia" id="instr" placeholder="Fragile items, areas to prioritize, access instructions, preferred products..." maxlength="500"></textarea>
-  <div class="wb" style="margin-top:8px;">
-    <strong>Building / Gate Pass &amp; Noise Restrictions</strong>
-    <p>If your property requires a visitor or contractor pass, please arrange this before our visit. Some buildings only allow contractors until 5–6 PM — confirm with property management in advance.</p>
+  <div class="instr-collapse" id="instr-collapse">
+    <div class="instr-inner">
+      <p style="font-size:10px;color:var(--gr);margin-bottom:6px;">Quick select — tap all that apply:</p>
+      <div class="sit-tags">
+        <div class="sit-tag" onclick="togSit(this)" data-val="None">None</div>
+        <div class="sit-tag" onclick="togSit(this)" data-val="Kids present">Kids present</div>
+        <div class="sit-tag" onclick="togSit(this)" data-val="Pet(s) at home">Pet(s) at home</div>
+        <div class="sit-tag" onclick="togSit(this)" data-val="Other workers on-site" data-restrict="true">Other workers on-site</div>
+        <div class="sit-tag" onclick="togSit(this)" data-val="Under renovation" data-restrict="true">Under renovation</div>
+      </div>
+      <div class="restriction-alert" id="restriction-alert">
+        <strong>We're Unable to Accept This Booking</strong>
+        For the safety of our crew and the integrity of your clean, we do not service properties where active third-party work, ongoing renovation, or construction is taking place at the same time. We'd love to help once the space is ready — please rebook when all other on-site work is complete.
+      </div>
+      <textarea class="ia" id="instr" placeholder="Fragile items, areas to prioritize, access instructions, preferred products..." maxlength="500"></textarea>
+      <div class="wb" style="margin-top:8px;">
+        <strong>Building / Gate Pass &amp; Noise Restrictions</strong>
+        <p>If your property requires a visitor or contractor pass, please arrange this before our visit. Some buildings only allow contractors until 5–6 PM — confirm with property management in advance.</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2504,7 +2517,6 @@ textarea{
     <button class="loc-toggle-btn" id="loc-toggle-btn" onclick="toggleLocView()">Switch to List</button>
   </div>
   <div id="loc-grid"></div>
-  <button type="button" class="opts-change-btn" id="loc-grid-change" onclick="expandOpts('loc-grid','loc-grid-change')">Change location</button>
   <div class="other-inp" id="other-inp"><input type="text" id="other-txt" placeholder="Type your area / city..." oninput="compute()" maxlength="60"></div>
   <div class="loc-note">Transport fee is an estimate. Final amount confirmed based on your exact address.</div>
 </div>
@@ -3272,6 +3284,14 @@ function toggleAddonsAcc(){
   if(head)head.setAttribute('aria-expanded',!isOpen);
   if(!isOpen)addonsOpened=true;
 }
+function toggleInstrAcc(){
+  var card=document.getElementById('card-instr');
+  if(!card||card.classList.contains('locked'))return;
+  var isOpen=card.classList.contains('instr-open');
+  card.classList.toggle('instr-open',!isOpen);
+  var head=card.querySelector('.instr-acc-head');
+  if(head)head.setAttribute('aria-expanded',!isOpen);
+}
 function togAcc(id){
   var el=document.getElementById(id);
   if(!el)return;
@@ -3540,13 +3560,9 @@ function onAreaSlide(inp){syncArea(+inp.value);}
 function onAreaInput(inp){syncArea(+inp.value);}
 
 // ── CLEANING TYPE ─────────────────────────────────────────────
-function collapseOpts(wrapId){
+function markChosen(wrapId){
   var wrap=document.getElementById(wrapId);
-  if(wrap)wrap.classList.add('collapsed');
-}
-function expandOpts(wrapId,btnId){
-  var wrap=document.getElementById(wrapId);
-  if(wrap)wrap.classList.remove('collapsed');
+  if(wrap)wrap.classList.add('opts-chosen');
 }
 function selCleanType(type){
   S.cleanType=type;
@@ -3554,7 +3570,7 @@ function selCleanType(type){
     var el=document.getElementById('ct-'+t); if(el)el.classList.toggle('sel',t===type);
   });
   compute();
-  collapseOpts('clean-opts-wrap');
+  markChosen('clean-opts-wrap');
 }
 
 // ── SERVICE (PROPERTY TYPE) ───────────────────────────────────
@@ -3575,7 +3591,7 @@ function selSvc(el){
     S.isLarge=false;
   }
   compute();
-  collapseOpts('svc-list-wrap');
+  markChosen('svc-list-wrap');
 }
 
 // ── SCHEDULE ──────────────────────────────────────────────────
@@ -3879,7 +3895,7 @@ function selLocById(id){
   S.lid=id;S.ln=l.name;S.lf=calcFee(l);
   var oi=document.getElementById('other-inp');if(oi)oi.classList.toggle('show',!!l.others);
   updateRecurDP();compute();
-  collapseOpts('loc-grid');
+  markChosen('loc-grid');
 }
 function selLoc(id){
   document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('sel');});
@@ -3889,7 +3905,7 @@ function selLoc(id){
   S.lid=id;S.ln=l.name;S.lf=calcFee(l);
   var oi=document.getElementById('other-inp');if(oi)oi.classList.toggle('show',!!l.others);
   updateRecurDP();compute();
-  collapseOpts('loc-grid');
+  markChosen('loc-grid');
 }
 
 // ── TIME CALC ─────────────────────────────────────────────────
@@ -4420,7 +4436,8 @@ function openPrint(){
 function resetAll(){
   selDate=null;selTime=null;selSituations=new Set();recurSlots=[];schedTouched=false;
   policiesOpened=false;whnOpened=false;addonsOpened=false;
-  ['clean-opts-wrap','svc-list-wrap','loc-grid'].forEach(function(id){var w=document.getElementById(id);if(w)w.classList.remove('collapsed');});
+  ['svc-list-wrap','loc-grid'].forEach(function(id){var w=document.getElementById(id);if(w)w.classList.remove('opts-chosen');});
+  var cow=document.getElementById('clean-opts-wrap');if(cow)cow.classList.add('opts-chosen');
   ['pol-acc-wrap','whn-acc-wrap'].forEach(function(id){var w=document.getElementById(id);if(w)w.classList.remove('open');});
   var cext=document.getElementById('card-ext');if(cext)cext.classList.remove('addon-open');
   updatePoliciesWarning();
