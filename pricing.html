@@ -3024,7 +3024,7 @@ textarea{
 </div>
 
 <div class="copyright-bar">
-  <span>© 2025 Klaygo PH. All rights reserved.</span>
+  <span>&copy; <span id="copyright-year">2026</span> Klaygo PH. All rights reserved.</span>
   <span class="copyright-sep">·</span>
   <a href="terms.html">Terms of Use</a>
   <span class="copyright-sep">·</span>
@@ -4580,6 +4580,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();
   // Mark body as JS-ready — triggers CSS animation enhancement on hero text
   // Text is always visible even if this never fires
   document.body.classList.add('js-ready');
+
+  // Keep the footer copyright year current without manual edits
+  var cyEl=document.getElementById('copyright-year');
+  if(cyEl) cyEl.textContent=new Date().getFullYear();
 
   if(!prefReduced){
     var ticking=false;
