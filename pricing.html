@@ -284,7 +284,7 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .nav-menu-pill:nth-child(7){transition-delay:.36s;}
 .nav-menu-pill:nth-child(8){transition-delay:.42s;}
 .nav-menu-pill:nth-child(9){transition-delay:.48s;}
-.nav-menu-footer{margin-top:28px;padding-top:20px;border-top:1px solid rgba(168,191,224,.15);display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;width:100%;}
+.nav-menu-footer{margin-top:28px;padding-top:20px;padding-left:16px;border-top:1px solid rgba(168,191,224,.15);display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;width:100%;}
 .nav-menu-footer-logo{height:20px;filter:brightness(0) invert(1);opacity:.9;margin-bottom:5px;}
 .nav-menu-footer-tag{font-family:var(--font-body);font-size:.6875rem;color:rgba(247,249,252,.5);letter-spacing:.02em;margin-bottom:7px;}
 .nav-menu-footer-line{font-family:var(--font-body);font-size:.75rem;color:rgba(247,249,252,.62);line-height:1.5;text-decoration:none;display:block;}
@@ -1455,11 +1455,11 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 
 /* ── Col 2 Desktop: Nav links ── */
 /* padding-top: nothing runs parallel to the Klaygo logo */
-.footer-nav-col{display:flex;flex-direction:column;justify-content:flex-end;}
-.footer-nav{display:flex;flex-direction:column;gap:clamp(10px,1.4vh,14px);}
+.footer-nav-col{display:flex;flex-direction:column;justify-content:flex-start;padding-top:calc(clamp(36px,4.5vw,56px) + clamp(16px,2.5vh,24px));}
+.footer-nav{display:flex;flex-direction:column;justify-content:space-between;flex:1;gap:clamp(10px,1.4vh,14px);}
 .footer-nav-link{
   font-family:'Manrope',sans-serif;
-  font-size:clamp(10px,0.95vw,12.5px);
+  font-size:clamp(13px,1.15vw,15.5px);
   font-weight:400;
   letter-spacing:0;
   text-transform:none;
@@ -1475,20 +1475,20 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 /* ── Col 3 Desktop: Contact with circle icons + Social ── */
 /* padding-top shifts col 3 down so WWW.KLAYGOPH.COM visually aligns
    with HELLO@KLAYGOPH.COM (≈ 1 contact-item-height + gap pushed down) */
-.footer-contact-col{display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(12px,1.6vh,18px);}
+.footer-contact-col{display:flex;flex-direction:column;justify-content:space-between;padding-top:calc(clamp(36px,4.5vw,56px) + clamp(16px,2.5vh,24px));gap:clamp(12px,1.6vh,18px);}
 .footer-contact-item{display:flex;align-items:center;gap:clamp(10px,1.1vw,13px);}
 .footer-contact-icon{
   flex-shrink:0;
-  width:clamp(28px,2.5vw,34px);
-  height:clamp(28px,2.5vw,34px);
+  width:clamp(32px,2.8vw,38px);
+  height:clamp(32px,2.8vw,38px);
   border-radius:50%;
   border:1.5px solid rgba(247,249,252,.28);
   display:flex;align-items:center;justify-content:center;
   margin-top:1px;
 }
 .footer-contact-icon svg{
-  width:clamp(11px,1vw,14px);
-  height:clamp(11px,1vw,14px);
+  width:clamp(13px,1.15vw,16px);
+  height:clamp(13px,1.15vw,16px);
   stroke:rgba(247,249,252,.68);
   stroke-width:1.8;
   fill:none;stroke-linecap:round;stroke-linejoin:round;
@@ -1496,7 +1496,7 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 .footer-contact-text{display:flex;flex-direction:column;gap:2px;}
 .footer-contact-line{
   font-family:'Manrope',sans-serif;
-  font-size:clamp(10px,0.95vw,12px);
+  font-size:clamp(13px,1.15vw,15.5px);
   font-weight:600;
   color:rgba(247,249,252,.68);
   line-height:1.45;
