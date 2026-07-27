@@ -232,7 +232,8 @@ body.js-ready .hero-checks{animation:heroFadeUp .8s ease .36s both;}
 .nav-hamburger:hover{opacity:.75;}
 .nav-hamburger img{width:38px;height:38px;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
 .nav-hamburger.rotating img{transform:rotate(360deg);}
-.btn-ref{background:transparent;border:1px solid rgba(168,191,224,.25);color:var(--li);border-radius:5px;padding:4px 10px;font-size:.625rem;cursor:pointer;font-family:inherit;}
+.btn-ref{background:transparent;border:1px solid rgba(168,191,224,.25);color:var(--li);border-radius:50%;width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+.btn-ref svg{width:14px;height:14px;}
 .btn-ref:hover{border-color:var(--li);color:#fff;}
 
 /* ── NAV SUB-BAR — no dividing line ── */
@@ -801,7 +802,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .avail-for-line{font-size:.8125rem;font-weight:700;color:#F7F9FC;margin-bottom:6px;}
 .avail-summary{font-size:.75rem;color:rgba(168,191,224,.9);line-height:1.65;}
 .transpo-note{padding:6px 20px;font-size:.6875rem;color:var(--gr);line-height:1.6;border-top:1px solid #EBF1FA;}
-.discl{padding:10px 20px;background:#F7F9FC;font-size:.75rem;color:var(--mn);line-height:1.65;border-top:1.5px solid #EBF1FA;font-weight:500;}
+.discl{padding:10px 20px;background:#F7F9FC;font-size:.9375rem;color:var(--mn);line-height:1.65;border-top:1.5px solid #EBF1FA;font-weight:500;text-align:center;}
 .btn-book{display:block;width:calc(100% - 24px);margin:14px 12px 6px;padding:14px;background:var(--mn);color:#fff;border:none;border-radius:10px;font-size:.875rem;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;text-decoration:none;transition:background .14s,box-shadow .14s;}
 .btn-book:hover{background:var(--pr);box-shadow:0 6px 20px rgba(43,78,138,.3);}
 .btn-copy{display:none;width:calc(100% - 24px);margin:0 12px 6px;padding:10px;background:transparent;color:var(--pr);border:1.5px solid var(--li);border-radius:10px;font-size:.75rem;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
@@ -982,13 +983,13 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 .be-total-prefix{font-size:16px;color:rgba(168,191,224,.8);font-weight:400;}
 .be-time{font-size:.75rem;color:#F7F9FC;margin-bottom:0;font-weight:600;}
 .be-summary-card{border:1.5px solid rgba(247,249,252,.25);border-radius:16px;padding:14px 16px;margin:10px 14px 12px;background:rgba(255,255,255,.06);}
-.be-line{display:flex;justify-content:space-between;gap:7px;padding:6px 0;border-bottom:1px solid rgba(168,191,224,.15);font-size:.8125rem;}
+.be-line{display:flex;justify-content:space-between;align-items:baseline;gap:7px;padding:6px 0;border-bottom:1px solid rgba(168,191,224,.15);font-size:.875rem;}
 .be-line:last-child{border:none;}
-.be-ll{color:rgba(247,249,252,.7);line-height:1.45;}
+.be-ll{color:rgba(247,249,252,.7);font-weight:400;line-height:1.45;}
 .be-lv{color:#F7F9FC;font-weight:700;white-space:nowrap;}
-.be-total-line{display:flex;justify-content:space-between;align-items:center;padding-top:12px;margin-top:6px;border-top:2px solid rgba(168,191,224,.35);}
-.be-total-line .be-ll{color:rgba(247,249,252,.85);font-weight:600;font-size:.875rem;}
-.be-total-line .be-lv{font-size:24px;font-weight:700;color:#F7F9FC;}
+.be-total-line{display:flex;justify-content:space-between;align-items:baseline;padding-top:12px;margin-top:6px;border-top:2px solid rgba(168,191,224,.35);}
+.be-total-line .be-ll{color:rgba(247,249,252,.85);font-weight:700;font-size:.875rem;}
+.be-total-line .be-lv{font-size:.875rem;font-weight:900;color:#F7F9FC;}
 .be-pay-box{background:rgba(13,31,60,.3);border-radius:16px;padding:14px 16px;margin:12px 0;border:1.5px solid rgba(168,191,224,.2);}
 
 .be-pay-now-label{font-size:.625rem;color:rgba(168,191,224,.8);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px;}
@@ -1003,7 +1004,7 @@ footer{background:#0D1F3C;padding:14px 24px;margin:0;}
 .be-avail{padding:0 14px 8px;background:transparent;}
 .be-avail.none{padding:6px 14px;font-size:.75rem;color:rgba(247,249,252,.5);}
 .be-avail.na{padding:6px 14px;font-size:.75rem;color:#f88;font-weight:500;}
-.be-discl{font-size:.6875rem;color:rgba(247,249,252,.5);line-height:1.65;margin:0 14px 14px;}
+.be-discl{font-size:.875rem;color:rgba(247,249,252,.5);line-height:1.65;margin:0 14px 14px;text-align:center;}
 .be-btn{display:block;width:calc(100% - 28px);margin:0 14px 10px;padding:15px;background:#F0A500;color:#fff;border:none;border-radius:10px;font-size:.875rem;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;transition:all .22s ease;box-shadow:none;}
 .be-btn:hover{background:var(--li);box-shadow:none;transform:translateY(-1px);}
 .be-btn-sec{display:block;width:calc(100% - 28px);margin:0 14px 8px;padding:11px;background:transparent;color:#F7F9FC;border:1.5px solid rgba(168,191,224,.4);border-radius:10px;font-size:.8125rem;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;transition:all .14s;}
@@ -1215,26 +1216,26 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 /* Res section (multi-session dates breakdown) */
 .be-res-section{padding:10px 16px;margin:4px 14px 6px;background:rgba(255,255,255,.06);border-radius:12px;border:1px solid rgba(168,191,224,.12);}
-.be-res-caption{font-size:.625rem;color:rgba(168,191,224,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
-.be-res-row{display:flex;justify-content:space-between;align-items:baseline;font-size:.75rem;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid rgba(168,191,224,.1);}
-.be-res-reason{color:rgba(247,249,252,.62);flex:1;padding-right:8px;line-height:1.4;}
-.be-res-fee{color:#F7F9FC;font-weight:800;font-size:15px;white-space:nowrap;}
-.be-res-dates-row{display:flex;justify-content:space-between;align-items:baseline;font-size:.75rem;}
-.be-res-dates-lbl{color:rgba(247,249,252,.62);}
-.be-dates-count{color:#F7F9FC;font-weight:800;font-family:var(--font-body);font-size:15px;letter-spacing:-.02em;}
+.be-res-caption{font-size:.875rem;font-weight:400;color:rgba(168,191,224,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.be-res-row{display:flex;justify-content:space-between;align-items:baseline;font-size:.875rem;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid rgba(168,191,224,.1);}
+.be-res-reason{color:rgba(247,249,252,.62);font-weight:400;flex:1;padding-right:8px;line-height:1.4;}
+.be-res-fee{color:#F7F9FC;font-weight:900;font-size:.875rem;white-space:nowrap;}
+.be-res-dates-row{display:flex;justify-content:space-between;align-items:baseline;font-size:.875rem;}
+.be-res-dates-lbl{color:rgba(247,249,252,.62);font-weight:400;}
+.be-dates-count{color:#F7F9FC;font-weight:900;font-family:var(--font-body);font-size:.875rem;letter-spacing:-.02em;}
 
 /* Balance band (blue) */
 .be-balance-band{margin:4px 14px 6px;background:#0D1F3C;border:1.5px solid rgba(168,191,224,.22);border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
 /* Upfront band (gold) */
 .be-upfront-band{margin:0 14px 10px;background:rgba(22,15,0,.9);border:2px solid #C9A227;border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
 .be-band-text-col{flex:1;}
-.be-band-main-lbl{font-size:.625rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
+.be-band-main-lbl{font-size:.875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
 .be-balance-band .be-band-main-lbl{color:rgba(168,191,224,.75);}
 .be-upfront-band .be-band-main-lbl{color:#C9A227;}
-.be-band-sub-lbl{font-size:.625rem;}
+.be-band-sub-lbl{font-size:.875rem;font-weight:400;}
 .be-balance-band .be-band-sub-lbl{color:rgba(168,191,224,.38);}
 .be-upfront-band .be-band-sub-lbl{color:rgba(201,162,39,.45);}
-.be-band-num{font-family:var(--font-body);font-size:20px;font-weight:900;white-space:nowrap;text-align:right;flex-shrink:0;}
+.be-band-num{font-family:var(--font-body);font-size:.875rem;font-weight:900;white-space:nowrap;text-align:right;flex-shrink:0;}
 .be-balance-band .be-band-num{color:#A8BFE0;}
 .be-upfront-band .be-band-num{color:#C9A227;}
 
@@ -1381,10 +1382,10 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 /* Google rating badge — UPDATE the rating text to your verified Google rating */
 .footer-rating{display:flex;align-items:center;gap:7px;margin-bottom:clamp(8px,1vh,12px);}
-.footer-rating-stars{color:#A8BFE0;letter-spacing:2px;font-size:clamp(13px,1.2vw,16px);line-height:1;}
+.footer-rating-stars{color:#A8BFE0;letter-spacing:2px;font-size:clamp(16px,1.5vw,20px);line-height:1;}
 .footer-rating-text{
   font-family:'Manrope',sans-serif;
-  font-size:clamp(10.5px,0.95vw,12.5px);
+  font-size:clamp(13px,1.15vw,15px);
   color:rgba(247,249,252,.58);
   font-weight:600;
   letter-spacing:.01em;
@@ -1392,11 +1393,9 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 
 /* Desktop: QR block below logo */
 .footer-qr-block{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(12px,1.6vh,18px);}
-/* Social icons below QR on desktop — max-width matches QR */
-.footer-qr-social{margin-top:2px;gap:clamp(12px,1.4vw,18px);}
 .footer-review-text{
   font-family:'Manrope',sans-serif;
-  font-size:clamp(11px,1.05vw,13px);
+  font-size:clamp(13.5px,1.25vw,15.5px);
   color:rgba(247,249,252,.60);
   line-height:1.75;
   margin:0;
@@ -1412,8 +1411,8 @@ button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outli
 }
 .footer-qr-link:hover{opacity:.8;}
 .footer-qr{
-  width:clamp(80px,6.5vw,104px);
-  height:clamp(80px,6.5vw,104px);
+  width:clamp(96px,7.5vw,120px);
+  height:clamp(96px,7.5vw,120px);
   display:block;
 }
 
@@ -1475,20 +1474,18 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 /* ── Col 3 Desktop: Contact with circle icons + Social ── */
 /* padding-top shifts col 3 down so WWW.KLAYGOPH.COM visually aligns
    with HELLO@KLAYGOPH.COM (≈ 1 contact-item-height + gap pushed down) */
-.footer-contact-col{display:flex;flex-direction:column;justify-content:space-between;padding-top:calc(clamp(36px,4.5vw,56px) + clamp(16px,2.5vh,24px));gap:clamp(12px,1.6vh,18px);}
+.footer-contact-col{display:flex;flex-direction:column;justify-content:space-between;padding-top:calc(clamp(36px,4.5vw,56px) + clamp(16px,2.5vh,24px));gap:clamp(8px,1vh,11px);}
 .footer-contact-item{display:flex;align-items:center;gap:clamp(10px,1.1vw,13px);}
 .footer-contact-icon{
   flex-shrink:0;
-  width:clamp(32px,2.8vw,38px);
-  height:clamp(32px,2.8vw,38px);
-  border-radius:50%;
-  border:1.5px solid rgba(247,249,252,.28);
+  width:clamp(18px,1.4vw,20px);
+  height:clamp(18px,1.4vw,20px);
   display:flex;align-items:center;justify-content:center;
   margin-top:1px;
 }
 .footer-contact-icon svg{
-  width:clamp(13px,1.15vw,16px);
-  height:clamp(13px,1.15vw,16px);
+  width:100%;
+  height:100%;
   stroke:rgba(247,249,252,.68);
   stroke-width:1.8;
   fill:none;stroke-linecap:round;stroke-linejoin:round;
@@ -1554,7 +1551,6 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 .footer-social a:hover{opacity:.7;transform:translateY(-2px);}
 .footer-social-icon{width:clamp(17px,1.8vw,22px);height:clamp(17px,1.8vw,22px);display:block;}
 /* Desktop: social icons placed below QR — slightly tighter gap to stay within QR column width */
-.footer-qr-social{gap:clamp(10px,1.2vw,16px);}
 
 /* ── Copyright bar ── */
 .copyright-bar{
@@ -2001,7 +1997,9 @@ textarea{
       </div>
     </div>
     <div class="nav-top-right">
-      <button class="btn-ref" onclick="refreshCal()">Refresh Calendar</button>
+      <button class="btn-ref" onclick="refreshCal()" aria-label="Refresh calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+      </button>
       <!-- Menu button PNG -->
       <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
         <img src="/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Full.png" alt="Menu"
@@ -2909,13 +2907,6 @@ textarea{
         <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-qr-link" aria-label="Leave a Google Review">
           <img class="footer-qr" src="/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-qr-link').style.display='none'">
         </a>
-        <!-- Social icons below QR on desktop — aligned to QR width -->
-        <div class="footer-social footer-qr-social">
-          <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
-          <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
-          <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
-          <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
-        </div>
       </div>
 
       <!-- Mobile: nav links -->
@@ -2970,8 +2961,14 @@ textarea{
       <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-mb-website">WWW.KLAYGOPH.COM</a>
     </div>
 
-    <!-- COL 3 Desktop: Contact with circle icons + Social -->
+    <!-- COL 3 Desktop: Social + Contact with plain icons -->
     <div class="footer-contact-col f-dt">
+      <div class="footer-social footer-contact-social">
+        <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+      </div>
       <div class="footer-contact-item">
         <div class="footer-contact-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 5.72 5.72l1.73-1.74a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
