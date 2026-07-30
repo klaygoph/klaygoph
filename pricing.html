@@ -1331,7 +1331,8 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 /* ── Col 2 Desktop: Nav links ── */
 /* padding-top: nothing runs parallel to the Klaygo logo */
 .footer-nav-col{display:flex;flex-direction:column;justify-content:flex-start;padding-top:calc(clamp(36px,4.5vw,56px) + clamp(16px,2.5vh,24px));}
-.footer-nav{display:flex;flex-direction:column;justify-content:space-between;flex:1;gap:clamp(10px,1.4vh,14px);}
+.footer-nav{display:flex;flex-direction:column;justify-content:flex-start;flex:1;gap:clamp(10px,1.4vh,14px);}
+.footer-nav > *:last-child{margin-top:auto;}
 .footer-nav-link{
   font-family:"Manrope",sans-serif;
   font-size:clamp(13px,1.15vw,15.5px);
@@ -1350,7 +1351,8 @@ nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:cla
 /* ── Col 3 Desktop: Contact with circle icons + Social ── */
 /* padding-top shifts col 3 down so WWW.KLAYGOPH.COM visually aligns
    with HELLO@KLAYGOPH.COM (≈ 1 contact-item-height + gap pushed down) */
-.footer-contact-col{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding-top:calc(clamp(36px,4.5vw,56px) + clamp(16px,2.5vh,24px));gap:clamp(4px,0.5vh,6px);}
+.footer-contact-col{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:calc(clamp(36px,4.5vw,56px) + clamp(16px,2.5vh,24px));gap:clamp(4px,0.5vh,6px);}
+.footer-contact-col > *:last-child{margin-top:auto;}
 .footer-contact-item{display:flex;align-items:center;gap:clamp(10px,1.1vw,13px);}
 .footer-contact-icon{
   flex-shrink:0;
@@ -4280,6 +4282,14 @@ textarea{
         </div>
         <div class="footer-contact-text">
           <a href="mailto:hello@klaygoph.com" class="footer-contact-line footer-contact-link">HELLO@KLAYGOPH.COM</a>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <a href="https://calendar.google.com/calendar/u/0/embed?src=91bd20a18be9ffc46ab26dcba87513699ca82c5027a77484a75af3670ec424a8@group.calendar.google.com&amp;ctz=Asia/Manila&amp;pli=1" target="_blank" rel="noopener" class="footer-contact-line footer-contact-link">VIEW LIVE CALENDAR</a>
         </div>
       </div>
       <div class="footer-contact-item">
