@@ -1927,9 +1927,10 @@ p,span,div,li,label,input,textarea,select,button,a,td,th,small,strong,em{font-fa
 .cal-title{font-size:.875rem;font-weight:700;color:var(--mn);}
 .cal-btn{background:none;border:1.5px solid var(--bd);border-radius:0;width:38px;height:38px;cursor:pointer;color:var(--pr);font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .13s;line-height:1;min-width:38px;}
 .cal-btn:hover{background:var(--pr);color:#fff;border-color:var(--pr);}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;min-width:0;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;min-width:0;}
 .cal-dow{text-align:center;font-size:.625rem;font-weight:700;color:var(--gr);padding:4px 0;letter-spacing:.04em;min-width:0;}
-.day{text-align:center;padding:6px 2px;border-radius:0;font-size:.8125rem;transition:all .2s ease;border:1.5px solid transparent;line-height:1.3;cursor:pointer;min-width:0;}
+.day{text-align:center;padding:6px 2px;border-radius:0;font-size:.8125rem;transition:all .2s ease;border:1.5px solid #EBF1FA;line-height:1.3;cursor:pointer;min-width:0;}
+.day.empty{border-color:transparent;}
 .day:hover:not(.empty):not(.past):not(.full-d){background:var(--pa);border-color:var(--li);}
 .day.sel-d{background:var(--pr) !important;color:#F7F9FC !important;border-color:var(--pr) !important;}
 .day.today-d{border-color:var(--li);color:var(--pr);font-weight:700;}
@@ -5237,7 +5238,7 @@ function renderLocs(){
     html+='</div>';
     grid.innerHTML=html;
   } else {
-    html='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
+    html='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">';
     LOCS.forEach(function(l,i){
       var f=calcFee(l), ft=f===null?'Request quote':'Php '+f;
       html+='<div class="lb'+(S.lid===l.id?' sel':'')+'" data-id="'+l.id+'" onclick="selLoc(\''+l.id+'\')">'
