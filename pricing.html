@@ -3244,6 +3244,151 @@ textarea{
   .screen{padding:22px;}
 }
 
+
+/* ══════════════════════════════════════════════════════════════════
+   KLAYGOPH — EDITORIAL RESET
+   Overrides the component-library / SaaS-dashboard look above.
+   Same class names & IDs throughout — nothing here changes any
+   JS-facing hook, only how things look.
+══════════════════════════════════════════════════════════════════ */
+
+/* ---- foundation: quieter radii, no drop shadows, more air ---- */
+:root{ --r:6px; --sh:none; --sh2:none; }
+
+.card{
+  background:transparent !important;
+  border:none !important;
+  border-left:2px solid #EBF1FA;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  padding:28px 0 28px 24px !important;
+  margin-bottom:0 !important;
+}
+.card + .card{ border-top:1px solid #EBF1FA; }
+.card:nth-child(even),
+.card:nth-child(even) .svc,
+.card:nth-child(even) .ar,
+.card:nth-child(even) .lb,
+.card:nth-child(even) .sched-opt,
+.card:nth-child(even) .time-btn{ background:transparent !important; border-color:#EBF1FA !important; }
+.card:hover{ box-shadow:none !important; }
+.card.locked{ opacity:.4; filter:none; }
+.card-price{ border-left-color:#EBF1FA; }
+.card.locked{ border-left-color:#EBF1FA; }
+.card:not(.locked){ border-left-color:var(--pr); }
+
+/* ---- headers: quieter numbering, real type hierarchy ---- */
+.card-head{ margin-bottom:18px; gap:14px; }
+.sbadge{
+  background:transparent !important;
+  color:var(--pr) !important;
+  border:1.5px solid var(--pr);
+  width:26px;height:26px;font-size:.6875rem;font-weight:700;
+}
+.sbadge.done{ background:var(--pr) !important; color:#fff !important; border-color:var(--pr); }
+.card.locked .sbadge{ border-color:#C7D3E8; color:#9AA9C4 !important; }
+.card-head h2{ font-size:1.0625rem; font-weight:700; letter-spacing:-.01em; }
+.card-head p{ font-size:.8125rem; color:#6B6B68; margin-top:3px; }
+.card-why{
+  background:transparent !important; color:#6B6B68 !important;
+  padding:0 !important; border-radius:0 !important; font-weight:600;
+  letter-spacing:.04em; margin-top:8px; font-size:.6875rem;
+}
+
+/* ---- restrained selected-state, everywhere: one signal, not five ---- */
+.svc,.sched-opt,.clean-opt,.ar,.hs-opt{
+  border-radius:4px !important;
+  box-shadow:none !important;
+  transform:none !important;
+}
+.svc:hover,.sched-opt:hover,.clean-opt:hover,.ar:hover{
+  transform:none !important; box-shadow:none !important;
+  background:#F7F9FC !important; border-color:#D7E1F1 !important;
+}
+.svc.sel,.sched-opt.sel,.clean-opt.sel,.ar.on{
+  background:#F7F9FC !important;
+  border-color:var(--pr) !important;
+  border-left:2px solid var(--pr) !important;
+  box-shadow:none !important;
+}
+.svc-list,.sched-list{ background:transparent !important; padding:0 !important; gap:1px !important; }
+.svc,.sched-opt{ border:1px solid #EBF1FA !important; border-radius:4px !important; }
+.svc-radio,.sched-radio,.hs-radio{ border-width:1.5px; }
+.co-radio{ border-width:1.5px; }
+.clean-opt{ border:1px solid #EBF1FA !important; }
+.clean-opt.sel{ box-shadow:none !important; }
+.co-badge{
+  background:transparent !important; padding:0 !important; border-radius:0 !important;
+  font-weight:600; color:#6B6B68 !important;
+}
+.co-badge.included{ color:var(--green) !important; }
+.sched-badge{
+  background:transparent !important; color:var(--pr) !important; padding:0 !important;
+  font-weight:600;
+}
+
+/* ---- calendar: quiet grid, no filled pill days except selected ---- */
+.day{ border-radius:4px; }
+.day.sel-d{ box-shadow:none !important; }
+.cal-btn{ border-radius:4px; }
+.ts{ border-radius:4px !important; }
+.ts.ts-s{ box-shadow:none; }
+
+/* ---- alerts: text + hairline, not colored panels ---- */
+.alert{
+  background:transparent !important; border:none !important;
+  border-left:2px solid var(--li) !important; border-radius:0 !important;
+  padding:8px 0 8px 14px !important; color:#2C2C2A !important;
+}
+.alert.info strong,.alert strong{ color:var(--mn); }
+.alert.warn{ border-left-color:var(--amber) !important; }
+.alert.danger{ border-left-color:var(--red) !important; }
+.unit-note,.tbanner,.recur-section,.post-con-note,.large-space-note,.cal-note,.area-wrap{
+  background:transparent !important; border:none !important;
+  border-left:2px solid #EBF1FA !important; border-radius:0 !important;
+  padding:10px 0 10px 14px !important;
+}
+.tbanner{ border-left-color:var(--pr) !important; }
+
+/* ---- pills → plain rectangular controls ---- */
+.pill,.btn-add-slot,.loc-toggle-btn,.rtag,.sit-tag{ border-radius:4px !important; }
+.pill.sel,.rtag.on{ box-shadow:none !important; }
+
+/* ---- body copy sizing: brief asks 15–16px body / 13–14px secondary ---- */
+body{ font-size:16px; }
+.hero-sub,.cc-sub,p,.snote,.loc-note,.area-note{ font-size:.875rem; line-height:1.7; }
+.card-head p{ font-size:.8125rem; }
+.svc-name,.sched-label,.co-name{ font-size:.875rem; }
+.svc-sub,.co-desc{ font-size:.75rem; }
+
+/* ---- hero: editorial, not marketing-banner ---- */
+.hero{ padding-top:clamp(56px,8vh,96px); padding-bottom:clamp(40px,6vh,64px); }
+.hero-eyebrow{
+  font-size:.75rem; letter-spacing:.14em; color:var(--li);
+  margin-bottom:14px;
+}
+.hero h1{ font-size:clamp(30px,4.2vw,48px); font-weight:700; letter-spacing:-.01em; }
+.hero-checks{
+  background:none !important; border:none !important; backdrop-filter:none !important;
+  padding:0 !important; gap:20px !important; margin-top:8px;
+}
+.hero-check{ font-size:.8125rem; color:rgba(247,249,252,.75); }
+.hero-check::before{ content:"—"; color:var(--li); margin-right:2px; }
+
+/* ---- quiet static service strip (replaces animated marquees) ---- */
+.service-strip{
+  background:var(--mn); padding:14px clamp(24px,5vw,64px);
+  display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center;
+  font-family:"Manrope",sans-serif; font-size:.75rem; letter-spacing:.03em;
+  color:rgba(168,191,224,.85);
+}
+.service-strip-div{ color:rgba(168,191,224,.4); }
+
+@media(max-width:640px){
+  .card{ padding:22px 0 22px 16px !important; }
+  .service-strip{ font-size:.6875rem; }
+}
+
 </style>
 </head>
 <body>
@@ -3314,54 +3459,12 @@ textarea{
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
-     LOCATION MARQUEE — full-width below nav, above split layout
+     SERVICE STRIP — quiet, static (no scrolling ticker)
 ══════════════════════════════════════════════════════════════ -->
-<div class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
-    <!-- duplicate for seamless loop -->
-    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
-  </div>
-</div>
-
-<!-- Services marquee — scrolls left → right (reverse direction) -->
-<div class="marquee-strip marquee-strip-services" aria-hidden="true">
-  <div class="marquee-track marquee-track-reverse">
-    <span class="marquee-item">Regular Cleaning</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Deep Cleaning</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Move In / Move Out</span><span class="marquee-dot">·</span>
-    <!-- duplicate for seamless loop -->
-    <span class="marquee-item">Regular Cleaning</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Deep Cleaning</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Move In / Move Out</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Regular Cleaning</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Deep Cleaning</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Move In / Move Out</span><span class="marquee-dot">·</span>
-  </div>
+<div class="service-strip" aria-hidden="true">
+  <span>Regular · Deep · Move In / Move Out Cleaning</span>
+  <span class="service-strip-div">—</span>
+  <span>BGC · Makati · Taguig · Ortigas · Pasig · Quezon City &amp; nearby</span>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -3397,61 +3500,15 @@ textarea{
 <div class="hero" id="hero">
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Serving Metro Manila homes.</div>
+    <div class="hero-eyebrow">Get Your Estimate</div>
     <h1>
-      <span class="tr-target" data-textreveal="Customize your cleaning service,">Customize your cleaning service,</span><br>
-      <span class="tr-target" data-textreveal="get a quote before you book.">get a quote before you book.</span>
+      <span class="tr-target" data-textreveal="Know your cleaning cost">Know your cleaning cost</span><br>
+      <span class="tr-target" data-textreveal="before you book.">before you book.</span>
     </h1>
-    <p class="hero-sub">Transparent pricing, professional cleaners, and zero hidden fees — all in one easy estimate.</p>
-
+    <p class="hero-sub">Choose your space, cleaning type, schedule, and location to see your estimated price. Once you have your total, send it to us on Messenger to confirm your slot.</p>
     <div class="hero-checks">
-      <div class="hero-check">No log in required</div>
-      <div class="hero-check">No bank info collected</div>
-      <div class="hero-check">Pricing transparency only</div>
-    </div>
-  </div>
-</div>
-
-<!-- PRICE CALCULATOR CLARIFIER -->
-<div class="calc-clarifier reveal" id="clarifier">
-  <div class="cc-anim-col widget-reveal">
-    <!-- Animated Calculator Widget v04 -->
-    <div class="klaygo-card">
-      <div class="screen adjust-screen">
-        <svg class="kg4-icon" viewBox="0 0 24 24">
-          <path d="M4 6h16M8 6v4M4 12h16M14 12v4M4 18h16M10 18v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <div class="kg4-label">ADJUST AMOUNT</div>
-        <div class="kg4-amount" id="kg4-amount">Php 500</div>
-        <div class="kg4-slider">
-          <div class="kg4-track"></div>
-          <div class="kg4-fill" id="kg4-fill"></div>
-          <div class="kg4-knob" id="kg4-knob"></div>
-        </div>
-        <div class="kg4-range"><span>Php 500</span><span>Php 5,000</span></div>
-        <div class="kg4-helper">Drag to adjust</div>
-      </div>
-      <div class="screen receipt-screen">
-        <div class="receipt-wrapper">
-          <svg class="kg4-icon receipt-icon" viewBox="0 0 24 24">
-            <path d="M7 3h10v18l-2-1.5L12 21l-3-1.5L7 21z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M9 8h6M9 12h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <div class="kg4-label">ESTIMATE READY</div>
-          <div class="kg4-amount receipt-amount">Php 5,000</div>
-          <div class="kg4-receipt-lines"><span></span><span></span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="cc-text-col reveal reveal-d1">
-    <div class="cc-big-title">This is a<br>Price Calculator,<br>not a booking app.</div>
-    <p class="cc-sub">Fill in the steps below to get your instant estimate.<br><br>Once you have your total, send it to us on Messenger to confirm your slot.</p>
-    <div class="cc-chips">
-      <span class="cc-chip ok">✓ Instant pricing</span>
-      <span class="cc-chip ok">✓ No hidden fees</span>
-      <span class="cc-chip ok">✓ Booking confirmed via Messenger</span>
-      <span class="cc-chip ok">✓ Reservation fee via GCash / Bank Transfer</span>
+      <div class="hero-check">No payment required</div>
+      <div class="hero-check">No commitment</div>
     </div>
   </div>
 </div>
@@ -3462,7 +3519,7 @@ textarea{
 
 <!-- STEP 1: DATE -->
 <div class="card card-price" id="card-date">
-  <div class="card-head"><div class="sbadge" id="b1">1</div><div><h2>Select a Date</h2><p>Check our live calendar — max 2 slots per day</p><span class="card-why">Affects your price</span></div></div>
+  <div class="card-head"><div class="sbadge" id="b1">1</div><div><h2>When should we come?</h2><p>Pick a date from our live calendar — max 2 slots a day</p><span class="card-why">Affects your price</span></div></div>
   <div class="cal-nav-row">
     <button class="cal-btn" onclick="prevMo()">&#8249;</button>
     <div class="cal-title" id="cal-title">Loading...</div>
@@ -3498,7 +3555,7 @@ textarea{
 
 <!-- STEP 2: TIME -->
 <div class="card reveal locked" id="card-time">
-  <div class="card-head"><div class="sbadge" id="b2">2</div><div><h2>Select a Time</h2><p id="time-sub">Choose your date first</p><span class="card-why">Helps us prepare</span></div></div>
+  <div class="card-head"><div class="sbadge" id="b2">2</div><div><h2>What time works?</h2><p id="time-sub">Choose your date first</p><span class="card-why">Helps us prepare</span></div></div>
   <div id="time-alerts"></div>
   <div class="time-grid" id="time-grid">
   <div class="skel-text short" style="width:55%;margin-bottom:10px;opacity:.4;"></div>
@@ -3510,7 +3567,7 @@ textarea{
 
 <!-- STEP 3: CLEANING TYPE -->
 <div class="card card-price reveal locked" id="card-clean">
-  <div class="card-head"><div class="sbadge" id="b3">3</div><div><h2>Cleaning Type</h2><p>Tap to select and see what's included</p><span class="card-why">Affects your price</span></div></div>
+  <div class="card-head"><div class="sbadge" id="b3">3</div><div><h2>What kind of clean?</h2><p>Tap an option to see what's included</p><span class="card-why">Affects your price</span></div></div>
   <div class="clean-opts opts-chosen" id="clean-opts-wrap">
     <div class="clean-opt sel" id="ct-regular" onclick="selCleanType('regular')">
       <div class="co-header"><div class="co-radio"></div><div class="co-name">Regular Cleaning</div><div class="co-badge included">Base price</div></div>
@@ -3665,7 +3722,7 @@ textarea{
 
 <!-- STEP 4: UNIT TYPE -->
 <div class="card card-price reveal locked" id="card-svc">
-  <div class="card-head"><div class="sbadge" id="b4">4</div><div><h2>Property Type</h2><p>Select the type of space you need cleaned</p><span class="card-why">Affects your price</span></div></div>
+  <div class="card-head"><div class="sbadge" id="b4">4</div><div><h2>What are we cleaning?</h2><p>Prices are fixed per property type</p><span class="card-why">Affects your price</span></div></div>
   <div class="alert info" style="margin-bottom:8px;font-size:10px;"><strong>Prices are fixed per property type.</strong> Larger Home is priced per sqm — a slider will appear when selected.</div>
   <div class="svc-list" id="svc-list-wrap">
     <div class="svc" data-name="Studio Type" onclick="selSvc(this)">
@@ -3711,7 +3768,7 @@ textarea{
 
 <!-- STEP 5: SCHEDULE -->
 <div class="card card-price reveal locked" id="card-sched">
-  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>Schedule</h2><p>How often do you need cleaning?</p><span class="card-why">Affects your price</span></div></div>
+  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>How often do you need us?</h2><p>One-time, or recurring with a discount</p><span class="card-why">Affects your price</span></div></div>
   <div class="sched-list">
     <div class="sched-opt sel" onclick="selSched(this)" data-s="Initial / One-time">
       <div class="sched-radio"></div>
@@ -3752,7 +3809,7 @@ textarea{
 <div class="card card-price reveal locked" id="card-ext">
   <div class="card-head addon-acc-head" onclick="toggleAddonsAcc()" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' '){toggleAddonsAcc();event.preventDefault();}">
     <div class="sbadge" id="b6">6</div>
-    <div><h2>Add-Ons</h2><p>Optional extras — added to your estimate</p><span class="card-why">Affects your price</span></div>
+    <div><h2>Anything extra?</h2><p>Optional add-ons for your estimate</p><span class="card-why">Affects your price</span></div>
     <svg class="addon-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="al-collapse" id="al-collapse">
@@ -3764,7 +3821,7 @@ textarea{
 <div class="card reveal locked" id="card-instr">
   <div class="card-head instr-acc-head" onclick="toggleInstrAcc()" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' '){toggleInstrAcc();event.preventDefault();}">
     <div class="sbadge" id="b7">7</div>
-    <div><h2>Special Instructions</h2><p>Anything we should know before we arrive?</p><span class="card-why">Helps us prepare</span></div>
+    <div><h2>Anything we should know?</h2><p>Notes for our team before we arrive</p><span class="card-why">Helps us prepare</span></div>
     <svg class="instr-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="instr-collapse" id="instr-collapse">
@@ -3792,7 +3849,7 @@ textarea{
 
 <!-- STEP 8: LOCATION -->
 <div class="card card-price reveal locked" id="card-loc">
-  <div class="card-head"><div class="sbadge" id="b8">8</div><div><h2>Location</h2><p>Select your area — transport fee is calculated from Taguig</p><span class="card-why">Affects your price</span></div></div>
+  <div class="card-head"><div class="sbadge" id="b8">8</div><div><h2>Where are you located?</h2><p>Transport fee is calculated from Taguig</p><span class="card-why">Affects your price</span></div></div>
   <div style="font-size:10px;color:var(--gr);padding:6px 10px;background:var(--pa);border-radius:6px;margin-bottom:10px;line-height:1.6;">Php 50 base (first 2 km) + Php 10/km up to 6 km + Php 15/km beyond. Nearby areas have fixed rates.</div>
   <div class="loc-toggle-row">
     <span style="font-size:10.5px;color:var(--gr);">View as:</span>
@@ -3805,7 +3862,7 @@ textarea{
 
 <!-- STEP 9: YOUR INFORMATION -->
 <div class="card reveal locked" id="card-info">
-  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Your Information</h2><p>We'll use this to confirm your booking</p><span class="card-why">Required before booking</span></div></div>
+  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Your details</h2><p>So we can confirm your booking</p><span class="card-why">Required before booking</span></div></div>
   <div class="alert info" style="margin-bottom:8px;font-size:10px;">No log-in required. No bank information collected. Your data is only used to process your booking request.</div>
   <div class="fields">
     <div class="field full">
