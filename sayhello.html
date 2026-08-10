@@ -1,328 +1,518 @@
+<!--
+  ════════════════════════════════════════════════════════════════
+  KLAYGO PH — Say Hello
+  This file and its design, copy, branding, and code are the
+  property of Klaygo PH (klaygoph.com). Unauthorized copying,
+  redistribution, or resale is not permitted.
+  ════════════════════════════════════════════════════════════════
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Say Hello — Klaygo PH</title>
 <meta name="description" content="Get in touch with Klaygo PH. No forms, no pressure — reach out on Messenger, WhatsApp, or by phone. Premium cleaning services in Metro Manila.">
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Say Hello — Klaygo PH</title>
+
+<link rel="icon" type="image/png" href="/assets/KlaygoPH%20-%20Rebranded%20-%20Favicon%20-%20Dark%20Square.png">
+<link rel="apple-touch-icon" href="/assets/KlaygoPH%20-%20Rebranded%20-%20Favicon%20-%20Dark%20Square.png">
+
 <style>
 
-/* ── SELF-HOSTED BRAND FONT ── */
-@font-face{font-family:'Argentum Novus';src:url('fonts/ArgentumNovus-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
-@font-face{font-family:'Argentum Novus';src:url('fonts/ArgentumNovus-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+/* ── MANROPE — self-hosted body font (matches pricing.html exactly) ── */
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-ExtraLight.woff2") format("woff2");font-weight:200;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-Light.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-ExtraBold.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap;}
 
-/* ── DESIGN TOKENS ── */
+/* ── ARGENTUM NOVUS — self-hosted brand font (matches pricing.html exactly) ── */
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Thin.woff2") format("woff2");font-weight:100;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-ThinItalic.woff2") format("woff2");font-weight:100;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-ExtraLight.woff2") format("woff2");font-weight:200;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Light.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-BoldItalic.woff2") format("woff2");font-weight:700;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-ExtraBold.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Black.woff2") format("woff2");font-weight:900;font-style:normal;font-display:swap;}
+
+/* ── DESIGN TOKENS — identical to pricing.html ── */
 :root{
-  --font-brand:'Argentum Novus','Outfit',sans-serif;
-  --deep:#0D1F3C;
-  --mn:#2B4E8A;
-  --mid:#3D6399;
-  --se:#5A7BB5;
+  --mn:#0D1F3C;
+  --pr:#2B4E8A;
+  --dp:#0D1F3C;
+  --dk:#0D1F3C;
+  --se:#3D6399;
+  --mi:#5A7BB5;
   --li:#A8BFE0;
+  --sl:#EBF1FA;
   --pa:#EBF1FA;
   --bg:#F7F9FC;
   --gr:#6B6B68;
-  --dk:#2C2C2A;
-  --wh:#fff;
-  --bd:#D8DCE8;
+  --bd:#EBF1FA;
+  --sh:0 4px 24px rgba(43,78,138,.1);
+  --red:#B94040;--green:#2E6B4F;--gbg:#E8F4EE;--gbdr:#9FCFB5;
+  --deepnav:#0D1F3C;--wh:#fff;--r:8px;--sh2:0 1px 3px rgba(43,78,138,.05);
+  --amber:#5A7BB5;--abg:#EBF1FA;--abdr:#A8BFE0;
+  --rbg:#FEF2F2;--rbdr:#FECACA;
+  --nav-light:#F7F9FC;
+  --font-brand:"Argentum Novus",system-ui,sans-serif;
+  --font-body:"Manrope",system-ui,sans-serif;
 }
 
-html{background:#2C2C2A;}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--dk);font-size:15px;line-height:1.65;}
+html{background:#0D1F3C;overflow-x:hidden;}
+body{font-family:"Manrope",system-ui,sans-serif;background:#F7F9FC;color:#2C2C2A;font-size:16px;line-height:1.55;}
 
-/* ── ACCESSIBILITY ── */
-.skip-link{position:absolute;top:-100px;left:16px;padding:10px 18px;background:var(--mn);color:#fff;border-radius:0 0 8px 8px;font-size:13px;font-weight:700;z-index:99999;transition:top .2s;text-decoration:none;}
+/* Brand font applies to headings + explicit brand elements */
+h1,h2,h3,h4,.font-brand{font-family:var(--font-brand);}
+
+/* ── SKIP LINK ── */
+.skip-link{position:absolute;top:-100px;left:0;background:var(--pr);color:#fff;padding:10px 18px;font-size:13px;font-weight:700;z-index:99999;transition:top .2s;text-decoration:none;}
 .skip-link:focus{top:0;}
-*:focus-visible{outline:2.5px solid var(--mn);outline-offset:3px;border-radius:4px;}
+*:focus-visible{outline:2px solid var(--pr);outline-offset:3px;}
 
-/* ────────────────────────────────────────────
-   NAV — exact match to pricing.html v38
-──────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════
+   NAV — exact copy from pricing.html
+══════════════════════════════════════════════════════ */
 .nav-wrap{position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(13,31,60,.15);}
 
 .nav-top{
   background:#0D1F3C;
-  height:clamp(56px,20vh,140px);
+  height:clamp(84px,14vh,120px);
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;
+  padding:0 clamp(40px,5vw,64px);
   transition:height .3s ease;
-  position:relative;
 }
-.nav-top.compact{height:clamp(48px,8vh,72px);}
+.nav-top.compact{height:clamp(60px,8vh,76px);}
 .nav-top-left{display:flex;align-items:center;gap:14px;}
-.nav-logo{height:28px;}
+.nav-logo{height:clamp(38px,3.8vw,52px);}
 .nav-brand-text{
-  font-family:var(--font-brand);
-  font-size:10.5px;color:rgba(247,249,252,.45);
+  font-family:var(--font-body);
+  font-size:.6875rem;color:rgba(247,249,252,.45);
   line-height:1.4;display:flex;flex-direction:column;
 }
 .nav-brand-text strong{color:rgba(247,249,252,.75);font-weight:700;letter-spacing:.02em;}
 .nav-top-right{display:flex;align-items:center;gap:10px;}
 
-/* Hamburger — white pill with PNG, rotates on click */
-.nav-hamburger{background:#F7F9FC;border:none;cursor:pointer;padding:7px 9px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:background .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.12);}
-.nav-hamburger:hover{background:#EBF1FA;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.nav-hamburger img{width:28px;height:auto;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+/* Hamburger — transparent background, PNG icon */
+.nav-hamburger{background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:opacity .15s;}
+.nav-hamburger:hover{opacity:.75;}
+.nav-hamburger img{width:38px;height:38px;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
 .nav-hamburger.rotating img{transform:rotate(360deg);}
 
-/* Sub-nav */
-.nav-sub{background:var(--mn);display:flex;align-items:center;padding:0 28px;height:44px;gap:4px;border-top:1px solid rgba(255,255,255,.07);}
-.nav-tab{font-family:var(--font-brand);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:50px;transition:all .15s;white-space:nowrap;}
-.nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
-.nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
+/* Sub-nav bar */
+.nav-sub{
+  background:var(--pr);
+  display:flex;align-items:center;
+  padding:0 clamp(40px,5vw,64px);
+  height:44px;gap:8px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.nav-sub::-webkit-scrollbar{display:none;}
 
-/* Mobile — back button + centered page label */
+/* Breadcrumb inside sub-nav */
+.breadcrumb{display:flex;align-items:center;gap:8px;}
+.breadcrumb a{font-family:var(--font-body);font-size:.75rem;color:rgba(247,249,252,.55);text-decoration:none;font-weight:500;transition:color .14s;}
+.breadcrumb a:hover{color:rgba(247,249,252,.9);}
+.breadcrumb-sep{font-size:.75rem;color:rgba(168,191,224,.4);}
+.breadcrumb-current{font-family:var(--font-body);font-size:.75rem;font-weight:700;color:rgba(247,249,252,.9);}
+
+/* Mobile: back button + centered page title */
 .nav-back-btn{background:none;border:none;cursor:pointer;padding:0;width:36px;height:36px;display:none;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;}
-.nav-back-btn img{width:28px;height:auto;display:block;}
-.nav-mobile-page{font-family:var(--font-brand);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;pointer-events:none;}
+.nav-back-btn img{width:32px;height:32px;display:block;}
+.nav-mobile-page{font-family:var(--font-brand);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;pointer-events:none;}
 
-@media(max-width:700px){
-  .nav-top{height:clamp(56px,20vh,120px);padding:0 16px;}
+@media(max-width:768px){
+  .nav-top{height:clamp(56px,20vh,120px);padding:0 20px;position:relative;}
   .nav-top.compact{height:clamp(48px,10vh,72px);}
   .nav-brand-text{display:none;}
-  .nav-logo{height:22px;}
+  .nav-logo{height:32px;}
   .nav-back-btn{display:flex;}
   .nav-mobile-page{display:block;}
   .nav-sub{display:none;}
-  .nav-hamburger img{width:24px;}
+  .nav-hamburger img{width:30px;height:30px;}
 }
-@media(min-width:701px){.nav-back-btn{display:none;}}
+@media(min-width:769px){.nav-back-btn{display:none;}}
 
-/* Overlay */
-.nav-menu-overlay{display:none;position:fixed;inset:0;background:#0D1F3C;z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:24px;overflow:hidden;}
+/* Menu overlay — fullscreen mobile / 300px sidebar desktop */
+.nav-menu-overlay{display:none;position:fixed;inset:0;background:#0D1F3C;z-index:9999;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;overflow-y:auto;padding:56px 28px 32px;}
+.menu-panel{display:contents;}
 .nav-menu-overlay.open{display:flex;}
 .nav-menu-close{position:absolute;top:22px;right:28px;background:none;border:none;color:#F7F9FC;cursor:pointer;font-size:28px;padding:8px;opacity:.7;transition:opacity .15s;}
 .nav-menu-close:hover{opacity:1;}
-.nav-menu-pill{font-family:var(--font-brand);font-size:18px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;text-decoration:none;border:1.5px solid rgba(247,249,252,.22);border-radius:50px;padding:15px 50px;width:240px;text-align:center;opacity:0;transform:translateY(-8px);transition:background .18s,border-color .18s,opacity .22s ease,transform .22s ease;}
+.nav-menu-pill{
+  font-family:var(--font-body);font-size:15px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(247,249,252,.78);text-decoration:none;border:none;border-radius:0;
+  padding:11px 16px;width:100%;text-align:left;
+  opacity:0;transform:translateY(-8px);
+  transition:background .18s,opacity .22s ease,transform .22s ease;
+  cursor:pointer;pointer-events:auto;
+  display:block;
+}
 .nav-menu-pill.visible{opacity:1;transform:translateY(0);}
-.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.15);border-color:#A8BFE0;}
+.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.12);color:#F7F9FC;}
+.nav-menu-pill:nth-child(2){transition-delay:.06s;}
+.nav-menu-pill:nth-child(3){transition-delay:.12s;}
+.nav-menu-pill:nth-child(4){transition-delay:.18s;}
+.nav-menu-pill:nth-child(5){transition-delay:.24s;}
+.nav-menu-pill:nth-child(6){transition-delay:.30s;}
+.nav-menu-pill:nth-child(7){transition-delay:.36s;}
+.nav-menu-pill:nth-child(8){transition-delay:.42s;}
+.nav-menu-pill:nth-child(9){transition-delay:.48s;}
 
-/* ── BREADCRUMB ── */
-.breadcrumb-bar{background:#fff;border-bottom:1px solid #EBF1FA;padding:7px clamp(14px,4vw,32px);}
-.breadcrumb{list-style:none;display:flex;align-items:center;gap:7px;padding:0;margin:0;}
-.bc-item{font-size:11.5px;color:var(--gr);}
-.bc-link{color:var(--se);text-decoration:none;font-weight:500;}
-.bc-link:hover{color:var(--mn);text-decoration:underline;}
-.bc-current{color:var(--mn);font-weight:600;}
-.bc-sep{color:#D8DCE8;font-size:11px;}
+.nav-menu-footer{margin-top:28px;padding-top:20px;padding-left:16px;border-top:1px solid rgba(168,191,224,.15);display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;width:100%;}
+.nav-menu-footer-logo{height:20px;filter:brightness(0) invert(1);opacity:.9;margin-bottom:5px;}
+.nav-menu-footer-tag{font-family:var(--font-body);font-size:.6875rem;color:rgba(247,249,252,.5);letter-spacing:.02em;margin-bottom:7px;}
+.nav-menu-footer-line{font-family:var(--font-body);font-size:.75rem;color:rgba(247,249,252,.62);line-height:1.5;text-decoration:none;display:block;}
+.nav-menu-footer-link:hover{color:#F7F9FC;}
+.nav-menu-footer-social{display:flex;gap:16px;margin-top:9px;justify-content:flex-start;}
+.nav-menu-footer-social img{width:16px;height:16px;opacity:.65;filter:brightness(0) invert(1);transition:opacity .15s;display:block;}
+.nav-menu-footer-social a:hover img{opacity:1;}
 
-/* ────────────────────────────────────────────
-   HERO — solid #2B4E8A, editorial
-──────────────────────────────────────────── */
+/* Desktop: right sidebar */
+@media(min-width:769px){
+  .nav-menu-overlay{
+    left:auto;width:300px;
+    align-items:flex-start;
+    padding:80px 32px 40px;
+    box-shadow:-16px 0 48px rgba(0,0,0,.45);
+    border-left:1px solid rgba(168,191,224,.1);
+  }
+  .nav-menu-close{top:22px;right:22px;}
+  .nav-menu-footer{margin-top:32px;}
+}
+
+/* ── SERVICE STRIP — quiet static bar (matches pricing) ── */
+.service-strip{
+  background:var(--pr);padding:14px clamp(24px,5vw,64px);
+  display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;
+  font-family:var(--font-body);font-size:.75rem;letter-spacing:.03em;
+  color:rgba(168,191,224,.85);
+}
+.service-strip-div{color:rgba(168,191,224,.4);}
+@media(max-width:640px){.service-strip{font-size:.6875rem;}}
+
+/* ── BACK TO TOP — vertical text pill, slides from right (matches pricing) ── */
+#back-to-top{
+  position:fixed;right:0;bottom:clamp(20px,4vh,40px);
+  transform:translateX(100%);z-index:999;
+  background:#2B4E8A;color:#F7F9FC;
+  border:none;border-radius:0;
+  padding:18px 11px;cursor:pointer;
+  writing-mode:vertical-rl;text-orientation:mixed;white-space:nowrap;
+  font-family:var(--font-body);font-size:.625rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;line-height:1;
+  transition:transform .35s cubic-bezier(.34,1.1,.64,1),background .2s;
+  box-shadow:-3px 0 16px rgba(13,31,60,.2);
+  -webkit-user-select:none;user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+#back-to-top.visible{transform:translateX(0);}
+#back-to-top:hover{background:#3D6399;}
+#back-to-top:active{transform:translateX(0) scale(.95);}
+
+/* ══════════════════════════════════════════════════════
+   HERO — photo background, gradient overlay
+══════════════════════════════════════════════════════ */
 .hero{
-  background:#2B4E8A;
-  padding:clamp(56px,9vw,108px) clamp(24px,6vw,80px) clamp(52px,8vw,96px);
+  background-color:#0D1F3C;
+  background-image:url("/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001%20-%20Desktop.jpg");
+  background-size:cover;
+  background-position:38% 35%;
+  position:relative;overflow:hidden;
+  min-height:clamp(320px,45vh,480px);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:clamp(40px,6vh,72px) clamp(28px,5vw,72px);
 }
-.hero-eyebrow{
-  font-family:var(--font-brand);
-  font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(168,191,224,.65);margin-bottom:18px;
+.hero-overlay{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(110deg,rgba(13,31,60,.96) 0%,rgba(13,31,60,.92) 42%,rgba(13,31,60,.62) 70%,rgba(13,31,60,.28) 100%);
+  z-index:1;
 }
-.hero h1{
-  font-family:var(--font-brand);
-  font-size:clamp(44px,9vw,88px);
-  font-weight:700;color:#fff;
-  line-height:.97;letter-spacing:-.025em;
+.hero-content{position:relative;z-index:2;}
+.hero-eyebrow{font-family:var(--font-brand);font-size:.6875rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.9);margin-bottom:clamp(12px,2vh,20px);}
+.hero h1{font-family:var(--font-brand);font-size:clamp(36px,6vw,72px);font-weight:900;color:#F7F9FC;line-height:1.0;letter-spacing:-.02em;margin-bottom:clamp(12px,2vh,18px);}
+.hero-sub{font-family:var(--font-body);font-size:clamp(13px,1.5vw,15.5px);color:rgba(247,249,252,.72);line-height:1.85;max-width:440px;}
+
+@media(max-width:768px){
+  .hero{background-image:url("/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001%20-%20Mobile.jpg");background-position:38% 35%;}
+  .hero-overlay{background:rgba(13,31,60,.93);}
+}
+@media(prefers-reduced-motion:reduce){.hero-overlay{animation:none;}}
+
+/* ══════════════════════════════════════════════════════
+   PAGE CONTENT
+══════════════════════════════════════════════════════ */
+
+/* ── Section eyebrow ── */
+.section-eyebrow{
+  font-family:var(--font-brand);font-size:.6875rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gr);
   margin-bottom:24px;
 }
-.hero-sub{
-  font-size:clamp(14px,2vw,16.5px);
-  color:rgba(247,249,252,.68);
-  max-width:380px;line-height:1.8;
-}
 
-/* ────────────────────────────────────────────
-   PAGE LAYOUT
-──────────────────────────────────────────── */
+/* ── Page wrap ── */
 .page-wrap{
-  max-width:800px;
-  margin:0 auto;
-  padding:clamp(48px,7vw,88px) clamp(24px,5vw,48px) clamp(56px,8vw,96px);
+  max-width:820px;margin:0 auto;
+  padding:clamp(44px,7vw,88px) clamp(24px,5vw,48px) clamp(56px,8vw,96px);
 }
 
-/* ── SECTION EYEBROW LABEL ── */
-.section-label{
-  font-family:var(--font-brand);
-  font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gr);margin-bottom:28px;
-}
+/* ── CONTACT SECTION — open layout, no cards ── */
+.contact-section{margin-bottom:clamp(40px,6vw,72px);}
 
-/* ────────────────────────────────────────────
-   PRIMARY CONTACT — prominent, not a card
-──────────────────────────────────────────── */
-.contact-lead{margin-bottom:clamp(40px,6vw,72px);}
-
+/* Primary CTA button — Messenger */
 .contact-primary-cta{
-  display:inline-flex;align-items:center;gap:11px;
-  background:#0D1F3C;color:#fff;
+  display:inline-flex;align-items:center;gap:12px;
+  background:#0D1F3C;color:#F7F9FC;
   text-decoration:none;
-  padding:17px 30px;
-  border-radius:8px;
-  font-size:15px;font-weight:700;letter-spacing:.01em;
+  padding:16px 28px;border-radius:var(--r);
+  font-family:var(--font-body);font-size:15px;font-weight:700;letter-spacing:.01em;
   transition:background .15s,transform .15s;
   margin-bottom:10px;
 }
 .contact-primary-cta:hover{background:#1a3060;transform:translateY(-1px);}
 .contact-primary-cta svg{flex-shrink:0;}
-.contact-cta-hint{
-  font-size:12.5px;color:var(--gr);
-  margin-bottom:clamp(36px,5vw,56px);
-}
+.contact-cta-hint{font-family:var(--font-body);font-size:12.5px;color:var(--gr);margin-bottom:clamp(32px,5vw,52px);}
 
-/* ── CONTACT ROWS — open list, dividers only, no boxes ── */
+/* Contact rows — open list with divider lines only, no boxes */
 .contact-row{
   display:flex;align-items:center;justify-content:space-between;
-  padding:22px 0;
+  padding:20px 0;
   border-bottom:1px solid #EBF1FA;
   text-decoration:none;color:inherit;
-  transition:color .15s;
+  transition:color .14s;
 }
 .contact-row:first-of-type{border-top:1px solid #EBF1FA;}
-.contact-row:hover .cr-value{color:var(--mn);}
+.contact-row:hover .cr-value{color:var(--pr);}
 .contact-row:hover .cr-arrow{opacity:1;transform:translateX(4px);}
 
-.cr-left{display:flex;flex-direction:column;gap:3px;}
+.cr-left{display:flex;flex-direction:column;gap:4px;}
 .cr-channel{
-  font-family:var(--font-brand);
-  font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gr);
+  font-family:var(--font-brand);font-size:.625rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gr);
 }
-.cr-value{font-size:15.5px;font-weight:600;color:var(--dk);transition:color .15s;}
-.cr-hint{font-size:12px;color:var(--gr);margin-top:1px;}
-.cr-arrow{
-  font-size:20px;color:var(--li);
-  opacity:.5;
-  transition:opacity .15s,transform .2s;
-  flex-shrink:0;margin-left:16px;
-}
+.cr-value{font-family:var(--font-body);font-size:15px;font-weight:600;color:#2C2C2A;transition:color .14s;}
+.cr-hint{font-family:var(--font-body);font-size:12px;color:var(--gr);}
+.cr-arrow{font-size:18px;color:var(--li);opacity:.5;transition:opacity .14s,transform .18s;flex-shrink:0;margin-left:16px;}
 
-/* ────────────────────────────────────────────
-   DETAILS — open grid, no card wrapper
-──────────────────────────────────────────── */
+/* ── INFO SECTION — open grid, no box wrapper ── */
 .info-section{
-  padding-top:clamp(36px,5vw,56px);
-  border-top:2px solid var(--deep);
+  border-top:2px solid #0D1F3C;
+  padding-top:clamp(32px,5vw,52px);
 }
 .info-section-title{
-  font-family:var(--font-brand);
-  font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--dk);margin-bottom:24px;
+  font-family:var(--font-brand);font-size:.625rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:#0D1F3C;margin-bottom:20px;
 }
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-@media(max-width:520px){.info-grid{grid-template-columns:1fr;}}
-.info-cell{padding:20px 0;border-bottom:1px solid #EBF1FA;}
+@media(max-width:540px){.info-grid{grid-template-columns:1fr;}}
+.info-cell{padding:18px 0;border-bottom:1px solid #EBF1FA;}
 .info-grid .info-cell:nth-child(odd){padding-right:28px;}
 .info-grid .info-cell:nth-child(even){padding-left:28px;border-left:1px solid #EBF1FA;}
-/* Remove bottom border on last row */
-@media(min-width:521px){
-  .info-grid .info-cell:nth-last-child(-n+2){border-bottom:none;}
-}
-@media(max-width:520px){.info-grid .info-cell:last-child{border-bottom:none;}}
-.info-cell-label{
-  font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--gr);margin-bottom:5px;
-}
-.info-cell-val{font-size:14.5px;font-weight:600;color:var(--dk);}
-.info-cell-val a{color:var(--mn);text-decoration:none;}
+@media(min-width:541px){.info-grid .info-cell:nth-last-child(-n+2){border-bottom:none;}}
+@media(max-width:540px){.info-grid .info-cell:last-child{border-bottom:none;}.info-grid .info-cell:nth-child(even){border-left:none;padding-left:0;}}
+.info-cell-label{font-family:var(--font-body);font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gr);margin-bottom:5px;}
+.info-cell-val{font-family:var(--font-body);font-size:14.5px;font-weight:600;color:#2C2C2A;}
+.info-cell-val a{color:var(--pr);text-decoration:none;}
 .info-cell-val a:hover{text-decoration:underline;}
 
-/* ────────────────────────────────────────────
-   REASSURANCE — full-bleed dark band, not a card
-──────────────────────────────────────────── */
+/* ── REASSURANCE BAND — full-bleed dark, not a card ── */
 .reassurance-band{
   background:#0D1F3C;
-  padding:clamp(48px,7vw,88px) clamp(24px,6vw,80px);
+  padding:clamp(44px,7vw,88px) clamp(24px,5vw,64px);
 }
-.reassurance-inner{max-width:800px;margin:0 auto;}
+.reassurance-inner{max-width:820px;margin:0 auto;}
 .reassurance-eyebrow{
-  font-family:var(--font-brand);
-  font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(168,191,224,.55);margin-bottom:14px;
+  font-family:var(--font-brand);font-size:.6875rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(168,191,224,.55);margin-bottom:12px;
 }
 .reassurance-band h2{
   font-family:var(--font-brand);
-  font-size:clamp(24px,4.5vw,40px);
-  font-weight:700;color:#fff;
-  line-height:1.1;letter-spacing:-.01em;
-  margin-bottom:32px;
+  font-size:clamp(24px,4.5vw,42px);
+  font-weight:900;color:#F7F9FC;
+  line-height:1.05;letter-spacing:-.02em;margin-bottom:28px;
 }
 .reassurance-list{
-  list-style:none;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:14px 48px;
+  list-style:none;display:grid;grid-template-columns:1fr 1fr;
+  gap:12px 48px;
 }
-@media(max-width:560px){.reassurance-list{grid-template-columns:1fr;gap:12px;}}
+@media(max-width:560px){.reassurance-list{grid-template-columns:1fr;gap:10px;}}
 .reassurance-list li{
-  font-size:14px;color:rgba(247,249,252,.68);
-  display:flex;align-items:flex-start;gap:12px;line-height:1.7;
+  font-family:var(--font-body);font-size:14px;
+  color:rgba(247,249,252,.65);
+  display:flex;align-items:flex-start;gap:12px;line-height:1.75;
 }
 .reassurance-list li::before{
   content:'';display:inline-block;
   width:5px;height:5px;border-radius:50%;
-  background:rgba(168,191,224,.6);
+  background:rgba(168,191,224,.55);
   flex-shrink:0;margin-top:9px;
 }
 
-/* ────────────────────────────────────────────
-   CTA SECTION — open layout, not a card
-──────────────────────────────────────────── */
+/* ── CTA SECTION — open layout, not a card ── */
 .cta-section{
   border-top:1px solid #EBF1FA;
-  padding:clamp(44px,6vw,80px) clamp(24px,6vw,80px);
+  padding:clamp(40px,6vw,80px) clamp(24px,5vw,64px);
 }
 .cta-inner{
-  max-width:800px;margin:0 auto;
+  max-width:820px;margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;
   gap:28px;flex-wrap:wrap;
 }
 .cta-text h3{
   font-family:var(--font-brand);
-  font-size:clamp(20px,3.5vw,30px);
-  font-weight:700;color:var(--deep);
+  font-size:clamp(20px,3.5vw,32px);
+  font-weight:900;color:#0D1F3C;
   margin-bottom:8px;letter-spacing:-.01em;
 }
-.cta-text p{font-size:13.5px;color:var(--gr);max-width:380px;line-height:1.75;}
+.cta-text p{font-family:var(--font-body);font-size:.875rem;color:var(--gr);max-width:380px;line-height:1.75;}
 .btn-cta{
-  background:var(--mn);color:#fff;
+  background:var(--pr);color:#F7F9FC;
   text-decoration:none;
-  padding:15px 30px;border-radius:8px;
-  font-size:14px;font-weight:700;letter-spacing:.01em;
+  padding:14px 28px;border-radius:var(--r);
+  font-family:var(--font-body);font-size:14px;font-weight:700;letter-spacing:.02em;
   white-space:nowrap;flex-shrink:0;
   transition:background .15s,transform .15s;
 }
 .btn-cta:hover{background:#1e3d7a;transform:translateY(-1px);}
 
-/* ────────────────────────────────────────────
-   FOLLOW + FOOTER — match pricing exactly
-──────────────────────────────────────────── */
-.follow-bar{
-  border-top:1px solid #EBF1FA;
-  background:#fff;
-  padding:22px clamp(20px,4vw,40px);
-  display:flex;align-items:center;gap:20px;justify-content:center;flex-wrap:wrap;
+/* ══════════════════════════════════════════════════════
+   FOOTER — exact structure from pricing.html
+   Desktop ≥769px: 3 col [Logo+QR] [Nav] [Contact+Social]
+   Mobile  <769px: 2 col [Logo+Nav+Contact] [Review+QR+Social]
+   .f-dt = desktop-only   .f-mb = mobile-only
+══════════════════════════════════════════════════════ */
+.f-dt{display:revert;}
+.f-mb{display:none!important;}
+@media(max-width:768px){
+  .f-dt{display:none!important;}
+  .f-mb{display:block!important;}
+  nav.f-mb{flex-direction:column;}
 }
-.follow-text{font-size:12px;color:var(--gr);}
-.follow-links{display:flex;gap:20px;}
-.follow-link{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--mn);text-decoration:none;}
-.follow-link:hover{opacity:.75;}
 
-footer{background:#0D1F3C;padding:16px clamp(20px,4vw,40px);}
-.footer-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-footer span{font-size:11px;color:rgba(255,255,255,.55);}
-.copyright-bar{background:#2C2C2A;text-align:center;font-size:10.5px;color:rgba(247,249,252,.35);padding:11px 20px;}
-.copyright-bar a{color:rgba(247,249,252,.35);text-decoration:none;}
-.copyright-bar a:hover{color:rgba(247,249,252,.65);}
+.page-dark-zone{background:#0D1F3C;}
 
-/* ── BACK TO TOP ── */
-#back-to-top{position:fixed;bottom:28px;right:22px;z-index:8000;width:38px;height:38px;border:none;background:none;padding:0;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .18s,opacity .2s;opacity:0;}
-#back-to-top img{width:38px;height:38px;display:block;filter:drop-shadow(0 4px 14px rgba(13,31,60,.28));}
-#back-to-top:hover{transform:translateY(-3px);}
-#back-to-top.visible{display:flex;opacity:1;}
+.site-footer{
+  background:#0D1F3C;
+  padding:clamp(40px,6vw,72px) clamp(28px,5vw,64px) clamp(32px,5vw,56px);
+}
+.footer-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;
+  grid-template-columns:1.1fr 0.7fr 1.2fr;
+  gap:clamp(24px,4vw,56px);
+}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:24px 16px;}}
+
+/* Col 1: Brand */
+.footer-brand-col{}
+.footer-wordmark{height:28px;display:block;margin-bottom:20px;}
+
+/* Desktop: QR block */
+.footer-qr-block{margin-top:4px;}
+.footer-rating{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.footer-rating-stars{color:#F0A500;font-size:13px;letter-spacing:1px;}
+.footer-rating-text{font-family:var(--font-body);font-size:11px;color:rgba(247,249,252,.5);}
+.footer-review-text{font-family:var(--font-body);font-size:11.5px;color:rgba(247,249,252,.48);line-height:1.65;margin-bottom:12px;}
+.footer-review-text strong{color:rgba(247,249,252,.72);}
+.footer-qr-link{display:inline-block;}
+.footer-qr{width:72px;height:72px;display:block;border-radius:4px;}
+
+/* Mobile: nav links (col 1) */
+.footer-mb-nav{display:flex;flex-direction:column;gap:0;margin-top:4px;}
+.footer-mb-nav-link{font-family:var(--font-body);font-size:12px;font-weight:500;color:rgba(247,249,252,.55);text-decoration:none;padding:7px 0;border-bottom:1px solid rgba(168,191,224,.08);transition:color .14s;}
+.footer-mb-nav-link:first-child{border-top:1px solid rgba(168,191,224,.08);}
+.footer-mb-nav-link:hover{color:rgba(247,249,252,.9);}
+
+/* Mobile: contact (col 1 bottom) */
+.footer-mb-contact{margin-top:16px;}
+.footer-mb-contact-line{font-family:var(--font-body);font-size:11.5px;color:rgba(247,249,252,.55);margin-bottom:4px;}
+.footer-mb-contact-dim{color:rgba(247,249,252,.38);}
+.footer-mb-contact-link{color:rgba(247,249,252,.55);text-decoration:none;}
+.footer-mb-contact-link:hover{color:rgba(247,249,252,.9);}
+
+/* Col 2 Desktop: nav */
+.footer-nav-col{padding-top:0;}
+.footer-nav{display:flex;flex-direction:column;gap:0;}
+.footer-nav-link{font-family:var(--font-body);font-size:12px;font-weight:500;color:rgba(247,249,252,.55);text-decoration:none;padding:7px 0;border-bottom:1px solid rgba(168,191,224,.08);transition:color .14s;}
+.footer-nav-link:first-child{border-top:1px solid rgba(168,191,224,.08);}
+.footer-nav-link:hover{color:rgba(247,249,252,.9);}
+
+/* Col 3 Desktop / Col 2 Mobile: Contact + Social + QR */
+.footer-contact-col{}
+.footer-social{display:flex;gap:12px;margin-bottom:16px;}
+.footer-contact-social{margin-bottom:14px;}
+.footer-social-icon{width:18px;height:18px;display:block;}
+.footer-contact-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid rgba(168,191,224,.08);}
+.footer-contact-item:first-of-type{border-top:1px solid rgba(168,191,224,.08);}
+.footer-contact-icon{width:16px;height:16px;flex-shrink:0;color:rgba(168,191,224,.55);margin-top:2px;}
+.footer-contact-icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block;}
+.footer-contact-line{font-family:var(--font-body);font-size:11.5px;color:rgba(247,249,252,.55);}
+.footer-contact-link{color:rgba(247,249,252,.55);text-decoration:none;transition:color .14s;}
+.footer-contact-link:hover{color:rgba(247,249,252,.9);}
+.footer-contact-dim{color:rgba(247,249,252,.38);}
+.footer-contact-text{}
+
+/* Mobile col 2 */
+.footer-mb-right{display:flex;flex-direction:column;align-items:flex-end;}
+.footer-mb-review{font-family:var(--font-body);font-size:11px;color:rgba(247,249,252,.48);line-height:1.65;margin-bottom:10px;}
+.footer-mb-review strong{color:rgba(247,249,252,.68);}
+.footer-mb-qr-link{display:inline-block;}
+.footer-mb-qr{width:64px;height:64px;display:block;border-radius:4px;margin-bottom:12px;}
+.footer-mb-website{font-family:var(--font-body);font-size:11px;color:rgba(247,249,252,.4);text-decoration:none;display:block;margin-top:10px;}
+.footer-mb-website:hover{color:rgba(247,249,252,.7);}
+
+/* ── Footer marquee — outline stroke text ── */
+.footer-marquee{
+  background:#0D1F3C;
+  border-top:1px solid rgba(168,191,224,.08);
+  overflow:hidden;white-space:nowrap;
+}
+.footer-marquee-track{
+  display:inline-flex;gap:24px;align-items:center;
+  animation:fmq 22s linear infinite;
+}
+.footer-marquee-text{
+  font-family:var(--font-brand);
+  font-size:clamp(22px,5vw,52px);
+  font-weight:900;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(168,191,224,.2);
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:14px 0;display:inline-block;
+}
+.footer-marquee-sep{color:rgba(168,191,224,.2);font-size:clamp(22px,5vw,52px);display:inline-flex;align-items:center;}
+@keyframes fmq{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@media(prefers-reduced-motion:reduce){.footer-marquee-track{animation:none;}}
+
+/* ── Copyright bar — transparent on dark footer ── */
+.copyright-bar{
+  background:transparent;
+  border-top:1px solid rgba(247,249,252,.08);
+  font-size:clamp(9px,2.2vw,11px);
+  color:rgba(247,249,252,.4);
+  padding:14px 20px;
+  font-family:var(--font-body);
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;white-space:nowrap;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.copyright-bar::-webkit-scrollbar{display:none;}
+.copyright-bar a{color:rgba(247,249,252,.4);text-decoration:none;transition:color .14s;}
+.copyright-bar a:hover{color:rgba(247,249,252,.72);}
+.copyright-sep{opacity:.35;}
+
+/* Safe area inset */
+@supports(padding:env(safe-area-inset-bottom)){
+  .copyright-bar{padding-bottom:calc(14px + env(safe-area-inset-bottom));}
+}
 
 </style>
 </head>
@@ -330,89 +520,117 @@ footer span{font-size:11px;color:rgba(255,255,255,.55);}
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- ── NAV MENU OVERLAY ── -->
+<!-- ══ NAV MENU OVERLAY ══ -->
 <div class="nav-menu-overlay" id="nav-menu">
   <button class="nav-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
   <a href="index.html" class="nav-menu-pill">Home</a>
+  <a href="about.html" class="nav-menu-pill">About Us</a>
   <a href="pricing.html" class="nav-menu-pill">Pricing</a>
-  <a href="sayhello.html" class="nav-menu-pill active">Say Hello</a>
+  <a href="loyalty.html" class="nav-menu-pill">Loyalty Card</a>
+  <a href="faq.html" class="nav-menu-pill">FAQs</a>
+  <a href="sayhello.html" class="nav-menu-pill active">Say Hello!</a>
+  <a href="terms.html" class="nav-menu-pill">Terms of Use</a>
+  <a href="privacy.html" class="nav-menu-pill">Privacy Policy</a>
+  <div class="nav-menu-footer">
+    <img class="nav-menu-footer-logo" src="/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" onerror="this.style.display='none'">
+    <div class="nav-menu-footer-tag">Cleaner Space, Clearer Mind.</div>
+    <a href="tel:+639928164718" class="nav-menu-footer-line nav-menu-footer-link">0992.816.4718</a>
+    <div class="nav-menu-footer-line">08:00AM &ndash; 05:00PM</div>
+    <a href="mailto:hello@klaygoph.com" class="nav-menu-footer-line nav-menu-footer-link">HELLO@KLAYGOPH.COM</a>
+    <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="nav-menu-footer-line nav-menu-footer-link">WWW.KLAYGOPH.COM</a>
+    <div class="nav-menu-footer-social">
+      <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img src="/footer/Facebook.png" alt="Facebook" onerror="this.closest('a').style.display='none'"></a>
+      <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img src="/footer/Instagram.png" alt="Instagram" onerror="this.closest('a').style.display='none'"></a>
+      <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="/footer/Whatsapp.png" alt="WhatsApp" onerror="this.closest('a').style.display='none'"></a>
+      <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img src="/footer/TikTok.png" alt="TikTok" onerror="this.closest('a').style.display='none'"></a>
+    </div>
+  </div>
 </div>
 
-<!-- ── NAV ── -->
+<!-- ══ NAV ══ -->
 <div class="nav-wrap">
   <div class="nav-top" id="nav-top">
     <div class="nav-top-left">
-      <a href="index.html" class="nav-back-btn" aria-label="Back to Home">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back">
+      <a href="index.html" class="nav-back-btn" aria-label="Go back to Home">
+        <img src="/assets/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back"
+             onerror="this.outerHTML='<svg width=28 height=28 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;#F7F9FC&quot; stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d=&quot;M15 18l-6-6 6-6&quot;/></svg>';">
       </a>
       <a href="index.html" aria-label="Klaygo PH Home">
-        <img id="logo-img" class="nav-logo" alt="Klaygo PH">
+        <img id="logo-img" class="nav-logo"
+             src="/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png"
+             alt="Klaygo PH" style="filter:brightness(0) invert(1);">
       </a>
       <div class="nav-brand-text">
         <strong>KLAYGOPH | Cleaning Services</strong>
         <span>Cleaner Space, Clearer Mind.</span>
       </div>
     </div>
-    <!-- Mobile page label — inside nav-top so it's visible on mobile -->
-    <span class="nav-mobile-page">SAY HELLO</span>
     <div class="nav-top-right">
       <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
-        <img src="https://raw.githubusercontent.com/klaygoph/klaygoph/main/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Blue.png" alt="Menu">
+        <img src="/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Full.png" alt="Menu"
+             onerror="this.outerHTML='<svg width=26 height=26 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;#F7F9FC&quot; stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><line x1=3 y1=6 x2=21 y2=6/><line x1=3 y1=12 x2=21 y2=12/><line x1=3 y1=18 x2=21 y2=18/></svg>';">
       </button>
     </div>
   </div>
+  <!-- Sub-nav: breadcrumb (nav-mobile-page lives here — matches pricing.html line 3469) -->
   <div class="nav-sub">
-    <a href="index.html" class="nav-tab">Home</a>
-    <a href="pricing.html" class="nav-tab">Pricing</a>
-    <a href="sayhello.html" class="nav-tab active">Say Hello</a>
+    <span class="nav-mobile-page">SAY HELLO</span>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span class="breadcrumb-current">Say Hello!</span>
+    </nav>
   </div>
 </div>
 
-<!-- ── BREADCRUMB ── -->
-<nav aria-label="Breadcrumb" class="breadcrumb-bar">
-  <ol class="breadcrumb">
-    <li class="bc-item"><a href="index.html" class="bc-link">Home</a></li>
-    <li class="bc-sep" aria-hidden="true">/</li>
-    <li class="bc-item bc-current" aria-current="page">Say Hello</li>
-  </ol>
-</nav>
-
-<!-- ── HERO ── -->
-<div class="hero">
-  <p class="hero-eyebrow">Get in touch</p>
-  <h1>Say<br>Hello.</h1>
-  <p class="hero-sub">No pressure, no forms, no stress. Reach out any way that feels comfortable for you.</p>
+<!-- ══ SERVICE STRIP ══ -->
+<div class="service-strip" aria-hidden="true">
+  <span>Regular &middot; Deep &middot; Move In / Move Out Cleaning</span>
+  <span class="service-strip-div">&mdash;</span>
+  <span>BGC &middot; Makati &middot; Taguig &middot; Ortigas &middot; Pasig &middot; Quezon City &amp; nearby</span>
 </div>
 
-<!-- ── MAIN ── -->
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Get in touch</div>
+    <h1>Say Hello.</h1>
+    <p class="hero-sub">No forms. No pressure. Reach out any way that feels right and we'll get back to you.</p>
+  </div>
+</div>
+
+<!-- ══ MAIN CONTENT ══ -->
 <main id="main-content" role="main">
 
   <div class="page-wrap">
 
-    <!-- PRIMARY CONTACT -->
-    <section class="contact-lead" aria-labelledby="contact-heading">
-      <p class="section-label" id="contact-heading">Reach out</p>
+    <!-- CONTACT — open rows, clear hierarchy -->
+    <section class="contact-section" aria-labelledby="contact-heading">
+      <p class="section-eyebrow" id="contact-heading">Reach out</p>
 
-      <!-- Messenger — primary, most prominent -->
+      <!-- Messenger: primary, most prominent -->
       <a href="https://m.me/klaygoph" target="_blank" rel="noopener" class="contact-primary-cta">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/>
+        </svg>
         Chat with us on Messenger
       </a>
       <p class="contact-cta-hint">Fastest response — usually within the hour</p>
 
-      <!-- Secondary contact rows — open list, no boxes -->
+      <!-- Secondary channels: open rows, no boxes -->
       <div role="list">
 
-        <a href="https://wa.me/639928164718" target="_blank" rel="noopener" class="contact-row" role="listitem">
+        <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" class="contact-row" role="listitem">
           <div class="cr-left">
             <span class="cr-channel">WhatsApp</span>
             <span class="cr-value">0992.816.4718</span>
-            <span class="cr-hint">Quick questions and inquiries</span>
+            <span class="cr-hint">Quick questions and booking inquiries</span>
           </div>
           <span class="cr-arrow" aria-hidden="true">→</span>
         </a>
 
-        <a href="tel:09928164718" class="contact-row" role="listitem">
+        <a href="tel:+639928164718" class="contact-row" role="listitem">
           <div class="cr-left">
             <span class="cr-channel">Phone / Viber</span>
             <span class="cr-value">0992.816.4718</span>
@@ -448,10 +666,19 @@ footer span{font-size:11px;color:rgba(255,255,255,.55);}
           <span class="cr-arrow" aria-hidden="true">→</span>
         </a>
 
+        <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" class="contact-row" role="listitem">
+          <div class="cr-left">
+            <span class="cr-channel">TikTok</span>
+            <span class="cr-value">@klaygoph</span>
+            <span class="cr-hint">Short clips and cleaning transformations</span>
+          </div>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+
       </div>
     </section>
 
-    <!-- DETAILS — open grid, no card -->
+    <!-- DETAILS — open grid, no box wrapper -->
     <section class="info-section" aria-labelledby="details-heading">
       <p class="info-section-title" id="details-heading">Our Details</p>
       <div class="info-grid">
@@ -460,11 +687,11 @@ footer span{font-size:11px;color:rgba(255,255,255,.55);}
           <p class="info-cell-val">Metro Manila</p>
         </div>
         <div class="info-cell">
-          <p class="info-cell-label">Response Time</p>
-          <p class="info-cell-val">Within a few hours</p>
+          <p class="info-cell-label">Hours</p>
+          <p class="info-cell-val">08:00AM &ndash; 05:00PM</p>
         </div>
         <div class="info-cell">
-          <p class="info-cell-label">Quickest way to reach us</p>
+          <p class="info-cell-label">Best way to reach us</p>
           <p class="info-cell-val"><a href="https://m.me/klaygoph" target="_blank" rel="noopener">Messenger</a></p>
         </div>
         <div class="info-cell">
@@ -479,13 +706,13 @@ footer span{font-size:11px;color:rgba(255,255,255,.55);}
   <!-- REASSURANCE — full-bleed dark band, not a card -->
   <section class="reassurance-band" aria-labelledby="reassurance-heading">
     <div class="reassurance-inner">
-      <p class="reassurance-eyebrow">Just exploring?</p>
+      <p class="reassurance-eyebrow">Just browsing?</p>
       <h2 id="reassurance-heading">No pressure. Seriously.</h2>
       <ul class="reassurance-list">
         <li>No commitment needed when you reach out</li>
         <li>We won't follow up unless you ask us to</li>
         <li>There are no dumb questions — ever</li>
-        <li>You can get a price estimate before saying anything</li>
+        <li>Get a price estimate before saying anything</li>
       </ul>
     </div>
   </section>
@@ -503,89 +730,213 @@ footer span{font-size:11px;color:rgba(255,255,255,.55);}
 
 </main>
 
-<!-- FOLLOW BAR -->
-<div class="follow-bar">
-  <p class="follow-text">Follow us for tips, updates &amp; promos</p>
-  <div class="follow-links">
-    <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      @klaygoph
-    </a>
-    <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" class="follow-link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15" aria-hidden="true"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.792 1.3 5.29 3.35 6.993V21l3.08-1.694c.822.228 1.694.35 2.57.35 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 12.44l-2.5-2.69-4.91 2.69 5.41-5.74 2.56 2.69 4.85-2.69L13 14.44z"/></svg>
-      @klaygoph
-    </a>
+<!-- ══ FOOTER ══ -->
+<div class="page-dark-zone">
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <!-- COL 1 (always): Logo + [desktop: QR] + [mobile: Nav + Contact] -->
+    <div class="footer-brand-col">
+      <a href="index.html" aria-label="Klaygo PH Home">
+        <img class="footer-wordmark"
+             src="/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png"
+             alt="Klaygo PH" style="filter:brightness(0) invert(1);">
+      </a>
+
+      <!-- Desktop: Google rating + QR -->
+      <div class="footer-qr-block f-dt">
+        <div class="footer-rating">
+          <span class="footer-rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="footer-rating-text">5.0 (1 review)</span>
+        </div>
+        <p class="footer-review-text">Help others discover<br><strong>KLAYGOPH.</strong><br>Scan to leave a quick review.</p>
+        <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-qr-link" aria-label="Leave a Google Review">
+          <img class="footer-qr" src="/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-qr-link').style.display='none'">
+        </a>
+      </div>
+
+      <!-- Mobile: nav links -->
+      <nav class="footer-mb-nav f-mb" aria-label="Footer navigation">
+        <a href="index.html" class="footer-mb-nav-link">About Us</a>
+        <a href="pricing.html" class="footer-mb-nav-link">Pricing</a>
+        <a href="loyalty.html" class="footer-mb-nav-link">Loyalty Card</a>
+        <a href="faq.html" class="footer-mb-nav-link">FAQs</a>
+        <a href="sayhello.html" class="footer-mb-nav-link">Say Hello!</a>
+        <a href="terms.html" class="footer-mb-nav-link">Terms of Use</a>
+        <a href="privacy.html" class="footer-mb-nav-link">Privacy Policy</a>
+      </nav>
+
+      <!-- Mobile: contact -->
+      <div class="footer-mb-contact f-mb">
+        <p class="footer-mb-contact-line">0992.816.4718</p>
+        <p class="footer-mb-contact-line footer-mb-contact-dim">08:00AM &ndash; 05:00PM</p>
+        <a href="mailto:hello@klaygoph.com" class="footer-mb-contact-line footer-mb-contact-link">HELLO@KLAYGOPH.COM</a>
+      </div>
+    </div>
+
+    <!-- COL 2 Desktop: Nav links -->
+    <div class="footer-nav-col f-dt">
+      <nav class="footer-nav" aria-label="Footer navigation desktop">
+        <a href="index.html" class="footer-nav-link">About Us</a>
+        <a href="pricing.html" class="footer-nav-link">Pricing</a>
+        <a href="loyalty.html" class="footer-nav-link">Loyalty Card</a>
+        <a href="faq.html" class="footer-nav-link">FAQs</a>
+        <a href="sayhello.html" class="footer-nav-link">Say Hello!</a>
+        <a href="terms.html" class="footer-nav-link">Terms of Use</a>
+        <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
+      </nav>
+    </div>
+
+    <!-- COL 2 Mobile: Rating + QR + Social -->
+    <div class="footer-mb-right f-mb">
+      <div class="footer-rating">
+        <span class="footer-rating-stars" style="font-size:clamp(12px,3vw,15px);">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="footer-rating-text" style="font-size:clamp(9.5px,2.1vw,11.5px);">5.0 (1 review)</span>
+      </div>
+      <p class="footer-mb-review">Help others discover<br><strong>KLAYGOPH.</strong><br>Scan to leave a quick review.</p>
+      <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-mb-qr-link" aria-label="Leave a Google Review">
+        <img class="footer-mb-qr" src="/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-mb-qr-link').style.display='none'">
+      </a>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+      </div>
+      <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-mb-website">WWW.KLAYGOPH.COM</a>
+    </div>
+
+    <!-- COL 3 Desktop: Social + Contact -->
+    <div class="footer-contact-col f-dt">
+      <div class="footer-social footer-contact-social">
+        <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 5.72 5.72l1.73-1.74a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <p class="footer-contact-line">0992.816.4718</p>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <p class="footer-contact-line footer-contact-dim">08:00AM &ndash; 05:00PM</p>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <a href="mailto:hello@klaygoph.com" class="footer-contact-line footer-contact-link">HELLO@KLAYGOPH.COM</a>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-contact-line footer-contact-link">WWW.KLAYGOPH.COM</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- OUTLINE MARQUEE -->
+<div class="footer-marquee" aria-hidden="true">
+  <div class="footer-marquee-track">
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">&middot;</span>
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">&middot;</span>
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">&middot;</span>
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">&middot;</span>
   </div>
 </div>
 
-<footer>
-  <div class="footer-inner">
-    <span>Klaygo PH &nbsp;·&nbsp; Cleaning Services &nbsp;·&nbsp; Metro Manila &nbsp;·&nbsp; @KlayGoPH &nbsp;|&nbsp; 0992.816.4718</span>
-  </div>
-</footer>
 <div class="copyright-bar">
-  &copy; 2025 Klaygo PH. All rights reserved.
-  &nbsp;·&nbsp; <a href="terms.html">Terms of Use</a>
-  &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a>
+  <span>&copy; <span id="copyright-year">2026</span> Klaygo PH. All rights reserved.</span>
+  <span class="copyright-sep">&middot;</span>
+  <a href="terms.html">Terms of Use</a>
+  <span class="copyright-sep">&middot;</span>
+  <a href="privacy.html">Privacy Policy</a>
+  <span class="copyright-sep">&middot;</span>
+  <a href="https://www.klaygoph.com" target="_blank" rel="noopener">KLAYGOPH.COM</a>
 </div>
+
+</div><!-- /page-dark-zone -->
 
 <script>
 'use strict';
 
-var LOGO_URL = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
-var BTT_IMG  = 'https://raw.githubusercontent.com/klaygoph/klaygoph/main/KlaygoPH%20-%20Web%20-%20BacktoTop%20Button.png';
+// ── CONFIG ────────────────────────────────────────────
+var LOGO_URL = '/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png';
 
-// Logo
-document.getElementById('logo-img').src = LOGO_URL;
-document.getElementById('logo-img').style.filter = 'brightness(0) invert(1)';
+// ── LOGO ──────────────────────────────────────────────
+var navLogo = document.getElementById('logo-img');
+if(navLogo){ navLogo.src = LOGO_URL; navLogo.style.filter = 'brightness(0) invert(1)'; }
 
-// ── COMPACT NAV ON SCROLL ──
-window.addEventListener('scroll', function() {
-  var nt = document.getElementById('nav-top');
-  if (nt) {
-    if (window.scrollY > 60) nt.classList.add('compact');
-    else nt.classList.remove('compact');
-  }
-}, {passive: true});
+// ── COPYRIGHT YEAR ────────────────────────────────────
+var cyEl = document.getElementById('copyright-year');
+if(cyEl) cyEl.textContent = new Date().getFullYear();
 
-// ── MENU ──
-function openMenu() {
+// ── NAV: menu open / close ────────────────────────────
+function openMenu(){
   var overlay = document.getElementById('nav-menu');
-  var hbtn = document.querySelector('.nav-hamburger');
+  var burger  = document.querySelector('.nav-hamburger');
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
-  if (hbtn) {
-    hbtn.classList.add('rotating');
-    setTimeout(function() { hbtn.classList.remove('rotating'); }, 450);
+  if(burger){
+    burger.classList.remove('rotating');
+    void burger.offsetWidth; // force reflow to restart animation
+    burger.classList.add('rotating');
   }
-  setTimeout(function() {
-    overlay.querySelectorAll('.nav-menu-pill').forEach(function(p, i) {
-      setTimeout(function() { p.classList.add('visible'); }, i * 90);
-    });
-  }, 60);
+  overlay.onclick = function(e){ if(e.target === overlay) closeMenu(); };
+  var pills = overlay.querySelectorAll('.nav-menu-pill');
+  pills.forEach(function(p){ p.classList.remove('visible'); });
+  setTimeout(function(){
+    pills.forEach(function(p, i){ setTimeout(function(){ p.classList.add('visible'); }, i * 90); });
+  }, 40);
 }
-function closeMenu() {
+function closeMenu(){
   var overlay = document.getElementById('nav-menu');
-  overlay.classList.remove('open');
+  var pills   = overlay ? overlay.querySelectorAll('.nav-menu-pill') : [];
+  pills.forEach(function(p){ p.classList.remove('visible'); });
+  if(overlay) overlay.classList.remove('open');
   document.body.style.overflow = '';
-  overlay.querySelectorAll('.nav-menu-pill').forEach(function(p) {
-    p.classList.remove('visible');
-  });
 }
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
 
-// ── BACK TO TOP ──
-(function() {
+// ── NAV: compact on scroll ────────────────────────────
+(function(){
+  var navTop = document.querySelector('.nav-top');
+  window.addEventListener('scroll', function(){
+    if(navTop){ navTop.classList.toggle('compact', window.scrollY > 80); }
+  }, {passive: true});
+})();
+
+// ── BACK TO TOP — vertical text pill ─────────────────
+(function(){
   var btn = document.createElement('button');
   btn.id = 'back-to-top';
   btn.setAttribute('aria-label', 'Back to top');
-  var img = document.createElement('img');
-  img.src = BTT_IMG; img.alt = 'Back to top'; img.width = 38; img.height = 38;
-  btn.appendChild(img);
-  btn.onclick = function() { window.scrollTo({top: 0, behavior: 'smooth'}); };
+  btn.textContent = 'BACK TO TOP';
+  btn.onclick = function(){ window.scrollTo({top: 0, behavior: 'smooth'}); };
   document.body.appendChild(btn);
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 300) btn.classList.add('visible');
-    else btn.classList.remove('visible');
+  window.addEventListener('scroll', function(){
+    btn.classList.toggle('visible', window.scrollY > 300);
   }, {passive: true});
 })();
 </script>
