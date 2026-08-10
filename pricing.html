@@ -3393,18 +3393,8 @@ body{ font-size:16px; }
 .hero-check{ font-size:.8125rem; color:rgba(247,249,252,.75); }
 .hero-check::before{ content:"—"; color:var(--li); margin-right:2px; }
 
-/* ---- quiet static service strip (replaces animated marquees) ---- */
-.service-strip{
-  background:var(--mn); padding:14px clamp(24px,5vw,64px);
-  display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center;
-  font-family:"Manrope",sans-serif; font-size:.75rem; letter-spacing:.03em;
-  color:rgba(168,191,224,.85);
-}
-.service-strip-div{ color:rgba(168,191,224,.4); }
-
 @media(max-width:640px){
   .card{ padding:18px 16px !important; }
-  .service-strip{ font-size:.6875rem; }
 }
 
 </style>
@@ -3477,12 +3467,54 @@ body{ font-size:16px; }
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
-     SERVICE STRIP — quiet, static (no scrolling ticker)
+     LOCATION MARQUEE — full-width below nav, above split layout
 ══════════════════════════════════════════════════════════════ -->
-<div class="service-strip" aria-hidden="true">
-  <span>Regular · Deep · Move In / Move Out Cleaning</span>
-  <span class="service-strip-div">—</span>
-  <span>BGC · Makati · Taguig · Ortigas · Pasig · Quezon City &amp; nearby</span>
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">BGC</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Makati</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Taguig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ortigas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Pasig</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Quezon City</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Mandaluyong</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Parañaque</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Las Piñas</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Muntinlupa</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Caloocan</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Cubao</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Eastwood</span><span class="marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- Services marquee — scrolls left → right (reverse direction) -->
+<div class="marquee-strip marquee-strip-services" aria-hidden="true">
+  <div class="marquee-track marquee-track-reverse">
+    <span class="marquee-item">Regular Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Deep Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Move In / Move Out</span><span class="marquee-dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Regular Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Deep Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Move In / Move Out</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Regular Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Deep Cleaning</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Move In / Move Out</span><span class="marquee-dot">·</span>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
