@@ -3818,7 +3818,7 @@ body{ font-size:16px; }
 
 <!-- STEP 5: SCHEDULE -->
 <div class="card card-price reveal locked" id="card-sched">
-  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>How often do you need us?</h2><p>One-time, or recurring with a discount</p><span class="card-why">Affects your price</span></div></div>
+  <div class="card-head"><div class="sbadge" id="b5">5</div><div><h2>How often do you need us?</h2><p>One-time or recurring</p><span class="card-why">Affects your price</span></div></div>
   <div class="sched-list">
     <div class="sched-opt sel" onclick="selSched(this)" data-s="Initial / One-time">
       <div class="sched-radio"></div>
@@ -3827,26 +3827,22 @@ body{ font-size:16px; }
     <div class="sched-opt" onclick="selSched(this)" data-s="Monthly">
       <div class="sched-radio"></div>
       <span class="sched-label">Monthly</span>
-      <span class="sched-badge">2% off</span>
     </div>
     <div class="sched-opt" onclick="selSched(this)" data-s="Twice a Month">
       <div class="sched-radio"></div>
       <span class="sched-label">Twice a Month</span>
-      <span class="sched-badge">3% off</span>
     </div>
     <div class="sched-opt" onclick="selSched(this)" data-s="Weekly">
       <div class="sched-radio"></div>
       <span class="sched-label">Weekly</span>
-      <span class="sched-badge">4% off</span>
     </div>
     <div class="sched-opt" onclick="selSched(this)" data-s="Twice a Week">
       <div class="sched-radio"></div>
       <span class="sched-label">Twice a Week</span>
-      <span class="sched-badge">5% off</span>
     </div>
   </div>
-  <div class="recur-req-note" id="recur-req-note">By adding at least one scheduled date below, your recurring discount will be applied and this schedule can proceed.</div>
-  <p class="snote">Recurring discounts apply automatically once you add your dates: Monthly 2% off · Twice a Month 3% off · Weekly 4% off · Twice a Week 5% off. Discounts apply to your full estimate total. Schedule confirmed after reservation fee is received for each session.</p>
+  <div class="recur-req-note" id="recur-req-note">Add at least one scheduled date below so this schedule can proceed.</div>
+  <p class="snote">Schedule confirmed after reservation fee is received for each session.</p>
   <div class="recur-section" id="recur-section">
     <h4>Add your scheduled dates &amp; times</h4>
     <div id="recur-entries"></div>
@@ -3990,7 +3986,7 @@ body{ font-size:16px; }
         </div>
         <div style="padding:12px 14px;background:var(--pa);border-radius:0;border-left:3px solid var(--li);">
           <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Late Cancellation (Less than 24 Hours)</strong>
-          Cancellations made less than 24 hours before the scheduled service will forfeit the reservation fee already paid. No refund will be issued.
+          Cancellations made less than 24 hours before the scheduled service will forfeit the 50% reservation fee already paid. No refund will be issued.
         </div>
         <div style="padding:12px 14px;background:var(--pa);border-radius:0;border-left:3px solid var(--li);">
           <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">Exceptions</strong>
@@ -4018,18 +4014,10 @@ body{ font-size:16px; }
         </div>
         <div style="padding:12px 14px;background:var(--pa);border-radius:0;border-left:3px solid var(--pr);">
           <strong style="display:block;font-size:12px;color:var(--mn);margin-bottom:4px;">50% Reservation Fee</strong>
-          A 50% reservation fee is required to secure your reservation. This applies for <strong>same-day, weekend, and holiday bookings</strong>, as well as properties <strong>above 45 sqm</strong>.
+          A 50% reservation fee is required to secure every reservation, regardless of property size or booking day.
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="acc-item" id="acc-large">
-    <div class="acc-head" onclick="togAcc('acc-large')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' '){togAcc('acc-large');event.preventDefault();}">
-      <span class="acc-title">Large Spaces (above 60 sqm)</span>
-      <span class="acc-chevron">▼</span>
-    </div>
-    <div class="acc-body">An <strong>additional cleaner</strong> will be automatically assigned at no extra charge for spaces above 60 sqm, to ensure quality and efficiency. This may affect scheduling and we'll confirm details upon booking.<br><br>Separately, for <strong>spaces above 45 sqm:</strong> A <strong>50% reservation fee</strong> is required to secure your reservation. <strong>This also applies for weekend, same-day, and holiday bookings.</strong></div>
   </div>
 
   <div class="acc-item" id="acc-payment">
@@ -4037,7 +4025,7 @@ body{ font-size:16px; }
       <span class="acc-title">Reservation Fee &amp; Payment</span>
       <span class="acc-chevron">▼</span>
     </div>
-    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. For standard bookings: reservation fee = whichever is higher between 30% of your total estimate or the transport fee. For same-day, weekend, holiday, or above 45 sqm bookings: 50% of the total estimate is required.<br><br>Accepted: <strong>GCash · Bank Transfer</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
+    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. It is <strong>50% of your total estimate</strong> for every booking, regardless of property size or booking day.<br><br>Accepted: <strong>GCash · Bank Transfer (BPI)</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
   </div>
 
   <div class="acc-item" id="acc-onsite">
@@ -4108,9 +4096,9 @@ body{ font-size:16px; }
           <h4>Accepted Payment Methods</h4>
           <div class="pm-grid">
             <div class="pm-item"><div><div class="pm-name">GCash</div><div class="pm-num">Details sent upon confirmation</div></div></div>
-            <div class="pm-item pm-item-wide"><div><div class="pm-name">Bank Transfer</div><div class="pm-num">Details sent upon confirmation</div></div></div>
+            <div class="pm-item pm-item-wide"><div><div class="pm-name">Bank Transfer (BPI)</div><div class="pm-num">Details sent upon confirmation</div></div></div>
           </div>
-          <div class="pm-note">Note: Account name confirmed when we send payment details. Standard reservation fee = whichever is higher between 30% of total or transport fee. 50% applies for same-day, weekend, holiday, or above 45 sqm bookings.</div>
+          <div class="pm-note">Note: Account name confirmed when we send payment details. The reservation fee is 50% of your total estimate for all bookings.</div>
         </div>
       </div>
     </div>
@@ -4166,7 +4154,7 @@ body{ font-size:16px; }
       <div class="pr-band-upfront" id="pr-band-upfront" style="display:none;">
         <div class="pr-band-text-col">
           <div class="pr-band-lbl">Total Upfront Payment</div>
-          <div class="pr-band-sub">via GCash or Bank Transfer</div>
+          <div class="pr-band-sub">via GCash or Bank Transfer (BPI)</div>
         </div>
         <div class="pr-band-val" id="pr-upfront-amt">—</div>
       </div>
@@ -4252,7 +4240,7 @@ body{ font-size:16px; }
   <div class="be-upfront-band" id="be-upfront-band" style="display:none;">
     <div class="be-band-text-col">
       <div class="be-band-main-lbl">Total Upfront Payment</div>
-      <div class="be-band-sub-lbl">via GCash or Bank Transfer</div>
+      <div class="be-band-sub-lbl">via GCash or Bank Transfer (BPI)</div>
     </div>
     <div class="be-band-num" id="be-upfront-amt">—</div>
   </div>
@@ -4479,7 +4467,7 @@ var PRINT_BG   = '/assets/KlaygoPH%20-%20Print%20-%20White%20Background.png';
 // Larger Home uses PER_SQM_RATES as standalone per-sqm rates.
 var FIXED_PRICES={
   'Studio Type': {regular:700,  deep:950,  moveinout:1200},
-  '1 Bedroom':   {regular:800,  deep:1050, moveinout:1400},
+  '1 Bedroom':   {regular:850,  deep:1050, moveinout:1400},
   '2 Bedroom':   {regular:950,  deep:1200, moveinout:1800},
 };
 var PER_SQM_RATES={regular:25, deep:33, moveinout:43};
@@ -4516,16 +4504,17 @@ var ADDONS = [
   {id:'room',    name:'Additional Room',      note:'per room — select type(s)',             price:250, qty:true,  max:8,  tm:30, tx:45},
   {id:'bath',    name:'Additional Bathroom',  note:'per bathroom',                          price:250, qty:true,  max:10, tm:30, tx:45},
   {id:'balcony', name:'Additional Balcony',   note:'per balcony · ~30–45 min each',         price:250, qty:true,  max:5,  tm:30, tx:45},
-  {id:'declut',  name:'Declutter / Organize', note:'per cabinet or area · ~25–45 min each', price:250, qty:true,  max:10, tm:25, tx:45},
+  {id:'declut',  name:'Declutter / Organize', note:'per room · ~25–45 min each', price:250, qty:true,  max:10, tm:25, tx:45},
   {id:'dish',    name:'Dishwashing',          note:'per set · up to 15 items',              price:150, qty:true,  max:5,  tm:25, tx:40},
   {id:'fold',    name:'Folding Clothes',      note:'per set · up to 20 items',              price:150, qty:true,  max:5,  tm:20, tx:30},
   {id:'iron',    name:'Ironing / Steam',      note:'per set · up to 10 items',              price:200, qty:true,  max:5,  tm:30, tx:45},
   {id:'fridge',  name:'Fridge Cleaning',      note:'per fridge',                            price:200, qty:true,  max:3,  tm:30, tx:60},
   {id:'fan',     name:'Fan Cleaning',         note:'per fan',                               price:150, qty:true,  max:10, tm:15, tx:20},
+  {id:'grease', name:'Greasetrap Cleaning',  note:'condo units only · request must be given in advance', price:900, qty:false, max:1, tm:0, tx:0},
 ];
 
 var LOCS = [
-  {id:'bgc',     name:'BGC',           km:2.5,  fixed:80,  noRT:true},
+  {id:'bgc',     name:'BGC',           km:2.5,  fixed:100, noRT:true},
   {id:'mck',     name:'McKinley Hill', km:1.5,  fixed:100, noRT:true},
   {id:'taguig',  name:'Within Taguig', km:3,    fixed:150, noRT:true},
   {id:'makati',  name:'Makati',        km:6  },
@@ -4940,7 +4929,7 @@ function buildAvailCard(){
 function syncArea(val){
   val=Math.max(46,Math.min(120,+val||46));
   S.sqm=val;
-  S.isLarge=val>60; // >60 sqm triggers 50% reservation fee and auto-cleaner
+  S.isLarge=val>60;
   var disp=document.getElementById('area-display'); if(disp)disp.textContent=val;
   var slider=document.getElementById('area-slider');
   if(slider){
@@ -5210,22 +5199,13 @@ function renderAddons(){
   });
   // ── ADDITIONAL CLEANER separator + conditional row ──────────
   html+='<div class="al-separator">Additional Personnel</div>';
-  if(S.sqm>60){
-    html+='<div class="ar" style="opacity:.85;cursor:default;background:#EBF1FA;border-color:#A8BFE0;">'
-      +'<div class="ar-ck" style="background:#2B4E8A;border-color:#2B4E8A;color:#fff;">✓</div>'
-      +'<div class="ar-info"><div class="ar-n">Additional Cleaner</div>'
-      +'<div class="ar-no">Auto-included for above 60 sqm · First 3 hours</div></div>'
-      +'<div class="ar-p" style="color:#2B4E8A;font-size:11px;">Included</div>'
-      +'</div>';
-  } else {
-    var cleanerOn=S.addons['cleaner']>0;
-    html+='<div class="ar '+(cleanerOn?'on':'')+'" onclick="togAddon(\'cleaner\')">'
-      +'<div class="ar-ck">'+(cleanerOn?'✓':'')+'</div>'
-      +'<div class="ar-info"><div class="ar-n">Additional Cleaner</div>'
-      +'<div class="ar-no">First 3 hours · For units under 60 sqm</div></div>'
-      +'<div class="ar-p">Php 1,000</div>'
-      +'</div>';
-  }
+  var cleanerOn=S.addons['cleaner']>0;
+  html+='<div class="ar '+(cleanerOn?'on':'')+'" onclick="togAddon(\'cleaner\')">'
+    +'<div class="ar-ck">'+(cleanerOn?'✓':'')+'</div>'
+    +'<div class="ar-info"><div class="ar-n">Additional Cleaner</div>'
+    +'<div class="ar-no">First 3 hours</div></div>'
+    +'<div class="ar-p">Php 1,000</div>'
+    +'</div>';
   document.getElementById('al').innerHTML=html;
 }
 function togAddon(id){
@@ -5320,37 +5300,21 @@ function fmtT(mn,mx){
 }
 
 // ── RESERVATION FEE HELPER ────────────────────────────────────
-// Single source of truth for reservation fee logic.
-// 50% applies for: same-day, weekend, holiday, or above 60 sqm.
-// Standard: whichever is higher — 30% of total or transport fee.
+// Single source of truth. Flat 50% of the total estimate for every booking,
+// regardless of property size, day, or holiday.
 function calcReservationFee(total, transportFee, dateStr){
   if(!total||total<=0)return{dp:0,bal:0,needs50:false,reason:''};
-  var parts=dateStr?dateStr.split('-'):null;
-  var dow=parts?(new Date(+parts[0],+parts[1]-1,+parts[2]).getDay()):-1;
-  var isWeekend=dow===0||dow===6;
-  var isSameDay=dateStr&&((new Date(dateStr+'T12:00:00+08:00')-nowJS)/3600000)<24;
-  var isHoliday=dateStr&&PH_HOLIDAYS.has(dateStr);
-  var isLarge=S.sqm>45;
-  var needs50=!!(isSameDay||isWeekend||isHoliday||isLarge);
-  var reason=isSameDay?'Same-day booking':isWeekend?'Weekend booking':isHoliday?'Holiday booking':isLarge?'above 45 sqm':'';
-  var dp=needs50?Math.ceil(total*0.5):Math.max(Math.ceil(total*0.30),transportFee||0);
+  var dp=Math.ceil(total*0.5);
   var bal=Math.max(0,total-dp);
-  return{dp:dp,bal:bal,needs50:needs50,reason:reason};
+  return{dp:dp,bal:bal,needs50:true,reason:''};
 }
 
 // ── RECURRING DISCOUNT HELPER ─────────────────────────────────
 // Single source of truth for recurring discount logic.
 // All three callers (compute, buildMsg, openPrint) use this — do not duplicate.
 function calcDiscount(sub){
-  var rFilled=recurSlots.filter(function(s){return s.date;});
-  var hasAny=rFilled.length>=1; // discount triggers once at least 1 recurring date is added
-  var pct=0,label='';
-  if(S.sched==='Monthly'&&hasAny){pct=0.02;label='Monthly recurring — 2% off';}
-  else if((S.sched==='Twice a Month'||S.sched==='Bi-Monthly')&&hasAny){pct=0.03;label='Twice a Month recurring — 3% off';}
-  else if(S.sched==='Weekly'&&hasAny){pct=0.04;label='Weekly recurring — 4% off';}
-  else if((S.sched==='Twice a Week'||S.sched==='Bi-Weekly')&&hasAny){pct=0.05;label='Twice a Week recurring — 5% off';}
-  var amt=pct>0?Math.floor(sub*pct):0;
-  return{pct:pct,label:label,amt:amt};
+  // Recurring discounts are paused. Stub kept so every caller keeps working.
+  return{pct:0,label:'',amt:0};
 }
 
 // ── COMPUTE ───────────────────────────────────────────────────
@@ -5405,11 +5369,8 @@ function compute(){
     var q=S.addons[a.id]||0;
     if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push({l:lbl,v:sv});sub+=sv;}
   });
-  // Additional cleaner logic
-  if(S.sqm>60){
-    // Auto-included at no charge for 60+ sqm
-    lines.push({l:'Additional Cleaner (included — above 60 sqm)',v:0,free:true});
-  } else if(S.addons['cleaner']>0){
+  // Additional cleaner (optional paid add-on)
+  if(S.addons['cleaner']>0){
     lines.push({l:'Additional Cleaner',v:1000});sub+=1000;
   }
 
@@ -5475,7 +5436,7 @@ function compute(){
   var rf=calcReservationFee(total,tf,selDate);
   if(total>0){
     pb.style.display='block';
-    document.getElementById('pay-dp').textContent='Php '+rf.dp.toLocaleString()+(rf.needs50?' (50% \u2014 '+rf.reason+')':'');
+    document.getElementById('pay-dp').textContent='Php '+rf.dp.toLocaleString()+' (50%)';
     document.getElementById('pay-bal').textContent='Php '+rf.bal.toLocaleString();
     var rFilled2=recurSlots.filter(function(s){return s.date;});
     var multiDate=rFilled2.length>0||S.sched!=='Initial / One-time'; // already correct
@@ -5492,7 +5453,7 @@ function compute(){
     var balLbl=document.querySelector('#pay-box .pr.pay-now .pk');
     if(balLbl)balLbl.textContent=multiDate?'Balance on each service day':'Balance on service day';
     var pnote=document.querySelector('.pay-note');
-    if(pnote)pnote.textContent=rf.needs50?rf.reason+': 50% reservation fee required to confirm slot. Balance paid on service day.':'Reservation fee = whichever is higher between 30% of total or transport fee. Balance paid on service day.';
+    if(pnote)pnote.textContent='50% reservation fee required to confirm your slot. Balance paid on service day.';
     updateBottomEstimate(total,lines,true,rf.dp,rf.bal,t&&t.mn>0?t:null,rf);
   } else {
     pb.style.display='none';
@@ -5539,8 +5500,7 @@ function buildMsg(){
   var now=new Date(), ts=now.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'})+' at '+now.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
   bpLines.forEach(function(bp){if(bp.price>0){lines.push(bp.label+': Php '+bp.price.toLocaleString());sub+=bp.price;}});
   ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';lines.push(lbl+': Php '+sv.toLocaleString());sub+=sv;}});
-  if(S.sqm>60){lines.push('Additional Cleaner (included — above 60 sqm): Included');}
-  else if(S.addons['cleaner']>0){lines.push('Additional Cleaner: Php 1,000');sub+=1000;}
+  if(S.addons['cleaner']>0){lines.push('Additional Cleaner: Php 1,000');sub+=1000;}
   var tf=0;
   if(S.lf!==null&&S.lid&&S.lid!=='others'){lines.push('Transport — '+S.ln+': Php '+S.lf.toLocaleString());sub+=S.lf;tf=S.lf;}
   // Apply recurring discount (same logic as compute())
@@ -5562,7 +5522,7 @@ function buildMsg(){
   var multiDateMsg=rFilled.length>0||S.sched!=='Initial / One-time';
   var balLabelMsg=multiDateMsg?'Balance on each service day':'Balance on service day';
   var rfMsg=calcReservationFee(total,tf,selDate);
-  if(total>0)msg+='\n\nReservation fee (pay to confirm): Php '+rfMsg.dp.toLocaleString()+(rfMsg.needs50?' (50% — '+rfMsg.reason+')':' (standard)')+'\n'+balLabelMsg+': Php '+rfMsg.bal.toLocaleString();
+  if(total>0)msg+='\n\nReservation fee (pay to confirm): Php '+rfMsg.dp.toLocaleString()+' (50%)'+'\n'+balLabelMsg+': Php '+rfMsg.bal.toLocaleString();
   if(rFilled.length>0){
     var totalSessions=rFilled.length+1;
     msg+='\n\nRecurring Dates:\n'+rFilled.map(function(s){return s.date+(s.time?' at '+s.time:'');}).join('\n');
@@ -5689,8 +5649,7 @@ function openPrint(){
   var rows=[],sub=0;
   bpLines.forEach(function(bp){rows.push([bp.label,'Php '+bp.price.toLocaleString()]);sub+=bp.price;});
   ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){var sv=a.price*q;var lbl=a.name+(q>1?' ×'+q:'');if(a.id==='room'&&S.rt.size>0)lbl+=' ('+[...S.rt].join(', ')+')';rows.push([lbl,'Php '+sv.toLocaleString()]);sub+=sv;}});
-  if(S.sqm>60){rows.push(['Additional Cleaner (included — above 60 sqm)','Included']);}
-  else if(S.addons['cleaner']>0){rows.push(['Additional Cleaner','Php 1,000']);sub+=1000;}
+  if(S.addons['cleaner']>0){rows.push(['Additional Cleaner','Php 1,000']);sub+=1000;}
   var tf=0;if(S.lf!==null&&S.lid&&S.lid!=='others'){rows.push(['Transport — '+S.ln,'Php '+S.lf.toLocaleString()]);sub+=S.lf;tf=S.lf;}
   // Apply recurring discount (same logic as compute())
   var discPrint=calcDiscount(sub);
@@ -5732,7 +5691,7 @@ function openPrint(){
   var pNeeds50=rfPrint.needs50, pReason=rfPrint.reason, dpPrint=rfPrint.dp, balPrint=rfPrint.bal;
   var payHtml=total>0?'<div class="pay-s">'
     +'<h4>Payment Summary</h4>'
-    +'<div class="pr pn"><span class="pk">Reservation Fee'+(pNeeds50?' (50% — '+pReason+')':' — confirms your slot')+'</span><span class="pv">Php '+dpPrint.toLocaleString()+'</span></div>'
+    +'<div class="pr pn"><span class="pk">Reservation Fee'+' (50%)'+'</span><span class="pv">Php '+dpPrint.toLocaleString()+'</span></div>'
     +'<div style="margin:5px -8px 3px 0;padding:5px 8px;background:#EBF1FA;border:1px solid #A8BFE0;border-radius:0;display:flex;justify-content:space-between;align-items:center;">'
     +'<div><div style="font-size:7.5px;font-weight:700;color:#2B4E8A;letter-spacing:.08em;text-transform:uppercase;">'+(totalSessionsPrint>1?'Balance on Each Service Day':'Balance on Service Day')+'</div>'
     +'<div style="font-size:7px;color:#5A7BB5;">Paid on the day of cleaning</div></div>'
@@ -5741,7 +5700,7 @@ function openPrint(){
     +'<div><div style="font-size:8px;font-weight:700;color:#A8BFE0;letter-spacing:.08em;text-transform:uppercase;">Total Upfront Payment</div>'
     +'<div style="font-size:7.5px;color:rgba(168,191,224,.65);">Php '+dpPrint.toLocaleString()+' &times; '+totalSessionsPrint+' sessions</div></div>'
     +'<div style="font-size:12px;font-weight:800;color:#F7F9FC;">Php '+(dpPrint*totalSessionsPrint).toLocaleString()+'</div></div>':'')
-    +'<div style="font-size:7px;color:#6B6B68;margin-top:4px;line-height:1.5;">via GCash or Bank Transfer. Balance paid on the day of service.</div>'
+    +'<div style="font-size:7px;color:#6B6B68;margin-top:4px;line-height:1.5;">via GCash or Bank Transfer (BPI). Balance paid on the day of service.</div>'
     +'</div>':'';
 
   // ── BUILD FULL HTML AS STRING, THEN USE BLOB URL (fixes blank screen in modern browsers) ──
@@ -5805,10 +5764,9 @@ function openPrint(){
     +'<div class="pb"><h4>Booking Policies</h4>'
     +'<div class="pi2"><div class="pd2">-</div><div><strong>This is a price estimate only.</strong> Booking confirmed after reservation fee is received and confirmed.</div></div>'
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Reschedule:</strong> At least 24 hours notice required.</div></div>'
-    +'<div class="pi2"><div class="pd2">-</div><div><strong>Cancellation:</strong> Reservation fee non-refundable if cancelled &lt;24 hrs or cleaner is on the way/onsite.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>Cancellation:</strong> The 50% reservation fee is non-refundable if cancelled &lt;24 hrs or cleaner is on the way/onsite.</div></div>'
     +'<div class="pi2"><div class="pd2">-</div><div><strong>Exception:</strong> Booked &lt;24 hrs + cancelled 4+ hrs before + cleaner not yet departed — refund or rebooking may be arranged.</div></div>'
-    +'<div class="pi2"><div class="pd2">-</div><div><strong>Large Spaces (above 60 sqm):</strong> An additional cleaner is automatically included at no extra charge.</div></div>'
-    +'<div class="pi2"><div class="pd2">-</div><div><strong>Above 45 sqm &amp; Weekend Slots:</strong> 50% reservation fee required to confirm booking.</div></div>'
+    +'<div class="pi2"><div class="pd2">-</div><div><strong>Reservation Fee:</strong> 50% of your total estimate is required to confirm booking.</div></div>'
     +'</div>'
     +'<div class="nor">This is not an official receipt</div>'
     +'</div>'
@@ -6310,8 +6268,8 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
     var totalSess3=rFilled3.length+1; // always at least 1 session
     var totalUpfront3=dp*totalSess3;
     var rfBE=rf||calcReservationFee(total,0,selDate);
-    var pctBE=rfBE.needs50?'50%':'30%';
-    var reasonBE=rfBE.needs50?rfBE.reason:'Standard';
+    var pctBE='50%';
+    var reasonBE='';
     // ── Reservation fee section — show for ALL bookings with hasPay ──
     var resSec=document.getElementById('be-res-section');
     if(resSec){
@@ -6319,7 +6277,7 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
       var resR=resSec.querySelector('.be-res-reason');
       var resFee=resSec.querySelector('.be-res-fee');
       var dCount=document.getElementById('be-dates-count');
-      if(resR)resR.textContent=pctBE+' Reservation fee — '+reasonBE;
+      if(resR)resR.textContent=pctBE+' Reservation fee';
       if(resFee)resFee.textContent='Php '+dp.toLocaleString();
       if(dCount)dCount.textContent=totalSess3+(totalSess3===1?' DAY':' DAYS');
     }
