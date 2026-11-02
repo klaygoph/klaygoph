@@ -2161,6 +2161,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .lb.lb-row .lb-n{justify-content:flex-start;flex:1;text-align:left;}
 .lb.lb-row .lb-f{margin-top:0;flex-shrink:0;min-width:78px;text-align:right;}
 .loc-note{font-size:.75rem;color:#2B4E8A;margin-top:10px;padding:10px 14px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:0;line-height:1.7;}
+.loc-note.loc-note-alert{background:var(--rbg);border:1px solid var(--rbdr);border-left:4px solid var(--red);color:#A33232;font-size:.875rem;font-weight:500;line-height:1.6;margin-top:12px;padding:12px 16px;border-radius:var(--r,8px);}
+.loc-note.loc-note-alert strong{font-weight:800;color:#8F2D2D;}
 .other-inp{display:none;margin-top:6px;}
 .other-inp input{width:100%;padding:8px 12px;border:1.5px solid var(--bd);border-radius:0;font-family:inherit;font-size:.8125rem;color:var(--dk);}
 .other-inp input:focus{outline:none;border-color:var(--pr);}
@@ -3903,7 +3905,7 @@ body{ font-size:16px; }
   </div>
   <div id="loc-grid"></div>
   <div class="other-inp" id="other-inp"><input type="text" id="other-txt" placeholder="Type your area / city..." oninput="compute()" maxlength="60"></div>
-  <div class="loc-note">Transport fee is an estimate. Final amount confirmed based on your exact address.</div>
+  <div class="loc-note loc-note-alert" role="note"><strong>Transport fee is an estimate.</strong> Final amount confirmed based on your exact address.</div>
 </div>
 
 <!-- STEP 9: YOUR INFORMATION -->
@@ -4473,6 +4475,7 @@ var FIXED_PRICES={
 var PER_SQM_RATES={regular:25, deep:33, moveinout:43};
 
 // PRICE_BRACKETS — used for time estimation only (rMin/rMax/dMin/dMax/mMin/mMax)
+// Times assume ONE cleaner at every property size. An Additional Cleaner halves the estimate (see cT).
 var PRICE_BRACKETS=[
   {max: 30, rMin:120,rMax:180, dMin:180,dMax:240, mMin:210,mMax:270},
   {max: 35, rMin:150,rMax:210, dMin:210,dMax:270, mMin:240,mMax:300},
@@ -4510,7 +4513,7 @@ var ADDONS = [
   {id:'iron',    name:'Ironing / Steam',      note:'per set · up to 10 items',              price:200, qty:true,  max:5,  tm:30, tx:45},
   {id:'fridge',  name:'Fridge Cleaning',      note:'per fridge',                            price:200, qty:true,  max:3,  tm:30, tx:60},
   {id:'fan',     name:'Fan Cleaning',         note:'per fan',                               price:150, qty:true,  max:10, tm:15, tx:20},
-  {id:'grease', name:'Greasetrap Cleaning',  note:'condo units only · request must be given in advance', price:900, qty:false, max:1, tm:0, tx:0},
+  {id:'grease', name:'Greasetrap Cleaning',  note:'condo units only · request must be given in advance', price:900, qty:false, max:1, tm:60, tx:60},
 ];
 
 var LOCS = [
@@ -5202,8 +5205,7 @@ function renderAddons(){
   var cleanerOn=S.addons['cleaner']>0;
   html+='<div class="ar '+(cleanerOn?'on':'')+'" onclick="togAddon(\'cleaner\')">'
     +'<div class="ar-ck">'+(cleanerOn?'✓':'')+'</div>'
-    +'<div class="ar-info"><div class="ar-n">Additional Cleaner</div>'
-    +'<div class="ar-no">First 3 hours</div></div>'
+    +'<div class="ar-info"><div class="ar-n">Additional Cleaner</div></div>'
     +'<div class="ar-p">Php 1,000</div>'
     +'</div>';
   document.getElementById('al').innerHTML=html;
@@ -5291,6 +5293,8 @@ function cT(){
   else if(S.cleanType==='deep'){mn=b.dMin;mx=b.dMax;}
   else{mn=b.mMin;mx=b.mMax;}
   ADDONS.forEach(function(a){var q=S.addons[a.id]||0;if(q>0){mn+=a.tm*q;mx+=a.tx*q;}});
+  // Two cleaners work in parallel: halve the total time (rounded to the nearest 5 min)
+  if((S.addons['cleaner']||0)>0){mn=Math.round(mn/2/5)*5;mx=Math.round(mx/2/5)*5;}
   return{mn:mn,mx:mx};
 }
 function fmtT(mn,mx){
@@ -5395,6 +5399,9 @@ function compute(){
   var disc=calcDiscount(sub);
   if(disc.amt>0)lines.push({l:disc.label,v:-disc.amt,disc:true});
   var total=sub-disc.amt;
+  // Each added recurring date is another visit. Per-visit total stays the same; the overall total grows.
+  var nVisits=1+recurSlots.filter(function(s){return s.date;}).length;
+  var grandTotal=total*nVisits;
 
   // Show/hide recurring required note
   var rReqNote=document.getElementById('recur-req-note');
@@ -5410,14 +5417,14 @@ function compute(){
   var tb=document.getElementById('tbanner');
   if(t&&sub>0){
     var ts=fmtT(t.mn,t.mx);
-    document.getElementById('tstr').textContent='Estimated Duration:';
+    document.getElementById('tstr').textContent='Estimated Duration ('+(S.addons['cleaner']>0?'2 cleaners':'1 cleaner')+'):';
     document.getElementById('tback').textContent='You get back '+ts+' of your day.';
     tb.classList.add('show');
     document.getElementById('ptime').textContent='~'+ts+' est.';
     document.getElementById('ptime-val').textContent='You get back '+ts+' of your day.';
   } else {tb.classList.remove('show');document.getElementById('ptime').textContent='';document.getElementById('ptime-val').textContent='';}
 
-  document.getElementById('ptotd').textContent=total.toLocaleString();
+  document.getElementById('ptotd').textContent=grandTotal.toLocaleString();
   var body=document.getElementById('pbody');
   var panelRight=document.querySelector('.panel-right');
   if(!lines.length){body.innerHTML='<div class="empty-p">Select a date, time &amp; service<br>to build your estimate.</div>';document.getElementById('pay-box').style.display='none';document.getElementById('transpo-note').style.display='none';updateStickyBar(0);updateBottomEstimate(0,[],false,0,0,null);updateProgress();return;}
@@ -5427,10 +5434,16 @@ function compute(){
     var llHtml=ln.l+(ln.sub?'<span class="li-sub">'+ln.sub+'</span>':'');
     return'<div class="li"><span class="ll">'+llHtml+'</span><span class="lv">'+(ln.tbd?'TBD':'Php '+ln.v.toLocaleString())+'</span></div>';
   }).join('');
-  html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">Php '+total.toLocaleString()+'</span></div>';
+  if(nVisits>1){
+    html+='<div class="li"><span class="ll">Estimated Total (per visit)</span><span class="lv">Php '+total.toLocaleString()+'</span></div>';
+    html+='<div class="li"><span class="ll">Number of visits</span><span class="lv">× '+nVisits+'</span></div>';
+    html+='<div class="li st"><span class="ll">Total for '+nVisits+' visits</span><span class="lv">Php '+grandTotal.toLocaleString()+'</span></div>';
+  } else {
+    html+='<div class="li st"><span class="ll">Estimated Total</span><span class="lv">Php '+total.toLocaleString()+'</span></div>';
+  }
   body.innerHTML=html;
 
-  updateStickyBar(total);
+  updateStickyBar(grandTotal,nVisits);
 
   var pb=document.getElementById('pay-box');
   var rf=calcReservationFee(total,tf,selDate);
@@ -5516,8 +5529,10 @@ function buildMsg(){
   msg+='\nDate: '+dl+'\nTime: '+tl+'\nSchedule: '+S.sched;
   msg+='\nCleaning Type: '+(S.cleanType==='deep'?'Deep Cleaning':S.cleanType==='moveinout'?'Move In / Move Out':'Regular Cleaning');
   msg+='\nArea: '+S.sqm+' sqm'+(S.bn?' ('+S.bn+')':'')+'\n';
-  msg+='\nSERVICES:\n'+lines.join('\n')+'\nESTIMATED TOTAL: Php '+total.toLocaleString();
-  if(t)msg+='\nEst. Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.';
+  var nVisMsg=1+recurSlots.filter(function(s){return s.date;}).length;
+  msg+='\nSERVICES:\n'+lines.join('\n')+'\nESTIMATED TOTAL'+(nVisMsg>1?' (per visit)':'')+': Php '+total.toLocaleString();
+  if(nVisMsg>1)msg+='\nNumber of visits: '+nVisMsg+'\nTOTAL FOR '+nVisMsg+' VISITS: Php '+(total*nVisMsg).toLocaleString();
+  if(t)msg+='\nEst. Duration'+(S.addons['cleaner']>0?' (2 cleaners)':' (1 cleaner)')+': You get back '+fmtT(t.mn,t.mx)+' of your day.';
   var rFilled=recurSlots.filter(function(s){return s.date;});
   var multiDateMsg=rFilled.length>0||S.sched!=='Initial / One-time';
   var balLabelMsg=multiDateMsg?'Balance on each service day':'Balance on service day';
@@ -5658,7 +5673,7 @@ function openPrint(){
   var parts=selDate?selDate.split('-'):null;
   var dl=parts?new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
   var tl=selTime?selTime.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true}):'';
-  var tStr=t?'Estimated Duration: You get back '+fmtT(t.mn,t.mx)+' of your day.':'';
+  var tStr=t?'Estimated Duration'+(S.addons['cleaner']>0?' (2 cleaners)':' (1 cleaner)')+': You get back '+fmtT(t.mn,t.mx)+' of your day.':'';
   var rFilled=recurSlots.filter(function(s){return s.date;});
   var cR='';
   if(name)cR+='<tr><td>Name</td><td>'+escapeHtml(name)+'</td></tr>';
@@ -5679,7 +5694,8 @@ function openPrint(){
   }
   cR+='<tr><td>Submitted</td><td>'+ts+'</td></tr>';
   var rowsHtml=rows.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
-  rowsHtml+='<tr class="tr"><td colspan="2"><div class="tr-band"><span>ESTIMATED TOTAL</span><span>Php '+total.toLocaleString()+'</span></div></td></tr>';
+  rowsHtml+='<tr class="tr"><td colspan="2"><div class="tr-band"><span>ESTIMATED TOTAL'+(rFilled.length>0?' (PER VISIT)':'')+'</span><span>Php '+total.toLocaleString()+'</span></div></td></tr>';
+  if(rFilled.length>0){var nvPrint=rFilled.length+1;rowsHtml+='<tr class="tr"><td colspan="2"><div class="tr-band"><span>TOTAL FOR '+nvPrint+' VISITS</span><span>Php '+(total*nvPrint).toLocaleString()+'</span></div></td></tr>';}
   var sits=[...selSituations].join(', ');var instrHtml='';
   if(sits)instrHtml+='<div class="ib"><h4>Situation</h4><p>'+escapeHtml(sits)+'</p></div>';
   if(instr)instrHtml+='<div class="ib"><h4>Special Instructions</h4><p>'+escapeHtml(instr)+'</p></div>';
@@ -6197,13 +6213,13 @@ function flashUpdate(id){
   el.classList.add('val-updated');
   setTimeout(function(){el.classList.remove('val-updated');},300);
 }
-function updateStickyBar(total){
+function updateStickyBar(total,visits){
   var bar=document.getElementById('sticky-bar');if(!bar)return;
   if(total>0){
     flashUpdate('sb-total');document.getElementById('sb-total').textContent=total.toLocaleString();
     var ctLabel=S.cleanType==='deep'?'Deep Clean':S.cleanType==='moveinout'?'Move In/Out':'Regular Clean';
     var propLabel=S.bn==='Larger Home'?S.sqm+' sqm':S.bn||'';
-    document.getElementById('sb-desc').textContent=ctLabel+(propLabel?' · '+propLabel:'');
+    document.getElementById('sb-desc').textContent=ctLabel+(propLabel?' · '+propLabel:'')+(visits>1?' · '+visits+' visits':'');
     var sbDate=document.getElementById('sb-date');
     if(sbDate){
       if(selDate&&selTime){
@@ -6241,7 +6257,9 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
   }
   // ── Totals ──────────────────────────────────────────────────
   var totEl=document.getElementById('be-totd');
-  if(totEl)totEl.textContent=total>0?total.toLocaleString():'0';
+  var nVBE=1+recurSlots.filter(function(s){return s.date;}).length;
+  var grandBE=total*nVBE;
+  if(totEl)totEl.textContent=total>0?grandBE.toLocaleString():'0';
   var timeEl=document.getElementById('be-time');
   if(timeEl)timeEl.textContent=(t&&t.mn)?'You get back ~'+fmtT(t.mn,t.mx)+' of your day.':'';
   var beIdMob=document.getElementById('be-est-id-mob');
@@ -6259,7 +6277,13 @@ function updateBottomEstimate(total,lines,hasPay,dp,bal,t,rf){
     if(ln.free)return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv" style="color:#A8BFE0;font-size:11px;">Included</span></div>';
     return'<div class="be-line"><span class="be-ll">'+ln.l+'</span><span class="be-lv">'+(ln.tbd?'TBD':'Php '+ln.v.toLocaleString())+'</span></div>';
   }).join('');
-  html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">Php '+total.toLocaleString()+'</span></div>';
+  if(nVBE>1){
+    html+='<div class="be-line"><span class="be-ll">Estimated Total (per visit)</span><span class="be-lv">Php '+total.toLocaleString()+'</span></div>';
+    html+='<div class="be-line"><span class="be-ll">Number of visits</span><span class="be-lv">× '+nVBE+'</span></div>';
+    html+='<div class="be-total-line"><span class="be-ll">Total for '+nVBE+' visits</span><span class="be-lv">Php '+grandBE.toLocaleString()+'</span></div>';
+  } else {
+    html+='<div class="be-total-line"><span class="be-ll">Estimated Total</span><span class="be-lv">Php '+total.toLocaleString()+'</span></div>';
+  }
   body.innerHTML=html;
   // ── Payment bands ────────────────────────────────────────────
   if(hasPay){
