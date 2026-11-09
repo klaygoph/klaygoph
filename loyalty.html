@@ -1,0 +1,1054 @@
+<!--
+  ════════════════════════════════════════════════════════════════
+  KLAYGO PH — Stamp Card (Loyalty)
+  This file and its design, copy, branding, and code are the
+  property of Klaygo PH (klaygoph.com). Unauthorized copying,
+  redistribution, or resale is not permitted.
+  ════════════════════════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="same-origin">
+<meta name="description" content="Check your Klaygo PH stamp card. Every cleaning earns a stamp. Collect 10 and your next cleaning is on us.">
+<title>Stamp Card — Klaygo PH</title>
+<link rel="icon" type="image/png" href="/assets/KlaygoPH%20-%20Rebranded%20-%20Favicon%20-%20Dark%20Square.png">
+<link rel="apple-touch-icon" href="/assets/KlaygoPH%20-%20Rebranded%20-%20Favicon%20-%20Dark%20Square.png">
+<style>
+
+
+/* Manrope — self-hosted body font */
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-ExtraLight.woff2") format("woff2");font-weight:200;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-Light.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:"Manrope";src:url("fonts/Manrope-ExtraBold.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap;}
+
+/* Argentum Novus — self-hosted brand font */
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Thin.woff2") format("woff2");font-weight:100;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-ThinItalic.woff2") format("woff2");font-weight:100;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-ExtraLight.woff2") format("woff2");font-weight:200;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-ExtraLightItalic.woff2") format("woff2");font-weight:200;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Light.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-LightItalic.woff2") format("woff2");font-weight:300;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-MediumItalic.woff2") format("woff2");font-weight:500;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-SemiBoldItalic.woff2") format("woff2");font-weight:600;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-BoldItalic.woff2") format("woff2");font-weight:700;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-ExtraBold.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-ExtraBoldItalic.woff2") format("woff2");font-weight:800;font-style:italic;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-Black.woff2") format("woff2");font-weight:900;font-style:normal;font-display:swap;}
+@font-face{font-family:"Argentum Novus";src:url("/fonts/ArgentumNovus-BlackItalic.woff2") format("woff2");font-weight:900;font-style:italic;font-display:swap;}
+
+:root{
+  --mn:#0D1F3C;   /* deep navy       — topbar, footer text */
+  --pr:#2B4E8A;   /* medium blue     — links, primary accents */
+  --dp:#0D1F3C;   /* dark primary    — step badges, strong accents */
+  --dk:#0D1F3C;   /* darkest navy    — deep shadows */
+  --se:#3D6399;   /* secondary blue  — hover states */
+  --mi:#5A7BB5;   /* mid blue        — inline accents */
+  --li:#A8BFE0;   /* light blue      — borders on dark bg */
+  --sl:#EBF1FA;   /* soft light blue — subtle borders */
+  --pa:#EBF1FA;   /* pale blue       — light bg panels */
+  --bg:#F7F9FC;   /* near white      — page chrome */
+  --gr:#6B6B68;   /* warm gray       — secondary text */
+  --bd:#EBF1FA;   /* border          — card edges */
+  --sh:0 4px 24px rgba(43,78,138,.1); /* shadow */
+  --red:#B94040;--green:#2E6B4F;--gbg:#E8F4EE;--gbdr:#9FCFB5;
+  /* Backwards-compat aliases — used in older CSS rules, do not remove */
+  --deepnav:#0D1F3C;--wh:#fff;--r:14px;--sh2:0 1px 3px rgba(43,78,138,.05);
+  --amber:#5A7BB5;--abg:#EBF1FA;--abdr:#A8BFE0;
+  --rbg:#FEF2F2;--rbdr:#FECACA;
+  --nav-light:#F7F9FC;
+  --font-brand:"Argentum Novus",system-ui,sans-serif;
+  --font-body:"Manrope",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:#0D1F3C;overflow-x:hidden;}
+
+
+/* Seamless dark zone — covers the gap between the last card and the dark footer
+   on BOTH mobile and desktop */
+
+body{font-family:"Manrope",system-ui,sans-serif;background:#F7F9FC;color:#2C2C2A;font-size:16px;line-height:1.55;}
+
+/* Brand font — Argentum Novus applies ONLY to headings and explicit brand elements */
+h1,h2,h3,h4,.font-brand,[class*="hero-eyebrow"],[class*="whn-acc-title"],[class*="cc-big-title"],[class*="hero-stat-num"]{font-family:var(--font-brand);}
+
+/* ── NAV ── */
+.nav-wrap{position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(13,31,60,.15);}
+
+/* Top bar — #0D1F3C — 20% of viewport height */
+.nav-top{
+  background:#0D1F3C;
+  height:clamp(84px,14vh,120px); /* taller — more breathing room above logo */
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(40px,5vw,64px);
+  transition:height .3s ease;
+}
+.nav-top.compact{height:clamp(60px,8vh,76px);}
+.nav-top-left{display:flex;align-items:center;gap:14px;}
+.nav-logo{height:clamp(38px,3.8vw,52px);} /* bigger on desktop */
+.nav-brand-text{
+  font-family:var(--font-body);
+  font-size:.6875rem;color:rgba(247,249,252,.45);
+  line-height:1.4;display:flex;flex-direction:column;
+}
+.nav-brand-text strong{color:rgba(247,249,252,.75);font-weight:700;letter-spacing:.02em;}
+.nav-top-right{display:flex;align-items:center;gap:10px;}
+
+/* ── NAV HAMBURGER — PNG image, transparent bg ── */
+.nav-hamburger{background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:opacity .15s;}
+.nav-hamburger:hover{opacity:.75;}
+.nav-hamburger img{width:38px;height:38px;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+.nav-hamburger.rotating img{transform:rotate(360deg);}
+.btn-ref{background:transparent;border:1px solid rgba(168,191,224,.25);color:var(--li);border-radius:0;width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+.btn-ref svg{width:14px;height:14px;}
+.btn-ref:hover{border-color:var(--li);color:#fff;}
+
+/* ── NAV SUB-BAR — no dividing line ── */
+.nav-sub{background:var(--mn);display:flex;align-items:center;padding:0 clamp(40px,5vw,64px);height:44px;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap;}
+.nav-sub::-webkit-scrollbar{display:none;}
+.nav-tab{font-family:var(--font-brand);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(247,249,252,.55);padding:7px 22px;display:flex;align-items:center;border-radius:0;transition:all .15s;white-space:nowrap;}
+.nav-tab:hover{color:rgba(247,249,252,.9);background:rgba(255,255,255,.08);}
+.nav-tab.active{color:#0D1F3C;background:#F7F9FC;font-weight:800;}
+
+/* ── Breadcrumb (replaces nav-tab list) ── */
+
+
+
+
+
+
+/* ── MOBILE BACK BUTTON — PNG image ── */
+.nav-back-btn{background:none;border:none;cursor:pointer;padding:0;width:36px;height:36px;display:none;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;}
+.nav-back-btn img{width:32px;height:32px;display:block;}
+.nav-mobile-page{font-family:var(--font-brand);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F7F9FC;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;}
+
+@media(max-width:768px){
+  .nav-top{height:clamp(56px,20vh,120px);padding:0 20px;position:relative;}
+  .nav-top.compact{height:clamp(48px,10vh,72px);}
+  .nav-brand-text{display:none;}
+  .nav-logo{height:32px;} /* mobile keeps 32px */
+  .nav-back-btn{display:flex;}
+  .nav-mobile-page{display:block;}
+  .nav-sub{display:none;}
+  .btn-ref{display:none;}
+  .nav-hamburger img{width:30px;height:30px;}
+}
+@media(min-width:769px){.nav-back-btn{display:none;}}
+
+/* ── MENU OVERLAY — full-screen mobile, sidebar on desktop ── */
+.nav-menu-overlay{display:none;position:fixed;inset:0;background:#0D1F3C;z-index:9999;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;overflow-y:auto;padding:56px 28px 32px;}
+.nav-menu-overlay.open{display:flex;}
+.menu-panel{display:contents;}
+.nav-menu-close{position:absolute;top:22px;right:28px;background:none;border:none;color:#F7F9FC;cursor:pointer;font-size:28px;padding:8px;opacity:.7;transition:opacity .15s;}
+.nav-menu-close:hover{opacity:1;}
+.nav-menu-pill{font-family:var(--font-body);font-size:15px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:rgba(247,249,252,.78);text-decoration:none;border:none;border-radius:0;padding:11px 16px;width:100%;text-align:left;opacity:0;transform:translateY(-8px);transition:background .18s,opacity .22s ease,transform .22s ease;cursor:pointer;pointer-events:auto;}
+.nav-menu-pill.visible{opacity:1;transform:translateY(0);}
+.nav-menu-pill:hover,.nav-menu-pill.active{background:rgba(168,191,224,.12);color:#F7F9FC;}
+.nav-menu-pill:nth-child(2){transition-delay:.06s;}
+.nav-menu-pill:nth-child(3){transition-delay:.12s;}
+.nav-menu-pill:nth-child(4){transition-delay:.18s;}
+.nav-menu-pill:nth-child(5){transition-delay:.24s;}
+.nav-menu-pill:nth-child(6){transition-delay:.30s;}
+.nav-menu-pill:nth-child(7){transition-delay:.36s;}
+.nav-menu-pill:nth-child(8){transition-delay:.42s;}
+.nav-menu-pill:nth-child(9){transition-delay:.48s;}
+.nav-menu-footer{margin-top:28px;padding-top:20px;padding-left:16px;border-top:1px solid rgba(168,191,224,.15);display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;width:100%;}
+.nav-menu-footer-logo{height:20px;filter:brightness(0) invert(1);opacity:.9;margin-bottom:5px;}
+.nav-menu-footer-tag{font-family:var(--font-body);font-size:.6875rem;color:rgba(247,249,252,.5);letter-spacing:.02em;margin-bottom:7px;}
+.nav-menu-footer-line{font-family:var(--font-body);font-size:.75rem;color:rgba(247,249,252,.62);line-height:1.5;text-decoration:none;display:block;}
+.nav-menu-footer-link:hover{color:#F7F9FC;}
+.nav-menu-footer-social{display:flex;gap:16px;margin-top:9px;justify-content:flex-start;}
+.nav-menu-footer-social img{width:16px;height:16px;opacity:.65;filter:brightness(0) invert(1);transition:opacity .15s;display:block;}
+.nav-menu-footer-social a:hover img{opacity:1;}
+/* Desktop: slide-in sidebar from right (~25% of screen width) */
+@media(min-width:769px){
+  .nav-menu-overlay{
+    left:auto;
+    width:300px;
+    align-items:flex-start;
+    padding:80px 32px 40px;
+    box-shadow:-16px 0 48px rgba(0,0,0,.45);
+    border-left:1px solid rgba(168,191,224,.1);
+  }
+  .nav-menu-close{top:22px;right:22px;}
+  .nav-menu-footer{margin-top:32px;}
+}
+.menu-bubbles{display:none;}
+.skip-link{position:absolute;top:-100px;left:16px;padding:10px 18px;background:var(--mn);color:#fff;border-radius:0;font-size:.8125rem;font-weight:700;z-index:99999;transition:top .2s;}
+.skip-link:focus{top:0;}
+*:focus-visible{outline:2.5px solid var(--pr);outline-offset:3px;border-radius:0;}
+button:focus-visible,a:focus-visible,.pill:focus-visible,.ts:focus-visible{outline:2.5px solid var(--pr);outline-offset:2px;}
+.acc-head:focus-visible{outline:2.5px solid var(--pr);outline-offset:2px;border-radius:0;}
+@keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+.breadcrumb{display:flex;align-items:center;gap:6px;padding:0;font-family:var(--font-brand);font-size:.6875rem;font-weight:600;letter-spacing:.04em;}
+.breadcrumb a{color:rgba(247,249,252,.5);text-decoration:none;transition:color .15s;text-transform:uppercase;}
+.breadcrumb a:hover{color:rgba(247,249,252,.85);}
+.breadcrumb-sep{color:rgba(247,249,252,.3);font-size:.8125rem;}
+.breadcrumb-current{color:#F7F9FC;font-weight:800;text-transform:uppercase;}
+/* ── FOOTER STYLES ────────────────────────────────────────── */
+
+/* ── OUTLINE MARQUEE — large stroke text, footer top ── */
+.footer-marquee{
+  background:#0D1F3C;
+  overflow:hidden;
+  padding:clamp(18px,3vh,32px) 0;
+  border-top:1px solid rgba(168,191,224,.06); /* separator between footer grid and marquee */
+  border-bottom:1px solid rgba(168,191,224,.06); /* separator between marquee and copyright */
+  position:relative;
+  contain:paint;
+  transform:translateZ(0);
+}
+/* Fade edges — masks the left and right overflow */
+.footer-marquee::before,
+.footer-marquee::after{
+  content:"";position:absolute;top:0;bottom:0;width:14%;z-index:2;pointer-events:none;
+}
+.footer-marquee::before{left:0;background:linear-gradient(to right,#0D1F3C 40%,transparent);}
+.footer-marquee::after{right:0;background:linear-gradient(to left,#0D1F3C 40%,transparent);}
+.footer-marquee-track{
+  display:flex;white-space:nowrap;width:max-content;
+  animation:marqueeScroll 40s linear infinite; /* reuses existing @keyframes */
+}
+@media(prefers-reduced-motion:reduce){.footer-marquee-track{animation:none;}}
+.footer-marquee-text{
+  font-family:var(--font-brand);
+  font-size:clamp(44px,8.5vw,92px);
+  font-weight:900;
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(168,191,224,.28);
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+  line-height:1.1;
+  padding:0 clamp(20px,3.5vw,52px);
+  display:inline-block;
+}
+.footer-marquee-sep{
+  font-family:var(--font-brand);
+  font-size:clamp(22px,4vw,44px);
+  color:rgba(168,191,224,.14);
+  padding:0 clamp(8px,1.5vw,20px);
+  display:inline-block;
+  line-height:1.1;
+}
+
+/* ══════════════════════════════════════════
+   SITE FOOTER — Dual layout
+   Desktop ≥700px: 3 col [Logo+QR] [Nav] [Contact+Social]
+   Mobile  <700px: 2 col [Logo+Nav+Contact] [Review+QR+Social]
+   .f-dt = visible on desktop, hidden on mobile
+   .f-mb = hidden on desktop, visible on mobile
+═══════════════════════════════════════════ */
+
+
+@media(max-width:768px){
+  
+  /* Default: block. Specific containers override below. */
+  
+  nav.f-mb,.footer-mb-right.f-mb,.footer-mb-contact.f-mb{display:flex!important;}
+  
+  .footer-mb-right.f-mb{flex-direction:column;align-items:flex-start;}
+  .footer-mb-contact.f-mb{flex-direction:column;}
+}
+
+/* ── Footer shell ── */
+.site-footer{
+  background:#0D1F3C;
+  padding:clamp(36px,5vh,56px) clamp(40px,5vw,64px) clamp(28px,4vh,44px);
+  margin:0;
+}
+.footer-grid{
+  max-width:1100px;    /* caps logo+content width on very large screens */
+  margin:0;             /* left-aligned to site-footer padding — matches header logo position exactly */
+  display:grid;
+  /* Desktop: [Logo+QR] [Nav] [Contact+Social] */
+  grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.6fr);
+  gap:clamp(24px,5vw,60px);
+  align-items:stretch;
+}
+
+/* ── Col 1 (always): Brand logo ── */
+.footer-brand-col{display:flex;flex-direction:column;align-items:flex-start;}
+.footer-wordmark{
+  height:clamp(36px,4.5vw,56px);
+  display:block;
+  margin-bottom:clamp(16px,2.5vh,24px);
+}
+
+.footer-rating{display:flex;align-items:center;gap:7px;margin-bottom:clamp(8px,1vh,12px);}
+.footer-rating-stars{color:#A8BFE0;letter-spacing:2px;font-size:clamp(16px,1.5vw,20px);line-height:1;}
+.footer-rating-text{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(13px,1.15vw,15px);
+  color:rgba(247,249,252,.58);
+  font-weight:600;
+  letter-spacing:.01em;
+}
+
+/* Desktop: QR block below logo */
+.footer-qr-block{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(12px,1.6vh,18px);}
+.footer-review-text{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(13.5px,1.25vw,15.5px);
+  color:rgba(247,249,252,.60);
+  line-height:1.75;
+  margin:0;
+}
+.footer-review-text strong{color:#F7F9FC;font-weight:700;}
+/* QR — NO white border, sits directly on navy */
+.footer-qr-link{
+  display:block;
+  border-radius:0;
+  overflow:hidden;
+  transition:opacity .15s;
+  line-height:0;
+}
+.footer-qr-link:hover{opacity:.8;}
+.footer-qr{
+  width:clamp(96px,7.5vw,120px);
+  height:clamp(96px,7.5vw,120px);
+  display:block;
+}
+
+/* Mobile: nav links below logo (inside col 1) */
+nav.footer-mb-nav{flex-direction:column;gap:clamp(7px,1.2vh,11px);margin-top:clamp(10px,1.5vh,14px);}
+.footer-mb-nav-link{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(10.5px,2.5vw,13px);
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+  color:rgba(247,249,252,.52);
+  text-decoration:none;
+  transition:color .14s;
+  display:block;
+  width:fit-content;
+}
+.footer-mb-nav-link:hover{color:#F7F9FC;}
+
+/* Mobile: contact below nav (inside col 1) */
+.footer-mb-contact{
+  flex-direction:column;
+  gap:2px;
+  margin-top:clamp(18px,3vh,28px);
+}
+.footer-mb-contact-line{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(10px,2.3vw,12px);
+  font-weight:600;
+  color:rgba(247,249,252,.68);
+  line-height:1.6;
+  margin:0;
+  letter-spacing:.01em;
+}
+/* Hours text — brighter so it reads clearly on dark bg */
+.footer-mb-contact-dim{color:rgba(247,249,252,.56);font-weight:400;}
+.footer-mb-contact-link{color:rgba(247,249,252,.68);text-decoration:none;transition:color .14s;}
+.footer-mb-contact-link:hover{color:#A8BFE0;}
+
+/* ── Col 2 Desktop: Nav links ── */
+/* padding-top: nothing runs parallel to the Klaygo logo */
+.footer-nav-col{display:flex;flex-direction:column;justify-content:flex-start;padding-top:calc(clamp(36px,4.5vw,56px) + clamp(16px,2.5vh,24px));}
+.footer-nav{display:flex;flex-direction:column;justify-content:flex-start;flex:1;gap:clamp(10px,1.4vh,14px);}
+.footer-nav > *:last-child{margin-top:auto;}
+.footer-nav-link{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(13px,1.15vw,15.5px);
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+  color:rgba(247,249,252,.50);
+  text-decoration:none;
+  transition:color .14s;
+  display:block;
+  width:fit-content;
+}
+.footer-nav-link:hover{color:#F7F9FC;}
+.footer-nav-link:focus-visible{outline:2px solid var(--pr);outline-offset:3px;border-radius:0;}
+
+/* ── Col 3 Desktop: Contact with circle icons + Social ── */
+/* padding-top shifts col 3 down so WWW.KLAYGOPH.COM visually aligns
+   with HELLO@KLAYGOPH.COM (≈ 1 contact-item-height + gap pushed down) */
+.footer-contact-col{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:calc(clamp(36px,4.5vw,56px) + clamp(16px,2.5vh,24px));gap:clamp(34px,4.2vh,42px);}
+.footer-contact-social{margin-bottom:clamp(16px,2vh,20px);}
+.footer-contact-col > *:last-child{margin-top:auto;}
+.footer-contact-item{display:flex;align-items:center;gap:clamp(10px,1.1vw,13px);}
+.footer-contact-icon{
+  flex-shrink:0;
+  width:clamp(18px,1.4vw,20px);
+  height:clamp(18px,1.4vw,20px);
+  display:flex;align-items:center;justify-content:center;
+  margin-top:1px;
+}
+.footer-contact-icon svg{
+  width:100%;
+  height:100%;
+  stroke:rgba(247,249,252,.68);
+  stroke-width:1.8;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;
+}
+.footer-contact-text{display:flex;flex-direction:column;gap:2px;}
+.footer-contact-line{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(13px,1.15vw,15.5px);
+  font-weight:600;
+  color:rgba(247,249,252,.68);
+  line-height:1.45;
+  margin:0;
+}
+/* Hours text — brighter so it reads clearly on dark bg */
+.footer-contact-dim{color:rgba(247,249,252,.58);font-weight:400;}
+.footer-contact-link{color:rgba(247,249,252,.68);text-decoration:none;transition:color .14s;}
+.footer-contact-link:hover{color:#A8BFE0;}
+.footer-social-wrap{margin-top:clamp(6px,1vh,12px);}
+
+/* ── Mobile Col 2: Rating + Review + QR + Social + Website ── */
+/* justify-content:flex-end + align-items:stretch on the grid
+   pushes the entire right-col block down so WWW aligns with HELLO */
+.footer-mb-right{
+  gap:clamp(12px,1.8vh,18px);
+  justify-content:flex-end;
+}
+.footer-mb-review{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(10.5px,2.2vw,12.5px);
+  color:rgba(247,249,252,.60);
+  line-height:1.7;
+  margin:0;
+}
+.footer-mb-review strong{color:#F7F9FC;font-weight:700;}
+/* Mobile QR — NO white border */
+.footer-mb-qr-link{
+  display:block;
+  border-radius:0;
+  overflow:hidden;
+  transition:opacity .15s;
+  line-height:0;
+}
+.footer-mb-qr-link:hover{opacity:.8;}
+.footer-mb-qr{
+  width:clamp(100px,25vw,140px);
+  height:clamp(100px,25vw,140px);
+  display:block;
+}
+.footer-mb-website{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(9.5px,2.1vw,11.5px);
+  font-weight:600;
+  color:rgba(247,249,252,.55);
+  text-decoration:none;
+  letter-spacing:.02em;
+  transition:color .14s;
+}
+.footer-mb-website:hover{color:#A8BFE0;}
+
+/* ── Social icons (shared) ── */
+.footer-social{display:flex;align-items:center;gap:clamp(14px,1.8vw,22px);flex-wrap:wrap;}
+.footer-social a{display:flex;align-items:center;justify-content:center;transition:opacity .14s,transform .14s;}
+.footer-social a:hover{opacity:.7;transform:translateY(-2px);}
+.footer-social-icon{width:clamp(17px,1.8vw,22px);height:clamp(17px,1.8vw,22px);display:block;}
+/* Desktop: social icons placed below QR — slightly tighter gap to stay within QR column width */
+
+/* ── Copyright bar ── */
+
+
+
+
+
+
+/* ── FOOTER RESPONSIVE ── */
+@media(max-width:768px){
+  .site-footer{padding:clamp(28px,5vh,40px) 20px clamp(20px,3vh,28px);}
+  .footer-grid{
+    /* Mobile: 2 col [Logo+Nav+Contact] [Review+QR+Social]
+       align-items:stretch makes both cols equal height so right col
+       can use justify-content:flex-end to push WWW down to HELLO level */
+    grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+    gap:clamp(14px,4vw,24px);
+    align-items:stretch;
+  }
+  .footer-mb-right{display:flex;flex-direction:column;}
+  .footer-wordmark{height:clamp(32px,8.5vw,42px);margin-bottom:clamp(10px,1.6vh,14px);}
+  /* Desktop-only cols collapse to nothing */
+  .footer-nav-col{display:none!important;}
+  .footer-contact-col{display:none!important;}
+  .footer-marquee-text{font-size:clamp(36px,10.5vw,58px);}
+}
+@media(max-width:380px){
+  .footer-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;}
+  .footer-mb-nav-link,.footer-mb-contact-line{font-size:.625rem;}
+}
+
+
+.bottom-wrapper{background:#0D1F3C;margin:0;padding:0;display:block;clear:both;}
+@media(max-width:768px){.bottom-wrapper{margin-top:0;}}
+/* Seamless dark zone — covers the gap between the last card and the dark footer
+   on BOTH mobile and desktop */
+.page-dark-zone{
+  background:#0D1F3C;
+  margin:0;
+  padding:0;
+}
+.f-dt{display:revert;}
+.f-mb{display:none!important;}
+@media(max-width:768px){
+  .f-dt{display:none!important;}
+  /* Default: block. Specific containers override below. */
+  .f-mb{display:block!important;}
+  
+  nav.f-mb{flex-direction:column;}
+}
+.copyright-bar{
+  background:transparent;
+  border-top:1px solid rgba(247,249,252,.10);
+  font-size:clamp(9px,2.2vw,11px);
+  color:rgba(247,249,252,.4);
+  padding:14px 20px;
+  font-family:"Manrope",sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  white-space:nowrap;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.copyright-bar::-webkit-scrollbar{display:none;}
+.copyright-bar a{color:rgba(247,249,252,.4);text-decoration:none;transition:color .14s;}
+.copyright-bar a:hover{color:rgba(247,249,252,.72);}
+.copyright-sep{opacity:.35;}
+p,span,div,li,label,input,textarea,select,button,a,td,th,small,strong,em{font-family:"Manrope",system-ui,sans-serif;}
+
+/* ── STAMP CARD PAGE ── */
+.lc-in{max-width:1100px;margin:0;}
+[hidden]{display:none!important;}
+.lc-card{scroll-margin-top:96px;}
+.lc-top{background-color:#0D1F3C;background-image:url("/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001%20-%20Desktop.jpg");background-size:cover;background-position:38% 35%;position:relative;padding:clamp(40px,8vh,80px) clamp(20px,5vw,64px) clamp(36px,6vh,60px);}
+.lc-top::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,31,60,.97) 0%,rgba(13,31,60,.92) 55%,rgba(13,31,60,.72) 100%);}
+.lc-top .lc-in{position:relative;}
+.lc-eyebrow{font-family:var(--font-brand);font-size:.6875rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:16px;}
+.lc-top h1{font-size:clamp(32px,6vw,60px);font-weight:900;color:#F7F9FC;line-height:1.05;letter-spacing:-.8px;margin-bottom:14px;}
+.lc-top h1 span{color:#A8BFE0;}
+.lc-fine{font-size:.8125rem;color:rgba(168,191,224,.95);margin-bottom:26px;max-width:520px;}
+.lc-sub{font-size:clamp(14px,1.6vw,16px);color:rgba(247,249,252,.82);line-height:1.75;max-width:520px;margin-bottom:28px;}
+.lc-form label{display:block;font-size:.6875rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(168,191,224,.95);margin-bottom:8px;}
+.lc-row{display:flex;gap:10px;max-width:560px;}
+.lc-row input{flex:1;min-width:0;height:56px;padding:0 18px;background:#F7F9FC;color:#0D1F3C;border:2px solid transparent;border-radius:0;font-size:1.0625rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;}
+.lc-row input::placeholder{color:#6B6B68;font-weight:500;letter-spacing:.1em;opacity:.7;}
+.lc-row input:focus{outline:none;border-color:#A8BFE0;}
+.lc-row button{height:56px;padding:0 26px;background:#A8BFE0;color:#0D1F3C;border:none;border-radius:0;font-weight:800;font-size:.8125rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .15s;white-space:nowrap;}
+.lc-row button:hover{background:#EBF1FA;}
+.lc-row button:disabled{opacity:.6;cursor:wait;}
+.lc-msg{min-height:1.5em;margin-top:12px;font-size:.875rem;color:rgba(247,249,252,.82);max-width:560px;}
+.lc-msg.err{color:#F7F9FC;border-left:3px solid #B94040;padding-left:12px;}
+.lc-priv{margin-top:6px;font-size:.75rem;color:rgba(168,191,224,.8);}
+
+.lc-sec{padding:clamp(28px,4.5vw,52px) clamp(20px,5vw,64px);}
+.lc-card{background:#fff;border:1px solid var(--bd);box-shadow:var(--sh);padding:clamp(18px,3vw,36px);}
+.lc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:20px;}
+.lc-head h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:#0D1F3C;}
+.lc-cardid{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6B6B68;}
+.lc-count{font-family:var(--font-brand);font-weight:900;font-size:clamp(28px,5vw,44px);color:#0D1F3C;line-height:1;}
+.lc-togo{font-size:.875rem;color:#6B6B68;margin:6px 0 20px;}
+.lc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1.6vw,16px);list-style:none;}
+.lc-slot{aspect-ratio:1;background:#EBF1FA;border:1.5px dashed #A8BFE0;display:grid;place-items:center;position:relative;}
+.lc-n{position:absolute;top:5px;left:8px;font-size:.6875rem;font-weight:700;color:#6B6B68;}
+.lc-st{width:82%;height:82%;display:block;transform:rotate(var(--r,0deg));}
+.lc-st.is-new{animation:lcPress .55s cubic-bezier(.2,1.3,.4,1) both;animation-delay:calc(var(--i,0)*80ms);}
+.lc-slot:nth-child(3n+1){--r:-3deg;}.lc-slot:nth-child(3n+2){--r:2deg;}.lc-slot:nth-child(3n){--r:-1deg;}
+.lc-slot.on{background:#fff;border-style:solid;border-color:#EBF1FA;}
+.lc-gift{width:46%;height:46%;color:#5A7BB5;}
+.lc-free{position:absolute;bottom:6px;font-size:.5625rem;font-weight:800;letter-spacing:.14em;color:#5A7BB5;}
+@keyframes lcPress{from{opacity:0;transform:scale(1.7) rotate(-10deg);}to{opacity:1;transform:scale(1) rotate(var(--r,0deg));}}
+@media(prefers-reduced-motion:reduce){.lc-st.is-new{animation:none;}}
+.lc-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px;}
+.lc-chip{border:1px solid var(--bd);background:#F7F9FC;padding:14px 16px;}
+.lc-chip b{display:block;font-size:.625rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6B6B68;margin-bottom:4px;}
+.lc-chip span{font-family:var(--font-brand);font-weight:800;font-size:1.0625rem;color:#0D1F3C;}
+.lc-note{font-size:.8125rem;color:#6B6B68;margin-top:12px;}
+.lc-banner{margin-top:20px;padding:20px 22px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#0D1F3C;color:#F7F9FC;}
+.lc-banner.soft{background:#EBF1FA;color:#0D1F3C;}
+.lc-banner strong{font-family:var(--font-brand);font-size:1.125rem;display:block;margin-bottom:2px;}
+.lc-banner p{font-size:.8125rem;opacity:.85;line-height:1.55;}
+.lc-banner a{background:#A8BFE0;color:#0D1F3C;text-decoration:none;font-weight:800;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:13px 20px;}
+.lc-banner a:hover{background:#EBF1FA;}
+.lc-hide{margin-top:18px;background:none;border:none;color:#6B6B68;font-size:.75rem;cursor:pointer;text-decoration:underline;}
+.lc-act h2,.lc-how h2{font-size:clamp(20px,3vw,26px);font-weight:800;color:#0D1F3C;margin-bottom:16px;}
+.lc-list{list-style:none;background:#fff;border:1px solid var(--bd);}
+.lc-list li{display:grid;grid-template-columns:130px 1fr auto;gap:12px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--bd);font-size:.9375rem;}
+.lc-list li:last-child{border-bottom:none;}
+.lc-list .d{color:#6B6B68;font-size:.8125rem;}
+.lc-list .t{background:#EBF1FA;color:#2B4E8A;font-size:.625rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;}
+.lc-list .empty{display:block;color:#6B6B68;}
+.lc-ways{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.lc-way{background:#fff;border:1px solid var(--bd);padding:20px;}
+.lc-way em{font-style:normal;font-family:var(--font-brand);font-weight:900;font-size:1.5rem;color:#5A7BB5;display:block;margin-bottom:8px;}
+.lc-way h3{font-size:1rem;font-weight:800;color:#0D1F3C;margin-bottom:6px;}
+.lc-way p{font-size:.8125rem;color:#6B6B68;line-height:1.6;}
+.lc-terms{margin-top:22px;padding-left:18px;font-size:.8125rem;color:#6B6B68;line-height:1.8;}
+@media(max-width:768px){
+  .lc-top{background-image:url("/countdown/KlaygoPH%20-%20Website%20-%20Countdown%20-%2001%20-%20Mobile.jpg");}
+  .lc-top::before{background:rgba(13,31,60,.93);}
+  .lc-row{flex-direction:column;}
+  .lc-row input{flex:none;width:100%;}
+  .lc-row button{width:100%;}
+  .lc-card{padding:16px;}
+  .lc-grid{gap:6px;}
+  .lc-chips{gap:8px;margin-top:18px;}
+  .lc-chip{padding:10px 10px;}
+  .lc-chip b{font-size:.5625rem;letter-spacing:.08em;}
+  .lc-chip span{font-size:.875rem;}
+  .lc-banner a{display:block;width:100%;text-align:center;}
+  .lc-ways{grid-template-columns:1fr 1fr;}
+  .lc-list li{grid-template-columns:1fr auto;}
+  .lc-list .d{grid-column:1 / -1;}
+}
+@media(max-width:420px){.lc-ways{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<!-- PLACEHOLDER stamp artwork — swap for the real logo mark SVG when ready -->
+<symbol id="kg-stamp" viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="#0D1F3C"/><circle cx="50" cy="50" r="42" fill="none" stroke="#A8BFE0" stroke-width="1.5"/><circle cx="50" cy="50" r="33" fill="none" stroke="#5A7BB5" stroke-width="1" stroke-dasharray="2 3"/><text x="50" y="60" text-anchor="middle" font-family="Argentum Novus,Georgia,serif" font-weight="900" font-size="28" fill="#F7F9FC">KG</text></symbol>
+<symbol id="kg-gift" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="8" y="20" width="32" height="20"/><rect x="6" y="14" width="36" height="6"/><path d="M24 14v26"/><path d="M24 14c-4-7-12-6-10-1 1.5 3 10 1 10 1zM24 14c4-7 12-6 10-1-1.5 3-10 1-10 1z"/></g></symbol>
+</defs></svg>
+
+<!-- NAV MENU OVERLAY -->
+<div class="nav-menu-overlay" id="nav-menu">
+  <button class="nav-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  <a href="index.html" class="nav-menu-pill">Home</a>
+  <a href="about.html" class="nav-menu-pill">About Us</a>
+  <a href="pricing.html" class="nav-menu-pill">Pricing</a>
+  <a href="loyalty.html" class="nav-menu-pill active">Loyalty Card</a>
+  <a href="faq.html" class="nav-menu-pill">FAQs</a>
+  <a href="sayhello.html" class="nav-menu-pill">Say Hello!</a>
+  <a href="terms.html" class="nav-menu-pill">Terms of Use</a>
+  <a href="privacy.html" class="nav-menu-pill">Privacy Policy</a>
+  <div class="nav-menu-footer">
+    <img class="nav-menu-footer-logo" src="/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" onerror="this.style.display='none'">
+    <div class="nav-menu-footer-tag">Cleaner Space, Clearer Mind.</div>
+    <a href="tel:+639928164718" class="nav-menu-footer-line nav-menu-footer-link">0992.816.4718</a>
+    <div class="nav-menu-footer-line">08:00AM &ndash; 05:00PM</div>
+    <a href="mailto:hello@klaygoph.com" class="nav-menu-footer-line nav-menu-footer-link">HELLO@KLAYGOPH.COM</a>
+    <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="nav-menu-footer-line nav-menu-footer-link">WWW.KLAYGOPH.COM</a>
+    <div class="nav-menu-footer-social">
+      <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img src="/footer/Facebook.png" alt="Facebook" onerror="this.closest('a').style.display='none'"></a>
+      <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img src="/footer/Instagram.png" alt="Instagram" onerror="this.closest('a').style.display='none'"></a>
+      <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="/footer/Whatsapp.png" alt="WhatsApp" onerror="this.closest('a').style.display='none'"></a>
+      <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img src="/footer/TikTok.png" alt="TikTok" onerror="this.closest('a').style.display='none'"></a>
+    </div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <!-- Top bar: #0D1F3C -->
+  <div class="nav-top">
+    <div class="nav-top-left">
+      <!-- Mobile: back button PNG -->
+      <a href="index.html" class="nav-back-btn" aria-label="Go back to Home">
+        <img src="/assets/KlaygoPH%20-%20Web%20-%20Back%20Button.png" alt="Back"
+             onerror="this.outerHTML='<svg width=28 height=28 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;#F7F9FC&quot; stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><path d=&quot;M15 18l-6-6 6-6&quot;/></svg>';">
+      </a>
+      <a href="index.html" aria-label="Klaygo PH Home"><img id="logo-img" class="nav-logo" src="/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);"></a>
+      <div class="nav-brand-text">
+        <strong>KLAYGOPH | Cleaning Services</strong>
+        <span>Cleaner Space, Clearer Mind.</span>
+      </div>
+    </div>
+    <div class="nav-top-right">
+      <!-- Menu button PNG -->
+      <button class="nav-hamburger" onclick="openMenu()" aria-label="Open menu">
+        <img src="/assets/KlaygoPH%20-%20Web%20-%20Menu%20Button%20-%20Full.png" alt="Menu"
+             onerror="this.outerHTML='<svg width=26 height=26 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;#F7F9FC&quot; stroke-width=2.5 stroke-linecap=round stroke-linejoin=round><line x1=3 y1=6 x2=21 y2=6/><line x1=3 y1=12 x2=21 y2=12/><line x1=3 y1=18 x2=21 y2=18/></svg>';">
+      </button>
+    </div>
+  </div>
+  <!-- Sub-nav: breadcrumb (replaces full tab list — hamburger handles navigation now) -->
+  <div class="nav-sub">
+    <span class="nav-mobile-page">LOYALTY CARD</span>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span class="breadcrumb-current">Loyalty Card</span>
+    </nav>
+  </div>
+  <!-- Progress dots relocated — now a fixed vertical pill above Back to Top (see JS + CSS) -->
+</div>
+
+
+
+<main id="main">
+<section class="lc-top">
+  <div class="lc-in">
+    <p class="lc-eyebrow">Klaygo Stamp Card</p>
+    <h1>Ten cleanings. <span>One on us.</span></h1>
+    <p class="lc-sub" style="margin-bottom:8px">Every cleaning earns a stamp. Collect 10 and your next cleaning, up to 35 sqm, is free.</p>
+    <p class="lc-fine">Transportation fee and add-ons are not included in the free cleaning.</p>
+    <form class="lc-form" id="lc-form" novalidate>
+      <label for="lc-code">Your card code</label>
+      <div class="lc-row">
+        <input id="lc-code" name="lc-code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" placeholder="KG-XXXX-XXXX" aria-describedby="lc-msg">
+        <button type="submit" id="lc-go">View my card</button>
+      </div>
+      <p class="lc-msg" id="lc-msg" role="status" aria-live="polite"></p>
+      <p class="lc-priv">Your card shows only stamps, dates and services. No names, addresses or payment details.</p>
+    </form>
+  </div>
+</section>
+
+<section class="lc-sec">
+  <div class="lc-in">
+    <div class="lc-card">
+      <div class="lc-head">
+        <h2 id="lc-title">Your stamp card</h2>
+        <span class="lc-cardid" id="lc-cardid">Enter your code to begin</span>
+      </div>
+      <div class="lc-count" id="lc-count">0 / 10</div>
+      <p class="lc-togo" id="lc-togo">Your first stamp arrives after your first completed cleaning.</p>
+      <ol class="lc-grid" id="lc-grid" aria-label="Stamp card, 10 stamps"></ol>
+      <div class="lc-chips">
+        <div class="lc-chip"><b>Referral stamps</b><span id="lc-ref">— / 3</span></div>
+        <div class="lc-chip"><b>Feedback stamp</b><span id="lc-fb">— / 1</span></div>
+        <div class="lc-chip"><b>Active until</b><span id="lc-exp">—</span></div>
+      </div>
+      <p class="lc-note" id="lc-carry" hidden></p>
+      <div class="lc-banner" id="lc-banner" hidden>
+        <div><strong id="lc-bt"></strong><p id="lc-bp"></p></div>
+        <a id="lc-bl" href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener">Message us</a>
+      </div>
+      <button type="button" class="lc-hide" id="lc-hide" hidden>Hide my card</button>
+    </div>
+  </div>
+</section>
+
+<section class="lc-sec lc-act" style="padding-top:0">
+  <div class="lc-in">
+    <h2>Your activity</h2>
+    <ul class="lc-list" id="lc-list"><li><span class="empty">Your cleaning dates and services will appear here.</span></li></ul>
+  </div>
+</section>
+
+<section class="lc-sec lc-how" style="padding-top:0">
+  <div class="lc-in">
+    <h2>How stamps work</h2>
+    <div class="lc-ways">
+      <div class="lc-way"><em>1</em><h3>Every cleaning</h3><p>One stamp each time a cleaning is completed.</p></div>
+      <div class="lc-way"><em>2</em><h3>Refer a friend</h3><p>One stamp once their cleaning is completed. Up to 3 per card.</p></div>
+      <div class="lc-way"><em>3</em><h3>Share feedback</h3><p>Send us your feedback by DM for one stamp per card.</p></div>
+      <div class="lc-way"><em>10</em><h3>Free cleaning</h3><p>Up to 35 sqm. Use it yourself or gift it to someone. Transportation fee and add-ons are not included.</p></div>
+    </div>
+    <ul class="lc-terms">
+      <li>Extra referral stamps carry over to your next card.</li>
+      <li><strong>Not included in the free cleaning:</strong> transportation fee and add-ons. These are paid separately.</li>
+      <li>A gifted cleaning comes with its own voucher and card for the person receiving it.</li>
+      <li>Your card expires 1 year after your last cleaning date.</li>
+      <li>One card code per client. Keep your code private.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<div class="page-dark-zone"><div class="bottom-wrapper">
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <!-- COL 1 (always): Logo + [desktop: QR] + [mobile: Nav + Contact] -->
+    <div class="footer-brand-col">
+      <a href="index.html" aria-label="Klaygo PH Home">
+        <img class="footer-wordmark" src="/assets/KlaygoPH%20-%20Rebranded%20-%20Logo%20-%20Blue%20-%20Res%20-%20100.png" alt="Klaygo PH" style="filter:brightness(0) invert(1);">
+      </a>
+
+      <!-- Desktop: Google rating + review blurb + QR, NO white border -->
+      <div class="footer-qr-block f-dt">
+        <div class="footer-rating">
+          <span class="footer-rating-stars">★★★★★</span>
+          <span class="footer-rating-text" id="google-rating-text">5.0 (1 review)</span>
+        </div>
+        <p class="footer-review-text">Help others discover<br><strong>KLAYGOPH.</strong><br>Scan to leave a quick review.</p>
+        <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-qr-link" aria-label="Leave a Google Review">
+          <img class="footer-qr" src="/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-qr-link').style.display='none'">
+        </a>
+      </div>
+
+      <!-- Mobile: nav links -->
+      <nav class="footer-mb-nav f-mb" aria-label="Footer navigation">
+        <a href="index.html" class="footer-mb-nav-link">About Us</a>
+        <a href="pricing.html" class="footer-mb-nav-link">Pricing</a>
+        <a href="loyalty.html" class="footer-mb-nav-link">Loyalty Card</a>
+        <a href="faq.html" class="footer-mb-nav-link">FAQs</a>
+        <a href="sayhello.html" class="footer-mb-nav-link">Say Hello!</a>
+        <a href="terms.html" class="footer-mb-nav-link">Terms of Use</a>
+        <a href="privacy.html" class="footer-mb-nav-link">Privacy Policy</a>
+      </nav>
+
+      <!-- Mobile: contact info below nav -->
+      <div class="footer-mb-contact f-mb">
+        <p class="footer-mb-contact-line">0992.816.4718</p>
+        <p class="footer-mb-contact-line footer-mb-contact-dim">08:00AM – 05:00PM</p>
+        <a href="mailto:hello@klaygoph.com" class="footer-mb-contact-line footer-mb-contact-link">HELLO@KLAYGOPH.COM</a>
+      </div>
+    </div>
+
+    <!-- COL 2 Desktop: Nav links -->
+    <div class="footer-nav-col f-dt">
+      <nav class="footer-nav" aria-label="Footer navigation desktop">
+        <a href="index.html" class="footer-nav-link">About Us</a>
+        <a href="pricing.html" class="footer-nav-link">Pricing</a>
+        <a href="loyalty.html" class="footer-nav-link">Loyalty Card</a>
+        <a href="faq.html" class="footer-nav-link">FAQs</a>
+        <a href="sayhello.html" class="footer-nav-link">Say Hello!</a>
+        <a href="terms.html" class="footer-nav-link">Terms of Use</a>
+        <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
+      </nav>
+    </div>
+
+    <!-- COL 2 Mobile: Rating + Review + QR + Social + Website -->
+    <div class="footer-mb-right f-mb">
+      <div class="footer-rating">
+        <span class="footer-rating-stars" style="font-size:clamp(12px,3vw,15px);">★★★★★</span>
+        <span class="footer-rating-text" style="font-size:clamp(9.5px,2.1vw,11.5px);">5.0 (1 review)</span>
+      </div>
+      <p class="footer-mb-review">Help others discover<br><strong>KLAYGOPH.</strong><br>Scan to leave a quick review.</p>
+      <a href="https://g.page/r/CRmAgvsRP9qDEBM/review" target="_blank" rel="noopener" class="footer-mb-qr-link" aria-label="Leave a Google Review">
+        <img class="footer-mb-qr" src="/footer/Google%20Review%20QR%20-%200D1F3C.png" alt="Google Review QR Code" onerror="this.closest('.footer-mb-qr-link').style.display='none'">
+      </a>
+      <div class="footer-social">
+          <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+          <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+      </div>
+      <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-mb-website">WWW.KLAYGOPH.COM</a>
+    </div>
+
+    <!-- COL 3 Desktop: Social + Contact with plain icons -->
+    <div class="footer-contact-col f-dt">
+      <div class="footer-social footer-contact-social">
+        <a href="https://www.facebook.com/klaygoph/" target="_blank" rel="noopener" aria-label="Facebook"><img class="footer-social-icon" src="/footer/Facebook.png" alt="Facebook" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://www.instagram.com/klaygoph/" target="_blank" rel="noopener" aria-label="Instagram"><img class="footer-social-icon" src="/footer/Instagram.png" alt="Instagram" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://api.whatsapp.com/send?phone=639928164718" target="_blank" rel="noopener" aria-label="WhatsApp"><img class="footer-social-icon" src="/footer/Whatsapp.png" alt="WhatsApp" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+        <a href="https://www.tiktok.com/@klaygoph" target="_blank" rel="noopener" aria-label="TikTok"><img class="footer-social-icon" src="/footer/TikTok.png" alt="TikTok" style="filter:brightness(0) invert(1);" onerror="this.closest('a').style.display='none'"></a>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 5.72 5.72l1.73-1.74a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <p class="footer-contact-line">0992.816.4718</p>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <p class="footer-contact-line footer-contact-dim">08:00AM – 05:00PM</p>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <a href="mailto:hello@klaygoph.com" class="footer-contact-line footer-contact-link">HELLO@KLAYGOPH.COM</a>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <a href="https://calendar.google.com/calendar/u/0/embed?src=91bd20a18be9ffc46ab26dcba87513699ca82c5027a77484a75af3670ec424a8@group.calendar.google.com&amp;ctz=Asia/Manila&amp;pli=1" target="_blank" rel="noopener" class="footer-contact-line footer-contact-link">VIEW LIVE CALENDAR</a>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="footer-contact-text">
+          <a href="https://www.klaygoph.com" target="_blank" rel="noopener" class="footer-contact-line footer-contact-link">WWW.KLAYGOPH.COM</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- OUTLINE MARQUEE — sits between footer grid and copyright bar, per design -->
+<div class="footer-marquee" aria-hidden="true">
+  <div class="footer-marquee-track">
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">·</span>
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">·</span>
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">·</span>
+    <span class="footer-marquee-text">CLEANER SPACE, CLEARER MIND.</span>
+    <span class="footer-marquee-sep">·</span>
+  </div>
+</div>
+
+<div class="copyright-bar">
+  <span>&copy; <span id="copyright-year">2026</span> Klaygo PH. All rights reserved.</span>
+  <span class="copyright-sep">·</span>
+  <a href="terms.html">Terms of Use</a>
+  <span class="copyright-sep">·</span>
+  <a href="privacy.html">Privacy Policy</a>
+  <span class="copyright-sep">·</span>
+  <a href="https://www.klaygoph.com" target="_blank" rel="noopener">KLAYGOPH.COM</a>
+</div><!-- /copyright-bar -->
+</div></div>
+
+<script>
+'use strict';
+(function(){
+  // Paste your Google Apps Script Web App URL (ends in /exec) here.
+  // While empty, the page runs in DEMO mode with fake codes KGDEMO0007 and KGDEMODONE.
+  var STAMP_API='';
+
+  var NS='http://www.w3.org/2000/svg',XL='http://www.w3.org/1999/xlink';
+  function $(i){return document.getElementById(i);}
+  function s(d,t,v){return {date:d,type:t,service:v};}
+  var DEMO={
+    KGDEMO0007:{ok:true,cardNo:1,total:10,referrals:1,referralCap:3,feedback:1,feedbackCap:1,carried:0,rewards:0,expires:'2027-09-18',expired:false,
+      stamps:[s('2026-02-10','cleaning','Regular Cleaning'),s('2026-03-05','cleaning','Regular Cleaning'),s('2026-03-21','referral','Referred a friend'),s('2026-04-09','cleaning','Deep Cleaning'),s('2026-05-14','feedback','Shared feedback'),s('2026-07-02','cleaning','Regular Cleaning'),s('2026-09-18','cleaning','Regular Cleaning')]},
+    KGDEMODONE:{ok:true,cardNo:1,total:10,referrals:3,referralCap:3,feedback:1,feedbackCap:1,carried:1,rewards:1,expires:'2027-10-02',expired:false,
+      stamps:[s('2026-01-08','cleaning','Regular Cleaning'),s('2026-01-29','cleaning','Regular Cleaning'),s('2026-02-12','referral','Referred a friend'),s('2026-03-03','cleaning','Deep Cleaning'),s('2026-03-30','referral','Referred a friend'),s('2026-04-22','cleaning','Regular Cleaning'),s('2026-05-19','feedback','Shared feedback'),s('2026-06-11','referral','Referred a friend'),s('2026-08-07','cleaning','Regular Cleaning'),s('2026-10-02','cleaning','Regular Cleaning')]}
+  };
+  var TAG={cleaning:'Cleaning',referral:'Referral',feedback:'Feedback'};
+  var MSG={
+    notfound:"We couldn't find that code. Check for typos, or message us and we'll help.",
+    format:'That doesn\'t look like a card code. It looks like KG-XXXX-XXXX.',
+    busy:'We\'re getting a lot of lookups right now. Please try again in a few minutes.',
+    error:'Something went wrong on our side. Please try again, or message us.'
+  };
+  var grid=$('lc-grid'),idle=null,busy=false;
+
+  function svgUse(id,cls){
+    var v=document.createElementNS(NS,'svg');v.setAttribute('class',cls);v.setAttribute('aria-hidden','true');
+    var u=document.createElementNS(NS,'use');u.setAttribute('href','#'+id);u.setAttributeNS(XL,'xlink:href','#'+id);
+    v.appendChild(u);return v;
+  }
+  function buildGrid(n,animate){
+    grid.textContent='';
+    for(var i=1;i<=10;i++){
+      var li=document.createElement('li'),on=i<=n;
+      li.className='lc-slot'+(on?' on':'');
+      li.setAttribute('aria-label','Stamp '+i+' of 10, '+(on?'collected':(i===10?'free cleaning':'empty')));
+      if(!on){var num=document.createElement('span');num.className='lc-n';num.textContent=i;li.appendChild(num);}
+      if(on){
+        var st=svgUse('kg-stamp','lc-st'+(animate?' is-new':''));st.style.setProperty('--i',i-1);li.appendChild(st);
+      }else if(i===10){
+        li.appendChild(svgUse('kg-gift','lc-gift'));
+        var f=document.createElement('span');f.className='lc-free';f.textContent='FREE';li.appendChild(f);
+      }
+      grid.appendChild(li);
+    }
+  }
+  function fmt(iso){
+    if(!iso)return '—';
+    var d=new Date(iso+'T00:00:00+08:00');
+    return isNaN(d)?'—':d.toLocaleDateString('en-PH',{month:'short',day:'numeric',year:'numeric',timeZone:'Asia/Manila'});
+  }
+  function setMsg(t,err){var m=$('lc-msg');m.textContent=t||'';m.className='lc-msg'+(err?' err':'');}
+  function banner(t,p,link,label){
+    var b=$('lc-banner');
+    if(!t){b.hidden=true;return;}
+    $('lc-bt').textContent=t;$('lc-bp').textContent=p;
+    var a=$('lc-bl');a.textContent=label||'Message us';
+    b.className='lc-banner'+(link==='soft'?' soft':'');
+    b.hidden=false;
+  }
+  function render(d,code){
+    var stamps=(d.stamps||[]).slice(0,10),n=stamps.length;
+    buildGrid(n,true);
+    $('lc-title').textContent='Your stamp card';
+    $('lc-cardid').textContent='Card '+(d.cardNo||1)+' · ending '+code.slice(-4);
+    $('lc-count').textContent=n+' / 10';
+    $('lc-togo').textContent=n>=10?'Card complete. Well done!':(10-n)+' more '+((10-n)===1?'stamp':'stamps')+' to your free cleaning.';
+    $('lc-ref').textContent=(d.referrals||0)+' / '+(d.referralCap||3);
+    $('lc-fb').textContent=(d.feedback||0)+' / '+(d.feedbackCap||1);
+    $('lc-exp').textContent=fmt(d.expires);
+    var c=$('lc-carry');
+    if(d.carried>0){c.textContent=d.carried+(d.carried===1?' extra referral stamp':' extra referral stamps')+' will carry over to your next card.';c.hidden=false;}else{c.hidden=true;}
+    if(d.expired){
+      banner('This card expired on '+fmt(d.expires),'Cards expire 1 year after the last cleaning. Message us and we\'ll help.','soft','Message us');
+    }else if(d.rewards>0){
+      banner('Your free cleaning is ready',"Up to 35 sqm. Transportation fee and add-ons are not included. Use it yourself or gift it to someone.",'dark','Use or gift it');
+    }else{banner('');}
+    var ul=$('lc-list');ul.textContent='';
+    if(!n){var e=document.createElement('li'),sp=document.createElement('span');sp.className='empty';sp.textContent='No stamps yet. Your first one is on its way after your first cleaning.';e.appendChild(sp);ul.appendChild(e);}
+    stamps.slice().reverse().forEach(function(x){
+      var li=document.createElement('li'),a=document.createElement('span'),b=document.createElement('span'),t=document.createElement('span');
+      a.className='d';a.textContent=fmt(x.date);b.textContent=String(x.service||'').slice(0,60);
+      t.className='t';t.textContent=TAG[x.type]||'Stamp';
+      li.appendChild(a);li.appendChild(b);li.appendChild(t);ul.appendChild(li);
+    });
+    $('lc-hide').hidden=false;
+    clearTimeout(idle);idle=setTimeout(reset,300000); // auto-hide after 5 minutes
+  }
+  function reset(){
+    clearTimeout(idle);
+    $('lc-code').value='';setMsg('');buildGrid(0,false);
+    $('lc-cardid').textContent='Enter your code to begin';
+    $('lc-count').textContent='0 / 10';
+    $('lc-togo').textContent='Your first stamp arrives after your first completed cleaning.';
+    $('lc-ref').textContent='— / 3';$('lc-fb').textContent='— / 1';$('lc-exp').textContent='—';
+    $('lc-carry').hidden=true;banner('');$('lc-hide').hidden=true;
+    var ul=$('lc-list');ul.textContent='';
+    var li=document.createElement('li'),sp=document.createElement('span');sp.className='empty';sp.textContent='Your cleaning dates and services will appear here.';li.appendChild(sp);ul.appendChild(li);
+  }
+  function lookup(code){
+    if(!STAMP_API){return new Promise(function(r){setTimeout(function(){r(DEMO[code]||{ok:false,reason:'notfound'});},450);});}
+    var ctl=new AbortController(),t=setTimeout(function(){ctl.abort();},12000);
+    return fetch(STAMP_API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({code:code}),signal:ctl.signal,cache:'no-store'})
+      .then(function(r){return r.json();})
+      .then(function(j){clearTimeout(t);return j;},function(){clearTimeout(t);return {ok:false,reason:'error'};});
+  }
+  $('lc-form').addEventListener('submit',function(ev){
+    ev.preventDefault();if(busy)return;
+    var code=$('lc-code').value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+    if(!/^KG[A-Z0-9]{8}$/.test(code)){setMsg(MSG.format,true);return;}
+    busy=true;var btn=$('lc-go');btn.disabled=true;btn.textContent='Checking…';setMsg('');
+    lookup(code).then(function(d){
+      if(d&&d.ok){render(d,code);setMsg('');$('lc-code').value='';var cd=document.querySelector('.lc-card');if(cd&&cd.scrollIntoView)cd.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});}
+      else{setMsg(MSG[(d&&d.reason)||'error']||MSG.error,true);}
+    }).catch(function(){setMsg(MSG.error,true);}).then(function(){busy=false;btn.disabled=false;btn.textContent='View my card';});
+  });
+  $('lc-hide').addEventListener('click',reset);
+  buildGrid(0,false);
+  var y=$('copyright-year');if(y)y.textContent=new Date().getFullYear();
+})();
+
+// ── NAV (same behaviour as the rest of the site) ──
+function openMenu(){
+  var overlay=document.getElementById('nav-menu'),burger=document.querySelector('.nav-hamburger');
+  overlay.classList.add('open');document.body.style.overflow='hidden';
+  if(burger){burger.classList.remove('rotating');void burger.offsetWidth;burger.classList.add('rotating');}
+  overlay.onclick=function(e){if(e.target===overlay)closeMenu();};
+  var pills=overlay.querySelectorAll('.nav-menu-pill');
+  pills.forEach(function(p){p.classList.remove('visible');});
+  setTimeout(function(){pills.forEach(function(p,i){setTimeout(function(){p.classList.add('visible');},i*90);});},40);
+}
+function closeMenu(){
+  var overlay=document.getElementById('nav-menu');
+  if(overlay){overlay.querySelectorAll('.nav-menu-pill').forEach(function(p){p.classList.remove('visible');});overlay.classList.remove('open');}
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+(function(){var nt=document.querySelector('.nav-top');window.addEventListener('scroll',function(){if(nt)nt.classList.toggle('compact',window.scrollY>80);},{passive:true});})();
+</script>
+</body>
+</html>
