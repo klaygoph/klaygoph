@@ -839,6 +839,7 @@ p,span,div,li,label,input,textarea,select,button,a,td,th,small,strong,em{font-fa
 
 /* ── STAMP CARD ONLY ── */
 [hidden]{display:none!important;}
+html:not(#sq) *,html:not(#sq) *::before,html:not(#sq) *::after{border-radius:0!important;}
 .lc-row{display:flex;gap:8px;}
 .lc-row input{flex:1;min-width:0;height:48px;padding:0 14px;border:1.5px solid #EBF1FA;border-radius:0;font-family:inherit;font-size:16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2C2C2A;background:#fff;}
 .lc-row input::placeholder{color:rgba(107,107,104,.45);font-weight:500;letter-spacing:.08em;}
@@ -877,10 +878,9 @@ p,span,div,li,label,input,textarea,select,button,a,td,th,small,strong,em{font-fa
 .lc-list .v{font-weight:600;color:#2C2C2A;}
 .lc-list .t{font-size:.625rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B6B68;}
 .lc-list .empty{grid-column:1/-1;color:#6B6B68;text-align:center;padding:6px 0;}
-.lc-rule{display:flex;gap:12px;padding:12px 0;border-top:1px solid #EBF1FA;font-size:.8125rem;line-height:1.6;color:#6B6B68;}
+.lc-rule{padding:12px 0;border-top:1px solid #EBF1FA;font-size:.8125rem;line-height:1.6;color:#6B6B68;}
 .lc-rule:first-of-type{border-top:none;padding-top:2px;}
 .lc-rule b{display:block;color:#0D1F3C;font-size:.875rem;}
-.lc-ch{flex:none;width:32px;height:32px;border-radius:50%;border:1.5px solid #2B4E8A;color:#2B4E8A;display:grid;place-items:center;font-size:.75rem;font-weight:700;}
 .lc-terms{margin:12px 0 0;padding-left:18px;font-size:.75rem;color:#6B6B68;line-height:1.8;}
 a.btn-book{text-decoration:none;text-align:center;}
 @media(max-width:600px){
@@ -1055,7 +1055,8 @@ a.btn-book{text-decoration:none;text-align:center;}
   <div class="col-left" style="display:flex;flex-direction:column;">
 
     <div class="card reveal" id="card-code">
-      <div class="card-head"><div class="sbadge">1</div><div><h2>Enter your card code</h2><p>The code Klaygo PH gave you for your stamp card</p><span class="card-why">Private to you</span></div></div>
+      <div class="card-head"><div class="sbadge">1</div><div><h2>Enter your card code</h2><p>The code Klaygo PH gave you</p><span class="card-why">Private to you</span></div></div>
+      <div class="alert info" style="margin-bottom:14px;font-size:11px;">No log-in needed. Your card shows only stamps, dates and services. Your name, address and payment details are never shown.</div>
       <form id="lc-form" novalidate>
         <div class="field">
           <label for="lc-code">Card code</label>
@@ -1066,11 +1067,10 @@ a.btn-book{text-decoration:none;text-align:center;}
         </div>
         <p class="lc-msg" id="lc-msg" role="status" aria-live="polite"></p>
       </form>
-      <div class="alert info" style="margin-top:8px;font-size:10px;">No log-in required. Your card shows only stamps, dates and services. No names, addresses or payment details.</div>
     </div>
 
     <div class="card reveal" id="card-stamps">
-      <div class="card-head"><div class="sbadge">2</div><div><h2>Your stamps</h2><p id="lc-sub">Enter your code to see your card</p><span class="card-why">Updated after every completed cleaning</span></div></div>
+      <div class="card-head"><div class="sbadge">2</div><div><h2>Your stamps</h2><p id="lc-sub">Enter your code to see your stamps</p><span class="card-why">Updated after each cleaning</span></div></div>
       <div class="lc-count"><b id="lc-n">0</b><span>of 10 stamps</span></div>
       <ol class="lc-grid" id="lc-grid" aria-label="Stamp card, 10 stamps"></ol>
       <div class="lc-mini" aria-label="Card details">
@@ -1083,21 +1083,21 @@ a.btn-book{text-decoration:none;text-align:center;}
     </div>
 
     <div class="card reveal" id="card-act">
-      <div class="card-head"><div class="sbadge">3</div><div><h2>Your activity</h2><p>Every stamp, with its date and service</p><span class="card-why">Dates and services only</span></div></div>
+      <div class="card-head"><div class="sbadge">3</div><div><h2>Your activity</h2><p>Your stamps, with dates and services</p><span class="card-why">Dates and services only</span></div></div>
       <ul class="lc-list" id="lc-list"><li><span class="empty">Your cleaning dates and services will appear here.</span></li></ul>
     </div>
 
     <div class="card reveal" id="card-how">
       <div class="card-head"><div class="sbadge">4</div><div><h2>How stamps work</h2><p>Simple, and the same for everyone</p><span class="card-why">10 stamps = 1 free cleaning</span></div></div>
-      <div class="lc-rule"><div class="lc-ch">+1</div><div><b>Every cleaning</b>One stamp for each completed cleaning.</div></div>
-      <div class="lc-rule"><div class="lc-ch">+1</div><div><b>Refer a friend</b>One stamp once the person you referred has had their cleaning. Up to 3 per card. Extra referrals carry over to your next card.</div></div>
-      <div class="lc-rule"><div class="lc-ch">+1</div><div><b>Send us feedback</b>One stamp when you share your feedback with us by DM. Once per card.</div></div>
-      <div class="lc-rule"><div class="lc-ch">10</div><div><b>Your free cleaning</b>Your next cleaning is free, up to 35 sqm. Use it yourself or gift it to someone.</div></div>
+      <div class="lc-rule"><div><b>Every cleaning</b>One stamp for each cleaning we complete for you.</div></div>
+      <div class="lc-rule"><div><b>Refer a friend</b>One stamp after the person you referred has had their cleaning. Up to 3 per card. Extras carry over to your next card.</div></div>
+      <div class="lc-rule"><div><b>Share your feedback</b>One stamp when you send us your feedback by DM. Once per card.</div></div>
+      <div class="lc-rule"><div><b>Your free cleaning</b>At 10 stamps, your next cleaning is free, up to 35 sqm. Use it yourself or gift it to someone.</div></div>
       <div class="alert info" style="margin-top:6px;font-size:11px;"><strong>Not included in the free cleaning:</strong> transportation fee and add-ons. These are paid separately.</div>
       <ul class="lc-terms">
-        <li>A gifted cleaning comes with its own voucher and card for the person receiving it.</li>
-        <li>Your card expires 1 year after your last cleaning date.</li>
-        <li>One card code per client. Please keep yours private.</li>
+        <li>Gifting it? Your friend receives their own voucher and card.</li>
+        <li>Your card stays active for 1 year after your last cleaning.</li>
+        <li>One code per client. Please keep yours private.</li>
       </ul>
     </div>
 
@@ -1296,7 +1296,7 @@ a.btn-book{text-decoration:none;text-align:center;}
   };
   var TAG={cleaning:'Cleaning',referral:'Referral',feedback:'Feedback'};
   var MSG={
-    notfound:"We couldn't find that code. Check for typos, or message us and we'll help.",
+    notfound:"We couldn't find that code. Please check for typos, or message us and we'll help.",
     format:"That doesn't look like a card code. It looks like KG-XXXX-XXXX.",
     busy:"We're getting a lot of lookups right now. Please try again in a few minutes.",
     error:"Something went wrong on our side. Please try again, or message us."
@@ -1331,21 +1331,21 @@ a.btn-book{text-decoration:none;text-align:center;}
     var stamps=(d.stamps||[]).slice(0,10),n=stamps.length;
     buildGrid(n,true);
     txt('lc-n',n);txt('p-n',n);
-    txt('lc-sub',n>=10?'Card complete. Well done!':(10-n)+' more '+((10-n)===1?'stamp':'stamps')+' to your free cleaning');
+    txt('lc-sub',n>=10?'Card complete. Congratulations!':(10-n)+' more to go for your free cleaning');
     txt('p-id','CARD '+(d.cardNo||1)+' · ENDING '+code.slice(-4));
     var ref=(d.referrals||0)+' / '+(d.referralCap||3),fb=(d.feedback||0)+' / '+(d.feedbackCap||1),ex=fmt(d.expires);
     txt('p-ref',ref);txt('m-ref',ref);txt('p-fb',fb);txt('m-fb',fb);txt('p-exp',ex);txt('m-exp',d.expires?new Date(d.expires+'T00:00:00+08:00').toLocaleDateString('en-PH',{month:'short',year:'numeric',timeZone:'Asia/Manila'}):'—');
     var ready=!d.expired&&d.rewards>0;
     txt('p-free',d.expired?'Expired':(ready?'Ready to use':'Not yet'));
-    txt('p-note',d.expired?('This card expired on '+ex+'.'):(ready?'Your free cleaning is ready. Message us to use it or gift it.':'Keep collecting. Your next stamp comes after your next completed cleaning.'));
+    txt('p-note',d.expired?('This card expired on '+ex+'.'):(ready?'Your free cleaning is ready. Message us to use or gift it.':'Keep collecting. Your next stamp comes after your next cleaning.'));
     var rw=$('lc-reward');
-    if(d.expired){txt('lc-rt','This card expired on '+ex+'. Cards expire 1 year after the last cleaning. Message us and we\'ll help.');rw.hidden=false;}
-    else if(ready){txt('lc-rt','Your free cleaning is ready. Up to 35 sqm. Transportation fee and add-ons are not included. Use it yourself or gift it to someone. ');rw.hidden=false;}
+    if(d.expired){txt('lc-rt','This card expired on '+ex+'. Message us and we\'ll be happy to help.');rw.hidden=false;}
+    else if(ready){txt('lc-rt','Your free cleaning is ready! Up to 35 sqm. Transportation fee and add-ons are not included. Use it yourself or gift it to someone.');rw.hidden=false;}
     else{rw.hidden=true;}
     var c=$('lc-carry');
-    if(d.carried>0){c.textContent=d.carried+(d.carried===1?' extra referral stamp':' extra referral stamps')+' will carry over to your next card.';c.hidden=false;}else{c.hidden=true;}
+    if(d.carried>0){c.textContent=(d.carried===1?'Your extra referral stamp carries':'Your '+d.carried+' extra referral stamps carry')+' over to your next card.';c.hidden=false;}else{c.hidden=true;}
     var ul=$('lc-list');ul.textContent='';
-    if(!n){var e=document.createElement('li'),sp=document.createElement('span');sp.className='empty';sp.textContent='No stamps yet. Your first one comes after your first completed cleaning.';e.appendChild(sp);ul.appendChild(e);}
+    if(!n){var e=document.createElement('li'),sp=document.createElement('span');sp.className='empty';sp.textContent='No stamps yet. Your first one comes after your first cleaning.';e.appendChild(sp);ul.appendChild(e);}
     stamps.slice().reverse().forEach(function(x){
       var li=document.createElement('li'),a=document.createElement('span'),b=document.createElement('span'),t=document.createElement('span');
       a.className='d';a.textContent=fmt(x.date);b.className='v';b.textContent=String(x.service||'').slice(0,60);
@@ -1356,7 +1356,7 @@ a.btn-book{text-decoration:none;text-align:center;}
   }
   function reset(){
     clearTimeout(idle);$('lc-code').value='';setMsg('');buildGrid(0,false);
-    txt('lc-n',0);txt('p-n',0);txt('lc-sub','Enter your code to see your card');txt('p-id','—');
+    txt('lc-n',0);txt('p-n',0);txt('lc-sub','Enter your code to see your stamps');txt('p-id','—');
     ['p-ref','m-ref'].forEach(function(i){txt(i,'— / 3');});['p-fb','m-fb'].forEach(function(i){txt(i,'— / 1');});
     txt('p-exp','—');txt('m-exp','—');txt('p-free','—');txt('p-note','Enter your code to see your card.');
     $('lc-reward').hidden=true;$('lc-carry').hidden=true;
