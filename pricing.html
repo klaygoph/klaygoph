@@ -2161,8 +2161,28 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .lb.lb-row .lb-n{justify-content:flex-start;flex:1;text-align:left;}
 .lb.lb-row .lb-f{margin-top:0;flex-shrink:0;min-width:78px;text-align:right;}
 .loc-note{font-size:.75rem;color:#2B4E8A;margin-top:10px;padding:10px 14px;background:#EBF1FA;border:1.5px solid #A8BFE0;border-radius:0;line-height:1.7;}
-.loc-note.loc-note-alert{background:var(--rbg);border:1px solid var(--rbdr);border-left:4px solid var(--red);color:#A33232;font-size:.875rem;font-weight:500;line-height:1.6;margin-top:12px;padding:12px 16px;border-radius:var(--r,8px);}
+.loc-note.loc-note-alert{background:var(--rbg);border:1px solid var(--rbdr);border-left:4px solid var(--red);color:#A33232;font-size:.875rem;font-weight:500;line-height:1.6;margin-top:12px;padding:12px 16px;border-radius:0;}
 .loc-note.loc-note-alert strong{font-weight:800;color:#8F2D2D;}
+.place-q{margin-bottom:16px;}
+.place-l{font-size:.8125rem;font-weight:600;color:var(--dk);margin-bottom:8px;line-height:1.5;}
+.place-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.place-chip{padding:8px 14px;min-height:40px;border:1.5px solid #EBF1FA;border-radius:0;font-size:.8125rem;font-weight:500;font-family:inherit;cursor:pointer;background:#fff;color:var(--dk);transition:all .2s ease;}
+.place-chip:hover{border-color:var(--se);color:var(--pr);}
+.place-chip.on{border-color:var(--pr);background:var(--pr);color:#fff;}
+.place-chip:focus-visible{outline:2px solid var(--pr);outline-offset:2px;}
+.place-note{font-size:.75rem;color:var(--gr);margin-top:8px;line-height:1.55;}
+.place-ack{display:flex;align-items:flex-start;gap:10px;margin-top:10px;padding:10px 12px;background:#F7F9FC;border:1px solid #EBF1FA;border-radius:0;font-size:.8125rem;line-height:1.55;color:var(--dk);cursor:pointer;}
+.place-ack input{margin-top:3px;width:18px;height:18px;flex:0 0 18px;accent-color:#2B4E8A;}
+.dur-ack-card{margin:14px 0;padding:16px;border:1.5px solid #A8BFE0;background:#F7F9FC;border-radius:0;}
+.dur-ack-title{font-size:.6875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pr);margin-bottom:8px;}
+.dur-ack-line{font-size:1rem;font-weight:700;color:#0D1F3C;line-height:1.4;}
+.dur-ack-sub{font-size:.8125rem;color:var(--dk);margin:4px 0 10px;line-height:1.55;}
+.dur-over{background:var(--rbg);border:1px solid var(--rbdr);border-left:4px solid var(--red);color:#A33232;font-size:.875rem;line-height:1.6;padding:12px 16px;margin:0 0 10px;border-radius:0;}
+.dur-over strong{color:#8F2D2D;font-weight:800;}
+.dur-btn{margin:8px 8px 0 0;padding:9px 14px;min-height:40px;border:1.5px solid #2B4E8A;background:#fff;color:#2B4E8A;font-weight:600;font-size:.8125rem;font-family:inherit;cursor:pointer;border-radius:0;}
+.dur-btn:hover{background:#2B4E8A;color:#fff;}
+.btn-wa{display:block;width:calc(100% - 24px);margin:0 12px 6px;padding:12px;background:transparent;color:var(--pr);border:1.5px solid var(--pr);border-radius:0;font-size:.8125rem;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;transition:all .2s ease;}
+.btn-wa:hover{background:var(--pr);color:#fff;}
 .other-inp{display:none;margin-top:6px;}
 .other-inp input{width:100%;padding:8px 12px;border:1.5px solid var(--bd);border-radius:0;font-family:inherit;font-size:.8125rem;color:var(--dk);}
 .other-inp input:focus{outline:none;border-color:var(--pr);}
@@ -3557,7 +3577,7 @@ body{ font-size:16px; }
       <span class="tr-target" data-textreveal="Know your cleaning cost">Know your cleaning cost</span><br>
       <span class="tr-target" data-textreveal="before you book.">before you book.</span>
     </h1>
-    <p class="hero-sub">Choose your space, cleaning type, schedule, and location to see your estimated price. Once you have your total, send it to us on Messenger to confirm your slot.</p>
+    <p class="hero-sub">Choose your space, cleaning type, schedule, and location to see your estimated price. Once you have your total, send it to us on Messenger, Instagram, or WhatsApp to confirm your slot.</p>
     <div class="hero-checks">
       <div class="hero-check">No payment required</div>
       <div class="hero-check">No commitment</div>
@@ -3908,9 +3928,28 @@ body{ font-size:16px; }
   <div class="loc-note loc-note-alert" role="note"><strong>Transport fee is an estimate.</strong> Final amount confirmed based on your exact address.</div>
 </div>
 
-<!-- STEP 9: YOUR INFORMATION -->
+<!-- STEP 9: ABOUT YOUR PLACE -->
+<div class="card reveal locked" id="card-place">
+  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>About your place</h2><p>So our cleaner can get in and finish on time</p><span class="card-why">Required before booking</span></div></div>
+  <div class="place-q">
+    <div class="place-l" id="pq-prop">What type of property is it?</div>
+    <div class="place-chips" role="radiogroup" aria-labelledby="pq-prop"><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('prop','House',this)">House</button><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('prop','Apartment',this)">Apartment</button><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('prop','Condo',this)">Condo</button></div>
+  </div>
+  <div class="place-q">
+    <div class="place-l" id="pq-pass">Does your building require a pass or permit for cleaners?</div>
+    <div class="place-chips" role="radiogroup" aria-labelledby="pq-pass"><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('pass','Yes',this)">Yes</button><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('pass','No',this)">No</button><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('pass','Not sure',this)">Not sure</button></div>
+    <label class="place-ack" id="pass-ack-wrap" style="display:none;"><input type="checkbox" id="pass-ack" onchange="togPassAck(this)"><span>I'll arrange the building pass or permit and send the requirements before the service date.</span></label>
+  </div>
+  <div class="place-q">
+    <div class="place-l" id="pq-noise">Until what time does your building allow cleaning noise, like vacuuming?</div>
+    <div class="place-chips" role="radiogroup" aria-labelledby="pq-noise"><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('noise','none',this)">No restriction</button><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('noise','8',this)">Until 8 PM</button><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('noise','6',this)">Until 6 PM</button><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('noise','5',this)">Until 5 PM</button><button type="button" class="place-chip" role="radio" aria-checked="false" onclick="pickPlace('noise','unsure',this)">Not sure</button></div>
+    <div class="place-note" id="noise-note" aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- STEP 10: YOUR INFORMATION -->
 <div class="card reveal locked" id="card-info">
-  <div class="card-head"><div class="sbadge" id="b9">9</div><div><h2>Your details</h2><p>So we can confirm your booking</p><span class="card-why">Required before booking</span></div></div>
+  <div class="card-head"><div class="sbadge" id="b10">10</div><div><h2>Your details</h2><p>So we can confirm your booking</p><span class="card-why">Required before booking</span></div></div>
   <div class="alert info" style="margin-bottom:8px;font-size:10px;">No log-in required. No bank information collected. Your data is only used to process your booking request.</div>
   <div class="fields">
     <div class="field full">
@@ -4027,7 +4066,7 @@ body{ font-size:16px; }
       <span class="acc-title">Reservation Fee &amp; Payment</span>
       <span class="acc-chevron">▼</span>
     </div>
-    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. It is <strong>50% of your total estimate</strong> for every booking, regardless of property size or booking day.<br><br>Accepted: <strong>GCash · Bank Transfer (BPI)</strong>. Payment details are sent after we confirm your booking via Messenger.</div>
+    <div class="acc-body">The <strong>reservation fee</strong> secures your slot. It is <strong>50% of your total estimate</strong> for every booking, regardless of property size or booking day.<br><br>Accepted: <strong>GCash · Bank Transfer (BPI)</strong>. Payment details are sent after we confirm your booking in your chat with us.</div>
   </div>
 
   <div class="acc-item" id="acc-onsite">
@@ -4074,8 +4113,8 @@ body{ font-size:16px; }
       <div class="whn-num you">2</div>
       <div class="whn-body">
         <div class="whn-who you">YOU</div>
-        <div class="whn-step-title">Open Messenger &amp; Paste Your Estimate</div>
-        <div class="whn-step-desc">Click <strong>"Book on Messenger"</strong> — Messenger opens directly to our page. Long-press the message field, paste your estimate, and hit Send.</div>
+        <div class="whn-step-title">Send Us Your Estimate</div>
+        <div class="whn-step-desc">Tap <strong>Book on Messenger</strong>, <strong>Book via Instagram</strong>, or <strong>Book via WhatsApp</strong>. Your chat opens with our page. If your estimate isn't already in the message box, long-press the field, paste it, and hit Send.</div>
       </div>
     </div>
     <div class="whn-step">
@@ -4126,6 +4165,15 @@ body{ font-size:16px; }
   </div><!-- /sec-acc-body (whn-body-wrap) -->
 </div><!-- /whn-acc-wrap -->
 
+<!-- DURATION AGREEMENT (required before booking) -->
+<div class="dur-ack-card" id="dur-ack-card" style="display:none;" role="group" aria-labelledby="dur-ack-title">
+  <div class="dur-ack-title" id="dur-ack-title">Before you book: your cleaning time</div>
+  <div class="dur-ack-line" id="dur-ack-line"></div>
+  <div class="dur-ack-sub" id="dur-ack-sub"></div>
+  <div class="dur-over" id="dur-over" style="display:none;" role="alert"></div>
+  <label class="place-ack"><input type="checkbox" id="dur-ack" onchange="togDurAck(this)"><span>I understand and agree to the estimated cleaning time above. Actual time may vary with the size and condition of the space.</span></label>
+</div>
+
 </div><!-- /col-left -->
 
 <!-- RIGHT PANEL -->
@@ -4166,6 +4214,7 @@ body{ font-size:16px; }
     <div class="transpo-note" id="transpo-note" style="display:none;">Transport estimate — final amount confirmed based on your exact address.</div>
     <div class="discl">This estimate does not confirm a reservation. Booking confirmed after reservation fee is received and confirmed.</div>
     <button class="btn-book" onclick="bookNow()">Book on Messenger</button>
+    <button class="btn-wa" onclick="bookWhatsApp()">Book via WhatsApp</button>
     <button class="btn-copy" id="btn-copy" onclick="copyEstimate()">Copy Estimate Text</button>
     <button class="btn-print" onclick="openPrint()">Save / Print Estimate</button>
     <button class="btn-reset" onclick="resetAll()">Reset</button>
@@ -4201,6 +4250,21 @@ body{ font-size:16px; }
     </div>
     <button class="modal-cta" id="ig-go-btn">Open Instagram Now</button>
     <button class="modal-cancel" onclick="document.getElementById('ig-modal').classList.remove('show')">Cancel</button>
+  </div>
+</div>
+
+<!-- WHATSAPP MODAL -->
+<div class="modal-overlay" id="wa-modal">
+  <div class="modal-box">
+    <div class="modal-title">Your estimate has been copied!</div>
+    <div class="modal-body">WhatsApp is about to open. Complete your booking in <strong>3 quick steps:</strong></div>
+    <div class="modal-steps">
+      <div class="modal-step"><div class="modal-step-n">1</div><div class="modal-step-t">Open our chat. Your estimate is usually <strong>already typed in</strong></div></div>
+      <div class="modal-step"><div class="modal-step-n">2</div><div class="modal-step-t">If the message box is empty, <strong>long-press → Paste</strong></div></div>
+      <div class="modal-step"><div class="modal-step-n">3</div><div class="modal-step-t">Hit <strong>Send</strong> — we'll reply to confirm your slot </div></div>
+    </div>
+    <button class="modal-cta" id="wa-go-btn">Open WhatsApp Now</button>
+    <button class="modal-cancel" onclick="document.getElementById('wa-modal').classList.remove('show')">Cancel</button>
   </div>
 </div>
 
@@ -4255,6 +4319,7 @@ body{ font-size:16px; }
   <button class="be-btn-copy" onclick="copyEstimate()">Copy Estimate</button>
   <button class="be-btn" onclick="bookNow()">Book on Messenger</button>
   <button class="be-btn-sec" onclick="bookInstagram()">Book via Instagram</button>
+  <button class="be-btn-sec" onclick="bookWhatsApp()">Book via WhatsApp</button>
   <button class="be-btn-print-est" onclick="openPrint()">Save / Print Estimate</button>
 </div><!-- /bottom-estimate -->
 
@@ -4640,6 +4705,7 @@ var CY, CM, monthEvts={};
 var selDate=null, selTime=null;
 var selSituations=new Set(), recurSlots=[];
 var S={
+  propType:'',passReq:'',noiseLimit:'',passAck:false,durAck:false,durAckSig:'',
   cleanType:'regular', sqm:46, isLarge:false,
   bn:'',
   sched:'Initial / One-time',
@@ -4895,7 +4961,7 @@ async function renderTimes(ds,hrsAway){
 function onTimeClick(el,start){
   document.querySelectorAll('.ts.ts-s').forEach(function(t){t.classList.remove('ts-s');});
   el.classList.add('ts-s'); selTime=start;
-  ['card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-info'].forEach(function(id){unlock(id);});
+  ['card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-place','card-info'].forEach(function(id){unlock(id);});
   var lbl=start.toLocaleTimeString('en-PH',{hour:'numeric',minute:'2-digit',hour12:true});
   var parts=selDate.split('-');
   var dlbl=new Date(+parts[0],+parts[1]-1,+parts[2]).toLocaleDateString('en-PH',{weekday:'short',month:'short',day:'numeric'});
@@ -5303,6 +5369,69 @@ function fmtT(mn,mx){
   return f(mn)+' – '+f(mx);
 }
 
+// ── PLACE, FINISH TIME & DURATION AGREEMENT ───────────────────
+var LATEST_FINISH_HOUR=20; // our cleaners finish by 8 PM at the latest
+var NOISE_LABELS={'none':'No restriction','8':'Until 8 PM','6':'Until 6 PM','5':'Until 5 PM','unsure':'Not sure'};
+var NOISE_NOTES={'none':'Our cleaners finish by 8:00 PM at the latest.','8':'Our cleaners finish by 8:00 PM at the latest.','6':'Got it. We will plan your visit to finish by 6:00 PM.','5':'Got it. We will plan your visit to finish by 5:00 PM.','unsure':'No problem. We will plan to finish by 8:00 PM. Please check with your building admin and tell us if it is earlier.'};
+function fmtClock(d){return d.toLocaleTimeString('en-PH',{timeZone:'Asia/Manila',hour:'numeric',minute:'2-digit',hour12:true});}
+function noiseLabel(){return NOISE_LABELS[S.noiseLimit]||'—';}
+function getCutoffHour(){return S.noiseLimit==='6'?18:S.noiseLimit==='5'?17:LATEST_FINISH_HOUR;}
+function getFinishInfo(){
+  if(!selTime||!selDate||!S.bn)return null;
+  var t=cT();
+  if(!t||!t.mx)return null;
+  var ch=getCutoffHour();
+  var cutoff=new Date(selDate+'T'+pad(ch)+':00:00+08:00');
+  var finMin=new Date(selTime.getTime()+t.mn*60000), finMax=new Date(selTime.getTime()+t.mx*60000);
+  return {t:t,start:selTime,finMin:finMin,finMax:finMax,cutoff:cutoff,cutoffHour:ch,over:finMax>cutoff,byBuilding:ch<LATEST_FINISH_HOUR};
+}
+function durSig(){var i=getFinishInfo();return i?(selTime.getTime()+'|'+i.t.mn+'|'+i.t.mx+'|'+i.cutoffHour):'';}
+function refreshDurationUI(){
+  var card=document.getElementById('dur-ack-card');if(!card)return;
+  var info=getFinishInfo();
+  if(!info){card.style.display='none';return;}
+  card.style.display='block';
+  var cl=S.addons['cleaner']>0?'2 cleaners':'1 cleaner';
+  document.getElementById('dur-ack-line').textContent='Estimated cleaning time: '+fmtT(info.t.mn,info.t.mx)+' ('+cl+')';
+  document.getElementById('dur-ack-sub').textContent='Starting at '+fmtClock(info.start)+', we expect to finish between '+fmtClock(info.finMin)+' and '+fmtClock(info.finMax)+'.';
+  var over=document.getElementById('dur-over'),cb=document.getElementById('dur-ack');
+  // If the estimate changed since they agreed, they need to agree again
+  if(S.durAck&&S.durAckSig!==durSig()){S.durAck=false;cb.checked=false;}
+  if(info.over){
+    S.durAck=false;cb.checked=false;cb.disabled=true;
+    over.innerHTML='<strong>This could finish after '+fmtClock(info.cutoff)+'.</strong> '
+      +(info.byBuilding?'Your building allows cleaning only until then. ':'8:00 PM is the latest our cleaners finish. ')
+      +'Please choose an earlier start time, add an Additional Cleaner (it halves the cleaning time), or message us to split the job over two days.'
+      +'<div><button type="button" class="dur-btn" onclick="goEarlier()">Choose an earlier time</button>'
+      +(S.addons['cleaner']>0?'':'<button type="button" class="dur-btn" onclick="addSecondCleaner()">Add Additional Cleaner (Php 1,000)</button>')
+      +'</div>';
+    over.style.display='block';
+  } else {
+    cb.disabled=false;over.style.display='none';over.innerHTML='';
+  }
+}
+function pickPlace(g,v,el){
+  var row=el.parentNode;
+  row.querySelectorAll('.place-chip').forEach(function(t){t.classList.remove('on');t.setAttribute('aria-checked','false');});
+  el.classList.add('on');el.setAttribute('aria-checked','true');
+  if(g==='prop')S.propType=v;
+  if(g==='pass'){
+    S.passReq=v;
+    var w=document.getElementById('pass-ack-wrap');
+    if(w)w.style.display=(v==='No')?'none':'flex';
+    if(v==='No'){S.passAck=false;var pc=document.getElementById('pass-ack');if(pc)pc.checked=false;}
+  }
+  if(g==='noise'){
+    S.noiseLimit=v;
+    var nn=document.getElementById('noise-note');if(nn)nn.textContent=NOISE_NOTES[v]||'';
+  }
+  compute();
+}
+function togPassAck(el){S.passAck=el.checked;}
+function togDurAck(el){S.durAck=el.checked;S.durAckSig=el.checked?durSig():'';}
+function goEarlier(){var c=document.getElementById('card-time');if(c)c.scrollIntoView({behavior:'smooth',block:'center'});}
+function addSecondCleaner(){if(!(S.addons['cleaner']>0)){togAddon('cleaner');toast('Additional Cleaner added. Your cleaning time is now halved.');}}
+
 // ── RESERVATION FEE HELPER ────────────────────────────────────
 // Single source of truth. Flat 50% of the total estimate for every booking,
 // regardless of property size, day, or holiday.
@@ -5323,6 +5452,10 @@ function calcDiscount(sub){
 
 // ── COMPUTE ───────────────────────────────────────────────────
 function compute(){
+  compute_core();
+  try{refreshDurationUI();}catch(e){console.log('duration ui',e);}
+}
+function compute_core(){
   var lines=[], sub=0;
 
   // Update property type card prices to reflect current cleaning type
@@ -5544,6 +5677,9 @@ function buildMsg(){
     msg+='\nTotal upfront ('+totalSessions+' sessions × Php '+rfMsg.dp.toLocaleString()+'): Php '+(rfMsg.dp*totalSessions).toLocaleString();
   }
   var sits=[...selSituations].join(', ');if(sits)msg+='\n\nSituation: '+sits;
+  msg+='\n\nPROPERTY & ACCESS:\nProperty type: '+(S.propType||'—')+'\nBuilding pass/permit required: '+(S.passReq||'—')+(S.passReq&&S.passReq!=='No'?' (client will arrange)':'')+'\nBuilding cleaning hours: '+noiseLabel();
+  var fiMsg=getFinishInfo();
+  if(fiMsg)msg+='\nEstimated finish: '+fmtClock(fiMsg.finMin)+' – '+fmtClock(fiMsg.finMax)+(S.durAck?' (client agreed to the estimated cleaning time)':'');
   if(instr)msg+='\n\nSpecial Instructions: '+instr;
   msg+='\n\n---\nBy sending this estimate and completing the reservation fee, I confirm I have read and agreed to all Klaygo PH Booking Policies.';
   return msg;
@@ -5571,12 +5707,20 @@ function getMissingSections(){
   var hasSit=document.querySelectorAll('.sit-tag.on').length>0||document.getElementById('instr').value.trim();
   if(!hasSit)missing.push({label:'Answer Special Instructions (tap at least one option)',id:'card-instr'});
   if(!S.lid)missing.push({label:'Select your Location',id:'card-loc'});
+  if(!S.propType)missing.push({label:'Tell us your property type',id:'card-place'});
+  if(!S.passReq)missing.push({label:'Tell us if your building requires a pass or permit',id:'card-place'});
+  if(S.passReq&&S.passReq!=='No'&&!S.passAck)missing.push({label:'Confirm you will arrange the building pass or permit',id:'pass-ack-wrap'});
+  if(!S.noiseLimit)missing.push({label:'Tell us when your building allows cleaning',id:'card-place'});
+  if(S.addons['grease']>0&&S.propType&&S.propType!=='Condo')missing.push({label:'Greasetrap Cleaning is for condo units only. Remove it or update your property type',id:'card-ext'});
   if(!document.getElementById('f-name').value.trim())missing.push({label:'Enter your Full Name',id:'f-name'});
   if(!document.getElementById('f-phone').value.trim())missing.push({label:'Enter your Contact Number',id:'f-phone'});
   if(!document.getElementById('f-email').value.trim())missing.push({label:'Enter your Email Address',id:'f-email'});
   if(!document.getElementById('f-addr').value.trim())missing.push({label:'Enter your Complete Address',id:'f-addr'});
   if(!policiesOpened)missing.push({label:'Open Booking Policies',id:'pol-acc-wrap'});
   if(!whnOpened)missing.push({label:'Open What Happens Next',id:'whn-acc-wrap'});
+  var fiM=getFinishInfo();
+  if(fiM&&fiM.over)missing.push({label:'Your estimated finish is after '+fmtClock(fiM.cutoff)+'. Choose an earlier start or add a second cleaner',id:'dur-ack-card'});
+  else if(fiM&&!S.durAck)missing.push({label:'Confirm your estimated cleaning time',id:'dur-ack-card'});
   return missing;
 }
 function validateAllSections(){
@@ -5627,6 +5771,18 @@ function bookInstagram(){
   if(navigator.clipboard){navigator.clipboard.writeText(msg).then(proceed).catch(function(){fbCopy(msg);proceed();});}
   else{fbCopy(msg);proceed();}
 }
+var waLink='https://api.whatsapp.com/send?phone=639928164718';
+function bookWhatsApp(){
+  if(!validateAllSections())return;
+  if(!validateRecurring())return;
+  var msg=buildMsg();
+  // WhatsApp can open with the message already typed in. Very long messages skip that and rely on paste.
+  var enc=encodeURIComponent(msg);
+  waLink='https://api.whatsapp.com/send?phone=639928164718'+(enc.length<=3500?'&text='+enc:'');
+  function proceed(){sendEstimateEmail(msg);document.getElementById('wa-modal').classList.add('show');}
+  if(navigator.clipboard){navigator.clipboard.writeText(msg).then(proceed).catch(function(){fbCopy(msg);proceed();});}
+  else{fbCopy(msg);proceed();}
+}
 function copyEstimate(){
   if(!validateAllSections())return;
   if(!validateRecurring())return;
@@ -5649,7 +5805,7 @@ async function sendEstimateEmail(msg){
       await fetch('https://formspree.io/f/'+FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
         body:JSON.stringify({_subject:'[Klaygo PH] Your Estimate '+(currentEstId||''),_replyto:'hello@klaygoph.com',name:name,email:email,
           message:'Hi '+(name||'there')+'!\n\nThank you for using the Klaygo PH Service Calculator. Here is your estimate:\n\n'+msg+'\n\nWe will be in touch shortly to confirm your schedule and send payment details.\n\n Messenger: m.me/klaygoph\n 0992.816.4718\n\nCleaner Space, Clearer Mind.\nKlaygo PH'})});
-      toast('Estimate submitted! Check your Messenger for next steps.');
+      toast('Estimate submitted! We will reply shortly to confirm your slot.');
     }catch(e){console.log('Cust email err:',e);}
   }
 }
@@ -5698,6 +5854,8 @@ function openPrint(){
   if(rFilled.length>0){var nvPrint=rFilled.length+1;rowsHtml+='<tr class="tr"><td colspan="2"><div class="tr-band"><span>TOTAL FOR '+nvPrint+' VISITS</span><span>Php '+(total*nvPrint).toLocaleString()+'</span></div></td></tr>';}
   var sits=[...selSituations].join(', ');var instrHtml='';
   if(sits)instrHtml+='<div class="ib"><h4>Situation</h4><p>'+escapeHtml(sits)+'</p></div>';
+  var fiPr=getFinishInfo();
+  instrHtml+='<div class="ib"><h4>Property &amp; Access</h4><p>'+escapeHtml('Property type: '+(S.propType||'—')+' · Building pass/permit: '+(S.passReq||'—')+' · Building cleaning hours: '+noiseLabel()+(fiPr?' · Estimated finish: '+fmtClock(fiPr.finMin)+' – '+fmtClock(fiPr.finMax):''))+'</p></div>';
   if(instr)instrHtml+='<div class="ib"><h4>Special Instructions</h4><p>'+escapeHtml(instr)+'</p></div>';
   var multiDatePrint=rFilled.length>0||S.sched!=='Initial / One-time';
   var balLabelPrint=multiDatePrint?'Balance on each service day':'Balance on service day';
@@ -5809,7 +5967,7 @@ function resetAll(){
   ['pol-acc-wrap','whn-acc-wrap'].forEach(function(id){var w=document.getElementById(id);if(w)w.classList.remove('open');});
   var cext=document.getElementById('card-ext');if(cext)cext.classList.remove('addon-open');
   updatePoliciesWarning();
-  S={cleanType:'regular',sqm:46,isLarge:false,bn:'',sched:'Initial / One-time',addons:{},rt:new Set(),noAddonsConfirmed:false,lid:null,ln:null,lf:null};
+  S={cleanType:'regular',sqm:46,isLarge:false,bn:'',sched:'Initial / One-time',addons:{},rt:new Set(),noAddonsConfirmed:false,lid:null,ln:null,lf:null,propType:'',passReq:'',noiseLimit:'',passAck:false,durAck:false,durAckSig:''};
   document.querySelectorAll('.day.sel-d').forEach(function(d){d.classList.remove('sel-d');});
   document.querySelectorAll('.svc.sel').forEach(function(s){s.classList.remove('sel');});
   // Reset schedule visual (sched-opt replaces old pill system)
@@ -5820,6 +5978,11 @@ function resetAll(){
   var oi=document.getElementById('other-inp');if(oi)oi.classList.remove('show');
   document.getElementById('instr').value='';
   document.querySelectorAll('.sit-tag.on').forEach(function(t){t.classList.remove('on');});
+  document.querySelectorAll('.place-chip').forEach(function(t){t.classList.remove('on');t.setAttribute('aria-checked','false');});
+  ['pass-ack','dur-ack'].forEach(function(id){var c=document.getElementById(id);if(c){c.checked=false;c.disabled=false;}});
+  var paw=document.getElementById('pass-ack-wrap');if(paw)paw.style.display='none';
+  var nnote=document.getElementById('noise-note');if(nnote)nnote.textContent='';
+  var dac=document.getElementById('dur-ack-card');if(dac)dac.style.display='none';
   var rs=document.getElementById('recur-section');if(rs)rs.style.display='none';
   var re=document.getElementById('recur-entries');if(re)re.innerHTML='';
   document.getElementById('time-grid').innerHTML='<p style="font-size:10.5px;color:var(--gr);">Select a date above to see available slots.</p>';
@@ -5827,7 +5990,7 @@ function resetAll(){
   document.getElementById('time-sub').textContent='Choose your date first';
   // Hide Larger Home slider
   var lhw=document.getElementById('lh-slider-wrap');if(lhw)lhw.classList.remove('show');
-  ['card-time','card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-info'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.add('locked');});
+  ['card-time','card-clean','card-svc','card-sched','card-ext','card-instr','card-loc','card-place','card-info'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.add('locked');});
   setAvail('none','No date selected yet.');
   currentEstId='';var pe=document.getElementById('p-est-id');if(pe)pe.textContent='—';
   var cb=document.getElementById('btn-copy');if(cb)cb.style.display='none';
@@ -6349,6 +6512,13 @@ document.addEventListener('DOMContentLoaded',function(){
   });
   var igOverlay=document.getElementById('ig-modal');
   if(igOverlay)igOverlay.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
+  var waGoBtn=document.getElementById('wa-go-btn');
+  if(waGoBtn)waGoBtn.addEventListener('click',function(){
+    document.getElementById('wa-modal').classList.remove('show');
+    window.open(waLink,'_blank');
+  });
+  var waOverlay=document.getElementById('wa-modal');
+  if(waOverlay)waOverlay.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
   // Logo injection for sticky + bottom estimate
   var sbLogo=document.getElementById('sb-logo-img');
   var beLogo=document.getElementById('be-logo-img');
